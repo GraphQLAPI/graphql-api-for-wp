@@ -1,0 +1,55 @@
+{
+    "name": "leoloso/graphql-by-pop-wp-plugin",
+    "type": "library",
+    "description": "Generate the \"GraphQL by PoP\" WordPress plugin",
+    "keywords": [
+        "PoP",
+        "WordPress",
+        "GraphQL",
+        "API"
+    ],
+    "homepage": "https://github.com/leoloso/graphql-by-pop-wp-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Leonardo Losoviz",
+            "email": "leo@getpop.org",
+            "homepage": "https://getpop.org"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        }
+    ],
+    "require": {
+        "php": "~7.1",
+        "getpop/engine-wp": "dev-master",
+        "getpop/commentmeta-wp": "dev-master",
+        "getpop/comments-wp": "dev-master",
+        "getpop/pages-wp": "dev-master",
+        "getpop/postmeta-wp": "dev-master",
+        "getpop/posts-wp": "dev-master",
+        "getpop/posts-api": "dev-master",
+        "getpop/taxonomies-wp": "dev-master",
+        "getpop/taxonomymeta-wp": "dev-master",
+        "getpop/taxonomyquery-wp": "dev-master",
+        "getpop/usermeta-wp": "dev-master",
+        "getpop/users-wp": "dev-master",
+        "getpop/media-wp": "dev-master",
+        "getpop/postmedia-wp": "dev-master",
+        "getpop/graphql": "dev-master",
+        "getpop/api-rest": "dev-master"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
