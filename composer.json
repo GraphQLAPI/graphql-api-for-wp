@@ -56,20 +56,17 @@
             "packages": [
                 "getpop/engine-wp",
                 "getpop/commentmeta-wp",
-                "getpop/comments-wp",
                 "getpop/pages-wp",
                 "getpop/postmeta-wp",
-                "getpop/posts-wp",
                 "getpop/posts-api",
-                "getpop/taxonomies-wp",
-                "getpop/taxonomymeta-wp",
                 "getpop/taxonomyquery-wp",
                 "getpop/usermeta-wp",
-                "getpop/users-wp",
-                "getpop/media-wp",
                 "getpop/postmedia-wp",
                 "getpop/graphql",
                 "getpop/api-rest"
+            ],
+            "namespaces_to_skip": [
+                "PoP\\"
             ]
         }
     },
