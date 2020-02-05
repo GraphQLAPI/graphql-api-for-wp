@@ -2,3 +2,4 @@ composer.lock
 vendor/
 bin/
 wp-content/
+src/Dependencies/

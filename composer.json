@@ -54,22 +54,13 @@
             "classmap_directory": "/classes/dependencies/",
             "classmap_prefix": "GQLPoP_",
             "packages": [
-                "getpop/engine-wp",
-                "getpop/commentmeta-wp",
-                "getpop/comments-wp",
-                "getpop/pages-wp",
-                "getpop/postmeta-wp",
-                "getpop/posts-wp",
-                "getpop/posts-api",
-                "getpop/taxonomies-wp",
-                "getpop/taxonomymeta-wp",
-                "getpop/taxonomyquery-wp",
-                "getpop/usermeta-wp",
-                "getpop/users-wp",
-                "getpop/media-wp",
-                "getpop/postmedia-wp",
-                "getpop/graphql",
-                "getpop/api-rest"
+                "symfony/cache",
+                "league/pipeline",
+                "jrfnl/php-cast-to-type",
+                "symfony/config",
+                "symfony/dependency-injection",
+                "symfony/dotenv",
+                "symfony/yaml"
             ]
         }
     },
