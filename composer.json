@@ -78,6 +78,6 @@
         "sort-packages": true
     },
     "require-dev": {
-        "coenjacobs/mozart": "dev-master"
+        "coenjacobs/mozart": "dev-skip-namespaces"
     }
 }
