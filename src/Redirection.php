@@ -14,10 +14,9 @@ class Redirection {
             'api/graphql'
         );
 
-        // Register the endpoint through a rewrite rule
         add_action(
             'init',
-            [self::class, 'addRewriteRule']
+            [self::class, 'addRewriteEndpoint']
         );
         add_filter(
             'query_vars',
@@ -29,10 +28,10 @@ class Redirection {
             'parse_request',
             [self::class, 'parseRequest']
         );
-        add_action(
-            'wp_loaded',
-            [self::class, 'maybeFlushRewriteRules']
-        );
+        // add_action(
+        //     'wp_loaded',
+        //     [self::class, 'maybeFlushRewriteRules']
+        // );
     }
 
     /**
@@ -47,6 +46,10 @@ class Redirection {
      * @throws \Throwable
      */
     public static function parseRequest() {
+
+        // global $wp_query;
+        // $doingPoPGraphQL = array_key_exists( self::$ENDPOINT , $wp_query->query_vars );
+        // var_dump('$doingPoPGraphQL', $doingPoPGraphQL, $wp_query->query_vars);die;
 
         // Support wp-graphiql style request to /index.php?pop_graphql
         $doingPoPGraphQL = false;
@@ -85,13 +88,14 @@ class Redirection {
         }
     }
 
-    public static function addRewriteRule()
+    public static function addRewriteEndpoint()
     {
-        add_rewrite_rule(
-            self::$ENDPOINT . '/?$',
-            'index.php?pop_graphql=true',
-            'top'
-        );
+        // add_rewrite_rule(
+        //     self::$ENDPOINT.'/?$',
+        //     'index.php?pop_graphql=true',
+        //     'top'
+        // );
+        add_rewrite_endpoint( self::$ENDPOINT, EP_ALL );
     }
 
     public static function addQueryVar($query_vars)
@@ -100,11 +104,11 @@ class Redirection {
         return $query_vars;
     }
 
-    public static function maybeFlushRewriteRules() {
-        $rules = get_option('rewrite_rules');
-        $entry = self::$ENDPOINT.'/?$';
-        if (!isset($rules[$entry])) {
-            flush_rewrite_rules();
-        }
-    }
+    // public static function maybeFlushRewriteRules() {
+    //     $rules = get_option('rewrite_rules');
+    //     $entry = self::$ENDPOINT.'/?$';
+    //     if (!isset($rules[$entry])) {
+    //         flush_rewrite_rules();
+    //     }
+    // }
 }
