@@ -1,7 +1,7 @@
 {
     "name": "leoloso/graphql-by-pop-wp-plugin",
     "type": "library",
-    "description": "Generate the \"GraphQL by PoP\" WordPress plugin",
+    "description": "GraphQL by PoP plugin for WordPress",
     "keywords": [
         "PoP",
         "WordPress",
@@ -23,10 +23,6 @@
         {
             "type": "composer",
             "url": "https://wpackagist.org"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/leoloso/mozart"
         }
     ],
     "require": {
@@ -51,33 +47,9 @@
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
-        },
-        "mozart": {
-            "dep_namespace": "Leoloso\\GraphQLByPoPWPPlugin\\Dependencies\\",
-            "dep_directory": "/src/Dependencies/",
-            "classmap_directory": "/classes/dependencies/",
-            "classmap_prefix": "GQLPoP_",
-            "packages": [
-                "getpop/engine-wp",
-                "getpop/commentmeta-wp",
-                "getpop/pages-wp",
-                "getpop/postmeta-wp",
-                "getpop/posts-api",
-                "getpop/taxonomyquery-wp",
-                "getpop/usermeta-wp",
-                "getpop/postmedia-wp",
-                "getpop/graphql",
-                "getpop/api-rest"
-            ],
-            "namespaces_to_skip": [
-                "PoP\\"
-            ]
         }
     },
     "config": {
         "sort-packages": true
-    },
-    "require-dev": {
-        "coenjacobs/mozart": "dev-skip-namespaces"
     }
 }
