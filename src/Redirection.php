@@ -2,113 +2,154 @@
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
+use PoP\RESTAPI\DataStructureFormatters\RESTDataStructureFormatter;
 
 class Redirection {
 
-    public static $ENDPOINT;
+    /**
+     * GraphQL endpoint
+     *
+     * @var string
+     */
+    public static $GRAPHQL_ENDPOINT;
+    /**
+     * REST endpoint
+     *
+     * @var string
+     */
+    public static $REST_ENDPOINT;
+    /**
+     * Native API endpoint
+     *
+     * @var string
+     */
+    public static $API_ENDPOINT;
 
-    public static function init()
+    /**
+     * Initialize the endpoints
+     *
+     * @return void
+     */
+    public static function init(): void
     {
-        self::$ENDPOINT = apply_filters(
-            'graphql_by_pop:endpoint',
+        /**
+         * Define the endpoints
+         */
+        self::$GRAPHQL_ENDPOINT = apply_filters(
+            'graphql_by_pop:graphql_endpoint',
             'api/graphql'
         );
+        self::$REST_ENDPOINT = apply_filters(
+            'graphql_by_pop:rest_endpoint',
+            'api/rest'
+        );
+        self::$API_ENDPOINT = apply_filters(
+            'graphql_by_pop:api_endpoint',
+            'api'
+        );
 
+        /**
+         * Register the endpoints
+         */
         add_action(
             'init',
-            [self::class, 'addRewriteEndpoint']
+            [self::class, 'addRewriteEndpoints']
         );
         add_filter(
             'query_vars',
             [self::class, 'addQueryVar'],
-            1,
+            10,
             1
         );
+
+        /**
+         * Process the request to find out if it is any of the endpoints
+         */
         add_action(
             'parse_request',
             [self::class, 'parseRequest']
         );
-        // add_action(
-        //     'wp_loaded',
-        //     [self::class, 'maybeFlushRewriteRules']
-        // );
     }
 
     /**
-     * This resolves the http request and ensures that WordPress can respond with the appropriate
-     * JSON response instead of responding with a template from the standard WordPress Template
-     * Loading process
+     * Indicate if the URI ends with the given endpoint
      *
-     * @since  0.0.1
-     * @access public
-     * @return void
-     * @throws \Exception
-     * @throws \Throwable
+     * @param string $uri
+     * @param string $endpointURI
+     * @return boolean
      */
-    public static function parseRequest() {
+    private static function endsWithString(string $uri, string $endpointURI): bool
+    {
+        $endpointSuffix = '/'.trim($endpointURI, '/').'/';
+        return substr($uri, -1*strlen($endpointSuffix)) == $endpointSuffix;
+    }
 
-        // global $wp_query;
-        // $doingPoPGraphQL = array_key_exists( self::$ENDPOINT , $wp_query->query_vars );
-        // var_dump('$doingPoPGraphQL', $doingPoPGraphQL, $wp_query->query_vars);die;
+    /**
+     * Indicate if the URI ends with the given endpoint
+     *
+     * @param string $uri
+     * @param string $endpointURI
+     * @return boolean
+     */
+    private static function getSlashedURI(): string
+    {
+        $uri = $_SERVER['REQUEST_URI'];
 
-        // Support wp-graphiql style request to /index.php?graphql_by_pop
-        $doingPoPGraphQL = false;
-        if ( isset($_GET['graphql_by_pop'])) {
-            $doingPoPGraphQL = true;
-        }
-
-        // If before 'init' check $_SERVER.
-        /*else*/if ( /*isset( $_SERVER['HTTP_HOST'] ) && */isset( $_SERVER['REQUEST_URI'] ) ) {
-            // $haystack = wp_unslash( $_SERVER['HTTP_HOST'] )
-            //     . wp_unslash( $_SERVER['REQUEST_URI'] );
-            // $needle   = site_url(self::$ENDPOINT);
-
-            // // Strip protocol.
-            // $haystack = preg_replace( '#^(http(s)?://)#', '', $haystack );
-            // $needle   = preg_replace( '#^(http(s)?://)#', '', $needle );
-            // $len      = strlen( $needle );
-            // $doingPoPGraphQL = ( substr( $haystack, 0, $len ) === $needle );
-            $endpointSuffix = '/'.trim(self::$ENDPOINT, '/').'/';
-            $uri = $_SERVER['REQUEST_URI'];
-            // Remove everything after "?" and "#"
-            $symbols = ['?', '#'];
-            foreach ($symbols as $symbol) {
-                $symbolPos = strpos($uri, $symbol);
-                if ($symbolPos !== false) {
-                    $uri = substr($uri, 0, $symbolPos);
-                }
+        // Remove everything after "?" and "#"
+        $symbols = ['?', '#'];
+        foreach ($symbols as $symbol) {
+            $symbolPos = strpos($uri, $symbol);
+            if ($symbolPos !== false) {
+                $uri = substr($uri, 0, $symbolPos);
             }
-            $uri = trailingslashit($uri);
-            $doingPoPGraphQL = substr($uri, -1*strlen($endpointSuffix)) == $endpointSuffix;
+        }
+        return trailingslashit($uri);
+    }
+
+    /**
+     * Process the request to find out if it is any of the endpoints
+     *
+     * @return void
+     */
+    public static function parseRequest(): void
+    {
+        // If it /index.php?graphql_by_pop then it comes from GraphiQL
+        $doingGraphQL = false;
+        $doingREST = false;
+        $doingAPI = false;
+        if (isset($_GET['graphql_by_pop'])) {
+            $doingGraphQL = true;
+        } else {
+            // Check if the URL ends with either /api/graphql/ or /api/rest/ or /api/
+            $uri = self::getSlashedURI();
+            $doingGraphQL = self::endsWithString($uri, self::$GRAPHQL_ENDPOINT);
+            $doingREST = self::endsWithString($uri, self::$REST_ENDPOINT);
+            $doingAPI = self::endsWithString($uri, self::$API_ENDPOINT);
         }
 
-        if ($doingPoPGraphQL) {
-            $_REQUEST[GD_URLPARAM_SCHEME] = POP_SCHEME_API;
-            $_REQUEST[GD_URLPARAM_DATASTRUCTURE] = GraphQLDataStructureFormatter::getName();
+        // Set the params on the request, to emulate that they were added by the user (that's how it works, lah)
+        if ($doingGraphQL || $doingREST || $doingAPI) {
+            $_REQUEST[\GD_URLPARAM_SCHEME] = \POP_SCHEME_API;
+            if ($doingGraphQL) {
+                $_REQUEST[\GD_URLPARAM_DATASTRUCTURE] = GraphQLDataStructureFormatter::getName();
+            } elseif ($doingREST) {
+                $_REQUEST[\GD_URLPARAM_DATASTRUCTURE] = RESTDataStructureFormatter::getName();
+            }
         }
     }
 
-    public static function addRewriteEndpoint()
+    public static function addRewriteEndpoints()
     {
-        // add_rewrite_rule(
-        //     self::$ENDPOINT.'/?$',
-        //     'index.php?graphql_by_pop=true',
-        //     'top'
-        // );
-        add_rewrite_endpoint( self::$ENDPOINT, EP_ALL );
+        add_rewrite_endpoint(self::$GRAPHQL_ENDPOINT, EP_ALL);
+        add_rewrite_endpoint(self::$REST_ENDPOINT, EP_ALL);
+        add_rewrite_endpoint(self::$API_ENDPOINT, EP_ALL);
     }
 
     public static function addQueryVar($query_vars)
     {
-        $query_vars[] = self::$ENDPOINT;
+        $query_vars[] = self::$GRAPHQL_ENDPOINT;
+        $query_vars[] = self::$REST_ENDPOINT;
+        $query_vars[] = self::$API_ENDPOINT;
         return $query_vars;
     }
-
-    // public static function maybeFlushRewriteRules() {
-    //     $rules = get_option('rewrite_rules');
-    //     $entry = self::$ENDPOINT.'/?$';
-    //     if (!isset($rules[$entry])) {
-    //         flush_rewrite_rules();
-    //     }
-    // }
 }
