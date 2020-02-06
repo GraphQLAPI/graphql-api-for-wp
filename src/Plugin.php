@@ -1,12 +1,12 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
-use Leoloso\GraphQLByPoPWPPlugin\Redirection;
+use Leoloso\GraphQLByPoPWPPlugin\Endpoints;
 
 class Plugin {
 
     public function init(): void
     {
-        Redirection::init();
+        Endpoints::init();
     }
 }

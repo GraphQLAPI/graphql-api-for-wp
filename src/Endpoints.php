@@ -4,7 +4,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin;
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
 use PoP\RESTAPI\DataStructureFormatters\RESTDataStructureFormatter;
 
-class Redirection {
+class Endpoints {
 
     /**
      * GraphQL endpoint
