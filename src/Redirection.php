@@ -10,7 +10,7 @@ class Redirection {
     public static function init()
     {
         self::$ENDPOINT = apply_filters(
-            __CLASS__.':endpoint',
+            'graphql_by_pop:endpoint',
             'api/graphql'
         );
 
