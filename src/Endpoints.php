@@ -11,39 +11,39 @@ class Endpoints {
      *
      * @var string
      */
-    public static $GRAPHQL_ENDPOINT;
+    public $GRAPHQL_ENDPOINT;
     /**
      * REST endpoint
      *
      * @var string
      */
-    public static $REST_ENDPOINT;
+    public $REST_ENDPOINT;
     /**
      * Native API endpoint
      *
      * @var string
      */
-    public static $API_ENDPOINT;
+    public $API_ENDPOINT;
 
     /**
      * Initialize the endpoints
      *
      * @return void
      */
-    public static function init(): void
+    public function init(): void
     {
         /**
          * Define the endpoints
          */
-        self::$GRAPHQL_ENDPOINT = apply_filters(
+        $this->GRAPHQL_ENDPOINT = apply_filters(
             'graphql_by_pop:graphql_endpoint',
             'api/graphql'
         );
-        self::$REST_ENDPOINT = apply_filters(
+        $this->REST_ENDPOINT = apply_filters(
             'graphql_by_pop:rest_endpoint',
             'api/rest'
         );
-        self::$API_ENDPOINT = apply_filters(
+        $this->API_ENDPOINT = apply_filters(
             'graphql_by_pop:api_endpoint',
             'api'
         );
@@ -53,11 +53,11 @@ class Endpoints {
          */
         add_action(
             'init',
-            [self::class, 'addRewriteEndpoints']
+            [$this, 'addRewriteEndpoints']
         );
         add_filter(
             'query_vars',
-            [self::class, 'addQueryVar'],
+            [$this, 'addQueryVar'],
             10,
             1
         );
@@ -67,7 +67,7 @@ class Endpoints {
          */
         add_action(
             'parse_request',
-            [self::class, 'parseRequest']
+            [$this, 'parseRequest']
         );
     }
 
@@ -78,7 +78,7 @@ class Endpoints {
      * @param string $endpointURI
      * @return boolean
      */
-    private static function endsWithString(string $uri, string $endpointURI): bool
+    private function endsWithString(string $uri, string $endpointURI): bool
     {
         $endpointSuffix = '/'.trim($endpointURI, '/').'/';
         return substr($uri, -1*strlen($endpointSuffix)) == $endpointSuffix;
@@ -91,7 +91,7 @@ class Endpoints {
      * @param string $endpointURI
      * @return boolean
      */
-    private static function getSlashedURI(): string
+    private function getSlashedURI(): string
     {
         $uri = $_SERVER['REQUEST_URI'];
 
@@ -111,7 +111,7 @@ class Endpoints {
      *
      * @return void
      */
-    public static function parseRequest(): void
+    public function parseRequest(): void
     {
         // If it /index.php?graphql_by_pop then it comes from GraphiQL
         $doingGraphQL = false;
@@ -121,10 +121,10 @@ class Endpoints {
             $doingGraphQL = true;
         } else {
             // Check if the URL ends with either /api/graphql/ or /api/rest/ or /api/
-            $uri = self::getSlashedURI();
-            $doingGraphQL = self::endsWithString($uri, self::$GRAPHQL_ENDPOINT);
-            $doingREST = self::endsWithString($uri, self::$REST_ENDPOINT);
-            $doingAPI = self::endsWithString($uri, self::$API_ENDPOINT);
+            $uri = $this->getSlashedURI();
+            $doingGraphQL = $this->endsWithString($uri, $this->GRAPHQL_ENDPOINT);
+            $doingREST = $this->endsWithString($uri, $this->REST_ENDPOINT);
+            $doingAPI = $this->endsWithString($uri, $this->API_ENDPOINT);
         }
 
         // Set the params on the request, to emulate that they were added by the user (that's how it works, lah)
@@ -138,18 +138,29 @@ class Endpoints {
         }
     }
 
-    public static function addRewriteEndpoints()
+    /**
+     * Add the endpoints to WordPress
+     *
+     * @return void
+     */
+    public function addRewriteEndpoints()
     {
-        add_rewrite_endpoint(self::$GRAPHQL_ENDPOINT, EP_ALL);
-        add_rewrite_endpoint(self::$REST_ENDPOINT, EP_ALL);
-        add_rewrite_endpoint(self::$API_ENDPOINT, EP_ALL);
+        add_rewrite_endpoint($this->GRAPHQL_ENDPOINT, EP_ALL);
+        add_rewrite_endpoint($this->REST_ENDPOINT, EP_ALL);
+        add_rewrite_endpoint($this->API_ENDPOINT, EP_ALL);
     }
 
-    public static function addQueryVar($query_vars)
+    /**
+     * Add the endpoint query vars
+     *
+     * @param array $query_vars
+     * @return void
+     */
+    public function addQueryVar($query_vars)
     {
-        $query_vars[] = self::$GRAPHQL_ENDPOINT;
-        $query_vars[] = self::$REST_ENDPOINT;
-        $query_vars[] = self::$API_ENDPOINT;
+        $query_vars[] = $this->GRAPHQL_ENDPOINT;
+        $query_vars[] = $this->REST_ENDPOINT;
+        $query_vars[] = $this->API_ENDPOINT;
         return $query_vars;
     }
 }
