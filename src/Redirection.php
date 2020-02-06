@@ -2,7 +2,6 @@
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
-// use PoP\API\Schema\QueryInputs;
 
 class Redirection {
 
@@ -15,25 +14,25 @@ class Redirection {
             'api/graphql'
         );
 
-        // // Register the endpoint through a rewrite rule
-        // add_action(
-        //     'init',
-        //     [self::class, 'addRewriteRule']
-        // );
-        // add_filter(
-        //     'query_vars',
-        //     [self::class, 'addQueryVar'],
-        //     1,
-        //     1
-        // );
+        // Register the endpoint through a rewrite rule
+        add_action(
+            'init',
+            [self::class, 'addRewriteRule']
+        );
+        add_filter(
+            'query_vars',
+            [self::class, 'addQueryVar'],
+            1,
+            1
+        );
         add_action(
             'parse_request',
             [self::class, 'parseRequest']
         );
-        // add_action(
-        //     'wp_loaded',
-        //     [self::class, 'maybeFlushRewriteRules']
-        // );
+        add_action(
+            'wp_loaded',
+            [self::class, 'maybeFlushRewriteRules']
+        );
     }
 
     /**
@@ -49,11 +48,11 @@ class Redirection {
      */
     public static function parseRequest() {
 
-        // // Support wp-graphiql style request to /index.php?pop_graphql
-        // $doingPoPGraphQL = false;
-        // if ( isset($_GET['pop_graphql'])) {
-        //     $doingPoPGraphQL = true;
-        // }
+        // Support wp-graphiql style request to /index.php?pop_graphql
+        $doingPoPGraphQL = false;
+        if ( isset($_GET['pop_graphql'])) {
+            $doingPoPGraphQL = true;
+        }
 
         // If before 'init' check $_SERVER.
         /*else*/if ( /*isset( $_SERVER['HTTP_HOST'] ) && */isset( $_SERVER['REQUEST_URI'] ) ) {
@@ -86,31 +85,26 @@ class Redirection {
         }
     }
 
-    // public static function addRewriteRule()
-    // {
-    //     add_rewrite_rule(
-    //         self::$ENDPOINT . '/?$',
-    //         sprintf(
-    //             'index.php?scheme=%s&datastructure=%s&query=%s',
-    //             POP_SCHEME_API,
-    //             GraphQLDataStructureFormatter::getName(),
-    //             $_REQUEST[QueryInputs::QUERY]
-    //         ),
-    //         'top'
-    //     );
-    // }
+    public static function addRewriteRule()
+    {
+        add_rewrite_rule(
+            self::$ENDPOINT . '/?$',
+            'index.php?pop_graphql=true',
+            'top'
+        );
+    }
 
-    // public static function addQueryVar($query_vars)
-    // {
-    //     $query_vars[] = self::$ENDPOINT;
-    //     return $query_vars;
-    // }
+    public static function addQueryVar($query_vars)
+    {
+        $query_vars[] = self::$ENDPOINT;
+        return $query_vars;
+    }
 
-    // public static function maybeFlushRewriteRules() {
-    //     $rules = get_option('rewrite_rules');
-    //     $entry = self::$ENDPOINT.'/?$';
-    //     if (!isset($rules[$entry])) {
-    //         flush_rewrite_rules();
-    //     }
-    // }
+    public static function maybeFlushRewriteRules() {
+        $rules = get_option('rewrite_rules');
+        $entry = self::$ENDPOINT.'/?$';
+        if (!isset($rules[$entry])) {
+            flush_rewrite_rules();
+        }
+    }
 }
