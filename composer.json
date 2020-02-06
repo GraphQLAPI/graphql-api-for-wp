@@ -44,6 +44,16 @@
         "getpop/graphql": "dev-master",
         "getpop/api-rest": "dev-master"
     },
+    "autoload": {
+        "psr-4": {
+            "Leoloso\\GraphQLByPoPWPPlugin\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Leoloso\\GraphQLByPoPWPPlugin\\": "tests"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"

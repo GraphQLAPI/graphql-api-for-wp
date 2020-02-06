@@ -14,8 +14,16 @@ Text Domain: graphql-by-pop
 Domain Path: /languages
 */
 
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+	exit;
+}
+
 // Load Composer’s autoloader
 require_once (__DIR__.'/vendor/autoload.php');
 
-// Load the "Must-use" plugin to boot PoP
+// Load the "must-use" plugin to boot PoP
 require_once (__DIR__.'/wp-content/mu-plugins/engine-wp-bootloader/pop-engine-wp-bootloader.php');
+
+// Initialize this plugin
+(new \Leoloso\GraphQLByPoPWPPlugin\Plugin())->init();
