@@ -1,6 +1,6 @@
-# Generate the "GraphQL by PoP" WordPress plugin
+# GraphQL by PoP plugin for WordPress
 
-Script to generate the "GraphQL by PoP" plugin for WordPress, by combining all dependencies from all repos, and namespacing them through [Mozart](https://github.com/coenjacobs/mozart).
+Description: coming soon
 
 ## Usage
 
