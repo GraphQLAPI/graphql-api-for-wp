@@ -16,3 +16,6 @@ Domain Path: /languages
 
 // Load Composer’s autoloader
 require_once (__DIR__.'/vendor/autoload.php');
+
+// Load the "Must-use" plugin to boot PoP
+require_once (__DIR__.'/wp-content/mu-plugins/engine-wp-bootloader/pop-engine-wp-bootloader.php');
