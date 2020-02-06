@@ -51,9 +51,9 @@ class Redirection {
         // $doingPoPGraphQL = array_key_exists( self::$ENDPOINT , $wp_query->query_vars );
         // var_dump('$doingPoPGraphQL', $doingPoPGraphQL, $wp_query->query_vars);die;
 
-        // Support wp-graphiql style request to /index.php?pop_graphql
+        // Support wp-graphiql style request to /index.php?graphql_by_pop
         $doingPoPGraphQL = false;
-        if ( isset($_GET['pop_graphql'])) {
+        if ( isset($_GET['graphql_by_pop'])) {
             $doingPoPGraphQL = true;
         }
 
@@ -92,7 +92,7 @@ class Redirection {
     {
         // add_rewrite_rule(
         //     self::$ENDPOINT.'/?$',
-        //     'index.php?pop_graphql=true',
+        //     'index.php?graphql_by_pop=true',
         //     'top'
         // );
         add_rewrite_endpoint( self::$ENDPOINT, EP_ALL );
