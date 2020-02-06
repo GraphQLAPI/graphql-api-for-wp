@@ -23,6 +23,10 @@
         {
             "type": "composer",
             "url": "https://wpackagist.org"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/leoloso/mozart"
         }
     ],
     "require": {
@@ -74,6 +78,6 @@
         "sort-packages": true
     },
     "require-dev": {
-        "coenjacobs/mozart": "^0.5.1"
+        "coenjacobs/mozart": "dev-master"
     }
 }
