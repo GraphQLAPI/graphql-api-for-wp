@@ -7,6 +7,6 @@ class Plugin {
 
     public function init(): void
     {
-        (new Redirection())->init();
+        Redirection::init();
     }
 }
