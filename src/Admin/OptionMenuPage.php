@@ -112,7 +112,7 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-options'
         );
         add_settings_field(
-            'graphql-by-pop-enable-rest',
+            'graphql-by-pop-rest-enabled-post-fields',
             __('Post fields', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-options',
@@ -123,6 +123,45 @@ class OptionMenuPage extends AbstractMenuPage {
                     \POP_POSTS_ROUTE_POSTS
                 ),
                 'id'    => 'graphql-by-pop-rest-enabled-post-fields',
+            )
+        );
+        add_settings_field(
+            'graphql-by-pop-rest-enabled-user-fields',
+            __('User fields', 'graphql-by-pop'),
+            [$this, 'printInputField'],
+            'graphql-by-pop-options',
+            'graphql-by-pop-options-rest-enabled-section',
+            array(
+                'label' => sprintf(
+                    __('Default fields for the author URL, and the user list page URL (with slug <code>%s</code>)'),
+                    \POP_USERS_ROUTE_USERS
+                ),
+                'id'    => 'graphql-by-pop-rest-enabled-user-fields',
+            )
+        );
+        add_settings_field(
+            'graphql-by-pop-rest-enabled-tag-fields',
+            __('Tag fields', 'graphql-by-pop'),
+            [$this, 'printInputField'],
+            'graphql-by-pop-options',
+            'graphql-by-pop-options-rest-enabled-section',
+            array(
+                'label' => sprintf(
+                    __('Default fields for the single tag URL, and the tag list page URL (with slug <code>%s</code>)'),
+                    \POP_TAXONOMIES_ROUTE_TAGS
+                ),
+                'id'    => 'graphql-by-pop-rest-enabled-tag-fields',
+            )
+        );
+        add_settings_field(
+            'graphql-by-pop-rest-enabled-page-fields',
+            __('Page fields', 'graphql-by-pop'),
+            [$this, 'printInputField'],
+            'graphql-by-pop-options',
+            'graphql-by-pop-options-rest-enabled-section',
+            array(
+                'label' => __('Default fields for the page URL'),
+                'id'    => 'graphql-by-pop-rest-enabled-page-fields',
             )
         );
 
