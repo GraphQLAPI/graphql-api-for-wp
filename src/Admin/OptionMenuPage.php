@@ -39,7 +39,7 @@ class OptionMenuPage extends AbstractMenuPage {
             id="graphql-by-pop-options"
             class="wrap"
         >
-        <h1><?php echo __('Options', 'graphql-by-pop'); ?></h1>
+        <h1><?php echo __('GraphQL by PoP => Options', 'graphql-by-pop'); ?></h1>
         <?php settings_errors(); ?>
         <form method="post" action="options.php">
             <?php settings_fields('graphql-by-pop-options'); ?>
@@ -74,7 +74,7 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-options',
             'graphql-by-pop-options-section',
             array(
-                'label' => __('Enable adding endpoint <code>/api/rest/</code> at the end of any post, page, author or tag pages, to retrieve the data for that resource', 'graphql-by-pop'),
+                'label' => __('Enable adding an endpoint (currently: <code>/api/rest/</code>) at the end of any post, page, author or tag pages, to retrieve the data for that resource', 'graphql-by-pop'),
                 'id'    => 'graphql-by-pop-enable-rest',
             )
         );
@@ -96,19 +96,41 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-options',
             'graphql-by-pop-options-section',
             array(
-                'label' => __('Make types and interfaces in the schema be namespaced using their corresponding PHP package name, as to avoid potential clashes among 3rd parties', 'graphql-by-pop'),
+                'label' => __('Automatically namespace types and interfaces as to avoid potential naming clashes', 'graphql-by-pop'),
                 'id'    => 'graphql-by-pop-namespacing',
             )
         );
 
         /**
          * REST section <= valid when REST enabled
+         * Header 1
          */
         add_settings_section(
-            'graphql-by-pop-options-rest-enabled-section',
+            'graphql-by-pop-options-rest-enabled-section-1',
             // The empty string ensures the render function won't output a h2.
             '',
-            [$this, 'printRESTEnabledSectionDescription'],
+            [$this, 'printRESTEnabledHeader1'],
+            'graphql-by-pop-options'
+        );
+        add_settings_field(
+            'graphql-by-pop-rest-enabled-endpoint',
+            __('REST endpoint', 'graphql-by-pop'),
+            [$this, 'printInputField'],
+            'graphql-by-pop-options',
+            'graphql-by-pop-options-rest-enabled-section-1',
+            array(
+                'label' => __('Endpoint to be appended to the resource page URL'),
+                'id'    => 'graphql-by-pop-rest-enabled-endpoint',
+            )
+        );
+        /**
+         * Header 2
+         */
+        add_settings_section(
+            'graphql-by-pop-options-rest-enabled-section-2',
+            // The empty string ensures the render function won't output a h2.
+            '',
+            [$this, 'printRESTEnabledHeader2'],
             'graphql-by-pop-options'
         );
         add_settings_field(
@@ -116,7 +138,7 @@ class OptionMenuPage extends AbstractMenuPage {
             __('Post fields', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-options',
-            'graphql-by-pop-options-rest-enabled-section',
+            'graphql-by-pop-options-rest-enabled-section-2',
             array(
                 'label' => sprintf(
                     __('Default fields for the single post URL, and the post list page URL (with slug <code>%s</code>)'),
@@ -130,7 +152,7 @@ class OptionMenuPage extends AbstractMenuPage {
             __('User fields', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-options',
-            'graphql-by-pop-options-rest-enabled-section',
+            'graphql-by-pop-options-rest-enabled-section-2',
             array(
                 'label' => sprintf(
                     __('Default fields for the author URL, and the user list page URL (with slug <code>%s</code>)'),
@@ -144,7 +166,7 @@ class OptionMenuPage extends AbstractMenuPage {
             __('Tag fields', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-options',
-            'graphql-by-pop-options-rest-enabled-section',
+            'graphql-by-pop-options-rest-enabled-section-2',
             array(
                 'label' => sprintf(
                     __('Default fields for the single tag URL, and the tag list page URL (with slug <code>%s</code>)'),
@@ -158,7 +180,7 @@ class OptionMenuPage extends AbstractMenuPage {
             __('Page fields', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-options',
-            'graphql-by-pop-options-rest-enabled-section',
+            'graphql-by-pop-options-rest-enabled-section-2',
             array(
                 'label' => __('Default fields for the page URL'),
                 'id'    => 'graphql-by-pop-rest-enabled-page-fields',
@@ -212,9 +234,7 @@ class OptionMenuPage extends AbstractMenuPage {
     }
 
     /**
-     * Display the experiments section.
-     *
-     * @since 6.3.0
+     * Section header
      */
     function printMainSectionDescription()
     {
@@ -229,20 +249,27 @@ class OptionMenuPage extends AbstractMenuPage {
     }
 
     /**
-     * Display the experiments section.
-     *
-     * @since 6.3.0
+     * Section header
      */
-    function printRESTEnabledSectionDescription()
+    function printRESTEnabledHeader1(): void
     {
         ?>
         <hr/>
         <h2>
         <?php echo __('Options if REST endpoints are enabled', 'graphql-by-pop');?>
         </h2>
+        <?php
+    }
+
+    /**
+     * Section header
+     */
+    function printRESTEnabledHeader2(): void
+    {
+        ?>
         <p>
             <?php echo sprintf(
-                __('<strong>Fields to retrieve for resources:</strong> define what fields to retrieve for a single resource or list of resources, when appending <code>%s</code> to the URL.', 'graphql-by-pop'),
+                __('<strong>Fields to retrieve for resources:</strong> define what fields to retrieve for a single resource or list of resources, when appending the endpoint (<code>%s</code>) to the URL.', 'graphql-by-pop'),
                 '/api/rest/'
             );?>
         <br/>
