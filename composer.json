@@ -42,7 +42,8 @@
         "getpop/media-wp": "dev-master",
         "getpop/postmedia-wp": "dev-master",
         "getpop/graphql": "dev-master",
-        "getpop/api-rest": "dev-master"
+        "getpop/api-rest": "dev-master",
+        "leoloso/pop-api-endpoints-for-wp": "dev-master"
     },
     "autoload": {
         "psr-4": {
