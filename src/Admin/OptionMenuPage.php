@@ -68,6 +68,17 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-options'
         );
         add_settings_field(
+            'graphql-by-pop-graphql-endpoint',
+            __('GraphQL endpoint', 'graphql-by-pop'),
+            [$this, 'printInputField'],
+            'graphql-by-pop-options',
+            'graphql-by-pop-options-section',
+            array(
+                'label' => '',
+                'id'    => 'graphql-by-pop-graphql-endpoint',
+            )
+        );
+        add_settings_field(
             'graphql-by-pop-enable-rest',
             __('Enable REST endpoints', 'graphql-by-pop'),
             [$this, 'printCheckboxField'],
