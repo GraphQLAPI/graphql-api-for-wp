@@ -98,11 +98,11 @@ class OptionMenuPage extends AbstractMenuPage {
      * @param array $args ( $label, $id ).
      */
     function printField( $args ) {
-        $options = get_option('graphql-by-pop-options');
-        $value = isset( $options[ $args['id'] ] ) ? 1 : 0;
+        $name = $args['id'];
+        $value = self::isOptionOn($name);
         ?>
             <label for="<?php echo $args['id']; ?>">
-                <input type="checkbox" name="<?php echo 'graphql-by-pop-options[' . $args['id'] . ']'; ?>" id="<?php echo $args['id']; ?>" value="1" <?php checked( 1, $value ); ?> />
+                <input type="checkbox" name="<?php echo 'graphql-by-pop-options['.$name.']'; ?>" id="<?php echo $name; ?>" value="1" <?php checked(1, $value); ?> />
                 <?php echo $args['label']; ?>
             </label>
         <?php
