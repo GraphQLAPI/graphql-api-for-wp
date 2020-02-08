@@ -8,7 +8,7 @@ class Plugin {
 
     public function init(): void
     {
-        (new Endpoints())->init();
+        (new EndpointHandler())->init();
         if (is_admin()) {
             (new Menu())->init();
         }
