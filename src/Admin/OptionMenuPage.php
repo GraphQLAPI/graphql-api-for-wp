@@ -85,7 +85,12 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-options',
             'graphql-by-pop-options-section',
             array(
-                'label' => __('Enable adding an endpoint (currently: <code>/api/rest/</code>) at the end of any post, page, author or tag pages, to retrieve the data for that resource', 'graphql-by-pop'),
+                'label' => sprintf(
+                    __('Enable appending endpoint <code>/api/rest/</code> to the URL of a resource to access its data.<br/>Supported resources: single post, author, tag, and page, and list of resources with slugs <code>%s</code>, <code>%s</code>, and <code>%s</code>, ', 'graphql-by-pop'),
+                    \POP_POSTS_ROUTE_POSTS,
+                    \POP_USERS_ROUTE_USERS,
+                    \POP_TAXONOMIES_ROUTE_TAGS
+                ),
                 'id'    => 'graphql-by-pop-enable-rest',
             )
         );
