@@ -1,6 +1,11 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 
+use Leoloso\GraphQLByPoPWPPlugin\Admin\OptionMenuPage;
+
+/**
+ * Admin menu class
+ */
 class Menu {
     /**
      * Initialize the endpoints
@@ -49,17 +54,26 @@ class Menu {
             __('Options', 'graphql-by-pop'),
             'manage_options',
             'graphql_by_pop_options',
-            [$this, 'printOptionsPage']
+            [new OptionMenuPage(), 'print']
         );
 
-        if (current_user_can('manage_options')) {
-            global $submenu;
-            $submenu['graphql_by_pop'][] = [
-                __('Documentation', 'graphql-by-pop'),
-                'manage_options',
-                'https://github.com/getpop/graphql',
-            ];
-        }
+        add_submenu_page(
+            'graphql_by_pop',
+            __('Documentation', 'graphql-by-pop'),
+            __('Documentation', 'graphql-by-pop'),
+            'manage_options',
+            'graphql_by_pop_documentation',
+            [$this, 'printVoyagerPage']
+        );
+
+        // if (current_user_can('manage_options')) {
+        //     global $submenu;
+        //     $submenu['graphql_by_pop'][] = [
+        //         __('Documentation', 'graphql-by-pop'),
+        //         'manage_options',
+        //         'https://github.com/getpop/graphql',
+        //     ];
+        // }
     }
 
     function printGraphiQLPage() {
