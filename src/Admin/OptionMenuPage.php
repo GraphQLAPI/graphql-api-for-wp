@@ -79,6 +79,12 @@ class OptionMenuPage extends AbstractMenuPage {
                 'id'    => 'graphql-by-pop-graphql-endpoint',
             )
         );
+        $restSupportedResources = sprintf(
+            __('<em>Supported resources:</em> single post, author, tag, and page, and list of resources with slugs <code>%s</code>, <code>%s</code>, and <code>%s</code>, ', 'graphql-by-pop'),
+            \POP_POSTS_ROUTE_POSTS,
+            \POP_USERS_ROUTE_USERS,
+            \POP_TAXONOMIES_ROUTE_TAGS
+        );
         add_settings_field(
             'graphql-by-pop-enable-rest',
             __('Enable REST endpoints', 'graphql-by-pop'),
@@ -87,10 +93,9 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-options-section',
             array(
                 'label' => sprintf(
-                    __('Enable appending endpoint <code>/api/rest/</code> to the URL of a resource to access its data.<br/>Supported resources: single post, author, tag, and page, and list of resources with slugs <code>%s</code>, <code>%s</code>, and <code>%s</code>, ', 'graphql-by-pop'),
-                    \POP_POSTS_ROUTE_POSTS,
-                    \POP_USERS_ROUTE_USERS,
-                    \POP_TAXONOMIES_ROUTE_TAGS
+                    '%s<br/>%s',
+                    __('Enable appending an endpoint to the URL of a resource to access its data.', 'graphql-by-pop'),
+                    $restSupportedResources
                 ),
                 'id'    => 'graphql-by-pop-enable-rest',
             )
@@ -102,7 +107,7 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-options',
             'graphql-by-pop-options-section',
             array(
-                'label' => __('Supercharge your GraphQL API with additional features', 'graphql-by-pop'),
+                'label' => __('Supercharge the GraphQL API with additional features', 'graphql-by-pop'),
                 'id'    => 'graphql-by-pop-enable-extended-graphql',
             )
         );
@@ -136,7 +141,11 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-options',
             'graphql-by-pop-options-rest-enabled-section-1',
             array(
-                'label' => __('Endpoint to be appended to the resource page URL', 'graphql-by-pop'),
+                'label' => sprintf(
+                    '%s<br/>%s',
+                    __('Endpoint appended at the end of the page URL', 'graphql-by-pop'),
+                    $restSupportedResources
+                ),
                 'id'    => 'graphql-by-pop-rest-endpoint',
             )
         );
@@ -148,9 +157,8 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-options-rest-enabled-section-1',
             array(
                 'label' => sprintf(
-                    __('Query custom fields in the REST endpoint, through parameter <code>%s</code> using the <a href="%s">extended GraphQL syntax</a>', 'graphql-by-pop'),
-                    QueryInputs::QUERY,
-                    'https://github.com/getpop/field-query'
+                    __('Query custom fields in the REST endpoint through parameter <code>%s</code>', 'graphql-by-pop'),
+                    QueryInputs::QUERY
                 ),
                 'id'    => 'graphql-by-pop-rest-enable-querying',
             )
@@ -290,25 +298,13 @@ class OptionMenuPage extends AbstractMenuPage {
         <h2>
         <?php echo __('Options if REST endpoints are enabled', 'graphql-by-pop');?>
         </h2>
-        <?php
-    }
-
-    /**
-     * Section header
-     */
-    function printRESTEnabledHeader2(): void
-    {
-        ?>
         <p>
             <?php echo sprintf(
-                __('<strong>Fields to retrieve for resources:</strong> define what fields to retrieve for a single resource or list of resources, when appending the endpoint (<code>%s</code>) to the URL.', 'graphql-by-pop'),
-                '/api/rest/'
-            );?>
-        <br/>
-            <?php echo sprintf(
-                __('Fields are defined using the <a href="%s">extended GraphQL syntax</a>. Examples for a post: ', 'graphql-by-pop'),
+                __('<strong>Note:</strong> Fields (default ones for the REST endpoint, and custom ones when querying through the URL) are defined using the <a href="%s">extended GraphQL syntax</a>.', 'graphql-by-pop'),
                 'https://github.com/getpop/field-query'
             );?>
+            <br/>
+            <?php echo __('Examples for a post: ', 'graphql-by-pop');?>
         </p>
         <ol>
             <li>
@@ -321,6 +317,21 @@ class OptionMenuPage extends AbstractMenuPage {
                 <?php echo __('<code>"id|title|comments.id|date|content|author.id|name"</code> fetches the post\'s <code>ID</code> and <code>title</code> fields, the post comments\' <code>ID</code>, <code>date</code> and <code>content</code> fields, and the comment\'s author\'s <code>ID</code> and <code>name</code> fields', 'graphql-by-pop')?>
             </li>
         </ol>
+        <?php
+    }
+
+    /**
+     * Section header
+     */
+    function printRESTEnabledHeader2(): void
+    {
+        ?>
+        <h3>
+            <?php echo __('Default REST fields ', 'graphql-by-pop');?>
+        </h3>
+        <p>
+            <?php echo __('Default fields to retrieve for the different resources when appending the REST endpoint to their URL:', 'graphql-by-pop');?>
+        </p>
         <?php
     }
 }
