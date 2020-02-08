@@ -20,7 +20,20 @@ class OptionMenuPage extends AbstractMenuPage {
         return !empty($options[$name]);
     }
 
-    public function print(): void {
+    /**
+     * Get the option value. Made static so it can be used without instantiation
+     *
+     * @param string $name
+     * @return boolean
+     */
+    public static function getOptionValue(string $name): ?string
+    {
+        $options = get_option('graphql-by-pop-options');
+        return $options[$name];
+    }
+
+    public function print(): void
+    {
         ?>
         <div
             id="graphql-by-pop-options"
@@ -44,17 +57,20 @@ class OptionMenuPage extends AbstractMenuPage {
      */
     public function init(): void
     {
+        /**
+         * Main section
+         */
         add_settings_section(
             'graphql-by-pop-options-section',
             // The empty string ensures the render function won't output a h2.
             '',
-            [$this, 'printPageDescription'],
+            [$this, 'printMainSectionDescription'],
             'graphql-by-pop-options'
         );
         add_settings_field(
             'graphql-by-pop-enable-rest',
             __('Enable REST endpoints', 'graphql-by-pop'),
-            [$this, 'printField'],
+            [$this, 'printCheckboxField'],
             'graphql-by-pop-options',
             'graphql-by-pop-options-section',
             array(
@@ -65,7 +81,7 @@ class OptionMenuPage extends AbstractMenuPage {
         add_settings_field(
             'graphql-by-pop-enable-extended-graphql',
             __('Enable extended GraphQL', 'graphql-by-pop'),
-            [$this, 'printField'],
+            [$this, 'printCheckboxField'],
             'graphql-by-pop-options',
             'graphql-by-pop-options-section',
             array(
@@ -76,7 +92,7 @@ class OptionMenuPage extends AbstractMenuPage {
         add_settings_field(
             'graphql-by-pop-namespacing',
             __('Enable schema namespacing', 'graphql-by-pop'),
-            [$this, 'printField'],
+            [$this, 'printCheckboxField'],
             'graphql-by-pop-options',
             'graphql-by-pop-options-section',
             array(
@@ -84,6 +100,32 @@ class OptionMenuPage extends AbstractMenuPage {
                 'id'    => 'graphql-by-pop-namespacing',
             )
         );
+
+        /**
+         * REST section <= valid when REST enabled
+         */
+        add_settings_section(
+            'graphql-by-pop-options-rest-enabled-section',
+            // The empty string ensures the render function won't output a h2.
+            '',
+            [$this, 'printRESTEnabledSectionDescription'],
+            'graphql-by-pop-options'
+        );
+        add_settings_field(
+            'graphql-by-pop-enable-rest',
+            __('Post fields', 'graphql-by-pop'),
+            [$this, 'printInputField'],
+            'graphql-by-pop-options',
+            'graphql-by-pop-options-rest-enabled-section',
+            array(
+                'label' => '',
+                'id'    => 'graphql-by-pop-rest-enabled-post-fields',
+            )
+        );
+
+        /**
+         * Finally register all the settings
+         */
         register_setting(
             'graphql-by-pop-options',
             'graphql-by-pop-options'
@@ -91,13 +133,13 @@ class OptionMenuPage extends AbstractMenuPage {
     }
 
     /**
-     * Display a checkbox field for a Gutenberg experiment.
+     * Display a checkbox field.
      *
-     * @since 6.3.0
-     *
-     * @param array $args ( $label, $id ).
+     * @param array $args
+     * @return void
      */
-    function printField( $args ) {
+    function printCheckboxField(array $args): void
+    {
         $name = $args['id'];
         $value = self::isOptionOn($name);
         ?>
@@ -109,18 +151,73 @@ class OptionMenuPage extends AbstractMenuPage {
     }
 
     /**
+     * Display a checkbox field.
+     *
+     * @param array $args
+     * @return void
+     */
+    function printInputField(array $args): void
+    {
+        $name = $args['id'];
+        $value = self::getOptionValue($name) ?? '';
+        $label = $args['label'] ? '<br/>'.$args['label'] : '';
+        ?>
+            <label for="<?php echo $args['id']; ?>">
+                <input type="text" name="<?php echo 'graphql-by-pop-options['.$name.']'; ?>" id="<?php echo $name; ?>" value="<?php echo $value; ?>" />
+                <?php echo $label; ?>
+            </label>
+        <?php
+    }
+
+    /**
      * Display the experiments section.
      *
      * @since 6.3.0
      */
-    function printPageDescription() {
+    function printMainSectionDescription()
+    {
         ?>
         <p>
-        <?php echo sprintf(
-            __('Please refer to the <a href="%s">documentation page</a> for detailed information on all features.', 'graphql-by-pop'),
-            menu_page_url('graphql_by_pop_documentation', false)
-        );?>
+            <?php echo sprintf(
+                __('Please refer to the <a href="%s">documentation page</a> for detailed information on all features.', 'graphql-by-pop'),
+                menu_page_url('graphql_by_pop_documentation', false)
+            );?>
         </p>
+        <?php
+    }
+
+    /**
+     * Display the experiments section.
+     *
+     * @since 6.3.0
+     */
+    function printRESTEnabledSectionDescription()
+    {
+        ?>
+        <hr/>
+        <h2>
+        <?php echo __('Options if REST endpoints are enabled', 'graphql-by-pop');?>
+        </h2>
+        <p>
+            <?php echo sprintf(
+                __('<strong>Fields to retrieve for resources:</strong> Define what fields to retrieve for each resource when appending <code>%s</code> to its URL, using <a href="%s">this syntax</a>.', 'graphql-by-pop'),
+                '/api/rest/',
+                'https://github.com/getpop/field-query'
+            );?>
+        <br/>
+            <?php echo __('Examples for a post: ', 'graphql-by-pop');?>
+        </p>
+        <ol>
+            <li>
+                <?php echo __('<code>"id|title"</code> fetches the post\'s <code>ID</code> and <code>title</code> fields', 'graphql-by-pop')?>
+            </li>
+            <li>
+                <?php echo __('<code>"id|title|author.id|name"</code> fetches the post\'s <code>ID</code> and <code>title</code> fields, and the post author\'s <code>ID</code> and <code>name</code> fields', 'graphql-by-pop')?>
+            </li>
+            <li>
+                <?php echo __('<code>"id|title|comments.id|date|content|author.id|name"</code> fetches the post\'s <code>ID</code> and <code>title</code> fields, the post comments\' <code>ID</code>, <code>date</code> and <code>content</code> fields, and the comment\'s author\'s <code>ID</code> and <code>name</code> fields', 'graphql-by-pop')?>
+            </li>
+        </ol>
         <?php
     }
 }
