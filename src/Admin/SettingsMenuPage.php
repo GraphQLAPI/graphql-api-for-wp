@@ -7,7 +7,7 @@ use PoP\API\Schema\QueryInputs;
 /**
  * Options menu page
  */
-class OptionMenuPage extends AbstractMenuPage {
+class SettingsMenuPage extends AbstractMenuPage {
 
     /**
      * Indicate if the option is on. Made static so it can be used without instantiation
@@ -17,7 +17,7 @@ class OptionMenuPage extends AbstractMenuPage {
      */
     public static function isOptionOn(string $name): bool
     {
-        $options = get_option('graphql-by-pop-options');
+        $options = get_option('graphql-by-pop-settings');
         return !empty($options[$name]);
     }
 
@@ -29,7 +29,7 @@ class OptionMenuPage extends AbstractMenuPage {
      */
     public static function getOptionValue(string $name): ?string
     {
-        $options = get_option('graphql-by-pop-options');
+        $options = get_option('graphql-by-pop-settings');
         return $options[$name];
     }
 
@@ -37,14 +37,14 @@ class OptionMenuPage extends AbstractMenuPage {
     {
         ?>
         <div
-            id="graphql-by-pop-options"
+            id="graphql-by-pop-settings"
             class="wrap"
         >
-        <h1><?php echo __('GraphQL by PoP => Options', 'graphql-by-pop'); ?></h1>
+        <h1><?php echo __('GraphQL by PoP — Settings', 'graphql-by-pop'); ?></h1>
         <?php settings_errors(); ?>
         <form method="post" action="options.php">
-            <?php settings_fields('graphql-by-pop-options'); ?>
-            <?php do_settings_sections('graphql-by-pop-options'); ?>
+            <?php settings_fields('graphql-by-pop-settings'); ?>
+            <?php do_settings_sections('graphql-by-pop-settings'); ?>
             <?php submit_button(); ?>
         </form>
         </div>
@@ -62,18 +62,18 @@ class OptionMenuPage extends AbstractMenuPage {
          * Main section
          */
         add_settings_section(
-            'graphql-by-pop-options-section',
+            'graphql-by-pop-settings-section',
             // The empty string ensures the render function won't output a h2.
             '',
             [$this, 'printMainSectionDescription'],
-            'graphql-by-pop-options'
+            'graphql-by-pop-settings'
         );
         add_settings_field(
             'graphql-by-pop-graphql-endpoint',
             __('GraphQL endpoint', 'graphql-by-pop'),
             [$this, 'printInputField'],
-            'graphql-by-pop-options',
-            'graphql-by-pop-options-section',
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings-section',
             array(
                 'label' => '',
                 'id'    => 'graphql-by-pop-graphql-endpoint',
@@ -89,8 +89,8 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-enable-rest',
             __('Enable REST endpoints', 'graphql-by-pop'),
             [$this, 'printCheckboxField'],
-            'graphql-by-pop-options',
-            'graphql-by-pop-options-section',
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings-section',
             array(
                 'label' => sprintf(
                     '%s<br/>%s',
@@ -104,8 +104,8 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-enable-extended-graphql',
             __('Enable extended GraphQL', 'graphql-by-pop'),
             [$this, 'printCheckboxField'],
-            'graphql-by-pop-options',
-            'graphql-by-pop-options-section',
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings-section',
             array(
                 'label' => __('Supercharge the GraphQL API with additional features', 'graphql-by-pop'),
                 'id'    => 'graphql-by-pop-enable-extended-graphql',
@@ -115,8 +115,8 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-namespacing',
             __('Enable schema namespacing', 'graphql-by-pop'),
             [$this, 'printCheckboxField'],
-            'graphql-by-pop-options',
-            'graphql-by-pop-options-section',
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings-section',
             array(
                 'label' => __('Automatically namespace types and interfaces as to avoid potential naming clashes', 'graphql-by-pop'),
                 'id'    => 'graphql-by-pop-namespacing',
@@ -128,18 +128,18 @@ class OptionMenuPage extends AbstractMenuPage {
          * Header 1
          */
         add_settings_section(
-            'graphql-by-pop-options-rest-enabled-section-1',
+            'graphql-by-pop-settings-rest-enabled-section-1',
             // The empty string ensures the render function won't output a h2.
             '',
             [$this, 'printRESTEnabledHeader1'],
-            'graphql-by-pop-options'
+            'graphql-by-pop-settings'
         );
         add_settings_field(
             'graphql-by-pop-rest-endpoint',
             __('REST endpoint', 'graphql-by-pop'),
             [$this, 'printInputField'],
-            'graphql-by-pop-options',
-            'graphql-by-pop-options-rest-enabled-section-1',
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings-rest-enabled-section-1',
             array(
                 'label' => sprintf(
                     '%s<br/>%s',
@@ -153,8 +153,8 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-rest-enable-querying',
             __('Enable to query custom fields', 'graphql-by-pop'),
             [$this, 'printCheckboxField'],
-            'graphql-by-pop-options',
-            'graphql-by-pop-options-rest-enabled-section-1',
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings-rest-enabled-section-1',
             array(
                 'label' => sprintf(
                     __('Query custom fields in the REST endpoint through parameter <code>%s</code>', 'graphql-by-pop'),
@@ -167,18 +167,18 @@ class OptionMenuPage extends AbstractMenuPage {
          * Header 2
          */
         add_settings_section(
-            'graphql-by-pop-options-rest-enabled-section-2',
+            'graphql-by-pop-settings-rest-enabled-section-2',
             // The empty string ensures the render function won't output a h2.
             '',
             [$this, 'printRESTEnabledHeader2'],
-            'graphql-by-pop-options'
+            'graphql-by-pop-settings'
         );
         add_settings_field(
             'graphql-by-pop-rest-enabled-post-fields',
             __('Post fields', 'graphql-by-pop'),
             [$this, 'printInputField'],
-            'graphql-by-pop-options',
-            'graphql-by-pop-options-rest-enabled-section-2',
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings-rest-enabled-section-2',
             array(
                 'label' => sprintf(
                     __('Default fields for the single post URL, and the post list page URL (with slug <code>%s</code>)', 'graphql-by-pop'),
@@ -191,8 +191,8 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-rest-enabled-user-fields',
             __('User fields', 'graphql-by-pop'),
             [$this, 'printInputField'],
-            'graphql-by-pop-options',
-            'graphql-by-pop-options-rest-enabled-section-2',
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings-rest-enabled-section-2',
             array(
                 'label' => sprintf(
                     __('Default fields for the author URL, and the user list page URL (with slug <code>%s</code>)', 'graphql-by-pop'),
@@ -205,8 +205,8 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-rest-enabled-tag-fields',
             __('Tag fields', 'graphql-by-pop'),
             [$this, 'printInputField'],
-            'graphql-by-pop-options',
-            'graphql-by-pop-options-rest-enabled-section-2',
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings-rest-enabled-section-2',
             array(
                 'label' => sprintf(
                     __('Default fields for the single tag URL, and the tag list page URL (with slug <code>%s</code>)', 'graphql-by-pop'),
@@ -219,8 +219,8 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-rest-enabled-page-fields',
             __('Page fields', 'graphql-by-pop'),
             [$this, 'printInputField'],
-            'graphql-by-pop-options',
-            'graphql-by-pop-options-rest-enabled-section-2',
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings-rest-enabled-section-2',
             array(
                 'label' => __('Default fields for the page URL'),
                 'id'    => 'graphql-by-pop-rest-enabled-page-fields',
@@ -231,8 +231,8 @@ class OptionMenuPage extends AbstractMenuPage {
          * Finally register all the settings
          */
         register_setting(
-            'graphql-by-pop-options',
-            'graphql-by-pop-options'
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings'
         );
     }
 
@@ -248,7 +248,7 @@ class OptionMenuPage extends AbstractMenuPage {
         $value = self::isOptionOn($name);
         ?>
             <label for="<?php echo $args['id']; ?>">
-                <input type="checkbox" name="<?php echo 'graphql-by-pop-options['.$name.']'; ?>" id="<?php echo $name; ?>" value="1" <?php checked(1, $value); ?> />
+                <input type="checkbox" name="<?php echo 'graphql-by-pop-settings['.$name.']'; ?>" id="<?php echo $name; ?>" value="1" <?php checked(1, $value); ?> />
                 <?php echo $args['label']; ?>
             </label>
         <?php
@@ -267,7 +267,7 @@ class OptionMenuPage extends AbstractMenuPage {
         $label = $args['label'] ? '<br/>'.$args['label'] : '';
         ?>
             <label for="<?php echo $args['id']; ?>">
-                <input type="text" name="<?php echo 'graphql-by-pop-options['.$name.']'; ?>" id="<?php echo $name; ?>" value="<?php echo $value; ?>" />
+                <input type="text" name="<?php echo 'graphql-by-pop-settings['.$name.']'; ?>" id="<?php echo $name; ?>" value="<?php echo $value; ?>" />
                 <?php echo $label; ?>
             </label>
         <?php

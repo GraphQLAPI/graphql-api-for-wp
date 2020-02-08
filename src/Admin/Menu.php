@@ -1,7 +1,7 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 
-use Leoloso\GraphQLByPoPWPPlugin\Admin\OptionMenuPage;
+use Leoloso\GraphQLByPoPWPPlugin\Admin\SettingsMenuPage;
 
 /**
  * Admin menu class
@@ -50,11 +50,11 @@ class Menu {
 
         add_submenu_page(
             'graphql_by_pop',
-            __('Options', 'graphql-by-pop'),
-            __('Options', 'graphql-by-pop'),
+            __('Settings', 'graphql-by-pop'),
+            __('Settings', 'graphql-by-pop'),
             'manage_options',
-            'graphql_by_pop_options',
-            [new OptionMenuPage(), 'print']
+            'graphql_by_pop_settings',
+            [new SettingsMenuPage(), 'print']
         );
 
         add_submenu_page(

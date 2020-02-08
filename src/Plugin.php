@@ -1,7 +1,7 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
-use Leoloso\GraphQLByPoPWPPlugin\Endpoints;
+use Leoloso\GraphQLByPoPWPPlugin\EndpointHandler;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
 
 class Plugin {
