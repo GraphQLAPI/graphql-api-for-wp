@@ -75,12 +75,12 @@ class OptionMenuPage extends AbstractMenuPage {
         );
         add_settings_field(
             'graphql-by-pop-namespacing',
-            __('Namespace types and interfaces', 'graphql-by-pop'),
+            __('Enable schema namespacing', 'graphql-by-pop'),
             [$this, 'printField'],
             'graphql-by-pop-options',
             'graphql-by-pop-options-section',
             array(
-                'label' => __('Automatically namespace all types and interfaces in the schema with their corresponding PHP package name, as to avoid conflicts among 3rd parties', 'graphql-by-pop'),
+                'label' => __('Make types and interfaces in the schema be namespaced using their corresponding PHP package name, as to avoid potential clashes among 3rd parties', 'graphql-by-pop'),
                 'id'    => 'graphql-by-pop-namespacing',
             )
         );
