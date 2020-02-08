@@ -2,6 +2,7 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\AbstractMenuPage;
+use PoP\API\Schema\QueryInputs;
 
 /**
  * Options menu page
@@ -129,14 +130,29 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-options'
         );
         add_settings_field(
-            'graphql-by-pop-rest-enabled-endpoint',
+            'graphql-by-pop-rest-endpoint',
             __('REST endpoint', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-options',
             'graphql-by-pop-options-rest-enabled-section-1',
             array(
-                'label' => __('Endpoint to be appended to the resource page URL'),
-                'id'    => 'graphql-by-pop-rest-enabled-endpoint',
+                'label' => __('Endpoint to be appended to the resource page URL', 'graphql-by-pop'),
+                'id'    => 'graphql-by-pop-rest-endpoint',
+            )
+        );
+        add_settings_field(
+            'graphql-by-pop-rest-enable-querying',
+            __('Enable to query custom fields', 'graphql-by-pop'),
+            [$this, 'printCheckboxField'],
+            'graphql-by-pop-options',
+            'graphql-by-pop-options-rest-enabled-section-1',
+            array(
+                'label' => sprintf(
+                    __('Query custom fields in the REST endpoint, through parameter <code>%s</code> using the <a href="%s">extended GraphQL syntax</a>', 'graphql-by-pop'),
+                    QueryInputs::QUERY,
+                    'https://github.com/getpop/field-query'
+                ),
+                'id'    => 'graphql-by-pop-rest-enable-querying',
             )
         );
         /**
@@ -157,7 +173,7 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-options-rest-enabled-section-2',
             array(
                 'label' => sprintf(
-                    __('Default fields for the single post URL, and the post list page URL (with slug <code>%s</code>)'),
+                    __('Default fields for the single post URL, and the post list page URL (with slug <code>%s</code>)', 'graphql-by-pop'),
                     \POP_POSTS_ROUTE_POSTS
                 ),
                 'id'    => 'graphql-by-pop-rest-enabled-post-fields',
@@ -171,7 +187,7 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-options-rest-enabled-section-2',
             array(
                 'label' => sprintf(
-                    __('Default fields for the author URL, and the user list page URL (with slug <code>%s</code>)'),
+                    __('Default fields for the author URL, and the user list page URL (with slug <code>%s</code>)', 'graphql-by-pop'),
                     \POP_USERS_ROUTE_USERS
                 ),
                 'id'    => 'graphql-by-pop-rest-enabled-user-fields',
@@ -185,7 +201,7 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-options-rest-enabled-section-2',
             array(
                 'label' => sprintf(
-                    __('Default fields for the single tag URL, and the tag list page URL (with slug <code>%s</code>)'),
+                    __('Default fields for the single tag URL, and the tag list page URL (with slug <code>%s</code>)', 'graphql-by-pop'),
                     \POP_TAXONOMIES_ROUTE_TAGS
                 ),
                 'id'    => 'graphql-by-pop-rest-enabled-tag-fields',
@@ -290,7 +306,7 @@ class OptionMenuPage extends AbstractMenuPage {
             );?>
         <br/>
             <?php echo sprintf(
-                __('Fields are defined using <a href="%s">this syntax</a>. Examples for a post: ', 'graphql-by-pop'),
+                __('Fields are defined using the <a href="%s">extended GraphQL syntax</a>. Examples for a post: ', 'graphql-by-pop'),
                 'https://github.com/getpop/field-query'
             );?>
         </p>
