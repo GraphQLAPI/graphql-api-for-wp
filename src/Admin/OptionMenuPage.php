@@ -118,7 +118,10 @@ class OptionMenuPage extends AbstractMenuPage {
             'graphql-by-pop-options',
             'graphql-by-pop-options-rest-enabled-section',
             array(
-                'label' => '',
+                'label' => sprintf(
+                    __('Default fields for the single post URL, and the post list page URL (with slug <code>%s</code>)'),
+                    \POP_POSTS_ROUTE_POSTS
+                ),
                 'id'    => 'graphql-by-pop-rest-enabled-post-fields',
             )
         );
@@ -200,12 +203,14 @@ class OptionMenuPage extends AbstractMenuPage {
         </h2>
         <p>
             <?php echo sprintf(
-                __('<strong>Fields to retrieve for resources:</strong> Define what fields to retrieve for each resource when appending <code>%s</code> to its URL, using <a href="%s">this syntax</a>.', 'graphql-by-pop'),
-                '/api/rest/',
-                'https://github.com/getpop/field-query'
+                __('<strong>Fields to retrieve for resources:</strong> define what fields to retrieve for a single resource or list of resources, when appending <code>%s</code> to the URL.', 'graphql-by-pop'),
+                '/api/rest/'
             );?>
         <br/>
-            <?php echo __('Examples for a post: ', 'graphql-by-pop');?>
+            <?php echo sprintf(
+                __('Fields are defined using <a href="%s">this syntax</a>. Examples for a post: ', 'graphql-by-pop'),
+                'https://github.com/getpop/field-query'
+            );?>
         </p>
         <ol>
             <li>
