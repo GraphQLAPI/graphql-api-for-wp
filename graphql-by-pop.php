@@ -18,6 +18,8 @@ Domain Path: /languages
 if (!defined('ABSPATH')) {
 	exit;
 }
+define('GRAPHQL_BY_POP_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('GRAPHQL_BY_POP_VERSION', '0.1');
 
 // Load Composer’s autoloader
 require_once (__DIR__.'/vendor/autoload.php');

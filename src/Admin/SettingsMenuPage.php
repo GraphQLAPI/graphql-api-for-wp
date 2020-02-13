@@ -74,11 +74,6 @@ class SettingsMenuPage extends AbstractMenuPage {
         <?php
     }
 
-    /**
-     * Set up the experiments settings.
-     *
-     * @since 6.3.0
-     */
     public function init(): void
     {
         /**

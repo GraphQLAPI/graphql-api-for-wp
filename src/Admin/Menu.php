@@ -2,6 +2,7 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\SettingsMenuPage;
+use Leoloso\GraphQLByPoPWPPlugin\Admin\GraphiQLPage;
 
 /**
  * Admin menu class
@@ -36,7 +37,7 @@ class Menu {
             __('GraphiQL', 'graphql-by-pop'),
             'manage_options',
             'graphql_by_pop',
-            [$this, 'printGraphiQLPage']
+            [new GraphiQLPage(), 'print']
         );
 
         add_submenu_page(
