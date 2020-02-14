@@ -1,6 +1,7 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 
+use Leoloso\GraphQLByPoPWPPlugin\EndpointHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\AbstractMenuPage;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\EnqueueReactMenuPageTrait;
 
@@ -61,17 +62,13 @@ class GraphiQLMenuPage extends AbstractMenuPage {
             true
         );
 
-        $endpointURL = trailingslashit(trailingslashit(site_url()) . 'api/graphql');
-        if (true) {
-            $endpointURL = add_query_arg('use_namespace', true, $endpointURL);
-        }
-
+        // Load data into the script
         wp_localize_script(
             'graphql-by-pop-graphiql-client',
             'graphQLByPoPGraphiQLSettings',
             array(
                 'nonce' => wp_create_nonce('wp_rest'),
-                'endpoint' => $endpointURL,
+                'endpoint' => EndpointHelpers::getGraphQLEndpointURL(),
                 'defaultQuery' => $this->getDefaultQuery(),
             )
         );

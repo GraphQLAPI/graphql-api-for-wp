@@ -3,6 +3,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\AbstractMenuPage;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\EnqueueReactMenuPageTrait;
+use Leoloso\GraphQLByPoPWPPlugin\EndpointHelpers;
 
 /**
  * Voyager page
@@ -61,17 +62,13 @@ class GraphQLVoyagerMenuPage extends AbstractMenuPage {
             true
         );
 
-        $endpointURL = trailingslashit(trailingslashit(site_url()) . 'api/graphql');
-        if (true) {
-            $endpointURL = add_query_arg('use_namespace', true, $endpointURL);
-        }
-
+        // Load data into the script
         wp_localize_script(
             'graphql-by-pop-voyager-client',
             'graphQLByPoPGraphiQLSettings',
             array(
                 'nonce' => wp_create_nonce('wp_rest'),
-                'endpoint' => $endpointURL,
+                'endpoint' => EndpointHelpers::getGraphQLEndpointURL(),
             )
         );
     }
