@@ -155,6 +155,19 @@ class SettingsMenuPage extends AbstractMenuPage {
                 'id'    => 'graphql-by-pop-blockmetadata',
             )
         );
+        $clientURLPlaceholder = __('Currently set to <a href="%1$s">%2$s</a>', 'graphql-by-pop');
+        $label = __('Make the GraphiQL client publicly available under the specified URL path. Keep empty to disable', 'graphql-by-pop');
+        if ($value = self::getOptionValue('graphql-by-pop-public-graphiql')) {
+            $label = sprintf(
+                __('%s. %s', 'graphql-by-pop'),
+                $label,
+                sprintf(
+                    $clientURLPlaceholder,
+                    site_url().'/'.$value.'/',
+                    $value
+                )
+            );
+        }
         add_settings_field(
             'graphql-by-pop-public-graphiql',
             __('Public GraphiQL client URL path', 'graphql-by-pop'),
@@ -162,10 +175,22 @@ class SettingsMenuPage extends AbstractMenuPage {
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-main-section',
             array(
-                'label' => __('Make the GraphiQL client publicly available under the specified URL path. Keep empty to disable', 'graphql-by-pop'),
+                'label' => $label,
                 'id'    => 'graphql-by-pop-public-graphiql',
             )
         );
+        $label = __('Make the "interactive schema" publicly available under the specified URL path. Keep empty to disable', 'graphql-by-pop');
+        if ($value = self::getOptionValue('graphql-by-pop-public-voyager')) {
+            $label = sprintf(
+                __('%s. %s', 'graphql-by-pop'),
+                $label,
+                sprintf(
+                    $clientURLPlaceholder,
+                    site_url().'/'.$value.'/',
+                    $value
+                )
+            );
+        }
         add_settings_field(
             'graphql-by-pop-public-voyager',
             __('Public "interactive schema" URL path', 'graphql-by-pop'),
@@ -173,7 +198,7 @@ class SettingsMenuPage extends AbstractMenuPage {
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-main-section',
             array(
-                'label' => __('Make the "interactive schema" publicly available under the specified URL path. Keep empty to disable', 'graphql-by-pop'),
+                'label' => $label,
                 'id'    => 'graphql-by-pop-public-voyager',
             )
         );
