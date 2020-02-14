@@ -143,7 +143,7 @@ class SettingsMenuPage extends AbstractMenuPage {
         );
         add_settings_field(
             'graphql-by-pop-blockmetadata',
-            __('Expose meta-data from Gutenberg blocks', 'graphql-by-pop'),
+            __('Enable querying Gutenberg', 'graphql-by-pop'),
             [$this, 'printCheckboxField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-main-section',
