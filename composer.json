@@ -44,7 +44,10 @@
         "getpop/graphql": "dev-master",
         "getpop/api-rest": "dev-master",
         "getpop/block-metadata-for-wp": "dev-master",
-        "leoloso/pop-api-endpoints-for-wp": "dev-master"
+        "leoloso/pop-api-endpoints-for-wp": "dev-master",
+        "leoloso/pop-graphiql": "^1.0",
+        "leoloso/pop-graphql-voyager": "^1.0",
+        "oomphinc/composer-installers-extender": "^1.1"
     },
     "autoload": {
         "psr-4": {
@@ -59,6 +62,18 @@
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
+        },
+        "installer-types": [
+            "graphiql-client",
+            "graphql-voyager"
+        ],
+        "installer-paths": {
+            "graphiql/": [
+                "leoloso/pop-graphiql"
+            ],
+            "interactive-schema/": [
+                "leoloso/pop-graphql-voyager"
+            ]
         }
     },
     "config": {
