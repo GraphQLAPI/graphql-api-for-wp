@@ -46,29 +46,6 @@ function updateURL() {
   history.replaceState(null, null, newSearch);
 }
 
-/*
- * Converts a string to a bool.
- *
- * This conversion will:
- *
- *  - match 'true', 'on', or '1' as true.
- *  - ignore all white-space padding
- *  - ignore capitalization (case).
- *
- * '  tRue  ','ON', and '1   ' will all evaluate as true.
- *
- * Taken from https://stackoverflow.com/a/264180
- *
- */
-function strToBool(s)
-{
-    // will match one and only one of the string 'true','1', or 'on' rerardless
-    // of capitalization and regardless off surrounding white-space.
-    //
-    regex=/^\s*(true|1|on)\s*$/i
-    return regex.test(s);
-}
-
 // Defines a GraphQL fetcher using the fetch API. You're not required to
 // use fetch, and could instead implement graphQLFetcher however you like,
 // as long as it returns a Promise or Observable.
