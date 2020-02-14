@@ -2,7 +2,7 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\SettingsMenuPage;
-use Leoloso\GraphQLByPoPWPPlugin\Admin\GraphiQLPage;
+use Leoloso\GraphQLByPoPWPPlugin\Admin\GraphiQLMenuPage;
 
 /**
  * Admin menu class
@@ -37,7 +37,7 @@ class Menu {
             __('GraphiQL', 'graphql-by-pop'),
             'manage_options',
             'graphql_by_pop',
-            [new GraphiQLPage(), 'print']
+            [new GraphiQLMenuPage(), 'print']
         );
 
         add_submenu_page(
@@ -46,7 +46,7 @@ class Menu {
             __('Interactive schema', 'graphql-by-pop'),
             'manage_options',
             'graphql_by_pop_voyager',
-            [$this, 'printVoyagerPage']
+            [new GraphQLVoyagerMenuPage(), 'print']
         );
 
         add_submenu_page(
@@ -64,7 +64,7 @@ class Menu {
             __('Documentation', 'graphql-by-pop'),
             'manage_options',
             'graphql_by_pop_documentation',
-            [$this, 'printVoyagerPage']
+            [$this, 'printDocumentation']
         );
 
         // if (current_user_can('manage_options')) {
@@ -84,11 +84,11 @@ class Menu {
         echo 'GraphiQL!';
     }
 
-    function printVoyagerPage() {
+    function printDocumentation() {
         if (!current_user_can('manage_options'))  {
             wp_die(__( 'You do not have sufficient permissions to access this page.'));
         }
-        echo 'Voyager!';
+        echo 'Documentation';
     }
 
     function printOptionsPage() {

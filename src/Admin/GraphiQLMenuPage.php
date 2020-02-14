@@ -6,7 +6,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Admin\AbstractMenuPage;
 /**
  * GraphiQL page
  */
-class GraphiQLPage extends AbstractMenuPage {
+class GraphiQLMenuPage extends AbstractMenuPage {
 
     public function print(): void
     {
