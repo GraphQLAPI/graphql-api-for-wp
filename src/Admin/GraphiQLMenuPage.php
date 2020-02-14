@@ -2,11 +2,14 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\AbstractMenuPage;
+use Leoloso\GraphQLByPoPWPPlugin\Admin\EnqueueReactMenuPageTrait;
 
 /**
  * GraphiQL page
  */
 class GraphiQLMenuPage extends AbstractMenuPage {
+
+    use EnqueueReactMenuPageTrait;
 
     public function print(): void
     {
@@ -42,20 +45,7 @@ class GraphiQLMenuPage extends AbstractMenuPage {
         );
 
         // JS: execute them all in the footer
-        wp_enqueue_script(
-            'graphql-by-pop-react',
-            GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/vendors/react.min.js',
-            array(),
-            GRAPHQL_BY_POP_VERSION,
-            true
-        );
-        wp_enqueue_script(
-            'graphql-by-pop-react-dom',
-            GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/vendors/react-dom.min.js',
-            array('graphql-by-pop-react'),
-            GRAPHQL_BY_POP_VERSION,
-            true
-        );
+        $this->enqueueReactAssets(true);
         wp_enqueue_script(
             'graphql-by-pop-graphiql',
             GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/vendors/graphiql.min.js',
