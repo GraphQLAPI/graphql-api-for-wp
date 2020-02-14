@@ -43,6 +43,7 @@
         "getpop/postmedia-wp": "dev-master",
         "getpop/graphql": "dev-master",
         "getpop/api-rest": "dev-master",
+        "getpop/block-metadata-for-wp": "dev-master",
         "leoloso/pop-api-endpoints-for-wp": "dev-master"
     },
     "autoload": {
