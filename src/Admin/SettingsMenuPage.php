@@ -3,6 +3,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\AbstractMenuPage;
 use PoP\API\Schema\QueryInputs;
+use PoP\Posts\TypeResolvers\PostTypeResolver;
 
 /**
  * Settings menu page
@@ -138,6 +139,20 @@ class SettingsMenuPage extends AbstractMenuPage {
             array(
                 'label' => __('Automatically namespace types and interfaces as to avoid potential naming clashes', 'graphql-by-pop'),
                 'id'    => 'graphql-by-pop-namespacing',
+            )
+        );
+        add_settings_field(
+            'graphql-by-pop-blockmetadata',
+            __('Expose meta-data from Gutenberg blocks', 'graphql-by-pop'),
+            [$this, 'printCheckboxField'],
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings-main-section',
+            array(
+                'label' => sprintf(
+                    __('Add a field <code>blockMetadata</code> on type <code>%s</code> to retrieve the meta-data from its Guntenberg blocks', 'graphql-by-pop'),
+                    PostTypeResolver::NAME,
+                ),
+                'id'    => 'graphql-by-pop-blockmetadata',
             )
         );
 
