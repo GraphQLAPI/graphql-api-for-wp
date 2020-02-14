@@ -51,7 +51,7 @@ function updateURL() {
 // as long as it returns a Promise or Observable.
 function graphQLFetcher(graphQLParams) {
   let nonce = (window.graphQLByPoPGraphiQLSettings && window.graphQLByPoPGraphiQLSettings.nonce) ? window.graphQLByPoPGraphiQLSettings.nonce : null;
-  let apiURL = (window.graphQLByPoPGraphiQLSettings && window.graphQLByPoPGraphiQLSettings.endpoint) ? window.graphQLByPoPGraphiQLSettings.endpoint : window.location.origin;
+  let apiURL = (window.graphQLByPoPGraphiQLSettings && window.graphQLByPoPGraphiQLSettings.endpoint) ? window.graphQLByPoPGraphiQLSettings.endpoint : null;
 
   return fetch(apiURL, {
     method: 'post',
