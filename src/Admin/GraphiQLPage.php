@@ -11,7 +11,7 @@ class GraphiQLPage extends AbstractMenuPage {
     public function print(): void
     {
         ?>
-        <div id="graphiql" style="height: 100vh;">Loading...</div>
+        <div id="graphiql" class="graphiql-client">Loading...</div>
 
         <!--script
         crossorigin

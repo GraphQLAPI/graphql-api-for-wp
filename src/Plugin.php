@@ -32,6 +32,13 @@ class Plugin {
                 false,
                 false
             );
+			wp_enqueue_style(
+                'graphql-by-pop-graphiql-client',
+                GRAPHQL_BY_POP_PLUGIN_URL.'assets/css/graphiql-client.css',
+                array(),
+                false,
+                false
+            );
 			wp_enqueue_script(
                 'graphql-by-pop-react',
                 GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/react.development.js',

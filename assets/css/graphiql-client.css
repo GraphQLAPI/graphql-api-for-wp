@@ -1,0 +1,6 @@
+.graphiql-client  {
+    height: 100vh;
+}
+.wpcontent .graphiql-client  {
+    height: calc(100vh - 32px);
+}
