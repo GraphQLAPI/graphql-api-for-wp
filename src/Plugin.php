@@ -1,14 +1,12 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
-use Leoloso\GraphQLByPoPWPPlugin\EndpointHandler;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
 
 class Plugin {
 
     public function init(): void
     {
-        (new EndpointHandler())->init();
         if (is_admin()) {
             (new Menu())->init();
             add_action(
@@ -61,7 +59,7 @@ class Plugin {
 				'graphQLByPoPGraphiQLSettings',
 				array(
 					'nonce' => wp_create_nonce('wp_rest'),
-					'endpoint' => trailingslashit(site_url()) . 'index.php?graphql_by_pop=true',
+					'endpoint' => trailingslashit(trailingslashit(site_url()) . 'api/graphql'),
 				)
 			);
 		}
