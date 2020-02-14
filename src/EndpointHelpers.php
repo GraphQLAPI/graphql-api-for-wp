@@ -3,15 +3,19 @@ namespace Leoloso\GraphQLByPoPWPPlugin;
 
 class EndpointHelpers {
 
-    public static function getGraphQLEndpoint(): string
+    public static function getGraphQLEndpoint(bool $slashed = false): string
     {
-        return 'api/graphql';
+        $endpoint = 'api/graphql';
+        if ($slashed) {
+            return '/'.$endpoint.'/';
+        }
+        return $endpoint;
     }
 
     public static function getGraphQLEndpointURL(): string
     {
-        $endpoint = self::getGraphQLEndpoint();
-        $endpointURL = trailingslashit(trailingslashit(site_url()).$endpoint);
+        $endpoint = self::getGraphQLEndpoint(true);
+        $endpointURL = site_url().$endpoint;
         if (true) {
             $endpointURL = add_query_arg('use_namespace', true, $endpointURL);
         }

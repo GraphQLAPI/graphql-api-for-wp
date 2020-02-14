@@ -58,11 +58,11 @@ class Redirection {
             // Modify the script path
             $jsFileNames = [
                 $graphiQLTrimmedEndpoint => 'graphiql.js',
-                $voyagerTrimmedEndpoint => null,
+                $voyagerTrimmedEndpoint => 'voyager.js',
             ];
             if ($jsFileName = $jsFileNames[$uri]) {
                 $jsFileURL = GRAPHQL_BY_POP_PLUGIN_URL.$dirPath.'/'.$jsFileName;
-                $fileContents = str_replace($jsFileName, $jsFileURL, $fileContents);
+                $fileContents = str_replace($jsFileName.'?', $jsFileURL.'?endpoint='.EndpointHelpers::getGraphQLEndpoint(true).'&', $fileContents);
             }
             echo $fileContents;
             die;
