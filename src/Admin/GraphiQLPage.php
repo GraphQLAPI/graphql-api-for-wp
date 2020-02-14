@@ -11,7 +11,7 @@ class GraphiQLPage extends AbstractMenuPage {
     public function print(): void
     {
         ?>
-        <div id="graphiql" style="height: 100vh;"></div>
+        <div id="graphiql" style="height: 100vh;">Loading...</div>
 
         <!--script
         crossorigin
@@ -26,7 +26,6 @@ class GraphiQLPage extends AbstractMenuPage {
         src="https://unpkg.com/graphiql/graphiql.min.js"
         ></script-->
 
-        <div id="graphiql">Loading...</div>
         <!--script defer src="graphiql.js?version=1.1.0" type="application/javascript"></script-->
         <script defer type="application/javascript">
 /**
