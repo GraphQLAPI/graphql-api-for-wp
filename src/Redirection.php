@@ -44,8 +44,8 @@ class Redirection {
         $graphiQLTrimmedEndpoint = trim($this->GRAPHIQL_ENDPOINT, '/');
         $voyagerTrimmedEndpoint = trim($this->VOYAGER_ENDPOINT, '/');
         $dirPaths = [
-            $graphiQLTrimmedEndpoint => 'graphiql',
-            $voyagerTrimmedEndpoint => 'interactive-schema',
+            $graphiQLTrimmedEndpoint => 'vendor/leoloso/pop-graphiql',
+            $voyagerTrimmedEndpoint => 'vendor/leoloso/pop-graphql-voyager',
         ];
         if ($dirPath = $dirPaths[$uri]) {
             $htmlFileNames = [
