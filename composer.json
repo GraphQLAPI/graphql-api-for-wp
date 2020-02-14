@@ -19,12 +19,6 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://wpackagist.org"
-        }
-    ],
     "require": {
         "php": "~7.2",
         "getpop/engine-wp": "dev-master",
