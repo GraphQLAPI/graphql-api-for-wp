@@ -79,7 +79,8 @@ class Plugin {
 				'graphQLByPoPGraphiQLSettings',
 				array(
 					'nonce' => wp_create_nonce('wp_rest'),
-					'endpoint' => $endpointURL,
+                    'endpoint' => $endpointURL,
+                    'defaultQuery' => null,
 				)
 			);
 		}

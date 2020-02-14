@@ -24,9 +24,11 @@ function graphQLFetcher(graphQLParams) {
     });
 }
 
+var defaultQuery = (window.graphQLByPoPGraphiQLSettings && window.graphQLByPoPGraphiQLSettings.defaultQuery) ? window.graphQLByPoPGraphiQLSettings.defaultQuery : null;
 ReactDOM.render(
   React.createElement(GraphiQL, {
-    fetcher: graphQLFetcher
+    fetcher: graphQLFetcher,
+    defaultQuery: defaultQuery
   }),
   document.getElementById('graphiql')
 );
