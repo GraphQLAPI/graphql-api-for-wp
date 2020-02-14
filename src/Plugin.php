@@ -57,7 +57,7 @@ class Plugin {
             );
 
 			wp_localize_script(
-				'graphql-by-pop',
+				'graphql-by-pop-graphiql',
 				'graphQLByPoPGraphiQLSettings',
 				array(
 					'nonce' => wp_create_nonce('wp_rest'),
