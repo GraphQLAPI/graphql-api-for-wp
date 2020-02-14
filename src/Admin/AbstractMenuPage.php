@@ -11,17 +11,47 @@ abstract class AbstractMenuPage implements MenuPageInterface {
     public function __construct()
     {
         add_action(
-            'admin_init',
-            [$this, 'init']
+            'admin_enqueue_scripts',
+            [$this, 'maybeEnqueueAssets']
         );
     }
+
     /**
-     * Initialize the menu page
+     * Maybe enqueue the required assets and initialize the localized scripts
      *
      * @return void
      */
-    public function init(): void
+    public function maybeEnqueueAssets(): void
     {
-        // Function to be overriden
+        // Enqueue if either it doesn't specify a screen ID, or it does and we are on that page
+        $enqueueAssets = false;
+        $screenID = $this->getScreenID();
+        if ($screenID) {
+            // Check we are on the specific screen
+            $currentScreen = get_current_screen()->id;
+            // If it is the top level page, the current screen is prepended with "toplevel_page_"
+            // If not, the current screen is prepended with the section name
+            // Then, check that the screen ends with the requested screen ID
+            $enqueueAssets = substr($currentScreen, -1*strlen($screenID)) == $screenID;
+        } else {
+            $enqueueAssets = true;
+        }
+        if ($enqueueAssets) {
+            $this->enqueueAssets();
+        }
+    }
+
+    protected function getScreenID(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * Enqueue the required assets and initialize the localized scripts
+     *
+     * @return void
+     */
+    protected function enqueueAssets(): void
+    {
     }
 }

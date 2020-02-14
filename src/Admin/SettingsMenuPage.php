@@ -74,7 +74,7 @@ class SettingsMenuPage extends AbstractMenuPage {
         <?php
     }
 
-    public function init(): void
+    protected function init(): void
     {
         /**
          * Main section
