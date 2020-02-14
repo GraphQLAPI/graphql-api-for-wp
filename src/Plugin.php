@@ -71,12 +71,17 @@ class Plugin {
                 true
             );
 
+            $endpointURL = trailingslashit(trailingslashit(site_url()) . 'api/graphql');
+            if (true) {
+                $endpointURL = add_query_arg('use_namespace', true, $endpointURL);
+            }
+
 			wp_localize_script(
 				'graphql-by-pop-graphiql-client',
 				'graphQLByPoPGraphiQLSettings',
 				array(
 					'nonce' => wp_create_nonce('wp_rest'),
-					'endpoint' => trailingslashit(trailingslashit(site_url()) . 'api/graphql'),
+					'endpoint' => $endpointURL,
 				)
 			);
 		}

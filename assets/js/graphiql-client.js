@@ -76,10 +76,6 @@ function graphQLFetcher(graphQLParams) {
   let nonce = (window.graphQLByPoPGraphiQLSettings && window.graphQLByPoPGraphiQLSettings.nonce) ? window.graphQLByPoPGraphiQLSettings.nonce : null;
   let apiURL = (window.graphQLByPoPGraphiQLSettings && window.graphQLByPoPGraphiQLSettings.endpoint) ? window.graphQLByPoPGraphiQLSettings.endpoint : window.location.origin;
 
-  // Copy parameters
-  if (parameters.use_namespace && strToBool(parameters.use_namespace)) {
-    apiURL += '&use_namespace=true';
-  }
   return fetch(apiURL, {
     method: 'post',
     headers: {
