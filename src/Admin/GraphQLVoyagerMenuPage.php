@@ -11,6 +11,7 @@ class GraphQLVoyagerMenuPage extends AbstractMenuPage {
     public function print(): void
     {
         ?>
+        <div id="voyager" class="voyager-client"><?php echo __('Loading...', 'graphql-by-pop') ?></div>
         <?php
     }
 
@@ -26,5 +27,62 @@ class GraphQLVoyagerMenuPage extends AbstractMenuPage {
      */
     protected function enqueueAssets(): void
     {
+        // CSS
+        wp_enqueue_style(
+            'graphql-by-pop-voyager-client',
+            GRAPHQL_BY_POP_PLUGIN_URL.'assets/css/voyager-client.css',
+            array(),
+            GRAPHQL_BY_POP_VERSION
+        );
+        wp_enqueue_style(
+            'graphql-by-pop-voyager',
+            GRAPHQL_BY_POP_PLUGIN_URL.'assets/css/vendors/voyager.css',
+            array(),
+            GRAPHQL_BY_POP_VERSION
+        );
+
+        // JS: execute them all in the footer
+        wp_enqueue_script(
+            'graphql-by-pop-react',
+            GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/vendors/react.min.js',
+            array(),
+            GRAPHQL_BY_POP_VERSION,
+            true
+        );
+        wp_enqueue_script(
+            'graphql-by-pop-react-dom',
+            GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/vendors/react-dom.min.js',
+            array('graphql-by-pop-react'),
+            GRAPHQL_BY_POP_VERSION,
+            true
+        );
+        wp_enqueue_script(
+            'graphql-by-pop-voyager',
+            GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/vendors/voyager.min.js',
+            array('graphql-by-pop-react-dom'),
+            GRAPHQL_BY_POP_VERSION,
+            true
+        );
+        wp_enqueue_script(
+            'graphql-by-pop-voyager-client',
+            GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/voyager-client.js',
+            array('graphql-by-pop-voyager'),
+            GRAPHQL_BY_POP_VERSION,
+            true
+        );
+
+        $endpointURL = trailingslashit(trailingslashit(site_url()) . 'api/graphql');
+        if (true) {
+            $endpointURL = add_query_arg('use_namespace', true, $endpointURL);
+        }
+
+        wp_localize_script(
+            'graphql-by-pop-voyager-client',
+            'graphQLByPoPGraphiQLSettings',
+            array(
+                'nonce' => wp_create_nonce('wp_rest'),
+                'endpoint' => $endpointURL,
+            )
+        );
     }
 }
