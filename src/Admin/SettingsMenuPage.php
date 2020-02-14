@@ -155,6 +155,28 @@ class SettingsMenuPage extends AbstractMenuPage {
                 'id'    => 'graphql-by-pop-blockmetadata',
             )
         );
+        add_settings_field(
+            'graphql-by-pop-public-graphiql',
+            __('Public GraphiQL client URL path', 'graphql-by-pop'),
+            [$this, 'printInputField'],
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings-main-section',
+            array(
+                'label' => __('Make the GraphiQL client publicly available under the specified URL path. Keep empty to disable', 'graphql-by-pop'),
+                'id'    => 'graphql-by-pop-public-graphiql',
+            )
+        );
+        add_settings_field(
+            'graphql-by-pop-public-voyager',
+            __('Public "interactive schema" URL path', 'graphql-by-pop'),
+            [$this, 'printInputField'],
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings-main-section',
+            array(
+                'label' => __('Make the "interactive schema" publicly available under the specified URL path. Keep empty to disable', 'graphql-by-pop'),
+                'id'    => 'graphql-by-pop-public-voyager',
+            )
+        );
 
         /**
          * REST section <= valid when REST enabled
