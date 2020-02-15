@@ -112,6 +112,8 @@ class SettingsMenuPage extends AbstractMenuPage {
 
     protected function init(): void
     {
+        $clientURLPlaceholder = __('Currently set to <a href="%1$s">%2$s</a>', 'graphql-by-pop');
+        $concatSentencePlaceholder = __('%s. %s', 'graphql-by-pop');
         /**
          * Main section
          */
@@ -129,7 +131,7 @@ class SettingsMenuPage extends AbstractMenuPage {
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-main-section',
             array(
-                'label' => '',
+                'label' => __('Make the GraphQL service available under the specified endpoint. Keep empty to disable', 'graphql-by-pop'),
                 'id'    => 'graphql-by-pop-graphql-endpoint',
             )
         );
@@ -190,11 +192,10 @@ class SettingsMenuPage extends AbstractMenuPage {
                 'id'    => 'graphql-by-pop-blockmetadata',
             )
         );
-        $clientURLPlaceholder = __('Currently set to <a href="%1$s">%2$s</a>', 'graphql-by-pop');
         $label = __('Make the GraphiQL client publicly available under the specified URL path. Keep empty to disable', 'graphql-by-pop');
         if ($value = self::getOptionValue('graphql-by-pop-public-graphiql')) {
             $label = sprintf(
-                __('%s. %s', 'graphql-by-pop'),
+                $concatSentencePlaceholder,
                 $label,
                 sprintf(
                     $clientURLPlaceholder,
@@ -217,7 +218,7 @@ class SettingsMenuPage extends AbstractMenuPage {
         $label = __('Make the "interactive schema" publicly available under the specified URL path. Keep empty to disable', 'graphql-by-pop');
         if ($value = self::getOptionValue('graphql-by-pop-public-voyager')) {
             $label = sprintf(
-                __('%s. %s', 'graphql-by-pop'),
+                $concatSentencePlaceholder,
                 $label,
                 sprintf(
                     $clientURLPlaceholder,
