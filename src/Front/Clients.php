@@ -63,7 +63,11 @@ class Clients {
             ];
             if ($jsFileName = $jsFileNames[$uri]) {
                 $jsFileURL = GRAPHQL_BY_POP_PLUGIN_URL.$dirPath.'/'.$jsFileName;
-                $fileContents = str_replace($jsFileName.'?', $jsFileURL.'?endpoint='.EndpointHelpers::getGraphQLEndpoint(true).'&', $fileContents);
+                $useNamespace = '';
+                if (true) {
+                    $useNamespace = '&use_namespace=1';
+                }
+                $fileContents = str_replace($jsFileName.'?', $jsFileURL.'?endpoint='.EndpointHelpers::getGraphQLEndpoint(true, false).$useNamespace.'&', $fileContents);
             }
             echo $fileContents;
             die;

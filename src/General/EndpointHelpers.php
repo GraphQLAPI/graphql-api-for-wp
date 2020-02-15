@@ -3,23 +3,21 @@ namespace Leoloso\GraphQLByPoPWPPlugin\General;
 
 class EndpointHelpers {
 
-    public static function getGraphQLEndpoint(bool $slashed = false): string
+    public static function getGraphQLEndpoint(bool $slashed = false, bool $useNamespace = true): string
     {
         $endpoint = 'api/graphql';
         if ($slashed) {
             return '/'.$endpoint.'/';
+        }
+        if ($useNamespace && true) {
+            $endpoint = add_query_arg('use_namespace', true, $endpoint);
         }
         return $endpoint;
     }
 
     public static function getGraphQLEndpointURL(): string
     {
-        $endpoint = self::getGraphQLEndpoint(true);
-        $endpointURL = site_url().$endpoint;
-        if (true) {
-            $endpointURL = add_query_arg('use_namespace', true, $endpointURL);
-        }
-
-        return $endpointURL;
+        $endpoint = self::getGraphQLEndpoint(true, true);
+        return site_url().$endpoint;
     }
 }
