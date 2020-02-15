@@ -74,6 +74,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 
                 <?php /* Main Section */ ?>
                 <div id="main" class="tab-content">
+                    <?php $this->printMainHeader(); ?>
                     <?php echo '<table class="form-table">'; ?>
                     <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-main-section'); ?>
                     <?php echo '</table>'; ?>
@@ -434,6 +435,18 @@ class SettingsMenuPage extends AbstractMenuPage {
                 'https://graphql.getpop.org/wp/documentation/'
             );?>
         </p>
+        <?php
+    }
+
+    /**
+     * Section header
+     */
+    function printMainHeader(): void
+    {
+        ?>
+        <h2>
+        <?php echo __('Main settings', 'graphql-by-pop');?>
+        </h2>
         <?php
     }
 
