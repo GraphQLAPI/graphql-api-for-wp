@@ -1,5 +1,5 @@
 <?php
-namespace Leoloso\GraphQLByPoPWPPlugin;
+namespace Leoloso\GraphQLByPoPWPPlugin\General;
 
 class EndpointHelpers {
 

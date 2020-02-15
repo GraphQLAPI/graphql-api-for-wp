@@ -2,7 +2,7 @@
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
-use Leoloso\GraphQLByPoPWPPlugin\Redirection;
+use Leoloso\GraphQLByPoPWPPlugin\Front\Clients;
 
 class Plugin {
 
@@ -11,6 +11,6 @@ class Plugin {
         if (is_admin()) {
             (new Menu())->init();
         }
-        (new Redirection())->init();
+        (new Clients())->init();
     }
 }

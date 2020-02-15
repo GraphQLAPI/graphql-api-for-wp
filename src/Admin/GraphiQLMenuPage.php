@@ -1,7 +1,7 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 
-use Leoloso\GraphQLByPoPWPPlugin\EndpointHelpers;
+use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\AbstractMenuPage;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\EnqueueReactMenuPageTrait;
 

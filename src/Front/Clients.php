@@ -1,9 +1,10 @@
 <?php
-namespace Leoloso\GraphQLByPoPWPPlugin;
+namespace Leoloso\GraphQLByPoPWPPlugin\Front;
 
 use Leoloso\PoPAPIEndpointsForWP\EndpointUtils;
+use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
 
-class Redirection {
+class Clients {
 
     public $GRAPHIQL_ENDPOINT;
     public $VOYAGER_ENDPOINT;

@@ -3,7 +3,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\AbstractMenuPage;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\EnqueueReactMenuPageTrait;
-use Leoloso\GraphQLByPoPWPPlugin\EndpointHelpers;
+use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
 
 /**
  * Voyager page
