@@ -63,9 +63,9 @@ class SettingsMenuPage extends AbstractMenuPage {
 
             <h2 class="nav-tab-wrapper">
                 <a href="#main" class="nav-tab nav-tab-active"><?php echo __('Main', 'graphql-by-pop'); ?></a>
+                <a href="#graphql" class="nav-tab"><?php echo __('GraphQL', 'graphql-by-pop'); ?></a>
                 <a href="#rest" class="nav-tab"><?php echo __('REST', 'graphql-by-pop'); ?></a>
                 <a href="#extended_graphql" class="nav-tab"><?php echo __('Extended GraphQL', 'graphql-by-pop'); ?></a>
-                <a href="#clients" class="nav-tab"><?php echo __('Public clients', 'graphql-by-pop'); ?></a>
             </h2>
 
             <form method="post" action="options.php">
@@ -76,6 +76,14 @@ class SettingsMenuPage extends AbstractMenuPage {
                 <div id="main" class="tab-content">
                     <?php echo '<table class="form-table">'; ?>
                     <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-main-section'); ?>
+                    <?php echo '</table>'; ?>
+                </div>
+
+                <?php /* GraphQL */ ?>
+                <div id="graphql" class="tab-content">
+                <?php $this->printGraphQLEnabledHeader(); ?>
+                    <?php echo '<table class="form-table">'; ?>
+                    <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-graphql-enabled-section'); ?>
                     <?php echo '</table>'; ?>
                 </div>
 
@@ -99,14 +107,6 @@ class SettingsMenuPage extends AbstractMenuPage {
                     <?php echo '</table>'; ?>
                 </div>
 
-                <?php /* Clients */ ?>
-                <div id="clients" class="tab-content">
-                <?php $this->printClientEnabledHeader(); ?>
-                    <?php echo '<table class="form-table">'; ?>
-                    <?php /*do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-publicclients-enabled-section');*/ ?>
-                    <?php echo '</table>'; ?>
-                </div>
-
                 <?php submit_button(); ?>
             </form>
         </div>
@@ -115,8 +115,6 @@ class SettingsMenuPage extends AbstractMenuPage {
 
     protected function init(): void
     {
-        $clientURLPlaceholder = __('Currently set to <a href="%1$s">%2$s</a>', 'graphql-by-pop');
-        $concatSentencePlaceholder = __('%s. %s', 'graphql-by-pop');
         /**
          * Main section
          */
@@ -141,12 +139,6 @@ class SettingsMenuPage extends AbstractMenuPage {
                 'id'    => 'graphql-by-pop-graphql-endpoint',
             )
         );
-        // $restSupportedResources = sprintf(
-        //     __('<em>Supported resources:</em> single post, author, tag, and page, and list of resources with slugs <code>%s</code>, <code>%s</code>, and <code>%s</code>, ', 'graphql-by-pop'),
-        //     \POP_POSTS_ROUTE_POSTS,
-        //     \POP_USERS_ROUTE_USERS,
-        //     \POP_TAXONOMIES_ROUTE_TAGS
-        // );
         add_settings_field(
             'graphql-by-pop-rest-endpoint',
             __('REST endpoint', 'graphql-by-pop'),
@@ -158,17 +150,12 @@ class SettingsMenuPage extends AbstractMenuPage {
                     __('Endpoint to append at the end of a resource URL (single post, author, tag, page) to access its pre-defined data. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
                     'https://graphql.getpop.org/wp/documentation/#rest-endpoint'
                 ),
-                    // sprintf(
-                    //     '%s<br/>%s',
-                    //     __('Endpoint appended at the end of the page URL', 'graphql-by-pop'),
-                    //     $restSupportedResources
-                    // ),
                 'id'    => 'graphql-by-pop-rest-endpoint',
             )
         );
         add_settings_field(
             'graphql-by-pop-enable-extended-graphql',
-            __('Enable extended GraphQL', 'graphql-by-pop'),
+            __('Enable Extended GraphQL', 'graphql-by-pop'),
             [$this, 'printCheckboxField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-main-section',
@@ -178,20 +165,6 @@ class SettingsMenuPage extends AbstractMenuPage {
                     'https://graphql.getpop.org/wp/documentation/#extended-graphql'
                 ),
                 'id'    => 'graphql-by-pop-enable-extended-graphql',
-            )
-        );
-        add_settings_field(
-            'graphql-by-pop-namespacing',
-            __('Enable schema namespacing', 'graphql-by-pop'),
-            [$this, 'printCheckboxField'],
-            'graphql-by-pop-settings',
-            'graphql-by-pop-settings-main-section',
-            array(
-                'label' => sprintf(
-                    __('Automatically namespace types and interfaces as to avoid potential naming clashes. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
-                    'https://graphql.getpop.org/wp/documentation/#namespacing'
-                ),
-                'id'    => 'graphql-by-pop-namespacing',
             )
         );
         add_settings_field(
@@ -209,12 +182,37 @@ class SettingsMenuPage extends AbstractMenuPage {
                 'id'    => 'graphql-by-pop-blockmetadata',
             )
         );
+
+        /**
+         * GraphQL section <= valid when GraphQL enabled
+         */
+        add_settings_section(
+            'graphql-by-pop-settings-graphql-enabled-section',
+            // The empty string ensures the render function won't output a h2.
+            '',
+            [$this, 'printGraphQLEnabledHeader'],
+            'graphql-by-pop-settings'
+        );
+        add_settings_field(
+            'graphql-by-pop-namespacing',
+            __('Enable schema namespacing', 'graphql-by-pop'),
+            [$this, 'printCheckboxField'],
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings-graphql-enabled-section',
+            array(
+                'label' => sprintf(
+                    __('Automatically namespace types and interfaces as to avoid potential naming clashes. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
+                    'https://graphql.getpop.org/wp/documentation/#namespacing'
+                ),
+                'id'    => 'graphql-by-pop-namespacing',
+            )
+        );
         add_settings_field(
             'graphql-by-pop-public-graphiql',
             __('Public GraphiQL client URL path', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-settings',
-            'graphql-by-pop-settings-main-section',
+            'graphql-by-pop-settings-graphql-enabled-section',
             array(
                 'label' => sprintf(
                     __('Make the GraphiQL client publicly available under the specified URL path. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
@@ -228,7 +226,7 @@ class SettingsMenuPage extends AbstractMenuPage {
             __('Public "interactive schema" URL path', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-settings',
-            'graphql-by-pop-settings-main-section',
+            'graphql-by-pop-settings-graphql-enabled-section',
             array(
                 'label' => sprintf(
                     __('Make the "interactive schema" publicly available under the specified URL path. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
@@ -329,7 +327,7 @@ class SettingsMenuPage extends AbstractMenuPage {
         );
 
         /**
-         * Extended GraphQL section <= valid when extended GraphQL enabled
+         * Extended GraphQL section <= valid when Extended GraphQL enabled
          * Header 1
          */
         add_settings_section(
@@ -446,11 +444,11 @@ class SettingsMenuPage extends AbstractMenuPage {
     {
         ?>
         <h2>
-        <?php echo __('Settings if the REST endpoint is enabled', 'graphql-by-pop');?>
+        <?php echo __('Settings if REST is enabled', 'graphql-by-pop');?>
         </h2>
         <p>
             <?php echo sprintf(
-                __('<strong>Note:</strong> Fields (default ones for the REST endpoint, and custom ones when querying through the URL) are defined using the <a href="%s">extended GraphQL syntax</a>.', 'graphql-by-pop'),
+                __('<strong>Note:</strong> Fields (default ones for the REST endpoint, and custom ones when querying through the URL) are defined using the <a href="%s">Extended GraphQL syntax</a>.', 'graphql-by-pop'),
                 'https://github.com/getpop/field-query'
             );?>
             <br/>
@@ -492,7 +490,7 @@ class SettingsMenuPage extends AbstractMenuPage {
     {
         ?>
         <h2>
-        <?php echo __('Settings if extended GraphQL is enabled', 'graphql-by-pop');?>
+        <?php echo __('Settings if Extended GraphQL is enabled', 'graphql-by-pop');?>
         </h2>
         <?php
     }
@@ -500,11 +498,11 @@ class SettingsMenuPage extends AbstractMenuPage {
     /**
      * Section header
      */
-    function printClientEnabledHeader(): void
+    function printGraphQLEnabledHeader(): void
     {
         ?>
         <h2>
-        <?php echo __('Settings if public clients are enabled', 'graphql-by-pop');?>
+        <?php echo __('Settings if GraphQL is enabled', 'graphql-by-pop');?>
         </h2>
         <?php
     }
