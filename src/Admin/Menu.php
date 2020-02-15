@@ -51,6 +51,15 @@ class Menu {
 
         add_submenu_page(
             'graphql_by_pop',
+            __('Overview', 'graphql-by-pop'),
+            __('Overview', 'graphql-by-pop'),
+            'manage_options',
+            'graphql_by_pop_overview',
+            [$this, 'printOverview']
+        );
+
+        add_submenu_page(
+            'graphql_by_pop',
             __('Settings', 'graphql-by-pop'),
             __('Settings', 'graphql-by-pop'),
             'manage_options',
@@ -58,23 +67,23 @@ class Menu {
             [new SettingsMenuPage(), 'print']
         );
 
+        if (current_user_can('manage_options')) {
+            global $submenu;
+            $submenu['graphql_by_pop'][] = [
+                __('Documentation', 'graphql-by-pop'),
+                'manage_options',
+                'https://graphql.getpop.org/wp/documentation/',
+            ];
+        }
+
         add_submenu_page(
             'graphql_by_pop',
-            __('Documentation', 'graphql-by-pop'),
-            __('Documentation', 'graphql-by-pop'),
+            __('About', 'graphql-by-pop'),
+            __('About', 'graphql-by-pop'),
             'manage_options',
-            'graphql_by_pop_documentation',
-            [$this, 'printDocumentation']
+            'graphql_by_pop_about',
+            [$this, 'printAbout']
         );
-
-        // if (current_user_can('manage_options')) {
-        //     global $submenu;
-        //     $submenu['graphql_by_pop'][] = [
-        //         __('Documentation', 'graphql-by-pop'),
-        //         'manage_options',
-        //         'https://github.com/getpop/graphql',
-        //     ];
-        // }
     }
 
     function printGraphiQLPage() {
@@ -84,19 +93,17 @@ class Menu {
         echo 'GraphiQL!';
     }
 
-    function printDocumentation() {
+    function printOverview() {
         if (!current_user_can('manage_options'))  {
             wp_die(__( 'You do not have sufficient permissions to access this page.'));
         }
-        echo 'Documentation';
+        echo 'Overview';
     }
 
-    function printOptionsPage() {
+    function printAbout() {
         if (!current_user_can('manage_options'))  {
             wp_die(__( 'You do not have sufficient permissions to access this page.'));
         }
-        echo '<div class="wrap">';
-        echo '<p>Here is where the form would go if I actually had options.</p>';
-        echo '</div>';
+        echo 'About';
     }
 }
