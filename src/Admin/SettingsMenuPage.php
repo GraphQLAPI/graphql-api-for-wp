@@ -516,9 +516,9 @@ class SettingsMenuPage extends AbstractMenuPage {
         <!--h3>
             <?php echo __('Default REST fields ', 'graphql-by-pop');?>
         </h3-->
-        <p><em>
+        <h4><em>
             <?php echo __('Default REST fields for the different resources:', 'graphql-by-pop');?>
-        </em></p>
+        </em></h4>
         <?php
     }
 
@@ -550,9 +550,9 @@ class SettingsMenuPage extends AbstractMenuPage {
     function printGraphQLEnabledHeader2(): void
     {
         ?>
-        <p><em>
+        <h4><em>
             <?php echo __('Public GraphQL clients:', 'graphql-by-pop');?>
-        </em></p>
+        </em></h4>
         <?php
     }
 }
