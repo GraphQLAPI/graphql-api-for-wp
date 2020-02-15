@@ -37,40 +37,75 @@ class SettingsMenuPage extends AbstractMenuPage {
     public function print(): void
     {
         ?>
+        <script type="application/javascript">
+            jQuery( document ).ready( function($){
+                $('#graphql-by-pop-settings .tab-content').hide(); // Hide all tabs first
+                $('#graphql-by-pop-settings #main').show(); //  Show the default tab
+                // $('#graphql-by-pop-settings a[href="#main"].nav-tab').addClass('nav-tab-active');
+
+                $('#graphql-by-pop-settings .nav-tab').on('click', function(e){
+                    e.preventDefault();
+                    tab = $(this).attr('href');
+                    $('#graphql-by-pop-settings .tab-content').hide();
+                    $(tab).show();
+                    $('#graphql-by-pop-settings .nav-tab').removeClass('nav-tab-active');
+                    $('#graphql-by-pop-settings a[href="'+tab+'"].nav-tab').addClass('nav-tab-active');
+                });
+            });
+        </script>
         <div
             id="graphql-by-pop-settings"
             class="wrap"
         >
-        <h1><?php echo __('GraphQL by PoP — Settings', 'graphql-by-pop'); ?></h1>
-        <?php settings_errors(); ?>
-        <form method="post" action="options.php">
-            <?php settings_fields('graphql-by-pop-settings'); ?>
-            <!--?php do_settings_sections('graphql-by-pop-settings'); ?-->
-
-            <?php /* Main Section */ ?>
-            <?php echo '<table class="form-table">'; ?>
+            <h1><?php echo __('GraphQL by PoP — Settings', 'graphql-by-pop'); ?></h1>
+            <?php settings_errors(); ?>
             <?php $this->printMainSectionDescription(); ?>
-            <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-main-section'); ?>
-            <?php echo '</table>'; ?>
 
-            <?php /* REST Section */ ?>
-            <?php $this->printRESTEnabledHeader1(); ?>
-            <?php echo '<table class="form-table">'; ?>
-            <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-rest-enabled-section-1'); ?>
-            <?php echo '</table>'; ?>
-            <?php $this->printRESTEnabledHeader2(); ?>
-            <?php echo '<table class="form-table">'; ?>
-            <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-rest-enabled-section-2'); ?>
-            <?php echo '</table>'; ?>
+            <h2 class="nav-tab-wrapper">
+                <a href="#main" class="nav-tab nav-tab-active"><?php echo __('Main', 'graphql-by-pop'); ?></a>
+                <a href="#rest" class="nav-tab"><?php echo __('REST', 'graphql-by-pop'); ?></a>
+                <a href="#extended_graphql" class="nav-tab"><?php echo __('Extended GraphQL', 'graphql-by-pop'); ?></a>
+                <a href="#clients" class="nav-tab"><?php echo __('Public clients', 'graphql-by-pop'); ?></a>
+            </h2>
 
-            <?php /* GraphQL Extended Section */ ?>
-            <?php $this->printXTGraphQLEnabledHeader(); ?>
-            <?php echo '<table class="form-table">'; ?>
-            <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-extendedgraphql-enabled-section'); ?>
-            <?php echo '</table>'; ?>
+            <form method="post" action="options.php">
+                <?php settings_fields('graphql-by-pop-settings'); ?>
+                <!--?php do_settings_sections('graphql-by-pop-settings'); ?-->
 
-            <?php submit_button(); ?>
-        </form>
+                <?php /* Main Section */ ?>
+                <div id="main" class="tab-content">
+                    <?php echo '<table class="form-table">'; ?>
+                    <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-main-section'); ?>
+                    <?php echo '</table>'; ?>
+                </div>
+
+                <?php /* REST Section */ ?>
+                <div id="rest" class="tab-content">
+                    <?php $this->printRESTEnabledHeader1(); ?>
+                    <?php echo '<table class="form-table">'; ?>
+                    <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-rest-enabled-section-1'); ?>
+                    <?php echo '</table>'; ?>
+                    <?php $this->printRESTEnabledHeader2(); ?>
+                    <?php echo '<table class="form-table">'; ?>
+                    <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-rest-enabled-section-2'); ?>
+                    <?php echo '</table>'; ?>
+                </div>
+
+                <?php /* GraphQL Extended Section */ ?>
+                <div id="extended_graphql" class="tab-content">
+                    <?php $this->printXTGraphQLEnabledHeader(); ?>
+                    <?php echo '<table class="form-table">'; ?>
+                    <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-extendedgraphql-enabled-section'); ?>
+                    <?php echo '</table>'; ?>
+                </div>
+
+                <?php /* Clients */ ?>
+                <div id="clients" class="tab-content">
+
+                </div>
+
+                <?php submit_button(); ?>
+            </form>
         </div>
         <?php
     }
@@ -406,9 +441,12 @@ class SettingsMenuPage extends AbstractMenuPage {
     {
         ?>
         <p>
-            <?php echo sprintf(
+            <?php /*echo sprintf(
                 __('Please refer to the <a href="%s">documentation page</a> for detailed information on all features.', 'graphql-by-pop'),
                 menu_page_url('graphql_by_pop_documentation', false)
+            );*/echo sprintf(
+                __('Please refer to the <a href="%s">documentation</a> for detailed information on all features.', 'graphql-by-pop'),
+                'https://graphql.getpop.org/wp/documentation/'
             );?>
         </p>
         <?php
