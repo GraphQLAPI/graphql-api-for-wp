@@ -142,19 +142,19 @@ class SettingsMenuPage extends AbstractMenuPage {
         //     \POP_TAXONOMIES_ROUTE_TAGS
         // );
         add_settings_field(
-            'graphql-by-pop-enable-rest',
-            __('Enable REST endpoints', 'graphql-by-pop'),
-            [$this, 'printCheckboxField'],
+            'graphql-by-pop-rest-endpoint',
+            __('REST endpoint', 'graphql-by-pop'),
+            [$this, 'printInputField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-main-section',
             array(
-                'label' => __('Enable appending an endpoint to the URL of a resource to access its data.', 'graphql-by-pop'),
+                'label' => __('Endpoint to append at the end of a resource URL (single post, author, tag, page) to access its pre-defined data. Keep empty to disable', 'graphql-by-pop'),
                     // sprintf(
                     //     '%s<br/>%s',
-                    //     __('Enable appending an endpoint to the URL of a resource to access its data.', 'graphql-by-pop'),
+                    //     __('Endpoint appended at the end of the page URL', 'graphql-by-pop'),
                     //     $restSupportedResources
                     // ),
-                'id'    => 'graphql-by-pop-enable-rest',
+                'id'    => 'graphql-by-pop-rest-endpoint',
             )
         );
         add_settings_field(
@@ -250,22 +250,6 @@ class SettingsMenuPage extends AbstractMenuPage {
             '',
             [$this, 'printRESTEnabledHeader1'],
             'graphql-by-pop-settings'
-        );
-        add_settings_field(
-            'graphql-by-pop-rest-endpoint',
-            __('REST endpoint', 'graphql-by-pop'),
-            [$this, 'printInputField'],
-            'graphql-by-pop-settings',
-            'graphql-by-pop-settings-rest-enabled-section-1',
-            array(
-                'label' => __('Endpoint appended at the end of the page URL', 'graphql-by-pop'),
-                    // sprintf(
-                    //     '%s<br/>%s',
-                    //     __('Endpoint appended at the end of the page URL', 'graphql-by-pop'),
-                    //     $restSupportedResources
-                    // ),
-                'id'    => 'graphql-by-pop-rest-endpoint',
-            )
         );
         add_settings_field(
             'graphql-by-pop-rest-enable-querying',
