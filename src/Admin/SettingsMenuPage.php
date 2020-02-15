@@ -135,12 +135,12 @@ class SettingsMenuPage extends AbstractMenuPage {
                 'id'    => 'graphql-by-pop-graphql-endpoint',
             )
         );
-        $restSupportedResources = sprintf(
-            __('<em>Supported resources:</em> single post, author, tag, and page, and list of resources with slugs <code>%s</code>, <code>%s</code>, and <code>%s</code>, ', 'graphql-by-pop'),
-            \POP_POSTS_ROUTE_POSTS,
-            \POP_USERS_ROUTE_USERS,
-            \POP_TAXONOMIES_ROUTE_TAGS
-        );
+        // $restSupportedResources = sprintf(
+        //     __('<em>Supported resources:</em> single post, author, tag, and page, and list of resources with slugs <code>%s</code>, <code>%s</code>, and <code>%s</code>, ', 'graphql-by-pop'),
+        //     \POP_POSTS_ROUTE_POSTS,
+        //     \POP_USERS_ROUTE_USERS,
+        //     \POP_TAXONOMIES_ROUTE_TAGS
+        // );
         add_settings_field(
             'graphql-by-pop-enable-rest',
             __('Enable REST endpoints', 'graphql-by-pop'),
@@ -148,11 +148,12 @@ class SettingsMenuPage extends AbstractMenuPage {
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-main-section',
             array(
-                'label' => sprintf(
-                    '%s<br/>%s',
-                    __('Enable appending an endpoint to the URL of a resource to access its data.', 'graphql-by-pop'),
-                    $restSupportedResources
-                ),
+                'label' => __('Enable appending an endpoint to the URL of a resource to access its data.', 'graphql-by-pop'),
+                    // sprintf(
+                    //     '%s<br/>%s',
+                    //     __('Enable appending an endpoint to the URL of a resource to access its data.', 'graphql-by-pop'),
+                    //     $restSupportedResources
+                    // ),
                 'id'    => 'graphql-by-pop-enable-rest',
             )
         );
@@ -257,11 +258,12 @@ class SettingsMenuPage extends AbstractMenuPage {
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-rest-enabled-section-1',
             array(
-                'label' => sprintf(
-                    '%s<br/>%s',
-                    __('Endpoint appended at the end of the page URL', 'graphql-by-pop'),
-                    $restSupportedResources
-                ),
+                'label' => __('Endpoint appended at the end of the page URL', 'graphql-by-pop'),
+                    // sprintf(
+                    //     '%s<br/>%s',
+                    //     __('Endpoint appended at the end of the page URL', 'graphql-by-pop'),
+                    //     $restSupportedResources
+                    // ),
                 'id'    => 'graphql-by-pop-rest-endpoint',
             )
         );
