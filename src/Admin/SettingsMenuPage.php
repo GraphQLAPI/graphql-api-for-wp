@@ -82,9 +82,13 @@ class SettingsMenuPage extends AbstractMenuPage {
 
                 <?php /* GraphQL */ ?>
                 <div id="graphql" class="tab-content">
-                <?php $this->printGraphQLEnabledHeader(); ?>
+                    <?php $this->printGraphQLEnabledHeader1(); ?>
                     <?php echo '<table class="form-table">'; ?>
-                    <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-graphql-enabled-section'); ?>
+                    <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-graphql-enabled-section-1'); ?>
+                    <?php echo '</table>'; ?>
+                    <?php $this->printGraphQLEnabledHeader2(); ?>
+                    <?php echo '<table class="form-table">'; ?>
+                    <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-graphql-enabled-section-2'); ?>
                     <?php echo '</table>'; ?>
                 </div>
 
@@ -188,10 +192,10 @@ class SettingsMenuPage extends AbstractMenuPage {
          * GraphQL section <= valid when GraphQL enabled
          */
         add_settings_section(
-            'graphql-by-pop-settings-graphql-enabled-section',
+            'graphql-by-pop-settings-graphql-enabled-section-1',
             // The empty string ensures the render function won't output a h2.
             '',
-            [$this, 'printGraphQLEnabledHeader'],
+            [$this, 'printGraphQLEnabledHeader1'],
             'graphql-by-pop-settings'
         );
         add_settings_field(
@@ -199,7 +203,7 @@ class SettingsMenuPage extends AbstractMenuPage {
             __('Enable schema namespacing', 'graphql-by-pop'),
             [$this, 'printCheckboxField'],
             'graphql-by-pop-settings',
-            'graphql-by-pop-settings-graphql-enabled-section',
+            'graphql-by-pop-settings-graphql-enabled-section-1',
             array(
                 'label' => sprintf(
                     __('Automatically namespace types and interfaces as to avoid potential naming clashes. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
@@ -208,12 +212,19 @@ class SettingsMenuPage extends AbstractMenuPage {
                 'id'    => 'graphql-by-pop-namespacing',
             )
         );
+        add_settings_section(
+            'graphql-by-pop-settings-graphql-enabled-section-2',
+            // The empty string ensures the render function won't output a h2.
+            '',
+            [$this, 'printGraphQLEnabledHeader2'],
+            'graphql-by-pop-settings'
+        );
         add_settings_field(
             'graphql-by-pop-public-graphiql',
-            __('Public GraphiQL client URL path', 'graphql-by-pop'),
+            __('GraphiQL client URL path', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-settings',
-            'graphql-by-pop-settings-graphql-enabled-section',
+            'graphql-by-pop-settings-graphql-enabled-section-2',
             array(
                 'label' => sprintf(
                     __('Make the GraphiQL client publicly available under the specified URL path. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
@@ -224,16 +235,31 @@ class SettingsMenuPage extends AbstractMenuPage {
         );
         add_settings_field(
             'graphql-by-pop-public-voyager',
-            __('Public "interactive schema" URL path', 'graphql-by-pop'),
+            __('Interactive schema URL path', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-settings',
-            'graphql-by-pop-settings-graphql-enabled-section',
+            'graphql-by-pop-settings-graphql-enabled-section-2',
             array(
                 'label' => sprintf(
-                    __('Make the "interactive schema" publicly available under the specified URL path. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
+                    __('Make the interactive schema publicly available under the specified URL path. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
                     'https://graphql.getpop.org/wp/documentation/#voyager'
                 ),
                 'id'    => 'graphql-by-pop-public-voyager',
+            )
+        );
+        add_settings_field(
+            'graphql-by-pop-clients-restrictaccess',
+            __('Restrict access by user capability', 'graphql-by-pop'),
+            [$this, 'printCheckboxField'],
+            'graphql-by-pop-settings',
+            'graphql-by-pop-settings-graphql-enabled-section-2',
+            array(
+                'label' => sprintf(
+                    __('Allow only logged-in users with capability <code>%s</code> to access the GraphiQL and interactive schema clients. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
+                    'access_graphql_clients',
+                    'https://graphql.getpop.org/wp/documentation/#restrict-access-to-clients'
+                ),
+                'id'    => 'graphql-by-pop-clients-restrictaccess',
             )
         );
 
@@ -511,12 +537,22 @@ class SettingsMenuPage extends AbstractMenuPage {
     /**
      * Section header
      */
-    function printGraphQLEnabledHeader(): void
+    function printGraphQLEnabledHeader1(): void
     {
         ?>
         <h2>
         <?php echo __('Settings if GraphQL is enabled', 'graphql-by-pop');?>
         </h2>
+        <?php
+    }/**
+     * Section header
+     */
+    function printGraphQLEnabledHeader2(): void
+    {
+        ?>
+        <p><em>
+            <?php echo __('Public GraphQL clients:', 'graphql-by-pop');?>
+        </em></p>
         <?php
     }
 }
