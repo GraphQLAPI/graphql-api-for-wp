@@ -458,7 +458,6 @@ class SettingsMenuPage extends AbstractMenuPage {
     function printRESTEnabledHeader1(): void
     {
         ?>
-        <hr/>
         <h2>
         <?php echo __('Settings if REST endpoints are enabled', 'graphql-by-pop');?>
         </h2>
@@ -505,7 +504,6 @@ class SettingsMenuPage extends AbstractMenuPage {
     function printXTGraphQLEnabledHeader(): void
     {
         ?>
-        <hr/>
         <h2>
         <?php echo __('Settings if extended GraphQL is enabled', 'graphql-by-pop');?>
         </h2>
