@@ -38,7 +38,7 @@
         "getpop/graphql": "dev-master",
         "getpop/api-rest": "dev-master",
         "getpop/user-roles-wp": "dev-master",
-        "getpop/user-state": "dev-master",
+        "getpop/user-state-wp": "dev-master",
         "getpop/block-metadata-for-wp": "dev-master",
         "leoloso/pop-api-endpoints-for-wp": "dev-master",
         "leoloso/pop-graphiql": "^1.3",
