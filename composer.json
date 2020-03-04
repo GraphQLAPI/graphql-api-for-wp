@@ -45,6 +45,12 @@
         "leoloso/pop-graphiql": "^1.3",
         "leoloso/pop-graphql-voyager": "^1.3"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Leoloso\\GraphQLByPoPWPPlugin\\": "src"
