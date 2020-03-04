@@ -30,5 +30,8 @@ require_once (__DIR__.'/wp-content/mu-plugins/engine-wp-bootloader/pop-engine-wp
 // Load the plugins
 require_once (__DIR__.'/wp-content/plugins/block-graphiql/block-graphiql.php');
 
+// Initialize the GraphiQL Block plugin
+(new \Leoloso\GraphiQLBlockWPPlugin\Plugin())->init();
+
 // Initialize this plugin
 (new \Leoloso\GraphQLByPoPWPPlugin\Plugin())->init();
