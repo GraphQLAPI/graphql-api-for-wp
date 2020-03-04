@@ -31,7 +31,9 @@ require_once (__DIR__.'/wp-content/mu-plugins/engine-wp-bootloader/pop-engine-wp
 // require_once (__DIR__.'/wp-content/plugins/block-graphiql/block-graphiql.php');
 // (new \Leoloso\GraphiQLBlockWPPlugin\Plugin())->init();
 // Initialize the GraphiQL Block
-(new \Leoloso\GraphiQLWPBlock\Block())->init();
+$graphiQLPath = 'vendor/leoloso/graphiql-wp-block';
+$graphiQLURLPath = \plugins_url($graphiQLPath, __FILE__);
+(new \Leoloso\GraphiQLWPBlock\Block($graphiQLURLPath))->init();
 
 // Initialize this plugin
 (new \Leoloso\GraphQLByPoPWPPlugin\Plugin())->init();
