@@ -27,13 +27,5 @@ require_once (__DIR__.'/vendor/autoload.php');
 // Load the "must-use" plugin to boot PoP
 require_once (__DIR__.'/wp-content/mu-plugins/engine-wp-bootloader/pop-engine-wp-bootloader.php');
 
-// // Initialize the GraphiQL Block plugin
-// require_once (__DIR__.'/wp-content/plugins/block-graphiql/block-graphiql.php');
-// (new \Leoloso\GraphiQLBlockWPPlugin\Plugin())->init();
-// Initialize the GraphiQL Block
-$graphiQLPath = 'vendor/leoloso/graphiql-wp-block';
-$graphiQLURLPath = \plugins_url($graphiQLPath, __FILE__);
-(new \Leoloso\GraphiQLWPBlock\Block($graphiQLURLPath))->init();
-
 // Initialize this plugin
 (new \Leoloso\GraphQLByPoPWPPlugin\Plugin())->init();
