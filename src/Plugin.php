@@ -10,7 +10,7 @@ class Plugin {
     {
         // Initialize the GraphiQL block
         $graphiQLPath = 'vendor/leoloso/graphiql-wp-block';
-        $graphiQLURLPath = \plugins_url($graphiQLPath, __FILE__);
+        $graphiQLURLPath = \plugins_url($graphiQLPath, dirname(__FILE__));
         (new \Leoloso\GraphiQLWPBlock\Block($graphiQLURLPath))->init();
 
         // Menus
