@@ -34,31 +34,31 @@ class GraphQLVoyagerMenuPage extends AbstractMenuPage {
         // CSS
         wp_enqueue_style(
             'graphql-by-pop-voyager-client',
-            GRAPHQL_BY_POP_PLUGIN_URL.'assets/css/voyager-client.css',
+            \GRAPHQL_BY_POP_PLUGIN_URL.'assets/css/voyager-client.css',
             array(),
-            GRAPHQL_BY_POP_VERSION
+            \GRAPHQL_BY_POP_VERSION
         );
         wp_enqueue_style(
             'graphql-by-pop-voyager',
-            GRAPHQL_BY_POP_PLUGIN_URL.'assets/css/vendors/voyager.css',
+            \GRAPHQL_BY_POP_PLUGIN_URL.'assets/css/vendors/voyager.css',
             array(),
-            GRAPHQL_BY_POP_VERSION
+            \GRAPHQL_BY_POP_VERSION
         );
 
         // JS: execute them all in the footer
         $this->enqueueReactAssets(true);
         wp_enqueue_script(
             'graphql-by-pop-voyager',
-            GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/vendors/voyager.min.js',
+            \GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/vendors/voyager.min.js',
             array('graphql-by-pop-react-dom'),
-            GRAPHQL_BY_POP_VERSION,
+            \GRAPHQL_BY_POP_VERSION,
             true
         );
         wp_enqueue_script(
             'graphql-by-pop-voyager-client',
-            GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/voyager-client.js',
+            \GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/voyager-client.js',
             array('graphql-by-pop-voyager'),
-            GRAPHQL_BY_POP_VERSION,
+            \GRAPHQL_BY_POP_VERSION,
             true
         );
 

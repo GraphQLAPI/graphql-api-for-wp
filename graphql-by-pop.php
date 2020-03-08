@@ -18,6 +18,7 @@ Domain Path: /languages
 if (!defined('ABSPATH')) {
 	exit;
 }
+define('GRAPHQL_BY_POP_PLUGIN_DIR', dirname(__FILE__));
 define('GRAPHQL_BY_POP_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('GRAPHQL_BY_POP_VERSION', '0.1');
 

@@ -34,7 +34,7 @@ class Clients {
     //     ];
     //     $uri = EndpointUtils::getSlashedURI();
     //     if ($redirectPath = $redirectPaths[trim($uri, '/')]) {
-    //         wp_redirect(GRAPHQL_BY_POP_PLUGIN_URL.$redirectPath);
+    //         wp_redirect(\GRAPHQL_BY_POP_PLUGIN_URL.$redirectPath);
     //         die;
     //     }
     // }
@@ -45,8 +45,8 @@ class Clients {
         $graphiQLTrimmedEndpoint = trim($this->GRAPHIQL_ENDPOINT, '/');
         $voyagerTrimmedEndpoint = trim($this->VOYAGER_ENDPOINT, '/');
         $dirPaths = [
-            $graphiQLTrimmedEndpoint => 'vendor/leoloso/pop-graphiql',
-            $voyagerTrimmedEndpoint => 'vendor/leoloso/pop-graphql-voyager',
+            $graphiQLTrimmedEndpoint => '/vendor/leoloso/pop-graphiql',
+            $voyagerTrimmedEndpoint => '/vendor/leoloso/pop-graphql-voyager',
         ];
         if ($dirPath = $dirPaths[$uri]) {
             $htmlFileNames = [
@@ -54,7 +54,7 @@ class Clients {
                 $voyagerTrimmedEndpoint => 'index.html',
             ];
             // Read the file, and return it already
-            $file = GRAPHQL_BY_POP_PLUGIN_DIR.$dirPath.'/'.$htmlFileNames[$uri];
+            $file = \GRAPHQL_BY_POP_PLUGIN_DIR.$dirPath.'/'.$htmlFileNames[$uri];
             $fileContents = file_get_contents($file, true);
             // Modify the script path
             $jsFileNames = [
@@ -62,7 +62,7 @@ class Clients {
                 $voyagerTrimmedEndpoint => 'voyager.js',
             ];
             if ($jsFileName = $jsFileNames[$uri]) {
-                $jsFileURL = GRAPHQL_BY_POP_PLUGIN_URL.$dirPath.'/'.$jsFileName;
+                $jsFileURL = trim(\GRAPHQL_BY_POP_PLUGIN_URL, '/').$dirPath.'/'.$jsFileName;
                 $useNamespace = '';
                 if (true) {
                     $useNamespace = '&use_namespace=1';
