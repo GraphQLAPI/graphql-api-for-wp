@@ -2,13 +2,12 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
-use Leoloso\PoPAPIEndpointsForWP\EndpointHandler;
 use PoP\API\Schema\QueryInputs;
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
-use PoP\GraphQL\PersistedQueries\GraphQLPersistedQueryUtils;
 use PoP\Routing\RouteNatures;
 use PoP\API\Schema\FieldQueryConvertorUtils;
 use PoP\GraphQLAPIQuery\Facades\GraphQLQueryConvertorFacade;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 class GraphQLQueryPostType extends AbstractPostType
 {
@@ -173,12 +172,13 @@ class GraphQLQueryPostType extends AbstractPostType
         parent::init();
 
         /**
-         * Execute first, to set-up the variables in $vars as soon as we knows if it's a singular post of this type
+         * Execute first, before VarsHooks in the API package, to set-up the variables in $vars as soon as we knows if it's a singular post of this type
          */
         \add_action(
-            'popcms:boot',
-            [$this, 'maybeSetAPIRequest'],
-            0
+            '\PoP\ComponentModel\Engine_Vars:addVars',
+            [$this, 'addVars'],
+            0,
+            1
         );
 
         \add_filter(
@@ -186,13 +186,6 @@ class GraphQLQueryPostType extends AbstractPostType
             [$this, 'getNature'],
             10,
             2
-        );
-
-        \add_action(
-            '\PoP\ComponentModel\Engine_Vars:addVars',
-            array($this, 'addURLParamVars'),
-            20,
-            1
         );
     }
 
@@ -205,69 +198,57 @@ class GraphQLQueryPostType extends AbstractPostType
         return $nature;
     }
 
-    public function addURLParamVars($vars_in_array)
-    {
-        if (\is_singular($this->getPostType())) {
-            $vars = &$vars_in_array[0];
-            global $post;
-            $blocks = \parse_blocks($post->post_content);
-            $graphiqlBlock = $blocks[0];
-            $graphQLQuery = $graphiqlBlock['attrs']['query'];
-            $variables = $graphiqlBlock['attrs']['variables'];
-            if ($variables) {
-                $vars['variables'] = $variables;
-            }
-            $graphQLQueryConvertor = GraphQLQueryConvertorFacade::getInstance();
-            $fieldQuery = $graphQLQueryConvertor->convertFromGraphQLToFieldQuery($graphQLQuery, $variables);
-            // Convert the query to an array
-            $vars['query'] = FieldQueryConvertorUtils::getQueryAsArray($fieldQuery);
-        }
-    }
-
     /**
      * Check if requesting the single post of this CPT and, in this case, set the request with the needed API params
      *
      * @return void
      */
-    public function maybeSetAPIRequest(): void
+    public function addVars($vars_in_array)
     {
-        if (is_singular($this->getPostType())) {
+        if (\is_singular($this->getPostType())) {
+            // Remove the VarsHooks from the GraphQLAPIRequest, so it doesn't process the GraphQL query
+            // Otherwise it will add error "The query in the body is empty"
+            $instanceManager = InstanceManagerFacade::getInstance();
+            $graphQLAPIRequestHookSet = $instanceManager->getInstance(\PoP\GraphQLAPIRequest\Hooks\VarsHooks::class);
+            \remove_action(
+                '\PoP\ComponentModel\Engine_Vars:addVars',
+                array($graphQLAPIRequestHookSet, 'addURLParamVars'),
+                20,
+                1
+            );
 
-            EndpointHandler::setDoingGraphQL();
-//             // $_REQUEST[QueryInputs::QUERY] = GraphQLDataStructureFormatter::getName();
-            // $_REQUEST[QueryInputs::QUERY] = '!userPostsComments';
-            $_REQUEST[QueryInputs::QUERY] = '';
+            $vars = &$vars_in_array[0];
 
-//         // GraphQL queries
-//         $userPropsGraphQLPersistedQuery = <<<EOT
-//         query {
-//             users {
-//                 ...userProps
-//                 posts {
-//                     id
-//                     title
-//                     url
-//                     comments {
-//                         id
-//                         date
-//                         content
-//                     }
-//                 }
-//             }
-//         }
+            // Indicate it is an API, of type GraphQL
+            $vars['scheme'] = \POP_SCHEME_API;
+            $vars['datastructure'] = GraphQLDataStructureFormatter::getName();
 
-//         fragment userProps on User {
-//             id
-//             name
-//             url
-//         }
-// EOT;
-//         // Inject the values into the service
-//         GraphQLPersistedQueryUtils::addPersistedQuery(
-//             'userPostsComments',
-//             $userPropsGraphQLPersistedQuery,
-//             \__('User properties, posts and comments', 'examples-for-pop')
-//         );
+            /**
+             * Remove any query passed through the request, to avoid users executing a custom query, bypassing the persisted one
+             */
+            unset($_REQUEST[QueryInputs::QUERY]);
+
+            /**
+             * Extract the query from the post, and set it in $vars
+             */
+            global $post;
+            $blocks = \parse_blocks($post->post_content);
+            // There must be only one block, of type GraphiQL
+            // ...
+            $graphiqlBlock = $blocks[0];
+            if ($graphQLQuery = $graphiqlBlock['attrs']['query']) {
+                $variables = $graphiqlBlock['attrs']['variables'];
+                if ($variables) {
+                    // Variables is saved as a string, convert to array
+                    $variables = json_decode($variables, true);
+                    // There may already be variables from the request, which must override any fixed variable stored in the query
+                    $vars['variables'] = array_merge(
+                        $variables,
+                        $vars['variables'] ?? []
+                    );
+                }
+                $graphQLAPIRequestHookSet->addGraphQLQueryToVars($vars, $graphQLQuery, $variables);
+            }
         }
     }
 }
