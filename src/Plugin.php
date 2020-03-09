@@ -3,8 +3,8 @@ namespace Leoloso\GraphQLByPoPWPPlugin;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
 use Leoloso\GraphQLByPoPWPPlugin\Front\Clients;
-use Leoloso\GraphQLByPoPWPPlugin\General\PostTypes;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\BlockDevelopmentHotReload;
 
 class Plugin {
@@ -18,7 +18,7 @@ class Plugin {
         }
 
         // Post Types
-        (new PostTypes())->init();
+        (new GraphQLQueryPostType())->init();
 
         // Blocks
         (new GraphiQLBlock())->init();
