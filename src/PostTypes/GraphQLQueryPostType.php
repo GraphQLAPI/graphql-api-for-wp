@@ -217,16 +217,15 @@ class GraphQLQueryPostType extends AbstractPostType
                 1
             );
 
-            $vars = &$vars_in_array[0];
-
-            // Indicate it is an API, of type GraphQL
-            $vars['scheme'] = \POP_SCHEME_API;
-            $vars['datastructure'] = GraphQLDataStructureFormatter::getName();
-
             /**
              * Remove any query passed through the request, to avoid users executing a custom query, bypassing the persisted one
              */
             unset($_REQUEST[QueryInputs::QUERY]);
+
+            // Indicate it is an API, of type GraphQL
+            $vars = &$vars_in_array[0];
+            $vars['scheme'] = \POP_SCHEME_API;
+            $vars['datastructure'] = GraphQLDataStructureFormatter::getName();
 
             /**
              * Extract the query from the post, and set it in $vars
