@@ -22,12 +22,12 @@ import EditBlock from './EditBlock.js';
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'leoloso/graphiql', {
+registerBlockType( 'graphql-by-pop/graphiql', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __( 'GraphiQL', 'leoloso' ),
+	title: __( 'GraphiQL', 'graphql-by-pop' ),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
@@ -35,7 +35,7 @@ registerBlockType( 'leoloso/graphiql', {
 	 */
 	description: __(
 		'GraphiQL client to query the GraphQL server.',
-		'leoloso'
+		'graphql-by-pop'
 	),
 
 	/**
