@@ -247,7 +247,7 @@ class GraphQLQueryPostType extends AbstractPostType
                         $vars['variables'] ?? []
                     );
                 }
-                $graphQLAPIRequestHookSet->addGraphQLQueryToVars($vars, $graphQLQuery, $variables);
+                $graphQLAPIRequestHookSet->addGraphQLQueryToVars($vars, $graphQLQuery);
             }
         }
     }
