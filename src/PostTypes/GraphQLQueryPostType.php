@@ -1,12 +1,13 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
-use PoP\API\Schema\QueryInputs;
-use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
-use PoP\Routing\RouteNatures;
-use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Exception;
+use PoP\Routing\RouteNatures;
+use PoP\API\Schema\QueryInputs;
+use Leoloso\GraphQLByPoPWPPlugin\PluginState;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
 
 class GraphQLQueryPostType extends AbstractPostType
 {
@@ -156,8 +157,9 @@ class GraphQLQueryPostType extends AbstractPostType
      */
     protected function getGutenbergFixedTemplates(): array
     {
+        $graphiQLBlock = PluginState::getGraphiQLBlock();
         return [
-            ['graphql-by-pop/graphiql'],
+            [$graphiQLBlock->getBlockFullName()],
         ];
     }
 
@@ -232,10 +234,11 @@ class GraphQLQueryPostType extends AbstractPostType
             global $post;
             $blocks = \parse_blocks($post->post_content);
             // There must be only one block of type GraphiQL. Fetch it
+            $graphiQLBlock = PluginState::getGraphiQLBlock();
             $graphiqlBlocks = array_filter(
                 $blocks,
-                function($block) {
-                    return $block['blockName'] == 'graphql-by-pop/graphiql';
+                function($block) use($graphiQLBlock) {
+                    return $block['blockName'] == $graphiQLBlock->getBlockFullName();
                 }
             );
             if (count($graphiqlBlocks) != 1) {

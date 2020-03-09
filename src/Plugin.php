@@ -21,7 +21,9 @@ class Plugin {
         (new GraphQLQueryPostType())->init();
 
         // Blocks
-        (new GraphiQLBlock())->init();
+        $graphiQLBlock = new GraphiQLBlock();
+        $graphiQLBlock->init();
+        PluginState::setGraphiQLBlock($graphiQLBlock);
 
         // Clients
         (new Clients())->init();
