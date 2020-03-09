@@ -64,11 +64,15 @@ abstract class AbstractBlock {
     public function initBlock(): void
     {
         $dir = \GRAPHQL_BY_POP_PLUGIN_DIR.'/assets/blocks/'.$this->getBlockName();
+        $blockFullName = $this->getBlockFullName();
 
         $script_asset_path = "$dir/build/index.asset.php";
         if ( ! file_exists( $script_asset_path ) ) {
             throw new Error(
-                'You need to run `npm start` or `npm run build` for the "leoloso/graphiql" block first.'
+                sprintf(
+                    \__('You need to run `npm start` or `npm run build` for the "%s" block first.', 'graphql-by-pop'),
+                    $blockFullName
+                )
             );
         }
 
@@ -122,7 +126,7 @@ abstract class AbstractBlock {
             $blockConfiguration['render_callback'] = [$this, 'renderBlock'];
         }
 
-        \register_block_type( $this->getBlockFullName(), $blockConfiguration );
+        \register_block_type( $blockFullName, $blockConfiguration );
 	}
 
 	public function renderBlock($attributes): string
