@@ -9,6 +9,8 @@ use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
+use PoP\CacheControl\Facades\CacheControlEngineFacade;
+use PoP\CacheControl\Environment as CacheControlEnvironment;
 
 class GraphQLQueryPostType extends AbstractPostType
 {
@@ -195,6 +197,26 @@ class GraphQLQueryPostType extends AbstractPostType
                 10,
                 2
             );
+            /**
+             * Manage Cache Control
+             */
+            \add_action(
+                'popcms:boot',
+                [$this, 'manageCacheControl']
+            );
+        }
+    }
+
+    /**
+     * Disable Cache Control when previewing the new GraphQL query
+     */
+    public function manageCacheControl()
+    {
+        // If cache control enabled and it is a preview of the GraphQL query...
+        if (!CacheControlEnvironment::disableCacheControl() && \is_singular($this->getPostType()) && \is_preview()) {
+            // Disable cache control by setting maxAge => 0
+            $cacheControlEngine = CacheControlEngineFacade::getInstance();
+            $cacheControlEngine->addMaxAge(0);
         }
     }
 
