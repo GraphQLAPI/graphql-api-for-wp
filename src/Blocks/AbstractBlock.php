@@ -1,35 +1,93 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
+/**
+ * Base class for a Gutenberg block, within a multi-block plugin.
+ * The JS/CSS assets for each block is contained in folder {pluginDir}/assets/blocks/{blockName}, and follows
+ * the architecture from @wordpress/create-block package(https://developer.wordpress.org/block-editor/packages/packages-create-block/),
+ * (this package provides the scaffolding for a single-block plugin, so the plugin .php file is ignored registering a single block is ignored, and everything else is used)
+ */
 abstract class AbstractBlock {
 
+    /**
+     * Execute this function to initialize the block
+     *
+     * @return void
+     */
     public function init(): void
     {
-        // Initialize the GraphiQL
         \add_action('init', [$this, 'initBlock']);
     }
 
+    /**
+     * Plugin dir
+     *
+     * @return string
+     */
     abstract protected function getPluginDir(): string;
+    /**
+     * Plugin URL
+     *
+     * @return string
+     */
     abstract protected function getPluginURL(): string;
+    /**
+     * Block namespace
+     *
+     * @return string
+     */
     abstract protected function getBlockNamespace(): string;
+    /**
+     * Block name
+     *
+     * @return string
+     */
     abstract protected function getBlockName(): string;
 
+    /**
+     * If the block is dynamic, it will return the server-side HTML through function `renderBlock`
+     *
+     * @return boolean
+     */
     protected function isDynamicBlock(): bool
     {
         return false;
     }
-
+    /**
+     * Produce the HTML for dynamic blocks
+     *
+     * @param [type] $attributes
+     * @param [type] $content
+     * @return string
+     */
+    public function renderBlock($attributes, $content): string
+	{
+		return '';
+    }
+    /**
+     * Register editor.css
+     *
+     * @return boolean
+     */
     protected function registerEditorCSS(): bool
     {
         return false;
     }
-
+    /**
+     * Register style.css
+     *
+     * @return boolean
+     */
     protected function registerCommonStyleCSS(): bool
     {
         return false;
     }
-
-    protected function getBlockFullName(): string
+    /**
+     * The block full name: namespace/blockName
+     *
+     * @return string
+     */
+    final protected function getBlockFullName(): string
     {
         return sprintf(
             '%s/%s',
@@ -37,8 +95,12 @@ abstract class AbstractBlock {
             $this->getBlockName()
         );
     }
-
-    protected function getBlockRegistrationName(): string
+    /**
+     * Block registration name: namespace-blockName
+     *
+     * @return string
+     */
+    final protected function getBlockRegistrationName(): string
     {
         return sprintf(
             '%s-%s',
@@ -46,7 +108,11 @@ abstract class AbstractBlock {
             $this->getBlockName()
         );
     }
-
+    /**
+     * Block class name: wp-block-namespace-blockName
+     *
+     * @return string
+     */
     protected function getBlockClassName(): string
     {
         return sprintf(
@@ -127,10 +193,5 @@ abstract class AbstractBlock {
         }
 
         \register_block_type( $blockFullName, $blockConfiguration );
-	}
-
-	public function renderBlock($attributes, $content): string
-	{
-		return '';
 	}
 }
