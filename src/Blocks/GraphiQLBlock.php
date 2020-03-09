@@ -1,6 +1,9 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
+/**
+ * GraphiQL block
+ */
 class GraphiQLBlock extends AbstractGraphQLByPoPBlock
 {
     protected function getBlockName(): string

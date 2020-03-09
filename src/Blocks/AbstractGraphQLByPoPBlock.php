@@ -1,6 +1,9 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
+/**
+ * Base class for a Gutenberg block for this plugin (GraphQL by PoP)
+ */
 abstract class AbstractGraphQLByPoPBlock extends AbstractBlock {
 
     protected function getBlockNamespace(): string
