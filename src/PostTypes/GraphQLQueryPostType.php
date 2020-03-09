@@ -5,9 +5,8 @@ use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
 use PoP\API\Schema\QueryInputs;
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
 use PoP\Routing\RouteNatures;
-use PoP\API\Schema\FieldQueryConvertorUtils;
-use PoP\GraphQLAPIQuery\Facades\GraphQLQueryConvertorFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use Exception;
 
 class GraphQLQueryPostType extends AbstractPostType
 {
@@ -232,9 +231,19 @@ class GraphQLQueryPostType extends AbstractPostType
              */
             global $post;
             $blocks = \parse_blocks($post->post_content);
-            // There must be only one block, of type GraphiQL
-            // ...
-            $graphiqlBlock = $blocks[0];
+            // There must be only one block of type GraphiQL. Fetch it
+            $graphiqlBlocks = array_filter(
+                $blocks,
+                function($block) {
+                    return $block['blockName'] == 'graphql-by-pop/graphiql';
+                }
+            );
+            if (count($graphiqlBlocks) != 1) {
+                throw new Exception(
+                    \__('This GraphQL query has corrupted content, so it can\'t be processed.', 'graphql-by-pop')
+                );
+            }
+            $graphiqlBlock = $graphiqlBlocks[0];
             if ($graphQLQuery = $graphiqlBlock['attrs']['query']) {
                 $variables = $graphiqlBlock['attrs']['variables'];
                 if ($variables) {
