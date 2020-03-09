@@ -10,7 +10,7 @@ class EndpointHelpers {
             return '/'.$endpoint.'/';
         }
         if ($useNamespace && true) {
-            $endpoint = add_query_arg('use_namespace', true, $endpoint);
+            $endpoint = \add_query_arg('use_namespace', true, $endpoint);
         }
         return $endpoint;
     }
@@ -18,6 +18,6 @@ class EndpointHelpers {
     public static function getGraphQLEndpointURL(): string
     {
         $endpoint = self::getGraphQLEndpoint(true, true);
-        return site_url().$endpoint;
+        return \site_url().$endpoint;
     }
 }

@@ -11,16 +11,16 @@ class Clients {
 
     public function init()
     {
-        $this->GRAPHIQL_ENDPOINT = apply_filters(
+        $this->GRAPHIQL_ENDPOINT = \apply_filters(
             __CLASS__.':endpoint',
             'graphiql'
         );
-        $this->VOYAGER_ENDPOINT = apply_filters(
+        $this->VOYAGER_ENDPOINT = \apply_filters(
             __CLASS__.':endpoint',
             'interactive-schema'
         );
 
-        add_action(
+        \add_action(
             'parse_request',
             [$this, 'parseRequest']
         );
@@ -41,9 +41,9 @@ class Clients {
     public function parseRequest()
     {
         $uri = EndpointUtils::getSlashedURI();
-        $uri = trim($uri, '/');
-        $graphiQLTrimmedEndpoint = trim($this->GRAPHIQL_ENDPOINT, '/');
-        $voyagerTrimmedEndpoint = trim($this->VOYAGER_ENDPOINT, '/');
+        $uri = \trim($uri, '/');
+        $graphiQLTrimmedEndpoint = \trim($this->GRAPHIQL_ENDPOINT, '/');
+        $voyagerTrimmedEndpoint = \trim($this->VOYAGER_ENDPOINT, '/');
         $dirPaths = [
             $graphiQLTrimmedEndpoint => '/vendor/leoloso/pop-graphiql',
             $voyagerTrimmedEndpoint => '/vendor/leoloso/pop-graphql-voyager',
@@ -55,19 +55,19 @@ class Clients {
             ];
             // Read the file, and return it already
             $file = \GRAPHQL_BY_POP_PLUGIN_DIR.$dirPath.'/'.$htmlFileNames[$uri];
-            $fileContents = file_get_contents($file, true);
+            $fileContents = \file_get_contents($file, true);
             // Modify the script path
             $jsFileNames = [
                 $graphiQLTrimmedEndpoint => 'graphiql.js',
                 $voyagerTrimmedEndpoint => 'voyager.js',
             ];
             if ($jsFileName = $jsFileNames[$uri]) {
-                $jsFileURL = trim(\GRAPHQL_BY_POP_PLUGIN_URL, '/').$dirPath.'/'.$jsFileName;
+                $jsFileURL = \trim(\GRAPHQL_BY_POP_PLUGIN_URL, '/').$dirPath.'/'.$jsFileName;
                 $useNamespace = '';
                 if (true) {
                     $useNamespace = '&use_namespace=1';
                 }
-                $fileContents = str_replace($jsFileName.'?', $jsFileURL.'?endpoint='.EndpointHelpers::getGraphQLEndpoint(true, false).$useNamespace.'&', $fileContents);
+                $fileContents = \str_replace($jsFileName.'?', $jsFileURL.'?endpoint='.EndpointHelpers::getGraphQLEndpoint(true, false).$useNamespace.'&', $fileContents);
             }
             echo $fileContents;
             die;
