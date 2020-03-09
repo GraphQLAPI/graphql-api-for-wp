@@ -87,7 +87,7 @@ abstract class AbstractBlock {
      *
      * @return string
      */
-    final protected function getBlockFullName(): string
+    final public function getBlockFullName(): string
     {
         return sprintf(
             '%s/%s',
