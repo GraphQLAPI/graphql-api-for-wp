@@ -1,0 +1,26 @@
+{
+	"name": "graphiql-block",
+	"version": "0.1.0",
+	"description": "WordPress block for adding a GraphiQL client, to query the GraphQL server",
+	"author": "Leonardo Losoviz",
+	"license": "MIT",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format:js": "wp-scripts format-js",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"start": "wp-scripts start --output-path=${GRAPHIQL_WP_BLOCK_OUTPUT_PATH:=build/}",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^7.1.2",
+		"css-loader": "^3.4.2",
+		"graphiql": "^0.17.5",
+		"graphql": "^14.6.0",
+		"isomorphic-fetch": "^2.2.1",
+		"node-sass": "^4.13.1",
+		"sass-loader": "^8.0.2",
+		"style-loader": "^1.1.3"
+	}
+}
