@@ -70,7 +70,6 @@ class GraphQLQueryPostType extends AbstractPostType
                 ],
                 'taxonomies' => [
                     self::TAXONOMY,
-                    // 'category',
                 ],
                 'public' => true,
                 'show_in_menu' => true,
@@ -110,7 +109,6 @@ class GraphQLQueryPostType extends AbstractPostType
         // First install the taxonomy
         $this->installTaxonomy();
         parent::initPostType();
-        // \register_taxonomy_for_object_type('category', $this->getPostType());
     }
 
     protected function installTaxonomy()
