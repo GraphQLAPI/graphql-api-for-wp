@@ -9,25 +9,25 @@ abstract class AbstractBlock {
         \add_action('init', [$this, 'initBlock']);
     }
 
+    abstract protected function getPluginDir(): string;
+    abstract protected function getPluginURL(): string;
+    abstract protected function getBlockNamespace(): string;
+    abstract protected function getBlockName(): string;
+
     protected function isDynamicBlock(): bool
     {
         return false;
     }
 
-    protected function registerEditorCSS(): bool {
-        return false;
-    }
-
-    protected function registerCommonStyleCSS(): bool {
-        return false;
-    }
-
-    protected function getBlockNamespace(): string
+    protected function registerEditorCSS(): bool
     {
-        return 'leoloso';//'graphql-by-pop';
+        return false;
     }
 
-    abstract protected function getBlockName(): string;
+    protected function registerCommonStyleCSS(): bool
+    {
+        return false;
+    }
 
     protected function getBlockFullName(): string
     {
@@ -63,7 +63,7 @@ abstract class AbstractBlock {
      */
     public function initBlock(): void
     {
-        $dir = \GRAPHQL_BY_POP_PLUGIN_DIR.'/assets/blocks/'.$this->getBlockName();
+        $dir = $this->getPluginDir().'/assets/blocks/'.$this->getBlockName();
         $blockFullName = $this->getBlockFullName();
 
         $script_asset_path = "$dir/build/index.asset.php";
@@ -76,7 +76,7 @@ abstract class AbstractBlock {
             );
         }
 
-        $url = \GRAPHQL_BY_POP_PLUGIN_URL.'/assets/blocks/'.$this->getBlockName().'/';
+        $url = $this->getPluginURL().'/assets/blocks/'.$this->getBlockName().'/';
         $blockRegistrationName = $this->getBlockRegistrationName();
         $blockConfiguration = [];
 
@@ -129,7 +129,7 @@ abstract class AbstractBlock {
         \register_block_type( $blockFullName, $blockConfiguration );
 	}
 
-	public function renderBlock($attributes): string
+	public function renderBlock($attributes, $content): string
 	{
 		return '';
 	}

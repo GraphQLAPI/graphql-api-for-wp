@@ -29,7 +29,7 @@ if ( ! isProduction ) {
 	 *
 	 * WARNING in ./node_modules/graphql-language-service-parser/esm/CharacterStream.js
 	 * Module Warning (from ./node_modules/source-map-loader/index.js):
-	 * (Emitted value instead of an instance of Error) Cannot find source file '../src/CharacterStream.ts': Error: Can't resolve '../src/CharacterStream.ts' in '/Users/leo/GitRepos/GitHub/Blocks/leoloso/graphiql-wp-block/node_modules/graphql-language-service-parser/esm'
+	 * (Emitted value instead of an instance of Error) Cannot find source file '../src/CharacterStream.ts': Error: Can't resolve '../src/CharacterStream.ts' in '.../node_modules/graphql-language-service-parser/esm'
 	 *  @ ./node_modules/graphql-language-service-parser/esm/index.js 1:0-63 1:0-63
 	 *  @ ./node_modules/codemirror-graphql/variables/mode.js
 	 *  @ ./node_modules/graphiql/dist/components/VariableEditor.js

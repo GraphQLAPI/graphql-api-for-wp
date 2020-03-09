@@ -1,7 +1,7 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
-class GraphiQLBlock extends AbstractBlock
+class GraphiQLBlock extends AbstractGraphQLByPoPBlock
 {
     protected function getBlockName(): string
     {
@@ -13,7 +13,7 @@ class GraphiQLBlock extends AbstractBlock
         return true;
     }
 
-    public function renderBlock($attributes): string
+    public function renderBlock($attributes, $content): string
 	{
 		$content = sprintf(
             '<div class="%s">',
