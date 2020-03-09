@@ -3,6 +3,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
 use Leoloso\GraphQLByPoPWPPlugin\Front\Clients;
+use Leoloso\GraphQLByPoPWPPlugin\General\PostTypes;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\BlockDevelopmentHotReload;
 
@@ -15,6 +16,9 @@ class Plugin {
             (new Menu())->init();
             (new BlockDevelopmentHotReload())->init();
         }
+
+        // Post Types
+        (new PostTypes())->init();
 
         // Blocks
         (new GraphiQLBlock())->init();
