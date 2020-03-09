@@ -2,6 +2,7 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
 use Exception;
+use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 use PoP\Routing\RouteNatures;
 use PoP\API\Schema\QueryInputs;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
@@ -171,23 +172,35 @@ class GraphQLQueryPostType extends AbstractPostType
         parent::init();
 
         /**
-         * Execute first, before VarsHooks in the API package, to set-up the variables in $vars as soon as we knows if it's a singular post of this type
+         * 2 outputs:
+         * 1. Resolution of the GraphQL API, by default
+         * 2. Documentation for the GraphQL API, when passing ?view=source
          */
-        \add_action(
-            '\PoP\ComponentModel\Engine_Vars:addVars',
-            [$this, 'addVars'],
-            0,
-            1
-        );
-
-        \add_filter(
-            'WPCMSRoutingState:nature',
-            [$this, 'getNature'],
-            10,
-            2
-        );
+        if ($_REQUEST[RequestParams::VIEW] != RequestParams::VIEW_SOURCE) {
+            /**
+             * Execute first, before VarsHooks in the API package, to set-up the variables in $vars as soon as we knows if it's a singular post of this type
+             */
+            \add_action(
+                '\PoP\ComponentModel\Engine_Vars:addVars',
+                [$this, 'addVars'],
+                0,
+                1
+            );
+            /**
+             * Assign the single endpoint
+             */
+            \add_filter(
+                'WPCMSRoutingState:nature',
+                [$this, 'getNature'],
+                10,
+                2
+            );
+        }
     }
 
+    /**
+     * Assign the single endpoint by setting it as the Home nature
+     */
     public function getNature($nature, $query)
     {
         if ($query->is_singular($this->getPostType())) {
