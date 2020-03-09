@@ -54,11 +54,20 @@ registerBlockType( 'graphql-by-pop/graphiql', {
 	 * Block default attributes.
 	 */
 	attributes: {
+		/**
+		 * If not set as an empty string by default, when first initializing a block the query/variables would be undefined
+		 * In that case, initialize the query with an initial value, and do not let GraphiQL get the initial value from the cache
+		 * This is because of a potential bug: the state is not saved until executing `onEditQuery` or `onEditVariables`, meaning that the user needs to edit the inputs
+		 * However, if the previous input is good (eg: the new query uses the same variables as the last query) and the user never edits it again, the state will not be saved
+		 * To force the user to always edit the query, and thus save the state, then initialize the inputs to some default empty value, which is not useful as it is to the query
+		 */
 		query: {
 			type: 'string',
+			default: '# Welcome to GraphiQL\n#\n# GraphiQL is an in-browser tool for writing, validating, and\n# testing GraphQL queries.\n#\n# Type queries into this side of the screen, and you will see intelligent\n# typeaheads aware of the current GraphQL type schema and live syntax and\n# validation errors highlighted within the text.\n#\n# GraphQL queries typically start with a \u0022{\u0022 character. Lines that starts\n# with a # are ignored.\n#\n# An example GraphQL query might look like:\n#\n#     {\n#       field(arg: \u0022value\u0022) {\n#         subField\n#       }\n#     }\n#\n# Keyboard shortcuts:\n#\n#  Prettify Query:  Shift-Ctrl-P (or press the prettify button above)\n#\n#     Merge Query:  Shift-Ctrl-M (or press the merge button above)\n#\n#       Run Query:  Ctrl-Enter (or press the play button above)\n#\n#   Auto Complete:  Ctrl-Space (or just start typing)\n#\n\n'
 		},
 		variables: {
 			type: 'string',
+			default: ''
 		},
 		// Make it wide alignment by default
 		align: {
