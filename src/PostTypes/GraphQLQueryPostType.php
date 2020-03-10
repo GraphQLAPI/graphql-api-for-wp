@@ -318,11 +318,20 @@ class GraphQLQueryPostType extends AbstractPostType
             if ($graphQLVariables) {
                 // Variables is saved as a string, convert to array
                 $graphQLVariables = json_decode($graphQLVariables, true);
-                // There may already be variables from the request, which must override any fixed variable stored in the query
-                $vars['variables'] = array_merge(
-                    $graphQLVariables,
-                    $vars['variables'] ?? []
-                );
+                /**
+                 * Watch out! If the variables have a wrong format, eg: with an additional trailing comma, such as this:
+                 * {
+                 *   "limit": 3,
+                 * }
+                 * Then doing `json_decode` will return NULL. In that case, do nothing or the application will fail
+                 */
+                if (!is_null($graphQLVariables)) {
+                    // There may already be variables from the request, which must override any fixed variable stored in the query
+                    $vars['variables'] = array_merge(
+                        $graphQLVariables,
+                        $vars['variables'] ?? []
+                    );
+                }
             }
             // Add the query into $vars
             $graphQLAPIRequestHookSet->addGraphQLQueryToVars($vars, $graphQLQuery);
