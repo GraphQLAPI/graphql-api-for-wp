@@ -35,7 +35,7 @@ class GraphiQLBlock extends AbstractGraphQLByPoPBlock
 			// Add variables parameter always (empty if no variables defined), so that GraphiQL doesn't use a cached one
 			$url .= '&variables='.($variables ? URLParamHelpers::encodeURIComponent($variables) : '');
 			$content .= sprintf(
-				'<p><a href="%s">%s</a></p>',
+				'<p class="alignright"><a href="%s">%s</a></p>',
 				$url,
 				__('View query in GraphiQL', 'graphql-by-pop')
 			);
