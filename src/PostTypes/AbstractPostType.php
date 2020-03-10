@@ -150,12 +150,11 @@ abstract class AbstractPostType
             'add_new_item'       => sprintf(\__('Add New %s', 'graphql-by-pop'), $name_uc),
             'edit_item'          => sprintf(\__('Edit %s', 'graphql-by-pop'), $name_uc),
             'new_item'           => sprintf(\__('New %s', 'graphql-by-pop'), $name_uc),
-            'all_items'          => sprintf(\__('All %s', 'graphql-by-pop'), $names_uc),
+            'all_items'          => $names_uc,//sprintf(\__('All %s', 'graphql-by-pop'), $names_uc),
             'view_item'          => sprintf(\__('View %s', 'graphql-by-pop'), $name_uc),
             'search_items'       => sprintf(\__('Search %s', 'graphql-by-pop'), $names_uc),
             'not_found'          => sprintf(\__('No %s found', 'graphql-by-pop'), $names_lc),
             'not_found_in_trash' => sprintf(\__('No %s found in Trash', 'graphql-by-pop'), $names_lc),
-            'all_items'          => sprintf(\__('All %s', 'graphql-by-pop'), $names_uc),
             'parent_item_colon'  => sprintf(\__('Parent %s:', 'graphql-by-pop'), $name_uc),
         );
     }
@@ -176,7 +175,7 @@ abstract class AbstractPostType
             'singular_name'                  => $name_uc,
             'menu_name'                      => $names_uc,
             'search_items'                   => \sprintf(\__('Search %s', 'graphql-by-pop'), $names_uc),
-            'all_items'                      => \sprintf(\__('All %s', 'graphql-by-pop'), $names_uc),
+            'all_items'                      => $names_uc,//\sprintf(\__('All %s', 'graphql-by-pop'), $names_uc),
             'edit_item'                      => \sprintf(\__('Edit %s', 'graphql-by-pop'), $name_uc),
             'update_item'                    => \sprintf(\__('Update %s', 'graphql-by-pop'), $name_uc),
             'add_new_item'                   => \sprintf(\__('Add New %s', 'graphql-by-pop'), $name_uc),
