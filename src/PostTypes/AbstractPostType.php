@@ -139,7 +139,20 @@ abstract class AbstractPostType
      */
     public function initPostType(): void
     {
+        // First install the taxonomies, if any
+        $this->installTaxonomies();
+        // Then register the post type
         \register_post_type($this->getPostType(), $this->getPostTypeArgs());
+    }
+
+    /**
+     * Install the taxonomies, if any
+     *
+     * @return void
+     */
+    protected function installTaxonomies(): void
+    {
+        // By default, nothing to do
     }
 
     /**

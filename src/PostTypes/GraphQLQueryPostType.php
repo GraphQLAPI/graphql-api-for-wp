@@ -81,18 +81,6 @@ class GraphQLQueryPostType extends AbstractPostType
     }
 
     /**
-     * Initialize the different post types
-     *
-     * @return void
-     */
-    public function initPostType(): void
-    {
-        // First install the taxonomy
-        $this->installTaxonomies();
-        parent::initPostType();
-    }
-
-    /**
      * Install the "Category" taxonomy
      *
      * @return void
