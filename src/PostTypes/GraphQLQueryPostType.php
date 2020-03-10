@@ -257,7 +257,7 @@ class GraphQLQueryPostType extends AbstractPostType
             list(
                 $graphQLQuery,
                 $variables
-            ) = GraphiQLBlockHelpers::getSingleGraphiQLBlockAttributesFromPost($post);
+            ) = GraphiQLBlockHelpers::getPostSingleGraphiQLBlockAttributes($post);
             if (!$graphQLQuery) {
                 throw new Exception(
                     \__('This GraphQL query has corrupted content, so it can\'t be processed.', 'graphql-by-pop')
