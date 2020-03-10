@@ -9,7 +9,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Admin\GraphiQLMenuPage;
  */
 class Menu {
 
-    const NAME = 'graphql_by_pop';
+    const NAME = 'graphql_api';
     /**
      * Initialize the endpoints
      *
@@ -59,7 +59,7 @@ class Menu {
             __('Interactive schema', 'graphql-api'),
             __('Interactive schema', 'graphql-api'),
             'manage_options',
-            'graphql_by_pop_voyager',
+            'graphql_api_voyager',
             [new GraphQLVoyagerMenuPage(), 'print']
         );
     }
@@ -71,7 +71,7 @@ class Menu {
             __('Overview', 'graphql-api'),
             __('Overview', 'graphql-api'),
             'manage_options',
-            'graphql_by_pop_overview',
+            'graphql_api_overview',
             [$this, 'printOverview']
         );
 
@@ -80,7 +80,7 @@ class Menu {
             __('Settings', 'graphql-api'),
             __('Settings', 'graphql-api'),
             'manage_options',
-            'graphql_by_pop_settings',
+            'graphql_api_settings',
             [new SettingsMenuPage(), 'print']
         );
 
@@ -98,7 +98,7 @@ class Menu {
             __('About', 'graphql-api'),
             __('About', 'graphql-api'),
             'manage_options',
-            'graphql_by_pop_about',
+            'graphql_api_about',
             [$this, 'printAbout']
         );
     }

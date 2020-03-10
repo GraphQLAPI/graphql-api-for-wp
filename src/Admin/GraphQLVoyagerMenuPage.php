@@ -21,7 +21,7 @@ class GraphQLVoyagerMenuPage extends AbstractMenuPage {
 
     protected function getScreenID(): ?string
     {
-        return 'graphql_by_pop_voyager';
+        return 'graphql_api_voyager';
     }
 
     /**

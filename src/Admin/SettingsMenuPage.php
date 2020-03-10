@@ -455,7 +455,7 @@ class SettingsMenuPage extends AbstractMenuPage {
         <p>
             <?php /*echo sprintf(
                 \__('Please refer to the <a href="%s">documentation page</a> for detailed information on all features.', 'graphql-api'),
-                menu_page_url('graphql_by_pop_documentation', false)
+                menu_page_url('graphql_api_documentation', false)
             );*/echo sprintf(
                 \__('Please refer to the <a href="%s">documentation</a> for detailed information on all features.', 'graphql-api'),
                 'https://graphql.getpop.org/wp/documentation/'
