@@ -177,7 +177,7 @@ class GraphQLQueryPostType extends AbstractPostType
     }
 
     /**
-     * Add the excerpt (if not empty), which is the description of the GraphQL query
+     * Render the GraphQL Query CPT
      *
      * @param [type] $content
      * @return string
@@ -185,13 +185,60 @@ class GraphQLQueryPostType extends AbstractPostType
     public function setSourceContent($content): string
     {
         global $post;
-        if ($excerpt = $post->post_excerpt) {
+        /**
+         * If the GraphQL query has a parent, possibly it is missing the query/variables/acl/ccl attributes, which inherits from some parent
+         * In that case, render the block twice:
+         * 1. The current block, with missing attributes
+         * 2. The final block, completing the missing attributes from its parent
+         */
+        $graphQLQueryPost = $post;
+        if ($graphQLQueryPost->post_parent) {
+            // Check if any attribute is missing
+            list(
+                $graphQLQuery,
+                $graphQLVariables
+            ) = GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, false);
+            if (!$graphQLQuery || !$graphQLVariables) {
+                // Fetch the attributes using inheritance
+                list(
+                    $inheritedGraphQLQuery,
+                    $inheritedGraphQLVariables
+                ) = GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, true);
+                // If the 2 sets of attributes are different, then render the block again
+                if (
+                    ($graphQLQuery != $inheritedGraphQLQuery) ||
+                    ($graphQLVariables != $inheritedGraphQLVariables)
+                ) {
+                    // Render the block again, using the inherited attributes
+                    $inheritedGraphQLBlockAttributes = [
+                        'query' => $inheritedGraphQLQuery,
+                        'variables' => $inheritedGraphQLVariables,
+                    ];
+                    // Add the new rendering to the output, and a description for each
+                    $graphiQLBlock = PluginState::getGraphiQLBlock();
+                    $content = sprintf(
+                        '%s%s<hr/>%s%s',
+                        \__('<p><u>Complete GraphQL query, with attributes inherited from parent(s): </u></p>'),
+                        $graphiQLBlock->renderBlock($inheritedGraphQLBlockAttributes, ''),
+                        \__('<p><u>Current GraphQL query, with missing attributes: </u></p>'),
+                        $content
+                    );
+                }
+            }
+        }
+
+        /**
+         * Add the excerpt (if not empty) as description of the GraphQL query
+         */
+        if ($excerpt = $graphQLQueryPost->post_excerpt) {
             $content = \sprintf(
                 \__('<p><strong>Description: </strong>%s</p>'),
                 $excerpt
             ).$content;
         }
-        // Also prettyprint the code
+        /**
+         * Prettyprint the code
+         */
         $content .= \sprintf('<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>');
         return $content;
     }
@@ -255,10 +302,11 @@ class GraphQLQueryPostType extends AbstractPostType
              *
              */
             global $post;
+            $graphQLQueryPost = $post;
             list(
                 $graphQLQuery,
                 $graphQLVariables
-            ) = GraphQLQueryPostTypeHelpers::getInheritedGraphQLQueryPostAttributes($post);
+            ) = GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, true);
             if (!$graphQLQuery) {
                 throw new Exception(
                     \__('This GraphQL query either has no query defined, or it has corrupted content, so it can\'t be processed.', 'graphql-by-pop')

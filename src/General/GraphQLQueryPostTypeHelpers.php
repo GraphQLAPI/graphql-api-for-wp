@@ -16,9 +16,10 @@ class GraphQLQueryPostTypeHelpers {
      * 2. Define a root GraphQL query without variables, and extend with posts "MobileApp" and "Website" with different variables, eg: changing the value for `$limit`
      *
      * @param [type] $graphQLQueryPost
+     * @param bool $inheritAttributes Indicate if to iterate towards the parent of the GraphQL query post to fetch the missing attributes
      * @return array array with 4 elements: [$graphQLQuery, $graphQLVariables, $acl, $ccl]
      */
-    public static function getInheritedGraphQLQueryPostAttributes($graphQLQueryPost): array
+    public static function getGraphQLQueryPostAttributes($graphQLQueryPost, bool $inheritAttributes): array
     {
         /**
          * Obtain the attributes from the block. As long as any of them is empty, and the GraphQL query post still has a parent,
@@ -37,7 +38,7 @@ class GraphQLQueryPostTypeHelpers {
                 $graphQLVariables = $postGraphQLVariables;
             }
             // If any of them is still empty, and this post has a parent, then load it for the next iteration
-            if ((!$graphQLQuery || !$graphQLVariables) && $graphQLQueryPost->post_parent) {
+            if ($inheritAttributes && (!$graphQLQuery || !$graphQLVariables) && $graphQLQueryPost->post_parent) {
                 $graphQLQueryPost = \get_post($graphQLQueryPost->post_parent);
             } else {
                 // Otherwise, finish iterating
