@@ -18,6 +18,52 @@ abstract class AbstractPostType
             'init',
             [$this, 'maybeSetGutenbergTemplates']
         );
+
+        /** Add the excerpt, which is the description of the different CPTs (GraphQL query/ACL/CCL) */
+        if ($this->usePostExcerptAsDescription()) {
+            // Execute last as to always add the description at the top
+            \add_filter(
+                'the_content',
+                [$this, 'maybeAddExcerptAsDescription'],
+                PHP_INT_MAX
+            );
+        }
+    }
+
+    /**
+     * Indicate if the excerpt must be used as the CPT's description and rendered when rendering the post
+     *
+     * @return boolean
+     */
+    public function usePostExcerptAsDescription(): bool
+    {
+        return false;
+    }
+
+    /**
+     * Render the excerpt as the description for the current CPT
+     *
+     * @param [type] $content
+     * @return string
+     */
+    public function maybeAddExcerptAsDescription($content): string
+    {
+        /**
+         * Check if it is this CPT...
+         */
+        if (\is_singular($this->getPostType())) {
+            /**
+             * Add the excerpt (if not empty) as description of the GraphQL query
+             */
+            global $post;
+            if ($excerpt = $post->post_excerpt) {
+                $content = \sprintf(
+                    \__('<p><strong>Description: </strong>%s</p>'),
+                    $excerpt
+                ).$content;
+            }
+        }
+        return $content;
     }
 
     /**
@@ -68,10 +114,17 @@ abstract class AbstractPostType
             'capability_type' => 'post',
             'hierarchical' => false,
             'exclude_from_search' => true,
-            'show_in_admin_bar' => false,
-            'show_in_menu' => false,
+            'show_in_admin_bar' => true,
+            'show_in_menu' => true,
             'show_in_rest' => true,
             'public' => true,
+            'supports' => [
+                'title',
+                'editor',
+                'author',
+                'excerpt',
+                'revisions',
+            ],
         );
     }
 

@@ -6,6 +6,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Front\Clients;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\BlockDevelopmentHotReload;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
 
 class Plugin {
 
@@ -19,6 +20,7 @@ class Plugin {
 
         // Post Types
         (new GraphQLQueryPostType())->init();
+        (new GraphQLAccessControlListPostType())->init();
 
         // Blocks
         $graphiQLBlock = new GraphiQLBlock();
