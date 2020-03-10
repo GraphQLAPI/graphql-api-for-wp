@@ -44,7 +44,7 @@ class GraphiQLBlock extends AbstractGraphQLByPoPBlock
 			'<p><strong>%s</strong></p>',
 			__('GraphQL Query:', 'graphql-by-pop')
 		).sprintf(
-			'<pre><code class="language-graphql">%s</code></pre>',
+			'<pre><code class="prettyprint language-graphql">%s</code></pre>',
 			$query
 		);
 		if ($variables) {
@@ -52,7 +52,7 @@ class GraphiQLBlock extends AbstractGraphQLByPoPBlock
 				'<p><strong>%s</strong></p>',
 				__('Variables:', 'graphql-by-pop')
 			).sprintf(
-				'<pre><code class="language-json">%s</code></pre>',
+				'<pre><code class="prettyprint language-json">%s</code></pre>',
 				$variables
 			);
 		}

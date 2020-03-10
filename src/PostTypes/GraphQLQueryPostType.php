@@ -228,6 +228,8 @@ class GraphQLQueryPostType extends AbstractPostType
                 $excerpt
             ).$content;
         }
+        // Also prettyprint the code
+        $content .= \sprintf('<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>');
         return $content;
     }
 
