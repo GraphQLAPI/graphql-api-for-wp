@@ -56,10 +56,10 @@ class GraphQLQueryPostType extends AbstractPostType
      *
      * @return array
      */
-    protected function getArgs(): array
+    protected function getPostTypeArgs(): array
     {
         return array_merge(
-            parent::getArgs(),
+            parent::getPostTypeArgs(),
             [
                 'hierarchical' => true,
                 'supports' => [

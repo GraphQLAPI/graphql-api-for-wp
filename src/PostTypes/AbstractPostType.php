@@ -57,7 +57,7 @@ abstract class AbstractPostType
      *
      * @return array
      */
-    protected function getArgs(): array
+    protected function getPostTypeArgs(): array
     {
         $name_uc = $this->getPostTypeName();
         $names_uc = $this->getPostTypePluralNames(true);
@@ -138,7 +138,7 @@ abstract class AbstractPostType
      */
     public function initPostType(): void
     {
-        \register_post_type($this->getPostType(), $this->getArgs());
+        \register_post_type($this->getPostType(), $this->getPostTypeArgs());
     }
 
     /**
