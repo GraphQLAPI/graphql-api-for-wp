@@ -2,6 +2,7 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
 use Exception;
+use Leoloso\GraphQLByPoPWPPlugin\General\GraphiQLBlockHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 use PoP\Routing\RouteNatures;
 use PoP\API\Schema\QueryInputs;
@@ -253,34 +254,29 @@ class GraphQLQueryPostType extends AbstractPostType
              * Extract the query from the post, and set it in $vars
              */
             global $post;
-            $blocks = \parse_blocks($post->post_content);
-            // There must be only one block of type GraphiQL. Fetch it
-            $graphiQLBlock = PluginState::getGraphiQLBlock();
-            $graphiqlBlocks = array_filter(
-                $blocks,
-                function($block) use($graphiQLBlock) {
-                    return $block['blockName'] == $graphiQLBlock->getBlockFullName();
-                }
-            );
-            if (count($graphiqlBlocks) != 1) {
+            list(
+                $graphQLQuery,
+                $variables
+            ) = GraphiQLBlockHelpers::getSingleGraphiQLBlockAttributesFromPost($post);
+            if (!$graphQLQuery) {
                 throw new Exception(
                     \__('This GraphQL query has corrupted content, so it can\'t be processed.', 'graphql-by-pop')
                 );
             }
-            $graphiqlBlock = $graphiqlBlocks[0];
-            if ($graphQLQuery = $graphiqlBlock['attrs']['query']) {
-                $variables = $graphiqlBlock['attrs']['variables'];
-                if ($variables) {
-                    // Variables is saved as a string, convert to array
-                    $variables = json_decode($variables, true);
-                    // There may already be variables from the request, which must override any fixed variable stored in the query
-                    $vars['variables'] = array_merge(
-                        $variables,
-                        $vars['variables'] ?? []
-                    );
-                }
-                $graphQLAPIRequestHookSet->addGraphQLQueryToVars($vars, $graphQLQuery);
+            /**
+             * Merge the variables into $vars
+             */
+            if ($variables) {
+                // Variables is saved as a string, convert to array
+                $variables = json_decode($variables, true);
+                // There may already be variables from the request, which must override any fixed variable stored in the query
+                $vars['variables'] = array_merge(
+                    $variables,
+                    $vars['variables'] ?? []
+                );
             }
+            // Add the query into $vars
+            $graphQLAPIRequestHookSet->addGraphQLQueryToVars($vars, $graphQLQuery);
         }
     }
 }
