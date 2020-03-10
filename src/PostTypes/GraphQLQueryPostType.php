@@ -2,16 +2,16 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
 use Exception;
-use Leoloso\GraphQLByPoPWPPlugin\General\GraphiQLBlockHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 use PoP\Routing\RouteNatures;
 use PoP\API\Schema\QueryInputs;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
-use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
 use PoP\CacheControl\Facades\CacheControlEngineFacade;
+use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
 use PoP\CacheControl\Environment as CacheControlEnvironment;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use Leoloso\GraphQLByPoPWPPlugin\General\GraphQLQueryPostTypeHelpers;
+use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
 
 class GraphQLQueryPostType extends AbstractPostType
 {
@@ -251,27 +251,28 @@ class GraphQLQueryPostType extends AbstractPostType
             $vars['datastructure'] = GraphQLDataStructureFormatter::getName();
 
             /**
-             * Extract the query from the post, and set it in $vars
+             * Extract the query from the post (or from its parents), and set it in $vars
+             *
              */
             global $post;
             list(
                 $graphQLQuery,
-                $variables
-            ) = GraphiQLBlockHelpers::getPostSingleGraphiQLBlockAttributes($post);
+                $graphQLVariables
+            ) = GraphQLQueryPostTypeHelpers::getInheritedGraphQLQueryPostAttributes($post);
             if (!$graphQLQuery) {
                 throw new Exception(
-                    \__('This GraphQL query has corrupted content, so it can\'t be processed.', 'graphql-by-pop')
+                    \__('This GraphQL query either has no query defined, or it has corrupted content, so it can\'t be processed.', 'graphql-by-pop')
                 );
             }
             /**
              * Merge the variables into $vars
              */
-            if ($variables) {
+            if ($graphQLVariables) {
                 // Variables is saved as a string, convert to array
-                $variables = json_decode($variables, true);
+                $graphQLVariables = json_decode($graphQLVariables, true);
                 // There may already be variables from the request, which must override any fixed variable stored in the query
                 $vars['variables'] = array_merge(
-                    $variables,
+                    $graphQLVariables,
                     $vars['variables'] ?? []
                 );
             }

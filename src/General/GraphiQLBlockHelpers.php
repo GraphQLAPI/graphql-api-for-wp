@@ -11,7 +11,7 @@ class GraphiQLBlockHelpers {
      * @param [type] $post
      * @return null|array an array of 2 items: [$query, $variables], or null if the post contains 0 or more than 1 GraphiQL blocks
      */
-    public static function getPostSingleGraphiQLBlockAttributes($post): ?array {
+    public static function getSingleGraphiQLBlockAttributesFromPost($post): ?array {
 		$blocks = \parse_blocks($post->post_content);
         // There must be only one block of type GraphiQL. Fetch it
         $graphiQLBlock = PluginState::getGraphiQLBlock();
