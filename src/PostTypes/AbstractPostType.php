@@ -108,7 +108,7 @@ abstract class AbstractPostType
         $name_uc = $this->getPostTypeName();
         $names_uc = $this->getPostTypePluralNames(true);
         $names_lc = $this->getPostTypePluralNames(false);
-        return array(
+        $postTypeArgs = array(
             'label' => $this->getPostTypeName(),
             'labels' => $this->getPostTypeLabels($name_uc, $names_uc, $names_lc),
             'capability_type' => 'post',
@@ -122,10 +122,13 @@ abstract class AbstractPostType
                 'title',
                 'editor',
                 'author',
-                'excerpt',
                 'revisions',
             ],
         );
+        if ($this->usePostExcerptAsDescription()) {
+            $postTypeArgs['supports'][] = 'excerpt';
+        }
+        return $postTypeArgs;
     }
 
     /**
