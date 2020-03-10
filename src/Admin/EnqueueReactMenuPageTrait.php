@@ -11,16 +11,16 @@ trait EnqueueReactMenuPageTrait {
     protected function enqueueReactAssets(bool $addInFooter = true): void
     {
         \wp_enqueue_script(
-            'graphql-by-pop-react',
+            'graphql-api-react',
             \GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/vendors/react.min.js',
             array(),
             \GRAPHQL_BY_POP_VERSION,
             $addInFooter
         );
         \wp_enqueue_script(
-            'graphql-by-pop-react-dom',
+            'graphql-api-react-dom',
             \GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/vendors/react-dom.min.js',
-            array('graphql-by-pop-react'),
+            array('graphql-api-react'),
             \GRAPHQL_BY_POP_VERSION,
             $addInFooter
         );

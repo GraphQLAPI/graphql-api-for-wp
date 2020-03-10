@@ -27,7 +27,7 @@ class GraphQLAccessControlListPostType extends AbstractPostType
      */
     public function getPostTypeName(): string
     {
-        return \__('Access Control List', 'graphql-by-pop');
+        return \__('Access Control List', 'graphql-api');
     }
 
     /**
@@ -38,7 +38,7 @@ class GraphQLAccessControlListPostType extends AbstractPostType
      */
     protected function getPostTypePluralNames(bool $uppercase): string
     {
-        return \__('Access Control Lists', 'graphql-by-pop');
+        return \__('Access Control Lists', 'graphql-api');
     }
 
     /**

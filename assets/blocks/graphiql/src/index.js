@@ -22,12 +22,12 @@ import EditBlock from './EditBlock.js';
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'graphql-by-pop/graphiql', {
+registerBlockType( 'graphql-api/graphiql', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __( 'GraphiQL', 'graphql-by-pop' ),
+	title: __( 'GraphiQL', 'graphql-api' ),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
@@ -35,7 +35,7 @@ registerBlockType( 'graphql-by-pop/graphiql', {
 	 */
 	description: __(
 		'GraphiQL client to query the GraphQL server.',
-		'graphql-by-pop'
+		'graphql-api'
 	),
 
 	/**
@@ -81,7 +81,7 @@ registerBlockType( 'graphql-by-pop/graphiql', {
 			type: 'string',
 			default: __(
 				'# Welcome to GraphiQL\n#\n# GraphiQL is an in-browser tool for writing, validating, and\n# testing GraphQL queries.\n#\n# Type queries into this side of the screen, and you will see intelligent\n# typeaheads aware of the current GraphQL type schema and live syntax and\n# validation errors highlighted within the text.\n#\n# GraphQL queries typically start with a \u0022{\u0022 character. Lines that starts\n# with a # are ignored.\n#\n# An example GraphQL query might look like:\n#\n#     {\n#       field(arg: \u0022value\u0022) {\n#         subField\n#       }\n#     }\n#\n# Keyboard shortcuts:\n#\n#  Prettify Query:  Shift-Ctrl-P (or press the prettify button above)\n#\n#     Merge Query:  Shift-Ctrl-M (or press the merge button above)\n#\n#       Run Query:  Ctrl-Enter (or press the play button above)\n#\n#   Auto Complete:  Ctrl-Space (or just start typing)\n#\n\n',
-				'graphql-by-pop'
+				'graphql-api'
 			),
 		},
 		variables: {

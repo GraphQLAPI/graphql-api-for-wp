@@ -37,12 +37,12 @@ class GraphiQLBlock extends AbstractGraphQLByPoPBlock
 			$content .= sprintf(
 				'<p class="alignright"><a href="%s">%s</a></p>',
 				$url,
-				__('View query in GraphiQL', 'graphql-by-pop')
+				__('View query in GraphiQL', 'graphql-api')
 			);
 		}
 		$content .= sprintf(
 			'<p><strong>%s</strong></p>',
-			__('GraphQL Query:', 'graphql-by-pop')
+			__('GraphQL Query:', 'graphql-api')
 		).sprintf(
 			'<pre><code class="prettyprint language-graphql">%s</code></pre>',
 			$query
@@ -50,7 +50,7 @@ class GraphiQLBlock extends AbstractGraphQLByPoPBlock
 		if ($variables) {
 			$content .= sprintf(
 				'<p><strong>%s</strong></p>',
-				__('Variables:', 'graphql-by-pop')
+				__('Variables:', 'graphql-api')
 			).sprintf(
 				'<pre><code class="prettyprint language-json">%s</code></pre>',
 				$variables

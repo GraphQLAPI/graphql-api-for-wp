@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: GraphQL API for WordPress
-Plugin URI: https://github.com/leoloso/graphql-by-pop-wp-plugin
-Description: GraphQL server for WordPress, implemented through PoP
+Plugin URI: https://github.com/leoloso/graphql-api-wp-plugin
+Description: Transform your WordPress site into a GraphQL server
 Version: 1.0.0
 Requires at least: 5.0
 Requires PHP: 7.1
@@ -10,7 +10,7 @@ Author: Leonardo Losoviz
 Author URI: https://leoloso.com
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-Text Domain: graphql-by-pop
+Text Domain: graphql-api
 Domain Path: /languages
 */
 

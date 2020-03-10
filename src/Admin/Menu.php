@@ -37,8 +37,8 @@ class Menu {
     function addMenuPagesTop(): void
     {
         \add_menu_page(
-            __('GraphQL API', 'graphql-by-pop'),
-            __('GraphQL API', 'graphql-by-pop'),
+            __('GraphQL API', 'graphql-api'),
+            __('GraphQL API', 'graphql-api'),
             'manage_options',
             self::NAME,
             '',
@@ -47,8 +47,8 @@ class Menu {
 
         \add_submenu_page(
             self::NAME,
-            __('GraphiQL', 'graphql-by-pop'),
-            __('GraphiQL', 'graphql-by-pop'),
+            __('GraphiQL', 'graphql-api'),
+            __('GraphiQL', 'graphql-api'),
             'manage_options',
             self::NAME,
             [new GraphiQLMenuPage(), 'print']
@@ -56,8 +56,8 @@ class Menu {
 
         \add_submenu_page(
             self::NAME,
-            __('Interactive schema', 'graphql-by-pop'),
-            __('Interactive schema', 'graphql-by-pop'),
+            __('Interactive schema', 'graphql-api'),
+            __('Interactive schema', 'graphql-api'),
             'manage_options',
             'graphql_by_pop_voyager',
             [new GraphQLVoyagerMenuPage(), 'print']
@@ -68,8 +68,8 @@ class Menu {
     {
         \add_submenu_page(
             self::NAME,
-            __('Overview', 'graphql-by-pop'),
-            __('Overview', 'graphql-by-pop'),
+            __('Overview', 'graphql-api'),
+            __('Overview', 'graphql-api'),
             'manage_options',
             'graphql_by_pop_overview',
             [$this, 'printOverview']
@@ -77,8 +77,8 @@ class Menu {
 
         \add_submenu_page(
             self::NAME,
-            __('Settings', 'graphql-by-pop'),
-            __('Settings', 'graphql-by-pop'),
+            __('Settings', 'graphql-api'),
+            __('Settings', 'graphql-api'),
             'manage_options',
             'graphql_by_pop_settings',
             [new SettingsMenuPage(), 'print']
@@ -87,7 +87,7 @@ class Menu {
         if (\current_user_can('manage_options')) {
             global $submenu;
             $submenu[self::NAME][] = [
-                __('Documentation', 'graphql-by-pop'),
+                __('Documentation', 'graphql-api'),
                 'manage_options',
                 'https://graphql.getpop.org/wp/documentation/',
             ];
@@ -95,8 +95,8 @@ class Menu {
 
         \add_submenu_page(
             self::NAME,
-            __('About', 'graphql-by-pop'),
-            __('About', 'graphql-by-pop'),
+            __('About', 'graphql-api'),
+            __('About', 'graphql-api'),
             'manage_options',
             'graphql_by_pop_about',
             [$this, 'printAbout']

@@ -8,7 +8,7 @@ abstract class AbstractGraphQLByPoPBlock extends AbstractBlock {
 
     protected function getBlockNamespace(): string
     {
-        return 'graphql-by-pop';
+        return 'graphql-api';
     }
 
     protected function getPluginDir(): string

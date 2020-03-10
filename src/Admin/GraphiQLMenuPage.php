@@ -15,7 +15,7 @@ class GraphiQLMenuPage extends AbstractMenuPage {
     public function print(): void
     {
         ?>
-        <div id="graphiql" class="graphiql-client"><?php echo __('Loading...', 'graphql-by-pop') ?></div>
+        <div id="graphiql" class="graphiql-client"><?php echo __('Loading...', 'graphql-api') ?></div>
         <?php
     }
 
@@ -33,13 +33,13 @@ class GraphiQLMenuPage extends AbstractMenuPage {
     {
         // CSS
         \wp_enqueue_style(
-            'graphql-by-pop-graphiql-client',
+            'graphql-api-graphiql-client',
             \GRAPHQL_BY_POP_PLUGIN_URL.'assets/css/graphiql-client.css',
             array(),
             \GRAPHQL_BY_POP_VERSION
         );
         \wp_enqueue_style(
-            'graphql-by-pop-graphiql',
+            'graphql-api-graphiql',
             \GRAPHQL_BY_POP_PLUGIN_URL.'assets/css/vendors/graphiql.min.css',
             array(),
             \GRAPHQL_BY_POP_VERSION
@@ -48,23 +48,23 @@ class GraphiQLMenuPage extends AbstractMenuPage {
         // JS: execute them all in the footer
         $this->enqueueReactAssets(true);
         \wp_enqueue_script(
-            'graphql-by-pop-graphiql',
+            'graphql-api-graphiql',
             \GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/vendors/graphiql.min.js',
-            array('graphql-by-pop-react-dom'),
+            array('graphql-api-react-dom'),
             \GRAPHQL_BY_POP_VERSION,
             true
         );
         \wp_enqueue_script(
-            'graphql-by-pop-graphiql-client',
+            'graphql-api-graphiql-client',
             \GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/graphiql-client.js',
-            array('graphql-by-pop-graphiql'),
+            array('graphql-api-graphiql'),
             \GRAPHQL_BY_POP_VERSION,
             true
         );
 
         // Load data into the script
         \wp_localize_script(
-            'graphql-by-pop-graphiql-client',
+            'graphql-api-graphiql-client',
             'graphQLByPoPGraphiQLSettings',
             array(
                 'nonce' => \wp_create_nonce('wp_rest'),

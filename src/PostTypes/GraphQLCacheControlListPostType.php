@@ -27,7 +27,7 @@ class GraphQLCacheControlListPostType extends AbstractPostType
      */
     public function getPostTypeName(): string
     {
-        return \__('Cache Control List', 'graphql-by-pop');
+        return \__('Cache Control List', 'graphql-api');
     }
 
     /**
@@ -38,7 +38,7 @@ class GraphQLCacheControlListPostType extends AbstractPostType
      */
     protected function getPostTypePluralNames(bool $uppercase): string
     {
-        return \__('Cache Control Lists', 'graphql-by-pop');
+        return \__('Cache Control Lists', 'graphql-api');
     }
 
     /**

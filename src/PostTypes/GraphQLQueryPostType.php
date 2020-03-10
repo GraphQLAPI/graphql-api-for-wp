@@ -41,7 +41,7 @@ class GraphQLQueryPostType extends AbstractPostType
      */
     public function getPostTypeName(): string
     {
-        return \__('GraphQL query', 'graphql-by-pop');
+        return \__('GraphQL query', 'graphql-api');
     }
 
     /**
@@ -52,7 +52,7 @@ class GraphQLQueryPostType extends AbstractPostType
      */
     protected function getPostTypePluralNames(bool $uppercase): string
     {
-        return \__('GraphQL queries', 'graphql-by-pop');
+        return \__('GraphQL queries', 'graphql-api');
     }
 
     /**
@@ -84,13 +84,13 @@ class GraphQLQueryPostType extends AbstractPostType
     protected function installTaxonomies(): void
     {
         $labels = $this->getTaxonomyLabels(
-            \__('Category', 'graphql-by-pop'),
-            \__('Categories', 'graphql-by-pop'),
-            \__('category', 'graphql-by-pop'),
-            \__('categories', 'graphql-by-pop')
+            \__('Category', 'graphql-api'),
+            \__('Categories', 'graphql-api'),
+            \__('category', 'graphql-api'),
+            \__('categories', 'graphql-api')
         );
         $args = array(
-            'label' => \__('Categories', 'graphql-by-pop'),
+            'label' => \__('Categories', 'graphql-api'),
             'labels' => $labels,
             'hierarchical' => true,
             'public' => true,
@@ -319,7 +319,7 @@ class GraphQLQueryPostType extends AbstractPostType
             ) = GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, true);
             if (!$graphQLQuery) {
                 throw new Exception(
-                    \__('This GraphQL query either has no query defined, or it has corrupted content, so it can\'t be processed.', 'graphql-by-pop')
+                    \__('This GraphQL query either has no query defined, or it has corrupted content, so it can\'t be processed.', 'graphql-api')
                 );
             }
             /**
