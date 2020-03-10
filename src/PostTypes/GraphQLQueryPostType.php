@@ -82,27 +82,6 @@ class GraphQLQueryPostType extends AbstractPostType
     }
 
     /**
-     * Labels for registering the post type
-     *
-     * @return array
-     */
-    protected function getLabels(): array
-    {
-        /**
-         * Placeholders for printing the different labels
-         */
-        $placeholder_parent_item_colon = \__('Parent %s:', 'graphql-by-pop');
-
-        $name_uc = $this->getPostTypeName();
-        return array_merge(
-            parent::getLabels(),
-            array(
-                'parent_item_colon' => sprintf($placeholder_parent_item_colon, $name_uc),
-            )
-        );
-    }
-
-    /**
      * Initialize the different post types
      *
      * @return void

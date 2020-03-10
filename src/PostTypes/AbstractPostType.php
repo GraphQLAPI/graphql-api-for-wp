@@ -59,9 +59,12 @@ abstract class AbstractPostType
      */
     protected function getArgs(): array
     {
+        $name_uc = $this->getPostTypeName();
+        $names_uc = $this->getPostTypePluralNames(true);
+        $names_lc = $this->getPostTypePluralNames(false);
         return array(
             'label' => $this->getPostTypeName(),
-            'labels' => $this->getLabels(),
+            'labels' => $this->getPostTypeLabels($name_uc, $names_uc, $names_lc),
             'capability_type' => 'post',
             'hierarchical' => false,
             'exclude_from_search' => true,
@@ -74,40 +77,27 @@ abstract class AbstractPostType
     /**
      * Labels for registering the post type
      *
+     * @param string $name_uc Singular name uppercase
+     * @param string $names_uc Plural name uppercase
+     * @param string $names_lc Plural name lowercase
      * @return array
      */
-    protected function getLabels(): array
+    protected function getPostTypeLabels(string $name_uc, string $names_uc, string $names_lc): array
     {
-        /**
-         * Placeholders for printing the different labels
-         */
-        $placeholder_add_new = \__('Add New %s', 'graphql-by-pop');
-        $placeholder_add_new_item = \__('Add New %s', 'graphql-by-pop');
-        $placeholder_edit_item = \__('Edit %s', 'graphql-by-pop');
-        $placeholder_new_item = \__('New %s', 'graphql-by-pop');
-        $placeholder_all_items = \__('All %s', 'graphql-by-pop');
-        $placeholder_view_item = \__('View %s', 'graphql-by-pop');
-        $placeholder_search_items = \__('Search %s', 'graphql-by-pop');
-        $placeholder_not_found = \__('No %s found', 'graphql-by-pop');
-        $placeholder_not_found_in_trash = \__('No %s found in Trash', 'graphql-by-pop');
-        $placeholder_all_items = \__('All %s', 'graphql-by-pop');
-
-        $name_uc = $this->getPostTypeName();
-        $names_uc = $this->getPostTypePluralNames(true);
-        $names_lc = $this->getPostTypePluralNames(false);
         return array(
             'name'               => $names_uc,
             'singular_name'      => $name_uc,
-            'add_new'            => sprintf($placeholder_add_new, $name_uc),
-            'add_new_item'       => sprintf($placeholder_add_new_item, $name_uc),
-            'edit_item'          => sprintf($placeholder_edit_item, $name_uc),
-            'new_item'           => sprintf($placeholder_new_item, $name_uc),
-            'all_items'          => sprintf($placeholder_all_items, $names_uc),
-            'view_item'          => sprintf($placeholder_view_item, $name_uc),
-            'search_items'       => sprintf($placeholder_search_items, $names_uc),
-            'not_found'          => sprintf($placeholder_not_found, $names_lc),
-            'not_found_in_trash' => sprintf($placeholder_not_found_in_trash, $names_lc),
-            'all_items'          => sprintf($placeholder_all_items, $names_uc),
+            'add_new'            => sprintf(\__('Add New %s', 'graphql-by-pop'), $name_uc),
+            'add_new_item'       => sprintf(\__('Add New %s', 'graphql-by-pop'), $name_uc),
+            'edit_item'          => sprintf(\__('Edit %s', 'graphql-by-pop'), $name_uc),
+            'new_item'           => sprintf(\__('New %s', 'graphql-by-pop'), $name_uc),
+            'all_items'          => sprintf(\__('All %s', 'graphql-by-pop'), $names_uc),
+            'view_item'          => sprintf(\__('View %s', 'graphql-by-pop'), $name_uc),
+            'search_items'       => sprintf(\__('Search %s', 'graphql-by-pop'), $names_uc),
+            'not_found'          => sprintf(\__('No %s found', 'graphql-by-pop'), $names_lc),
+            'not_found_in_trash' => sprintf(\__('No %s found in Trash', 'graphql-by-pop'), $names_lc),
+            'all_items'          => sprintf(\__('All %s', 'graphql-by-pop'), $names_uc),
+            'parent_item_colon'  => sprintf(\__('Parent %s:', 'graphql-by-pop'), $name_uc),
         );
     }
 
