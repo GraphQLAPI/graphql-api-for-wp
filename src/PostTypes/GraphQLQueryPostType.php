@@ -18,7 +18,7 @@ class GraphQLQueryPostType extends AbstractPostType
      * Custom Post Type name
      */
     public const POST_TYPE = 'graphql-query';
-    public const TAXONOMY = 'graphql-category';
+    public const TAXONOMY_CATEGORY = 'graphql-category';
 
     /**
      * Custom Post Type name
@@ -72,9 +72,8 @@ class GraphQLQueryPostType extends AbstractPostType
                     'page-attributes',
                 ],
                 'taxonomies' => [
-                    self::TAXONOMY,
+                    self::TAXONOMY_CATEGORY,
                 ],
-                'public' => true,
                 'show_in_menu' => true,
                 'show_in_admin_bar' => true,
             ]
@@ -89,11 +88,16 @@ class GraphQLQueryPostType extends AbstractPostType
     public function initPostType(): void
     {
         // First install the taxonomy
-        $this->installTaxonomy();
+        $this->installTaxonomies();
         parent::initPostType();
     }
 
-    protected function installTaxonomy()
+    /**
+     * Install the "Category" taxonomy
+     *
+     * @return void
+     */
+    protected function installTaxonomies(): void
     {
         $labels = $this->getTaxonomyLabels(
             \__('Category', 'graphql-by-pop'),
@@ -111,9 +115,8 @@ class GraphQLQueryPostType extends AbstractPostType
             'show_tagcloud' => false,
             'show_in_rest' => true,
         );
-
         \register_taxonomy(
-            self::TAXONOMY,
+            self::TAXONOMY_CATEGORY,
             $this->getPostType(),
             $args
         );

@@ -71,6 +71,7 @@ abstract class AbstractPostType
             'show_in_admin_bar' => false,
             'show_in_menu' => false,
             'show_in_rest' => true,
+            'public' => true,
         );
     }
 
