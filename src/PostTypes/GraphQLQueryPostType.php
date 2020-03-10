@@ -204,7 +204,31 @@ class GraphQLQueryPostType extends AbstractPostType
                 'popcms:boot',
                 [$this, 'manageCacheControl']
             );
+        } else {
+            /** Add the excerpt, which is the description of the GraphQL query */
+            \add_filter(
+                'the_content',
+                [$this, 'setSourceContent']
+            );
         }
+    }
+
+    /**
+     * Add the excerpt (if not empty), which is the description of the GraphQL query
+     *
+     * @param [type] $content
+     * @return string
+     */
+    public function setSourceContent($content): string
+    {
+        global $post;
+        if ($excerpt = $post->post_excerpt) {
+            $content = \sprintf(
+                \__('<p><strong>Description: </strong>%s</p>'),
+                $excerpt
+            ).$content;
+        }
+        return $content;
     }
 
     /**
