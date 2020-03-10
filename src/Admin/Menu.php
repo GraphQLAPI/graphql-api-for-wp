@@ -15,12 +15,24 @@ class Menu {
      */
     public function init(): void
     {
+        /**
+         * Low priority to execute before adding the menus for the CPTs
+         */
         \add_action(
             'admin_menu',
-            [$this, 'addMenuPages']
+            [$this, 'addMenuPagesTop'],
+            9
+        );
+        /**
+         * High priority to execute after adding the menus for the CPTs
+         */
+        \add_action(
+            'admin_menu',
+            [$this, 'addMenuPagesBottom'],
+            20
         );
     }
-    function addMenuPages(): void
+    function addMenuPagesTop(): void
     {
         \add_menu_page(
             __('GraphQL by PoP', 'graphql-by-pop'),
@@ -48,7 +60,10 @@ class Menu {
             'graphql_by_pop_voyager',
             [new GraphQLVoyagerMenuPage(), 'print']
         );
+    }
 
+    function addMenuPagesBottom(): void
+    {
         \add_submenu_page(
             'graphql_by_pop',
             __('Overview', 'graphql-by-pop'),

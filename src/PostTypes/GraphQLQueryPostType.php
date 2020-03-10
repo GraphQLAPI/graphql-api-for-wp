@@ -71,6 +71,7 @@ class GraphQLQueryPostType extends AbstractPostType
                 'taxonomies' => [
                     self::TAXONOMY_CATEGORY,
                 ],
+                'show_in_admin_bar' => true,
             ]
         );
     }

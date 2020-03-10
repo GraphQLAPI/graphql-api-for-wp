@@ -114,8 +114,8 @@ abstract class AbstractPostType
             'capability_type' => 'post',
             'hierarchical' => false,
             'exclude_from_search' => true,
-            'show_in_admin_bar' => true,
-            'show_in_menu' => true,
+            'show_in_admin_bar' => false,
+            'show_in_menu' => 'graphql_by_pop',
             'show_in_rest' => true,
             'public' => true,
             'supports' => [
