@@ -21,7 +21,7 @@ class GraphiQLMenuPage extends AbstractMenuPage {
 
     protected function getScreenID(): ?string
     {
-        return 'graphql_by_pop';
+        return Menu::NAME;
     }
 
     /**

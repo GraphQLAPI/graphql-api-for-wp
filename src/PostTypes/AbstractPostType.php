@@ -1,6 +1,8 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
+use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
+
 abstract class AbstractPostType
 {
     /**
@@ -115,7 +117,7 @@ abstract class AbstractPostType
             'hierarchical' => false,
             'exclude_from_search' => true,
             'show_in_admin_bar' => false,
-            'show_in_menu' => 'graphql_by_pop',
+            'show_in_menu' => Menu::NAME,
             'show_in_rest' => true,
             'public' => true,
             'supports' => [
