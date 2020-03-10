@@ -18,6 +18,9 @@ class GraphQLQueryPostType extends AbstractPostType
      * Custom Post Type name
      */
     public const POST_TYPE = 'graphql-query';
+    /**
+     * "Category" taxonomy
+     */
     public const TAXONOMY_CATEGORY = 'graphql-category';
 
     /**
@@ -143,7 +146,7 @@ class GraphQLQueryPostType extends AbstractPostType
              */
             \add_action(
                 '\PoP\ComponentModel\Engine_Vars:addVars',
-                [$this, 'addVars'],
+                [$this, 'addGraphQLVars'],
                 0,
                 1
             );
@@ -222,7 +225,7 @@ class GraphQLQueryPostType extends AbstractPostType
      *
      * @return void
      */
-    public function addVars($vars_in_array)
+    public function addGraphQLVars($vars_in_array)
     {
         if (\is_singular($this->getPostType())) {
             // Remove the VarsHooks from the GraphQLAPIRequest, so it doesn't process the GraphQL query
