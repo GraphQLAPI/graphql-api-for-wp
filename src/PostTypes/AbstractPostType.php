@@ -102,6 +102,36 @@ abstract class AbstractPostType
     }
 
     /**
+     * Labels for registering the taxonomy
+     *
+     * @param string $name_uc Singular name uppercase
+     * @param string $names_uc Plural name uppercase
+     * @param string $name_lc Singulare name lowercase
+     * @param string $names_lc Plural name lowercase
+     * @return array
+     */
+    protected function getTaxonomyLabels(string $name_uc, string $names_uc, string $name_lc, string $names_lc): array
+    {
+        return array(
+            'name'                           => $names_uc,
+            'singular_name'                  => $name_uc,
+            'menu_name'                      => $names_uc,
+            'search_items'                   => \sprintf(\__('Search %s', 'graphql-by-pop'), $names_uc),
+            'all_items'                      => \sprintf(\__('All %s', 'graphql-by-pop'), $names_uc),
+            'edit_item'                      => \sprintf(\__('Edit %s', 'graphql-by-pop'), $name_uc),
+            'update_item'                    => \sprintf(\__('Update %s', 'graphql-by-pop'), $name_uc),
+            'add_new_item'                   => \sprintf(\__('Add New %s', 'graphql-by-pop'), $name_uc),
+            'new_item_name'                  => \sprintf(\__('Add New %s', 'graphql-by-pop'), $name_uc),
+            'view_item'                      => \sprintf(\__('View %s', 'graphql-by-pop'), $name_uc),
+            'popular_items'                  => \sprintf(\__('Popular %s', 'graphql-by-pop'), $names_lc),
+            'separate_items_with_commas'     => \sprintf(\__('Separate %s with commas', 'graphql-by-pop'), $names_lc),
+            'add_or_remove_items'            => \sprintf(\__('Add or remove %s', 'graphql-by-pop'), $name_lc),
+            'choose_from_most_used'          => \sprintf(\__('Choose from the most used %s', 'graphql-by-pop'), $names_lc),
+            'not_found'                      => \sprintf(\__('No %s found', 'graphql-by-pop'), $names_lc),
+        );
+    }
+
+    /**
      * Initialize the different post types
      *
      * @return void

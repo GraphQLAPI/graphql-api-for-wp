@@ -95,22 +95,11 @@ class GraphQLQueryPostType extends AbstractPostType
 
     protected function installTaxonomy()
     {
-        $labels = array(
-            'name'                           => \__('Categories', 'graphql-by-pop'),
-            'singular_name'                  => \__('Category', 'graphql-by-pop'),
-            'search_items'                   => \__('Search Categories', 'graphql-by-pop'),
-            'all_items'                      => \__('All Categories', 'graphql-by-pop'),
-            'edit_item'                      => \__('Edit Category', 'graphql-by-pop'),
-            'update_item'                    => \__('Update Category', 'graphql-by-pop'),
-            'add_new_item'                   => \__('Add New Category', 'graphql-by-pop'),
-            'new_item_name'                  => \__('Add New Category', 'graphql-by-pop'),
-            'menu_name'                      => \__('Category', 'graphql-by-pop'),
-            'view_item'                      => \__('View Category', 'graphql-by-pop'),
-            'popular_items'                  => \__('Popular categories', 'graphql-by-pop'),
-            'separate_items_with_commas'     => \__('Separate categories with commas', 'graphql-by-pop'),
-            'add_or_remove_items'            => \__('Add or remove category', 'graphql-by-pop'),
-            'choose_from_most_used'          => \__('Choose from the most used categories', 'graphql-by-pop'),
-            'not_found'                      => \__('No categories found', 'graphql-by-pop'),
+        $labels = $this->getTaxonomyLabels(
+            \__('Category', 'graphql-by-pop'),
+            \__('Categories', 'graphql-by-pop'),
+            \__('category', 'graphql-by-pop'),
+            \__('categories', 'graphql-by-pop')
         );
         $args = array(
             'label' => \__('Categories', 'graphql-by-pop'),
