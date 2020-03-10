@@ -1,6 +1,8 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
+use Error;
+
 /**
  * Base class for a Gutenberg block, within a multi-block plugin.
  * The JS/CSS assets for each block is contained in folder {pluginDir}/assets/blocks/{blockName}, and follows
