@@ -2,7 +2,7 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 /**
- * Base class for a Gutenberg block for this plugin (GraphQL by PoP)
+ * Base class for a Gutenberg block for this plugin (GraphQL API)
  */
 abstract class AbstractGraphQLByPoPBlock extends AbstractBlock {
 

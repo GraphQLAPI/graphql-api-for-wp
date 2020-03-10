@@ -57,7 +57,7 @@ class SettingsMenuPage extends AbstractMenuPage {
             id="graphql-by-pop-settings"
             class="wrap"
         >
-            <h1><?php echo \__('GraphQL by PoP — Settings', 'graphql-by-pop'); ?></h1>
+            <h1><?php echo \__('GraphQL API — Settings', 'graphql-by-pop'); ?></h1>
             <?php settings_errors(); ?>
             <?php $this->printMainSectionDescription(); ?>
 

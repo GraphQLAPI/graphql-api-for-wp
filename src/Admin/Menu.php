@@ -37,8 +37,8 @@ class Menu {
     function addMenuPagesTop(): void
     {
         \add_menu_page(
-            __('GraphQL by PoP', 'graphql-by-pop'),
-            __('GraphQL by PoP', 'graphql-by-pop'),
+            __('GraphQL API', 'graphql-by-pop'),
+            __('GraphQL API', 'graphql-by-pop'),
             'manage_options',
             self::NAME,
             '',

@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: GraphQL by PoP
+Plugin Name: GraphQL API for WordPress
 Plugin URI: https://github.com/leoloso/graphql-by-pop-wp-plugin
 Description: GraphQL server for WordPress, implemented through PoP
 Version: 1.0.0

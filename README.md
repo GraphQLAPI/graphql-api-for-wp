@@ -1,4 +1,4 @@
-# GraphQL by PoP plugin for WordPress
+# GraphQL API for WordPress
 
 Description: coming soon
 

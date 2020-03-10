@@ -1,7 +1,7 @@
 {
     "name": "leoloso/graphql-by-pop-wp-plugin",
     "type": "library",
-    "description": "GraphQL by PoP plugin for WordPress",
+    "description": "GraphQL API for WordPress",
     "keywords": [
         "PoP",
         "WordPress",
