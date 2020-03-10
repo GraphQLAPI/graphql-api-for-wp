@@ -18,7 +18,7 @@ class SettingsMenuPage extends AbstractMenuPage {
      */
     public static function isOptionOn(string $name): bool
     {
-        $options = get_option('graphql-by-pop-settings');
+        $options = \get_option('graphql-by-pop-settings');
         return !empty($options[$name]);
     }
 
@@ -30,7 +30,7 @@ class SettingsMenuPage extends AbstractMenuPage {
      */
     public static function getOptionValue(string $name): ?string
     {
-        $options = get_option('graphql-by-pop-settings');
+        $options = \get_option('graphql-by-pop-settings');
         return $options[$name];
     }
 
@@ -57,15 +57,15 @@ class SettingsMenuPage extends AbstractMenuPage {
             id="graphql-by-pop-settings"
             class="wrap"
         >
-            <h1><?php echo __('GraphQL by PoP — Settings', 'graphql-by-pop'); ?></h1>
+            <h1><?php echo \__('GraphQL by PoP — Settings', 'graphql-by-pop'); ?></h1>
             <?php settings_errors(); ?>
             <?php $this->printMainSectionDescription(); ?>
 
             <h2 class="nav-tab-wrapper">
-                <a href="#main" class="nav-tab nav-tab-active"><?php echo __('Main', 'graphql-by-pop'); ?></a>
-                <a href="#graphql" class="nav-tab"><?php echo __('GraphQL', 'graphql-by-pop'); ?></a>
-                <a href="#rest" class="nav-tab"><?php echo __('REST', 'graphql-by-pop'); ?></a>
-                <a href="#extended_graphql" class="nav-tab"><?php echo __('Extended GraphQL', 'graphql-by-pop'); ?></a>
+                <a href="#main" class="nav-tab nav-tab-active"><?php echo \__('Main', 'graphql-by-pop'); ?></a>
+                <a href="#graphql" class="nav-tab"><?php echo \__('GraphQL', 'graphql-by-pop'); ?></a>
+                <a href="#rest" class="nav-tab"><?php echo \__('REST', 'graphql-by-pop'); ?></a>
+                <a href="#extended_graphql" class="nav-tab"><?php echo \__('Extended GraphQL', 'graphql-by-pop'); ?></a>
             </h2>
 
             <form method="post" action="options.php">
@@ -76,7 +76,7 @@ class SettingsMenuPage extends AbstractMenuPage {
                 <div id="main" class="tab-content">
                     <?php $this->printMainHeader(); ?>
                     <?php echo '<table class="form-table">'; ?>
-                    <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-main-section'); ?>
+                    <?php \do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-main-section'); ?>
                     <?php echo '</table>'; ?>
                 </div>
 
@@ -84,11 +84,11 @@ class SettingsMenuPage extends AbstractMenuPage {
                 <div id="graphql" class="tab-content">
                     <?php $this->printGraphQLEnabledHeader1(); ?>
                     <?php echo '<table class="form-table">'; ?>
-                    <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-graphql-enabled-section-1'); ?>
+                    <?php \do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-graphql-enabled-section-1'); ?>
                     <?php echo '</table>'; ?>
                     <?php $this->printGraphQLEnabledHeader2(); ?>
                     <?php echo '<table class="form-table">'; ?>
-                    <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-graphql-enabled-section-2'); ?>
+                    <?php \do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-graphql-enabled-section-2'); ?>
                     <?php echo '</table>'; ?>
                 </div>
 
@@ -96,11 +96,11 @@ class SettingsMenuPage extends AbstractMenuPage {
                 <div id="rest" class="tab-content">
                     <?php $this->printRESTEnabledHeader1(); ?>
                     <?php echo '<table class="form-table">'; ?>
-                    <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-rest-enabled-section-1'); ?>
+                    <?php \do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-rest-enabled-section-1'); ?>
                     <?php echo '</table>'; ?>
                     <?php $this->printRESTEnabledHeader2(); ?>
                     <?php echo '<table class="form-table">'; ?>
-                    <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-rest-enabled-section-2'); ?>
+                    <?php \do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-rest-enabled-section-2'); ?>
                     <?php echo '</table>'; ?>
                 </div>
 
@@ -108,11 +108,11 @@ class SettingsMenuPage extends AbstractMenuPage {
                 <div id="extended_graphql" class="tab-content">
                     <?php $this->printXTGraphQLEnabledHeader(); ?>
                     <?php echo '<table class="form-table">'; ?>
-                    <?php do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-extendedgraphql-enabled-section'); ?>
+                    <?php \do_settings_fields('graphql-by-pop-settings', 'graphql-by-pop-settings-extendedgraphql-enabled-section'); ?>
                     <?php echo '</table>'; ?>
                 </div>
 
-                <?php submit_button(); ?>
+                <?php \submit_button(); ?>
             </form>
         </div>
         <?php
@@ -123,64 +123,64 @@ class SettingsMenuPage extends AbstractMenuPage {
         /**
          * Main section
          */
-        add_settings_section(
+        \add_settings_section(
             'graphql-by-pop-settings-main-section',
             // The empty string ensures the render function won't output a h2.
             '',
             [$this, 'printMainSectionDescription'],
             'graphql-by-pop-settings'
         );
-        add_settings_field(
+        \add_settings_field(
             'graphql-by-pop-graphql-endpoint',
-            __('GraphQL endpoint', 'graphql-by-pop'),
+            \__('GraphQL endpoint', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-main-section',
             array(
                 'label' => sprintf(
-                    __('Make the GraphQL service available under the specified endpoint. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
+                    \__('Make the GraphQL service available under the specified endpoint. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
                     'https://graphql.getpop.org/wp/documentation/#graphql-endpoint'
                 ),
                 'id'    => 'graphql-by-pop-graphql-endpoint',
             )
         );
-        add_settings_field(
+        \add_settings_field(
             'graphql-by-pop-rest-endpoint',
-            __('REST endpoint', 'graphql-by-pop'),
+            \__('REST endpoint', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-main-section',
             array(
                 'label' => sprintf(
-                    __('Endpoint to append at the end of a resource URL (single post, author, tag, page) to access its pre-defined data. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
+                    \__('Endpoint to append at the end of a resource URL (single post, author, tag, page) to access its pre-defined data. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
                     'https://graphql.getpop.org/wp/documentation/#rest-endpoint'
                 ),
                 'id'    => 'graphql-by-pop-rest-endpoint',
             )
         );
-        add_settings_field(
+        \add_settings_field(
             'graphql-by-pop-enable-extended-graphql',
-            __('Enable Extended GraphQL', 'graphql-by-pop'),
+            \__('Enable Extended GraphQL', 'graphql-by-pop'),
             [$this, 'printCheckboxField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-main-section',
             array(
                 'label' => sprintf(
-                    __('Supercharge the GraphQL API with additional features. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
+                    \__('Supercharge the GraphQL API with additional features. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
                     'https://graphql.getpop.org/wp/documentation/#extended-graphql'
                 ),
                 'id'    => 'graphql-by-pop-enable-extended-graphql',
             )
         );
-        add_settings_field(
+        \add_settings_field(
             'graphql-by-pop-blockmetadata',
-            __('Enable querying Gutenberg', 'graphql-by-pop'),
+            \__('Enable querying Gutenberg', 'graphql-by-pop'),
             [$this, 'printCheckboxField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-main-section',
             array(
                 'label' => sprintf(
-                    __('Add a field <code>blockMetadata</code> on type <code>%s</code> to retrieve the meta-data from its Guntenberg blocks. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
+                    \__('Add a field <code>blockMetadata</code> on type <code>%s</code> to retrieve the meta-data from its Guntenberg blocks. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
                     PostTypeResolver::NAME,
                     'https://graphql.getpop.org/wp/documentation/#gutenberg'
                 ),
@@ -191,71 +191,71 @@ class SettingsMenuPage extends AbstractMenuPage {
         /**
          * GraphQL section <= valid when GraphQL enabled
          */
-        add_settings_section(
+        \add_settings_section(
             'graphql-by-pop-settings-graphql-enabled-section-1',
             // The empty string ensures the render function won't output a h2.
             '',
             [$this, 'printGraphQLEnabledHeader1'],
             'graphql-by-pop-settings'
         );
-        add_settings_field(
+        \add_settings_field(
             'graphql-by-pop-namespacing',
-            __('Enable schema namespacing', 'graphql-by-pop'),
+            \__('Enable schema namespacing', 'graphql-by-pop'),
             [$this, 'printCheckboxField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-graphql-enabled-section-1',
             array(
                 'label' => sprintf(
-                    __('Automatically namespace types and interfaces as to avoid potential naming clashes. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
+                    \__('Automatically namespace types and interfaces as to avoid potential naming clashes. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
                     'https://graphql.getpop.org/wp/documentation/#namespacing'
                 ),
                 'id'    => 'graphql-by-pop-namespacing',
             )
         );
-        add_settings_section(
+        \add_settings_section(
             'graphql-by-pop-settings-graphql-enabled-section-2',
             // The empty string ensures the render function won't output a h2.
             '',
             [$this, 'printGraphQLEnabledHeader2'],
             'graphql-by-pop-settings'
         );
-        add_settings_field(
+        \add_settings_field(
             'graphql-by-pop-public-graphiql',
-            __('GraphiQL client URL path', 'graphql-by-pop'),
+            \__('GraphiQL client URL path', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-graphql-enabled-section-2',
             array(
                 'label' => sprintf(
-                    __('Make the GraphiQL client publicly available under the specified URL path. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
+                    \__('Make the GraphiQL client publicly available under the specified URL path. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
                     'https://graphql.getpop.org/wp/documentation/#graphiql'
                 ),
                 'id'    => 'graphql-by-pop-public-graphiql',
             )
         );
-        add_settings_field(
+        \add_settings_field(
             'graphql-by-pop-public-voyager',
-            __('Interactive schema URL path', 'graphql-by-pop'),
+            \__('Interactive schema URL path', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-graphql-enabled-section-2',
             array(
                 'label' => sprintf(
-                    __('Make the interactive schema publicly available under the specified URL path. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
+                    \__('Make the interactive schema publicly available under the specified URL path. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
                     'https://graphql.getpop.org/wp/documentation/#voyager'
                 ),
                 'id'    => 'graphql-by-pop-public-voyager',
             )
         );
-        add_settings_field(
+        \add_settings_field(
             'graphql-by-pop-clients-restrictaccess',
-            __('Restrict access by user capability', 'graphql-by-pop'),
+            \__('Restrict access by user capability', 'graphql-by-pop'),
             [$this, 'printCheckboxField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-graphql-enabled-section-2',
             array(
                 'label' => sprintf(
-                    __('Allow only logged-in users with capability <code>%s</code> to access the GraphiQL and interactive schema clients. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
+                    \__('Allow only logged-in users with capability <code>%s</code> to access the GraphiQL and interactive schema clients. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
                     'access_graphql_clients',
                     'https://graphql.getpop.org/wp/documentation/#restrict-access-to-clients'
                 ),
@@ -267,22 +267,22 @@ class SettingsMenuPage extends AbstractMenuPage {
          * REST section <= valid when REST enabled
          * Header 1
          */
-        add_settings_section(
+        \add_settings_section(
             'graphql-by-pop-settings-rest-enabled-section-1',
             // The empty string ensures the render function won't output a h2.
             '',
             [$this, 'printRESTEnabledHeader1'],
             'graphql-by-pop-settings'
         );
-        add_settings_field(
+        \add_settings_field(
             'graphql-by-pop-rest-enable-querying',
-            __('Enable to query custom fields', 'graphql-by-pop'),
+            \__('Enable to query custom fields', 'graphql-by-pop'),
             [$this, 'printCheckboxField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-rest-enabled-section-1',
             array(
                 'label' => sprintf(
-                    __('Query custom fields in the REST endpoint through parameter <code>%s</code>. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
+                    \__('Query custom fields in the REST endpoint through parameter <code>%s</code>. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
                     QueryInputs::QUERY,
                     'https://graphql.getpop.org/wp/documentation/#rest-custom-querying'
                 ),
@@ -292,63 +292,63 @@ class SettingsMenuPage extends AbstractMenuPage {
         /**
          * REST section Header 2
          */
-        add_settings_section(
+        \add_settings_section(
             'graphql-by-pop-settings-rest-enabled-section-2',
             // The empty string ensures the render function won't output a h2.
             '',
             [$this, 'printRESTEnabledHeader2'],
             'graphql-by-pop-settings'
         );
-        add_settings_field(
+        \add_settings_field(
             'graphql-by-pop-rest-enabled-post-fields',
-            __('Post fields', 'graphql-by-pop'),
+            \__('Post fields', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-rest-enabled-section-2',
             array(
                 'label' => sprintf(
-                    __('Default fields for the single post URL, and the post list page URL (with slug <code>%s</code>)', 'graphql-by-pop'),
+                    \__('Default fields for the single post URL, and the post list page URL (with slug <code>%s</code>)', 'graphql-by-pop'),
                     \POP_POSTS_ROUTE_POSTS
                 ),
                 'id'    => 'graphql-by-pop-rest-enabled-post-fields',
             )
         );
-        add_settings_field(
+        \add_settings_field(
             'graphql-by-pop-rest-enabled-user-fields',
-            __('User fields', 'graphql-by-pop'),
+            \__('User fields', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-rest-enabled-section-2',
             array(
                 'label' => sprintf(
-                    __('Default fields for the author URL, and the user list page URL (with slug <code>%s</code>)', 'graphql-by-pop'),
+                    \__('Default fields for the author URL, and the user list page URL (with slug <code>%s</code>)', 'graphql-by-pop'),
                     \POP_USERS_ROUTE_USERS
                 ),
                 'id'    => 'graphql-by-pop-rest-enabled-user-fields',
             )
         );
-        add_settings_field(
+        \add_settings_field(
             'graphql-by-pop-rest-enabled-tag-fields',
-            __('Tag fields', 'graphql-by-pop'),
+            \__('Tag fields', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-rest-enabled-section-2',
             array(
                 'label' => sprintf(
-                    __('Default fields for the single tag URL, and the tag list page URL (with slug <code>%s</code>)', 'graphql-by-pop'),
+                    \__('Default fields for the single tag URL, and the tag list page URL (with slug <code>%s</code>)', 'graphql-by-pop'),
                     \POP_TAXONOMIES_ROUTE_TAGS
                 ),
                 'id'    => 'graphql-by-pop-rest-enabled-tag-fields',
             )
         );
-        add_settings_field(
+        \add_settings_field(
             'graphql-by-pop-rest-enabled-page-fields',
-            __('Page fields', 'graphql-by-pop'),
+            \__('Page fields', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-rest-enabled-section-2',
             array(
-                'label' => __('Default fields for the page URL'),
+                'label' => \__('Default fields for the page URL'),
                 'id'    => 'graphql-by-pop-rest-enabled-page-fields',
             )
         );
@@ -357,36 +357,36 @@ class SettingsMenuPage extends AbstractMenuPage {
          * Extended GraphQL section <= valid when Extended GraphQL enabled
          * Header 1
          */
-        add_settings_section(
+        \add_settings_section(
             'graphql-by-pop-settings-extendedgraphql-enabled-section',
             // The empty string ensures the render function won't output a h2.
             '',
             [$this, 'printXTGraphQLEnabledHeader'],
             'graphql-by-pop-settings'
         );
-        add_settings_field(
+        \add_settings_field(
             'graphql-by-pop-extendedgraphql-cachecontrol',
-            __('Cache-control max-age', 'graphql-by-pop'),
+            \__('Cache-control max-age', 'graphql-by-pop'),
             [$this, 'printInputField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-extendedgraphql-enabled-section',
             array(
                 'label' => sprintf(
-                    __('HTTP Caching: Set the default max-age value in seconds for the Cache-Control header. From this value, the overall max-age from all requested fields will be calculated. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
+                    \__('HTTP Caching: Set the default max-age value in seconds for the Cache-Control header. From this value, the overall max-age from all requested fields will be calculated. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
                     'https://graphql.getpop.org/wp/documentation/#cache-control'
                 ),
                 'id'    => 'graphql-by-pop-extendedgraphql-cachecontrol',
             )
         );
-        add_settings_field(
+        \add_settings_field(
             'graphql-by-pop-extendedgraphql-guzzle',
-            __('Enable sending requests to external web services', 'graphql-by-pop'),
+            \__('Enable sending requests to external web services', 'graphql-by-pop'),
             [$this, 'printCheckboxField'],
             'graphql-by-pop-settings',
             'graphql-by-pop-settings-extendedgraphql-enabled-section',
             array(
                 'label' => sprintf(
-                    __('Enable fields (%s) to fetch data from external web services. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
+                    \__('Enable fields (%s) to fetch data from external web services. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-by-pop'),
                     '<code>'.implode(
                         '</code>'.__(',').'<code>',
                         [
@@ -403,7 +403,7 @@ class SettingsMenuPage extends AbstractMenuPage {
         /**
          * Finally register all the settings
          */
-        register_setting(
+        \register_setting(
             'graphql-by-pop-settings',
             'graphql-by-pop-settings'
         );
@@ -454,10 +454,10 @@ class SettingsMenuPage extends AbstractMenuPage {
         ?>
         <p>
             <?php /*echo sprintf(
-                __('Please refer to the <a href="%s">documentation page</a> for detailed information on all features.', 'graphql-by-pop'),
+                \__('Please refer to the <a href="%s">documentation page</a> for detailed information on all features.', 'graphql-by-pop'),
                 menu_page_url('graphql_by_pop_documentation', false)
             );*/echo sprintf(
-                __('Please refer to the <a href="%s">documentation</a> for detailed information on all features.', 'graphql-by-pop'),
+                \__('Please refer to the <a href="%s">documentation</a> for detailed information on all features.', 'graphql-by-pop'),
                 'https://graphql.getpop.org/wp/documentation/'
             );?>
         </p>
@@ -471,7 +471,7 @@ class SettingsMenuPage extends AbstractMenuPage {
     {
         ?>
         <h2>
-        <?php echo __('Main settings', 'graphql-by-pop');?>
+        <?php echo \__('Main settings', 'graphql-by-pop');?>
         </h2>
         <?php
     }
@@ -483,25 +483,25 @@ class SettingsMenuPage extends AbstractMenuPage {
     {
         ?>
         <h2>
-        <?php echo __('Settings if REST is enabled', 'graphql-by-pop');?>
+        <?php echo \__('Settings if REST is enabled', 'graphql-by-pop');?>
         </h2>
         <p>
             <?php echo sprintf(
-                __('<strong>Note:</strong> Fields (default ones for the REST endpoint, and custom ones when querying through the URL) are defined using the <a href="%s">Extended GraphQL syntax</a>.', 'graphql-by-pop'),
+                \__('<strong>Note:</strong> Fields (default ones for the REST endpoint, and custom ones when querying through the URL) are defined using the <a href="%s">Extended GraphQL syntax</a>.', 'graphql-by-pop'),
                 'https://github.com/getpop/field-query'
             );?>
             <br/>
-            <?php echo __('Examples for a post: ', 'graphql-by-pop');?>
+            <?php echo \__('Examples for a post: ', 'graphql-by-pop');?>
         </p>
         <ol>
             <li>
-                <?php echo __('<code>"id|title"</code> fetches the post\'s <code>ID</code> and <code>title</code> fields', 'graphql-by-pop')?>
+                <?php echo \__('<code>"id|title"</code> fetches the post\'s <code>ID</code> and <code>title</code> fields', 'graphql-by-pop')?>
             </li>
             <li>
-                <?php echo __('<code>"id|title|author.id|name"</code> fetches the post\'s <code>ID</code> and <code>title</code> fields, and the post author\'s <code>ID</code> and <code>name</code> fields', 'graphql-by-pop')?>
+                <?php echo \__('<code>"id|title|author.id|name"</code> fetches the post\'s <code>ID</code> and <code>title</code> fields, and the post author\'s <code>ID</code> and <code>name</code> fields', 'graphql-by-pop')?>
             </li>
             <li>
-                <?php echo __('<code>"id|title|comments.id|date|content|author.id|name"</code> fetches the post\'s <code>ID</code> and <code>title</code> fields, the post comments\' <code>ID</code>, <code>date</code> and <code>content</code> fields, and the comment\'s author\'s <code>ID</code> and <code>name</code> fields', 'graphql-by-pop')?>
+                <?php echo \__('<code>"id|title|comments.id|date|content|author.id|name"</code> fetches the post\'s <code>ID</code> and <code>title</code> fields, the post comments\' <code>ID</code>, <code>date</code> and <code>content</code> fields, and the comment\'s author\'s <code>ID</code> and <code>name</code> fields', 'graphql-by-pop')?>
             </li>
         </ol>
         <?php
@@ -514,10 +514,10 @@ class SettingsMenuPage extends AbstractMenuPage {
     {
         ?>
         <!--h3>
-            <?php echo __('Default REST fields ', 'graphql-by-pop');?>
+            <?php echo \__('Default REST fields ', 'graphql-by-pop');?>
         </h3-->
         <h4><em>
-            <?php echo __('Default REST fields for the different resources:', 'graphql-by-pop');?>
+            <?php echo \__('Default REST fields for the different resources:', 'graphql-by-pop');?>
         </em></h4>
         <?php
     }
@@ -529,7 +529,7 @@ class SettingsMenuPage extends AbstractMenuPage {
     {
         ?>
         <h2>
-        <?php echo __('Settings if Extended GraphQL is enabled', 'graphql-by-pop');?>
+        <?php echo \__('Settings if Extended GraphQL is enabled', 'graphql-by-pop');?>
         </h2>
         <?php
     }
@@ -541,7 +541,7 @@ class SettingsMenuPage extends AbstractMenuPage {
     {
         ?>
         <h2>
-        <?php echo __('Settings if GraphQL is enabled', 'graphql-by-pop');?>
+        <?php echo \__('Settings if GraphQL is enabled', 'graphql-by-pop');?>
         </h2>
         <?php
     }/**
@@ -551,7 +551,7 @@ class SettingsMenuPage extends AbstractMenuPage {
     {
         ?>
         <h4><em>
-            <?php echo __('Public GraphQL clients:', 'graphql-by-pop');?>
+            <?php echo \__('Public GraphQL clients:', 'graphql-by-pop');?>
         </em></h4>
         <?php
     }

@@ -11,7 +11,7 @@ abstract class AbstractMenuPage implements MenuPageInterface {
     public function __construct()
     {
         $this->init();
-        add_action(
+        \add_action(
             'admin_enqueue_scripts',
             [$this, 'maybeEnqueueAssets']
         );
@@ -38,7 +38,7 @@ abstract class AbstractMenuPage implements MenuPageInterface {
         $screenID = $this->getScreenID();
         if ($screenID) {
             // Check we are on the specific screen
-            $currentScreen = get_current_screen()->id;
+            $currentScreen = \get_current_screen()->id;
             // If it is the top level page, the current screen is prepended with "toplevel_page_"
             // If not, the current screen is prepended with the section name
             // Then, check that the screen ends with the requested screen ID

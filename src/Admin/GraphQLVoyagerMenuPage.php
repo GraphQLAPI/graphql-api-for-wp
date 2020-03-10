@@ -32,13 +32,13 @@ class GraphQLVoyagerMenuPage extends AbstractMenuPage {
     protected function enqueueAssets(): void
     {
         // CSS
-        wp_enqueue_style(
+        \wp_enqueue_style(
             'graphql-by-pop-voyager-client',
             \GRAPHQL_BY_POP_PLUGIN_URL.'assets/css/voyager-client.css',
             array(),
             \GRAPHQL_BY_POP_VERSION
         );
-        wp_enqueue_style(
+        \wp_enqueue_style(
             'graphql-by-pop-voyager',
             \GRAPHQL_BY_POP_PLUGIN_URL.'assets/css/vendors/voyager.css',
             array(),
@@ -47,14 +47,14 @@ class GraphQLVoyagerMenuPage extends AbstractMenuPage {
 
         // JS: execute them all in the footer
         $this->enqueueReactAssets(true);
-        wp_enqueue_script(
+        \wp_enqueue_script(
             'graphql-by-pop-voyager',
             \GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/vendors/voyager.min.js',
             array('graphql-by-pop-react-dom'),
             \GRAPHQL_BY_POP_VERSION,
             true
         );
-        wp_enqueue_script(
+        \wp_enqueue_script(
             'graphql-by-pop-voyager-client',
             \GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/voyager-client.js',
             array('graphql-by-pop-voyager'),
@@ -63,11 +63,11 @@ class GraphQLVoyagerMenuPage extends AbstractMenuPage {
         );
 
         // Load data into the script
-        wp_localize_script(
+        \wp_localize_script(
             'graphql-by-pop-voyager-client',
             'graphQLByPoPGraphiQLSettings',
             array(
-                'nonce' => wp_create_nonce('wp_rest'),
+                'nonce' => \wp_create_nonce('wp_rest'),
                 'endpoint' => EndpointHelpers::getGraphQLEndpointURL(),
             )
         );

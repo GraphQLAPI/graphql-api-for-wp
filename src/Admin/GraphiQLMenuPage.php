@@ -32,13 +32,13 @@ class GraphiQLMenuPage extends AbstractMenuPage {
     protected function enqueueAssets(): void
     {
         // CSS
-        wp_enqueue_style(
+        \wp_enqueue_style(
             'graphql-by-pop-graphiql-client',
             \GRAPHQL_BY_POP_PLUGIN_URL.'assets/css/graphiql-client.css',
             array(),
             \GRAPHQL_BY_POP_VERSION
         );
-        wp_enqueue_style(
+        \wp_enqueue_style(
             'graphql-by-pop-graphiql',
             \GRAPHQL_BY_POP_PLUGIN_URL.'assets/css/vendors/graphiql.min.css',
             array(),
@@ -47,14 +47,14 @@ class GraphiQLMenuPage extends AbstractMenuPage {
 
         // JS: execute them all in the footer
         $this->enqueueReactAssets(true);
-        wp_enqueue_script(
+        \wp_enqueue_script(
             'graphql-by-pop-graphiql',
             \GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/vendors/graphiql.min.js',
             array('graphql-by-pop-react-dom'),
             \GRAPHQL_BY_POP_VERSION,
             true
         );
-        wp_enqueue_script(
+        \wp_enqueue_script(
             'graphql-by-pop-graphiql-client',
             \GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/graphiql-client.js',
             array('graphql-by-pop-graphiql'),
@@ -63,11 +63,11 @@ class GraphiQLMenuPage extends AbstractMenuPage {
         );
 
         // Load data into the script
-        wp_localize_script(
+        \wp_localize_script(
             'graphql-by-pop-graphiql-client',
             'graphQLByPoPGraphiQLSettings',
             array(
-                'nonce' => wp_create_nonce('wp_rest'),
+                'nonce' => \wp_create_nonce('wp_rest'),
                 'endpoint' => EndpointHelpers::getGraphQLEndpointURL(),
                 'defaultQuery' => $this->getDefaultQuery(),
             )
