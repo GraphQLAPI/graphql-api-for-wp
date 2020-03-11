@@ -3,10 +3,15 @@
 
 @media (min-width: #{ ($break-small) }) {
 	.wp-block-graphql-api-access-control-list {
-		&__items {
+
+		&__item_data {
 			display: grid;
 			grid-template-columns: 50% 1fr;
 			grid-template-rows: auto;
+
+			&__title {
+				text-align: center;
+			}
 		}
 	}
 }
