@@ -20,6 +20,12 @@ abstract class AbstractPostType
             'init',
             [$this, 'maybeLockGutenbergTemplate']
         );
+        \add_filter(
+            'allowed_block_types',
+            [$this, 'getGutenbergBlocksForCustomPostType'],
+            10,
+            2
+        );
 
         /** Add the excerpt, which is the description of the different CPTs (GraphQL query/ACL/CCL) */
         if ($this->usePostExcerptAsDescription()) {
@@ -227,6 +233,48 @@ abstract class AbstractPostType
             $post_type_object = \get_post_type_object($this->getPostType());
             $post_type_object->template_lock = 'all';
         }
+    }
+
+    /**
+     * Restrict the Gutenberg blocks available for this Custom Post Type
+     * By default, if providing a template, then restrict the CPT to the blocks involved in the template
+     *
+     * @param [type] $allowedBlocks
+     * @param [type] $post
+     * @return array
+     */
+    public function getGutenbergBlocksForCustomPostType($allowedBlocks, $post)
+    {
+        /**
+         * Check it is this CPT
+         */
+        if ($post->post_type == $this->getPostType()) {
+            /**
+             * If the CPT defined a template, then maybe restrict to those blocks
+             */
+            $template = $this->getGutenbergTemplate();
+            if (!empty($template) && $this->enableOnlyGutenbergTemplateBlocks()) {
+                // Get all the blocks involved in the template
+                return array_values(array_unique(array_map(
+                    function(array $blockConfiguration) {
+                        // The block is the first item from the $blockConfiguration
+                        return $blockConfiguration[0];
+                    },
+                    $template
+                )));
+            }
+        }
+        return $allowedBlocks;
+    }
+
+    /**
+     * Indicate if to restrict the blocks for the current post type to those involved in the template
+     *
+     * @return boolean `true` by default
+     */
+    protected function enableOnlyGutenbergTemplateBlocks(): bool
+    {
+        return true;
     }
 
     /**
