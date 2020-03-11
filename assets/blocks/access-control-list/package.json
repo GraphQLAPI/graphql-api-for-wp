@@ -15,10 +15,15 @@
 	},
 	"devDependencies": {
 		"@wordpress/base-styles": "^1.4.0",
+		"@wordpress/components": "^9.2.3",
+		"@wordpress/compose": "^3.11.0",
+		"@wordpress/data": "^4.14.1",
+		"@wordpress/edit-post": "^3.13.5",
 		"@wordpress/scripts": "^7.1.2",
 		"css-loader": "^3.4.2",
 		"node-sass": "^4.13.1",
 		"prettier": "npm:wp-prettier@1.19.1",
+		"react-select": "^3.0.8",
 		"sass-loader": "^8.0.2",
 		"style-loader": "^1.1.3"
 	}
