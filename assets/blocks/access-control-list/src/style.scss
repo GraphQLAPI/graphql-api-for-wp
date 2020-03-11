@@ -2,9 +2,11 @@
 @import "~@wordpress/base-styles/breakpoints";
 
 @media (min-width: #{ ($break-small) }) {
-	.wp-block-graphql-api-access-control-list__items {
-		display: grid;
-		grid-template-columns: 50% 1fr;
-		grid-template-rows: auto;
+	.wp-block-graphql-api-access-control-list {
+		&__items {
+			display: grid;
+			grid-template-columns: 50% 1fr;
+			grid-template-rows: auto;
+		}
 	}
 }
