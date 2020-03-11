@@ -294,6 +294,6 @@ abstract class AbstractPostType
      */
     protected function lockGutenbergTemplate(): bool
     {
-        return false;
+        return true;
     }
 }
