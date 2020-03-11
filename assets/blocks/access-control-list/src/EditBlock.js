@@ -11,7 +11,12 @@ class EditBlock extends Component {
 		const { className } = this.props;
 		return (
 			<div className={ className }>
-				Lorem ipsum...
+				<div className={ className+'__for' }>
+					For Lorem ipsum...
+				</div>
+				<div className={ className+'__who' }>
+					Who Lorem ipsum...
+				</div>
 			</div>
 		);
 	}

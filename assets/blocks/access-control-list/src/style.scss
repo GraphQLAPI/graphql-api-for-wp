@@ -1,3 +1,15 @@
-// .wp-block-graphql-api-access-control-list {
+// Loading @wordpress/base-styles as they have mixins and other dependencies
+@import "~@wordpress/base-styles/breakpoints";
 
-// }
+@media (min-width: #{ ($break-small) }) {
+	.wp-block-graphql-api-access-control-list {
+		display: grid;
+		grid-template-columns: 50% 1fr;
+		grid-template-rows: auto;
+		.wp-block-graphql-api-access-control-list__for,
+		.wp-block-graphql-api-access-control-list__who {
+			/*Align at the top*/
+			align-self: start;
+		}
+	}
+}
