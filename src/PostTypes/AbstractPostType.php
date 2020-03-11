@@ -18,7 +18,7 @@ abstract class AbstractPostType
         );
         \add_action(
             'init',
-            [$this, 'maybeSetGutenbergTemplates']
+            [$this, 'maybeLockGutenbergTemplate']
         );
 
         /** Add the excerpt, which is the description of the different CPTs (GraphQL query/ACL/CCL) */
@@ -130,6 +130,9 @@ abstract class AbstractPostType
         if ($this->usePostExcerptAsDescription()) {
             $postTypeArgs['supports'][] = 'excerpt';
         }
+        if ($template = $this->getGutenbergTemplate()) {
+            $postTypeArgs['template'] = $template;
+        }
         return $postTypeArgs;
     }
 
@@ -218,11 +221,10 @@ abstract class AbstractPostType
      * @return void
      * @see https://developer.wordpress.org/block-editor/developers/block-api/block-templates/#locking
      */
-    public function maybeSetGutenbergTemplates(): void
+    public function maybeLockGutenbergTemplate(): void
     {
-        if ($templates = $this->getGutenbergFixedTemplates()) {
+        if (!empty($this->getGutenbergTemplate()) && $this->lockGutenbergTemplate()) {
             $post_type_object = \get_post_type_object($this->getPostType());
-            $post_type_object->template = $templates;
             $post_type_object->template_lock = 'all';
         }
     }
@@ -232,8 +234,18 @@ abstract class AbstractPostType
      *
      * @return array
      */
-    protected function getGutenbergFixedTemplates(): array
+    protected function getGutenbergTemplate(): array
     {
         return [];
+    }
+
+    /**
+     * Indicates if to lock the Gutenberg templates
+     *
+     * @return boolean
+     */
+    protected function lockGutenbergTemplate(): bool
+    {
+        return false;
     }
 }

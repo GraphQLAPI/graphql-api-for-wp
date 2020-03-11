@@ -56,7 +56,7 @@ class GraphQLCacheControlListPostType extends AbstractPostType
      *
      * @return array
      */
-    protected function getGutenbergFixedTemplates(): array
+    protected function getGutenbergTemplate(): array
     {
         // $graphiQLBlock = PluginState::getGraphiQLBlock();
         return [
