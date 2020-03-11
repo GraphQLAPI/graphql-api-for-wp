@@ -120,6 +120,16 @@ class GraphQLQueryPostType extends AbstractPostType
     }
 
     /**
+     * Indicates if to lock the Gutenberg templates
+     *
+     * @return boolean
+     */
+    protected function lockGutenbergTemplate(): bool
+    {
+        return true;
+    }
+
+    /**
      * Indicates if we executing the GraphQL query (`true`) or visualizing the query source (`false`)
      * It returns always `true`, unless passing ?view=source in the single post URL
      *
