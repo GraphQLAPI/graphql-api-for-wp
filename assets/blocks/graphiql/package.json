@@ -1,7 +1,7 @@
 {
 	"name": "graphiql-block",
 	"version": "0.1.0",
-	"description": "WordPress block for adding a GraphiQL client, to query the GraphQL server",
+	"description": "Block for adding a GraphiQL client, to query the GraphQL server, to the WordPress editor",
 	"author": "Leonardo Losoviz",
 	"license": "MIT",
 	"main": "build/index.js",
