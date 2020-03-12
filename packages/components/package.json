@@ -1,0 +1,20 @@
+{
+  "name": "graphql-api-components",
+  "version": "0.1.0",
+  "description": "Components used by the GraphQL API for WordPress plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leoloso/graphql-api-wp-plugin/packages/components"
+  },
+  "keywords": [
+    "GraphQL",
+    "API",
+    "WordPress"
+  ],
+  "author": "Leonardo Losoviz",
+  "license": "MIT"
+}

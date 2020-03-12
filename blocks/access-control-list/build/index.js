@@ -366,7 +366,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "/**\n * Breakpoints & Media Queries\n */\n@media (min-width: 600px) {\n  .wp-block-graphql-api-access-control-list__item_data {\n    display: grid;\n    grid-template-columns: 50% 1fr;\n    grid-template-rows: auto;\n    grid-gap: 10px; }\n    .wp-block-graphql-api-access-control-list__item_data__title {\n      text-align: center; } }\n", ""]);
+exports.push([module.i, "/**\n * Breakpoints & Media Queries\n */\n@media (min-width: 600px) {\n  .wp-block-graphql-api-access-control-list__item_data {\n    display: grid;\n    grid-template-columns: 50% 1fr;\n    grid-template-rows: auto;\n    grid-gap: 20px; }\n    .wp-block-graphql-api-access-control-list__item_data__title {\n      text-align: center; } }\n", ""]);
 // Exports
 module.exports = exports;
 

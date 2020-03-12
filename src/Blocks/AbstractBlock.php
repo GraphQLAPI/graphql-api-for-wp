@@ -5,7 +5,7 @@ use Error;
 
 /**
  * Base class for a Gutenberg block, within a multi-block plugin.
- * The JS/CSS assets for each block is contained in folder {pluginDir}/assets/blocks/{blockName}, and follows
+ * The JS/CSS assets for each block is contained in folder {pluginDir}/blocks/{blockName}, and follows
  * the architecture from @wordpress/create-block package(https://developer.wordpress.org/block-editor/packages/packages-create-block/),
  * (this package provides the scaffolding for a single-block plugin, so the plugin .php file is ignored registering a single block is ignored, and everything else is used)
  */
@@ -131,7 +131,7 @@ abstract class AbstractBlock {
      */
     public function initBlock(): void
     {
-        $dir = $this->getPluginDir().'/assets/blocks/'.$this->getBlockName();
+        $dir = $this->getPluginDir().'/blocks/'.$this->getBlockName();
         $blockFullName = $this->getBlockFullName();
 
         $script_asset_path = "$dir/build/index.asset.php";
@@ -144,7 +144,7 @@ abstract class AbstractBlock {
             );
         }
 
-        $url = $this->getPluginURL().'/assets/blocks/'.$this->getBlockName().'/';
+        $url = $this->getPluginURL().'/blocks/'.$this->getBlockName().'/';
         $blockRegistrationName = $this->getBlockRegistrationName();
         $blockConfiguration = [];
 
