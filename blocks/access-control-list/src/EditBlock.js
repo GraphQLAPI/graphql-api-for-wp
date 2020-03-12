@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { __ } from '@wordpress/i18n';
-import { MultiSelectControl } from '../../../packages/components/src/index';
+import { MultiSelectControl } from '../../../packages/components/src';
 import './style.scss';
 
 class EditBlock extends Component {
