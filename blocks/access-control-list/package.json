@@ -19,6 +19,7 @@
 		"@wordpress/compose": "^3.11.0",
 		"@wordpress/data": "^4.14.1",
 		"@wordpress/edit-post": "^3.13.5",
+		"@wordpress/element": "^2.11.0",
 		"@wordpress/scripts": "^7.1.2",
 		"css-loader": "^3.4.2",
 		"node-sass": "^4.13.1",

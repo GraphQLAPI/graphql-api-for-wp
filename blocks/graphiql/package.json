@@ -14,6 +14,7 @@
 		"packages-update": "wp-scripts packages-update"
 	},
 	"devDependencies": {
+		"@wordpress/element": "^2.11.0",
 		"@wordpress/scripts": "^7.1.2",
 		"css-loader": "^3.4.2",
 		"graphiql": "^0.17.5",

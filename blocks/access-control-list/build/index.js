@@ -158,10 +158,29 @@ module.exports = _toConsumableArray;
 
 /***/ }),
 
-/***/ "../../packages/components/src/MultiSelectControl/category.js":
-/*!*******************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/MultiSelectControl/category.js ***!
-  \*******************************************************************************************************************************/
+/***/ "../../packages/components/src/index.js":
+/*!*********************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/index.js ***!
+  \*********************************************************************************************************/
+/*! exports provided: MultiSelectControl */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _multi_select_control__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./multi-select-control */ "../../packages/components/src/multi-select-control/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MultiSelectControl", function() { return _multi_select_control__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/**
+ * Exports
+ */
+
+
+/***/ }),
+
+/***/ "../../packages/components/src/multi-select-control/category.js":
+/*!*********************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/multi-select-control/category.js ***!
+  \*********************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -179,7 +198,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _checklist__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./checklist */ "../../packages/components/src/MultiSelectControl/checklist.js");
+/* harmony import */ var _checklist__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./checklist */ "../../packages/components/src/multi-select-control/checklist.js");
 
 
 
@@ -297,10 +316,10 @@ function BlockManagerCategory(_ref) {
 
 /***/ }),
 
-/***/ "../../packages/components/src/MultiSelectControl/checklist.js":
-/*!********************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/MultiSelectControl/checklist.js ***!
-  \********************************************************************************************************************************/
+/***/ "../../packages/components/src/multi-select-control/checklist.js":
+/*!**********************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/multi-select-control/checklist.js ***!
+  \**********************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -351,9 +370,9 @@ function BlockTypesChecklist(_ref) {
 
 /***/ }),
 
-/***/ "../../packages/components/src/MultiSelectControl/manager.js":
+/***/ "../../packages/components/src/multi-select-control/index.js":
 /*!******************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/MultiSelectControl/manager.js ***!
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/multi-select-control/index.js ***!
   \******************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -372,9 +391,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style.scss */ "../../packages/components/src/MultiSelectControl/style.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style.scss */ "../../packages/components/src/multi-select-control/style.scss");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _category__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./category */ "../../packages/components/src/MultiSelectControl/category.js");
+/* harmony import */ var _category__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./category */ "../../packages/components/src/multi-select-control/category.js");
 
 
 /**
@@ -397,7 +416,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function BlockManager(_ref) {
+function MultiSelectControl(_ref) {
   var search = _ref.search,
       setState = _ref.setState,
       blockTypes = _ref.blockTypes,
@@ -464,19 +483,19 @@ function BlockManager(_ref) {
     isMatchingSearchTerm: isMatchingSearchTerm,
     numberOfHiddenBlocks: numberOfHiddenBlocks
   };
-})])(BlockManager));
+})])(MultiSelectControl));
 
 /***/ }),
 
-/***/ "../../packages/components/src/MultiSelectControl/style.scss":
-/*!******************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/MultiSelectControl/style.scss ***!
-  \******************************************************************************************************************************/
+/***/ "../../packages/components/src/multi-select-control/style.scss":
+/*!********************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/multi-select-control/style.scss ***!
+  \********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(/*! ../../../../blocks/access-control-list/node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-            var content = __webpack_require__(/*! !../../../../blocks/access-control-list/node_modules/css-loader/dist/cjs.js!../../../../blocks/access-control-list/node_modules/sass-loader/dist/cjs.js!./style.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!../../packages/components/src/MultiSelectControl/style.scss");
+            var content = __webpack_require__(/*! !../../../../blocks/access-control-list/node_modules/css-loader/dist/cjs.js!../../../../blocks/access-control-list/node_modules/sass-loader/dist/cjs.js!./style.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!../../packages/components/src/multi-select-control/style.scss");
 
             content = content.__esModule ? content.default : content;
 
@@ -496,25 +515,6 @@ var exported = content.locals ? content.locals : {};
 
 
 module.exports = exported;
-
-/***/ }),
-
-/***/ "../../packages/components/src/index.js":
-/*!*********************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/index.js ***!
-  \*********************************************************************************************************/
-/*! exports provided: BlockManager */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _MultiSelectControl_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MultiSelectControl/manager */ "../../packages/components/src/MultiSelectControl/manager.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BlockManager", function() { return _MultiSelectControl_manager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
-
-/**
- * Exports
- */
-
 
 /***/ }),
 
@@ -697,10 +697,10 @@ module.exports = _typeof;
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!../../packages/components/src/MultiSelectControl/style.scss":
-/*!***********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!/Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/MultiSelectControl/style.scss ***!
-  \***********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!../../packages/components/src/multi-select-control/style.scss":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!/Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/multi-select-control/style.scss ***!
+  \*************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1139,19 +1139,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _packages_components_src__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../packages/components/src */ "../../packages/components/src/index.js");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _packages_components_src_index__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../packages/components/src/index */ "../../packages/components/src/index.js");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_11__);
-
-
 
 
 
@@ -1179,22 +1171,7 @@ var EditBlock = /*#__PURE__*/function (_Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(EditBlock, [{
     key: "render",
     value: function render() {
-      var className = this.props.className; // console.log(withSelect);
-      // console.log(BlockManager);
-      // 	withSelect( ( select ) => {
-      // 		const { isModalActive } = select( 'core/edit-post' );
-      // 		return {
-      // 			isActive: isModalActive( MODAL_NAME ),
-      // 		};
-      // 	} ),
-      // 	withDispatch( ( dispatch ) => {
-      // 		const { closeModal } = dispatch( 'core/edit-post' );
-      // 		return {
-      // 			closeModal,
-      // 		};
-      // 	} ),
-      // ] )( BlockManager );
-
+      var className = this.props.className;
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
         className: className
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
@@ -1207,18 +1184,18 @@ var EditBlock = /*#__PURE__*/function (_Component) {
         className: className + '__item_data_for'
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", {
         className: className + '__item_data__title'
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Define access for:', 'graphql-api'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Fields:', 'graphql-api')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('Define access for:', 'graphql-api'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('Fields:', 'graphql-api')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
         className: "edit-post-manage-blocks-modal"
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_packages_components_src_index__WEBPACK_IMPORTED_MODULE_9__["BlockManager"], null)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Directives:', 'graphql-api'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_packages_components_src__WEBPACK_IMPORTED_MODULE_7__["MultiSelectControl"], null)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('Directives:', 'graphql-api'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
         className: className + '__item_data_who'
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", {
         className: className + '__item_data__title'
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Who can access:', 'graphql-api'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", null, "Who Lorem ipsum..."), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", null, "Who Lorem ipsum..."))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("hr", null))));
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('Who can access:', 'graphql-api'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", null, "Who Lorem ipsum..."), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", null, "Who Lorem ipsum..."))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("hr", null))));
     }
   }]);
 
   return EditBlock;
-}(react__WEBPACK_IMPORTED_MODULE_6__["Component"]);
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (EditBlock);
 
@@ -1455,17 +1432,6 @@ module.exports = exported;
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["lodash"]; }());
-
-/***/ }),
-
-/***/ "react":
-/*!*********************************!*\
-  !*** external {"this":"React"} ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-(function() { module.exports = this["React"]; }());
 
 /***/ })
 

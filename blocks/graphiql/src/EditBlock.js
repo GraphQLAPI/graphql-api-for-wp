@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from '@wordpress/element';
 import GraphiQL from 'graphiql';
 import fetch from 'isomorphic-fetch';
 import 'graphiql/graphiql.css';

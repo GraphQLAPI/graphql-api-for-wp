@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { MultiSelectControl } from '../../../packages/components/src';
 import './style.scss';

@@ -158,10 +158,10 @@ module.exports = _toConsumableArray;
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/MultiSelectControl/style.scss":
-/*!************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/MultiSelectControl/style.scss ***!
-  \************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/multi-select-control/style.scss":
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/multi-select-control/style.scss ***!
+  \**************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -561,10 +561,29 @@ module.exports = function (list, options) {
 
 /***/ }),
 
-/***/ "./src/MultiSelectControl/category.js":
-/*!********************************************!*\
-  !*** ./src/MultiSelectControl/category.js ***!
-  \********************************************/
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! exports provided: MultiSelectControl */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _multi_select_control__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./multi-select-control */ "./src/multi-select-control/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MultiSelectControl", function() { return _multi_select_control__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/**
+ * Exports
+ */
+
+
+/***/ }),
+
+/***/ "./src/multi-select-control/category.js":
+/*!**********************************************!*\
+  !*** ./src/multi-select-control/category.js ***!
+  \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -582,7 +601,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _checklist__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./checklist */ "./src/MultiSelectControl/checklist.js");
+/* harmony import */ var _checklist__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./checklist */ "./src/multi-select-control/checklist.js");
 
 
 
@@ -700,10 +719,10 @@ function BlockManagerCategory(_ref) {
 
 /***/ }),
 
-/***/ "./src/MultiSelectControl/checklist.js":
-/*!*********************************************!*\
-  !*** ./src/MultiSelectControl/checklist.js ***!
-  \*********************************************/
+/***/ "./src/multi-select-control/checklist.js":
+/*!***********************************************!*\
+  !*** ./src/multi-select-control/checklist.js ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -754,9 +773,9 @@ function BlockTypesChecklist(_ref) {
 
 /***/ }),
 
-/***/ "./src/MultiSelectControl/manager.js":
+/***/ "./src/multi-select-control/index.js":
 /*!*******************************************!*\
-  !*** ./src/MultiSelectControl/manager.js ***!
+  !*** ./src/multi-select-control/index.js ***!
   \*******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -775,9 +794,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style.scss */ "./src/MultiSelectControl/style.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style.scss */ "./src/multi-select-control/style.scss");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _category__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./category */ "./src/MultiSelectControl/category.js");
+/* harmony import */ var _category__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./category */ "./src/multi-select-control/category.js");
 
 
 /**
@@ -871,15 +890,15 @@ function MultiSelectControl(_ref) {
 
 /***/ }),
 
-/***/ "./src/MultiSelectControl/style.scss":
-/*!*******************************************!*\
-  !*** ./src/MultiSelectControl/style.scss ***!
-  \*******************************************/
+/***/ "./src/multi-select-control/style.scss":
+/*!*********************************************!*\
+  !*** ./src/multi-select-control/style.scss ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-            var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/dist/cjs.js!./style.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/MultiSelectControl/style.scss");
+            var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/dist/cjs.js!./style.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/multi-select-control/style.scss");
 
             content = content.__esModule ? content.default : content;
 
@@ -899,25 +918,6 @@ var exported = content.locals ? content.locals : {};
 
 
 module.exports = exported;
-
-/***/ }),
-
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/*! exports provided: MultiSelectControl */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _MultiSelectControl_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MultiSelectControl/manager */ "./src/MultiSelectControl/manager.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MultiSelectControl", function() { return _MultiSelectControl_manager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
-
-/**
- * Exports
- */
-
 
 /***/ }),
 
