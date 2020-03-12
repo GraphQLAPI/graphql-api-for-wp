@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { __ } from '@wordpress/i18n';
 import './style.scss';
-import BlockManager from '../../../packages/components/MultiSelectControl/manager';
+import { BlockManager } from '../../../packages/components/src/index';
 import { withSelect, withDispatch } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 

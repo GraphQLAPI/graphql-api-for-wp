@@ -86,17 +86,89 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "../../packages/components/MultiSelectControl/category.js":
-/*!***************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/MultiSelectControl/category.js ***!
-  \***************************************************************************************************************************/
+/***/ "../../packages/components/node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
+/*!*****************************************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \*****************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+module.exports = _arrayWithoutHoles;
+
+/***/ }),
+
+/***/ "../../packages/components/node_modules/@babel/runtime/helpers/iterableToArray.js":
+/*!***************************************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/iterableToArray.js ***!
+  \***************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+
+/***/ }),
+
+/***/ "../../packages/components/node_modules/@babel/runtime/helpers/nonIterableSpread.js":
+/*!*****************************************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \*****************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+module.exports = _nonIterableSpread;
+
+/***/ }),
+
+/***/ "../../packages/components/node_modules/@babel/runtime/helpers/toConsumableArray.js":
+/*!*****************************************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \*****************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ "../../packages/components/node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
+
+var iterableToArray = __webpack_require__(/*! ./iterableToArray */ "../../packages/components/node_modules/@babel/runtime/helpers/iterableToArray.js");
+
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ "../../packages/components/node_modules/@babel/runtime/helpers/nonIterableSpread.js");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
+
+/***/ }),
+
+/***/ "../../packages/components/src/MultiSelectControl/category.js":
+/*!*******************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/MultiSelectControl/category.js ***!
+  \*******************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "../../packages/components/node_modules/@babel/runtime/helpers/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "../../packages/components/node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "lodash");
@@ -107,7 +179,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _checklist__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./checklist */ "../../packages/components/MultiSelectControl/checklist.js");
+/* harmony import */ var _checklist__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./checklist */ "../../packages/components/src/MultiSelectControl/checklist.js");
 
 
 
@@ -159,7 +231,7 @@ function BlockManagerCategory(_ref) {
     return null;
   }
 
-  var checkedBlockNames = lodash__WEBPACK_IMPORTED_MODULE_2__["without"].apply(void 0, [Object(lodash__WEBPACK_IMPORTED_MODULE_2__["map"])(filteredBlockTypes, 'name')].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_7___default()(hiddenBlockTypes)));
+  var checkedBlockNames = lodash__WEBPACK_IMPORTED_MODULE_2__["without"].apply(void 0, [Object(lodash__WEBPACK_IMPORTED_MODULE_2__["map"])(filteredBlockTypes, 'name')].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(hiddenBlockTypes)));
   var titleId = 'edit-post-manage-blocks-modal__category-title-' + instanceId;
   var isAllChecked = checkedBlockNames.length === filteredBlockTypes.length;
   var ariaChecked;
@@ -225,10 +297,10 @@ function BlockManagerCategory(_ref) {
 
 /***/ }),
 
-/***/ "../../packages/components/MultiSelectControl/checklist.js":
-/*!****************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/MultiSelectControl/checklist.js ***!
-  \****************************************************************************************************************************/
+/***/ "../../packages/components/src/MultiSelectControl/checklist.js":
+/*!********************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/MultiSelectControl/checklist.js ***!
+  \********************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -279,10 +351,10 @@ function BlockTypesChecklist(_ref) {
 
 /***/ }),
 
-/***/ "../../packages/components/MultiSelectControl/manager.js":
-/*!**************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/MultiSelectControl/manager.js ***!
-  \**************************************************************************************************************************/
+/***/ "../../packages/components/src/MultiSelectControl/manager.js":
+/*!******************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/MultiSelectControl/manager.js ***!
+  \******************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -300,9 +372,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style.scss */ "../../packages/components/MultiSelectControl/style.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style.scss */ "../../packages/components/src/MultiSelectControl/style.scss");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _category__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./category */ "../../packages/components/MultiSelectControl/category.js");
+/* harmony import */ var _category__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./category */ "../../packages/components/src/MultiSelectControl/category.js");
 
 
 /**
@@ -396,15 +468,15 @@ function BlockManager(_ref) {
 
 /***/ }),
 
-/***/ "../../packages/components/MultiSelectControl/style.scss":
-/*!**************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/MultiSelectControl/style.scss ***!
-  \**************************************************************************************************************************/
+/***/ "../../packages/components/src/MultiSelectControl/style.scss":
+/*!******************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/MultiSelectControl/style.scss ***!
+  \******************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var api = __webpack_require__(/*! ../../../blocks/access-control-list/node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-            var content = __webpack_require__(/*! !../../../blocks/access-control-list/node_modules/css-loader/dist/cjs.js!../../../blocks/access-control-list/node_modules/sass-loader/dist/cjs.js!./style.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!../../packages/components/MultiSelectControl/style.scss");
+var api = __webpack_require__(/*! ../../../../blocks/access-control-list/node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !../../../../blocks/access-control-list/node_modules/css-loader/dist/cjs.js!../../../../blocks/access-control-list/node_modules/sass-loader/dist/cjs.js!./style.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!../../packages/components/src/MultiSelectControl/style.scss");
 
             content = content.__esModule ? content.default : content;
 
@@ -427,75 +499,22 @@ module.exports = exported;
 
 /***/ }),
 
-/***/ "../../packages/components/node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
-/*!*****************************************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
-  \*****************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "../../packages/components/src/index.js":
+/*!*********************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/index.js ***!
+  \*********************************************************************************************************/
+/*! exports provided: BlockManager */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MultiSelectControl_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MultiSelectControl/manager */ "../../packages/components/src/MultiSelectControl/manager.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BlockManager", function() { return _MultiSelectControl_manager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
 
-    return arr2;
-  }
-}
+/**
+ * Exports
+ */
 
-module.exports = _arrayWithoutHoles;
-
-/***/ }),
-
-/***/ "../../packages/components/node_modules/@babel/runtime/helpers/iterableToArray.js":
-/*!***************************************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/iterableToArray.js ***!
-  \***************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _iterableToArray(iter) {
-  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
-}
-
-module.exports = _iterableToArray;
-
-/***/ }),
-
-/***/ "../../packages/components/node_modules/@babel/runtime/helpers/nonIterableSpread.js":
-/*!*****************************************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
-  \*****************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance");
-}
-
-module.exports = _nonIterableSpread;
-
-/***/ }),
-
-/***/ "../../packages/components/node_modules/@babel/runtime/helpers/toConsumableArray.js":
-/*!*****************************************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
-  \*****************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ "../../packages/components/node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
-
-var iterableToArray = __webpack_require__(/*! ./iterableToArray */ "../../packages/components/node_modules/@babel/runtime/helpers/iterableToArray.js");
-
-var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ "../../packages/components/node_modules/@babel/runtime/helpers/nonIterableSpread.js");
-
-function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
-}
-
-module.exports = _toConsumableArray;
 
 /***/ }),
 
@@ -678,15 +697,15 @@ module.exports = _typeof;
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!../../packages/components/MultiSelectControl/style.scss":
-/*!*******************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!/Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/MultiSelectControl/style.scss ***!
-  \*******************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!../../packages/components/src/MultiSelectControl/style.scss":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!/Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/MultiSelectControl/style.scss ***!
+  \***********************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../blocks/access-control-list/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../blocks/access-control-list/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 exports.push([module.i, "/**\n * Colors\n */\n/**\n * Colors\n */\n/**\n * Often re-used variables\n */\n/**\n * Breakpoint mixins\n */\n/**\n * Long content fade mixin\n *\n * Creates a fading overlay to signify that the content is longer\n * than the space allows.\n */\n/**\n * Button states and focus styles\n */\n/**\n * Applies editor left position to the selector passed as argument\n */\n/**\n * Styles that are reused verbatim in a few places\n */\n/**\n * Allows users to opt-out of animations via OS-level preferences.\n */\n/**\n * Reset default styles for JavaScript UI based pages.\n * This is a WP-admin agnostic reset\n */\n/**\n * Reset the WP Admin page styles for Gutenberg-like pages.\n */\n/**\n * Breakpoints & Media Queries\n */\n.edit-post-manage-blocks-modal__content {\n  max-height: 500px; }\n\n@media (min-width: 600px) {\n  .edit-post-manage-blocks-modal {\n    height: calc(100% - 56px - 56px); } }\n\n.edit-post-manage-blocks-modal .components-modal__content {\n  padding-bottom: 0;\n  display: flex;\n  flex-direction: column; }\n\n.edit-post-manage-blocks-modal .components-modal__header {\n  flex-shrink: 0;\n  margin-bottom: 0; }\n\n.edit-post-manage-blocks-modal__content {\n  display: flex;\n  flex-direction: column;\n  flex: 0 1 100%;\n  min-height: 0; }\n\n.edit-post-manage-blocks-modal__no-results {\n  font-style: italic;\n  padding: 24px 0;\n  text-align: center; }\n\n.edit-post-manage-blocks-modal__search {\n  margin: 16px 0; }\n  .edit-post-manage-blocks-modal__search .components-base-control__field {\n    margin-bottom: 0; }\n  .edit-post-manage-blocks-modal__search .components-base-control__label {\n    margin-top: -4px; }\n  .edit-post-manage-blocks-modal__search input[type=\"search\"].components-text-control__input {\n    padding: 12px;\n    border-radius: 4px; }\n\n.edit-post-manage-blocks-modal__disabled-blocks-count {\n  border-top: 1px solid #e2e4e7;\n  margin-left: -24px;\n  margin-right: -24px;\n  padding-top: 0.6rem;\n  padding-bottom: 0.6rem;\n  padding-left: 24px;\n  padding-right: 24px;\n  background-color: #f3f4f5; }\n\n.edit-post-manage-blocks-modal__category {\n  margin: 0 0 2rem 0; }\n\n.edit-post-manage-blocks-modal__category-title {\n  position: sticky;\n  top: 0;\n  padding: 16px 0;\n  background-color: #fff;\n  z-index: 1; }\n  .edit-post-manage-blocks-modal__category-title .components-base-control__field {\n    margin-bottom: 0; }\n  .edit-post-manage-blocks-modal__category-title .components-checkbox-control__label {\n    font-size: 0.9rem;\n    font-weight: 600; }\n\n.edit-post-manage-blocks-modal__show-all {\n  margin-right: 8px; }\n\n.edit-post-manage-blocks-modal__checklist {\n  margin-top: 0; }\n\n.edit-post-manage-blocks-modal__checklist-item {\n  margin-bottom: 0;\n  padding-left: 16px;\n  border-top: 1px solid #e2e4e7; }\n  .edit-post-manage-blocks-modal__checklist-item:last-child {\n    border-bottom: 1px solid #e2e4e7; }\n  .edit-post-manage-blocks-modal__checklist-item .components-base-control__field {\n    align-items: center;\n    display: flex;\n    margin: 0; }\n  .components-modal__content .edit-post-manage-blocks-modal__checklist-item.components-checkbox-control__input-container {\n    margin: 0 8px; }\n  .edit-post-manage-blocks-modal__checklist-item .components-checkbox-control__label {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    flex-grow: 1;\n    padding: 0.6rem 0 0.6rem 10px; }\n  .edit-post-manage-blocks-modal__checklist-item .block-editor-block-icon {\n    margin-right: 10px;\n    fill: #555d66; }\n\n.edit-post-manage-blocks-modal__results {\n  height: 100%;\n  overflow: auto;\n  margin-left: -24px;\n  margin-right: -24px;\n  padding-left: 24px;\n  padding-right: 24px;\n  border-top: 1px solid #e2e4e7; }\n", ""]);
@@ -1126,7 +1145,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _packages_components_MultiSelectControl_manager__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../packages/components/MultiSelectControl/manager */ "../../packages/components/MultiSelectControl/manager.js");
+/* harmony import */ var _packages_components_src_index__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../packages/components/src/index */ "../../packages/components/src/index.js");
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
@@ -1190,7 +1209,7 @@ var EditBlock = /*#__PURE__*/function (_Component) {
         className: className + '__item_data__title'
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("strong", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Define access for:', 'graphql-api'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Fields:', 'graphql-api')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
         className: "edit-post-manage-blocks-modal"
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_packages_components_MultiSelectControl_manager__WEBPACK_IMPORTED_MODULE_9__["default"], null)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Directives:', 'graphql-api'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_packages_components_src_index__WEBPACK_IMPORTED_MODULE_9__["BlockManager"], null)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Directives:', 'graphql-api'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
         className: className + '__item_data_who'
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", {
         className: className + '__item_data__title'
