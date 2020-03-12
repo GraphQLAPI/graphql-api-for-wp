@@ -1,9 +1,7 @@
 import { Component } from 'react';
 import { __ } from '@wordpress/i18n';
+import { MultiSelectControl } from '../../../packages/components/src/index';
 import './style.scss';
-import { BlockManager } from '../../../packages/components/src/index';
-import { withSelect, withDispatch } from '@wordpress/data';
-import { compose } from '@wordpress/compose';
 
 class EditBlock extends Component {
 	constructor( props ) {
@@ -13,23 +11,6 @@ class EditBlock extends Component {
 
 	render() {
 		const { className } = this.props;
-		// console.log(withSelect);
-		// console.log(BlockManager);
-		// 	withSelect( ( select ) => {
-		// 		const { isModalActive } = select( 'core/edit-post' );
-
-		// 		return {
-		// 			isActive: isModalActive( MODAL_NAME ),
-		// 		};
-		// 	} ),
-		// 	withDispatch( ( dispatch ) => {
-		// 		const { closeModal } = dispatch( 'core/edit-post' );
-
-		// 		return {
-		// 			closeModal,
-		// 		};
-		// 	} ),
-		// ] )( BlockManager );
 		return (
 			<div className={ className }>
 				<div className={ className+'__items' }>
@@ -39,7 +20,7 @@ class EditBlock extends Component {
 								<p className={ className+'__item_data__title' }><strong>{ __('Define access for:', 'graphql-api') }</strong></p>
 								<p>{ __('Fields:', 'graphql-api') }</p>
 								<div className="edit-post-manage-blocks-modal">
-									<BlockManager />
+									<MultiSelectControl />
 								</div>
 								<p>{ __('Directives:', 'graphql-api') }</p>
 							</div>

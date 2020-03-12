@@ -1,4 +1,4 @@
 /**
  * Exports
  */
-export { default as BlockManager } from './MultiSelectControl/manager';
+export { default as MultiSelectControl } from './MultiSelectControl/manager';

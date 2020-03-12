@@ -800,7 +800,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function BlockManager(_ref) {
+function MultiSelectControl(_ref) {
   var search = _ref.search,
       setState = _ref.setState,
       blockTypes = _ref.blockTypes,
@@ -867,7 +867,7 @@ function BlockManager(_ref) {
     isMatchingSearchTerm: isMatchingSearchTerm,
     numberOfHiddenBlocks: numberOfHiddenBlocks
   };
-})])(BlockManager));
+})])(MultiSelectControl));
 
 /***/ }),
 
@@ -906,13 +906,13 @@ module.exports = exported;
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! exports provided: BlockManager */
+/*! exports provided: MultiSelectControl */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MultiSelectControl_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MultiSelectControl/manager */ "./src/MultiSelectControl/manager.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BlockManager", function() { return _MultiSelectControl_manager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MultiSelectControl", function() { return _MultiSelectControl_manager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
 
 /**
  * Exports

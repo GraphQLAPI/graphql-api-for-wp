@@ -19,7 +19,7 @@ import './style.scss';
  */
 import BlockManagerCategory from './category';
 
-function BlockManager( {
+function MultiSelectControl( {
 	search,
 	setState,
 	blockTypes,
@@ -111,4 +111,4 @@ export default compose( [
 			numberOfHiddenBlocks,
 		};
 	} ),
-] )( BlockManager );
+] )( MultiSelectControl );
