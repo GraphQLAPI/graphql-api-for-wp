@@ -1375,9 +1375,10 @@ function MultiSelectControl(_ref) {
       getCategories = _select.getCategories;
 
   var _select2 = select('leoloso/graphql-api'),
-      receiveFieldsAndDirectives = _select2.receiveFieldsAndDirectives;
+      receiveTypesAndFields = _select2.receiveTypesAndFields,
+      receiveDirectives = _select2.receiveDirectives;
 
-  console.log('receiveFieldsAndDirectives', receiveFieldsAndDirectives(), getBlockTypes());
+  console.log('receiveFieldsAndDirectives', receiveTypesAndFields(), receiveDirectives());
   return {
     blockTypes: getBlockTypes(),
     //receiveFieldsAndDirectives().fieldsAndDirectives,
@@ -1447,23 +1448,39 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************!*\
   !*** ./src/store/actions.js ***!
   \******************************/
-/*! exports provided: setFieldsAndDirectives, receiveFieldsAndDirectives */
+/*! exports provided: setTypesAndFields, receiveTypesAndFields, setDirectives, receiveDirectives */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setFieldsAndDirectives", function() { return setFieldsAndDirectives; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveFieldsAndDirectives", function() { return receiveFieldsAndDirectives; });
-function setFieldsAndDirectives(fieldsAndDirectives) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTypesAndFields", function() { return setTypesAndFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTypesAndFields", function() { return receiveTypesAndFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDirectives", function() { return setDirectives; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveDirectives", function() { return receiveDirectives; });
+function setTypesAndFields(typesAndFields) {
   return {
-    type: 'SET_FIELDS_AND_DIRECTIVES',
-    fieldsAndDirectives: fieldsAndDirectives
+    type: 'SET_TYPES_AND_FIELDS',
+    typesAndFields: typesAndFields
   };
 }
 ;
-function receiveFieldsAndDirectives(path) {
+function receiveTypesAndFields(path) {
   return {
-    type: 'RECEIVE_FIELDS_AND_DIRECTIVES',
+    type: 'RECEIVE_TYPES_AND_FIELDS',
+    path: path
+  };
+}
+;
+function setDirectives(directives) {
+  return {
+    type: 'SET_DIRECTIVES',
+    directives: directives
+  };
+}
+;
+function receiveDirectives(path) {
+  return {
+    type: 'RECEIVE_DIRECTIVES',
     path: path
   };
 }
@@ -1486,25 +1503,29 @@ __webpack_require__.r(__webpack_exports__);
  * External dependencies
  */
 
+
+var fetchGraphQLQuery = function fetchGraphQLQuery(query) {
+  // console.log('query', query);
+  var content = {
+    query: query
+  };
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()("".concat(window.location.origin, "/api/graphql"), {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(content)
+  }).then(function (response) {
+    return response.json();
+  });
+};
+
 var controls = {
-  RECEIVE_FIELDS_AND_DIRECTIVES: function RECEIVE_FIELDS_AND_DIRECTIVES(action) {
-    console.log('action', action, action.path);
-    var content = {
-      query: action.path
-    };
-    return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()("".concat(window.location.origin, "/api/graphql"), {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(content)
-    }).then(function (response) {
-      return response.json();
-    }); // return fetch( `${ window.location.origin }/api/graphql/?query=${ action.path.replace(/\s/g,'') }`, {
-    // 	// method: 'post',
-    // 	headers: { 'Content-Type': 'application/json' },
-    // 	// body: JSON.stringify( content ),
-    // } ).then( ( response ) => response.json() );
+  RECEIVE_TYPES_AND_FIELDS: function RECEIVE_TYPES_AND_FIELDS(action) {
+    return fetchGraphQLQuery(action.path);
+  },
+  RECEIVE_DIRECTIVES: function RECEIVE_DIRECTIVES(action) {
+    return fetchGraphQLQuery(action.path);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (controls);
@@ -1570,16 +1591,13 @@ var store = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__["registerStore"]
 /*!******************************!*\
   !*** ./src/store/reducer.js ***!
   \******************************/
-/*! exports provided: fieldsAndDirectives, default */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fieldsAndDirectives", function() { return fieldsAndDirectives; });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__);
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -1587,36 +1605,36 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 /**
- * WordPress dependencies
- */
-
-/**
- * Reducer returning an array of fields and directives.
+ * Reducer returning an array of types and their fields, and directives.
  *
  * @param {Object} state  Current state.
  * @param {Object} action Dispatched action.
  *
  * @return {Object} Updated state.
  */
-
-var fieldsAndDirectives = function fieldsAndDirectives() {
+var schemaInstrospection = function schemaInstrospection() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    fieldsAndDirectives: {}
+    typesAndFields: {},
+    directives: {}
   };
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case 'SET_FIELDS_AND_DIRECTIVES':
+    case 'SET_TYPES_AND_FIELDS':
       return _objectSpread({}, state, {
-        fieldsAndDirectives: action.fieldsAndDirectives
+        typesAndFields: action.typesAndFields
+      });
+
+    case 'SET_DIRECTIVES':
+      return _objectSpread({}, state, {
+        directives: action.directives
       });
   }
 
   return state;
 };
-/* harmony default export */ __webpack_exports__["default"] = (Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__["combineReducers"])({
-  fieldsAndDirectives: fieldsAndDirectives
-}));
+
+/* harmony default export */ __webpack_exports__["default"] = (schemaInstrospection);
 
 /***/ }),
 
@@ -1639,28 +1657,51 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  receiveFieldsAndDirectives: /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function receiveFieldsAndDirectives(state) {
-    var _ref, _fieldsAndDirectives$;
+  receiveTypesAndFields: /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function receiveTypesAndFields(state) {
+    var _ref, _response$data, _response$data$__sche;
 
-    var query, fieldsAndDirectives;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function receiveFieldsAndDirectives$(_context) {
+    var query, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function receiveTypesAndFields$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            query = "\n\t\t\tquery IntrospectionQuery {\n\t\t\t\t__schema {\n\t\t\t\t\ttypes {\n\t\t\t\t\t\tname\n\t\t\t\t\t\tfields(includeDeprecated: true) {\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tdirectives {\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t";
+            query = "\n\t\t\tquery GetTypesAndFields {\n\t\t\t\t__schema {\n\t\t\t\t\ttypes {\n\t\t\t\t\t\tname\n\t\t\t\t\t\tfields(includeDeprecated: true) {\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t";
             _context.next = 3;
-            return Object(_actions__WEBPACK_IMPORTED_MODULE_1__["receiveFieldsAndDirectives"])(query);
+            return Object(_actions__WEBPACK_IMPORTED_MODULE_1__["receiveTypesAndFields"])(query);
 
           case 3:
-            fieldsAndDirectives = _context.sent;
-            return _context.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setFieldsAndDirectives"])((_ref = (_fieldsAndDirectives$ = fieldsAndDirectives.data) === null || _fieldsAndDirectives$ === void 0 ? void 0 : _fieldsAndDirectives$.__schema) !== null && _ref !== void 0 ? _ref : []));
+            response = _context.sent;
+            return _context.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setTypesAndFields"])((_ref = (_response$data = response.data) === null || _response$data === void 0 ? void 0 : (_response$data$__sche = _response$data.__schema) === null || _response$data$__sche === void 0 ? void 0 : _response$data$__sche.types) !== null && _ref !== void 0 ? _ref : []));
 
           case 5:
           case "end":
             return _context.stop();
         }
       }
-    }, receiveFieldsAndDirectives);
+    }, receiveTypesAndFields);
+  }),
+  receiveDirectives: /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function receiveDirectives(state) {
+    var _ref2, _response$data2, _response$data2$__sch;
+
+    var query, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function receiveDirectives$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            query = "\n\t\t\tquery GetDirectives {\n\t\t\t\t__schema {\n\t\t\t\t\tdirectives {\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t";
+            _context2.next = 3;
+            return Object(_actions__WEBPACK_IMPORTED_MODULE_1__["receiveDirectives"])(query);
+
+          case 3:
+            response = _context2.sent;
+            return _context2.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setDirectives"])((_ref2 = (_response$data2 = response.data) === null || _response$data2 === void 0 ? void 0 : (_response$data2$__sch = _response$data2.__schema) === null || _response$data2$__sch === void 0 ? void 0 : _response$data2$__sch.directives) !== null && _ref2 !== void 0 ? _ref2 : []));
+
+          case 5:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, receiveDirectives);
   })
 });
 
@@ -1670,15 +1711,21 @@ __webpack_require__.r(__webpack_exports__);
 /*!********************************!*\
   !*** ./src/store/selectors.js ***!
   \********************************/
-/*! exports provided: receiveFieldsAndDirectives */
+/*! exports provided: receiveTypesAndFields, receiveDirectives */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveFieldsAndDirectives", function() { return receiveFieldsAndDirectives; });
-function receiveFieldsAndDirectives(state) {
-  var fieldsAndDirectives = state.fieldsAndDirectives;
-  return fieldsAndDirectives;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTypesAndFields", function() { return receiveTypesAndFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveDirectives", function() { return receiveDirectives; });
+function receiveTypesAndFields(state) {
+  var typesAndFields = state.typesAndFields;
+  return typesAndFields;
+}
+;
+function receiveDirectives(state) {
+  var directives = state.directives;
+  return directives;
 }
 ;
 

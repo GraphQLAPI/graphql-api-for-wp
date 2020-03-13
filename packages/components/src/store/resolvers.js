@@ -1,13 +1,18 @@
 /**
  * External dependencies
  */
-import { receiveFieldsAndDirectives, setFieldsAndDirectives } from './actions';
+import {
+	receiveTypesAndFields,
+	setTypesAndFields,
+	receiveDirectives,
+	setDirectives,
+} from './actions';
 
 
 export default {
-	* receiveFieldsAndDirectives( state ) {
+	* receiveTypesAndFields( state ) {
 		const query = `
-			query IntrospectionQuery {
+			query GetTypesAndFields {
 				__schema {
 					types {
 						name
@@ -15,13 +20,24 @@ export default {
 							name
 						}
 					}
+				}
+			}
+		`
+		const response = yield receiveTypesAndFields( query );
+		// console.log('response', response, response.data?.__schema?.types ?? []);
+		return setTypesAndFields( response.data?.__schema?.types ?? [] );
+	},
+	* receiveDirectives( state ) {
+		const query = `
+			query GetDirectives {
+				__schema {
 					directives {
 						name
 					}
 				}
 			}
 		`
-		const fieldsAndDirectives = yield receiveFieldsAndDirectives( query );
-		return setFieldsAndDirectives( fieldsAndDirectives.data?.__schema ?? [] );
+		const response = yield receiveDirectives( query );
+		return setDirectives( response.data?.__schema?.directives ?? [] );
 	},
 };

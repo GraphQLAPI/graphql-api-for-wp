@@ -1,33 +1,31 @@
 /**
- * WordPress dependencies
- */
-import { combineReducers } from '@wordpress/data';
-
-/**
- * Reducer returning an array of fields and directives.
+ * Reducer returning an array of types and their fields, and directives.
  *
  * @param {Object} state  Current state.
  * @param {Object} action Dispatched action.
  *
  * @return {Object} Updated state.
  */
-export const fieldsAndDirectives = (
+const schemaInstrospection = (
 	state = {
-		fieldsAndDirectives: {}
+		typesAndFields: {},
+		directives: {},
 	},
 	action
 ) => {
 	switch ( action.type ) {
-		case 'SET_FIELDS_AND_DIRECTIVES':
+		case 'SET_TYPES_AND_FIELDS':
 			return {
 				...state,
-				fieldsAndDirectives: action.fieldsAndDirectives,
+				typesAndFields: action.typesAndFields,
+			};
+		case 'SET_DIRECTIVES':
+			return {
+				...state,
+				directives: action.directives,
 			};
 	}
 	return state;
 };
 
-
-export default combineReducers( {
-	fieldsAndDirectives,
-} );
+export default schemaInstrospection;
