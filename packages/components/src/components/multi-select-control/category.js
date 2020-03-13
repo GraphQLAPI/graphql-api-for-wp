@@ -1,12 +1,11 @@
 /**
  * External dependencies
  */
-import { map, intersection } from 'lodash';
+import { without, map, intersection } from 'lodash';
 
 /**
  * WordPress dependencies
  */
-import { withDispatch } from '@wordpress/data';
 import { compose, withInstanceId } from '@wordpress/compose';
 import { CheckboxControl } from '@wordpress/components';
 
@@ -19,14 +18,28 @@ function BlockManagerCategory( {
 	instanceId,
 	category,
 	blockTypes,
-	toggleVisible,
-	toggleAllVisible,
 	selectedFields,
+	setAttributes,
 } ) {
 	const checkedBlockNames = intersection(
 		map( blockTypes, 'name' ),
 		selectedFields
 	);
+	const toggleVisible = ( blockName, nextIsChecked ) => {
+		if ( nextIsChecked ) {
+			setAttributes( { selectedFields: [...selectedFields, blockName] } );
+		} else {
+			setAttributes( { selectedFields: without(selectedFields, blockName) } );
+		}
+	};
+	const toggleAllVisible = ( nextIsChecked ) => {
+		const blockNames = map( blockTypes, 'name' );
+		if ( nextIsChecked ) {
+			setAttributes( { selectedFields: [...selectedFields, ...blockNames] } );
+		} else {
+			setAttributes( { selectedFields: without(selectedFields, ...blockNames) } );
+		}
+	};
 
 	const titleId =
 		'edit-post-manage-blocks-modal__category-title-' + instanceId;
@@ -66,25 +79,4 @@ function BlockManagerCategory( {
 
 export default compose( [
 	withInstanceId,
-	withDispatch( ( dispatch, ownProps ) => {
-		const { showBlockTypes, hideBlockTypes } = dispatch( 'core/edit-post' );
-
-		return {
-			toggleVisible( blockName, nextIsChecked ) {
-				if ( nextIsChecked ) {
-					showBlockTypes( blockName );
-				} else {
-					hideBlockTypes( blockName );
-				}
-			},
-			toggleAllVisible( nextIsChecked ) {
-				const blockNames = map( ownProps.blockTypes, 'name' );
-				if ( nextIsChecked ) {
-					showBlockTypes( blockNames );
-				} else {
-					hideBlockTypes( blockNames );
-				}
-			},
-		};
-	} ),
 ] )( BlockManagerCategory );

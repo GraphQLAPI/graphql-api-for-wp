@@ -3,7 +3,7 @@ import { MultiSelectControl } from '../../../packages/components/src';
 import './style.scss';
 
 const EditBlock = ( props ) => {
-	const { className } = props;
+	const { className, setAttributes, attributes: { selectedFields }, } = props;
 	return (
 		<div className={ className }>
 			<div className={ className+'__items' }>
@@ -13,7 +13,10 @@ const EditBlock = ( props ) => {
 							<p className={ className+'__item_data__title' }><strong>{ __('Define access for:', 'graphql-api') }</strong></p>
 							<p>{ __('Fields:', 'graphql-api') }</p>
 							<div className="edit-post-manage-blocks-modal">
-								<MultiSelectControl selectedFields={ ["core/image", "core/quote", "core/block"] } />
+								<MultiSelectControl
+									selectedFields={ selectedFields }
+									setAttributes={ setAttributes }
+								/>
 							</div>
 							<p>{ __('Directives:', 'graphql-api') }</p>
 						</div>

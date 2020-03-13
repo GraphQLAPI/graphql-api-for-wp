@@ -54,6 +54,10 @@ registerBlockType( 'graphql-api/access-control-list', {
 	 * Block default attributes.
 	 */
 	attributes: {
+		selectedFields: {
+			type: 'array',
+			default: [],
+		},
 		// Make it wide alignment by default
 		align: {
 			type: 'string',

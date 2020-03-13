@@ -25,6 +25,7 @@ function MultiSelectControl( {
 	blockTypes,
 	categories,
 	selectedFields,
+	setAttributes,
 } ) {
 	return (
 		<div className="edit-post-manage-blocks-modal__content">
@@ -58,6 +59,7 @@ function MultiSelectControl( {
 							category: category.slug,
 						} ) }
 						selectedFields={ selectedFields }
+						setAttributes={ setAttributes }
 					/>
 				) ) }
 			</div>
