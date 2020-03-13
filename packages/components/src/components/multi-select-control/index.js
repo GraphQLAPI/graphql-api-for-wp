@@ -75,10 +75,10 @@ export default compose( [
 			getCategories,
 		} = select( 'core/blocks' );
 		const {
-			receiveTypesAndFields,
+			receiveTypeFields,
 			receiveDirectives,
 		} = select ( 'leoloso/graphql-api' );
-		console.log('receiveFieldsAndDirectives', receiveTypesAndFields(), receiveDirectives());
+		console.log('receiveFieldsAndDirectives', receiveTypeFields(), receiveDirectives());
 		return {
 			blockTypes: getBlockTypes(),//receiveFieldsAndDirectives().fieldsAndDirectives,
 			categories: getCategories(),

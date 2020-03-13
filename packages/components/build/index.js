@@ -1375,10 +1375,10 @@ function MultiSelectControl(_ref) {
       getCategories = _select.getCategories;
 
   var _select2 = select('leoloso/graphql-api'),
-      receiveTypesAndFields = _select2.receiveTypesAndFields,
+      receiveTypeFields = _select2.receiveTypeFields,
       receiveDirectives = _select2.receiveDirectives;
 
-  console.log('receiveFieldsAndDirectives', receiveTypesAndFields(), receiveDirectives());
+  console.log('receiveFieldsAndDirectives', receiveTypeFields(), receiveDirectives());
   return {
     blockTypes: getBlockTypes(),
     //receiveFieldsAndDirectives().fieldsAndDirectives,
@@ -1448,25 +1448,25 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************!*\
   !*** ./src/store/actions.js ***!
   \******************************/
-/*! exports provided: setTypesAndFields, receiveTypesAndFields, setDirectives, receiveDirectives */
+/*! exports provided: setTypeFields, receiveTypeFields, setDirectives, receiveDirectives */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTypesAndFields", function() { return setTypesAndFields; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTypesAndFields", function() { return receiveTypesAndFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTypeFields", function() { return setTypeFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTypeFields", function() { return receiveTypeFields; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDirectives", function() { return setDirectives; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveDirectives", function() { return receiveDirectives; });
-function setTypesAndFields(typesAndFields) {
+function setTypeFields(typeFields) {
   return {
-    type: 'SET_TYPES_AND_FIELDS',
-    typesAndFields: typesAndFields
+    type: 'SET_TYPE_FIELDS',
+    typeFields: typeFields
   };
 }
 ;
-function receiveTypesAndFields(path) {
+function receiveTypeFields(path) {
   return {
-    type: 'RECEIVE_TYPES_AND_FIELDS',
+    type: 'RECEIVE_TYPE_FIELDS',
     path: path
   };
 }
@@ -1521,7 +1521,7 @@ var fetchGraphQLQuery = function fetchGraphQLQuery(query) {
 };
 
 var controls = {
-  RECEIVE_TYPES_AND_FIELDS: function RECEIVE_TYPES_AND_FIELDS(action) {
+  RECEIVE_TYPE_FIELDS: function RECEIVE_TYPE_FIELDS(action) {
     return fetchGraphQLQuery(action.path);
   },
   RECEIVE_DIRECTIVES: function RECEIVE_DIRECTIVES(action) {
@@ -1614,15 +1614,15 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
  */
 var schemaInstrospection = function schemaInstrospection() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    typesAndFields: {},
+    typeFields: {},
     directives: {}
   };
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case 'SET_TYPES_AND_FIELDS':
+    case 'SET_TYPE_FIELDS':
       return _objectSpread({}, state, {
-        typesAndFields: action.typesAndFields
+        typeFields: action.typeFields
       });
 
     case 'SET_DIRECTIVES':
@@ -1657,28 +1657,28 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  receiveTypesAndFields: /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function receiveTypesAndFields(state) {
+  receiveTypeFields: /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function receiveTypeFields(state) {
     var _ref, _response$data, _response$data$__sche;
 
     var query, response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function receiveTypesAndFields$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function receiveTypeFields$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            query = "\n\t\t\tquery GetTypesAndFields {\n\t\t\t\t__schema {\n\t\t\t\t\ttypes {\n\t\t\t\t\t\tname\n\t\t\t\t\t\tfields(includeDeprecated: true) {\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t";
+            query = "\n\t\t\tquery GetTypeFields {\n\t\t\t\t__schema {\n\t\t\t\t\ttypes {\n\t\t\t\t\t\tname\n\t\t\t\t\t\tfields(includeDeprecated: true) {\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t";
             _context.next = 3;
-            return Object(_actions__WEBPACK_IMPORTED_MODULE_1__["receiveTypesAndFields"])(query);
+            return Object(_actions__WEBPACK_IMPORTED_MODULE_1__["receiveTypeFields"])(query);
 
           case 3:
             response = _context.sent;
-            return _context.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setTypesAndFields"])((_ref = (_response$data = response.data) === null || _response$data === void 0 ? void 0 : (_response$data$__sche = _response$data.__schema) === null || _response$data$__sche === void 0 ? void 0 : _response$data$__sche.types) !== null && _ref !== void 0 ? _ref : []));
+            return _context.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setTypeFields"])((_ref = (_response$data = response.data) === null || _response$data === void 0 ? void 0 : (_response$data$__sche = _response$data.__schema) === null || _response$data$__sche === void 0 ? void 0 : _response$data$__sche.types) !== null && _ref !== void 0 ? _ref : []));
 
           case 5:
           case "end":
             return _context.stop();
         }
       }
-    }, receiveTypesAndFields);
+    }, receiveTypeFields);
   }),
   receiveDirectives: /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function receiveDirectives(state) {
     var _ref2, _response$data2, _response$data2$__sch;
@@ -1711,16 +1711,16 @@ __webpack_require__.r(__webpack_exports__);
 /*!********************************!*\
   !*** ./src/store/selectors.js ***!
   \********************************/
-/*! exports provided: receiveTypesAndFields, receiveDirectives */
+/*! exports provided: receiveTypeFields, receiveDirectives */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTypesAndFields", function() { return receiveTypesAndFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTypeFields", function() { return receiveTypeFields; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveDirectives", function() { return receiveDirectives; });
-function receiveTypesAndFields(state) {
-  var typesAndFields = state.typesAndFields;
-  return typesAndFields;
+function receiveTypeFields(state) {
+  var typeFields = state.typeFields;
+  return typeFields;
 }
 ;
 function receiveDirectives(state) {

@@ -1,6 +1,6 @@
-export function receiveTypesAndFields( state ) {
-	const { typesAndFields } = state;
-	return typesAndFields;
+export function receiveTypeFields( state ) {
+	const { typeFields } = state;
+	return typeFields;
 };
 
 export function receiveDirectives( state ) {

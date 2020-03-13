@@ -16,7 +16,7 @@ const fetchGraphQLQuery = (query) => {
 };
 
 const controls = {
-	RECEIVE_TYPES_AND_FIELDS( action ) {
+	RECEIVE_TYPE_FIELDS( action ) {
 		return fetchGraphQLQuery(action.path);
 	},
 	RECEIVE_DIRECTIVES( action ) {

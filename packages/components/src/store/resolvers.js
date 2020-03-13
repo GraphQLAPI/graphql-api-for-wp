@@ -2,17 +2,17 @@
  * External dependencies
  */
 import {
-	receiveTypesAndFields,
-	setTypesAndFields,
+	receiveTypeFields,
+	setTypeFields,
 	receiveDirectives,
 	setDirectives,
 } from './actions';
 
 
 export default {
-	* receiveTypesAndFields( state ) {
+	* receiveTypeFields( state ) {
 		const query = `
-			query GetTypesAndFields {
+			query GetTypeFields {
 				__schema {
 					types {
 						name
@@ -23,9 +23,9 @@ export default {
 				}
 			}
 		`
-		const response = yield receiveTypesAndFields( query );
+		const response = yield receiveTypeFields( query );
 		// console.log('response', response, response.data?.__schema?.types ?? []);
-		return setTypesAndFields( response.data?.__schema?.types ?? [] );
+		return setTypeFields( response.data?.__schema?.types ?? [] );
 	},
 	* receiveDirectives( state ) {
 		const query = `

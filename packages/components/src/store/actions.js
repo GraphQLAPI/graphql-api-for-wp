@@ -1,14 +1,14 @@
 
-export function setTypesAndFields( typesAndFields ) {
+export function setTypeFields( typeFields ) {
 	return {
-		type: 'SET_TYPES_AND_FIELDS',
-		typesAndFields,
+		type: 'SET_TYPE_FIELDS',
+		typeFields,
 	};
 };
 
-export function receiveTypesAndFields( path ) {
+export function receiveTypeFields( path ) {
 	return {
-		type: 'RECEIVE_TYPES_AND_FIELDS',
+		type: 'RECEIVE_TYPE_FIELDS',
 		path,
 	};
 };

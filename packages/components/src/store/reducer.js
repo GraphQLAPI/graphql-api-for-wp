@@ -8,16 +8,16 @@
  */
 const schemaInstrospection = (
 	state = {
-		typesAndFields: {},
+		typeFields: {},
 		directives: {},
 	},
 	action
 ) => {
 	switch ( action.type ) {
-		case 'SET_TYPES_AND_FIELDS':
+		case 'SET_TYPE_FIELDS':
 			return {
 				...state,
-				typesAndFields: action.typesAndFields,
+				typeFields: action.typeFields,
 			};
 		case 'SET_DIRECTIVES':
 			return {
