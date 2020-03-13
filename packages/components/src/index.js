@@ -1,4 +1,4 @@
 /**
  * Exports
  */
-export { default as MultiSelectControl } from './multi-select-control';
+export { default as MultiSelectControl } from './components/multi-select-control';

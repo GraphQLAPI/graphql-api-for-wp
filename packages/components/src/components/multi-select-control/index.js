@@ -29,7 +29,7 @@ function MultiSelectControl( {
 		<div className="edit-post-manage-blocks-modal__content">
 			<TextControl
 				type="search"
-				label={ __( 'Search for a block' ) }
+				label={ __( 'Search' ) }
 				value={ search }
 				onChange={ ( nextSearch ) =>
 					setState( {
