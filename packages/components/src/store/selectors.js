@@ -1,5 +1,22 @@
-export function receiveTypeFields( state ) {
-	const { typeFields } = state;
+export function receiveTypeFields( state, keepScalarTypes = false, keepIntrospectionTypes = false ) {
+	let { typeFields } = state;
+	/**
+	 * Each element in typeFields has this shape:
+	 * {
+	 * "type": string
+	 * "fields": array|null
+	 * }
+	 * Scalar types are those with no fields
+	 */
+	if ( !keepScalarTypes ) {
+		typeFields = typeFields.filter(element => element.fields != null);
+	}
+	/**
+	 * Introspection types (eg: __Schema, __Directive, __Type, etc) start with "__"
+	 */
+	if ( !keepIntrospectionTypes ) {
+		typeFields = typeFields.filter(element => !element.type.startsWith('__'));
+	}
 	return typeFields;
 };
 

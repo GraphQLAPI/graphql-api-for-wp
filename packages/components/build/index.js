@@ -1624,9 +1624,9 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
  */
 var schemaInstrospection = function schemaInstrospection() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    typeFields: {},
+    typeFields: [],
     fetchedTypeFields: false,
-    directives: {},
+    directives: [],
     fetchedDirectives: false
   };
   var action = arguments.length > 1 ? arguments[1] : undefined;
@@ -1672,9 +1672,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   receiveTypeFields: /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function receiveTypeFields(state) {
-    var _ref, _response$data, _response$data$__sche;
+    var _response$data, _response$data$__sche;
 
-    var query, response;
+    var query, response, typeFields;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function receiveTypeFields$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -1685,9 +1685,34 @@ __webpack_require__.r(__webpack_exports__);
 
           case 3:
             response = _context.sent;
-            return _context.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setTypeFields"])((_ref = (_response$data = response.data) === null || _response$data === void 0 ? void 0 : (_response$data$__sche = _response$data.__schema) === null || _response$data$__sche === void 0 ? void 0 : _response$data$__sche.types) !== null && _ref !== void 0 ? _ref : []));
 
-          case 5:
+            if (!(response.errors && response.errors.length)) {
+              _context.next = 6;
+              break;
+            }
+
+            return _context.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setTypeFields"])([]));
+
+          case 6:
+            /**
+             * Convert the response to an array with this structure:
+             * {
+             * "type": string
+             * "fields": array|null
+             * }
+             */
+            typeFields = (_response$data = response.data) === null || _response$data === void 0 ? void 0 : (_response$data$__sche = _response$data.__schema) === null || _response$data$__sche === void 0 ? void 0 : _response$data$__sche.types.map(function (element) {
+              return {
+                type: element.name,
+                fields: element.fields == null ? null : element.fields.map(function (subelement) {
+                  return subelement.name;
+                })
+              };
+            }); // console.log('typeFields', typeFields);
+
+            return _context.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setTypeFields"])(typeFields));
+
+          case 8:
           case "end":
             return _context.stop();
         }
@@ -1695,9 +1720,9 @@ __webpack_require__.r(__webpack_exports__);
     }, receiveTypeFields);
   }),
   receiveDirectives: /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function receiveDirectives(state) {
-    var _ref2, _response$data2, _response$data2$__sch;
+    var _response$data2, _response$data2$__sch;
 
-    var query, response;
+    var query, response, directives;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function receiveDirectives$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -1708,9 +1733,25 @@ __webpack_require__.r(__webpack_exports__);
 
           case 3:
             response = _context2.sent;
-            return _context2.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setDirectives"])((_ref2 = (_response$data2 = response.data) === null || _response$data2 === void 0 ? void 0 : (_response$data2$__sch = _response$data2.__schema) === null || _response$data2$__sch === void 0 ? void 0 : _response$data2$__sch.directives) !== null && _ref2 !== void 0 ? _ref2 : []));
 
-          case 5:
+            if (!(response.errors && response.errors.length)) {
+              _context2.next = 6;
+              break;
+            }
+
+            return _context2.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setDirectives"])([]));
+
+          case 6:
+            /**
+             * Convert the response to an array directly, removing the "name" key
+             */
+            directives = (_response$data2 = response.data) === null || _response$data2 === void 0 ? void 0 : (_response$data2$__sch = _response$data2.__schema) === null || _response$data2$__sch === void 0 ? void 0 : _response$data2$__sch.directives.map(function (element) {
+              return element.name;
+            }); // console.log('directives', directives);
+
+            return _context2.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setDirectives"])(directives));
+
+          case 8:
           case "end":
             return _context2.stop();
         }
@@ -1735,7 +1776,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveDirectives", function() { return receiveDirectives; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchedDirectives", function() { return fetchedDirectives; });
 function receiveTypeFields(state) {
+  var keepScalarTypes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var keepIntrospectionTypes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
   var typeFields = state.typeFields;
+  /**
+   * Each element in typeFields has this shape:
+   * {
+   * "type": string
+   * "fields": array|null
+   * }
+   * Scalar types are those with no fields
+   */
+
+  if (!keepScalarTypes) {
+    typeFields = typeFields.filter(function (element) {
+      return element.fields != null;
+    });
+  }
+  /**
+   * Introspection types (eg: __Schema, __Directive, __Type, etc) start with "__"
+   */
+
+
+  if (!keepIntrospectionTypes) {
+    typeFields = typeFields.filter(function (element) {
+      return !element.type.startsWith('__');
+    });
+  }
+
   return typeFields;
 }
 ;

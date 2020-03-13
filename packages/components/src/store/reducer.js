@@ -8,9 +8,9 @@
  */
 const schemaInstrospection = (
 	state = {
-		typeFields: {},
+		typeFields: [],
 		fetchedTypeFields: false,
-		directives: {},
+		directives: [],
 		fetchedDirectives: false,
 	},
 	action

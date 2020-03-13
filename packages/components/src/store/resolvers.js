@@ -24,8 +24,25 @@ export default {
 			}
 		`
 		const response = yield receiveTypeFields( query );
-		// console.log('response', response, response.data?.__schema?.types ?? []);
-		return setTypeFields( response.data?.__schema?.types ?? [] );
+		/**
+		 * If there were erros when executing the query, return an empty list, and show the error
+		 */
+		if (response.errors && response.errors.length) {
+			return setTypeFields( [] );
+		}
+		/**
+		 * Convert the response to an array with this structure:
+		 * {
+		 * "type": string
+		 * "fields": array|null
+		 * }
+		 */
+		const typeFields = response.data?.__schema?.types.map(element => ({
+			type: element.name,
+			fields: element.fields == null ? null : element.fields.map(subelement => subelement.name),
+		}));
+		// console.log('typeFields', typeFields);
+		return setTypeFields( typeFields );
 	},
 	* receiveDirectives( state ) {
 		const query = `
@@ -38,6 +55,17 @@ export default {
 			}
 		`
 		const response = yield receiveDirectives( query );
-		return setDirectives( response.data?.__schema?.directives ?? [] );
+		/**
+		 * If there were erros when executing the query, return an empty list, and show the error
+		 */
+		if (response.errors && response.errors.length) {
+			return setDirectives( [] );
+		}
+		/**
+		 * Convert the response to an array directly, removing the "name" key
+		 */
+		const directives = response.data?.__schema?.directives.map(element => element.name);
+		// console.log('directives', directives);
+		return setDirectives( directives );
 	},
 };
