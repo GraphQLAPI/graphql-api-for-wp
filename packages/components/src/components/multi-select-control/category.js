@@ -1,14 +1,12 @@
 /**
  * External dependencies
  */
-import { includes, map, without } from 'lodash';
+import { map } from 'lodash';
 
 /**
  * WordPress dependencies
  */
-// Commented by Leo
-import { /*useContext, */useMemo } from '@wordpress/element';
-import { withSelect, withDispatch } from '@wordpress/data';
+import { withDispatch } from '@wordpress/data';
 import { compose, withInstanceId } from '@wordpress/compose';
 import { CheckboxControl } from '@wordpress/components';
 
@@ -16,8 +14,6 @@ import { CheckboxControl } from '@wordpress/components';
  * Internal dependencies
  */
 import BlockTypesChecklist from './checklist';
-// Commented by Leo
-// import EditPostSettings from '../edit-post-settings';
 
 function BlockManagerCategory( {
 	instanceId,
@@ -27,34 +23,15 @@ function BlockManagerCategory( {
 	toggleAllVisible,
 	selectedFields,
 } ) {
-	// Change by Leo
-	// const settings = useContext( EditPostSettings );
-	const settings = {"allowedBlockTypes": true};
-	const { allowedBlockTypes } = settings;
-	const filteredBlockTypes = useMemo( () => {
-		if ( allowedBlockTypes === true ) {
-			return blockTypes;
-		}
-		return blockTypes.filter( ( { name } ) => {
-			return includes( allowedBlockTypes || [], name );
-		} );
-	}, [ allowedBlockTypes, blockTypes ] );
-
-	if ( ! filteredBlockTypes.length ) {
-		return null;
-	}
-
-	const checkedBlockNames = selectedFields;
-
 	const titleId =
 		'edit-post-manage-blocks-modal__category-title-' + instanceId;
 
-	const isAllChecked = checkedBlockNames.length === filteredBlockTypes.length;
+	const isAllChecked = selectedFields.length === blockTypes.length;
 
 	let ariaChecked;
 	if ( isAllChecked ) {
 		ariaChecked = 'true';
-	} else if ( checkedBlockNames.length > 0 ) {
+	} else if ( selectedFields.length > 0 ) {
 		ariaChecked = 'mixed';
 	} else {
 		ariaChecked = 'false';
@@ -74,8 +51,8 @@ function BlockManagerCategory( {
 				label={ <span id={ titleId }>{ category.title }</span> }
 			/>
 			<BlockTypesChecklist
-				blockTypes={ filteredBlockTypes }
-				value={ checkedBlockNames }
+				blockTypes={ blockTypes }
+				value={ selectedFields }
 				onItemChange={ toggleVisible }
 			/>
 		</div>

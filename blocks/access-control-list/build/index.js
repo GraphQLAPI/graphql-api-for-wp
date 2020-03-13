@@ -115,8 +115,6 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * WordPress dependencies
  */
-// Commented by Leo
-
 
 
 
@@ -125,8 +123,7 @@ __webpack_require__.r(__webpack_exports__);
  * Internal dependencies
  */
 
- // Commented by Leo
-// import EditPostSettings from '../edit-post-settings';
+
 
 function BlockManagerCategory(_ref) {
   var instanceId = _ref.instanceId,
@@ -135,35 +132,13 @@ function BlockManagerCategory(_ref) {
       toggleVisible = _ref.toggleVisible,
       toggleAllVisible = _ref.toggleAllVisible,
       selectedFields = _ref.selectedFields;
-  // Change by Leo
-  // const settings = useContext( EditPostSettings );
-  var settings = {
-    "allowedBlockTypes": true
-  };
-  var allowedBlockTypes = settings.allowedBlockTypes;
-  var filteredBlockTypes = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () {
-    if (allowedBlockTypes === true) {
-      return blockTypes;
-    }
-
-    return blockTypes.filter(function (_ref2) {
-      var name = _ref2.name;
-      return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["includes"])(allowedBlockTypes || [], name);
-    });
-  }, [allowedBlockTypes, blockTypes]);
-
-  if (!filteredBlockTypes.length) {
-    return null;
-  }
-
-  var checkedBlockNames = selectedFields;
   var titleId = 'edit-post-manage-blocks-modal__category-title-' + instanceId;
-  var isAllChecked = checkedBlockNames.length === filteredBlockTypes.length;
+  var isAllChecked = selectedFields.length === blockTypes.length;
   var ariaChecked;
 
   if (isAllChecked) {
     ariaChecked = 'true';
-  } else if (checkedBlockNames.length > 0) {
+  } else if (selectedFields.length > 0) {
     ariaChecked = 'mixed';
   } else {
     ariaChecked = 'false';
@@ -182,8 +157,8 @@ function BlockManagerCategory(_ref) {
       id: titleId
     }, category.title)
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_checklist__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    blockTypes: filteredBlockTypes,
-    value: checkedBlockNames,
+    blockTypes: blockTypes,
+    value: selectedFields,
     onItemChange: toggleVisible
   }));
 }
