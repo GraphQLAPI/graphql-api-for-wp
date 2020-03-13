@@ -72,13 +72,15 @@ export default compose( [
 	withState( { search: '' } ),
 	withSelect( ( select ) => {
 		const {
+			getBlockTypes,
 			getCategories,
 		} = select( 'core/blocks' );
 		const {
 			receiveFieldsAndDirectives,
 		} = select ( 'leoloso/graphql-api' );
+		console.log('receiveFieldsAndDirectives', receiveFieldsAndDirectives(), getBlockTypes());
 		return {
-			blockTypes: receiveFieldsAndDirectives().fieldsAndDirectives,
+			blockTypes: getBlockTypes(),//receiveFieldsAndDirectives().fieldsAndDirectives,
 			categories: getCategories(),
 		};
 	} ),

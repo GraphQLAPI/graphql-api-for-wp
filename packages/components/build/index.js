@@ -1371,13 +1371,16 @@ function MultiSelectControl(_ref) {
   search: ''
 }), Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["withSelect"])(function (select) {
   var _select = select('core/blocks'),
+      getBlockTypes = _select.getBlockTypes,
       getCategories = _select.getCategories;
 
   var _select2 = select('leoloso/graphql-api'),
       receiveFieldsAndDirectives = _select2.receiveFieldsAndDirectives;
 
+  console.log('receiveFieldsAndDirectives', receiveFieldsAndDirectives(), getBlockTypes());
   return {
-    blockTypes: receiveFieldsAndDirectives().fieldsAndDirectives,
+    blockTypes: getBlockTypes(),
+    //receiveFieldsAndDirectives().fieldsAndDirectives,
     categories: getCategories()
   };
 })])(MultiSelectControl));
@@ -1485,26 +1488,23 @@ __webpack_require__.r(__webpack_exports__);
 
 var controls = {
   RECEIVE_FIELDS_AND_DIRECTIVES: function RECEIVE_FIELDS_AND_DIRECTIVES(action) {
-    // console.log('action', action, action.path);
-    // let content = {
-    // "query": `{
-    // 	${ action.path }
-    // }
-    // `};
-    // return fetch( `${ window.location.origin }/api/graphql`, {
-    // 	method: 'post',
-    // 	headers: { 'Content-Type': 'application/json' },
-    // 	body: JSON.stringify( content ),
-    // } ).then( ( response ) => response.json() );
-    return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()("".concat(window.location.origin, "/api/graphql/?query=").concat(action.path.replace(/\s/g, '')), {
-      // method: 'post',
+    console.log('action', action, action.path);
+    var content = {
+      query: action.path
+    };
+    return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()("".concat(window.location.origin, "/api/graphql"), {
+      method: 'post',
       headers: {
         'Content-Type': 'application/json'
-      } // body: JSON.stringify( content ),
-
+      },
+      body: JSON.stringify(content)
     }).then(function (response) {
       return response.json();
-    });
+    }); // return fetch( `${ window.location.origin }/api/graphql/?query=${ action.path.replace(/\s/g,'') }`, {
+    // 	// method: 'post',
+    // 	headers: { 'Content-Type': 'application/json' },
+    // 	// body: JSON.stringify( content ),
+    // } ).then( ( response ) => response.json() );
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (controls);
@@ -1647,13 +1647,13 @@ __webpack_require__.r(__webpack_exports__);
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            query = "\n\t\t\techo([\n\t\t\t\t[name:\"core-embed/wordpress-tv\", category:\"embed\", title:\"core-embed/wordpress-tv\"],\n\t\t\t\t[name:\"core-embed/youtube\", category:\"embed\", title:\"core-embed/youtube\"],\n\t\t\t\t[name:\"core/archives\", category:\"widgets\", title:\"core/archives\"],\n\t\t\t\t[name:\"core/audio\", category:\"widgets\", title:\"core/audio\"],\n\t\t\t])@echo\n\t\t";
+            query = "\n\t\t\tquery IntrospectionQuery {\n\t\t\t\t__schema {\n\t\t\t\t\ttypes {\n\t\t\t\t\t\tname\n\t\t\t\t\t\tfields(includeDeprecated: true) {\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tdirectives {\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t";
             _context.next = 3;
             return Object(_actions__WEBPACK_IMPORTED_MODULE_1__["receiveFieldsAndDirectives"])(query);
 
           case 3:
             fieldsAndDirectives = _context.sent;
-            return _context.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setFieldsAndDirectives"])((_ref = (_fieldsAndDirectives$ = fieldsAndDirectives.data) === null || _fieldsAndDirectives$ === void 0 ? void 0 : _fieldsAndDirectives$.echo) !== null && _ref !== void 0 ? _ref : []));
+            return _context.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setFieldsAndDirectives"])((_ref = (_fieldsAndDirectives$ = fieldsAndDirectives.data) === null || _fieldsAndDirectives$ === void 0 ? void 0 : _fieldsAndDirectives$.__schema) !== null && _ref !== void 0 ? _ref : []));
 
           case 5:
           case "end":
