@@ -46,6 +46,7 @@ function MultiSelectControl( {
 				aria-label={ __( 'Available block types' ) }
 				className="edit-post-manage-blocks-modal__results"
 			>
+				{/* { console.log('blockTypes', blockTypes) } */}
 				{ blockTypes.length === 0 && (
 					<p className="edit-post-manage-blocks-modal__no-results">
 						{ __( 'No blocks found.' ) }
@@ -71,11 +72,13 @@ export default compose( [
 	withState( { search: '' } ),
 	withSelect( ( select ) => {
 		const {
-			getBlockTypes,
 			getCategories,
 		} = select( 'core/blocks' );
+		const {
+			receiveFieldsAndDirectives,
+		} = select ( 'leoloso/graphql-api' );
 		return {
-			blockTypes: getBlockTypes(),
+			blockTypes: receiveFieldsAndDirectives().fieldsAndDirectives,
 			categories: getCategories(),
 		};
 	} ),

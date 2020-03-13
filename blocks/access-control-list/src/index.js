@@ -76,7 +76,7 @@ registerBlockType( 'graphql-api/access-control-list', {
 		// Remove support for an HTML mode.
 		html: false,
 		// Only insert block through a template
-		inserter: false,
+		// inserter: false,
 	},
 
 	/**
