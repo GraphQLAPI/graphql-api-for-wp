@@ -9,7 +9,7 @@ import { filter, includes, isArray } from 'lodash';
 import { withSelect } from '@wordpress/data';
 import { compose, withState } from '@wordpress/compose';
 import { TextControl } from '@wordpress/components';
-import { __, _n, sprintf } from '@wordpress/i18n';
+import { __, _n } from '@wordpress/i18n';
 
 // Addition by Leo
 import './style.scss';
@@ -26,7 +26,6 @@ function MultiSelectControl( {
 	categories,
 	hasBlockSupport,
 	isMatchingSearchTerm,
-	numberOfHiddenBlocks,
 } ) {
 	// Filtering occurs here (as opposed to `withSelect`) to avoid wasted
 	// wasted renders by consequence of `Array#filter` producing a new
@@ -52,18 +51,6 @@ function MultiSelectControl( {
 				}
 				className="edit-post-manage-blocks-modal__search"
 			/>
-			{ !! numberOfHiddenBlocks && (
-				<div className="edit-post-manage-blocks-modal__disabled-blocks-count">
-					{ sprintf(
-						_n(
-							'%1$d block is disabled.',
-							'%1$d blocks are disabled.',
-							numberOfHiddenBlocks
-						),
-						numberOfHiddenBlocks
-					) }
-				</div>
-			) }
 			<div
 				tabIndex="0"
 				role="region"
@@ -98,17 +85,11 @@ export default compose( [
 			hasBlockSupport,
 			isMatchingSearchTerm,
 		} = select( 'core/blocks' );
-		const { getPreference } = select( 'core/edit-post' );
-		const hiddenBlockTypes = getPreference( 'hiddenBlockTypes' );
-		const numberOfHiddenBlocks =
-			isArray( hiddenBlockTypes ) && hiddenBlockTypes.length;
-
 		return {
 			blockTypes: getBlockTypes(),
 			categories: getCategories(),
 			hasBlockSupport,
 			isMatchingSearchTerm,
-			numberOfHiddenBlocks,
 		};
 	} ),
 ] )( MultiSelectControl );

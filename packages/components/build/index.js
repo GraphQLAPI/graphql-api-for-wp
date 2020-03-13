@@ -169,7 +169,7 @@ module.exports = _toConsumableArray;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Colors\n */\n/**\n * Often re-used variables\n */\n/**\n * Breakpoint mixins\n */\n/**\n * Long content fade mixin\n *\n * Creates a fading overlay to signify that the content is longer\n * than the space allows.\n */\n/**\n * Button states and focus styles\n */\n/**\n * Applies editor left position to the selector passed as argument\n */\n/**\n * Styles that are reused verbatim in a few places\n */\n/**\n * Allows users to opt-out of animations via OS-level preferences.\n */\n/**\n * Reset default styles for JavaScript UI based pages.\n * This is a WP-admin agnostic reset\n */\n/**\n * Reset the WP Admin page styles for Gutenberg-like pages.\n */\n/**\n * Breakpoints & Media Queries\n */\n.edit-post-manage-blocks-modal__content {\n  max-height: 500px; }\n\n@media (min-width: 600px) {\n  .edit-post-manage-blocks-modal {\n    height: calc(100% - 56px - 56px); } }\n\n.edit-post-manage-blocks-modal .components-modal__content {\n  padding-bottom: 0;\n  display: flex;\n  flex-direction: column; }\n\n.edit-post-manage-blocks-modal .components-modal__header {\n  flex-shrink: 0;\n  margin-bottom: 0; }\n\n.edit-post-manage-blocks-modal__content {\n  display: flex;\n  flex-direction: column;\n  flex: 0 1 100%;\n  min-height: 0; }\n\n.edit-post-manage-blocks-modal__no-results {\n  font-style: italic;\n  padding: 24px 0;\n  text-align: center; }\n\n.edit-post-manage-blocks-modal__search {\n  margin: 16px 0; }\n  .edit-post-manage-blocks-modal__search .components-base-control__field {\n    margin-bottom: 0; }\n  .edit-post-manage-blocks-modal__search .components-base-control__label {\n    margin-top: -4px; }\n  .edit-post-manage-blocks-modal__search input[type=\"search\"].components-text-control__input {\n    padding: 12px;\n    border-radius: 4px; }\n\n.edit-post-manage-blocks-modal__disabled-blocks-count {\n  border-top: 1px solid #e2e4e7;\n  margin-left: -24px;\n  margin-right: -24px;\n  padding-top: 0.6rem;\n  padding-bottom: 0.6rem;\n  padding-left: 24px;\n  padding-right: 24px;\n  background-color: #f3f4f5; }\n\n.edit-post-manage-blocks-modal__category {\n  margin: 0 0 2rem 0; }\n\n.edit-post-manage-blocks-modal__category-title {\n  position: sticky;\n  top: 0;\n  padding: 16px 0;\n  background-color: #fff;\n  z-index: 1; }\n  .edit-post-manage-blocks-modal__category-title .components-base-control__field {\n    margin-bottom: 0; }\n  .edit-post-manage-blocks-modal__category-title .components-checkbox-control__label {\n    font-size: 0.9rem;\n    font-weight: 600; }\n\n.edit-post-manage-blocks-modal__show-all {\n  margin-right: 8px; }\n\n.edit-post-manage-blocks-modal__checklist {\n  margin-top: 0; }\n\n.edit-post-manage-blocks-modal__checklist-item {\n  margin-bottom: 0;\n  padding-left: 16px;\n  border-top: 1px solid #e2e4e7; }\n  .edit-post-manage-blocks-modal__checklist-item:last-child {\n    border-bottom: 1px solid #e2e4e7; }\n  .edit-post-manage-blocks-modal__checklist-item .components-base-control__field {\n    align-items: center;\n    display: flex;\n    margin: 0; }\n  .components-modal__content .edit-post-manage-blocks-modal__checklist-item.components-checkbox-control__input-container {\n    margin: 0 8px; }\n  .edit-post-manage-blocks-modal__checklist-item .components-checkbox-control__label {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    flex-grow: 1;\n    padding: 0.6rem 0 0.6rem 10px; }\n  .edit-post-manage-blocks-modal__checklist-item .block-editor-block-icon {\n    margin-right: 10px;\n    fill: #555d66; }\n\n.edit-post-manage-blocks-modal__results {\n  height: 100%;\n  overflow: auto;\n  margin-left: -24px;\n  margin-right: -24px;\n  padding-left: 24px;\n  padding-right: 24px;\n  border-top: 1px solid #e2e4e7; }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Colors\n */\n/**\n * Often re-used variables\n */\n/**\n * Breakpoint mixins\n */\n/**\n * Long content fade mixin\n *\n * Creates a fading overlay to signify that the content is longer\n * than the space allows.\n */\n/**\n * Button states and focus styles\n */\n/**\n * Applies editor left position to the selector passed as argument\n */\n/**\n * Styles that are reused verbatim in a few places\n */\n/**\n * Allows users to opt-out of animations via OS-level preferences.\n */\n/**\n * Reset default styles for JavaScript UI based pages.\n * This is a WP-admin agnostic reset\n */\n/**\n * Reset the WP Admin page styles for Gutenberg-like pages.\n */\n/**\n * Breakpoints & Media Queries\n */\n.edit-post-manage-blocks-modal__content {\n  max-height: 500px; }\n\n@media (min-width: 600px) {\n  .edit-post-manage-blocks-modal {\n    height: calc(100% - 56px - 56px); } }\n\n.edit-post-manage-blocks-modal .components-modal__content {\n  padding-bottom: 0;\n  display: flex;\n  flex-direction: column; }\n\n.edit-post-manage-blocks-modal .components-modal__header {\n  flex-shrink: 0;\n  margin-bottom: 0; }\n\n.edit-post-manage-blocks-modal__content {\n  display: flex;\n  flex-direction: column;\n  flex: 0 1 100%;\n  min-height: 0; }\n\n.edit-post-manage-blocks-modal__no-results {\n  font-style: italic;\n  padding: 24px 0;\n  text-align: center; }\n\n.edit-post-manage-blocks-modal__search {\n  margin: 16px 0; }\n  .edit-post-manage-blocks-modal__search .components-base-control__field {\n    margin-bottom: 0; }\n  .edit-post-manage-blocks-modal__search .components-base-control__label {\n    margin-top: -4px; }\n  .edit-post-manage-blocks-modal__search input[type=\"search\"].components-text-control__input {\n    padding: 12px;\n    border-radius: 4px; }\n\n.edit-post-manage-blocks-modal__category {\n  margin: 0 0 2rem 0; }\n\n.edit-post-manage-blocks-modal__category-title {\n  position: sticky;\n  top: 0;\n  padding: 16px 0;\n  background-color: #fff;\n  z-index: 1; }\n  .edit-post-manage-blocks-modal__category-title .components-base-control__field {\n    margin-bottom: 0; }\n  .edit-post-manage-blocks-modal__category-title .components-checkbox-control__label {\n    font-size: 0.9rem;\n    font-weight: 600; }\n\n.edit-post-manage-blocks-modal__show-all {\n  margin-right: 8px; }\n\n.edit-post-manage-blocks-modal__checklist {\n  margin-top: 0; }\n\n.edit-post-manage-blocks-modal__checklist-item {\n  margin-bottom: 0;\n  padding-left: 16px;\n  border-top: 1px solid #e2e4e7; }\n  .edit-post-manage-blocks-modal__checklist-item:last-child {\n    border-bottom: 1px solid #e2e4e7; }\n  .edit-post-manage-blocks-modal__checklist-item .components-base-control__field {\n    align-items: center;\n    display: flex;\n    margin: 0; }\n  .components-modal__content .edit-post-manage-blocks-modal__checklist-item.components-checkbox-control__input-container {\n    margin: 0 8px; }\n  .edit-post-manage-blocks-modal__checklist-item .components-checkbox-control__label {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    flex-grow: 1;\n    padding: 0.6rem 0 0.6rem 10px; }\n  .edit-post-manage-blocks-modal__checklist-item .block-editor-block-icon {\n    margin-right: 10px;\n    fill: #555d66; }\n\n.edit-post-manage-blocks-modal__results {\n  height: 100%;\n  overflow: auto;\n  margin-left: -24px;\n  margin-right: -24px;\n  padding-left: 24px;\n  padding-right: 24px;\n  border-top: 1px solid #e2e4e7; }\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -825,8 +825,7 @@ function MultiSelectControl(_ref) {
       blockTypes = _ref.blockTypes,
       categories = _ref.categories,
       hasBlockSupport = _ref.hasBlockSupport,
-      isMatchingSearchTerm = _ref.isMatchingSearchTerm,
-      numberOfHiddenBlocks = _ref.numberOfHiddenBlocks;
+      isMatchingSearchTerm = _ref.isMatchingSearchTerm;
   // Filtering occurs here (as opposed to `withSelect`) to avoid wasted
   // wasted renders by consequence of `Array#filter` producing a new
   // value reference on each call.
@@ -845,9 +844,7 @@ function MultiSelectControl(_ref) {
       });
     },
     className: "edit-post-manage-blocks-modal__search"
-  }), !!numberOfHiddenBlocks && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "edit-post-manage-blocks-modal__disabled-blocks-count"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["sprintf"])(Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["_n"])('%1$d block is disabled.', '%1$d blocks are disabled.', numberOfHiddenBlocks), numberOfHiddenBlocks)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     tabIndex: "0",
     role: "region",
     "aria-label": Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Available block types'),
@@ -874,17 +871,11 @@ function MultiSelectControl(_ref) {
       hasBlockSupport = _select.hasBlockSupport,
       isMatchingSearchTerm = _select.isMatchingSearchTerm;
 
-  var _select2 = select('core/edit-post'),
-      getPreference = _select2.getPreference;
-
-  var hiddenBlockTypes = getPreference('hiddenBlockTypes');
-  var numberOfHiddenBlocks = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["isArray"])(hiddenBlockTypes) && hiddenBlockTypes.length;
   return {
     blockTypes: getBlockTypes(),
     categories: getCategories(),
     hasBlockSupport: hasBlockSupport,
-    isMatchingSearchTerm: isMatchingSearchTerm,
-    numberOfHiddenBlocks: numberOfHiddenBlocks
+    isMatchingSearchTerm: isMatchingSearchTerm
   };
 })])(MultiSelectControl));
 
