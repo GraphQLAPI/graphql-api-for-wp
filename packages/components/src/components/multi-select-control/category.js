@@ -26,19 +26,15 @@ function BlockManagerCategory( {
 		selectedFields
 	);
 	const toggleVisible = ( blockName, nextIsChecked ) => {
-		if ( nextIsChecked ) {
-			setAttributes( { selectedFields: [...selectedFields, blockName] } );
-		} else {
-			setAttributes( { selectedFields: without(selectedFields, blockName) } );
-		}
+		setAttributes( {
+			selectedFields: nextIsChecked ? [...selectedFields, blockName] : without(selectedFields, blockName)
+		} );
 	};
 	const toggleAllVisible = ( nextIsChecked ) => {
 		const blockNames = map( blockTypes, 'name' );
-		if ( nextIsChecked ) {
-			setAttributes( { selectedFields: [...selectedFields, ...blockNames] } );
-		} else {
-			setAttributes( { selectedFields: without(selectedFields, ...blockNames) } );
-		}
+		setAttributes( {
+			selectedFields: nextIsChecked ? [...selectedFields, ...blockNames] : without(selectedFields, ...blockNames)
+		} );
 	};
 
 	const titleId =

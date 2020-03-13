@@ -206,29 +206,16 @@ function BlockManagerCategory(_ref) {
   var checkedBlockNames = Object(lodash__WEBPACK_IMPORTED_MODULE_2__["intersection"])(Object(lodash__WEBPACK_IMPORTED_MODULE_2__["map"])(blockTypes, 'name'), selectedFields);
 
   var toggleVisible = function toggleVisible(blockName, nextIsChecked) {
-    if (nextIsChecked) {
-      setAttributes({
-        selectedFields: [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(selectedFields), [blockName])
-      });
-    } else {
-      setAttributes({
-        selectedFields: Object(lodash__WEBPACK_IMPORTED_MODULE_2__["without"])(selectedFields, blockName)
-      });
-    }
+    setAttributes({
+      selectedFields: nextIsChecked ? [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(selectedFields), [blockName]) : Object(lodash__WEBPACK_IMPORTED_MODULE_2__["without"])(selectedFields, blockName)
+    });
   };
 
   var toggleAllVisible = function toggleAllVisible(nextIsChecked) {
     var blockNames = Object(lodash__WEBPACK_IMPORTED_MODULE_2__["map"])(blockTypes, 'name');
-
-    if (nextIsChecked) {
-      setAttributes({
-        selectedFields: [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(selectedFields), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(blockNames))
-      });
-    } else {
-      setAttributes({
-        selectedFields: lodash__WEBPACK_IMPORTED_MODULE_2__["without"].apply(void 0, [selectedFields].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(blockNames)))
-      });
-    }
+    setAttributes({
+      selectedFields: nextIsChecked ? [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(selectedFields), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(blockNames)) : lodash__WEBPACK_IMPORTED_MODULE_2__["without"].apply(void 0, [selectedFields].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(blockNames)))
+    });
   };
 
   var titleId = 'edit-post-manage-blocks-modal__category-title-' + instanceId;
