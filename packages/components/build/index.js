@@ -1334,10 +1334,14 @@ function MultiSelectControl(_ref) {
       blockTypes = _ref.blockTypes,
       categories = _ref.categories,
       selectedFields = _ref.selectedFields,
-      setAttributes = _ref.setAttributes;
+      setAttributes = _ref.setAttributes,
+      typeFields = _ref.typeFields,
+      fetchedTypeFields = _ref.fetchedTypeFields,
+      directives = _ref.directives,
+      fetchedDirectives = _ref.fetchedDirectives;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "edit-post-manage-blocks-modal__content"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["TextControl"], {
+  }, fetchedTypeFields && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["TextControl"], {
     type: "search",
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Search'),
     value: search,
@@ -1364,7 +1368,7 @@ function MultiSelectControl(_ref) {
       selectedFields: selectedFields,
       setAttributes: setAttributes
     });
-  })));
+  }))), !fetchedTypeFields && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["Spinner"], null));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__["compose"])([Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__["withState"])({
@@ -1376,13 +1380,19 @@ function MultiSelectControl(_ref) {
 
   var _select2 = select('leoloso/graphql-api'),
       receiveTypeFields = _select2.receiveTypeFields,
-      receiveDirectives = _select2.receiveDirectives;
+      fetchedTypeFields = _select2.fetchedTypeFields,
+      receiveDirectives = _select2.receiveDirectives,
+      fetchedDirectives = _select2.fetchedDirectives; // console.log('receiveFieldsAndDirectives', receiveTypeFields(), receiveDirectives());
+  // console.log('fetchedTypeFields', fetchedTypeFields());
 
-  console.log('receiveFieldsAndDirectives', receiveTypeFields(), receiveDirectives());
+
   return {
     blockTypes: getBlockTypes(),
-    //receiveFieldsAndDirectives().fieldsAndDirectives,
-    categories: getCategories()
+    categories: getCategories(),
+    typeFields: receiveTypeFields(),
+    fetchedTypeFields: fetchedTypeFields(),
+    directives: receiveDirectives(),
+    fetchedDirectives: fetchedDirectives()
   };
 })])(MultiSelectControl));
 
@@ -1615,19 +1625,23 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 var schemaInstrospection = function schemaInstrospection() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
     typeFields: {},
-    directives: {}
+    fetchedTypeFields: false,
+    directives: {},
+    fetchedDirectives: false
   };
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
     case 'SET_TYPE_FIELDS':
       return _objectSpread({}, state, {
-        typeFields: action.typeFields
+        typeFields: action.typeFields,
+        fetchedTypeFields: true
       });
 
     case 'SET_DIRECTIVES':
       return _objectSpread({}, state, {
-        directives: action.directives
+        directives: action.directives,
+        fetchedDirectives: true
       });
   }
 
@@ -1711,21 +1725,33 @@ __webpack_require__.r(__webpack_exports__);
 /*!********************************!*\
   !*** ./src/store/selectors.js ***!
   \********************************/
-/*! exports provided: receiveTypeFields, receiveDirectives */
+/*! exports provided: receiveTypeFields, fetchedTypeFields, receiveDirectives, fetchedDirectives */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTypeFields", function() { return receiveTypeFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchedTypeFields", function() { return fetchedTypeFields; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveDirectives", function() { return receiveDirectives; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchedDirectives", function() { return fetchedDirectives; });
 function receiveTypeFields(state) {
   var typeFields = state.typeFields;
   return typeFields;
 }
 ;
+function fetchedTypeFields(state) {
+  var fetchedTypeFields = state.fetchedTypeFields;
+  return fetchedTypeFields;
+}
+;
 function receiveDirectives(state) {
   var directives = state.directives;
   return directives;
+}
+;
+function fetchedDirectives(state) {
+  var fetchedDirectives = state.fetchedDirectives;
+  return fetchedDirectives;
 }
 ;
 

@@ -9,7 +9,9 @@
 const schemaInstrospection = (
 	state = {
 		typeFields: {},
+		fetchedTypeFields: false,
 		directives: {},
+		fetchedDirectives: false,
 	},
 	action
 ) => {
@@ -18,11 +20,13 @@ const schemaInstrospection = (
 			return {
 				...state,
 				typeFields: action.typeFields,
+				fetchedTypeFields: true,
 			};
 		case 'SET_DIRECTIVES':
 			return {
 				...state,
 				directives: action.directives,
+				fetchedDirectives: true,
 			};
 	}
 	return state;

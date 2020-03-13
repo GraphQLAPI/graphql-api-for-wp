@@ -8,7 +8,7 @@ import { filter } from 'lodash';
  */
 import { withSelect } from '@wordpress/data';
 import { compose, withState } from '@wordpress/compose';
-import { TextControl } from '@wordpress/components';
+import { TextControl, Spinner } from '@wordpress/components';
 import { __, _n } from '@wordpress/i18n';
 
 // Addition by Leo
@@ -26,43 +26,54 @@ function MultiSelectControl( {
 	categories,
 	selectedFields,
 	setAttributes,
+	typeFields,
+	fetchedTypeFields,
+	directives,
+	fetchedDirectives,
 } ) {
 	return (
 		<div className="edit-post-manage-blocks-modal__content">
-			<TextControl
-				type="search"
-				label={ __( 'Search' ) }
-				value={ search }
-				onChange={ ( nextSearch ) =>
-					setState( {
-						search: nextSearch,
-					} )
-				}
-				className="edit-post-manage-blocks-modal__search"
-			/>
-			<div
-				tabIndex="0"
-				role="region"
-				aria-label={ __( 'Available block types' ) }
-				className="edit-post-manage-blocks-modal__results"
-			>
-				{ blockTypes.length === 0 && (
-					<p className="edit-post-manage-blocks-modal__no-results">
-						{ __( 'No blocks found.' ) }
-					</p>
-				) }
-				{ categories.map( ( category ) => (
-					<BlockManagerCategory
-						key={ category.slug }
-						category={ category }
-						blockTypes={ filter( blockTypes, {
-							category: category.slug,
-						} ) }
-						selectedFields={ selectedFields }
-						setAttributes={ setAttributes }
+			{ fetchedTypeFields && (
+				<>
+					<TextControl
+						type="search"
+						label={ __( 'Search' ) }
+						value={ search }
+						onChange={ ( nextSearch ) =>
+							setState( {
+								search: nextSearch,
+							} )
+						}
+						className="edit-post-manage-blocks-modal__search"
 					/>
-				) ) }
-			</div>
+					<div
+						tabIndex="0"
+						role="region"
+						aria-label={ __( 'Available block types' ) }
+						className="edit-post-manage-blocks-modal__results"
+					>
+						{ blockTypes.length === 0 && (
+							<p className="edit-post-manage-blocks-modal__no-results">
+								{ __( 'No blocks found.' ) }
+							</p>
+						) }
+						{ categories.map( ( category ) => (
+							<BlockManagerCategory
+								key={ category.slug }
+								category={ category }
+								blockTypes={ filter( blockTypes, {
+									category: category.slug,
+								} ) }
+								selectedFields={ selectedFields }
+								setAttributes={ setAttributes }
+							/>
+						) ) }
+					</div>
+				</>
+			) }
+			{ !fetchedTypeFields && (
+				<Spinner />
+			) }
 		</div>
 	);
 }
@@ -76,12 +87,19 @@ export default compose( [
 		} = select( 'core/blocks' );
 		const {
 			receiveTypeFields,
+			fetchedTypeFields,
 			receiveDirectives,
+			fetchedDirectives,
 		} = select ( 'leoloso/graphql-api' );
-		console.log('receiveFieldsAndDirectives', receiveTypeFields(), receiveDirectives());
+		// console.log('receiveFieldsAndDirectives', receiveTypeFields(), receiveDirectives());
+		// console.log('fetchedTypeFields', fetchedTypeFields());
 		return {
-			blockTypes: getBlockTypes(),//receiveFieldsAndDirectives().fieldsAndDirectives,
+			blockTypes: getBlockTypes(),
 			categories: getCategories(),
+			typeFields: receiveTypeFields(),
+			fetchedTypeFields: fetchedTypeFields(),
+			directives: receiveDirectives(),
+			fetchedDirectives: fetchedDirectives(),
 		};
 	} ),
 ] )( MultiSelectControl );
