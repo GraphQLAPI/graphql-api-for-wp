@@ -6,8 +6,7 @@ import { map, intersection } from 'lodash';
 /**
  * WordPress dependencies
  */
-// Commented by Leo
-import { withSelect, withDispatch } from '@wordpress/data';
+import { withDispatch } from '@wordpress/data';
 import { compose, withInstanceId } from '@wordpress/compose';
 import { CheckboxControl } from '@wordpress/components';
 
@@ -67,13 +66,6 @@ function BlockManagerCategory( {
 
 export default compose( [
 	withInstanceId,
-	withSelect( ( select ) => {
-		const { getPreference } = select( 'core/edit-post' );
-
-		return {
-			hiddenBlockTypes: getPreference( 'hiddenBlockTypes' ),
-		};
-	} ),
 	withDispatch( ( dispatch, ownProps ) => {
 		const { showBlockTypes, hideBlockTypes } = dispatch( 'core/edit-post' );
 
