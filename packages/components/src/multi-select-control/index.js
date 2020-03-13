@@ -24,20 +24,7 @@ function MultiSelectControl( {
 	setState,
 	blockTypes,
 	categories,
-	hasBlockSupport,
-	isMatchingSearchTerm,
 } ) {
-	// Filtering occurs here (as opposed to `withSelect`) to avoid wasted
-	// wasted renders by consequence of `Array#filter` producing a new
-	// value reference on each call.
-	blockTypes = blockTypes.filter(
-		( blockType ) =>
-			hasBlockSupport( blockType, 'inserter', true ) &&
-			( ! search || isMatchingSearchTerm( blockType, search ) ) &&
-			( ! blockType.parent ||
-				includes( blockType.parent, 'core/post-content' ) )
-	);
-
 	return (
 		<div className="edit-post-manage-blocks-modal__content">
 			<TextControl
@@ -82,14 +69,10 @@ export default compose( [
 		const {
 			getBlockTypes,
 			getCategories,
-			hasBlockSupport,
-			isMatchingSearchTerm,
 		} = select( 'core/blocks' );
 		return {
 			blockTypes: getBlockTypes(),
 			categories: getCategories(),
-			hasBlockSupport,
-			isMatchingSearchTerm,
 		};
 	} ),
 ] )( MultiSelectControl );

@@ -420,15 +420,7 @@ function MultiSelectControl(_ref) {
   var search = _ref.search,
       setState = _ref.setState,
       blockTypes = _ref.blockTypes,
-      categories = _ref.categories,
-      hasBlockSupport = _ref.hasBlockSupport,
-      isMatchingSearchTerm = _ref.isMatchingSearchTerm;
-  // Filtering occurs here (as opposed to `withSelect`) to avoid wasted
-  // wasted renders by consequence of `Array#filter` producing a new
-  // value reference on each call.
-  blockTypes = blockTypes.filter(function (blockType) {
-    return hasBlockSupport(blockType, 'inserter', true) && (!search || isMatchingSearchTerm(blockType, search)) && (!blockType.parent || Object(lodash__WEBPACK_IMPORTED_MODULE_1__["includes"])(blockType.parent, 'core/post-content'));
-  });
+      categories = _ref.categories;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "edit-post-manage-blocks-modal__content"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["TextControl"], {
@@ -464,15 +456,11 @@ function MultiSelectControl(_ref) {
 }), Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["withSelect"])(function (select) {
   var _select = select('core/blocks'),
       getBlockTypes = _select.getBlockTypes,
-      getCategories = _select.getCategories,
-      hasBlockSupport = _select.hasBlockSupport,
-      isMatchingSearchTerm = _select.isMatchingSearchTerm;
+      getCategories = _select.getCategories;
 
   return {
     blockTypes: getBlockTypes(),
-    categories: getCategories(),
-    hasBlockSupport: hasBlockSupport,
-    isMatchingSearchTerm: isMatchingSearchTerm
+    categories: getCategories()
   };
 })])(MultiSelectControl));
 
