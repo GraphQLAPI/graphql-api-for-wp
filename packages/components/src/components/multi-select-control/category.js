@@ -23,9 +23,9 @@ function BlockManagerCategory( {
 	instanceId,
 	category,
 	blockTypes,
-	hiddenBlockTypes,
 	toggleVisible,
 	toggleAllVisible,
+	selectedFields,
 } ) {
 	// Change by Leo
 	// const settings = useContext( EditPostSettings );
@@ -44,10 +44,7 @@ function BlockManagerCategory( {
 		return null;
 	}
 
-	const checkedBlockNames = without(
-		map( filteredBlockTypes, 'name' ),
-		...hiddenBlockTypes
-	);
+	const checkedBlockNames = selectedFields;
 
 	const titleId =
 		'edit-post-manage-blocks-modal__category-title-' + instanceId;
@@ -87,13 +84,6 @@ function BlockManagerCategory( {
 
 export default compose( [
 	withInstanceId,
-	withSelect( ( select ) => {
-		const { getPreference } = select( 'core/edit-post' );
-
-		return {
-			hiddenBlockTypes: getPreference( 'hiddenBlockTypes' ),
-		};
-	} ),
 	withDispatch( ( dispatch, ownProps ) => {
 		const { showBlockTypes, hideBlockTypes } = dispatch( 'core/edit-post' );
 

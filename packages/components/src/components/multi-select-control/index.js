@@ -24,6 +24,7 @@ function MultiSelectControl( {
 	setState,
 	blockTypes,
 	categories,
+	selectedFields,
 } ) {
 	return (
 		<div className="edit-post-manage-blocks-modal__content">
@@ -56,6 +57,7 @@ function MultiSelectControl( {
 						blockTypes={ filter( blockTypes, {
 							category: category.slug,
 						} ) }
+						selectedFields={ selectedFields }
 					/>
 				) ) }
 			</div>
