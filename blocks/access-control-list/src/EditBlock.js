@@ -13,7 +13,7 @@ const EditBlock = ( props ) => {
 							<p className={ className+'__item_data__title' }><strong>{ __('Define access for:', 'graphql-api') }</strong></p>
 							<p>{ __('Fields:', 'graphql-api') }</p>
 							<div className="edit-post-manage-blocks-modal">
-								<MultiSelectControl selectedFields={ ["core/image", "core/quote"] } />
+								<MultiSelectControl selectedFields={ ["core/image", "core/quote", "core/block"] } />
 							</div>
 							<p>{ __('Directives:', 'graphql-api') }</p>
 						</div>

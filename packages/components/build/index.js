@@ -518,6 +518,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * WordPress dependencies
  */
+// Commented by Leo
 
 
 
@@ -535,13 +536,14 @@ function BlockManagerCategory(_ref) {
       toggleVisible = _ref.toggleVisible,
       toggleAllVisible = _ref.toggleAllVisible,
       selectedFields = _ref.selectedFields;
+  var checkedBlockNames = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["intersection"])(Object(lodash__WEBPACK_IMPORTED_MODULE_1__["map"])(blockTypes, 'name'), selectedFields);
   var titleId = 'edit-post-manage-blocks-modal__category-title-' + instanceId;
-  var isAllChecked = selectedFields.length === blockTypes.length;
+  var isAllChecked = checkedBlockNames.length === blockTypes.length;
   var ariaChecked;
 
   if (isAllChecked) {
     ariaChecked = 'true';
-  } else if (selectedFields.length > 0) {
+  } else if (checkedBlockNames.length > 0) {
     ariaChecked = 'mixed';
   } else {
     ariaChecked = 'false';
@@ -561,12 +563,19 @@ function BlockManagerCategory(_ref) {
     }, category.title)
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_checklist__WEBPACK_IMPORTED_MODULE_5__["default"], {
     blockTypes: blockTypes,
-    value: selectedFields,
+    value: checkedBlockNames,
     onItemChange: toggleVisible
   }));
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__["compose"])([_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__["withInstanceId"], Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["withDispatch"])(function (dispatch, ownProps) {
+/* harmony default export */ __webpack_exports__["default"] = (Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__["compose"])([_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__["withInstanceId"], Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["withSelect"])(function (select) {
+  var _select = select('core/edit-post'),
+      getPreference = _select.getPreference;
+
+  return {
+    hiddenBlockTypes: getPreference('hiddenBlockTypes')
+  };
+}), Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["withDispatch"])(function (dispatch, ownProps) {
   var _dispatch = dispatch('core/edit-post'),
       showBlockTypes = _dispatch.showBlockTypes,
       hideBlockTypes = _dispatch.hideBlockTypes;

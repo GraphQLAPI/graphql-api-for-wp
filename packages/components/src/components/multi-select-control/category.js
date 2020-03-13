@@ -1,12 +1,13 @@
 /**
  * External dependencies
  */
-import { map } from 'lodash';
+import { map, intersection } from 'lodash';
 
 /**
  * WordPress dependencies
  */
-import { withDispatch } from '@wordpress/data';
+// Commented by Leo
+import { withSelect, withDispatch } from '@wordpress/data';
 import { compose, withInstanceId } from '@wordpress/compose';
 import { CheckboxControl } from '@wordpress/components';
 
@@ -23,15 +24,20 @@ function BlockManagerCategory( {
 	toggleAllVisible,
 	selectedFields,
 } ) {
+	const checkedBlockNames = intersection(
+		map( blockTypes, 'name' ),
+		selectedFields
+	);
+
 	const titleId =
 		'edit-post-manage-blocks-modal__category-title-' + instanceId;
 
-	const isAllChecked = selectedFields.length === blockTypes.length;
+	const isAllChecked = checkedBlockNames.length === blockTypes.length;
 
 	let ariaChecked;
 	if ( isAllChecked ) {
 		ariaChecked = 'true';
-	} else if ( selectedFields.length > 0 ) {
+	} else if ( checkedBlockNames.length > 0 ) {
 		ariaChecked = 'mixed';
 	} else {
 		ariaChecked = 'false';
@@ -52,7 +58,7 @@ function BlockManagerCategory( {
 			/>
 			<BlockTypesChecklist
 				blockTypes={ blockTypes }
-				value={ selectedFields }
+				value={ checkedBlockNames }
 				onItemChange={ toggleVisible }
 			/>
 		</div>
@@ -61,6 +67,13 @@ function BlockManagerCategory( {
 
 export default compose( [
 	withInstanceId,
+	withSelect( ( select ) => {
+		const { getPreference } = select( 'core/edit-post' );
+
+		return {
+			hiddenBlockTypes: getPreference( 'hiddenBlockTypes' ),
+		};
+	} ),
 	withDispatch( ( dispatch, ownProps ) => {
 		const { showBlockTypes, hideBlockTypes } = dispatch( 'core/edit-post' );
 
