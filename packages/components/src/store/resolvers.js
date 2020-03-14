@@ -10,7 +10,7 @@ import {
 
 
 export default {
-	* getTypeFields( state ) {
+	* getTypeFields( state, keepScalarTypes = false, keepIntrospectionTypes = false ) {
 		const query = `
 			query GetTypeFields {
 				__schema {
