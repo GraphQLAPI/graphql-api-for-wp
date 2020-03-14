@@ -676,7 +676,7 @@ var fetchGraphQLQuery = function fetchGraphQLQuery(query) {
 /*!*********************************!*\
   !*** ../api-fetch/src/index.js ***!
   \*********************************/
-/*! exports provided: fetchGraphQLQuery */
+/*! exports provided: fetchGraphQLQuery, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -685,9 +685,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fetchGraphQLQuery", function() { return _fetch__WEBPACK_IMPORTED_MODULE_0__["default"]; });
 
 /**
+ * Internal imports
+ */
+
+/**
  * Exports
  */
 
+
+/* harmony default export */ __webpack_exports__["default"] = (_fetch__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
