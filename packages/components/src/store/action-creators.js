@@ -14,7 +14,7 @@ export function setTypeFields( typeFields ) {
 };
 
 /**
- * Returns an action object used in signalling that the typeFields object has been received.
+ * Returns an action object used in signalling that the typeFields object must be received.
  *
  * @param {string} query GraphQL query to execute
  *
@@ -28,7 +28,7 @@ export function receiveTypeFields( query ) {
 };
 
 /**
- * Returns an action object used in setting the directives object in the state
+ * Returns an action object used in setting the directives in the state
  *
  * @param {Array} directives Array of directives received.
  *
@@ -42,7 +42,7 @@ export function setDirectives( directives ) {
 };
 
 /**
- * Returns an action object used in signalling that the directives have been received.
+ * Returns an action object used in signalling that the directives must be received.
  *
  * @param {string} query GraphQL query to execute
  *

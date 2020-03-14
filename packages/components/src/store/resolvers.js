@@ -6,7 +6,7 @@ import {
 	setTypeFields,
 	receiveDirectives,
 	setDirectives,
-} from './actions';
+} from './action-creators';
 
 
 export default {

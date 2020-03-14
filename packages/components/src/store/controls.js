@@ -17,10 +17,10 @@ const fetchGraphQLQuery = (query) => {
 
 const controls = {
 	RECEIVE_TYPE_FIELDS( action ) {
-		return fetchGraphQLQuery(action.query);
+		return fetchGraphQLQuery( action.query );
 	},
 	RECEIVE_DIRECTIVES( action ) {
-		return fetchGraphQLQuery(action.query);
+		return fetchGraphQLQuery( action.query );
 	},
 };
 
