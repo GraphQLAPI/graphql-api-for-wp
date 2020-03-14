@@ -1,4 +1,9 @@
 /**
+ * WordPress dependencies
+ */
+import { __, sprintf } from '@wordpress/i18n';
+
+/**
  * External dependencies
  */
 import {
@@ -29,6 +34,15 @@ export const FETCH_DIRECTIVES_GRAPHQL_QUERY = `
 		}
 	}
 `
+const maybeGetErrorMessage = (response) => {
+	if (response.errors && response.errors.length) {
+		return sprintf(
+			__(`There were errors when retrieving data: %s`, 'graphql-api'),
+			response.errors.map(error => error.message).join(';')
+		);
+	}
+	return null;
+}
 export default {
 	* getTypeFields( keepScalarTypes = false, keepIntrospectionTypes = false ) {
 
@@ -36,8 +50,9 @@ export default {
 		/**
 		 * If there were erros when executing the query, return an empty list, and show the error
 		 */
-		if (response.errors && response.errors.length) {
-			return setTypeFields( [] );
+		const maybeErrorMessage = maybeGetErrorMessage(response);
+		if (maybeErrorMessage) {
+			return setTypeFields( [], maybeErrorMessage );
 		}
 		/**
 		 * Convert the response to an array with this structure:
@@ -52,14 +67,16 @@ export default {
 		}));
 		return setTypeFields( typeFields );
 	},
-	* getDirectives( ) {
+	* getDirectives() {
 
 		const response = yield receiveDirectives( FETCH_DIRECTIVES_GRAPHQL_QUERY );
 		/**
 		 * If there were erros when executing the query, return an empty list, and show the error
 		 */
-		if (response.errors && response.errors.length) {
-			return setDirectives( [] );
+		const maybeErrorMessage = maybeGetErrorMessage(response);
+		if (maybeErrorMessage) {
+			setDirectives( [], maybeErrorMessage );
+			return;
 		}
 		/**
 		 * Convert the response to an array directly, removing the "name" key

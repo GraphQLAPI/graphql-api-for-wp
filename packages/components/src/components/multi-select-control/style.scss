@@ -1,9 +1,12 @@
 // Addition by Leo
 @import './base_styles.scss';
 
-// Addition by Leo
+// Additions by Leo
 .edit-post-manage-blocks-modal__content {
 	max-height: 500px;
+}
+.edit-post-manage-blocks-modal__error_message {
+	color: red;
 }
 
 .edit-post-manage-blocks-modal {

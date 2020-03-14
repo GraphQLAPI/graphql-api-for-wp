@@ -28,12 +28,19 @@ function MultiSelectControl( {
 	setAttributes,
 	typeFields,
 	retrievedTypeFields,
+	retrievingTypeFieldsErrorMessage,
 	directives,
 	retrievedDirectives,
+	retrievingDirectivesErrorMessage,
 } ) {
 	return (
 		<div className="edit-post-manage-blocks-modal__content">
-			{ retrievedTypeFields && (
+			{ retrievedTypeFields && retrievingTypeFieldsErrorMessage && (
+				<p className="edit-post-manage-blocks-modal__error_message">
+					{ retrievingTypeFieldsErrorMessage }
+				</p>
+			) }
+			{ retrievedTypeFields && !retrievingTypeFieldsErrorMessage && (
 				<>
 					<TextControl
 						type="search"
@@ -88,8 +95,10 @@ export default compose( [
 		const {
 			getTypeFields,
 			retrievedTypeFields,
+			getRetrievingTypeFieldsErrorMessage,
 			getDirectives,
 			retrievedDirectives,
+			getRetrievingDirectivesErrorMessage,
 		} = select ( 'leoloso/graphql-api' );
 		// console.log('receiveFieldsAndDirectives', getTypeFields(), getDirectives());
 		// console.log('retrievedTypeFields', retrievedTypeFields());
@@ -98,8 +107,10 @@ export default compose( [
 			categories: getCategories(),
 			typeFields: getTypeFields(),
 			retrievedTypeFields: retrievedTypeFields(),
+			retrievingTypeFieldsErrorMessage: getRetrievingTypeFieldsErrorMessage(),
 			directives: getDirectives(),
 			retrievedDirectives: retrievedDirectives(),
+			retrievingDirectivesErrorMessage: getRetrievingDirectivesErrorMessage(),
 		};
 	} ),
 ] )( MultiSelectControl );

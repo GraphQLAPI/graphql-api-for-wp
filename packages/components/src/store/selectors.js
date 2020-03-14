@@ -24,10 +24,18 @@ export function retrievedTypeFields( state ) {
 	return state.retrievedTypeFields;
 };
 
+export function getRetrievingTypeFieldsErrorMessage( state ) {
+	return state.retrievingTypeFieldsErrorMessage;
+};
+
 export function getDirectives( state ) {
 	return state.directives;
 };
 
 export function retrievedDirectives( state ) {
 	return state.retrievedDirectives;
+};
+
+export function getRetrievingDirectivesErrorMessage( state ) {
+	return state.retrievingDirectivesErrorMessage;
 };
