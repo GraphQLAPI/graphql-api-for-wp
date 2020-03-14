@@ -86,108 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "../../packages/components/node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
-/*!*****************************************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
-  \*****************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }
-
-    return arr2;
-  }
-}
-
-module.exports = _arrayWithoutHoles;
-
-/***/ }),
-
-/***/ "../../packages/components/node_modules/@babel/runtime/helpers/defineProperty.js":
-/*!**************************************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/defineProperty.js ***!
-  \**************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-module.exports = _defineProperty;
-
-/***/ }),
-
-/***/ "../../packages/components/node_modules/@babel/runtime/helpers/iterableToArray.js":
-/*!***************************************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/iterableToArray.js ***!
-  \***************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _iterableToArray(iter) {
-  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
-}
-
-module.exports = _iterableToArray;
-
-/***/ }),
-
-/***/ "../../packages/components/node_modules/@babel/runtime/helpers/nonIterableSpread.js":
-/*!*****************************************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
-  \*****************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance");
-}
-
-module.exports = _nonIterableSpread;
-
-/***/ }),
-
-/***/ "../../packages/components/node_modules/@babel/runtime/helpers/toConsumableArray.js":
-/*!*****************************************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
-  \*****************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ "../../packages/components/node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
-
-var iterableToArray = __webpack_require__(/*! ./iterableToArray */ "../../packages/components/node_modules/@babel/runtime/helpers/iterableToArray.js");
-
-var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ "../../packages/components/node_modules/@babel/runtime/helpers/nonIterableSpread.js");
-
-function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
-}
-
-module.exports = _toConsumableArray;
-
-/***/ }),
-
-/***/ "../../packages/components/node_modules/isomorphic-fetch/fetch-npm-browserify.js":
-/*!**************************************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/isomorphic-fetch/fetch-npm-browserify.js ***!
-  \**************************************************************************************************************************************************/
+/***/ "../../packages/api-fetch/node_modules/isomorphic-fetch/fetch-npm-browserify.js":
+/*!*************************************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/api-fetch/node_modules/isomorphic-fetch/fetch-npm-browserify.js ***!
+  \*************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -195,16 +97,16 @@ module.exports = _toConsumableArray;
 // on the global object (window or self)
 //
 // Return that as the export for use in Webpack, Browserify etc.
-__webpack_require__(/*! whatwg-fetch */ "../../packages/components/node_modules/whatwg-fetch/fetch.js");
+__webpack_require__(/*! whatwg-fetch */ "../../packages/api-fetch/node_modules/whatwg-fetch/fetch.js");
 module.exports = self.fetch.bind(self);
 
 
 /***/ }),
 
-/***/ "../../packages/components/node_modules/whatwg-fetch/fetch.js":
-/*!*******************************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/whatwg-fetch/fetch.js ***!
-  \*******************************************************************************************************************************/
+/***/ "../../packages/api-fetch/node_modules/whatwg-fetch/fetch.js":
+/*!******************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/api-fetch/node_modules/whatwg-fetch/fetch.js ***!
+  \******************************************************************************************************************************/
 /*! exports provided: Headers, Request, Response, DOMException, fetch */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -735,6 +637,158 @@ if (!self.fetch) {
 
 /***/ }),
 
+/***/ "../../packages/api-fetch/src/fetch.js":
+/*!********************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/api-fetch/src/fetch.js ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! isomorphic-fetch */ "../../packages/api-fetch/node_modules/isomorphic-fetch/fetch-npm-browserify.js");
+/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * External dependencies
+ */
+
+
+var fetchGraphQLQuery = function fetchGraphQLQuery(query) {
+  var content = {
+    query: query
+  };
+  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()("".concat(window.location.origin, "/api/graphql"), {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(content)
+  }).then(function (response) {
+    return response.json();
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (fetchGraphQLQuery);
+
+/***/ }),
+
+/***/ "../../packages/api-fetch/src/index.js":
+/*!********************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/api-fetch/src/index.js ***!
+  \********************************************************************************************************/
+/*! exports provided: fetchGraphQLQuery */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fetch */ "../../packages/api-fetch/src/fetch.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fetchGraphQLQuery", function() { return _fetch__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/**
+ * Exports
+ */
+
+
+/***/ }),
+
+/***/ "../../packages/components/node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
+/*!*****************************************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \*****************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+module.exports = _arrayWithoutHoles;
+
+/***/ }),
+
+/***/ "../../packages/components/node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!**************************************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \**************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+
+/***/ }),
+
+/***/ "../../packages/components/node_modules/@babel/runtime/helpers/iterableToArray.js":
+/*!***************************************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/iterableToArray.js ***!
+  \***************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+
+/***/ }),
+
+/***/ "../../packages/components/node_modules/@babel/runtime/helpers/nonIterableSpread.js":
+/*!*****************************************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \*****************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+module.exports = _nonIterableSpread;
+
+/***/ }),
+
+/***/ "../../packages/components/node_modules/@babel/runtime/helpers/toConsumableArray.js":
+/*!*****************************************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \*****************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ "../../packages/components/node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
+
+var iterableToArray = __webpack_require__(/*! ./iterableToArray */ "../../packages/components/node_modules/@babel/runtime/helpers/iterableToArray.js");
+
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ "../../packages/components/node_modules/@babel/runtime/helpers/nonIterableSpread.js");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
+
+/***/ }),
+
 /***/ "../../packages/components/src/components/multi-select-control/category.js":
 /*!********************************************************************************************************************************************!*\
   !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/components/multi-select-control/category.js ***!
@@ -933,12 +987,16 @@ function MultiSelectControl(_ref) {
       selectedFields = _ref.selectedFields,
       setAttributes = _ref.setAttributes,
       typeFields = _ref.typeFields,
-      fetchedTypeFields = _ref.fetchedTypeFields,
+      retrievedTypeFields = _ref.retrievedTypeFields,
+      retrievingTypeFieldsErrorMessage = _ref.retrievingTypeFieldsErrorMessage,
       directives = _ref.directives,
-      fetchedDirectives = _ref.fetchedDirectives;
+      retrievedDirectives = _ref.retrievedDirectives,
+      retrievingDirectivesErrorMessage = _ref.retrievingDirectivesErrorMessage;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "edit-post-manage-blocks-modal__content"
-  }, fetchedTypeFields && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["TextControl"], {
+  }, retrievedTypeFields && retrievingTypeFieldsErrorMessage && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
+    className: "edit-post-manage-blocks-modal__error_message"
+  }, retrievingTypeFieldsErrorMessage), retrievedTypeFields && !retrievingTypeFieldsErrorMessage && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["TextControl"], {
     type: "search",
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Search'),
     value: search,
@@ -965,7 +1023,7 @@ function MultiSelectControl(_ref) {
       selectedFields: selectedFields,
       setAttributes: setAttributes
     });
-  }))), !fetchedTypeFields && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["Spinner"], null));
+  }))), !retrievedTypeFields && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["Spinner"], null));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__["compose"])([Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__["withState"])({
@@ -976,20 +1034,24 @@ function MultiSelectControl(_ref) {
       getCategories = _select.getCategories;
 
   var _select2 = select('leoloso/graphql-api'),
-      receiveTypeFields = _select2.receiveTypeFields,
-      fetchedTypeFields = _select2.fetchedTypeFields,
-      receiveDirectives = _select2.receiveDirectives,
-      fetchedDirectives = _select2.fetchedDirectives; // console.log('receiveFieldsAndDirectives', receiveTypeFields(), receiveDirectives());
-  // console.log('fetchedTypeFields', fetchedTypeFields());
+      getTypeFields = _select2.getTypeFields,
+      retrievedTypeFields = _select2.retrievedTypeFields,
+      getRetrievingTypeFieldsErrorMessage = _select2.getRetrievingTypeFieldsErrorMessage,
+      getDirectives = _select2.getDirectives,
+      retrievedDirectives = _select2.retrievedDirectives,
+      getRetrievingDirectivesErrorMessage = _select2.getRetrievingDirectivesErrorMessage; // console.log('receiveFieldsAndDirectives', getTypeFields(), getDirectives());
+  // console.log('retrievedTypeFields', retrievedTypeFields());
 
 
   return {
     blockTypes: getBlockTypes(),
     categories: getCategories(),
-    typeFields: receiveTypeFields(),
-    fetchedTypeFields: fetchedTypeFields(),
-    directives: receiveDirectives(),
-    fetchedDirectives: fetchedDirectives()
+    typeFields: getTypeFields(),
+    retrievedTypeFields: retrievedTypeFields(),
+    retrievingTypeFieldsErrorMessage: getRetrievingTypeFieldsErrorMessage(),
+    directives: getDirectives(),
+    retrievedDirectives: retrievedDirectives(),
+    retrievingDirectivesErrorMessage: getRetrievingDirectivesErrorMessage()
   };
 })])(MultiSelectControl));
 
@@ -1051,10 +1113,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "../../packages/components/src/store/actions.js":
-/*!*****************************************************************************************************************!*\
-  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/store/actions.js ***!
-  \*****************************************************************************************************************/
+/***/ "../../packages/components/src/store/action-creators.js":
+/*!*************************************************************************************************************************!*\
+  !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/store/action-creators.js ***!
+  \*************************************************************************************************************************/
 /*! exports provided: setTypeFields, receiveTypeFields, setDirectives, receiveDirectives */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1064,31 +1126,66 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTypeFields", function() { return receiveTypeFields; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDirectives", function() { return setDirectives; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveDirectives", function() { return receiveDirectives; });
-function setTypeFields(typeFields) {
+/**
+ * Returns an action object used in setting the typeFields object in the state
+ *
+ * @param {Array} typeFields Array of typeField objects received, where each object has key "type" for the type name, and key "fields" with an array of the type's fields.
+ * @param {string} errorMessage Error message if fetching the objects failed
+ *
+ * @return {Object} Action object.
+ */
+function setTypeFields(typeFields, errorMessage) {
   return {
     type: 'SET_TYPE_FIELDS',
-    typeFields: typeFields
+    typeFields: typeFields,
+    errorMessage: errorMessage
   };
 }
 ;
-function receiveTypeFields(path) {
+/**
+ * Returns an action object used in signalling that the typeFields object must be received.
+ *
+ * @param {string} query GraphQL query to execute
+ *
+ * @return {Object} Action object.
+ */
+
+function receiveTypeFields(query) {
   return {
     type: 'RECEIVE_TYPE_FIELDS',
-    path: path
+    query: query
   };
 }
 ;
-function setDirectives(directives) {
+/**
+ * Returns an action object used in setting the directives in the state
+ *
+ * @param {Array} directives Array of directives received.
+ * @param {string} errorMessage Error message if fetching the objects failed
+ *
+ * @return {Object} Action object.
+ */
+
+function setDirectives(directives, errorMessage) {
   return {
     type: 'SET_DIRECTIVES',
-    directives: directives
+    directives: directives,
+    errorMessage: errorMessage
   };
 }
 ;
-function receiveDirectives(path) {
+/**
+ * Returns an action object used in signalling that the directives must be received.
+ *
+ * @param {string} query GraphQL query to execute
+ *
+ * @return {Object} Action object.
+ */
+
+function receiveDirectives(query) {
   return {
     type: 'RECEIVE_DIRECTIVES',
-    path: path
+    query: query
   };
 }
 ;
@@ -1104,35 +1201,17 @@ function receiveDirectives(path) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! isomorphic-fetch */ "../../packages/components/node_modules/isomorphic-fetch/fetch-npm-browserify.js");
-/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api_fetch_src__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../api-fetch/src */ "../../packages/api-fetch/src/index.js");
 /**
  * External dependencies
  */
 
-
-var fetchGraphQLQuery = function fetchGraphQLQuery(query) {
-  // console.log('query', query);
-  var content = {
-    query: query
-  };
-  return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()("".concat(window.location.origin, "/api/graphql"), {
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(content)
-  }).then(function (response) {
-    return response.json();
-  });
-};
-
 var controls = {
   RECEIVE_TYPE_FIELDS: function RECEIVE_TYPE_FIELDS(action) {
-    return fetchGraphQLQuery(action.path);
+    return Object(_api_fetch_src__WEBPACK_IMPORTED_MODULE_0__["fetchGraphQLQuery"])(action.query);
   },
   RECEIVE_DIRECTIVES: function RECEIVE_DIRECTIVES(action) {
-    return fetchGraphQLQuery(action.path);
+    return Object(_api_fetch_src__WEBPACK_IMPORTED_MODULE_0__["fetchGraphQLQuery"])(action.query);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (controls);
@@ -1153,7 +1232,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reducer */ "../../packages/components/src/store/reducer.js");
 /* harmony import */ var _selectors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./selectors */ "../../packages/components/src/store/selectors.js");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./actions */ "../../packages/components/src/store/actions.js");
+/* harmony import */ var _action_creators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./action-creators */ "../../packages/components/src/store/action-creators.js");
 /* harmony import */ var _resolvers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./resolvers */ "../../packages/components/src/store/resolvers.js");
 /* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./controls */ "../../packages/components/src/store/controls.js");
 /**
@@ -1185,7 +1264,7 @@ var MODULE_KEY = 'leoloso/graphql-api';
 var storeConfig = {
   reducer: _reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   selectors: _selectors__WEBPACK_IMPORTED_MODULE_2__,
-  actions: _actions__WEBPACK_IMPORTED_MODULE_3__,
+  actions: _action_creators__WEBPACK_IMPORTED_MODULE_3__,
   controls: _controls__WEBPACK_IMPORTED_MODULE_5__["default"],
   resolvers: _resolvers__WEBPACK_IMPORTED_MODULE_4__["default"]
 };
@@ -1212,6 +1291,17 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 /**
+ * The initial state of the store
+ */
+var DEFAULT_STATE = {
+  typeFields: [],
+  retrievedTypeFields: false,
+  retrievingTypeFieldsErrorMessage: null,
+  directives: [],
+  retrievedDirectives: false,
+  retrievingDirectivesErrorMessage: null
+};
+/**
  * Reducer returning an array of types and their fields, and directives.
  *
  * @param {Object} state  Current state.
@@ -1219,26 +1309,24 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
  *
  * @return {Object} Updated state.
  */
+
 var schemaInstrospection = function schemaInstrospection() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    typeFields: [],
-    fetchedTypeFields: false,
-    directives: [],
-    fetchedDirectives: false
-  };
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
     case 'SET_TYPE_FIELDS':
       return _objectSpread({}, state, {
         typeFields: action.typeFields,
-        fetchedTypeFields: true
+        retrievedTypeFields: true,
+        retrievingTypeFieldsErrorMessage: action.errorMessage
       });
 
     case 'SET_DIRECTIVES':
       return _objectSpread({}, state, {
         directives: action.directives,
-        fetchedDirectives: true
+        retrievedDirectives: true,
+        retrievingDirectivesErrorMessage: action.errorMessage
       });
   }
 
@@ -1253,44 +1341,77 @@ var schemaInstrospection = function schemaInstrospection() {
 /*!*******************************************************************************************************************!*\
   !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/store/resolvers.js ***!
   \*******************************************************************************************************************/
-/*! exports provided: default */
+/*! exports provided: FETCH_TYPE_FIELDS_GRAPHQL_QUERY, FETCH_DIRECTIVES_GRAPHQL_QUERY, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_TYPE_FIELDS_GRAPHQL_QUERY", function() { return FETCH_TYPE_FIELDS_GRAPHQL_QUERY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_DIRECTIVES_GRAPHQL_QUERY", function() { return FETCH_DIRECTIVES_GRAPHQL_QUERY; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions */ "../../packages/components/src/store/actions.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _action_creators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./action-creators */ "../../packages/components/src/store/action-creators.js");
 
+
+/**
+ * WordPress dependencies
+ */
 
 /**
  * External dependencies
  */
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  receiveTypeFields: /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function receiveTypeFields(state) {
-    var _response$data, _response$data$__sche;
 
-    var query, response, typeFields;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function receiveTypeFields$(_context) {
+var FETCH_TYPE_FIELDS_GRAPHQL_QUERY = "\n\tquery GetTypeFields {\n\t\t__schema {\n\t\t\ttypes {\n\t\t\t\tname\n\t\t\t\tfields(includeDeprecated: true) {\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n";
+var FETCH_DIRECTIVES_GRAPHQL_QUERY = "\n\tquery GetDirectives {\n\t\t__schema {\n\t\t\tdirectives {\n\t\t\t\tname\n\t\t\t}\n\t\t}\n\t}\n";
+
+var maybeGetErrorMessage = function maybeGetErrorMessage(response) {
+  if (response.errors && response.errors.length) {
+    return Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["sprintf"])(Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])("There were errors when retrieving data: %s", 'graphql-api'), response.errors.map(function (error) {
+      return error.message;
+    }).join(';'));
+  }
+
+  return null;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  getTypeFields: /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function getTypeFields() {
+    var _response$data, _response$data$__sche, _response$data$__sche2;
+
+    var keepScalarTypes,
+        keepIntrospectionTypes,
+        response,
+        maybeErrorMessage,
+        typeFields,
+        _args = arguments;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function getTypeFields$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            query = "\n\t\t\tquery GetTypeFields {\n\t\t\t\t__schema {\n\t\t\t\t\ttypes {\n\t\t\t\t\t\tname\n\t\t\t\t\t\tfields(includeDeprecated: true) {\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t";
-            _context.next = 3;
-            return Object(_actions__WEBPACK_IMPORTED_MODULE_1__["receiveTypeFields"])(query);
+            keepScalarTypes = _args.length > 0 && _args[0] !== undefined ? _args[0] : false;
+            keepIntrospectionTypes = _args.length > 1 && _args[1] !== undefined ? _args[1] : false;
+            _context.next = 4;
+            return Object(_action_creators__WEBPACK_IMPORTED_MODULE_2__["receiveTypeFields"])(FETCH_TYPE_FIELDS_GRAPHQL_QUERY);
 
-          case 3:
+          case 4:
             response = _context.sent;
 
-            if (!(response.errors && response.errors.length)) {
-              _context.next = 6;
+            /**
+             * If there were erros when executing the query, return an empty list, and show the error
+             */
+            maybeErrorMessage = maybeGetErrorMessage(response);
+
+            if (!maybeErrorMessage) {
+              _context.next = 8;
               break;
             }
 
-            return _context.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setTypeFields"])([]));
+            return _context.abrupt("return", Object(_action_creators__WEBPACK_IMPORTED_MODULE_2__["setTypeFields"])([], maybeErrorMessage));
 
-          case 6:
+          case 8:
             /**
              * Convert the response to an array with this structure:
              * {
@@ -1298,62 +1419,65 @@ __webpack_require__.r(__webpack_exports__);
              * "fields": array|null
              * }
              */
-            typeFields = (_response$data = response.data) === null || _response$data === void 0 ? void 0 : (_response$data$__sche = _response$data.__schema) === null || _response$data$__sche === void 0 ? void 0 : _response$data$__sche.types.map(function (element) {
+            typeFields = ((_response$data = response.data) === null || _response$data === void 0 ? void 0 : (_response$data$__sche = _response$data.__schema) === null || _response$data$__sche === void 0 ? void 0 : (_response$data$__sche2 = _response$data$__sche.types) === null || _response$data$__sche2 === void 0 ? void 0 : _response$data$__sche2.map(function (element) {
               return {
                 type: element.name,
                 fields: element.fields == null ? null : element.fields.map(function (subelement) {
                   return subelement.name;
                 })
               };
-            }); // console.log('typeFields', typeFields);
+            })) || [];
+            return _context.abrupt("return", Object(_action_creators__WEBPACK_IMPORTED_MODULE_2__["setTypeFields"])(typeFields));
 
-            return _context.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setTypeFields"])(typeFields));
-
-          case 8:
+          case 10:
           case "end":
             return _context.stop();
         }
       }
-    }, receiveTypeFields);
+    }, getTypeFields);
   }),
-  receiveDirectives: /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function receiveDirectives(state) {
-    var _response$data2, _response$data2$__sch;
+  getDirectives: /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function getDirectives() {
+    var _response$data2, _response$data2$__sch, _response$data2$__sch2;
 
-    var query, response, directives;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function receiveDirectives$(_context2) {
+    var response, maybeErrorMessage, directives;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function getDirectives$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            query = "\n\t\t\tquery GetDirectives {\n\t\t\t\t__schema {\n\t\t\t\t\tdirectives {\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t";
-            _context2.next = 3;
-            return Object(_actions__WEBPACK_IMPORTED_MODULE_1__["receiveDirectives"])(query);
+            _context2.next = 2;
+            return Object(_action_creators__WEBPACK_IMPORTED_MODULE_2__["receiveDirectives"])(FETCH_DIRECTIVES_GRAPHQL_QUERY);
 
-          case 3:
+          case 2:
             response = _context2.sent;
 
-            if (!(response.errors && response.errors.length)) {
-              _context2.next = 6;
+            /**
+             * If there were erros when executing the query, return an empty list, and show the error
+             */
+            maybeErrorMessage = maybeGetErrorMessage(response);
+
+            if (!maybeErrorMessage) {
+              _context2.next = 7;
               break;
             }
 
-            return _context2.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setDirectives"])([]));
+            Object(_action_creators__WEBPACK_IMPORTED_MODULE_2__["setDirectives"])([], maybeErrorMessage);
+            return _context2.abrupt("return");
 
-          case 6:
+          case 7:
             /**
              * Convert the response to an array directly, removing the "name" key
              */
-            directives = (_response$data2 = response.data) === null || _response$data2 === void 0 ? void 0 : (_response$data2$__sch = _response$data2.__schema) === null || _response$data2$__sch === void 0 ? void 0 : _response$data2$__sch.directives.map(function (element) {
+            directives = ((_response$data2 = response.data) === null || _response$data2 === void 0 ? void 0 : (_response$data2$__sch = _response$data2.__schema) === null || _response$data2$__sch === void 0 ? void 0 : (_response$data2$__sch2 = _response$data2$__sch.directives) === null || _response$data2$__sch2 === void 0 ? void 0 : _response$data2$__sch2.map(function (element) {
               return element.name;
-            }); // console.log('directives', directives);
+            })) || [];
+            return _context2.abrupt("return", Object(_action_creators__WEBPACK_IMPORTED_MODULE_2__["setDirectives"])(directives));
 
-            return _context2.abrupt("return", Object(_actions__WEBPACK_IMPORTED_MODULE_1__["setDirectives"])(directives));
-
-          case 8:
+          case 9:
           case "end":
             return _context2.stop();
         }
       }
-    }, receiveDirectives);
+    }, getDirectives);
   })
 });
 
@@ -1363,16 +1487,18 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************************************************************************************!*\
   !*** /Users/leo/GitRepos/GitHub/Plugins/leoloso/graphql-api-wp-plugin/packages/components/src/store/selectors.js ***!
   \*******************************************************************************************************************/
-/*! exports provided: receiveTypeFields, fetchedTypeFields, receiveDirectives, fetchedDirectives */
+/*! exports provided: getTypeFields, retrievedTypeFields, getRetrievingTypeFieldsErrorMessage, getDirectives, retrievedDirectives, getRetrievingDirectivesErrorMessage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTypeFields", function() { return receiveTypeFields; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchedTypeFields", function() { return fetchedTypeFields; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveDirectives", function() { return receiveDirectives; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchedDirectives", function() { return fetchedDirectives; });
-function receiveTypeFields(state) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTypeFields", function() { return getTypeFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "retrievedTypeFields", function() { return retrievedTypeFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRetrievingTypeFieldsErrorMessage", function() { return getRetrievingTypeFieldsErrorMessage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDirectives", function() { return getDirectives; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "retrievedDirectives", function() { return retrievedDirectives; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRetrievingDirectivesErrorMessage", function() { return getRetrievingDirectivesErrorMessage; });
+function getTypeFields(state) {
   var keepScalarTypes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
   var keepIntrospectionTypes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
   var typeFields = state.typeFields;
@@ -1404,19 +1530,24 @@ function receiveTypeFields(state) {
   return typeFields;
 }
 ;
-function fetchedTypeFields(state) {
-  var fetchedTypeFields = state.fetchedTypeFields;
-  return fetchedTypeFields;
+function retrievedTypeFields(state) {
+  return state.retrievedTypeFields;
 }
 ;
-function receiveDirectives(state) {
-  var directives = state.directives;
-  return directives;
+function getRetrievingTypeFieldsErrorMessage(state) {
+  return state.retrievingTypeFieldsErrorMessage;
 }
 ;
-function fetchedDirectives(state) {
-  var fetchedDirectives = state.fetchedDirectives;
-  return fetchedDirectives;
+function getDirectives(state) {
+  return state.directives;
+}
+;
+function retrievedDirectives(state) {
+  return state.retrievedDirectives;
+}
+;
+function getRetrievingDirectivesErrorMessage(state) {
+  return state.retrievingDirectivesErrorMessage;
 }
 ;
 
@@ -1433,7 +1564,7 @@ function fetchedDirectives(state) {
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../blocks/access-control-list/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Colors\n */\n/**\n * Often re-used variables\n */\n/**\n * Breakpoint mixins\n */\n/**\n * Long content fade mixin\n *\n * Creates a fading overlay to signify that the content is longer\n * than the space allows.\n */\n/**\n * Button states and focus styles\n */\n/**\n * Applies editor left position to the selector passed as argument\n */\n/**\n * Styles that are reused verbatim in a few places\n */\n/**\n * Allows users to opt-out of animations via OS-level preferences.\n */\n/**\n * Reset default styles for JavaScript UI based pages.\n * This is a WP-admin agnostic reset\n */\n/**\n * Reset the WP Admin page styles for Gutenberg-like pages.\n */\n/**\n * Breakpoints & Media Queries\n */\n.edit-post-manage-blocks-modal__content {\n  max-height: 500px; }\n\n@media (min-width: 600px) {\n  .edit-post-manage-blocks-modal {\n    height: calc(100% - 56px - 56px); } }\n\n.edit-post-manage-blocks-modal .components-modal__content {\n  padding-bottom: 0;\n  display: flex;\n  flex-direction: column; }\n\n.edit-post-manage-blocks-modal .components-modal__header {\n  flex-shrink: 0;\n  margin-bottom: 0; }\n\n.edit-post-manage-blocks-modal__content {\n  display: flex;\n  flex-direction: column;\n  flex: 0 1 100%;\n  min-height: 0; }\n\n.edit-post-manage-blocks-modal__no-results {\n  font-style: italic;\n  padding: 24px 0;\n  text-align: center; }\n\n.edit-post-manage-blocks-modal__search {\n  margin: 16px 0; }\n  .edit-post-manage-blocks-modal__search .components-base-control__field {\n    margin-bottom: 0; }\n  .edit-post-manage-blocks-modal__search .components-base-control__label {\n    margin-top: -4px; }\n  .edit-post-manage-blocks-modal__search input[type=\"search\"].components-text-control__input {\n    padding: 12px;\n    border-radius: 4px; }\n\n.edit-post-manage-blocks-modal__category {\n  margin: 0 0 2rem 0; }\n\n.edit-post-manage-blocks-modal__category-title {\n  position: sticky;\n  top: 0;\n  padding: 16px 0;\n  background-color: #fff;\n  z-index: 1; }\n  .edit-post-manage-blocks-modal__category-title .components-base-control__field {\n    margin-bottom: 0; }\n  .edit-post-manage-blocks-modal__category-title .components-checkbox-control__label {\n    font-size: 0.9rem;\n    font-weight: 600; }\n\n.edit-post-manage-blocks-modal__checklist {\n  margin-top: 0; }\n\n.edit-post-manage-blocks-modal__checklist-item {\n  margin-bottom: 0;\n  padding-left: 16px;\n  border-top: 1px solid #e2e4e7; }\n  .edit-post-manage-blocks-modal__checklist-item:last-child {\n    border-bottom: 1px solid #e2e4e7; }\n  .edit-post-manage-blocks-modal__checklist-item .components-base-control__field {\n    align-items: center;\n    display: flex;\n    margin: 0; }\n  .components-modal__content .edit-post-manage-blocks-modal__checklist-item.components-checkbox-control__input-container {\n    margin: 0 8px; }\n  .edit-post-manage-blocks-modal__checklist-item .components-checkbox-control__label {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    flex-grow: 1;\n    padding: 0.6rem 0 0.6rem 10px; }\n  .edit-post-manage-blocks-modal__checklist-item .block-editor-block-icon {\n    margin-right: 10px;\n    fill: #555d66; }\n\n.edit-post-manage-blocks-modal__results {\n  height: 100%;\n  overflow: auto;\n  margin-left: -24px;\n  margin-right: -24px;\n  padding-left: 24px;\n  padding-right: 24px;\n  border-top: 1px solid #e2e4e7; }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Colors\n */\n/**\n * Often re-used variables\n */\n/**\n * Breakpoint mixins\n */\n/**\n * Long content fade mixin\n *\n * Creates a fading overlay to signify that the content is longer\n * than the space allows.\n */\n/**\n * Button states and focus styles\n */\n/**\n * Applies editor left position to the selector passed as argument\n */\n/**\n * Styles that are reused verbatim in a few places\n */\n/**\n * Allows users to opt-out of animations via OS-level preferences.\n */\n/**\n * Reset default styles for JavaScript UI based pages.\n * This is a WP-admin agnostic reset\n */\n/**\n * Reset the WP Admin page styles for Gutenberg-like pages.\n */\n/**\n * Breakpoints & Media Queries\n */\n.edit-post-manage-blocks-modal__content {\n  max-height: 500px; }\n\n.edit-post-manage-blocks-modal__error_message {\n  color: red; }\n\n@media (min-width: 600px) {\n  .edit-post-manage-blocks-modal {\n    height: calc(100% - 56px - 56px); } }\n\n.edit-post-manage-blocks-modal .components-modal__content {\n  padding-bottom: 0;\n  display: flex;\n  flex-direction: column; }\n\n.edit-post-manage-blocks-modal .components-modal__header {\n  flex-shrink: 0;\n  margin-bottom: 0; }\n\n.edit-post-manage-blocks-modal__content {\n  display: flex;\n  flex-direction: column;\n  flex: 0 1 100%;\n  min-height: 0; }\n\n.edit-post-manage-blocks-modal__no-results {\n  font-style: italic;\n  padding: 24px 0;\n  text-align: center; }\n\n.edit-post-manage-blocks-modal__search {\n  margin: 16px 0; }\n  .edit-post-manage-blocks-modal__search .components-base-control__field {\n    margin-bottom: 0; }\n  .edit-post-manage-blocks-modal__search .components-base-control__label {\n    margin-top: -4px; }\n  .edit-post-manage-blocks-modal__search input[type=\"search\"].components-text-control__input {\n    padding: 12px;\n    border-radius: 4px; }\n\n.edit-post-manage-blocks-modal__category {\n  margin: 0 0 2rem 0; }\n\n.edit-post-manage-blocks-modal__category-title {\n  position: sticky;\n  top: 0;\n  padding: 16px 0;\n  background-color: #fff;\n  z-index: 1; }\n  .edit-post-manage-blocks-modal__category-title .components-base-control__field {\n    margin-bottom: 0; }\n  .edit-post-manage-blocks-modal__category-title .components-checkbox-control__label {\n    font-size: 0.9rem;\n    font-weight: 600; }\n\n.edit-post-manage-blocks-modal__checklist {\n  margin-top: 0; }\n\n.edit-post-manage-blocks-modal__checklist-item {\n  margin-bottom: 0;\n  padding-left: 16px;\n  border-top: 1px solid #e2e4e7; }\n  .edit-post-manage-blocks-modal__checklist-item:last-child {\n    border-bottom: 1px solid #e2e4e7; }\n  .edit-post-manage-blocks-modal__checklist-item .components-base-control__field {\n    align-items: center;\n    display: flex;\n    margin: 0; }\n  .components-modal__content .edit-post-manage-blocks-modal__checklist-item.components-checkbox-control__input-container {\n    margin: 0 8px; }\n  .edit-post-manage-blocks-modal__checklist-item .components-checkbox-control__label {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    flex-grow: 1;\n    padding: 0.6rem 0 0.6rem 10px; }\n  .edit-post-manage-blocks-modal__checklist-item .block-editor-block-icon {\n    margin-right: 10px;\n    fill: #555d66; }\n\n.edit-post-manage-blocks-modal__results {\n  height: 100%;\n  overflow: auto;\n  margin-left: -24px;\n  margin-right: -24px;\n  padding-left: 24px;\n  padding-right: 24px;\n  border-top: 1px solid #e2e4e7; }\n", ""]);
 // Exports
 module.exports = exports;
 
