@@ -1,4 +1,4 @@
-export function receiveTypeFields( state, keepScalarTypes = false, keepIntrospectionTypes = false ) {
+export function getTypeFields( state, keepScalarTypes = false, keepIntrospectionTypes = false ) {
 	let { typeFields } = state;
 	/**
 	 * Each element in typeFields has this shape:
@@ -25,7 +25,7 @@ export function fetchedTypeFields( state ) {
 	return fetchedTypeFields;
 };
 
-export function receiveDirectives( state ) {
+export function getDirectives( state ) {
 	const { directives } = state;
 	return directives;
 };

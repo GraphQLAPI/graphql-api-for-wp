@@ -10,7 +10,7 @@ import {
 
 
 export default {
-	* receiveTypeFields( state ) {
+	* getTypeFields( state ) {
 		const query = `
 			query GetTypeFields {
 				__schema {
@@ -44,7 +44,7 @@ export default {
 		// console.log('typeFields', typeFields);
 		return setTypeFields( typeFields );
 	},
-	* receiveDirectives( state ) {
+	* getDirectives( state ) {
 		const query = `
 			query GetDirectives {
 				__schema {
