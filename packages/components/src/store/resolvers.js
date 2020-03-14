@@ -8,22 +8,31 @@ import {
 	setDirectives,
 } from './action-creators';
 
-
-export default {
-	* getTypeFields( state, keepScalarTypes = false, keepIntrospectionTypes = false ) {
-		const query = `
-			query GetTypeFields {
-				__schema {
-					types {
-						name
-						fields(includeDeprecated: true) {
-							name
-						}
-					}
+export const FETCH_TYPE_FIELDS_GRAPHQL_QUERY = `
+	query GetTypeFields {
+		__schema {
+			types {
+				name
+				fields(includeDeprecated: true) {
+					name
 				}
 			}
-		`
-		const response = yield receiveTypeFields( query );
+		}
+	}
+`;
+export const FETCH_DIRECTIVES_GRAPHQL_QUERY = `
+	query GetDirectives {
+		__schema {
+			directives {
+				name
+			}
+		}
+	}
+`
+export default {
+	* getTypeFields( state, keepScalarTypes = false, keepIntrospectionTypes = false ) {
+
+		const response = yield receiveTypeFields( FETCH_TYPE_FIELDS_GRAPHQL_QUERY );
 		/**
 		 * If there were erros when executing the query, return an empty list, and show the error
 		 */
@@ -41,20 +50,11 @@ export default {
 			type: element.name,
 			fields: element.fields == null ? null : element.fields.map(subelement => subelement.name),
 		}));
-		// console.log('typeFields', typeFields);
 		return setTypeFields( typeFields );
 	},
 	* getDirectives( state ) {
-		const query = `
-			query GetDirectives {
-				__schema {
-					directives {
-						name
-					}
-				}
-			}
-		`
-		const response = yield receiveDirectives( query );
+
+		const response = yield receiveDirectives( FETCH_DIRECTIVES_GRAPHQL_QUERY );
 		/**
 		 * If there were erros when executing the query, return an empty list, and show the error
 		 */
@@ -65,7 +65,6 @@ export default {
 		 * Convert the response to an array directly, removing the "name" key
 		 */
 		const directives = response.data?.__schema?.directives.map(element => element.name);
-		// console.log('directives', directives);
 		return setDirectives( directives );
 	},
 };
