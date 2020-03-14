@@ -1,3 +1,6 @@
+# Only needed while developing! Comment when tagging for Release
+build/
+
 # Logs
 logs
 *.log
