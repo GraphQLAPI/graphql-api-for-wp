@@ -1,4 +1,14 @@
 /**
+ * The initial state of the store
+ */
+const DEFAULT_STATE = {
+	typeFields: [],
+	fetchedTypeFields: false,
+	directives: [],
+	fetchedDirectives: false,
+};
+
+/**
  * Reducer returning an array of types and their fields, and directives.
  *
  * @param {Object} state  Current state.
@@ -7,12 +17,7 @@
  * @return {Object} Updated state.
  */
 const schemaInstrospection = (
-	state = {
-		typeFields: [],
-		fetchedTypeFields: false,
-		directives: [],
-		fetchedDirectives: false,
-	},
+	state = DEFAULT_STATE,
 	action
 ) => {
 	switch ( action.type ) {
