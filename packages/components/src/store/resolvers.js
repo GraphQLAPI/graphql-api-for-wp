@@ -61,10 +61,10 @@ export default {
 		 * "fields": array|null
 		 * }
 		 */
-		const typeFields = response.data?.__schema?.types.map(element => ({
+		const typeFields = response.data?.__schema?.types?.map(element => ({
 			type: element.name,
 			fields: element.fields == null ? null : element.fields.map(subelement => subelement.name),
-		}));
+		})) || [];
 		return setTypeFields( typeFields );
 	},
 	* getDirectives() {
@@ -81,7 +81,7 @@ export default {
 		/**
 		 * Convert the response to an array directly, removing the "name" key
 		 */
-		const directives = response.data?.__schema?.directives.map(element => element.name);
+		const directives = response.data?.__schema?.directives?.map(element => element.name) || [];
 		return setDirectives( directives );
 	},
 };
