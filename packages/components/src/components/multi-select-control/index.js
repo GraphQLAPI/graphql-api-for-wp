@@ -32,7 +32,15 @@ function MultiSelectControl( {
 	directives,
 	retrievedDirectives,
 	retrievingDirectivesErrorMessage,
+	isMatchingSearchTerm,
 } ) {
+	// Filtering occurs here (as opposed to `withSelect`) to avoid wasted
+	// wasted renders by consequence of `Array#filter` producing a new
+	// value reference on each call.
+	blockTypes = blockTypes.filter(
+		( blockType ) => ! search || isMatchingSearchTerm( blockType, search )
+	);
+
 	return (
 		<div className="edit-post-manage-blocks-modal__content">
 			{ retrievedTypeFields && retrievingTypeFieldsErrorMessage && (
@@ -91,6 +99,7 @@ export default compose( [
 		const {
 			getBlockTypes,
 			getCategories,
+			isMatchingSearchTerm,
 		} = select( 'core/blocks' );
 		const {
 			getTypeFields,
@@ -105,6 +114,7 @@ export default compose( [
 		return {
 			blockTypes: getBlockTypes(),
 			categories: getCategories(),
+			isMatchingSearchTerm,
 			typeFields: getTypeFields(),
 			retrievedTypeFields: retrievedTypeFields(),
 			retrievingTypeFieldsErrorMessage: getRetrievingTypeFieldsErrorMessage(),
