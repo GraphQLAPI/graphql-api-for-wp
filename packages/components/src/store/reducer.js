@@ -3,9 +3,9 @@
  */
 const DEFAULT_STATE = {
 	typeFields: [],
-	fetchedTypeFields: false,
+	retrievedTypeFields: false,
 	directives: [],
-	fetchedDirectives: false,
+	retrievedDirectives: false,
 };
 
 /**
@@ -25,13 +25,13 @@ const schemaInstrospection = (
 			return {
 				...state,
 				typeFields: action.typeFields,
-				fetchedTypeFields: true,
+				retrievedTypeFields: true,
 			};
 		case 'SET_DIRECTIVES':
 			return {
 				...state,
 				directives: action.directives,
-				fetchedDirectives: true,
+				retrievedDirectives: true,
 			};
 	}
 	return state;

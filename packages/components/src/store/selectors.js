@@ -20,17 +20,14 @@ export function getTypeFields( state, keepScalarTypes = false, keepIntrospection
 	return typeFields;
 };
 
-export function fetchedTypeFields( state ) {
-	const { fetchedTypeFields } = state;
-	return fetchedTypeFields;
+export function retrievedTypeFields( state ) {
+	return state.retrievedTypeFields;
 };
 
 export function getDirectives( state ) {
-	const { directives } = state;
-	return directives;
+	return state.directives;
 };
 
-export function fetchedDirectives( state ) {
-	const { fetchedDirectives } = state;
-	return fetchedDirectives;
+export function retrievedDirectives( state ) {
+	return state.retrievedDirectives;
 };
