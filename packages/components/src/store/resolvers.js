@@ -30,7 +30,7 @@ export const FETCH_DIRECTIVES_GRAPHQL_QUERY = `
 	}
 `
 export default {
-	* getTypeFields( state, keepScalarTypes = false, keepIntrospectionTypes = false ) {
+	* getTypeFields( keepScalarTypes = false, keepIntrospectionTypes = false ) {
 
 		const response = yield receiveTypeFields( FETCH_TYPE_FIELDS_GRAPHQL_QUERY );
 		/**
@@ -52,7 +52,7 @@ export default {
 		}));
 		return setTypeFields( typeFields );
 	},
-	* getDirectives( state ) {
+	* getDirectives( ) {
 
 		const response = yield receiveDirectives( FETCH_DIRECTIVES_GRAPHQL_QUERY );
 		/**
