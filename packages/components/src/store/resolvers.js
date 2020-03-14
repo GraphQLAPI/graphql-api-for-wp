@@ -13,6 +13,9 @@ import {
 	setDirectives,
 } from './action-creators';
 
+/**
+ * GraphQL query to fetch the list of types and their fields from the GraphQL schema
+ */
 export const FETCH_TYPE_FIELDS_GRAPHQL_QUERY = `
 	query GetTypeFields {
 		__schema {
@@ -25,6 +28,10 @@ export const FETCH_TYPE_FIELDS_GRAPHQL_QUERY = `
 		}
 	}
 `;
+
+/**
+ * GraphQL query to fetch the list of directives from the GraphQL schema
+ */
 export const FETCH_DIRECTIVES_GRAPHQL_QUERY = `
 	query GetDirectives {
 		__schema {
@@ -34,6 +41,13 @@ export const FETCH_DIRECTIVES_GRAPHQL_QUERY = `
 		}
 	}
 `
+
+/**
+ * If the response contains error(s), return a concatenated error message
+ *
+ * @param {Object} response A response object from the GraphQL server
+ * @return {string|null} The error message or nothing
+ */
 const maybeGetErrorMessage = (response) => {
 	if (response.errors && response.errors.length) {
 		return sprintf(
@@ -44,11 +58,17 @@ const maybeGetErrorMessage = (response) => {
 	return null;
 }
 export default {
+	/**
+	 * Fetch the typeFields from the GraphQL server
+	 *
+	 * @param {bool} keepScalarTypes Keep the scalar types in the typeFields object
+	 * @param {bool} keepIntrospectionTypes Keep the introspection types (__Type, __Directive, __Field, etc) in the typeFields object
+	 */
 	* getTypeFields( keepScalarTypes = false, keepIntrospectionTypes = false ) {
 
 		const response = yield receiveTypeFields( FETCH_TYPE_FIELDS_GRAPHQL_QUERY );
 		/**
-		 * If there were erros when executing the query, return an empty list, and show the error
+		 * If there were erros when executing the query, return an empty list, and keep the error in the state
 		 */
 		const maybeErrorMessage = maybeGetErrorMessage(response);
 		if (maybeErrorMessage) {
@@ -57,8 +77,8 @@ export default {
 		/**
 		 * Convert the response to an array with this structure:
 		 * {
-		 * "type": string
-		 * "fields": array|null
+		 *   "type": string (where currently is "type.name")
+		 *   "fields": array|null (where currently is "type.fields.name")
 		 * }
 		 */
 		const typeFields = response.data?.__schema?.types?.map(element => ({
@@ -67,11 +87,15 @@ export default {
 		})) || [];
 		return setTypeFields( typeFields );
 	},
+
+	/**
+	 * Fetch the directives from the GraphQL server
+	 */
 	* getDirectives() {
 
 		const response = yield receiveDirectives( FETCH_DIRECTIVES_GRAPHQL_QUERY );
 		/**
-		 * If there were erros when executing the query, return an empty list, and show the error
+		 * If there were erros when executing the query, return an empty list, and keep the error in the state
 		 */
 		const maybeErrorMessage = maybeGetErrorMessage(response);
 		if (maybeErrorMessage) {
@@ -79,7 +103,7 @@ export default {
 			return;
 		}
 		/**
-		 * Convert the response to an array directly, removing the "name" key
+		 * Flatten the response to an array containing the directive name directly (extracting them from under the "name" key)
 		 */
 		const directives = response.data?.__schema?.directives?.map(element => element.name) || [];
 		return setDirectives( directives );
