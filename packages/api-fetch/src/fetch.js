@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import fetch from 'isomorphic-fetch';
+import { request } from 'graphql-request'
 
 /**
  * The endpoint against which to execute GraphQL queries while on the WordPress admin
@@ -14,15 +14,13 @@ const GRAPHQL_ADMIN_ENDPOINT = '/api/graphql';
  * @param {string} query The GraphQL query to execute
  * @return {Object} The response from the GraphQL server
  */
-const fetchGraphQLQuery = (query) => {
-	const content = {
-		query: query,
-	};
-	return fetch( `${ window.location.origin }${ GRAPHQL_ADMIN_ENDPOINT }`, {
-		method: 'post',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify( content ),
-	} ).then( ( response ) => response.json() );
+const fetchGraphQLQuery = (query, variables) => {
+	/**
+	 * Return the response always, both in case of success and error
+	 */
+	return request(`${ window.location.origin }${ GRAPHQL_ADMIN_ENDPOINT }`, query, variables)
+		.then(response => response)
+		.catch(err => err.response);
 };
 
 /**

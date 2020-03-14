@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@wordpress/scripts": "^7.1.2",
-    "prettier": "npm:wp-prettier@1.19.1",
-    "isomorphic-fetch": "^2.2.1"
+    "graphql-request": "^1.8.2",
+    "prettier": "npm:wp-prettier@1.19.1"
   }
 }
