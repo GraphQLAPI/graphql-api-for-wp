@@ -19,9 +19,9 @@ class Component extends AbstractComponent
      *
      * @return void
      */
-    public static function earlyBoot()
+    public static function timelyBoot()
     {
-        parent::earlyBoot();
+        parent::timelyBoot();
 
         if (\is_singular(GraphQLQueryPostType::POST_TYPE)) {
             self::maybeSetAccessControlList();
@@ -59,7 +59,7 @@ class Component extends AbstractComponent
             $instanceManager = InstanceManagerFacade::getInstance();
             $typeRegistry = TypeRegistryFacade::getInstance();
             $typeResolverClasses = $typeRegistry->getTypeResolverClasses();
-            // For each class, obtain its namespacedTypeName. Notice that if a TypeResolver overrides another, they may have the same name
+            // For each class, obtain its namespacedTypeName
             $namespacedTypeNameClasses = [];
             foreach ($typeResolverClasses as $typeResolverClass) {
                 $typeResolver = $instanceManager->getInstance($typeResolverClass);
