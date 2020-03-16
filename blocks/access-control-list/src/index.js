@@ -54,6 +54,9 @@ registerBlockType( 'graphql-api/access-control-list', {
 	 * Block default attributes.
 	 */
 	attributes: {
+		accessControlGroup: {
+			type: 'string',
+		},
 		selectedFields: {
 			type: 'array',
 			default: [],

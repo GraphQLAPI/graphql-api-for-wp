@@ -3,7 +3,9 @@ import { MultiSelectControl } from '../../../packages/components/src';
 import './style.scss';
 
 const EditBlock = ( props ) => {
-	const { className, setAttributes, attributes: { selectedFields }, } = props;
+	const { className, setAttributes, attributes: { selectedFields, accessControlGroup }, } = props;
+	// Temporary code for testing!
+	setAttributes( { accessControlGroup: 'disabled'} )
 	return (
 		<div className={ className }>
 			<div className={ className+'__items' }>
