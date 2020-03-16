@@ -25,6 +25,9 @@ define('GRAPHQL_BY_POP_VERSION', '0.1');
 // Load Composer’s autoloader
 require_once (__DIR__.'/vendor/autoload.php');
 
+// Load the current plugin's Component
+\Leoloso\GraphQLByPoPWPPlugin\Component::init();
+
 // Load the "must-use" plugin to boot PoP
 require_once (__DIR__.'/wp-content/mu-plugins/engine-wp-bootloader/pop-engine-wp-bootloader.php');
 
