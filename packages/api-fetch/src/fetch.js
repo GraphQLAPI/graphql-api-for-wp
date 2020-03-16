@@ -17,9 +17,12 @@ const GRAPHQL_ADMIN_ENDPOINT = '/api/graphql';
 const fetchGraphQLQuery = (query, variables) => {
 	/**
 	 * Return the response always, both in case of success and error
+	 * Add the successful response under key "data", which is stripped by "graphql-request"
 	 */
 	return request(`${ window.location.origin }${ GRAPHQL_ADMIN_ENDPOINT }`, query, variables)
-		.then(response => response)
+		.then(response => ({
+			data: response
+		}))
 		.catch(err => err.response);
 };
 
