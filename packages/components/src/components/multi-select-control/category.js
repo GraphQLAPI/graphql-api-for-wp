@@ -16,22 +16,23 @@ import BlockTypesChecklist from './checklist';
 
 function BlockManagerCategory( {
 	instanceId,
-	category,
+	group,
 	blockTypes,
 	selectedFields,
 	setAttributes,
 } ) {
 	const checkedBlockNames = intersection(
-		map( blockTypes, 'name' ),
+		map( blockTypes, 'value' ),
 		selectedFields
 	);
+	// console.log('group', group, blockTypes, map( blockTypes, 'value' ), selectedFields, checkedBlockNames);
 	const toggleVisible = ( blockName, nextIsChecked ) => {
 		setAttributes( {
 			selectedFields: nextIsChecked ? [...selectedFields, blockName] : without(selectedFields, blockName)
 		} );
 	};
 	const toggleAllVisible = ( nextIsChecked ) => {
-		const blockNames = map( blockTypes, 'name' );
+		const blockNames = map( blockTypes, 'value' );
 		setAttributes( {
 			selectedFields: nextIsChecked ? [...selectedFields, ...blockNames] : without(selectedFields, ...blockNames)
 		} );
@@ -62,7 +63,7 @@ function BlockManagerCategory( {
 				onChange={ toggleAllVisible }
 				className="edit-post-manage-blocks-modal__category-title"
 				aria-checked={ ariaChecked }
-				label={ <span id={ titleId }>{ category.title }</span> }
+				label={ <span id={ titleId }>{ group }</span> }
 			/>
 			<BlockTypesChecklist
 				blockTypes={ blockTypes }

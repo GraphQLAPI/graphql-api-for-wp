@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { filter, flatMap } from 'lodash';
+import { filter, /*flatMap,*/ uniq } from 'lodash';
 
 /**
  * WordPress dependencies
@@ -27,6 +27,7 @@ function MultiSelectControl( {
 	selectedFields,
 	setAttributes,
 	typeFields,
+	items,
 	retrievedTypeFields,
 	retrievingTypeFieldsErrorMessage,
 	directives,
@@ -40,21 +41,17 @@ function MultiSelectControl( {
 	blockTypes = blockTypes.filter(
 		( blockType ) => ! search || isMatchingSearchTerm( blockType, search )
 	);
-	// // If the type matches the search, return all fields
-	// // Otherwise, return all fields that match the search
-	// if (search) {
-	// 	search = search.toLowerCase();
-	// 	typeFields = typeFields.map(
-	// 		( typeFieldsItem ) => typeFieldsItem.toLowerCase().include(search) ?
-	// 			typeFieldsItem :
-	// 			typeFieldsItem.fields.filter(
-	// 				( typeFieldsItemField ) => typeFieldsItemField.toLowerCase().include(search)
-	// 			)
-	// 	);
-	// 	typeFields = typeFields.filter(
-	// 		( typeFieldsItem ) => isMatchingSearchTerm( blockType, search )
-	// 	);
-	// }
+	// If the type matches the search, return all fields
+	// Otherwise, return all fields that match the search
+	if (search) {
+		search = search.toLowerCase();
+		items = items.filter(
+			( item ) => item.group.includes(search) || item.title.includes(search)
+		);
+	}
+	const groups = uniq(items.map(
+		( item ) => item.group
+	))
 
 	return (
 		<div className="edit-post-manage-blocks-modal__content">
@@ -82,17 +79,17 @@ function MultiSelectControl( {
 						aria-label={ __( 'Available block types' ) }
 						className="edit-post-manage-blocks-modal__results"
 					>
-						{ blockTypes.length === 0 && (
+						{ items.length === 0 && (
 							<p className="edit-post-manage-blocks-modal__no-results">
-								{ __( 'No blocks found.' ) }
+								{ __( 'No item found.' ) }
 							</p>
 						) }
-						{ categories.map( ( category ) => (
+						{ groups.map( ( group ) => (
 							<BlockManagerCategory
-								key={ category.slug }
-								category={ category }
-								blockTypes={ filter( blockTypes, {
-									category: category.slug,
+								key={ group }
+								group={ group }
+								blockTypes={ filter( items, {
+									group: group,
 								} ) }
 								selectedFields={ selectedFields }
 								setAttributes={ setAttributes }
@@ -133,13 +130,13 @@ export default compose( [
 		 * Convert typeFields object, from this structure:
 		 * [{type:"Type", fields:["field1", "field2",...]},...]
 		 * To this one:
-		 * [{group:"Type",name:"field1",value:"field1"},...]
+		 * [{group:"Type",title:"field1",value:"field1"},...]
 		 */
 		const items = getTypeFields().flatMap(function(typeItem) {
 			return typeItem.fields.flatMap(function(field) {
 				return [{
 					group: typeItem.type,
-					name: field,
+					title: field,
 					value: field,
 				}]
 			})
@@ -150,7 +147,7 @@ export default compose( [
 			blockTypes: getBlockTypes(),
 			categories: getCategories(),
 			isMatchingSearchTerm,
-			typeFields: getTypeFields(),
+			items,
 			retrievedTypeFields: retrievedTypeFields(),
 			retrievingTypeFieldsErrorMessage: getRetrievingTypeFieldsErrorMessage(),
 			directives: getDirectives(),
