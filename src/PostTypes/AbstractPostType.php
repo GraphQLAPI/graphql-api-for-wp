@@ -131,6 +131,7 @@ abstract class AbstractPostType
                 'editor',
                 'author',
                 'revisions',
+                'custom-fields',
             ],
         );
         if ($this->usePostExcerptAsDescription()) {
