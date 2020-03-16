@@ -19,6 +19,8 @@ import './style.scss';
  */
 import BlockManagerCategory from './category';
 
+const TYPE_FIELD_SEPARATOR = '.';
+
 function MultiSelectControl( {
 	search,
 	setState,
@@ -120,7 +122,7 @@ export default compose( [
 				return [{
 					group: typeItem.type,
 					title: field,
-					value: `${ typeItem.type }/${ field }`,
+					value: `${ typeItem.type }${ TYPE_FIELD_SEPARATOR }${ field }`,
 				}]
 			})
 		});
