@@ -19,9 +19,9 @@ class Component extends AbstractComponent
      *
      * @return void
      */
-    public static function timelyBoot()
+    public static function boot()
     {
-        parent::timelyBoot();
+        parent::boot();
 
         if (\is_singular(GraphQLQueryPostType::POST_TYPE)) {
             self::maybeSetAccessControlList();
