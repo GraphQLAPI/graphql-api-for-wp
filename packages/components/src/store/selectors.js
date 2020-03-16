@@ -11,7 +11,8 @@ export function getTypeFields( state, keepScalarTypes = false, keepIntrospection
 	/**
 	 * Each element in typeFields has this shape:
 	 * {
-	 *   "type": string
+	 *   "typeName": string
+	 *   "typeNamespacedName": string
 	 *   "fields": array|null
 	 * }
 	 */
