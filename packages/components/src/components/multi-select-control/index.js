@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { filter } from 'lodash';
+import { filter, flatMap } from 'lodash';
 
 /**
  * WordPress dependencies
@@ -40,6 +40,21 @@ function MultiSelectControl( {
 	blockTypes = blockTypes.filter(
 		( blockType ) => ! search || isMatchingSearchTerm( blockType, search )
 	);
+	// // If the type matches the search, return all fields
+	// // Otherwise, return all fields that match the search
+	// if (search) {
+	// 	search = search.toLowerCase();
+	// 	typeFields = typeFields.map(
+	// 		( typeFieldsItem ) => typeFieldsItem.toLowerCase().include(search) ?
+	// 			typeFieldsItem :
+	// 			typeFieldsItem.fields.filter(
+	// 				( typeFieldsItemField ) => typeFieldsItemField.toLowerCase().include(search)
+	// 			)
+	// 	);
+	// 	typeFields = typeFields.filter(
+	// 		( typeFieldsItem ) => isMatchingSearchTerm( blockType, search )
+	// 	);
+	// }
 
 	return (
 		<div className="edit-post-manage-blocks-modal__content">
@@ -101,6 +116,8 @@ export default compose( [
 			getCategories,
 			isMatchingSearchTerm,
 		} = select( 'core/blocks' );
+		// console.log('getBlockTypes', getBlockTypes());
+		// console.log('getCategories', getCategories());
 		const {
 			getTypeFields,
 			retrievedTypeFields,
@@ -111,6 +128,24 @@ export default compose( [
 		} = select ( 'leoloso/graphql-api' );
 		// console.log('receiveFieldsAndDirectives', getTypeFields(), getDirectives());
 		// console.log('retrievedTypeFields', retrievedTypeFields());
+		//
+		/**
+		 * Convert typeFields object, from this structure:
+		 * [{type:"Type", fields:["field1", "field2",...]},...]
+		 * To this one:
+		 * [{group:"Type",name:"field1",value:"field1"},...]
+		 */
+		const items = getTypeFields().flatMap(function(typeItem) {
+			return typeItem.fields.flatMap(function(field) {
+				return [{
+					group: typeItem.type,
+					name: field,
+					value: field,
+				}]
+			})
+		});
+		// console.log('items', items);
+
 		return {
 			blockTypes: getBlockTypes(),
 			categories: getCategories(),
