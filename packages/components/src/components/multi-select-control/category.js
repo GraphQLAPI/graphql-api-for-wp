@@ -17,31 +17,31 @@ import BlockTypesChecklist from './checklist';
 function BlockManagerCategory( {
 	instanceId,
 	group,
-	blockTypes,
+	items,
 	selectedFields,
 	setAttributes,
 } ) {
 	const checkedBlockNames = intersection(
-		map( blockTypes, 'value' ),
+		map( items, 'value' ),
 		selectedFields
 	);
-	// console.log('group', group, blockTypes, map( blockTypes, 'value' ), selectedFields, checkedBlockNames);
+	// console.log('group', group, items, map( items, 'value' ), selectedFields, checkedBlockNames);
 	const toggleVisible = ( blockName, nextIsChecked ) => {
 		setAttributes( {
 			selectedFields: nextIsChecked ? [...selectedFields, blockName] : without(selectedFields, blockName)
 		} );
 	};
 	const toggleAllVisible = ( nextIsChecked ) => {
-		const blockNames = map( blockTypes, 'value' );
+		const itemValues = map( items, 'value' );
 		setAttributes( {
-			selectedFields: nextIsChecked ? [...selectedFields, ...blockNames] : without(selectedFields, ...blockNames)
+			selectedFields: nextIsChecked ? [...selectedFields, ...itemValues] : without(selectedFields, ...itemValues)
 		} );
 	};
 
 	const titleId =
 		'edit-post-manage-blocks-modal__category-title-' + instanceId;
 
-	const isAllChecked = checkedBlockNames.length === blockTypes.length;
+	const isAllChecked = checkedBlockNames.length === items.length;
 
 	let ariaChecked;
 	if ( isAllChecked ) {
@@ -66,7 +66,7 @@ function BlockManagerCategory( {
 				label={ <span id={ titleId }>{ group }</span> }
 			/>
 			<BlockTypesChecklist
-				blockTypes={ blockTypes }
+				items={ items }
 				value={ checkedBlockNames }
 				onItemChange={ toggleVisible }
 			/>

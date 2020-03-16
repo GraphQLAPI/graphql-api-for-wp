@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { filter, /*flatMap,*/ uniq } from 'lodash';
+import { filter, uniq } from 'lodash';
 
 /**
  * WordPress dependencies
@@ -22,27 +22,19 @@ import BlockManagerCategory from './category';
 function MultiSelectControl( {
 	search,
 	setState,
-	blockTypes,
-	categories,
 	selectedFields,
 	setAttributes,
-	typeFields,
 	items,
 	retrievedTypeFields,
 	retrievingTypeFieldsErrorMessage,
 	directives,
 	retrievedDirectives,
 	retrievingDirectivesErrorMessage,
-	isMatchingSearchTerm,
 } ) {
 	// Filtering occurs here (as opposed to `withSelect`) to avoid wasted
 	// wasted renders by consequence of `Array#filter` producing a new
 	// value reference on each call.
-	blockTypes = blockTypes.filter(
-		( blockType ) => ! search || isMatchingSearchTerm( blockType, search )
-	);
-	// If the type matches the search, return all fields
-	// Otherwise, return all fields that match the search
+	// If the type matches the search, return all fields. Otherwise, return all fields that match the search
 	if (search) {
 		search = search.toLowerCase();
 		items = items.filter(
@@ -88,7 +80,7 @@ function MultiSelectControl( {
 							<BlockManagerCategory
 								key={ group }
 								group={ group }
-								blockTypes={ filter( items, {
+								items={ filter( items, {
 									group: group,
 								} ) }
 								selectedFields={ selectedFields }
@@ -109,13 +101,6 @@ export default compose( [
 	withState( { search: '' } ),
 	withSelect( ( select ) => {
 		const {
-			getBlockTypes,
-			getCategories,
-			isMatchingSearchTerm,
-		} = select( 'core/blocks' );
-		// console.log('getBlockTypes', getBlockTypes());
-		// console.log('getCategories', getCategories());
-		const {
 			getTypeFields,
 			retrievedTypeFields,
 			getRetrievingTypeFieldsErrorMessage,
@@ -123,30 +108,25 @@ export default compose( [
 			retrievedDirectives,
 			getRetrievingDirectivesErrorMessage,
 		} = select ( 'leoloso/graphql-api' );
-		// console.log('receiveFieldsAndDirectives', getTypeFields(), getDirectives());
-		// console.log('retrievedTypeFields', retrievedTypeFields());
 		//
 		/**
 		 * Convert typeFields object, from this structure:
 		 * [{type:"Type", fields:["field1", "field2",...]},...]
 		 * To this one:
-		 * [{group:"Type",title:"field1",value:"field1"},...]
+		 * [{group:"typeName",title:"field1",value:"typeName/field1"},...]
 		 */
 		const items = getTypeFields().flatMap(function(typeItem) {
 			return typeItem.fields.flatMap(function(field) {
 				return [{
 					group: typeItem.type,
 					title: field,
-					value: field,
+					value: `${ typeItem.type }/${ field }`,
 				}]
 			})
 		});
 		// console.log('items', items);
 
 		return {
-			blockTypes: getBlockTypes(),
-			categories: getCategories(),
-			isMatchingSearchTerm,
 			items,
 			retrievedTypeFields: retrievedTypeFields(),
 			retrievingTypeFieldsErrorMessage: getRetrievingTypeFieldsErrorMessage(),
