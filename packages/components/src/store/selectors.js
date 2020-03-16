@@ -28,7 +28,7 @@ export function getTypeFields( state, keepScalarTypes = false, keepIntrospection
 	 * Introspection types (eg: __Schema, __Directive, __Type, etc) start with "__"
 	 */
 	if ( !keepIntrospectionTypes ) {
-		typeFields = typeFields.filter(element => !element.type.startsWith('__'));
+		typeFields = typeFields.filter(element => !element.typeName.startsWith('__'));
 	}
 	return typeFields;
 };

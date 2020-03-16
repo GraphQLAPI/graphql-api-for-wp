@@ -21,6 +21,7 @@ export const FETCH_TYPE_FIELDS_GRAPHQL_QUERY = `
 		__schema {
 			types {
 				name
+				namespacedName:name(namespaced:true)
 				fields(includeDeprecated: true) {
 					name
 				}
@@ -77,12 +78,14 @@ export default {
 		/**
 		 * Convert the response to an array with this structure:
 		 * {
-		 *   "type": string (where currently is "type.name")
+		 *   "typeName": string (where currently is "type.name")
+		 *   "typeNamespacedName": string (where currently is "type.namespacedName")
 		 *   "fields": array|null (where currently is "type.fields.name")
 		 * }
 		 */
 		const typeFields = response.data?.__schema?.types?.map(element => ({
-			type: element.name,
+			typeName: element.name,
+			typeNamespacedName: element.namespacedName,
 			fields: element.fields == null ? null : element.fields.map(subelement => subelement.name),
 		})) || [];
 		return setTypeFields( typeFields );

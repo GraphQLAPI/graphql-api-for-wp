@@ -120,9 +120,9 @@ export default compose( [
 		const items = getTypeFields().flatMap(function(typeItem) {
 			return typeItem.fields.flatMap(function(field) {
 				return [{
-					group: typeItem.type,
+					group: typeItem.typeName,
 					title: field,
-					value: `${ typeItem.type }${ TYPE_FIELD_SEPARATOR }${ field }`,
+					value: `${ typeItem.typeNamespacedName }${ TYPE_FIELD_SEPARATOR }${ field }`,
 				}]
 			})
 		});
