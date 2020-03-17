@@ -8,7 +8,7 @@ const FieldDirectiveMultiSelectControl = ( props ) => {
 	return (
 		<div className={ className+'__controls' }>
 			<div className="edit-post-manage-blocks-modal">
-				<em>{ __('Fields:', 'graphql-api') }</em>
+				<em>{ __('Fields (by type):', 'graphql-api') }</em>
 				<FieldMultiSelectControl
 					selectedFields={ selectedFields }
 					setAttributes={ setAttributes }
