@@ -1,6 +1,7 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
 use PoP\Root\Component\AbstractComponent;
 use PoP\AccessControl\Facades\AccessControlManagerFacade;
@@ -74,7 +75,7 @@ class Component extends AbstractComponent
                     foreach ($aclBlockItem['attrs']['selectedFields'] as $selectedField) {
                         // The field is composed by the type namespaced name, and the field name, separated by "."
                         // Extract these values
-                        $entry = explode('.', $selectedField);
+                        $entry = explode(AccessControlListBlock::TYPE_FIELD_SEPARATOR, $selectedField);
                         $namespacedTypeName = $entry[0];
                         $field = $entry[1];
                         // From the type, obtain which resolver class processes it

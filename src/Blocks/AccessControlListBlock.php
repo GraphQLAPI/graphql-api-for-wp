@@ -6,6 +6,8 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
  */
 class AccessControlListBlock extends AbstractGraphQLByPoPBlock
 {
+    public const TYPE_FIELD_SEPARATOR = '.';
+
     protected function getBlockName(): string
     {
         return 'access-control-list';
