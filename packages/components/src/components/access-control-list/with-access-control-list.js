@@ -1,27 +1,17 @@
 /**
  * Internal dependencies
  */
-import { createHigherOrderComponent } from '@wordpress/compose';
+import { createHigherOrderComponent, compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import FieldDirectiveTabPanel from './field-directive-tab-panel';
-import './style.scss';
-
-const getElementList = ( elements, className ) => {
-	return elements.length ? (
-		<span className={ className+'__item_data__list' }>
-			{ elements.map(element => <span><br/>✅ { element }</span>)}
-		</span>
-	) : (
-		__('None selected', 'graphql-api')
-	);
-}
+import FieldDirectivePrintout from './field-directive-printout';
 
 /**
  * Display an error message if loading data failed
  */
 const withAccessControlList = () => createHigherOrderComponent(
 	( WrappedComponent ) => ( props ) => {
-		const { setAttributes, isSelected, attributes: { typeFields, directives } } = props;
+		const { setAttributes, isSelected, attributes: { typeFields, directives }, typeFieldNames } = props;
 		const className = 'graphql-api-access-control-list';
 		return (
 			<div className={ className }>
@@ -41,14 +31,11 @@ const withAccessControlList = () => createHigherOrderComponent(
 									/>
 								}
 								{ !isSelected && (
-									<>
-										<p>
-											<u>{ __('Fields:', 'graphql-api') }</u> { getElementList( typeFields, className ) }
-										</p>
-										<p>
-											<u>{ __('Directives:', 'graphql-api') }</u> { getElementList( directives, className ) }
-										</p>
-									</>
+									<FieldDirectivePrintout
+										typeFields={ typeFields }
+										directives={ directives }
+										className={ className }
+									/>
 								) }
 							</div>
 							<div className={ className+'__item_data_who' }>

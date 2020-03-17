@@ -12,7 +12,7 @@ import MultiSelectControl from '../multi-select-control';
 /**
  * Same constant as \Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractAccessControlListBlock::TYPE_FIELD_SEPARATOR
  */
-const TYPE_FIELD_SEPARATOR = '.';
+export const TYPE_FIELD_SEPARATOR = '.';
 
 const FieldMultiSelectControl = compose( [
 	withState( { attributeName: 'typeFields' } ),
