@@ -1,4 +1,10 @@
-// Addition by Leo
+/**
+* Adaptation by Leo, from the BlockManager (which is a modal) to the MultiSelectControl
+* Original file: packages/edit-post/src/components/manage-blocks-modal/style.scss
+* Replaced className, from "edit-post-manage-blocks-modal" to "multi-select-control"
+*/
+
+// Imports added by Leo
 @import './base_styles.scss';
 
 // Additions by Leo
@@ -20,12 +26,14 @@
 	list-style: none;
 }
 
+// Commented out by Leo
 // .multi-select-control {
 // 	@include break-small() {
 // 		height: calc(100% - #{ $header-height } - #{ $header-height });
 // 	}
 // }
 
+// From here on, it's same styles as in the original
 .multi-select-control .components-modal__content {
 	padding-bottom: 0;
 	display: flex;
