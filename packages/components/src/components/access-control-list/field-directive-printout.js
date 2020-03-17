@@ -3,6 +3,7 @@
  */
 import { compose } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
+import { Card, CardHeader, CardBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { TYPE_FIELD_SEPARATOR } from './field-multi-select-control';
 import withSpinner from '../multi-select-control/with-spinner';
@@ -21,14 +22,30 @@ const getElementList = ( elements, className ) => {
 const FieldDirectivePrintout = ( props ) => {
 	const { typeFields, directives, className, typeFieldNames } = props;
 	return (
-		<>
-			<p>
-				<u>{ __('Fields:', 'graphql-api') }</u> { getElementList( typeFields.map( typeField => typeFieldNames[ typeField ] ), className ) }
-			</p>
-			<p>
-				<u>{ __('Directives:', 'graphql-api') }</u> { getElementList( directives, className ) }
-			</p>
-		</>
+		<Card { ...props }>
+			<CardHeader isShady>{ __('Fields, by type', 'graphql-api') }</CardHeader>
+			<CardBody>
+				{ !! typeFields.length && typeFields.map( typeField =>
+					<>
+						{ typeFieldNames[ typeField ] }<br/>
+					</>
+				) }
+				{ !typeFields.length && (
+					__('No fields selected', 'graphql-api')
+				) }
+			</CardBody>
+			<CardHeader isShady>{ __('(Non-system) Directives', 'graphql-api') }</CardHeader>
+			<CardBody>
+				{ !! directives.length && directives.map( directive =>
+					<>
+						{ directive }<br/>
+					</>
+				) }
+				{ !directives.length && (
+					__('No directives selected', 'graphql-api')
+				) }
+			</CardBody>
+		</Card>
 	);
 }
 
