@@ -19,9 +19,9 @@ const withAccessControlList = () => createHigherOrderComponent(
 					<div className={ className+'__item' }>
 						<div className={ className+'__item_data' }>
 							<div className={ className+'__item_data_for' }>
-								<p className={ className+'__item_data__title' }>
+								<div className={ className+'__item_data__title' }>
 									<strong>{ __('Define access for:', 'graphql-api') }</strong>
-								</p>
+								</div>
 								{ isSelected &&
 									<FieldDirectiveTabPanel
 										typeFields={ typeFields }
@@ -37,13 +37,15 @@ const withAccessControlList = () => createHigherOrderComponent(
 								}
 							</div>
 							<div className={ className+'__item_data_who' }>
-								<p className={ className+'__item_data__title' }>
+								<div className={ className+'__item_data__title' }>
 									<strong>{ __('Who can access:', 'graphql-api') }</strong>
-								</p>
-								<WrappedComponent
-									className={ className }
-									{ ...props }
-								/>
+								</div>
+								<div className={ className+'__item_data__who' }>
+									<WrappedComponent
+										className={ className }
+										{ ...props }
+									/>
+								</div>
 							</div>
 						</div>
 					</div>

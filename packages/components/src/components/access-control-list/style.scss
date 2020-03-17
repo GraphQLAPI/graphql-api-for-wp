@@ -20,7 +20,8 @@
 			grid-template-rows: auto;
 			grid-gap: 20px;
 
-			&__title {
+			&__title,
+			&__who {
 				text-align: center;
 			}
 		}
