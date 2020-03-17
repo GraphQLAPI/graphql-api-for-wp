@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { FieldMultiSelectControl } from '../../../packages/components/src';
+import { FieldDirectiveMultiSelectControl } from '../../../packages/components/src';
 import './style.scss';
 
 const EditBlock = ( props ) => {
@@ -13,14 +13,12 @@ const EditBlock = ( props ) => {
 					<div className={ className+'__item_data' }>
 						<div className={ className+'__item_data_for' }>
 							<p className={ className+'__item_data__title' }><strong>{ __('Define access for:', 'graphql-api') }</strong></p>
-							<p>{ __('Fields:', 'graphql-api') }</p>
-							<div className="edit-post-manage-blocks-modal">
-								<FieldMultiSelectControl
-									selectedFields={ selectedFields }
-									setAttributes={ setAttributes }
-								/>
-							</div>
-							<p>{ __('Directives:', 'graphql-api') }</p>
+							<FieldDirectiveMultiSelectControl
+								selectedFields={ selectedFields }
+								setAttributes={ setAttributes }
+								className={ className }
+								accessControlGroup={ accessControlGroup }
+							/>
 						</div>
 						<div className={ className+'__item_data_who' }>
 							<p className={ className+'__item_data__title' }><strong>{ __('Who can access:', 'graphql-api') }</strong></p>
