@@ -7,14 +7,16 @@ const FieldDirectiveMultiSelectControl = ( props ) => {
 	setAttributes( { accessControlGroup: 'disabled'} )
 	return (
 		<div className={ className+'__controls' }>
-			<p>{ __('Fields:', 'graphql-api') }</p>
 			<div className="edit-post-manage-blocks-modal">
+				<em>{ __('Fields:', 'graphql-api') }</em>
 				<FieldMultiSelectControl
 					selectedFields={ selectedFields }
 					setAttributes={ setAttributes }
 				/>
 			</div>
-			<p>{ __('Directives:', 'graphql-api') }</p>
+			<div className="edit-post-manage-blocks-modal">
+				<em>{ __('Directives:', 'graphql-api') }</em>
+			</div>
 		</div>
 	);
 }
