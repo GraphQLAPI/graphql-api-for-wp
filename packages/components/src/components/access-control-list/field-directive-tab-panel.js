@@ -3,7 +3,7 @@ import { TabPanel } from '@wordpress/components';
 import FieldMultiSelectControl from './field-multi-select-control';
 
 const FieldDirectiveTabPanel = ( props ) => {
-	const { className, setAttributes, selectedFields } = props;
+	const { className, setAttributes, typeFields } = props;
 	return (
 		<TabPanel
 			className={ className + '__tab_panel' }
@@ -24,7 +24,7 @@ const FieldDirectiveTabPanel = ( props ) => {
 			{
 				( tab ) => tab.name == 'tabFields' ?
 					<FieldMultiSelectControl
-						selectedItems={ selectedFields }
+						selectedItems={ typeFields }
 						setAttributes={ setAttributes }
 					/> :
 					<p>

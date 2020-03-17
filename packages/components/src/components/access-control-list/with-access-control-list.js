@@ -11,7 +11,7 @@ import './style.scss';
  */
 const withAccessControlList = () => createHigherOrderComponent(
 	( WrappedComponent ) => ( props ) => {
-		const { className, setAttributes, isSelected, attributes: { selectedFields } } = props;
+		const { className, setAttributes, isSelected, attributes: { typeFields } } = props;
 		return (
 			<div className={ className }>
 				<div className={ className+'__items' }>
@@ -21,7 +21,7 @@ const withAccessControlList = () => createHigherOrderComponent(
 								<p className={ className+'__item_data__title' }><strong>{ __('Define access for:', 'graphql-api') }</strong></p>
 								{ isSelected &&
 									<FieldDirectiveTabPanel
-										selectedFields={ selectedFields }
+										typeFields={ typeFields }
 										setAttributes={ setAttributes }
 										className={ className }
 									/>

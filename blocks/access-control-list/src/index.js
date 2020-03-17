@@ -57,7 +57,10 @@ registerBlockType( 'graphql-api/access-control-list', {
 		accessControlGroup: {
 			type: 'string',
 		},
-		selectedFields: {
+		/**
+		 * List of selected fields, accessible by their type
+		 */
+		typeFields: {
 			type: 'array',
 			default: [],
 		},

@@ -72,7 +72,7 @@ class Component extends AbstractComponent
                     // The value can be NULL
                     $value = $aclBlockItem['attrs']['value'];
                     $fields = [];
-                    foreach ($aclBlockItem['attrs']['selectedFields'] as $selectedField) {
+                    foreach ($aclBlockItem['attrs']['typeFields'] as $selectedField) {
                         // The field is composed by the type namespaced name, and the field name, separated by "."
                         // Extract these values
                         $entry = explode(AccessControlListBlock::TYPE_FIELD_SEPARATOR, $selectedField);

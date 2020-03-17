@@ -28,13 +28,13 @@ function MultiSelectControlGroup( {
 	// console.log('group', group, items, map( items, 'value' ), selectedItems, checkedBlockNames);
 	const toggleVisible = ( blockName, nextIsChecked ) => {
 		setAttributes( {
-			selectedItems: nextIsChecked ? [...selectedItems, blockName] : without(selectedItems, blockName)
+			typeFields: nextIsChecked ? [...selectedItems, blockName] : without(selectedItems, blockName)
 		} );
 	};
 	const toggleAllVisible = ( nextIsChecked ) => {
 		const itemValues = map( items, 'value' );
 		setAttributes( {
-			selectedItems: nextIsChecked ? [...selectedItems, ...itemValues] : without(selectedItems, ...itemValues)
+			typeFields: nextIsChecked ? [...selectedItems, ...itemValues] : without(selectedItems, ...itemValues)
 		} );
 	};
 
