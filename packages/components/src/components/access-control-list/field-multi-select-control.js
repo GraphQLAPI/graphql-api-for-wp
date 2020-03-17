@@ -19,7 +19,7 @@ const FieldMultiSelectControl = compose( [
 	withSelect( ( select ) => {
 		const {
 			getTypeFields,
-			retrievedTypeFields,
+			hasRetrievedTypeFields,
 			getRetrievingTypeFieldsErrorMessage,
 		} = select ( 'leoloso/graphql-api' );
 		/**
@@ -39,7 +39,7 @@ const FieldMultiSelectControl = compose( [
 		});
 		return {
 			items,
-			hasRetrievedItems: retrievedTypeFields(),
+			hasRetrievedItems: hasRetrievedTypeFields(),
 			errorMessage: getRetrievingTypeFieldsErrorMessage(),
 		};
 	} ),

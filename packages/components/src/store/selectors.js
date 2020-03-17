@@ -41,8 +41,8 @@ export function getTypeFields( state, keepScalarTypes = false, keepIntrospection
  *
  * @return {bool} The list of types and their fields from the GraphQL schema
  */
-export function retrievedTypeFields( state ) {
-	return state.retrievedTypeFields;
+export function hasRetrievedTypeFields( state ) {
+	return state.hasRetrievedTypeFields;
 };
 
 /**
@@ -74,8 +74,8 @@ export function getDirectives( state ) {
  *
  * @return {bool} The list of directives from the GraphQL schema
  */
-export function retrievedDirectives( state ) {
-	return state.retrievedDirectives;
+export function hasRetrievedDirectives( state ) {
+	return state.hasRetrievedDirectives;
 };
 
 /**

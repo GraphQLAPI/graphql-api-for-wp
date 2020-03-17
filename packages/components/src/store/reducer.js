@@ -3,10 +3,10 @@
  */
 const DEFAULT_STATE = {
 	typeFields: [],
-	retrievedTypeFields: false,
+	hasRetrievedTypeFields: false,
 	retrievingTypeFieldsErrorMessage: null,
 	directives: [],
-	retrievedDirectives: false,
+	hasRetrievedDirectives: false,
 	retrievingDirectivesErrorMessage: null,
 };
 
@@ -27,14 +27,14 @@ const schemaInstrospection = (
 			return {
 				...state,
 				typeFields: action.typeFields,
-				retrievedTypeFields: true,
+				hasRetrievedTypeFields: true,
 				retrievingTypeFieldsErrorMessage: action.errorMessage,
 			};
 		case 'SET_DIRECTIVES':
 			return {
 				...state,
 				directives: action.directives,
-				retrievedDirectives: true,
+				hasRetrievedDirectives: true,
 				retrievingDirectivesErrorMessage: action.errorMessage,
 			};
 	}
