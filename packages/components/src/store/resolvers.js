@@ -21,7 +21,7 @@ export const FETCH_TYPE_FIELDS_GRAPHQL_QUERY = `
 		__schema {
 			types {
 				name
-				namespacedName:name(namespaced:true)
+				namespacedName:name(namespaced: true)
 				fields(includeDeprecated: true) {
 					name
 				}
@@ -36,7 +36,7 @@ export const FETCH_TYPE_FIELDS_GRAPHQL_QUERY = `
 export const FETCH_DIRECTIVES_GRAPHQL_QUERY = `
 	query GetDirectives {
 		__schema {
-			directives {
+			directives(skipSystemDirectives: true) {
 				name
 			}
 		}

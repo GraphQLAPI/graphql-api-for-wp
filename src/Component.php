@@ -1,20 +1,46 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlListBlock;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
 use PoP\Root\Component\AbstractComponent;
+use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use PoP\AccessControl\Facades\AccessControlManagerFacade;
 use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
-use PoP\ComponentModel\Facades\Registries\DirectiveRegistryFacade;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlListBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
+use PoP\ComponentModel\Facades\Registries\DirectiveRegistryFacade;
+use PoP\Root\Component\YAMLServicesTrait;
 
 /**
  * Initialize component
  */
 class Component extends AbstractComponent
 {
+    use YAMLServicesTrait;
     // const VERSION = '0.1.0';
+
+    /**
+     * Initialize services
+     */
+    public static function init()
+    {
+        parent::init();
+        self::initYAMLServices(dirname(__DIR__));
+    }
+
+    /**
+     * Boot component
+     *
+     * @return void
+     */
+    public static function beforeBoot()
+    {
+        parent::beforeBoot();
+
+        // Initialize classes
+        // Attach the Extensions with a higher priority, so it executes first
+        ContainerBuilderUtils::attachFieldResolversFromNamespace(__NAMESPACE__.'\\FieldResolvers\\Extensions', false, 100);
+    }
 
     /**
      * Boot component
