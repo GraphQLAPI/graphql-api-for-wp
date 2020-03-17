@@ -22,14 +22,13 @@ function MultiSelectControlGroup( {
 	setAttributes,
 	attributeName,
 } ) {
-	const checkedBlockNames = intersection(
+	const checkedItems = intersection(
 		map( items, 'value' ),
 		selectedItems
 	);
-	// console.log('group', group, items, map( items, 'value' ), selectedItems, checkedBlockNames);
-	const toggleVisible = ( blockName, nextIsChecked ) => {
+	const toggleVisible = ( itemValue, nextIsChecked ) => {
 		setAttributes( {
-			[ attributeName ]: nextIsChecked ? [...selectedItems, blockName] : without(selectedItems, blockName)
+			[ attributeName ]: nextIsChecked ? [...selectedItems, itemValue] : without(selectedItems, itemValue)
 		} );
 	};
 	const toggleAllVisible = ( nextIsChecked ) => {
@@ -42,12 +41,12 @@ function MultiSelectControlGroup( {
 	const titleId =
 		'edit-post-manage-blocks-modal__category-title-' + instanceId;
 
-	const isAllChecked = checkedBlockNames.length === items.length;
+	const isAllChecked = checkedItems.length === items.length;
 
 	let ariaChecked;
 	if ( isAllChecked ) {
 		ariaChecked = 'true';
-	} else if ( checkedBlockNames.length > 0 ) {
+	} else if ( checkedItems.length > 0 ) {
 		ariaChecked = 'mixed';
 	} else {
 		ariaChecked = 'false';
@@ -68,7 +67,7 @@ function MultiSelectControlGroup( {
 			/>
 			<MultiSelectControlGroupChecklist
 				items={ items }
-				value={ checkedBlockNames }
+				value={ checkedItems }
 				onItemChange={ toggleVisible }
 			/>
 		</div>
