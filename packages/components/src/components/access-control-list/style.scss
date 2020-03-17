@@ -2,10 +2,10 @@
 @import "~@wordpress/base-styles/colors";
 
 .active-tab {
-	border-bottom: 3px solid $dark-gray-500;
+	border-bottom: 3px solid $blue-medium-600;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
 	box-sizing: border-box;
 	font-weight: 700;
-	background-color: $light-gray-500;
+	background-color: $blue-medium-200;
 }
