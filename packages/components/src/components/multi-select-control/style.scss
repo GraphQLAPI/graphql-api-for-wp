@@ -2,55 +2,55 @@
 @import './base_styles.scss';
 
 // Additions by Leo
-.edit-post-manage-blocks-modal__content {
+.multi-select-control__content {
 	max-height: 500px;
 }
-.edit-post-manage-blocks-modal__error_message {
+.multi-select-control__error_message {
 	color: red;
 }
-.edit-post-manage-blocks-modal__content_search {
+.multi-select-control__content_search {
 	text-align: center;
 }
-// .edit-post-manage-blocks-modal__checklist {
-.editor-styles-wrapper ul.edit-post-manage-blocks-modal__checklist {
+// .multi-select-control__checklist {
+.editor-styles-wrapper ul.multi-select-control__checklist {
 	list-style: none;
 	margin-left: 0;
 }
-.edit-post-manage-blocks-modal__checklist-item {
+.multi-select-control__checklist-item {
 	list-style: none;
 }
 
-.edit-post-manage-blocks-modal {
-	@include break-small() {
-		height: calc(100% - #{ $header-height } - #{ $header-height });
-	}
-}
+// .multi-select-control {
+// 	@include break-small() {
+// 		height: calc(100% - #{ $header-height } - #{ $header-height });
+// 	}
+// }
 
-.edit-post-manage-blocks-modal .components-modal__content {
+.multi-select-control .components-modal__content {
 	padding-bottom: 0;
 	display: flex;
 	flex-direction: column;
 }
 
-.edit-post-manage-blocks-modal .components-modal__header {
+.multi-select-control .components-modal__header {
 	flex-shrink: 0;
 	margin-bottom: 0;
 }
 
-.edit-post-manage-blocks-modal__content {
+.multi-select-control__content {
 	display: flex;
 	flex-direction: column;
 	flex: 0 1 100%;
 	min-height: 0;
 }
 
-.edit-post-manage-blocks-modal__no-results {
+.multi-select-control__no-results {
 	font-style: italic;
 	padding: 24px 0;
 	text-align: center;
 }
 
-.edit-post-manage-blocks-modal__search {
+.multi-select-control__search {
 	margin: $grid-size-large 0;
 
 	.components-base-control__field {
@@ -67,16 +67,16 @@
 	}
 }
 
-.edit-post-manage-blocks-modal__category {
+.multi-select-control__category {
 	margin: 0 0 2rem 0;
 }
 
-.edit-post-manage-blocks-modal__category-title {
+.multi-select-control__category-title {
 	position: sticky;
 	top: 0;
 	padding: $panel-padding 0;
 	background-color: $white;
-	z-index: z-index(".edit-post-manage-blocks-modal__category-title");
+	z-index: z-index(".multi-select-control__category-title");
 
 	.components-base-control__field {
 		margin-bottom: 0;
@@ -88,11 +88,11 @@
 	}
 }
 
-.edit-post-manage-blocks-modal__checklist {
+.multi-select-control__checklist {
 	margin-top: 0;
 }
 
-.edit-post-manage-blocks-modal__checklist-item {
+.multi-select-control__checklist-item {
 	margin-bottom: 0;
 	padding-left: $grid-size-large;
 	border-top: 1px solid $light-gray-500;
@@ -125,7 +125,7 @@
 	}
 }
 
-.edit-post-manage-blocks-modal__results {
+.multi-select-control__results {
 	height: 100%;
 	overflow: auto;
 	margin-left: -$grid-size-xlarge;

@@ -39,7 +39,7 @@ function MultiSelectControlGroup( {
 	};
 
 	const titleId =
-		'edit-post-manage-blocks-modal__category-title-' + instanceId;
+		'multi-select-control__category-title-' + instanceId;
 
 	const isAllChecked = checkedItems.length === items.length;
 
@@ -56,12 +56,12 @@ function MultiSelectControlGroup( {
 		<div
 			role="group"
 			aria-labelledby={ titleId }
-			className="edit-post-manage-blocks-modal__category"
+			className="multi-select-control__category"
 		>
 			<CheckboxControl
 				checked={ isAllChecked }
 				onChange={ toggleAllVisible }
-				className="edit-post-manage-blocks-modal__category-title"
+				className="multi-select-control__category-title"
 				aria-checked={ ariaChecked }
 				label={ <span id={ titleId }>{ group }</span> }
 			/>

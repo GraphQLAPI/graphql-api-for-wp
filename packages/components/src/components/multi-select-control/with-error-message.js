@@ -10,7 +10,7 @@ const withErrorMessage = () => createHigherOrderComponent(
 	( WrappedComponent ) => ( props ) => {
 		const { hasRetrievedItems, errorMessage } = props;
 		if (hasRetrievedItems && errorMessage) {
-			return <p className="edit-post-manage-blocks-modal__error_message">
+			return <p className="multi-select-control__error_message">
 				{ errorMessage }
 			</p>
 		}

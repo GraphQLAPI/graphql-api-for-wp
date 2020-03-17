@@ -1,33 +1,11 @@
 // Loading @wordpress/base-styles as they have mixins and other dependencies
-// @import "~@wordpress/base-styles/breakpoints";
+@import "~@wordpress/base-styles/colors";
 
-// @media (min-width: #{ ($break-small) }) {
-// 	.wp-block-graphql-api-access-control-list {
-
-// 		&__item_data {
-// 			display: grid;
-// 			grid-template-columns: 50% 1fr;
-// 			grid-template-rows: auto;
-// 			grid-gap: 20px;
-
-// 			&__title {
-// 				text-align: center;
-// 			}
-// 		}
-// 	}
-// }
-
-// .my-tab-panel .tab:hover {
-// 	background-color: #fff;
-//     -webkit-transition: background-color 500ms linear;
-//     -ms-transition: background-color 500ms linear;
-//     transition: background-color 500ms linear;
-// }
 .active-tab {
-	border-bottom: 3px solid #11a0d2;
+	border-bottom: 3px solid $dark-gray-500;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
 	box-sizing: border-box;
 	font-weight: 700;
-	background-color: #e2e4e7;
+	background-color: $light-gray-500;
 }

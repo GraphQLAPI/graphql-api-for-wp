@@ -10,11 +10,11 @@ import { CheckboxControl } from '@wordpress/components';
 
 function MultiSelectControlGroupChecklist( { items, value, onItemChange } ) {
 	return (
-		<ul className="edit-post-manage-blocks-modal__checklist">
+		<ul className="multi-select-control__checklist">
 			{ items.map( ( item ) => (
 				<li
 					key={ item.value }
-					className="edit-post-manage-blocks-modal__checklist-item"
+					className="multi-select-control__checklist-item"
 				>
 					<CheckboxControl
 						label={ item.title }

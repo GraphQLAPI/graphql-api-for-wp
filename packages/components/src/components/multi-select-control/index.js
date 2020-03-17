@@ -33,8 +33,8 @@ function MultiSelectControl( props ) {
 		( item ) => item.group
 	))
 	return (
-		<div className="edit-post-manage-blocks-modal__content">
-			<div className="edit-post-manage-blocks-modal__content_search">
+		<div className="multi-select-control__content">
+			<div className="multi-select-control__content_search">
 				<Button
 					isSmall
 					icon={ searchIcon }
@@ -57,17 +57,17 @@ function MultiSelectControl( props ) {
 							search: nextSearch,
 						} )
 					}
-					className="edit-post-manage-blocks-modal__search"
+					className="multi-select-control__search"
 				/>
 			}
 			<div
 				tabIndex="0"
 				role="region"
 				aria-label={ __( 'Available items' ) }
-				className="edit-post-manage-blocks-modal__results"
+				className="multi-select-control__results"
 			>
 				{ filteredItems.length === 0 && (
-					<p className="edit-post-manage-blocks-modal__no-results">
+					<p className="multi-select-control__no-results">
 						{ __( 'No items found.' ) }
 					</p>
 				) }
