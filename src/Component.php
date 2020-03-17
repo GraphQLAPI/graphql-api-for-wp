@@ -52,11 +52,16 @@ class Component extends AbstractComponent
         parent::boot();
 
         if (\is_singular(GraphQLQueryPostType::POST_TYPE)) {
-            self::maybeSetAccessControlList();
+            self::setAccessControlList();
         }
     }
 
-    protected static function maybeSetAccessControlList()
+    /**
+     * Extract the access control items defined in the CPT, and inject them into the service as to take effect in the current GraphQL query
+     *
+     * @return void
+     */
+    protected static function setAccessControlList()
     {
         global $post;
         $graphQLQueryPost = $post;
@@ -96,12 +101,13 @@ class Component extends AbstractComponent
             }
             $directiveRegistry = DirectiveRegistryFacade::getInstance();
             $directiveResolverClasses = $directiveRegistry->getDirectiveResolverClasses();
-            // For each class, obtain its name
+            // For each class, obtain its directive name. Notice that different directives can have the same name (eg: @translate as implemented for Google and Azure),
+            // then the mapping goes from name to list of resolvers
             $directiveNameClasses = [];
             foreach ($directiveResolverClasses as $directiveResolverClass) {
                 $directiveResolver = $instanceManager->getInstance($directiveResolverClass);
                 $directiveResolverName = $directiveResolver->getDirectiveName();
-                $directiveNameClasses[$directiveResolverName] = $directiveResolverClass;
+                $directiveNameClasses[$directiveResolverName][] = $directiveResolverClass;
             }
             foreach ($aclBlockItems as $aclBlockItem) {
                 if ($accessControlGroup = $aclBlockItem['attrs']['accessControlGroup']) {
@@ -131,9 +137,11 @@ class Component extends AbstractComponent
                     // Extract the saved directives
                     $directives = [];
                     foreach ($aclBlockItem['attrs']['directives'] as $selectedDirective) {
-                        // Obtain the directive resolver class from the directive name
-                        if ($directiveResolverClass = $directiveNameClasses[$selectedDirective]) {
-                            $directives[] = [$directiveResolverClass, $value];
+                        // Obtain the directive resolver class from the directive name. If more than one resolver has the same directive name, add all of them
+                        if ($selectedDirectiveResolverClasses = $directiveNameClasses[$selectedDirective]) {
+                            foreach ($selectedDirectiveResolverClasses as $directiveResolverClass) {
+                                $directives[] = [$directiveResolverClass, $value];
+                            }
                         }
                     }
                     if ($directives) {
