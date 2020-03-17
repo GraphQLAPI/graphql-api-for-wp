@@ -11,8 +11,11 @@ import FieldDirectivePrintout from './field-directive-printout';
  */
 const withAccessControlList = () => createHigherOrderComponent(
 	( WrappedComponent ) => ( props ) => {
-		const { setAttributes, isSelected, attributes: { typeFields, directives }, typeFieldNames } = props;
+		const { setAttributes, isSelected, attributes: { typeFields, directives }, accessControlGroup } = props;
 		const className = 'graphql-api-access-control-list';
+		setAttributes(
+			{accessControlGroup: accessControlGroup},
+		);
 		return (
 			<div className={ className }>
 				<div className={ className+'__items' }>
