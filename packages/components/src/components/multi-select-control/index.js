@@ -6,10 +6,9 @@ import { filter, uniq } from 'lodash';
 /**
  * WordPress dependencies
  */
-import { withSelect } from '@wordpress/data';
 import { compose, withState } from '@wordpress/compose';
 import { TextControl } from '@wordpress/components';
-import { __, _n } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 
 // Addition by Leo
 import './style.scss';
@@ -20,8 +19,6 @@ import './style.scss';
 import BlockManagerCategory from './category';
 import withErrorMessage from './with-error-message';
 import withSpinner from './with-spinner';
-
-const TYPE_FIELD_SEPARATOR = '.';
 
 function MultiSelectControl( {
 	search,
@@ -91,42 +88,6 @@ function MultiSelectControl( {
 
 export default compose( [
 	withState( { search: '' } ),
-	withSelect( ( select ) => {
-		const {
-			getTypeFields,
-			retrievedTypeFields,
-			getRetrievingTypeFieldsErrorMessage,
-			getDirectives,
-			retrievedDirectives,
-			getRetrievingDirectivesErrorMessage,
-		} = select ( 'leoloso/graphql-api' );
-		//
-		/**
-		 * Convert typeFields object, from this structure:
-		 * [{type:"Type", fields:["field1", "field2",...]},...]
-		 * To this one:
-		 * [{group:"typeName",title:"field1",value:"typeName/field1"},...]
-		 */
-		const items = getTypeFields().flatMap(function(typeItem) {
-			return typeItem.fields.flatMap(function(field) {
-				return [{
-					group: typeItem.typeName,
-					title: field,
-					value: `${ typeItem.typeNamespacedName }${ TYPE_FIELD_SEPARATOR }${ field }`,
-				}]
-			})
-		});
-		// console.log('items', items);
-
-		return {
-			items,
-			retrievedTypeFields: retrievedTypeFields(),
-			retrievingTypeFieldsErrorMessage: getRetrievingTypeFieldsErrorMessage(),
-			directives: getDirectives(),
-			retrievedDirectives: retrievedDirectives(),
-			retrievingDirectivesErrorMessage: getRetrievingDirectivesErrorMessage(),
-		};
-	} ),
 	withSpinner(),
 	withErrorMessage(),
 ] )( MultiSelectControl );
