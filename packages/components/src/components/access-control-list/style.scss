@@ -1,7 +1,7 @@
 // Loading @wordpress/base-styles as they have mixins and other dependencies
 @import "~@wordpress/base-styles/colors";
 
-.active-tab {
+.wp-block-graphql-api-access-control-list .active-tab {
 	border-bottom: 3px solid $blue-medium-600;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
