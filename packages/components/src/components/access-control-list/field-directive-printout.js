@@ -25,7 +25,7 @@ const FieldDirectivePrintout = ( props ) => {
 			<CardBody>
 				{ !! typeFields.length && typeFields.map( typeField =>
 					<>
-						{ typeFieldNames[ typeField ] }<br/>
+						✅ { typeFieldNames[ typeField ] }<br/>
 					</>
 				) }
 				{ !typeFields.length && (
@@ -36,7 +36,7 @@ const FieldDirectivePrintout = ( props ) => {
 			<CardBody>
 				{ !! directives.length && directives.map( directive =>
 					<>
-						{ directive }<br/>
+						✅ { directive }<br/>
 					</>
 				) }
 				{ !directives.length && (
