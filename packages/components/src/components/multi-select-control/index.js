@@ -77,12 +77,12 @@ function MultiSelectControl( props ) {
 				) }
 				{ groups.map( ( group ) => (
 					<MultiSelectControlGroup
+						{ ...props }
 						key={ group }
 						group={ group }
 						items={ filter( items, {
 							group: group,
 						} ) }
-						{ ...props }
 					/>
 				) ) }
 			</div>
