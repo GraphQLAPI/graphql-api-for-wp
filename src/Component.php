@@ -5,7 +5,8 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
 use PoP\Root\Component\AbstractComponent;
 use PoP\AccessControl\Facades\AccessControlManagerFacade;
-use PoP\ComponentModel\Facades\Schema\TypeRegistryFacade;
+use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
+use PoP\ComponentModel\Facades\Registries\DirectiveRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 /**
@@ -67,6 +68,15 @@ class Component extends AbstractComponent
                 $typeResolverNamespacedName = $typeResolver->getNamespacedTypeName();
                 $namespacedTypeNameClasses[$typeResolverNamespacedName] = $typeResolverClass;
             }
+            $directiveRegistry = DirectiveRegistryFacade::getInstance();
+            $directiveResolverClasses = $directiveRegistry->getDirectiveResolverClasses();
+            // For each class, obtain its name
+            $directiveNameClasses = [];
+            foreach ($directiveResolverClasses as $directiveResolverClass) {
+                $directiveResolver = $instanceManager->getInstance($directiveResolverClass);
+                $directiveResolverName = $directiveResolver->getDirectiveName();
+                $directiveNameClasses[$directiveResolverName] = $directiveResolverClass;
+            }
             foreach ($aclBlockItems as $aclBlockItem) {
                 if ($accessControlGroup = $aclBlockItem['attrs']['accessControlGroup']) {
                     // The value can be NULL
@@ -96,8 +106,9 @@ class Component extends AbstractComponent
                     $directives = [];
                     foreach ($aclBlockItem['attrs']['directives'] as $selectedDirective) {
                         // Obtain the directive resolver class from the directive name
-                        $directiveResolverClass = $selectedDirective;
-                        // $directives[] = [$directiveResolverClass, $value];
+                        if ($directiveResolverClass = $directiveNameClasses[$selectedDirective]) {
+                            $directives[] = [$directiveResolverClass, $value];
+                        }
                     }
                     if ($directives) {
                         $accessControlManager->addEntriesForDirectives(
