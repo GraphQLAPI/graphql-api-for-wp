@@ -14,7 +14,7 @@ const withAccessControlList = () => createHigherOrderComponent(
 		const { setAttributes, isSelected, attributes: { typeFields, directives }, accessControlGroup } = props;
 		const className = 'graphql-api-access-control-list';
 		setAttributes(
-			{accessControlGroup: accessControlGroup},
+			{ accessControlGroup: accessControlGroup },
 		);
 		return (
 			<div className={ className }>
