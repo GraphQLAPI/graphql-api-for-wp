@@ -21,11 +21,7 @@ const FieldMultiSelectControl = compose( [
 			getTypeFields,
 			retrievedTypeFields,
 			getRetrievingTypeFieldsErrorMessage,
-			getDirectives,
-			retrievedDirectives,
-			getRetrievingDirectivesErrorMessage,
 		} = select ( 'leoloso/graphql-api' );
-		//
 		/**
 		 * Convert typeFields object, from this structure:
 		 * [{type:"Type", fields:["field1", "field2",...]},...]
@@ -41,15 +37,11 @@ const FieldMultiSelectControl = compose( [
 				}]
 			})
 		});
-		// console.log('items', items);
 
 		return {
 			items,
 			retrievedTypeFields: retrievedTypeFields(),
 			retrievingTypeFieldsErrorMessage: getRetrievingTypeFieldsErrorMessage(),
-			directives: getDirectives(),
-			retrievedDirectives: retrievedDirectives(),
-			retrievingDirectivesErrorMessage: getRetrievingDirectivesErrorMessage(),
 		};
 	} ),
 ] )( MultiSelectControl );
