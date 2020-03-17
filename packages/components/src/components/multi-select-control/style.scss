@@ -11,6 +11,14 @@
 .edit-post-manage-blocks-modal__content_search {
 	text-align: center;
 }
+// .edit-post-manage-blocks-modal__checklist {
+.editor-styles-wrapper ul.edit-post-manage-blocks-modal__checklist {
+	list-style: none;
+	margin-left: 0;
+}
+.edit-post-manage-blocks-modal__checklist-item {
+	list-style: none;
+}
 
 .edit-post-manage-blocks-modal {
 	@include break-small() {
