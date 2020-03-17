@@ -18,6 +18,7 @@ import './style.scss';
  * Internal dependencies
  */
 import BlockManagerCategory from './category';
+import withErrorMessage from './with-error-message';
 
 const TYPE_FIELD_SEPARATOR = '.';
 
@@ -49,11 +50,6 @@ function MultiSelectControl( {
 
 	return (
 		<div className="edit-post-manage-blocks-modal__content">
-			{ retrievedTypeFields && retrievingTypeFieldsErrorMessage && (
-				<p className="edit-post-manage-blocks-modal__error_message">
-					{ retrievingTypeFieldsErrorMessage }
-				</p>
-			) }
 			{ retrievedTypeFields && !retrievingTypeFieldsErrorMessage && (
 				<>
 					<TextControl
@@ -137,4 +133,5 @@ export default compose( [
 			retrievingDirectivesErrorMessage: getRetrievingDirectivesErrorMessage(),
 		};
 	} ),
+	withErrorMessage(),
 ] )( MultiSelectControl );
