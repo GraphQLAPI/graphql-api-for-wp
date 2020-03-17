@@ -5,7 +5,7 @@ use PoP\Root\Component\AbstractComponent;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use PoP\AccessControl\Facades\AccessControlManagerFacade;
 use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlListBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractAccessControlListBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
 use PoP\ComponentModel\Facades\Registries\DirectiveRegistryFacade;
@@ -118,7 +118,7 @@ class Component extends AbstractComponent
                     foreach ($aclBlockItem['attrs']['typeFields'] as $selectedField) {
                         // The field is composed by the type namespaced name, and the field name, separated by "."
                         // Extract these values
-                        $entry = explode(AccessControlListBlock::TYPE_FIELD_SEPARATOR, $selectedField);
+                        $entry = explode(AbstractAccessControlListBlock::TYPE_FIELD_SEPARATOR, $selectedField);
                         $namespacedTypeName = $entry[0];
                         $field = $entry[1];
                         // From the type, obtain which resolver class processes it

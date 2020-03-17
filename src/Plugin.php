@@ -4,7 +4,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
 use Leoloso\GraphQLByPoPWPPlugin\Front\Clients;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlListBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlDisableAccessBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\BlockDevelopmentHotReload;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
@@ -36,7 +36,7 @@ class Plugin {
         $graphiQLBlock->init();
         PluginState::setGraphiQLBlock($graphiQLBlock);
 
-        $accessControlListBlock = new AccessControlListBlock();
+        $accessControlListBlock = new AccessControlDisableAccessBlock();
         $accessControlListBlock->init();
         PluginState::setAccessControlListBlock($accessControlListBlock);
 

@@ -11,7 +11,8 @@ import './style.scss';
  */
 const withAccessControlList = () => createHigherOrderComponent(
 	( WrappedComponent ) => ( props ) => {
-		const { className, setAttributes, isSelected, attributes: { typeFields, directives } } = props;
+		const { setAttributes, isSelected, attributes: { typeFields, directives } } = props;
+		const className = 'graphql-api-access-control-list';
 		return (
 			<div className={ className }>
 				<div className={ className+'__items' }>
@@ -40,6 +41,7 @@ const withAccessControlList = () => createHigherOrderComponent(
 									<strong>{ __('Who can access:', 'graphql-api') }</strong>
 								</p>
 								<WrappedComponent
+									className={ className }
 									{ ...props }
 								/>
 							</div>

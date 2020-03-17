@@ -1,7 +1,7 @@
 {
-	"name": "access-control-list-block",
+	"name": "access-control-disable-access-block",
 	"version": "0.1.0",
-	"description": "Block for adding an Access Control List to the WordPress editor",
+	"description": "Disable access to specified GraphQL schema's fields and directives",
 	"author": "Leonardo Losoviz",
 	"license": "MIT",
 	"main": "build/index.js",

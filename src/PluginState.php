@@ -2,7 +2,7 @@
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlListBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlDisableAccessBlock;
 
 class PluginState {
 
@@ -30,7 +30,7 @@ class PluginState {
     /**
      * Get the value of graphiQLBlock
      */
-    public static function getAccessControlListBlock(): AccessControlListBlock
+    public static function getAccessControlListBlock(): AccessControlDisableAccessBlock
     {
         return self::$accessControlListBlock;
     }
@@ -40,7 +40,7 @@ class PluginState {
      *
      * @return void
      */
-    public static function setAccessControlListBlock(AccessControlListBlock $accessControlListBlock): void
+    public static function setAccessControlListBlock(AccessControlDisableAccessBlock $accessControlListBlock): void
     {
         self::$accessControlListBlock = $accessControlListBlock;
     }
