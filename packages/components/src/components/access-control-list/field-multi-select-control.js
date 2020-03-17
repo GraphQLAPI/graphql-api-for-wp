@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { withSelect } from '@wordpress/data';
-import { compose } from '@wordpress/compose';
+import { compose, withState } from '@wordpress/compose';
 
 /**
  * Internal dependencies
@@ -15,6 +15,7 @@ import MultiSelectControl from '../multi-select-control';
 const TYPE_FIELD_SEPARATOR = '.';
 
 const FieldMultiSelectControl = compose( [
+	withState( { attributeName: 'typeFields' } ),
 	withSelect( ( select ) => {
 		const {
 			getTypeFields,

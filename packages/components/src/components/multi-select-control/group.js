@@ -20,6 +20,7 @@ function MultiSelectControlGroup( {
 	items,
 	selectedItems,
 	setAttributes,
+	attributeName,
 } ) {
 	const checkedBlockNames = intersection(
 		map( items, 'value' ),
@@ -28,13 +29,13 @@ function MultiSelectControlGroup( {
 	// console.log('group', group, items, map( items, 'value' ), selectedItems, checkedBlockNames);
 	const toggleVisible = ( blockName, nextIsChecked ) => {
 		setAttributes( {
-			typeFields: nextIsChecked ? [...selectedItems, blockName] : without(selectedItems, blockName)
+			[ attributeName ]: nextIsChecked ? [...selectedItems, blockName] : without(selectedItems, blockName)
 		} );
 	};
 	const toggleAllVisible = ( nextIsChecked ) => {
 		const itemValues = map( items, 'value' );
 		setAttributes( {
-			typeFields: nextIsChecked ? [...selectedItems, ...itemValues] : without(selectedItems, ...itemValues)
+			[ attributeName ]: nextIsChecked ? [...selectedItems, ...itemValues] : without(selectedItems, ...itemValues)
 		} );
 	};
 

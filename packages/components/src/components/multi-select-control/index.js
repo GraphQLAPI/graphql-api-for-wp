@@ -20,14 +20,8 @@ import MultiSelectControlGroup from './group';
 import withErrorMessage from './with-error-message';
 import withSpinner from './with-spinner';
 
-function MultiSelectControl( {
-	setAttributes,
-	setState,
-	search,
-	showSearch,
-	items,
-	selectedItems,
-} ) {
+function MultiSelectControl( props ) {
+	const { setState, search, showSearch, items } = props;
 	// Filtering occurs here (as opposed to `withSelect`) to avoid wasted
 	// wasted renders by consequence of `Array#filter` producing a new
 	// value reference on each call.
@@ -88,8 +82,7 @@ function MultiSelectControl( {
 						items={ filter( items, {
 							group: group,
 						} ) }
-						selectedItems={ selectedItems }
-						setAttributes={ setAttributes }
+						{ ...props }
 					/>
 				) ) }
 			</div>
