@@ -11,7 +11,7 @@ import './style.scss';
  */
 const withAccessControlList = () => createHigherOrderComponent(
 	( WrappedComponent ) => ( props ) => {
-		const { className, setAttributes, attributes: { selectedFields } } = props;
+		const { className, setAttributes, isSelected, attributes: { selectedFields } } = props;
 		return (
 			<div className={ className }>
 				<div className={ className+'__items' }>
@@ -19,11 +19,18 @@ const withAccessControlList = () => createHigherOrderComponent(
 						<div className={ className+'__item_data' }>
 							<div className={ className+'__item_data_for' }>
 								<p className={ className+'__item_data__title' }><strong>{ __('Define access for:', 'graphql-api') }</strong></p>
-								<FieldDirectiveMultiSelectControl
-									selectedFields={ selectedFields }
-									setAttributes={ setAttributes }
-									className={ className }
-								/>
+								{ isSelected &&
+									<FieldDirectiveMultiSelectControl
+										selectedFields={ selectedFields }
+										setAttributes={ setAttributes }
+										className={ className }
+									/>
+								}
+								{ !isSelected &&
+									<p>
+										Values sarlanga if not selected
+									</p>
+								}
 							</div>
 							<div className={ className+'__item_data_who' }>
 								<p className={ className+'__item_data__title' }><strong>{ __('Who can access:', 'graphql-api') }</strong></p>

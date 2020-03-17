@@ -6,7 +6,7 @@ const FieldDirectiveMultiSelectControl = ( props ) => {
 	const { className, setAttributes, selectedFields } = props;
 	return (
 		<TabPanel
-			className="my-tab-panel"
+			className={ className + '__tab_panel' }
 			activeClass="active-tab"
 			tabs={ [
 				{
