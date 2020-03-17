@@ -37,11 +37,10 @@ const FieldMultiSelectControl = compose( [
 				}]
 			})
 		});
-
 		return {
 			items,
-			retrievedTypeFields: retrievedTypeFields(),
-			retrievingTypeFieldsErrorMessage: getRetrievingTypeFieldsErrorMessage(),
+			hasRetrievedItems: retrievedTypeFields(),
+			errorMessage: getRetrievingTypeFieldsErrorMessage(),
 		};
 	} ),
 ] )( MultiSelectControl );

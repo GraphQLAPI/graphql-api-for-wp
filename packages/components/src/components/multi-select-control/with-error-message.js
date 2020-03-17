@@ -8,10 +8,10 @@ import { createHigherOrderComponent } from '@wordpress/compose';
  */
 const withErrorMessage = () => createHigherOrderComponent(
 	( WrappedComponent ) => ( props ) => {
-		const { retrievedTypeFields, retrievingTypeFieldsErrorMessage } = props;
-		if (retrievedTypeFields && retrievingTypeFieldsErrorMessage) {
+		const { hasRetrievedItems, errorMessage } = props;
+		if (hasRetrievedItems && errorMessage) {
 			return <p className="edit-post-manage-blocks-modal__error_message">
-				{ retrievingTypeFieldsErrorMessage }
+				{ errorMessage }
 			</p>
 		}
 
