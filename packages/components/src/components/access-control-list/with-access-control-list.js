@@ -6,6 +6,16 @@ import { __ } from '@wordpress/i18n';
 import FieldDirectiveTabPanel from './field-directive-tab-panel';
 import './style.scss';
 
+const getElementList = ( elements, className ) => {
+	return elements.length ? (
+		<ul className={ className+'__item_data__list' }>
+			{ elements.map(element => <li>{ element }</li>)}
+		</ul>
+	) : (
+		__('None selected', 'graphql-api')
+	);
+}
+
 /**
  * Display an error message if loading data failed
  */
@@ -30,11 +40,16 @@ const withAccessControlList = () => createHigherOrderComponent(
 										className={ className }
 									/>
 								}
-								{ !isSelected &&
-									<p>
-										Values sarlanga if not selected
-									</p>
-								}
+								{ !isSelected && (
+									<>
+										<p>
+											<u>{ __('Fields:', 'graphql-api') }</u> { getElementList( typeFields, className ) }
+										</p>
+										<p>
+											<u>{ __('Directives:', 'graphql-api') }</u> { getElementList( directives, className ) }
+										</p>
+									</>
+								) }
 							</div>
 							<div className={ className+'__item_data_who' }>
 								<div className={ className+'__item_data__title' }>
