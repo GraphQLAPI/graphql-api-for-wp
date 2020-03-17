@@ -49,16 +49,18 @@ function MultiSelectControl( {
 
 	return (
 		<div className="edit-post-manage-blocks-modal__content">
-			<Button
-				icon={ searchIcon }
-				onClick={
-					() => setState( {
-						showSearch: !showSearch
-					} )
-				}
-			>
-				{ showSearch ? __( 'Hide search' ) : __( 'Show search' ) }
-			</Button>
+			<div className="edit-post-manage-blocks-modal__content_search">
+				<Button
+					icon={ searchIcon }
+					onClick={
+						() => setState( {
+							showSearch: !showSearch
+						} )
+					}
+				>
+					{ showSearch ? __( 'Hide search' ) : __( 'Show search' ) }
+				</Button>
+			</div>
 			{ showSearch &&
 				<TextControl
 					type="search"
