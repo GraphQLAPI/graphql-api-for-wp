@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { TabPanel } from '@wordpress/components';
 import FieldMultiSelectControl from './field-multi-select-control';
 
-const FieldDirectiveMultiSelectControl = ( props ) => {
+const FieldDirectiveTabPanel = ( props ) => {
 	const { className, setAttributes, selectedFields } = props;
 	return (
 		<TabPanel
@@ -35,4 +35,4 @@ const FieldDirectiveMultiSelectControl = ( props ) => {
 	);
 }
 
-export default FieldDirectiveMultiSelectControl;
+export default FieldDirectiveTabPanel;

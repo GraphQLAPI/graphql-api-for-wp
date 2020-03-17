@@ -3,7 +3,7 @@
  */
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
-import FieldDirectiveMultiSelectControl from './field-directive-multi-select-control';
+import FieldDirectiveTabPanel from './field-directive-tab-panel';
 import './style.scss';
 
 /**
@@ -20,7 +20,7 @@ const withAccessControlList = () => createHigherOrderComponent(
 							<div className={ className+'__item_data_for' }>
 								<p className={ className+'__item_data__title' }><strong>{ __('Define access for:', 'graphql-api') }</strong></p>
 								{ isSelected &&
-									<FieldDirectiveMultiSelectControl
+									<FieldDirectiveTabPanel
 										selectedFields={ selectedFields }
 										setAttributes={ setAttributes }
 										className={ className }
