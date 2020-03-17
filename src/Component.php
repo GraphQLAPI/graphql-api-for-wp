@@ -81,11 +81,17 @@ class Component extends AbstractComponent
             $aclPost = \get_post($aclPostID);
             $blocks = \parse_blocks($aclPost->post_content);
             // Fetch all the content for all Access Control List blocks
-            $aclBlock = PluginState::getAccessControlListBlock();
+            $aclBlocks = PluginState::getAccessControlListBlocks();
+            $aclBlockFullNames = array_map(
+                function($aclBlock) {
+                    return $aclBlock->getBlockFullName();
+                },
+                $aclBlocks
+            );
             $aclBlockItems = array_filter(
                 $blocks,
-                function($block) use($aclBlock) {
-                    return $block['blockName'] == $aclBlock->getBlockFullName();
+                function($block) use($aclBlockFullNames) {
+                    return in_array($block['blockName'], $aclBlockFullNames);
                 }
             );
             $accessControlManager = AccessControlManagerFacade::getInstance();
@@ -115,7 +121,7 @@ class Component extends AbstractComponent
                     $value = $aclBlockItem['attrs']['value'];
                     // Extract the saved fields
                     $fields = [];
-                    foreach ($aclBlockItem['attrs']['typeFields'] as $selectedField) {
+                    foreach (($aclBlockItem['attrs']['typeFields'] ?? []) as $selectedField) {
                         // The field is composed by the type namespaced name, and the field name, separated by "."
                         // Extract these values
                         $entry = explode(AbstractAccessControlListBlock::TYPE_FIELD_SEPARATOR, $selectedField);
@@ -136,7 +142,7 @@ class Component extends AbstractComponent
 
                     // Extract the saved directives
                     $directives = [];
-                    foreach ($aclBlockItem['attrs']['directives'] as $selectedDirective) {
+                    foreach (($aclBlockItem['attrs']['directives'] ?? []) as $selectedDirective) {
                         // Obtain the directive resolver class from the directive name. If more than one resolver has the same directive name, add all of them
                         if ($selectedDirectiveResolverClasses = $directiveNameClasses[$selectedDirective]) {
                             foreach ($selectedDirectiveResolverClasses as $directiveResolverClass) {

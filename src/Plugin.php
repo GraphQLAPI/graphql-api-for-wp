@@ -38,7 +38,7 @@ class Plugin {
 
         $accessControlListBlock = new AccessControlDisableAccessBlock();
         $accessControlListBlock->init();
-        PluginState::setAccessControlListBlock($accessControlListBlock);
+        PluginState::addAccessControlListBlock($accessControlListBlock);
 
         /**
          * Clients

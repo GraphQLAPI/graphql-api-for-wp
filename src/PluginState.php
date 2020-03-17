@@ -7,7 +7,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlDisableAccessBlock;
 class PluginState {
 
     public static $graphiQLBlock;
-    public static $accessControlListBlock;
+    public static $accessControlListBlocks = [];
 
     /**
      * Get the value of graphiQLBlock
@@ -30,9 +30,9 @@ class PluginState {
     /**
      * Get the value of graphiQLBlock
      */
-    public static function getAccessControlListBlock(): AccessControlDisableAccessBlock
+    public static function getAccessControlListBlocks(): array
     {
-        return self::$accessControlListBlock;
+        return self::$accessControlListBlocks;
     }
 
     /**
@@ -40,8 +40,8 @@ class PluginState {
      *
      * @return void
      */
-    public static function setAccessControlListBlock(AccessControlDisableAccessBlock $accessControlListBlock): void
+    public static function addAccessControlListBlock(AccessControlDisableAccessBlock $accessControlListBlock): void
     {
-        self::$accessControlListBlock = $accessControlListBlock;
+        self::$accessControlListBlocks[] = $accessControlListBlock;
     }
 }

@@ -59,9 +59,14 @@ class GraphQLAccessControlListPostType extends AbstractPostType
      */
     protected function getGutenbergTemplate(): array
     {
-        $accessControlListBlock = PluginState::getAccessControlListBlock();
+        $aclBlocks = PluginState::getAccessControlListBlocks();
         return [
-            [$accessControlListBlock->getBlockFullName()],
+            array_map(
+                function($aclBlock) {
+                    return $aclBlock->getBlockFullName();
+                },
+                $aclBlocks
+            )
         ];
     }
 }
