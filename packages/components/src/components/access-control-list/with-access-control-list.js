@@ -9,7 +9,7 @@ import './style.scss';
 const getElementList = ( elements, className ) => {
 	return elements.length ? (
 		<ul className={ className+'__item_data__list' }>
-			{ elements.map(element => <li>{ element }</li>)}
+			{ elements.map(element => <li><code>{ element }</code></li>)}
 		</ul>
 	) : (
 		__('None selected', 'graphql-api')
