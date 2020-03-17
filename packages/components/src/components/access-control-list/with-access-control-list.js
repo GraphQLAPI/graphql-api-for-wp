@@ -3,7 +3,7 @@
  */
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
-import FieldDirectiveMultiSelectControl from '../field-directive-multi-select-control';
+import FieldDirectiveMultiSelectControl from './field-directive-multi-select-control';
 import './style.scss';
 
 /**
@@ -29,7 +29,7 @@ const withAccessControlList = () => createHigherOrderComponent(
 								/>
 							</div>
 							<div className={ className+'__item_data_who' }>
-							<p className={ className+'__item_data__title' }><strong>{ __('Who can access:', 'graphql-api') }</strong></p>
+								<p className={ className+'__item_data__title' }><strong>{ __('Who can access:', 'graphql-api') }</strong></p>
 								<WrappedComponent
 									{ ...props }
 								/>

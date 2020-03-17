@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import FieldMultiSelectControl from '../field-multi-select-control';
+import FieldMultiSelectControl from './field-multi-select-control';
 
 const FieldDirectiveMultiSelectControl = ( props ) => {
 	const { className, setAttributes, selectedFields, accessControlGroup } = props;

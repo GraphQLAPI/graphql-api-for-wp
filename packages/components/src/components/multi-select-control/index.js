@@ -67,7 +67,7 @@ function MultiSelectControl( {
 			>
 				{ items.length === 0 && (
 					<p className="edit-post-manage-blocks-modal__no-results">
-						{ __( 'No item found.' ) }
+						{ __( 'No items found.' ) }
 					</p>
 				) }
 				{ groups.map( ( group ) => (
