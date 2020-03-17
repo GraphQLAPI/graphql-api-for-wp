@@ -68,6 +68,8 @@ class Component extends AbstractComponent
             }
             foreach ($aclBlockItems as $aclBlockItem) {
                 if ($accessControlGroup = $aclBlockItem['attrs']['accessControlGroup']) {
+                    // The value can be NULL
+                    $value = $aclBlockItem['attrs']['value'];
                     $fields = [];
                     foreach ($aclBlockItem['attrs']['selectedFields'] as $selectedField) {
                         // The field is composed by the type namespaced name, and the field name, separated by "."
@@ -77,8 +79,8 @@ class Component extends AbstractComponent
                         $field = $entry[1];
                         // From the type, obtain which resolver class processes it
                         if ($typeResolverClass = $namespacedTypeNameClasses[$namespacedTypeName]) {
-                            // The entry is a tuple
-                            $fields[] = [$typeResolverClass, $field];
+                            // Check `getConfigurationEntries` to understand format of each entry
+                            $fields[] = [$typeResolverClass, $field, $value];
                         }
                     }
                     if ($fields) {

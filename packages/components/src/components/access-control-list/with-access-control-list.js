@@ -11,9 +11,7 @@ import './style.scss';
  */
 const withAccessControlList = () => createHigherOrderComponent(
 	( WrappedComponent ) => ( props ) => {
-		const { className, setAttributes, attributes: { selectedFields, accessControlGroup } } = props;
-		// Temporary code for testing!
-		setAttributes( { accessControlGroup: 'disabled'} )
+		const { className, setAttributes, attributes: { selectedFields } } = props;
 		return (
 			<div className={ className }>
 				<div className={ className+'__items' }>
@@ -25,7 +23,6 @@ const withAccessControlList = () => createHigherOrderComponent(
 									selectedFields={ selectedFields }
 									setAttributes={ setAttributes }
 									className={ className }
-									accessControlGroup={ accessControlGroup }
 								/>
 							</div>
 							<div className={ className+'__item_data_who' }>
