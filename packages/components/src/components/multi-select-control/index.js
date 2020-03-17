@@ -27,11 +27,6 @@ function MultiSelectControl( {
 	setAttributes,
 	items,
 	showSearch,
-	retrievedTypeFields,
-	retrievingTypeFieldsErrorMessage,
-	directives,
-	retrievedDirectives,
-	retrievingDirectivesErrorMessage,
 } ) {
 	// Filtering occurs here (as opposed to `withSelect`) to avoid wasted
 	// wasted renders by consequence of `Array#filter` producing a new
