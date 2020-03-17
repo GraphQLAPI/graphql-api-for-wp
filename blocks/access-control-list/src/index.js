@@ -64,6 +64,13 @@ registerBlockType( 'graphql-api/access-control-list', {
 			type: 'array',
 			default: [],
 		},
+		/**
+		 * List of selected directives
+		 */
+		directives: {
+			type: 'array',
+			default: [],
+		},
 		// Make it wide alignment by default
 		align: {
 			type: 'string',

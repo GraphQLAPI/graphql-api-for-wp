@@ -71,6 +71,7 @@ class Component extends AbstractComponent
                 if ($accessControlGroup = $aclBlockItem['attrs']['accessControlGroup']) {
                     // The value can be NULL
                     $value = $aclBlockItem['attrs']['value'];
+                    // Extract the saved fields
                     $fields = [];
                     foreach ($aclBlockItem['attrs']['typeFields'] as $selectedField) {
                         // The field is composed by the type namespaced name, and the field name, separated by "."
@@ -88,6 +89,20 @@ class Component extends AbstractComponent
                         $accessControlManager->addEntriesForFields(
                             $accessControlGroup,
                             $fields
+                        );
+                    }
+
+                    // Extract the saved directives
+                    $directives = [];
+                    foreach ($aclBlockItem['attrs']['directives'] as $selectedDirective) {
+                        // Obtain the directive resolver class from the directive name
+                        $directiveResolverClass = $selectedDirective;
+                        // $directives[] = [$directiveResolverClass, $value];
+                    }
+                    if ($directives) {
+                        $accessControlManager->addEntriesForDirectives(
+                            $accessControlGroup,
+                            $directives
                         );
                     }
                 }

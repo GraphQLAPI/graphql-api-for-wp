@@ -11,7 +11,7 @@ import './style.scss';
  */
 const withAccessControlList = () => createHigherOrderComponent(
 	( WrappedComponent ) => ( props ) => {
-		const { className, setAttributes, isSelected, attributes: { typeFields } } = props;
+		const { className, setAttributes, isSelected, attributes: { typeFields, directives } } = props;
 		return (
 			<div className={ className }>
 				<div className={ className+'__items' }>
@@ -22,6 +22,7 @@ const withAccessControlList = () => createHigherOrderComponent(
 								{ isSelected &&
 									<FieldDirectiveTabPanel
 										typeFields={ typeFields }
+										directives={ directives }
 										setAttributes={ setAttributes }
 										className={ className }
 									/>

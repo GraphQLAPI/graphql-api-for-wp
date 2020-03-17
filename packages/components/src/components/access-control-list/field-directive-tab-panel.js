@@ -1,9 +1,10 @@
 import { __ } from '@wordpress/i18n';
 import { TabPanel } from '@wordpress/components';
 import FieldMultiSelectControl from './field-multi-select-control';
+import DirectiveMultiSelectControl from './directive-multi-select-control';
 
 const FieldDirectiveTabPanel = ( props ) => {
-	const { className, setAttributes, typeFields } = props;
+	const { className, setAttributes, typeFields, directives } = props;
 	return (
 		<TabPanel
 			className={ className + '__tab_panel' }
@@ -27,9 +28,10 @@ const FieldDirectiveTabPanel = ( props ) => {
 						selectedItems={ typeFields }
 						setAttributes={ setAttributes }
 					/> :
-					<p>
-						Saraza
-					</p>
+					<DirectiveMultiSelectControl
+						selectedItems={ directives }
+						setAttributes={ setAttributes }
+					/>
 			}
 		</TabPanel>
 	);
