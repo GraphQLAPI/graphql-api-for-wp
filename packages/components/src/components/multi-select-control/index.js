@@ -21,12 +21,12 @@ import withErrorMessage from './with-error-message';
 import withSpinner from './with-spinner';
 
 function MultiSelectControl( {
-	search,
-	setState,
-	selectedFields,
 	setAttributes,
-	items,
+	setState,
+	search,
 	showSearch,
+	items,
+	selectedItems,
 } ) {
 	// Filtering occurs here (as opposed to `withSelect`) to avoid wasted
 	// wasted renders by consequence of `Array#filter` producing a new
@@ -73,7 +73,7 @@ function MultiSelectControl( {
 			<div
 				tabIndex="0"
 				role="region"
-				aria-label={ __( 'Available fields' ) }
+				aria-label={ __( 'Available items' ) }
 				className="edit-post-manage-blocks-modal__results"
 			>
 				{ items.length === 0 && (
@@ -88,7 +88,7 @@ function MultiSelectControl( {
 						items={ filter( items, {
 							group: group,
 						} ) }
-						selectedFields={ selectedFields }
+						selectedItems={ selectedItems }
 						setAttributes={ setAttributes }
 					/>
 				) ) }

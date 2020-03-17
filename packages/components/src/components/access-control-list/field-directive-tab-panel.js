@@ -24,7 +24,7 @@ const FieldDirectiveTabPanel = ( props ) => {
 			{
 				( tab ) => tab.name == 'tabFields' ?
 					<FieldMultiSelectControl
-						selectedFields={ selectedFields }
+						selectedItems={ selectedFields }
 						setAttributes={ setAttributes }
 					/> :
 					<p>

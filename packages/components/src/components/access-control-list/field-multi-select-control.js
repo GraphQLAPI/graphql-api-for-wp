@@ -14,7 +14,7 @@ import MultiSelectControl from '../multi-select-control';
  */
 const TYPE_FIELD_SEPARATOR = '.';
 
-export default compose( [
+const FieldMultiSelectControl = compose( [
 	withSelect( ( select ) => {
 		const {
 			getTypeFields,
@@ -52,3 +52,5 @@ export default compose( [
 		};
 	} ),
 ] )( MultiSelectControl );
+
+export default FieldMultiSelectControl;
