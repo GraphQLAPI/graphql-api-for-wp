@@ -2,12 +2,12 @@
  * External dependencies
  */
 import { filter, uniq } from 'lodash';
-
+import { search as searchIcon } from '@wordpress/icons';
 /**
  * WordPress dependencies
  */
 import { compose, withState } from '@wordpress/compose';
-import { TextControl } from '@wordpress/components';
+import { TextControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 // Addition by Leo
@@ -26,6 +26,7 @@ function MultiSelectControl( {
 	selectedFields,
 	setAttributes,
 	items,
+	showSearch,
 	retrievedTypeFields,
 	retrievingTypeFieldsErrorMessage,
 	directives,
@@ -48,21 +49,33 @@ function MultiSelectControl( {
 
 	return (
 		<div className="edit-post-manage-blocks-modal__content">
-			<TextControl
-				type="search"
-				label={ __( 'Search' ) }
-				value={ search }
-				onChange={ ( nextSearch ) =>
-					setState( {
-						search: nextSearch,
+			<Button
+				icon={ searchIcon }
+				onClick={
+					() => setState( {
+						showSearch: !showSearch
 					} )
 				}
-				className="edit-post-manage-blocks-modal__search"
-			/>
+			>
+				{ showSearch ? __( 'Hide search' ) : __( 'Show search' ) }
+			</Button>
+			{ showSearch &&
+				<TextControl
+					type="search"
+					label={ __( 'Search' ) }
+					value={ search }
+					onChange={ ( nextSearch ) =>
+						setState( {
+							search: nextSearch,
+						} )
+					}
+					className="edit-post-manage-blocks-modal__search"
+				/>
+			}
 			<div
 				tabIndex="0"
 				role="region"
-				aria-label={ __( 'Available block types' ) }
+				aria-label={ __( 'Available fields' ) }
 				className="edit-post-manage-blocks-modal__results"
 			>
 				{ items.length === 0 && (
@@ -87,7 +100,7 @@ function MultiSelectControl( {
 }
 
 export default compose( [
-	withState( { search: '' } ),
+	withState( { search: '', showSearch: false } ),
 	withSpinner(),
 	withErrorMessage(),
 ] )( MultiSelectControl );
