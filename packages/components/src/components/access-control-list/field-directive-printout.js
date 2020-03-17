@@ -9,16 +9,14 @@ import { TYPE_FIELD_SEPARATOR } from './field-multi-select-control';
 import withSpinner from '../multi-select-control/with-spinner';
 import withErrorMessage from '../multi-select-control/with-error-message';
 
-const getElementList = ( elements, className ) => {
-	return elements.length ? (
-		<span className={ className+'__item_data__list' }>
-			{ elements.map(element => <span><br/>✅ { element }</span>)}
-		</span>
-	) : (
-		__('None selected', 'graphql-api')
-	);
-}
-
+/**
+ * Print the selected fields and directives.
+ * Watch out: object `typeFields` contains the namespaced type as value, such as `PoP_ComponentModel_Root.users`, which is not proper
+ * Then, convert this value to what the user expects: `Root/users`. Because of this formatting, we need to execute a call against the server,
+ * to fetch the information of how the type name and type namespaced name
+ *
+ * @param {Object} props
+ */
 const FieldDirectivePrintout = ( props ) => {
 	const { typeFields, directives, className, typeFieldNames } = props;
 	return (
@@ -49,7 +47,6 @@ const FieldDirectivePrintout = ( props ) => {
 	);
 }
 
-// export default withAccessControlList;
 export default compose( [
 	withSelect( ( select ) => {
 		const {
