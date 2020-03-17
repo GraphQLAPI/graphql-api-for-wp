@@ -1,21 +1,37 @@
 import { __ } from '@wordpress/i18n';
+import { TabPanel } from '@wordpress/components';
 import FieldMultiSelectControl from './field-multi-select-control';
 
 const FieldDirectiveMultiSelectControl = ( props ) => {
 	const { className, setAttributes, selectedFields } = props;
 	return (
-		<div className={ className+'__controls' }>
-			<div className="edit-post-manage-blocks-modal">
-				<em>{ __('Fields (by type):', 'graphql-api') }</em>
-				<FieldMultiSelectControl
-					selectedFields={ selectedFields }
-					setAttributes={ setAttributes }
-				/>
-			</div>
-			<div className="edit-post-manage-blocks-modal">
-				<em>{ __('Directives:', 'graphql-api') }</em>
-			</div>
-		</div>
+		<TabPanel
+			className="my-tab-panel"
+			activeClass="active-tab"
+			tabs={ [
+				{
+					name: 'tabFields',
+					title: __('Fields', 'graphql-api'),
+					className: 'tab tab-fields',
+				},
+				{
+					name: 'tabDirectives',
+					title: __('Directives', 'graphql-api'),
+					className: 'tab tab-directives',
+				},
+			] }
+		>
+			{
+				( tab ) => tab.name == 'tabFields' ?
+					<FieldMultiSelectControl
+						selectedFields={ selectedFields }
+						setAttributes={ setAttributes }
+					/> :
+					<p>
+						Saraza
+					</p>
+			}
+		</TabPanel>
 	);
 }
 

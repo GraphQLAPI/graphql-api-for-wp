@@ -32,7 +32,6 @@ const withAccessControlList = () => createHigherOrderComponent(
 								/>
 							</div>
 						</div>
-						<hr/>
 					</div>
 				</div>
 			</div>

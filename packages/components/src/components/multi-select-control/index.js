@@ -51,6 +51,7 @@ function MultiSelectControl( {
 		<div className="edit-post-manage-blocks-modal__content">
 			<div className="edit-post-manage-blocks-modal__content_search">
 				<Button
+					isSmall
 					icon={ searchIcon }
 					onClick={
 						() => setState( {

@@ -16,3 +16,18 @@
 // 		}
 // 	}
 // }
+
+// .my-tab-panel .tab:hover {
+// 	background-color: #fff;
+//     -webkit-transition: background-color 500ms linear;
+//     -ms-transition: background-color 500ms linear;
+//     transition: background-color 500ms linear;
+// }
+.active-tab {
+	border-bottom: 3px solid #11a0d2;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	box-sizing: border-box;
+	font-weight: 700;
+	background-color: #e2e4e7;
+}
