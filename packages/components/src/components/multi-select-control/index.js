@@ -8,7 +8,7 @@ import { filter, uniq } from 'lodash';
  */
 import { withSelect } from '@wordpress/data';
 import { compose, withState } from '@wordpress/compose';
-import { TextControl, Spinner } from '@wordpress/components';
+import { TextControl } from '@wordpress/components';
 import { __, _n } from '@wordpress/i18n';
 
 // Addition by Leo
@@ -19,6 +19,7 @@ import './style.scss';
  */
 import BlockManagerCategory from './category';
 import withErrorMessage from './with-error-message';
+import withSpinner from './with-spinner';
 
 const TYPE_FIELD_SEPARATOR = '.';
 
@@ -50,47 +51,40 @@ function MultiSelectControl( {
 
 	return (
 		<div className="edit-post-manage-blocks-modal__content">
-			{ retrievedTypeFields && !retrievingTypeFieldsErrorMessage && (
-				<>
-					<TextControl
-						type="search"
-						label={ __( 'Search' ) }
-						value={ search }
-						onChange={ ( nextSearch ) =>
-							setState( {
-								search: nextSearch,
-							} )
-						}
-						className="edit-post-manage-blocks-modal__search"
+			<TextControl
+				type="search"
+				label={ __( 'Search' ) }
+				value={ search }
+				onChange={ ( nextSearch ) =>
+					setState( {
+						search: nextSearch,
+					} )
+				}
+				className="edit-post-manage-blocks-modal__search"
+			/>
+			<div
+				tabIndex="0"
+				role="region"
+				aria-label={ __( 'Available block types' ) }
+				className="edit-post-manage-blocks-modal__results"
+			>
+				{ items.length === 0 && (
+					<p className="edit-post-manage-blocks-modal__no-results">
+						{ __( 'No item found.' ) }
+					</p>
+				) }
+				{ groups.map( ( group ) => (
+					<BlockManagerCategory
+						key={ group }
+						group={ group }
+						items={ filter( items, {
+							group: group,
+						} ) }
+						selectedFields={ selectedFields }
+						setAttributes={ setAttributes }
 					/>
-					<div
-						tabIndex="0"
-						role="region"
-						aria-label={ __( 'Available block types' ) }
-						className="edit-post-manage-blocks-modal__results"
-					>
-						{ items.length === 0 && (
-							<p className="edit-post-manage-blocks-modal__no-results">
-								{ __( 'No item found.' ) }
-							</p>
-						) }
-						{ groups.map( ( group ) => (
-							<BlockManagerCategory
-								key={ group }
-								group={ group }
-								items={ filter( items, {
-									group: group,
-								} ) }
-								selectedFields={ selectedFields }
-								setAttributes={ setAttributes }
-							/>
-						) ) }
-					</div>
-				</>
-			) }
-			{ !retrievedTypeFields && (
-				<Spinner />
-			) }
+				) ) }
+			</div>
 		</div>
 	);
 }
@@ -133,5 +127,6 @@ export default compose( [
 			retrievingDirectivesErrorMessage: getRetrievingDirectivesErrorMessage(),
 		};
 	} ),
+	withSpinner(),
 	withErrorMessage(),
 ] )( MultiSelectControl );
