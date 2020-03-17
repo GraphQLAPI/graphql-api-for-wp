@@ -12,9 +12,9 @@ import { CheckboxControl } from '@wordpress/components';
 /**
  * Internal dependencies
  */
-import BlockTypesChecklist from './checklist';
+import MultiSelectControlGroupChecklist from './checklist';
 
-function BlockManagerCategory( {
+function MultiSelectControlGroup( {
 	instanceId,
 	group,
 	items,
@@ -65,7 +65,7 @@ function BlockManagerCategory( {
 				aria-checked={ ariaChecked }
 				label={ <span id={ titleId }>{ group }</span> }
 			/>
-			<BlockTypesChecklist
+			<MultiSelectControlGroupChecklist
 				items={ items }
 				value={ checkedBlockNames }
 				onItemChange={ toggleVisible }
@@ -76,4 +76,4 @@ function BlockManagerCategory( {
 
 export default compose( [
 	withInstanceId,
-] )( BlockManagerCategory );
+] )( MultiSelectControlGroup );

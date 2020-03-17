@@ -8,7 +8,7 @@ import { partial } from 'lodash';
  */
 import { CheckboxControl } from '@wordpress/components';
 
-function BlockTypesChecklist( { items, value, onItemChange } ) {
+function MultiSelectControlGroupChecklist( { items, value, onItemChange } ) {
 	return (
 		<ul className="edit-post-manage-blocks-modal__checklist">
 			{ items.map( ( item ) => (
@@ -27,4 +27,4 @@ function BlockTypesChecklist( { items, value, onItemChange } ) {
 	);
 }
 
-export default BlockTypesChecklist;
+export default MultiSelectControlGroupChecklist;

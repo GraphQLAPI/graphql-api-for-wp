@@ -16,7 +16,7 @@ import './style.scss';
 /**
  * Internal dependencies
  */
-import BlockManagerCategory from './category';
+import MultiSelectControlGroup from './group';
 import withErrorMessage from './with-error-message';
 import withSpinner from './with-spinner';
 
@@ -82,7 +82,7 @@ function MultiSelectControl( {
 					</p>
 				) }
 				{ groups.map( ( group ) => (
-					<BlockManagerCategory
+					<MultiSelectControlGroup
 						key={ group }
 						group={ group }
 						items={ filter( items, {
