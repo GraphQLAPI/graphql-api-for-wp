@@ -12,7 +12,10 @@
 	max-height: 500px;
 }
 .multi-select-control__error_message {
-	color: red;
+	color: $dark-gray-700;
+	border-color: $alert-red;
+	background-color: lighten($alert-red, 35%);
+	text-align: center;
 }
 .multi-select-control__content_search {
 	text-align: center;
