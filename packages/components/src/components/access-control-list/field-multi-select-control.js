@@ -10,7 +10,7 @@ import { compose } from '@wordpress/compose';
 import MultiSelectControl from '../multi-select-control';
 
 /**
- * Same constant as in AccessControlListBlock::TYPE_FIELD_SEPARATOR
+ * Same constant as \Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlListBlock::TYPE_FIELD_SEPARATOR
  */
 const TYPE_FIELD_SEPARATOR = '.';
 
