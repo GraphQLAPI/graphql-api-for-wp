@@ -80,20 +80,7 @@ class Component extends AbstractComponent
         if ($aclPostID) {
             $aclPost = \get_post($aclPostID);
             $blocks = \parse_blocks($aclPost->post_content);
-            // Fetch all the content for all Access Control List blocks
-            // $aclBlocks = PluginState::getAccessControlNestedBlocks();
-            // $aclBlockFullNames = array_map(
-            //     function($aclBlock) {
-            //         return $aclBlock->getBlockFullName();
-            //     },
-            //     $aclBlocks
-            // );
-            // $aclBlockItems = array_filter(
-            //     $blocks,
-            //     function($block) use($aclBlockFullNames) {
-            //         return in_array($block['blockName'], $aclBlockFullNames);
-            //     }
-            // );
+            // Obtain the blocks of "Access Control" type
             $aclBlock = PluginState::getAccessControlBlock();
             $aclBlockFullName = $aclBlock->getBlockFullName();
             $aclBlockItems = array_filter(
@@ -123,17 +110,19 @@ class Component extends AbstractComponent
                 $directiveResolverName = $directiveResolver->getDirectiveName();
                 $directiveNameClasses[$directiveResolverName][] = $directiveResolverClass;
             }
+            // The "Access Control" type contains the fields/directives
             foreach ($aclBlockItems as $aclBlockItem) {
+                // The rule to apply is contained inside the nested blocks
                 if ($aclBlockItemNestedBlocks = $aclBlockItem['innerBlocks']) {
                     $aclBlockItemTypeFields = $aclBlockItem['attrs']['typeFields'] ?? [];
                     $aclBlockItemDirectives = $aclBlockItem['attrs']['directives'] ?? [];
                     // Iterate all the nested blocks
                     foreach ($aclBlockItemNestedBlocks as $aclBlockItemNestedBlock) {
                         if ($accessControlGroup = $aclBlockItemNestedBlock['attrs']['accessControlGroup']) {
-                            // The value can be NULL
+                            // The value can be NULL, it depends on the actual nestedBlock (eg: Disable access doesn't have any, while Disable by role has the list of roles)
                             $value = $aclBlockItemNestedBlock['attrs']['value'];
                             // Extract the saved fields
-                            $fields = [];
+                            $entriesForFields = [];
                             foreach ($aclBlockItemTypeFields as $selectedField) {
                                 // The field is composed by the type namespaced name, and the field name, separated by "."
                                 // Extract these values
@@ -143,30 +132,30 @@ class Component extends AbstractComponent
                                 // From the type, obtain which resolver class processes it
                                 if ($typeResolverClass = $namespacedTypeNameClasses[$namespacedTypeName]) {
                                     // Check `getConfigurationEntries` to understand format of each entry
-                                    $fields[] = [$typeResolverClass, $field, $value];
+                                    $entriesForFields[] = [$typeResolverClass, $field, $value];
                                 }
                             }
-                            if ($fields) {
+                            if ($entriesForFields) {
                                 $accessControlManager->addEntriesForFields(
                                     $accessControlGroup,
-                                    $fields
+                                    $entriesForFields
                                 );
                             }
 
                             // Extract the saved directives
-                            $directives = [];
+                            $entriesForDirectives = [];
                             foreach ($aclBlockItemDirectives as $selectedDirective) {
                                 // Obtain the directive resolver class from the directive name. If more than one resolver has the same directive name, add all of them
                                 if ($selectedDirectiveResolverClasses = $directiveNameClasses[$selectedDirective]) {
                                     foreach ($selectedDirectiveResolverClasses as $directiveResolverClass) {
-                                        $directives[] = [$directiveResolverClass, $value];
+                                        $entriesForDirectives[] = [$directiveResolverClass, $value];
                                     }
                                 }
                             }
-                            if ($directives) {
+                            if ($entriesForDirectives) {
                                 $accessControlManager->addEntriesForDirectives(
                                     $accessControlGroup,
-                                    $directives
+                                    $entriesForDirectives
                                 );
                             }
                         }
