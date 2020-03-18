@@ -18,7 +18,7 @@ import withErrorMessage from '../multi-select-control/with-error-message';
  * @param {Object} props
  */
 const FieldDirectivePrintout = ( props ) => {
-	const { typeFields, directives, className, typeFieldNames } = props;
+	const { typeFields, directives, typeFieldNames } = props;
 	return (
 		<Card { ...props }>
 			<CardHeader isShady>{ __('Fields, by type', 'graphql-api') }</CardHeader>
@@ -29,7 +29,7 @@ const FieldDirectivePrintout = ( props ) => {
 					</>
 				) }
 				{ !typeFields.length && (
-					__('No fields selected', 'graphql-api')
+					__('---', 'graphql-api')
 				) }
 			</CardBody>
 			<CardHeader isShady>{ __('(Non-system) Directives', 'graphql-api') }</CardHeader>
@@ -40,7 +40,7 @@ const FieldDirectivePrintout = ( props ) => {
 					</>
 				) }
 				{ !directives.length && (
-					__('No directives selected', 'graphql-api')
+					__('---', 'graphql-api')
 				) }
 			</CardBody>
 		</Card>
