@@ -16,7 +16,7 @@ const AccessControl = ( props ) => {
 		blockType => blockType.category == ACCESS_CONTROL_BLOCK_CATEGORY && blockType.name != 'graphql-api/access-control'
 	).map(blockType => blockType.name)
 	return (
-		<div className={ className }>
+		<div className={ className+'__who' }>
 			<InnerBlocks
 				allowedBlocks={ allowedBlocks }
 			/>
