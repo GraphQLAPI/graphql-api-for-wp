@@ -13,21 +13,22 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
 /**
- * Application imports
- */
-import EditBlock from './edit-block.js';
-
-/**
  * Save the inner blocks data
  */
 import { InnerBlocks } from '@wordpress/block-editor';
+
+/**
+ * Application imports
+ */
+import EditBlock from './edit-block.js';
+import BLOCK_NAME from './block-name.js';
 
 /**
  * Every block starts by registering a new block type definition.
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'graphql-api/access-control', {
+registerBlockType( BLOCK_NAME, {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
