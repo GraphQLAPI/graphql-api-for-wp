@@ -53,20 +53,39 @@ class GraphQLAccessControlListPostType extends AbstractPostType
     }
 
     /**
-     * Gutenberg templates to lock down the Custom Post Type to
+     * Gutenberg templates for the Custom Post Type
      *
      * @return array
      */
     protected function getGutenbergTemplate(): array
     {
-        $aclBlocks = PluginState::getAccessControlListBlocks();
+        $aclBlock = PluginState::getAccessControlBlock();
         return [
-            array_map(
-                function($aclBlock) {
-                    return $aclBlock->getBlockFullName();
-                },
-                $aclBlocks
-            )
+            [$aclBlock->getBlockFullName()],
         ];
+    }
+
+    /**
+     * Use both the Access Control block and all of its nested blocks
+     *
+     * @param [type] $allowedBlocks
+     * @param [type] $post
+     * @return array
+     */
+    protected function getGutenbergBlocksForCustomPostType()
+    {
+        $aclBlock = PluginState::getAccessControlBlock();
+        $aclNestedBlocks = PluginState::getAccessControlNestedBlocks();
+        return array_merge(
+            [
+                $aclBlock->getBlockFullName(),
+            ],
+            array_map(
+                function($aclNestedBlock) {
+                    return $aclNestedBlock->getBlockFullName();
+                },
+                $aclNestedBlocks
+            )
+        );
     }
 }

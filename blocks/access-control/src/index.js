@@ -18,23 +18,28 @@ import { __ } from '@wordpress/i18n';
 import EditBlock from './edit-block.js';
 
 /**
+ * Save the inner blocks data
+ */
+import { InnerBlocks } from '@wordpress/block-editor';
+
+/**
  * Every block starts by registering a new block type definition.
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'graphql-api/access-control-disable-access', {
+registerBlockType( 'graphql-api/access-control', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __( 'Disable Access', 'graphql-api' ),
+	title: __( 'Access Control', 'graphql-api' ),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
 	 * It will be shown in the Block Tab in the Settings Sidebar.
 	 */
 	description: __(
-		'Disable access to specified GraphQL schema\'s fields and directives',
+		'Configure access control for the GraphQL schema\'s fields and directives',
 		'graphql-api'
 	),
 
@@ -48,53 +53,48 @@ registerBlockType( 'graphql-api/access-control-disable-access', {
 	 * An icon property should be specified to make it easier to identify a block.
 	 * These can be any of WordPress’ Dashicons, or a custom svg element.
 	 */
-	icon: 'dismiss',
-
-	/**
-	 * This block is a nested item, to be added only under "Access Control"
-	 */
-	parent: [ 'graphql-api/access-control' ],
+	icon: 'admin-users',
 
 	/**
 	 * Block default attributes.
 	 */
 	attributes: {
-		accessControlGroup: {
-			type: 'string',
-		},
-		// /**
-		//  * List of selected fields, accessible by their type
-		//  */
-		// typeFields: {
-		// 	type: 'array',
-		// 	default: [],
-		// },
-		// /**
-		//  * List of selected directives
-		//  */
-		// directives: {
-		// 	type: 'array',
-		// 	default: [],
-		// },
-		// // Make it wide alignment by default
-		// align: {
+		// accessControlGroup: {
 		// 	type: 'string',
-		// 	default: 'wide',
 		// },
+		/**
+		 * List of selected fields, accessible by their type
+		 */
+		typeFields: {
+			type: 'array',
+			default: [],
+		},
+		/**
+		 * List of selected directives
+		 */
+		directives: {
+			type: 'array',
+			default: [],
+		},
+		// Make it wide alignment by default
+		align: {
+			type: 'string',
+			default: 'wide',
+		},
 	},
 
 	/**
 	 * Optional block extended support features.
 	 */
 	supports: {
-		// // Alignment options
-		// align: [ 'center', 'wide', 'full' ],
+		// Alignment options
+		align: [ 'center', 'wide', 'full' ],
 		// Remove the support for the custom className.
 		customClassName: false,
 		// Remove support for an HTML mode.
 		html: false,
-		// // Only insert block through a template
-		// inserter: true,
+		// Only insert block through a template
+		// inserter: false,
 	},
 
 	/**
@@ -118,6 +118,8 @@ registerBlockType( 'graphql-api/access-control-disable-access', {
 	 * @return {WPElement} Element to render.
 	 */
 	save() {
-		return null;
+		return (
+			<InnerBlocks.Content />
+		);
 	},
 } );

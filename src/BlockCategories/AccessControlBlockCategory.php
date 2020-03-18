@@ -1,7 +1,9 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\BlockCategories;
 
-class AccessControlBlockCategory {
+class AccessControlBlockCategory
+{
+    public const ACCESS_CONTROL_BLOCK_CATEGORY = 'graphql-api-access-control';
 
     public function init()
     {
@@ -18,7 +20,7 @@ class AccessControlBlockCategory {
             $categories,
             array(
                 array(
-                    'slug' => 'graphql-api-access-control',
+                    'slug' => self::ACCESS_CONTROL_BLOCK_CATEGORY,
                     'title' => __( 'Access Control for GraphQL', 'graphql-api' ),
                 ),
             )

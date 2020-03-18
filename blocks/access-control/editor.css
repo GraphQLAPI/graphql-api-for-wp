@@ -1,0 +1,7 @@
+/**
+ * Remove the top margin for the first inner block, so it's aligned top
+ */
+.graphql-api-access-control-list .block-editor-inner-blocks .editor-styles-wrapper .block-editor-block-list__block:first-child {
+	margin-top: 0;
+	/* margin-bottom: 0; */
+}

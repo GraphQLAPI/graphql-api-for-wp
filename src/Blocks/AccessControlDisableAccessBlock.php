@@ -2,9 +2,9 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 /**
- * Access Control List block
+ * Access Control Disable Access block
  */
-class AccessControlDisableAccessBlock extends AbstractAccessControlListBlock
+class AccessControlDisableAccessBlock extends AbstractAccessControlNestedBlock
 {
     protected function getBlockName(): string
     {

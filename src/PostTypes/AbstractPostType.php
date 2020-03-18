@@ -22,7 +22,7 @@ abstract class AbstractPostType
         );
         \add_filter(
             'allowed_block_types',
-            [$this, 'getGutenbergBlocksForCustomPostType'],
+            [$this, 'allowGutenbergBlocksForCustomPostType'],
             10,
             2
         );
@@ -238,34 +238,48 @@ abstract class AbstractPostType
 
     /**
      * Restrict the Gutenberg blocks available for this Custom Post Type
+     *
+     * @param [type] $allowedBlocks
+     * @param [type] $post
+     * @return array
+     */
+    public function allowGutenbergBlocksForCustomPostType($allowedBlocks, $post)
+    {
+        /**
+         * Check it is this CPT
+         */
+        if ($post->post_type == $this->getPostType()) {
+            if ($blocks = $this->getGutenbergBlocksForCustomPostType()) {
+                return $blocks;
+            }
+        }
+        return $allowedBlocks;
+    }
+
+    /**
      * By default, if providing a template, then restrict the CPT to the blocks involved in the template
      *
      * @param [type] $allowedBlocks
      * @param [type] $post
      * @return array
      */
-    public function getGutenbergBlocksForCustomPostType($allowedBlocks, $post)
+    protected function getGutenbergBlocksForCustomPostType()
     {
         /**
-         * Check it is this CPT
+         * If the CPT defined a template, then maybe restrict to those blocks
          */
-        if ($post->post_type == $this->getPostType()) {
-            /**
-             * If the CPT defined a template, then maybe restrict to those blocks
-             */
-            $template = $this->getGutenbergTemplate();
-            if (!empty($template) && $this->enableOnlyGutenbergTemplateBlocks()) {
-                // Get all the blocks involved in the template
-                return array_values(array_unique(array_map(
-                    function(array $blockConfiguration) {
-                        // The block is the first item from the $blockConfiguration
-                        return $blockConfiguration[0];
-                    },
-                    $template
-                )));
-            }
+        $template = $this->getGutenbergTemplate();
+        if (!empty($template) && $this->enableOnlyGutenbergTemplateBlocks()) {
+            // Get all the blocks involved in the template
+            return array_values(array_unique(array_map(
+                function(array $blockConfiguration) {
+                    // The block is the first item from the $blockConfiguration
+                    return $blockConfiguration[0];
+                },
+                $template
+            )));
         }
-        return $allowedBlocks;
+        return [];
     }
 
     /**
