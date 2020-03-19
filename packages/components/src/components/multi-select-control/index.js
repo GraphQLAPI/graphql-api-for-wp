@@ -17,8 +17,8 @@ import './style.scss';
  * Internal dependencies
  */
 import MultiSelectControlGroup from './group';
-import withErrorMessage from './with-error-message';
-import withSpinner from './with-spinner';
+import withErrorMessage from '../loading/with-error-message';
+import withSpinner from '../loading/with-spinner';
 
 function MultiSelectControl( props ) {
 	const { setState, showSearch, search, items } = props;

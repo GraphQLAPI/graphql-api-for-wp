@@ -6,8 +6,8 @@ import { withSelect } from '@wordpress/data';
 import { Card, CardHeader, CardBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { TYPE_FIELD_SEPARATOR } from './field-multi-select-control';
-import withSpinner from '../multi-select-control/with-spinner';
-import withErrorMessage from '../multi-select-control/with-error-message';
+import withSpinner from '../loading/with-spinner';
+import withErrorMessage from '../loading/with-error-message';
 
 /**
  * Print the selected fields and directives.

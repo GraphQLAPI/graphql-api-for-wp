@@ -58,6 +58,8 @@ const maybeGetErrorMessage = (response) => {
 	}
 	return null;
 }
+
+export { maybeGetErrorMessage };
 export default {
 	/**
 	 * Fetch the typeFields from the GraphQL server
