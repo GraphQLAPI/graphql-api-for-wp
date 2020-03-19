@@ -31,11 +31,11 @@ class PluginConfiguration
     }
 
     /**
-     * Constants defined in wp-config.php must start with this affix to override GraphQL API environment variables
+     * Constants defined in wp-config.php must start with this prefix to override GraphQL API environment variables
      *
      * @return string
      */
-    public static function getWPConfigConstantAffix(): string
+    public static function getWPConfigConstantPrefix(): string
     {
         return 'GRAPHQL_API_';
     }
@@ -50,7 +50,7 @@ class PluginConfiguration
      */
     public static function useWPConfigConstant($value, $class, $envVariable)
     {
-        $constantName = self::getWPConfigConstantAffix().$envVariable;
+        $constantName = self::getWPConfigConstantPrefix().$envVariable;
         if (defined($constantName)) {
             return constant($constantName);
         }
