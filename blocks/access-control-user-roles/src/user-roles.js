@@ -48,7 +48,7 @@ const UserRoles = ( props ) => {
 							}
 						/>
 					}
-					{ !isSelected && (
+					{ !isSelected && !!value.length && (
 						<div className={ className+'__label-group'}>
 							{ value.map( val =>
 								<div className={ className+'__label-item'}>
@@ -56,6 +56,9 @@ const UserRoles = ( props ) => {
 								</div>
 							) }
 						</div>
+					) }
+					{ !isSelected && !value.length && (
+						__('---', 'graphql-api')
 					) }
 				</CardBody>
 			</Card>
