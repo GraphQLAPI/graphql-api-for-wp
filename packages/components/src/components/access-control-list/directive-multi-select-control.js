@@ -17,7 +17,7 @@ const DirectiveMultiSelectControl = compose( [
 			getDirectives,
 			hasRetrievedDirectives,
 			getRetrievingDirectivesErrorMessage,
-		} = select ( 'leoloso/graphql-api' );
+		} = select ( 'graphql-api/components' );
 		/**
 		 * Convert the directives array to this structure:
 		 * [{group:"Directives",title:"directiveName",value:"directiveName"},...]

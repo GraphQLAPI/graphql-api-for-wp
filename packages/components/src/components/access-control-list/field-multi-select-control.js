@@ -21,7 +21,7 @@ const FieldMultiSelectControl = compose( [
 			getTypeFields,
 			hasRetrievedTypeFields,
 			getRetrievingTypeFieldsErrorMessage,
-		} = select ( 'leoloso/graphql-api' );
+		} = select ( 'graphql-api/components' );
 		/**
 		 * Convert typeFields object, from this structure:
 		 * [{type:"Type", fields:["field1", "field2",...]},...]

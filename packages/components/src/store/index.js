@@ -15,7 +15,7 @@ import controls from './controls';
 /**
  * Module Constants
  */
-const MODULE_KEY = 'leoloso/graphql-api';
+const MODULE_KEY = 'graphql-api/components';
 
 /**
  * Block editor data store configuration.
