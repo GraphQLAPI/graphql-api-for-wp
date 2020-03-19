@@ -9,6 +9,11 @@ import { Card, CardHeader, CardBody } from '@wordpress/components';
  */
 import Select from 'react-select';
 
+/**
+ * Internal dependencies
+ */
+import './style.scss';
+
 
 const SelectCard = ( props ) => {
 	const { label, items, className, setAttributes, isSelected, attributes: { value } } = props;
@@ -18,9 +23,10 @@ const SelectCard = ( props ) => {
 	 */
 	const options = items.map(item => ( { value: item, label: item } ) )
 	const selectedValues = value.map(val => ( { value: val, label: val } ) )
-	const componentClassName = `nested-component editable-on-focus is-selected-${ isSelected }`;
+	const componentClassName = 'graphql-api-select-card';
+	const componentClass = `${ componentClassName } nested-component editable-on-focus is-selected-${ isSelected }`;
 	return (
-		<div className={ componentClassName }>
+		<div className={ componentClass }>
 			<Card { ...props }>
 				<CardHeader isShady>
 					{ label }
@@ -41,9 +47,9 @@ const SelectCard = ( props ) => {
 						/>
 					}
 					{ !isSelected && !!value.length && (
-						<div className={ className+'__label-group'}>
+						<div className={ `${ className }__label-group ${ componentClassName }__label-group` }>
 							{ value.map( val =>
-								<div className={ className+'__label-item'}>
+								<div className={ `${ className }__label-item ${ componentClassName }__label-item` }>
 									{ val }
 								</div>
 							) }
