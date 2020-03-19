@@ -3,7 +3,7 @@ import { Card, CardBody, CardHeader } from '@wordpress/components';
 import Select from 'react-select';
 
 const UserRoles = ( props ) => {
-	const { className, setAttributes, attributes: { value } } = props;
+	const { className, setAttributes, isSelected, attributes: { value } } = props;
 	const options = [
 		{ value: 'ocean', label: 'Ocean' },
 		{ value: 'blue', label: 'Blue' },
@@ -20,7 +20,7 @@ const UserRoles = ( props ) => {
 	 * React Select expects an object with this format:
 	 * { value: ..., label: ... },
 	 */
-	const selectedValues = value.map(val => ( {value: val, label: val} ))
+	const selectedValues = value.map(val => ( { value: val, label: val } ) )
 	return (
 		<div className={ className+'__user_roles' }>
 			<Card { ...props }>
@@ -28,18 +28,29 @@ const UserRoles = ( props ) => {
 					{ __('The user has any of these roles', 'graphql-api') }
 				</CardHeader>
 				<CardBody>
-					<Select
-						defaultValue={ selectedValues }
-						options={ options }
-						isMulti
-						closeMenuOnSelect={ false }
-						onChange={ selectedOptions =>
-							// Extract the attribute "value"
-							setAttributes( {
-								value: selectedOptions.map(option => option.value)
-							} )
-						}
-					/>
+					{ isSelected &&
+						<Select
+							defaultValue={ selectedValues }
+							options={ options }
+							isMulti
+							closeMenuOnSelect={ false }
+							onChange={ selectedOptions =>
+								// Extract the attribute "value"
+								setAttributes( {
+									value: selectedOptions.map(option => option.value)
+								} )
+							}
+						/>
+					}
+					{ !isSelected && (
+						<div className={ className+'__label-group'}>
+							{ value.map( val =>
+								<div className={ className+'__label-item'}>
+									{ val }
+								</div>
+							) }
+						</div>
+					) }
 				</CardBody>
 			</Card>
 		</div>
