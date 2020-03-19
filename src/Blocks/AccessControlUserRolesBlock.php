@@ -22,7 +22,7 @@ class AccessControlUserRolesBlock extends AbstractAccessControlNestedBlock
         return sprintf(
             '<div class="%s"><p><strong>%s</strong></p><ul><li>%s</li></ul></div>',
             $this->getBlockClassName(),
-            __('The user has any of these roles:', 'graphql-api'),
+            __('Users with any of these roles:', 'graphql-api'),
             implode('</li><li>', $values)
         );
 	}
