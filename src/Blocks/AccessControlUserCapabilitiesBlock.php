@@ -2,13 +2,13 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 /**
- * Access Control User Roles block
+ * Access Control User Capabilities block
  */
-class AccessControlUserRolesBlock extends AbstractAccessControlNestedBlock
+class AccessControlUserCapabilitiesBlock extends AbstractAccessControlNestedBlock
 {
     protected function getBlockName(): string
     {
-        return 'access-control-user-roles';
+        return 'access-control-user-capabilities';
     }
 
     protected function isDynamicBlock(): bool
@@ -22,7 +22,7 @@ class AccessControlUserRolesBlock extends AbstractAccessControlNestedBlock
         return sprintf(
             '<div class="%s"><p><strong>%s</strong></p><ul><li>%s</li></ul></div>',
             $this->getBlockClassName(),
-            __('Users with any of these roles:', 'graphql-api'),
+            __('Users with any of these capabilities:', 'graphql-api'),
             implode('</li><li>', $values)
         );
 	}
