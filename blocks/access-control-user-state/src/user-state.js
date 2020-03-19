@@ -24,8 +24,9 @@ const UserState = ( props ) => {
 			value: USER_STATE_OUT,
 		},
 	];
+	const componentClassName = `nested-component editable-on-focus is-selected-${ isSelected }`;
 	return (
-		<div className={ className+'__user_state' }>
+		<div className={ componentClassName }>
 			<Card { ...props }>
 				<CardBody>
 					{ isSelected &&

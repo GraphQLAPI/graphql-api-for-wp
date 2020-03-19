@@ -21,8 +21,9 @@ const UserRoles = ( props ) => {
 	 * { value: ..., label: ... },
 	 */
 	const selectedValues = value.map(val => ( { value: val, label: val } ) )
+	const componentClassName = `nested-component editable-on-focus is-selected-${ isSelected }`;
 	return (
-		<div className={ className+'__user_roles' }>
+		<div className={ componentClassName }>
 			<Card { ...props }>
 				<CardHeader isShady>
 					{ __('The user has any of these roles', 'graphql-api') }

@@ -22,6 +22,7 @@ import { InnerBlocks } from '@wordpress/block-editor';
  */
 import EditBlock from './edit-block.js';
 import BLOCK_NAME from './block-name.js';
+import './style.scss';
 
 /**
  * Every block starts by registering a new block type definition.
@@ -108,7 +109,17 @@ registerBlockType( BLOCK_NAME, {
 	 *
 	 * @return {WPElement} Element to render.
 	 */
-	edit: EditBlock,
+	edit(props) {
+		const { isSelected, className } = props;
+		return (
+			<div class={ className }>
+				<EditBlock
+					accessControlComponentClassName={ `nested-component editable-on-focus is-selected-${ isSelected }` }
+					{ ...props}
+				/>
+			</div>
+		)
+	},
 
 	/**
 	 * The save function defines the way in which the different attributes should be combined

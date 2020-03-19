@@ -11,7 +11,7 @@ import FieldDirectivePrintout from './field-directive-printout';
  */
 const withAccessControlList = () => createHigherOrderComponent(
 	( WrappedComponent ) => ( props ) => {
-		const { setAttributes, isSelected, attributes: { typeFields, directives } } = props;
+		const { setAttributes, isSelected, attributes: { typeFields, directives }, accessControlComponentClassName } = props;
 		const className = 'graphql-api-access-control-list';
 		return (
 			<div className={ className }>
@@ -22,21 +22,23 @@ const withAccessControlList = () => createHigherOrderComponent(
 								<div className={ className+'__item_data__title' }>
 									<strong>{ __('Define access for:', 'graphql-api') }</strong>
 								</div>
-								{ isSelected &&
-									<FieldDirectiveTabPanel
-										typeFields={ typeFields }
-										directives={ directives }
-										setAttributes={ setAttributes }
-										className={ className }
-									/>
-								}
-								{ !isSelected && (
-									<FieldDirectivePrintout
-										typeFields={ typeFields }
-										directives={ directives }
-										className={ className }
-									/>
-								) }
+								<div className={ accessControlComponentClassName }>
+									{ isSelected &&
+										<FieldDirectiveTabPanel
+											typeFields={ typeFields }
+											directives={ directives }
+											setAttributes={ setAttributes }
+											className={ className }
+										/>
+									}
+									{ !isSelected && (
+										<FieldDirectivePrintout
+											typeFields={ typeFields }
+											directives={ directives }
+											className={ className }
+										/>
+									) }
+								</div>
 							</div>
 							<div className={ className+'__item_data_who' }>
 								<div className={ className+'__item_data__title' }>
