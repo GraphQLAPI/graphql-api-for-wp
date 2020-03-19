@@ -63,6 +63,29 @@ const UserRoles = ( props ) => {
 	);
 }
 
+const WithSpinnerUserRoles = compose( [
+	withSpinner(),
+	withErrorMessage(),
+] )( UserRoles );
+
+/**
+ * Check if the roles have not been fetched yet, and editing the component (isSelected => true), then show the spinner
+ * This is an improvement when loading a new Access Control post, that it has no data, so the user is not waiting for nothing
+ *
+ * @param {Object} props
+ */
+const MaybeWithSpinnerUserRoles = ( props ) => {
+	const { isSelected, roles } = props;
+	if ( !roles?.length && isSelected ) {
+		return (
+			<WithSpinnerUserRoles { ...props } />
+		)
+	}
+	return (
+		<UserRoles { ...props } />
+	);
+}
+
 export default compose( [
 	withSelect( ( select ) => {
 		const {
@@ -76,6 +99,4 @@ export default compose( [
 			errorMessage: getRetrievingRolesErrorMessage(),
 		};
 	} ),
-	withSpinner(),
-	withErrorMessage(),
-] )( UserRoles );
+] )( MaybeWithSpinnerUserRoles );
