@@ -17,6 +17,11 @@ class Plugin {
     public function init(): void
     {
         /**
+         * Configure the plugin
+         */
+        PluginConfiguration::init();
+
+        /**
          * Menus
          */
         if (\is_admin()) {

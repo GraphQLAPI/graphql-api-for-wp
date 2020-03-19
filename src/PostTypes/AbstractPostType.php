@@ -2,6 +2,7 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
+use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 
 abstract class AbstractPostType
 {
@@ -60,6 +61,7 @@ abstract class AbstractPostType
 
     /**
      * Render the excerpt as the description for the current CPT
+     * Can enable/disable through environment variable
      *
      * @param [type] $content
      * @return string
@@ -67,9 +69,9 @@ abstract class AbstractPostType
     public function maybeAddExcerptAsDescription($content): string
     {
         /**
-         * Check if it is this CPT...
+         * Check if it is enabled and it is this CPT...
          */
-        if (\is_singular($this->getPostType())) {
+        if (ComponentConfiguration::addExcerptAsDescription() && \is_singular($this->getPostType())) {
             /**
              * Add the excerpt (if not empty) as description of the GraphQL query
              */
