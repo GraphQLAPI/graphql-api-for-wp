@@ -3,7 +3,7 @@ import { Card, CardBody, RadioControl } from '@wordpress/components';
 import { IN as USER_STATE_IN, OUT as USER_STATE_OUT } from './user-states';
 
 const UserState = ( props ) => {
-	const { className, setAttributes, attributes: { value } } = props;
+	const { className, isSelected, setAttributes, attributes: { value } } = props;
 	/**
 	 * If accessing the block for first time, value will be undefined. Then set it as default to "in"
 	 * Can't use the `registerBlockType` configuration to set a default for `value`, because whenever the default value is selected,
@@ -28,17 +28,29 @@ const UserState = ( props ) => {
 		<div className={ className+'__user_state' }>
 			<Card { ...props }>
 				<CardBody>
-					<RadioControl
-						{ ...props }
-						// label={ __('User is...', 'graphql-api') }
-						options={ options }
-						selected={ value }
-						onChange={ value => (
-							setAttributes( {
-								value
-							} )
-						)}
-					/>
+					{ isSelected &&
+						<RadioControl
+							{ ...props }
+							// label={ __('User is...', 'graphql-api') }
+							options={ options }
+							selected={ value }
+							onChange={ value => (
+								setAttributes( {
+									value
+								} )
+							)}
+						/>
+					}
+					{ !isSelected && (
+						<div className={ className+'__read'}>
+							{ (value == USER_STATE_IN) &&
+								<span>✅ { __('Logged-in users', 'graphql-api') }</span>
+							}
+							{ (value == USER_STATE_OUT) &&
+								<span>❎ { __('Not logged-in users', 'graphql-api') }</span>
+							}
+						</div>
+					) }
 				</CardBody>
 			</Card>
 		</div>
