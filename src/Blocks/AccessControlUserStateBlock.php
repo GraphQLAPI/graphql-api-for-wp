@@ -21,8 +21,8 @@ class AccessControlUserStateBlock extends AbstractAccessControlNestedBlock
     public function renderBlock($attributes, $content): string
 	{
         $label = $attributes['value'] == UserStates::IN ?
-            __('User is logged in', 'graphql-api') :
-            __('User is not logged in', 'graphql-api');
+            __('Logged-in users', 'graphql-api') :
+            __('Not logged-in users', 'graphql-api');
 		return sprintf(
             '<ul class="%s"><li>%s</li></ul>',
             $this->getBlockClassName(),
