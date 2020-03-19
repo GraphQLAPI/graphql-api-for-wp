@@ -9,8 +9,8 @@ use Error;
  * the architecture from @wordpress/create-block package(https://developer.wordpress.org/block-editor/packages/packages-create-block/),
  * (this package provides the scaffolding for a single-block plugin, so the plugin .php file is ignored registering a single block is ignored, and everything else is used)
  */
-abstract class AbstractBlock {
-
+abstract class AbstractBlock
+{
     /**
      * Execute this function to initialize the block
      *
