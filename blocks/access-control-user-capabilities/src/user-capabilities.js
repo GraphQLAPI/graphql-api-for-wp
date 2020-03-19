@@ -2,14 +2,8 @@
  * WordPress dependencies
  */
 import { withSelect } from '@wordpress/data';
-import { compose } from '@wordpress/compose';
+import { compose, withState } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
-import { Card, CardHeader, CardBody } from '@wordpress/components';
-
-/**
- * External dependencies
- */
-import Select from 'react-select';
 
 /**
  * Internal dependencies
@@ -17,59 +11,12 @@ import Select from 'react-select';
 import './store';
 import { withErrorMessage } from '../../../packages/components/src';
 import { withSpinner } from '../../../packages/components/src';
-
-const UserCapabilities = ( props ) => {
-	const { capabilities, className, setAttributes, isSelected, attributes: { value } } = props;
-	/**
-	 * React Select expects an object with this format:
-	 * { value: ..., label: ... },
-	 */
-	const options = capabilities.map(capability => ( { value: capability, label: capability } ) )
-	const selectedValues = value.map(val => ( { value: val, label: val } ) )
-	const componentClassName = `nested-component editable-on-focus is-selected-${ isSelected }`;
-	return (
-		<div className={ componentClassName }>
-			<Card { ...props }>
-				<CardHeader isShady>
-					{ __('Users with any of these capabilities:', 'graphql-api') }
-				</CardHeader>
-				<CardBody>
-					{ isSelected &&
-						<Select
-							defaultValue={ selectedValues }
-							options={ options }
-							isMulti
-							closeMenuOnSelect={ false }
-							onChange={ selectedOptions =>
-								// Extract the attribute "value"
-								setAttributes( {
-									value: selectedOptions.map(option => option.value)
-								} )
-							}
-						/>
-					}
-					{ !isSelected && !!value.length && (
-						<div className={ className+'__label-group'}>
-							{ value.map( val =>
-								<div className={ className+'__label-item'}>
-									{ val }
-								</div>
-							) }
-						</div>
-					) }
-					{ !isSelected && !value.length && (
-						__('---', 'graphql-api')
-					) }
-				</CardBody>
-			</Card>
-		</div>
-	);
-}
+import { SelectCard } from '../../../packages/components/src';
 
 const WithSpinnerUserCapabilities = compose( [
 	withSpinner(),
 	withErrorMessage(),
-] )( UserCapabilities );
+] )( SelectCard );
 
 /**
  * Check if the capabilities have not been fetched yet, and editing the component (isSelected => true), then show the spinner
@@ -85,19 +32,24 @@ const MaybeWithSpinnerUserCapabilities = ( props ) => {
 		)
 	}
 	return (
-		<UserCapabilities { ...props } />
+		<SelectCard { ...props } />
 	);
 }
 
 export default compose( [
+	withState( {
+		label: __('Users with any of these capabilities:', 'graphql-api'),
+	} ),
 	withSelect( ( select ) => {
 		const {
 			getCapabilities,
 			hasRetrievedCapabilities,
 			getRetrievingCapabilitiesErrorMessage,
 		} = select ( 'graphql-api/access-control-user-capabilities' );
+		const capabilities = getCapabilities();
 		return {
-			capabilities: getCapabilities(),
+			capabilities,
+			items: capabilities,
 			hasRetrievedItems: hasRetrievedCapabilities(),
 			errorMessage: getRetrievingCapabilitiesErrorMessage(),
 		};

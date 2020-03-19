@@ -11,3 +11,4 @@ export { default as withAccessControlList } from './components/access-control-li
 export { withAccessControlGroup } from './components/access-control-list';
 export { withErrorMessage } from './components/loading';
 export { withSpinner } from './components/loading';
+export { SelectCard } from './components/select-card';
