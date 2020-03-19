@@ -1,7 +1,7 @@
 {
-	"name": "access-control-user-state-block",
+	"name": "access-control-user-roles-block",
 	"version": "0.1.0",
-	"description": "Grant access to the selected fields and directives based on the user being logged-in or not",
+	"description": "Grant access to the selected fields and directives based on the user having any of the selected roles",
 	"author": "Leonardo Losoviz",
 	"license": "MIT",
 	"main": "build/index.js",
