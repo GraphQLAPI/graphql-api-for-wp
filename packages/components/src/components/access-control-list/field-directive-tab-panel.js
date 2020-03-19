@@ -12,12 +12,12 @@ const FieldDirectiveTabPanel = ( props ) => {
 			tabs={ [
 				{
 					name: 'tabFields',
-					title: __('Fields, by type', 'graphql-api'),
+					title: __('Fields, by type:', 'graphql-api'),
 					className: 'tab tab-fields',
 				},
 				{
 					name: 'tabDirectives',
-					title: __('(Non-system) Directives', 'graphql-api'),
+					title: __('(Non-system) Directives:', 'graphql-api'),
 					className: 'tab tab-directives',
 				},
 			] }

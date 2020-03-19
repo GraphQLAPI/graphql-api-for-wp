@@ -26,7 +26,7 @@ const UserRoles = ( props ) => {
 		<div className={ componentClassName }>
 			<Card { ...props }>
 				<CardHeader isShady>
-					{ __('Users with any of these roles', 'graphql-api') }
+					{ __('Users with any of these roles:', 'graphql-api') }
 				</CardHeader>
 				<CardBody>
 					{ isSelected &&

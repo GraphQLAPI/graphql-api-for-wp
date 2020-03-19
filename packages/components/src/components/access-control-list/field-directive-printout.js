@@ -21,7 +21,7 @@ const FieldDirectivePrintout = ( props ) => {
 	const { typeFields, directives, typeFieldNames } = props;
 	return (
 		<Card { ...props }>
-			<CardHeader isShady>{ __('Fields, by type', 'graphql-api') }</CardHeader>
+			<CardHeader isShady>{ __('Fields, by type:', 'graphql-api') }</CardHeader>
 			<CardBody>
 				{ !! typeFields.length && typeFields.map( typeField =>
 					<>
@@ -32,7 +32,7 @@ const FieldDirectivePrintout = ( props ) => {
 					__('---', 'graphql-api')
 				) }
 			</CardBody>
-			<CardHeader isShady>{ __('(Non-system) Directives', 'graphql-api') }</CardHeader>
+			<CardHeader isShady>{ __('(Non-system) Directives:', 'graphql-api') }</CardHeader>
 			<CardBody>
 				{ !! directives.length && directives.map( directive =>
 					<>
