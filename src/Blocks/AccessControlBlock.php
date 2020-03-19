@@ -1,6 +1,9 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
+
 /**
  * Access Control block
  */
@@ -33,7 +36,57 @@ class AccessControlBlock extends AbstractAccessControlBlock
 
     public function renderBlock($attributes, $content): string
 	{
+        // Append "-front" because this style must be used only on the client, not on the admin
         $className = $this->getBlockClassName().'-front';
+        $typeFields = $attributes['typeFields'] ?? [];
+        $directives = $attributes['directives'] ?? [];
+        $fieldTypeContent = $directiveContent = '---';
+        if ($typeFields) {
+            $instanceManager = InstanceManagerFacade::getInstance();
+            $typeRegistry = TypeRegistryFacade::getInstance();
+            $typeResolverClasses = $typeRegistry->getTypeResolverClasses();
+            // For each class, obtain its namespacedTypeName
+            $namespacedTypeNameNames = [];
+            foreach ($typeResolverClasses as $typeResolverClass) {
+                $typeResolver = $instanceManager->getInstance($typeResolverClass);
+                $typeResolverNamespacedName = $typeResolver->getNamespacedTypeName();
+                $namespacedTypeNameNames[$typeResolverNamespacedName] = $typeResolver->getTypeName();
+            }
+            $fieldTypeContent = sprintf(
+                '<ul><li>%s</li></ul>',
+                implode('</li><li>', array_map(
+                    function($selectedField) use($namespacedTypeNameNames) {
+                        // The field is composed by the type namespaced name, and the field name, separated by "."
+                        // Extract these values
+                        $entry = explode(self::TYPE_FIELD_SEPARATOR, $selectedField);
+                        $namespacedTypeName = $entry[0];
+                        $field = $entry[1];
+                        $typeName = $namespacedTypeNameNames[$namespacedTypeName] ?? $namespacedTypeName;
+                        return $typeName.'/'.$field;
+                    },
+                    $typeFields
+                ))
+            );
+        }
+        if ($directives) {
+            $directiveContent = sprintf(
+                '<ul><li>%s</li></ul>',
+                implode('</li><li>', $directives)
+            );
+        }
+        $blockDataPlaceholder = <<<EOT
+            <h4>%s</h4>
+            %s
+            <h4>%s</h4>
+            %s
+EOT;
+        $blockDataContent = sprintf(
+            $blockDataPlaceholder,
+            __('Fields, by type', 'graphql-api'),
+            $fieldTypeContent,
+            __('(Non-system) Directives', 'graphql-api'),
+            $directiveContent
+        );
         $blockContentPlaceholder = <<<EOT
         <div class="%s alignwide">
             <div class="%s">
@@ -52,7 +105,7 @@ EOT;
             $className.'__data',
             $className.'__title',
             __('Define access for:', 'graphql-api'),
-            json_encode($attributes),
+            $blockDataContent,
             $className.'__who',
             $className.'__title',
             __('Who can access:', 'graphql-api'),
