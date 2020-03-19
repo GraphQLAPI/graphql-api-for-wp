@@ -15,7 +15,7 @@ const DEFAULT_STATE = {
  *
  * @return {Object} Updated state.
  */
-const schemaInstrospection = (
+const roles = (
 	state = DEFAULT_STATE,
 	action
 ) => {
@@ -31,4 +31,4 @@ const schemaInstrospection = (
 	return state;
 };
 
-export default schemaInstrospection;
+export default roles;
