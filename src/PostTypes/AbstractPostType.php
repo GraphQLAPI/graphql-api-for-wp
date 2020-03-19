@@ -49,6 +49,16 @@ abstract class AbstractPostType
     }
 
     /**
+     * Block align class
+     *
+     * @return boolean
+     */
+    public function getAlignClass(): string
+    {
+        return 'alignwide';
+    }
+
+    /**
      * Render the excerpt as the description for the current CPT
      *
      * @param [type] $content
@@ -66,7 +76,8 @@ abstract class AbstractPostType
             global $post;
             if ($excerpt = $post->post_excerpt) {
                 $content = \sprintf(
-                    \__('<p><strong>Description: </strong>%s</p>'),
+                    \__('<p class="%s"><strong>Description: </strong>%s</p>'),
+                    $this->getAlignClass(),
                     $excerpt
                 ).$content;
             }

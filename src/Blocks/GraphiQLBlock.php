@@ -22,7 +22,7 @@ class GraphiQLBlock extends AbstractGraphQLByPoPBlock
 	{
 		$content = sprintf(
             '<div class="%s">',
-            $this->getBlockClassName()
+            $this->getBlockClassName().' '.$this->getAlignClass()
         );
 		$query = $attributes['query'];
 		$variables = $attributes['variables'];

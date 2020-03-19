@@ -124,6 +124,16 @@ abstract class AbstractBlock
     }
 
     /**
+     * Block align class
+     *
+     * @return boolean
+     */
+    public function getAlignClass(): string
+    {
+        return 'alignwide';
+    }
+
+    /**
      * Registers all block assets so that they can be enqueued through the block editor
      * in the corresponding context.
      *

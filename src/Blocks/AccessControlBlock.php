@@ -88,7 +88,7 @@ EOT;
             $directiveContent
         );
         $blockContentPlaceholder = <<<EOT
-        <div class="%s alignwide">
+        <div class="%s">
             <div class="%s">
                 <h3 class="%s">%s</h3>
                 %s
@@ -101,7 +101,7 @@ EOT;
 EOT;
         return sprintf(
             $blockContentPlaceholder,
-            $className,
+            $className.' '.$this->getAlignClass(),
             $className.'__data',
             $className.'__title',
             __('Define access for:', 'graphql-api'),
