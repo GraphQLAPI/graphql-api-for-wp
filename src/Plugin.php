@@ -8,6 +8,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\BlockDevelopmentHotReload;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlDisableAccessBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserStateBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
@@ -48,6 +49,9 @@ class Plugin {
         PluginState::setAccessControlBlock($accessControlBlock);
 
         $accessControlNestedBlock = new AccessControlDisableAccessBlock();
+        $accessControlNestedBlock->init();
+        PluginState::addAccessControlNestedBlock($accessControlNestedBlock);
+        $accessControlNestedBlock = new AccessControlUserStateBlock();
         $accessControlNestedBlock->init();
         PluginState::addAccessControlNestedBlock($accessControlNestedBlock);
 

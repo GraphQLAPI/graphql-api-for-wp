@@ -22,19 +22,19 @@ import EditBlock from './edit-block.js';
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'graphql-api/access-control-disable-access', {
+registerBlockType( 'graphql-api/access-control-user-state', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __( 'Disable access', 'graphql-api' ),
+	title: __( 'User state', 'graphql-api' ),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
 	 * It will be shown in the Block Tab in the Settings Sidebar.
 	 */
 	description: __(
-		'Disable access to the selected fields and directives',
+		'Grant access to the selected fields and directives based on the user being logged-in or not',
 		'graphql-api'
 	),
 
@@ -48,7 +48,7 @@ registerBlockType( 'graphql-api/access-control-disable-access', {
 	 * An icon property should be specified to make it easier to identify a block.
 	 * These can be any of WordPress’ Dashicons, or a custom svg element.
 	 */
-	icon: 'dismiss',
+	icon: 'admin-users',
 
 	/**
 	 * This block is a nested item, to be added only under "Access Control"
@@ -60,6 +60,9 @@ registerBlockType( 'graphql-api/access-control-disable-access', {
 	 */
 	attributes: {
 		accessControlGroup: {
+			type: 'string',
+		},
+		value: {
 			type: 'string',
 		},
 	},
