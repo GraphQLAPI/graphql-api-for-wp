@@ -1,25 +1,30 @@
+/**
+ * WordPress dependencies
+ */
+import { withSelect } from '@wordpress/data';
+import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
-import { Card, CardBody, CardHeader } from '@wordpress/components';
+import { Card, CardHeader, CardBody } from '@wordpress/components';
+
+/**
+ * External dependencies
+ */
 import Select from 'react-select';
 
+/**
+ * Internal dependencies
+ */
+import './store';
+import { withErrorMessage } from '../../../packages/components/src';
+import { withSpinner } from '../../../packages/components/src';
+
 const UserRoles = ( props ) => {
-	const { className, setAttributes, isSelected, attributes: { value } } = props;
-	const options = [
-		{ value: 'ocean', label: 'Ocean' },
-		{ value: 'blue', label: 'Blue' },
-		{ value: 'purple', label: 'Purple' },
-		{ value: 'red', label: 'Red' },
-		{ value: 'orange', label: 'Orange' },
-		{ value: 'yellow', label: 'Yellow' },
-		{ value: 'green', label: 'Green' },
-		{ value: 'forest', label: 'Forest' },
-		{ value: 'slate', label: 'Slate' },
-		{ value: 'silver', label: 'Silver' },
-	];
+	const { roles, className, setAttributes, isSelected, attributes: { value } } = props;
 	/**
 	 * React Select expects an object with this format:
 	 * { value: ..., label: ... },
 	 */
+	const options = roles.map(role => ( { value: role, label: role } ) )
 	const selectedValues = value.map(val => ( { value: val, label: val } ) )
 	const componentClassName = `nested-component editable-on-focus is-selected-${ isSelected }`;
 	return (
@@ -58,4 +63,19 @@ const UserRoles = ( props ) => {
 	);
 }
 
-export default UserRoles;
+export default compose( [
+	withSelect( ( select ) => {
+		const {
+			getRoles,
+			hasRetrievedRoles,
+			getRetrievingRolesErrorMessage,
+		} = select ( 'graphql-api/access-control-user-roles' );
+		return {
+			roles: getRoles(),
+			hasRetrievedItems: hasRetrievedRoles(),
+			errorMessage: getRetrievingRolesErrorMessage(),
+		};
+	} ),
+	withSpinner(),
+	withErrorMessage(),
+] )( UserRoles );
