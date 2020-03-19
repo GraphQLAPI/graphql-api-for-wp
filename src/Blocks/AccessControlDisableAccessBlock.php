@@ -18,16 +18,10 @@ class AccessControlDisableAccessBlock extends AbstractAccessControlNestedBlock
 
     public function renderBlock($attributes, $content): string
 	{
-		$blockContent = sprintf(
-            '<div class="%s">',
-            $this->getBlockClassName()
+		return sprintf(
+            '<ul class="%s"><li>%s</li></ul>',
+            $this->getBlockClassName(),
+            __('Nobody', 'graphql-api')
         );
-		$blockContent .= sprintf(
-			'<p>%s</p><p>%s</p>',
-            __('No access', 'graphql-api'),
-            json_encode($attributes)
-        );
-		$blockContent .= '</div>';
-		return $blockContent;
 	}
 }

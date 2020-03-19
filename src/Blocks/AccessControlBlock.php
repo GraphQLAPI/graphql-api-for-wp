@@ -75,9 +75,9 @@ class AccessControlBlock extends AbstractAccessControlBlock
             );
         }
         $blockDataPlaceholder = <<<EOT
-            <h4>%s</h4>
+            <p><strong>%s</strong></p>
             %s
-            <h4>%s</h4>
+            <p><strong>%s</strong></p>
             %s
 EOT;
         $blockDataContent = sprintf(
