@@ -2,9 +2,9 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 /**
- * Base class for a Gutenberg block for this plugin (GraphQL API)
+ * Trait to set common functions for a Gutenberg block for this plugin (GraphQL API)
  */
-abstract class AbstractGraphQLByPoPBlock extends AbstractBlock
+trait GraphQLByPoPBlockTrait
 {
     protected function getBlockNamespace(): string
     {

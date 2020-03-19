@@ -6,8 +6,10 @@ use PoP\UserStateAccessControl\ConfigurationEntries\UserStates;
 /**
  * Access Control Disable Access block
  */
-class AccessControlUserStateBlock extends AbstractAccessControlNestedBlock
+class AccessControlUserStateBlock extends AbstractBlock
 {
+    use GraphQLByPoPBlockTrait;
+
     protected function getBlockName(): string
     {
         return 'access-control-user-state';

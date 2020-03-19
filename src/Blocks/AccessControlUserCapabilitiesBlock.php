@@ -4,8 +4,10 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 /**
  * Access Control User Capabilities block
  */
-class AccessControlUserCapabilitiesBlock extends AbstractAccessControlNestedBlock
+class AccessControlUserCapabilitiesBlock extends AbstractBlock
 {
+    use GraphQLByPoPBlockTrait;
+
     protected function getBlockName(): string
     {
         return 'access-control-user-capabilities';

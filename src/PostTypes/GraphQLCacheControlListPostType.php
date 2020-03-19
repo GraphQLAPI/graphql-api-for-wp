@@ -1,6 +1,7 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
+use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
 
 class GraphQLCacheControlListPostType extends AbstractPostType
@@ -58,9 +59,9 @@ class GraphQLCacheControlListPostType extends AbstractPostType
      */
     protected function getGutenbergTemplate(): array
     {
-        // $graphiQLBlock = PluginState::getGraphiQLBlock();
+        $cacheControlBlock = PluginState::getCacheControlBlock();
         return [
-            // [$graphiQLBlock->getBlockFullName()],
+            [$cacheControlBlock->getBlockFullName()],
         ];
     }
 }

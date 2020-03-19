@@ -5,9 +5,9 @@ use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
 
 /**
- * Access Control block
+ * Cache Control block
  */
-class AccessControlBlock extends AbstractBlock
+class CacheControlBlock extends AbstractBlock
 {
     use GraphQLByPoPBlockTrait;
 
@@ -18,12 +18,7 @@ class AccessControlBlock extends AbstractBlock
 
     protected function getBlockName(): string
     {
-        return 'access-control';
-    }
-
-    protected function registerEditorCSS(): bool
-    {
-        return true;
+        return 'cache-control';
     }
 
     protected function registerCommonStyleCSS(): bool
@@ -101,17 +96,18 @@ EOT;
             </div>
         </div>
 EOT;
+        $blockCacheContent = 'Lorem ipsum';
         return sprintf(
             $blockContentPlaceholder,
             $className.' '.$this->getAlignClass(),
             $className.'__data',
             $className.'__title',
-            __('Define access for:', 'graphql-api'),
+            __('Define cache for:', 'graphql-api'),
             $blockDataContent,
             $className.'__who',
             $className.'__title',
-            __('Who can access:', 'graphql-api'),
-            $content
+            __('Cache max age (in seconds):', 'graphql-api'),
+            $blockCacheContent
         );
 	}
 }

@@ -3,13 +3,15 @@ namespace Leoloso\GraphQLByPoPWPPlugin;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractAccessControlNestedBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
 
 class PluginState {
 
     public static $graphiQLBlock;
     public static $accessControlBlock;
     public static $accessControlNestedBlocks = [];
+    public static $cacheControlBlock;
 
     /**
      * Get the value of graphiQLBlock
@@ -60,8 +62,26 @@ class PluginState {
      *
      * @return void
      */
-    public static function addAccessControlNestedBlock(AbstractAccessControlNestedBlock $accessControlNestedBlock): void
+    public static function addAccessControlNestedBlock(AbstractBlock $accessControlNestedBlock): void
     {
         self::$accessControlNestedBlocks[] = $accessControlNestedBlock;
+    }
+
+    /**
+     * Get the value of cacheControlBlock
+     */
+    public static function getCacheControlBlock(): CacheControlBlock
+    {
+        return self::$cacheControlBlock;
+    }
+
+    /**
+     * Set the value of cacheControlBlock
+     *
+     * @return void
+     */
+    public static function setCacheControlBlock(CacheControlBlock $cacheControlBlock): void
+    {
+        self::$cacheControlBlock = $cacheControlBlock;
     }
 }

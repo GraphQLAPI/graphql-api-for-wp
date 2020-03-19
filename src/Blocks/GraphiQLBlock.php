@@ -6,8 +6,10 @@ use Leoloso\GraphQLByPoPWPPlugin\General\URLParamHelpers;
 /**
  * GraphiQL block
  */
-class GraphiQLBlock extends AbstractGraphQLByPoPBlock
+class GraphiQLBlock extends AbstractBlock
 {
+    use GraphQLByPoPBlockTrait;
+
     protected function getBlockName(): string
     {
         return 'graphiql';

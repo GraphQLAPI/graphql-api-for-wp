@@ -4,12 +4,14 @@ namespace Leoloso\GraphQLByPoPWPPlugin;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
 use Leoloso\GraphQLByPoPWPPlugin\Front\Clients;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\BlockDevelopmentHotReload;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserRolesBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserStateBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlDisableAccessBlock;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\CacheControlBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserCapabilitiesBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
@@ -63,10 +65,15 @@ class Plugin {
         $accessControlNestedBlock->init();
         PluginState::addAccessControlNestedBlock($accessControlNestedBlock);
 
+        $cacheControlBlock = new CacheControlBlock();
+        $cacheControlBlock->init();
+        PluginState::setCacheControlBlock($cacheControlBlock);
+
         /**
          * Block categories
          */
         (new AccessControlBlockCategory())->init();
+        (new CacheControlBlockCategory())->init();
 
         /**
          * Clients
