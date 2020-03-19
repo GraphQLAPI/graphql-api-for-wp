@@ -27,7 +27,7 @@ registerBlockType( 'graphql-api/access-control-disable-access', {
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __( 'Disable Access', 'graphql-api' ),
+	title: __( 'Disable access', 'graphql-api' ),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
