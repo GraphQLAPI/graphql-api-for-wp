@@ -3,9 +3,9 @@ import UserRoles from './user-roles';
 import { withAccessControlGroup } from '../../../packages/components/src';
 
 /**
- * Same constant as in \PoP\UserRolesAccessControl\Services\AccessControlGroups::STATE
+ * Same constant as in \PoP\UserRolesAccessControl\Services\AccessControlGroups::ROLES
  */
-const ACCESS_CONTROL_GROUP = 'state';
+const ACCESS_CONTROL_GROUP = 'roles';
 
 export default compose( [
 	withState( {
