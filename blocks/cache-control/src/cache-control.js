@@ -1,5 +1,5 @@
 import { __, sprintf } from '@wordpress/i18n';
-import { TextControl, Card, CardHeader, CardBody } from '@wordpress/components';
+import { TextControl, Card, CardHeader, CardBody, Tooltip, Icon } from '@wordpress/components';
 
 const CacheControl = ( props ) => {
 	const { className, setAttributes, isSelected, attributes: { cacheMaxAge } } = props;
@@ -9,12 +9,18 @@ const CacheControl = ( props ) => {
 	return (
 		<div className={ componentClassName }>
 			<Card>
-				<CardHeader isShady>{ __('Cache-Control header', 'graphql-api') }</CardHeader>
+				<CardHeader isShady>
+					{ __('Cache-Control header', 'graphql-api') }
+					<Tooltip text={ __('The Cache-Control header will contain the minimum max-age value from all fields/directives involved in the request, or "no-store" if the max-age is 0', 'graphql-api') }>
+						<span>
+							<Icon icon="editor-help" size="24" />
+						</span>
+					</Tooltip>
+				</CardHeader>
 				<CardBody>
 					{ isSelected && (
 						<TextControl
 							label={ __('Max-age (in seconds)', 'graphql-api') }
-							// help={ __('The Cache-Control header will contain the minimum max-age value from all fields/directives involved in the request, or \'no-store\' if the max-age is 0', 'graphql-api') }
 							type="text"
 							value={ cacheMaxAge }
 							className={ className+'__maxage' }
