@@ -10,10 +10,10 @@ import { TextControl, Card, CardHeader, CardBody, Tooltip, Icon, ExternalLink } 
 import { LinkableInfoTooltip } from '../../../packages/components/src';
 
 const CacheControl = ( props ) => {
-	const { className, setAttributes, isSelected, attributes: { cacheMaxAge } } = props;
+	const { className, setAttributes, isSelected, attributes: { cacheControlMaxAge } } = props;
 	const componentClassName = `nested-component editable-on-focus is-selected-${ isSelected }`;
 	// We store the value as string instead of as integer, because we can't define 'integer|null' for the attribute, and the empty and '0' values are different
-	const cacheMaxAgeInt = parseInt(cacheMaxAge);
+	const cacheControlMaxAgeInt = parseInt(cacheControlMaxAge);
 	const documentationLink = 'https://graphql-api.com/documentation/#cache-control'
 	return (
 		<div className={ componentClassName }>
@@ -30,33 +30,33 @@ const CacheControl = ( props ) => {
 						<TextControl
 							label={ __('Max-age (in seconds)', 'graphql-api') }
 							type="text"
-							value={ cacheMaxAge }
+							value={ cacheControlMaxAge }
 							className={ className+'__maxage' }
 							onChange={ newValue =>
 								setAttributes( {
-									cacheMaxAge: newValue,
+									cacheControlMaxAge: newValue,
 								} )
 							}
 						/>
 					) }
 					{ !isSelected && (
 						<span>
-							{ !cacheMaxAge && (
+							{ !cacheControlMaxAge && (
 								__('---', 'graphql-api')
 							) }
-							{ !!cacheMaxAge && (
+							{ !!cacheControlMaxAge && (
 								<>
-									{ cacheMaxAgeInt === 0 && (
+									{ cacheControlMaxAgeInt === 0 && (
 										sprintf(
 											__('%s seconds (%s)', 'graphql-api'),
-											cacheMaxAgeInt,
+											cacheControlMaxAgeInt,
 											'no-store'
 										)
 									) }
-									{ cacheMaxAgeInt !== 0 && (
+									{ cacheControlMaxAgeInt !== 0 && (
 										sprintf(
 											__('%s seconds', 'graphql-api'),
-											cacheMaxAgeInt
+											cacheControlMaxAgeInt
 										)
 									) }
 								</>
