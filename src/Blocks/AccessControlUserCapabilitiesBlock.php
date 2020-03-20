@@ -22,10 +22,10 @@ class AccessControlUserCapabilitiesBlock extends AbstractBlock
 	{
         $values = $attributes['value'] ?? [];
         return sprintf(
-            '<div class="%s"><p><strong>%s</strong></p><ul><li>%s</li></ul></div>',
+            '<div class="%s"><p><strong>%s</strong></p><ul><li><code>%s</code></li></ul></div>',
             $this->getBlockClassName(),
             __('Users with any of these capabilities:', 'graphql-api'),
-            implode('</li><li>', $values)
+            implode('</code></li><li><code>', $values)
         );
 	}
 }
