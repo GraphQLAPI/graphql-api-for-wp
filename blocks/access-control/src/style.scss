@@ -1,5 +1,5 @@
+@import '../../../packages/components/src/components/base-styles/mixins.scss';
+
 .wp-block-graphql-api-access-control {
-	.nested-component.editable-on-focus.is-selected-false:hover {
-		cursor: pointer;
-	}
+	@include editable-on-focus();
 }

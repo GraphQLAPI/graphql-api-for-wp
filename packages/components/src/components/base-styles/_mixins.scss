@@ -1,0 +1,5 @@
+@mixin editable-on-focus() {
+	.editable-on-focus.is-selected-false:hover {
+		cursor: pointer;
+	}
+}
