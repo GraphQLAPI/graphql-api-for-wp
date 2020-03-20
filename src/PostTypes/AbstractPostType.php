@@ -66,7 +66,7 @@ abstract class AbstractPostType
      * @param [type] $content
      * @return string
      */
-    public function maybeAddExcerptAsDescription($content): string
+    public function maybeAddExcerptAsDescription(string $content): string
     {
         /**
          * Check if it is enabled and it is this CPT...
