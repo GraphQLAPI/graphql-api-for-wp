@@ -38,15 +38,15 @@ class CacheControlBlock extends AbstractControlBlock
 EOF;
         $cacheControlMaxAge = $attributes['cacheControlMaxAge'];
         if (is_null($cacheControlMaxAge) || $cacheControlMaxAge < 0) {
-            $cacheControlMaxAgeText = '---';
+            $cacheControlMaxAgeText = \__('(not set)', 'graphql-api');
         } elseif ($cacheControlMaxAge === 0) {
             $cacheControlMaxAgeText = sprintf(
-                \__('%s seconds (no-store)'),
+                \__('%s seconds (<code>no-store</code>)', 'graphql-api'),
                 $cacheControlMaxAge
             );
         } else {
             $cacheControlMaxAgeText = sprintf(
-                \__('%s seconds'),
+                \__('%s seconds', 'graphql-api'),
                 $cacheControlMaxAge
             );
         }
