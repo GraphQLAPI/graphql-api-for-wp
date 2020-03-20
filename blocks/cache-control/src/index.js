@@ -108,10 +108,13 @@ registerBlockType( 'graphql-api/cache-control', {
 	 * @return {WPElement} Element to render.
 	 */
 	edit( props ) {
-		const { className } = props;
+		const { className, isSelected } = props;
 		return (
 			<div className={ className }>
-				<EditBlock { ...props } />
+				<EditBlock
+					accessControlComponentClassName={ `nested-component editable-on-focus is-selected-${ isSelected }` }
+					{ ...props }
+				/>
 			</div>
 		)
 	},
