@@ -9,7 +9,7 @@ import FieldDirectivePrintout from './field-directive-printout';
 /**
  * Display an error message if loading data failed
  */
-const withAccessControlList = () => createHigherOrderComponent(
+const withFieldDirectiveMultiSelectControl = () => createHigherOrderComponent(
 	( WrappedComponent ) => ( props ) => {
 		const { setAttributes, isSelected, attributes: { typeFields, directives }, accessControlComponentClassName, selectLabel, configurationLabel } = props;
 		const className = 'graphql-api-access-control-list';
@@ -59,7 +59,7 @@ const withAccessControlList = () => createHigherOrderComponent(
 			</div>
 		);
 	},
-	'withAccessControlList'
+	'withFieldDirectiveMultiSelectControl'
 );
 
-export default withAccessControlList;
+export default withFieldDirectiveMultiSelectControl;
