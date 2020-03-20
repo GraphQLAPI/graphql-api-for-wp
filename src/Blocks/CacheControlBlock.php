@@ -102,7 +102,7 @@ EOT;
             $className.' '.$this->getAlignClass(),
             $className.'__data',
             $className.'__title',
-            __('Define cache for:', 'graphql-api'),
+            __('Define cache max-age for:', 'graphql-api'),
             $blockDataContent,
             $className.'__who',
             $className.'__title',

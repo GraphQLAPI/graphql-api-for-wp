@@ -112,6 +112,8 @@ registerBlockType( 'graphql-api/cache-control', {
 		return (
 			<div className={ className }>
 				<EditBlock
+					selectLabel={ __('Define cache control for:', 'graphql-api') }
+					configurationLabel={ __('Configuration:', 'graphql-api') }
 					accessControlComponentClassName={ `nested-component editable-on-focus is-selected-${ isSelected }` }
 					{ ...props }
 				/>

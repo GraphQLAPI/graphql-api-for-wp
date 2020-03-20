@@ -114,6 +114,8 @@ registerBlockType( BLOCK_NAME, {
 		return (
 			<div class={ className }>
 				<EditBlock
+					selectLabel={ __('Define access for:', 'graphql-api') }
+					configurationLabel={ __('Who can access:', 'graphql-api') }
 					accessControlComponentClassName={ `nested-component editable-on-focus is-selected-${ isSelected }` }
 					{ ...props}
 				/>

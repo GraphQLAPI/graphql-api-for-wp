@@ -19,7 +19,7 @@ const CacheControl = ( props ) => {
 		<div className={ componentClassName }>
 			<Card>
 				<CardHeader isShady>
-					{ __('Cache-Control header', 'graphql-api') }
+					{ __('Cache-Control max-age', 'graphql-api') }
 					<LinkableInfoTooltip
 						text={ __('The Cache-Control header will contain the minimum max-age value from all fields/directives involved in the request, or "no-store" if the max-age is 0', 'graphql-api') }
 						href={ documentationLink }
