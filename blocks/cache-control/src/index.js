@@ -107,7 +107,14 @@ registerBlockType( 'graphql-api/cache-control', {
 	 *
 	 * @return {WPElement} Element to render.
 	 */
-	edit: EditBlock,
+	edit( props ) {
+		const { className } = props;
+		return (
+			<div className={ className }>
+				<EditBlock { ...props } />
+			</div>
+		)
+	},
 
 	/**
 	 * The save function defines the way in which the different attributes should be combined
