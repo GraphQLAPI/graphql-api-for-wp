@@ -1,6 +1,7 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\QueryExecution;
 
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
 use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
@@ -37,6 +38,20 @@ abstract class AbstractGraphQLQueryConfigurator
         } while (!$aclPostID && !is_null($graphQLQueryPost));
 
         return $aclPostID;
+    }
+
+    protected function getBlocksOfTypeFromConfigurationCustomPost(string $configurationPostID, AbstractBlock $block)
+    {
+        $configurationPost = \get_post($configurationPostID);
+        $blocks = \parse_blocks($configurationPost->post_content);
+        // Obtain the blocks of "Access Control" type
+        $blockFullName = $block->getBlockFullName();
+        return array_filter(
+            $blocks,
+            function($block) use($blockFullName) {
+                return $block['blockName'] == $blockFullName;
+            }
+        );
     }
 
     protected function getNamespacedTypeNameClasses(): array

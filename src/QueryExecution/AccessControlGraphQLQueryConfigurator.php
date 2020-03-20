@@ -20,17 +20,7 @@ class AccessControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigur
     {
         // If we found an ACL, load its rules/restrictions
         if ($aclPostID = $this->getConfigurationCustomPostID('acl-post-id')) {
-            $aclPost = \get_post($aclPostID);
-            $blocks = \parse_blocks($aclPost->post_content);
-            // Obtain the blocks of "Access Control" type
-            $aclBlock = PluginState::getAccessControlBlock();
-            $aclBlockFullName = $aclBlock->getBlockFullName();
-            $aclBlockItems = array_filter(
-                $blocks,
-                function($block) use($aclBlockFullName) {
-                    return $block['blockName'] == $aclBlockFullName;
-                }
-            );
+            $aclBlockItems = $this->getBlocksOfTypeFromConfigurationCustomPost($aclPostID, PluginState::getAccessControlBlock());
             $accessControlManager = AccessControlManagerFacade::getInstance();
             // The "Access Control" type contains the fields/directives
             foreach ($aclBlockItems as $aclBlockItem) {
