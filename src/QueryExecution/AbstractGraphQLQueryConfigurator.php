@@ -157,10 +157,11 @@ abstract class AbstractGraphQLQueryConfigurator
 
     /**
      * Create a service configuration entry comprising a field and its value
+     * It returns a single array (or null)
      *
      * @param string $selectedField
-     * @param [type] $value
-     * @return array
+     * @param mixed $value
+     * @return array|null
      */
     protected function getEntryFromField(string $selectedField, $value): array
     {
@@ -178,20 +179,23 @@ abstract class AbstractGraphQLQueryConfigurator
         return null;
     }
     /**
-     * Create a service configuration entry comprising a directive and its value
+     * Create the service configuration entries comprising a directive and its value
+     * It returns an array of arrays
      *
      * @param string $selectedField
-     * @param [type] $value
-     * @return array
+     * @param mixed $value
+     * @return array|null
      */
-    protected function getEntryFromDirective(string $selectedDirective, $value): array
+    protected function getEntriesFromDirective(string $selectedDirective, $value): array
     {
         $directiveNameClasses = $this->getDirectiveNameClasses();
         // Obtain the directive resolver class from the directive name. If more than one resolver has the same directive name, add all of them
         if ($selectedDirectiveResolverClasses = $directiveNameClasses[$selectedDirective]) {
+            $entriesForDirective = [];
             foreach ($selectedDirectiveResolverClasses as $directiveResolverClass) {
-                return [$directiveResolverClass, $value];
+                $entriesForDirective[] = [$directiveResolverClass, $value];
             }
+            return $entriesForDirective;
         }
         return null;
     }

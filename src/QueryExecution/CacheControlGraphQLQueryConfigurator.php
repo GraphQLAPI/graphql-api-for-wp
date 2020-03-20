@@ -3,6 +3,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\QueryExecution;
 
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use PoP\CacheControl\Facades\CacheControlManagerFacade;
+use PoP\ComponentModel\GeneralUtils;
 
 class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigurator
 {
@@ -44,14 +45,14 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
 
                     // Extract the saved directives
                     if ($directives = $cclBlockItem['attrs']['directives']) {
-                        if ($entriesForDirectives = array_filter(
+                        if ($entriesForDirectives = GeneralUtils::arrayFlatten(array_filter(
                             array_map(
                                 function($selectedDirective) use($maxAge) {
-                                    return $this->getEntryFromDirective($selectedDirective, $maxAge);
+                                    return $this->getEntriesFromDirective($selectedDirective, $maxAge);
                                 },
                                 $directives
                             )
-                        )) {
+                        ))) {
                             $cacheControlManager->addEntriesForDirectives(
                                 $entriesForDirectives
                             );

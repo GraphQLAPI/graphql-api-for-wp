@@ -3,6 +3,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\QueryExecution;
 
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use PoP\AccessControl\Facades\AccessControlManagerFacade;
+use PoP\ComponentModel\GeneralUtils;
 
 class AccessControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigurator
 {
@@ -50,14 +51,14 @@ class AccessControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigur
                             }
 
                             // Extract the saved directives
-                            if ($entriesForDirectives = array_filter(
+                            if ($entriesForDirectives = GeneralUtils::arrayFlatten(array_filter(
                                 array_map(
                                     function($selectedDirective) use($value) {
-                                        return $this->getEntryFromDirective($selectedDirective, $value);
+                                        return $this->getEntriesFromDirective($selectedDirective, $value);
                                     },
                                     $aclBlockItemDirectives
                                 )
-                            )) {
+                            ))) {
                                 $accessControlManager->addEntriesForDirectives(
                                     $accessControlGroup,
                                     $entriesForDirectives
