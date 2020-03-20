@@ -8,7 +8,6 @@ import './store';
  */
 export { default as MultiSelectControl } from './components/multi-select-control';
 export { default as withFieldDirectiveMultiSelectControl } from './components/field-directive-multi-select-control';
-export { withAccessControlGroup } from './components/field-directive-multi-select-control';
 export { withErrorMessage } from './components/loading';
 export { withSpinner } from './components/loading';
 export { SelectCard } from './components/select-card';

@@ -1,6 +1,6 @@
 import { compose, withState } from '@wordpress/compose';
 import UserRoles from './user-roles';
-import { withAccessControlGroup } from '../../../packages/components/src';
+import { withAccessControlGroup } from '../../access-control/src';
 
 /**
  * Same constant as in \PoP\UserRolesAccessControl\Services\AccessControlGroups::ROLES

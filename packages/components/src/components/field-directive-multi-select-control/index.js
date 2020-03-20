@@ -5,4 +5,3 @@ import withFieldDirectiveMultiSelectControl from './with-field-directive-multi-s
 import './style.scss';
 
 export default withFieldDirectiveMultiSelectControl;
-export { default as withAccessControlGroup } from './with-access-control-group' ;
