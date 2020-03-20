@@ -23,13 +23,17 @@ abstract class AbstractControlBlock extends AbstractBlock
         $directives = $attributes['directives'] ?? [];
         $fieldTypeContent = $directiveContent = '---';
         if ($typeFields) {
-            $fieldTypeContent = sprintf(
-                '<ul><li>%s</li></ul>',
-                implode(
-                    '</li><li>',
-                    $this->getTypeFieldsForPrint($typeFields, false)
-                )
-            );
+            $fieldTypeContent = '';
+            foreach ($this->getTypeFieldsForPrint($typeFields, true) as $typeName => $fields) {
+                $fieldTypeContent .= sprintf(
+                    '<strong>%s</strong><ul><li>%s</li></ul>',
+                    $typeName,
+                    implode(
+                        '</li><li>',
+                        $fields
+                    )
+                );
+            }
         }
         if ($directives) {
             $directiveContent = sprintf(
