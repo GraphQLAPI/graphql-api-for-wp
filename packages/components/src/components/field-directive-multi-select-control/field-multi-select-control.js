@@ -8,11 +8,7 @@ import { compose, withState } from '@wordpress/compose';
  * Internal dependencies
  */
 import MultiSelectControl from '../multi-select-control';
-
-/**
- * Same constant as \Leoloso\GraphQLByPoPWPPlugin\Blocks\BlockConstants::TYPE_FIELD_SEPARATOR_FOR_DB
- */
-export const TYPE_FIELD_SEPARATOR_FOR_DB = '.';
+import { TYPE_FIELD_SEPARATOR_FOR_DB } from './block-constants';
 
 const FieldMultiSelectControl = compose( [
 	withState( { attributeName: 'typeFields' } ),

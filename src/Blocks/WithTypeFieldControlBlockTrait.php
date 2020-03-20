@@ -34,7 +34,7 @@ trait WithTypeFieldControlBlockTrait
                 $namespacedTypeName = $entry[0];
                 $field = $entry[1];
                 $typeName = $namespacedTypeNameNames[$namespacedTypeName] ?? $namespacedTypeName;
-                return $typeName.'/'.$field;
+                return $typeName.BlockConstants::TYPE_FIELD_SEPARATOR_FOR_PRINT.$field;
             },
             $typeFields
         );
