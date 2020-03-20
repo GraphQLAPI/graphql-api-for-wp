@@ -18,7 +18,7 @@ class AccessControlUserCapabilitiesBlock extends AbstractBlock
         return true;
     }
 
-    public function renderBlock($attributes, $content): string
+    public function renderBlock(array $attributes, string $content): string
 	{
         $values = $attributes['value'] ?? [];
         return sprintf(

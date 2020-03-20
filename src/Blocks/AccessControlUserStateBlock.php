@@ -20,7 +20,7 @@ class AccessControlUserStateBlock extends AbstractBlock
         return true;
     }
 
-    public function renderBlock($attributes, $content): string
+    public function renderBlock(array $attributes, string $content): string
 	{
         $label = $attributes['value'] == UserStates::IN ?
             __('Logged-in users', 'graphql-api') :

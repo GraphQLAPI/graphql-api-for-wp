@@ -18,7 +18,7 @@ class AccessControlDisableAccessBlock extends AbstractBlock
         return true;
     }
 
-    public function renderBlock($attributes, $content): string
+    public function renderBlock(array $attributes, string $content): string
 	{
 		return sprintf(
             '<ul class="%s"><li>%s</li></ul>',

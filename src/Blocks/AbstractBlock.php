@@ -62,7 +62,7 @@ abstract class AbstractBlock
      * @param [type] $content
      * @return string
      */
-    public function renderBlock($attributes, $content): string
+    public function renderBlock(array $attributes, string $content): string
 	{
 		return '';
     }

@@ -20,7 +20,7 @@ class GraphiQLBlock extends AbstractBlock
         return true;
     }
 
-    public function renderBlock($attributes, $content): string
+    public function renderBlock(array $attributes, string $content): string
 	{
 		$content = sprintf(
             '<div class="%s">',
