@@ -10,9 +10,9 @@ import { compose, withState } from '@wordpress/compose';
 import MultiSelectControl from '../multi-select-control';
 
 /**
- * Same constant as \Leoloso\GraphQLByPoPWPPlugin\Blocks\BlockConstants::TYPE_FIELD_SEPARATOR
+ * Same constant as \Leoloso\GraphQLByPoPWPPlugin\Blocks\BlockConstants::TYPE_FIELD_SEPARATOR_FOR_DB
  */
-export const TYPE_FIELD_SEPARATOR = '.';
+export const TYPE_FIELD_SEPARATOR_FOR_DB = '.';
 
 const FieldMultiSelectControl = compose( [
 	withState( { attributeName: 'typeFields' } ),
@@ -33,7 +33,7 @@ const FieldMultiSelectControl = compose( [
 				return [{
 					group: typeItem.typeName,
 					title: field,
-					value: `${ typeItem.typeNamespacedName }${ TYPE_FIELD_SEPARATOR }${ field }`,
+					value: `${ typeItem.typeNamespacedName }${ TYPE_FIELD_SEPARATOR_FOR_DB }${ field }`,
 				}]
 			})
 		});

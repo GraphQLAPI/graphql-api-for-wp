@@ -169,7 +169,7 @@ abstract class AbstractGraphQLQueryConfigurator
         $namespacedTypeNameClasses = $this->getNamespacedTypeNameClasses();
         // The field is composed by the type namespaced name, and the field name, separated by "."
         // Extract these values
-        $entry = explode(BlockConstants::TYPE_FIELD_SEPARATOR, $selectedField);
+        $entry = explode(BlockConstants::TYPE_FIELD_SEPARATOR_FOR_DB, $selectedField);
         $namespacedTypeName = $entry[0];
         $field = $entry[1];
         // From the type, obtain which resolver class processes it

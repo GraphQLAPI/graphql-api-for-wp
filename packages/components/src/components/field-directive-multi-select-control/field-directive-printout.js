@@ -5,7 +5,7 @@ import { compose } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
 import { Card, CardHeader, CardBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { TYPE_FIELD_SEPARATOR } from './field-multi-select-control';
+import { TYPE_FIELD_SEPARATOR_FOR_DB } from './field-multi-select-control';
 import withSpinner from '../loading/with-spinner';
 import withErrorMessage from '../loading/with-error-message';
 
@@ -91,7 +91,7 @@ export default compose( [
 		const typeFieldNames = getTypeFields().flatMap(function(typeItem) {
 			return typeItem.fields.flatMap(function(field) {
 				return {
-					[`${ typeItem.typeNamespacedName }${ TYPE_FIELD_SEPARATOR }${ field }`]: `${ typeItem.typeName }${ TYPE_FIELD_NAME_SEPARATOR }${ field }`,
+					[`${ typeItem.typeNamespacedName }${ TYPE_FIELD_SEPARATOR_FOR_DB }${ field }`]: `${ typeItem.typeName }${ TYPE_FIELD_NAME_SEPARATOR }${ field }`,
 				}
 			})
 		}).reduce(reducer, {});
