@@ -1,6 +1,6 @@
 import { compose, withState } from '@wordpress/compose';
 import DisableAccess from './disable-access';
-import { withAccessControlGroup } from '../../access-control/src';
+import withAccessControlGroup from '../../access-control/src/with-access-control-group';
 
 /**
  * Same constant as in \PoP\AccessControl\Services\AccessControlGroups::DISABLED

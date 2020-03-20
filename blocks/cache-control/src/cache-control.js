@@ -40,7 +40,7 @@ const CacheControl = ( props ) => {
 					{ !isSelected && (
 						<span>
 							{ cacheControlMaxAge == null && (
-								__('---', 'graphql-api')
+								<em>{ __('(not set)', 'graphql-api') }</em>
 							) }
 							{ cacheControlMaxAge != null && (
 								<>

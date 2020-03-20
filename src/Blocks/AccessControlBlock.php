@@ -1,6 +1,7 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
+use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
 
@@ -43,6 +44,12 @@ class AccessControlBlock extends AbstractControlBlock
      */
     protected function getBlockContent(array $attributes, string $content): string
     {
-        return $content;
+        if ($content) {
+            return $content;
+        }
+        return sprintf(
+            '<em>%s</em>',
+            \__('(not set)', 'graphql-api')
+        );
     }
 }

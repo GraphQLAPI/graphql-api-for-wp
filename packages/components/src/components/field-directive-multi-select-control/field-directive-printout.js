@@ -8,7 +8,7 @@ import { __ } from '@wordpress/i18n';
 import { TYPE_FIELD_SEPARATOR_FOR_DB, TYPE_FIELD_SEPARATOR_FOR_PRINT } from './block-constants';
 import withSpinner from '../loading/with-spinner';
 import withErrorMessage from '../loading/with-error-message';
-import { GROUP_FIELDS_UNDER_TYPE_FOR_PRINT } from './default-configuration';
+import { GROUP_FIELDS_UNDER_TYPE_FOR_PRINT, EMPTY_LABEL } from '../../default-configuration';
 
 /**
  * Print the selected fields and directives.
@@ -19,8 +19,9 @@ import { GROUP_FIELDS_UNDER_TYPE_FOR_PRINT } from './default-configuration';
  * @param {Object} props
  */
 const FieldDirectivePrintout = ( props ) => {
-	const { typeFields, directives, typeFieldNames, groupFieldsUnderTypeForPrint } = props;
+	const { typeFields, directives, typeFieldNames, groupFieldsUnderTypeForPrint, emptyLabel } = props;
 	const groupFieldsUnderType = groupFieldsUnderTypeForPrint != undefined ? groupFieldsUnderTypeForPrint : GROUP_FIELDS_UNDER_TYPE_FOR_PRINT;
+	const emptyLabelString = emptyLabel != undefined ? emptyLabel : EMPTY_LABEL;
 
 	/**
 	 * Create a dictionary, with typeName as key, and an array with all its fields as the value
@@ -61,7 +62,7 @@ const FieldDirectivePrintout = ( props ) => {
 					) )
 				) }
 				{ !typeFields.length && (
-					__('---', 'graphql-api')
+					emptyLabelString
 				) }
 			</CardBody>
 			<CardHeader isShady>{ __('(Non-system) Directives:', 'graphql-api') }</CardHeader>
@@ -76,7 +77,7 @@ const FieldDirectivePrintout = ( props ) => {
 					</>
 				) }
 				{ !directives.length && (
-					__('---', 'graphql-api')
+					emptyLabelString
 				) }
 			</CardBody>
 		</Card>

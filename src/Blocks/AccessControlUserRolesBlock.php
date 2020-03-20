@@ -4,7 +4,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 /**
  * Access Control User Roles block
  */
-class AccessControlUserRolesBlock extends AbstractBlock
+class AccessControlUserRolesBlock extends AbstractSelectableControlBlock
 {
     use GraphQLByPoPBlockTrait;
 
@@ -13,19 +13,8 @@ class AccessControlUserRolesBlock extends AbstractBlock
         return 'access-control-user-roles';
     }
 
-    protected function isDynamicBlock(): bool
+    protected function getHeader(): string
     {
-        return true;
+        return __('Users with any of these roles:', 'graphql-api');
     }
-
-    public function renderBlock(array $attributes, string $content): string
-	{
-        $values = $attributes['value'] ?? [];
-        return sprintf(
-            '<div class="%s"><p><strong>%s</strong></p><ul><li><code>%s</code></li></ul></div>',
-            $this->getBlockClassName(),
-            __('Users with any of these roles:', 'graphql-api'),
-            implode('</code></li><li><code>', $values)
-        );
-	}
 }

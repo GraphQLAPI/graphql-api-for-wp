@@ -41,7 +41,7 @@ const SelectCard = ( props ) => {
 							onChange={ selectedOptions =>
 								// Extract the attribute "value"
 								setAttributes( {
-									value: selectedOptions.map(option => option.value)
+									value: (selectedOptions || []).map(option => option.value)
 								} )
 							}
 						/>
@@ -56,7 +56,7 @@ const SelectCard = ( props ) => {
 						</div>
 					) }
 					{ !isSelected && !value.length && (
-						__('---', 'graphql-api')
+						<em>{ __('(not set)', 'graphql-api') }</em>
 					) }
 				</CardBody>
 			</Card>

@@ -22,7 +22,7 @@ abstract class AbstractControlBlock extends AbstractBlock
         $className = $this->getBlockClassName().'-front';
         $typeFields = $attributes['typeFields'] ?? [];
         $directives = $attributes['directives'] ?? [];
-        $fieldTypeContent = $directiveContent = '---';
+        $fieldTypeContent = $directiveContent = ComponentConfiguration::getEmptyLabel();
         if ($typeFields) {
             $typeFieldsForPrint = $this->getTypeFieldsForPrint($typeFields);
             /**
