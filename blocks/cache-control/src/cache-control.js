@@ -4,6 +4,8 @@ import { TextControl, Card, CardHeader, CardBody } from '@wordpress/components';
 const CacheControl = ( props ) => {
 	const { className, setAttributes, isSelected, attributes: { cacheMaxAge } } = props;
 	const componentClassName = `nested-component editable-on-focus is-selected-${ isSelected }`;
+	// We store the value as string instead of as integer, because we can't define 'integer|null' for the attribute, and the empty and '0' values are different
+	const cacheMaxAgeInt = parseInt(cacheMaxAge);
 	return (
 		<div className={ componentClassName }>
 			<Card>
@@ -28,18 +30,22 @@ const CacheControl = ( props ) => {
 							{ !cacheMaxAge && (
 								__('---', 'graphql-api')
 							) }
-							{ cacheMaxAge == '0' && (
-								sprintf(
-									__('%s seconds (%s)', 'graphql-api'),
-									cacheMaxAge,
-									'no-store'
-								)
-							) }
-							{ !!cacheMaxAge && cacheMaxAge != '0' && (
-								sprintf(
-									__('%s seconds', 'graphql-api'),
-									cacheMaxAge
-								)
+							{ !!cacheMaxAge && (
+								<>
+									{ cacheMaxAgeInt === 0 && (
+										sprintf(
+											__('%s seconds (%s)', 'graphql-api'),
+											cacheMaxAgeInt,
+											'no-store'
+										)
+									) }
+									{ cacheMaxAgeInt !== 0 && (
+										sprintf(
+											__('%s seconds', 'graphql-api'),
+											cacheMaxAgeInt
+										)
+									) }
+								</>
 							) }
 						</span>
 					) }
