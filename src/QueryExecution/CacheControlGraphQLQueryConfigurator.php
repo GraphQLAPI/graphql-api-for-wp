@@ -18,21 +18,8 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
      */
     protected function setCacheControlList()
     {
-        global $post;
-        $graphQLQueryPost = $post;
-        do {
-            $cclPostID = \get_post_meta($graphQLQueryPost->ID, 'ccl-post-id', true);
-            // If it doesn't have a CCL defined, and it has a parent, check if it has an ACL, then use that one
-            if (!$cclPostID && $graphQLQueryPost->post_parent) {
-                $graphQLQueryPost = \get_post($graphQLQueryPost->post_parent);
-            } else {
-                // Make sure to exit the `while` for the root post, even if it doesn't have ACL
-                $graphQLQueryPost = null;
-            }
-        } while (!$cclPostID && !is_null($graphQLQueryPost));
-
-        // If we found an ACL, load its rules/restrictions
-        if ($cclPostID) {
+        // If we found a CCL, load its rules/restrictions
+        if ($cclPostID = $this->getConfigurationCustomPostID('ccl-post-id')) {
             $cclPost = \get_post($cclPostID);
             $blocks = \parse_blocks($cclPost->post_content);
             // Obtain the blocks of "Access Control" type

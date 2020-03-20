@@ -18,21 +18,8 @@ class AccessControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigur
      */
     protected function setAccessControlList()
     {
-        global $post;
-        $graphQLQueryPost = $post;
-        do {
-            $aclPostID = \get_post_meta($graphQLQueryPost->ID, 'acl-post-id', true);
-            // If it doesn't have an ACL defined, and it has a parent, check if it has an ACL, then use that one
-            if (!$aclPostID && $graphQLQueryPost->post_parent) {
-                $graphQLQueryPost = \get_post($graphQLQueryPost->post_parent);
-            } else {
-                // Make sure to exit the `while` for the root post, even if it doesn't have ACL
-                $graphQLQueryPost = null;
-            }
-        } while (!$aclPostID && !is_null($graphQLQueryPost));
-
         // If we found an ACL, load its rules/restrictions
-        if ($aclPostID) {
+        if ($aclPostID = $this->getConfigurationCustomPostID('acl-post-id')) {
             $aclPost = \get_post($aclPostID);
             $blocks = \parse_blocks($aclPost->post_content);
             // Obtain the blocks of "Access Control" type

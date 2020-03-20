@@ -21,6 +21,24 @@ abstract class AbstractGraphQLQueryConfigurator
 
     abstract protected function doInit(): void;
 
+    protected function getConfigurationCustomPostID(string $metaKey)
+    {
+        global $post;
+        $graphQLQueryPost = $post;
+        do {
+            $aclPostID = \get_post_meta($graphQLQueryPost->ID, $metaKey, true);
+            // If it doesn't have an ACL defined, and it has a parent, check if it has an ACL, then use that one
+            if (!$aclPostID && $graphQLQueryPost->post_parent) {
+                $graphQLQueryPost = \get_post($graphQLQueryPost->post_parent);
+            } else {
+                // Make sure to exit the `while` for the root post, even if it doesn't have ACL
+                $graphQLQueryPost = null;
+            }
+        } while (!$aclPostID && !is_null($graphQLQueryPost));
+
+        return $aclPostID;
+    }
+
     protected function getNamespacedTypeNameClasses(): array
     {
         if (is_null($this->namespacedTypeNameClasses)) {
