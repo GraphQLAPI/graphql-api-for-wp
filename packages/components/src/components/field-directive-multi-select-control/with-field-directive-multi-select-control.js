@@ -27,6 +27,7 @@ const withFieldDirectiveMultiSelectControl = () => createHigherOrderComponent(
 								<div className={ accessControlComponentClassName }>
 									{ isSelected &&
 										<FieldDirectiveTabPanel
+											{ ...props }
 											typeFields={ typeFields }
 											directives={ directives }
 											setAttributes={ setAttributes }
@@ -35,6 +36,7 @@ const withFieldDirectiveMultiSelectControl = () => createHigherOrderComponent(
 									}
 									{ !isSelected && (
 										<FieldDirectivePrintout
+											{ ...props }
 											typeFields={ typeFields }
 											directives={ directives }
 											className={ className }
