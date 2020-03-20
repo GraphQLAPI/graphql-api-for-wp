@@ -19,7 +19,7 @@ import withErrorMessage from '../loading/with-error-message';
  */
 const FieldDirectivePrintout = ( props ) => {
 	const { typeFields, directives, typeFieldNames } = props;
-	const bandFieldsTogetherUnderType = true;
+	const groupFieldsUnderTypeForPrint = true;
 
 	/**
 	 * Create a dictionary, with typeName as key, and an array with all its fields as the value
@@ -35,12 +35,12 @@ const FieldDirectivePrintout = ( props ) => {
 			<CardHeader isShady>{ __('Fields, by type:', 'graphql-api') }</CardHeader>
 			<CardBody>
 				{ !! typeFields.length && (
-						( !bandFieldsTogetherUnderType && typeFields.map( typeField =>
+						( !groupFieldsUnderTypeForPrint && typeFields.map( typeField =>
 							<>
 								✅ { `${ typeFieldNames[ typeField ].typeName }${ TYPE_FIELD_SEPARATOR_FOR_PRINT }${ typeFieldNames[ typeField ].field }` }<br/>
 							</>
 						)
-					) || ( bandFieldsTogetherUnderType && Object.keys(combinedTypeFieldNames).map( typeName =>
+					) || ( groupFieldsUnderTypeForPrint && Object.keys(combinedTypeFieldNames).map( typeName =>
 						<>
 							<strong>{ typeName }</strong><br/>
 							{ combinedTypeFieldNames[ typeName ].map( field =>

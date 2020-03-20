@@ -14,7 +14,7 @@ trait WithTypeFieldControlBlockTrait
      * @param array $typeFields
      * @return array
      */
-    public function getTypeFieldsForPrint(array $typeFields, bool $bandFieldsTogetherUnderType): array
+    public function getTypeFieldsForPrint(array $typeFields, bool $groupFieldsUnderTypeForPrint): array
 	{
         $instanceManager = InstanceManagerFacade::getInstance();
         $typeRegistry = TypeRegistryFacade::getInstance();
@@ -34,9 +34,9 @@ trait WithTypeFieldControlBlockTrait
             $namespacedTypeName = $entry[0];
             $field = $entry[1];
             $typeName = $namespacedTypeNameNames[$namespacedTypeName] ?? $namespacedTypeName;
-            // If $bandFieldsTogetherUnderType is true, combine all types under their shared typeName
-            // If $bandFieldsTogetherUnderType is false, replace namespacedTypeName for typeName and "." for "/"
-            if ($bandFieldsTogetherUnderType) {
+            // If $groupFieldsUnderTypeForPrint is true, combine all types under their shared typeName
+            // If $groupFieldsUnderTypeForPrint is false, replace namespacedTypeName for typeName and "." for "/"
+            if ($groupFieldsUnderTypeForPrint) {
                 $typeFieldsForPrint[$typeName][] = $field;
             } else {
                 $typeFieldsForPrint[] = $typeName.BlockConstants::TYPE_FIELD_SEPARATOR_FOR_PRINT.$field;
