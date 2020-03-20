@@ -23,11 +23,11 @@ class CacheControlBlock extends AbstractControlBlock
 
     protected function getBlockDataTitle(): string
     {
-        return \__('Define cache max-age for:', 'graphql-api');
+        return \__('Set cache-control header for:', 'graphql-api');
     }
     protected function getBlockContentTitle(): string
     {
-        return \__('Cache max age (in seconds):', 'graphql-api');
+        return \__('Max-age:', 'graphql-api');
     }
     protected function getBlockContent(array $attributes, string $content): string
     {
