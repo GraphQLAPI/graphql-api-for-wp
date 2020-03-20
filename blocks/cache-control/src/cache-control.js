@@ -32,7 +32,7 @@ const CacheControl = ( props ) => {
 							className={ className+'__maxage' }
 							onChange={ newValue =>
 								setAttributes( {
-									cacheControlMaxAge: newValue,
+									cacheControlMaxAge: Number(newValue),
 								} )
 							}
 						/>
@@ -44,14 +44,14 @@ const CacheControl = ( props ) => {
 							) }
 							{ cacheControlMaxAge != null && (
 								<>
-									{ cacheControlMaxAge === 0 && (
+									{ cacheControlMaxAge == 0 && (
 										sprintf(
 											__('%s seconds (%s)', 'graphql-api'),
 											cacheControlMaxAge,
 											'no-store'
 										)
 									) }
-									{ cacheControlMaxAge !== 0 && (
+									{ cacheControlMaxAge != 0 && (
 										sprintf(
 											__('%s seconds', 'graphql-api'),
 											cacheControlMaxAge
