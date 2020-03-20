@@ -31,6 +31,29 @@ class CacheControlBlock extends AbstractControlBlock
     }
     protected function getBlockContent(array $attributes, string $content): string
     {
-        return 'sarlanagaga';
+        $blockContentPlaceholder = <<<EOF
+        <div class="%s">
+            %s
+        </div>
+EOF;
+        $cacheControlMaxAge = $attributes['cacheControlMaxAge'];
+        if (is_null($cacheControlMaxAge) || $cacheControlMaxAge < 0) {
+            $cacheControlMaxAgeText = '---';
+        } elseif ($cacheControlMaxAge === 0) {
+            $cacheControlMaxAgeText = sprintf(
+                \__('%s seconds (no-store)'),
+                $cacheControlMaxAge
+            );
+        } else {
+            $cacheControlMaxAgeText = sprintf(
+                \__('%s seconds'),
+                $cacheControlMaxAge
+            );
+        }
+        return sprintf(
+            $blockContentPlaceholder,
+            $this->getBlockClassName().'__content',
+            $cacheControlMaxAgeText
+        );
     }
 }
