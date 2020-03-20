@@ -223,7 +223,8 @@ class Component extends AbstractComponent
             }
             // The "Cache Control" type contains the fields/directives and the max-age
             foreach ($cclBlockItems as $cclBlockItem) {
-                if ($maxAge = $cclBlockItem['attrs']['cacheControlMaxAge']) {
+                $maxAge = $cclBlockItem['attrs']['cacheControlMaxAge'];
+                if (!is_null($maxAge) && $maxAge >= 0) {
                     // Convert from string to integer
                     $value = (int)$maxAge;
                     $typeFields = $cclBlockItem['attrs']['typeFields'] ?? [];
