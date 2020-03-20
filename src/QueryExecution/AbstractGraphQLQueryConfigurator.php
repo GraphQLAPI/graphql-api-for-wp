@@ -8,11 +8,29 @@ use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
 use PoP\ComponentModel\Facades\Registries\DirectiveRegistryFacade;
 
+/**
+ * Base class for configuring the persisted GraphQL query before its execution
+ */
 abstract class AbstractGraphQLQueryConfigurator
 {
+    /**
+     * Keep a map of all namespaced type names to their resolver classes
+     *
+     * @var array
+     */
     protected $namespacedTypeNameClasses;
+    /**
+     * Keep a map of all directives names to their resolver classes
+     *
+     * @var array
+     */
     protected $directiveNameClasses;
 
+    /**
+     * If executing a persisted GraphQL query, then initialize the configuration of different involved services
+     *
+     * @return void
+     */
     public function init(): void
     {
         if (\is_singular(GraphQLQueryPostType::POST_TYPE)) {
@@ -20,8 +38,19 @@ abstract class AbstractGraphQLQueryConfigurator
         }
     }
 
+    /**
+     * Function to override, to initialize the configuration of services before the execution of the GraphQL query
+     *
+     * @return void
+     */
     abstract protected function doInit(): void;
 
+    /**
+     * Obtain the ID from the configuration custom post types, containing the configuration for the GraphQL query
+     *
+     * @param string $metaKey Under what meta key is the ID stored
+     * @return mixed The ID of the configuration custom post
+     */
     protected function getConfigurationCustomPostID(string $metaKey)
     {
         global $post;
@@ -40,6 +69,13 @@ abstract class AbstractGraphQLQueryConfigurator
         return $aclPostID;
     }
 
+    /**
+     * Read the configuration post, and extract the configuration, contained through the specified block
+     *
+     * @param string $configurationPostID
+     * @param AbstractBlock $block
+     * @return void
+     */
     protected function getBlocksOfTypeFromConfigurationCustomPost(string $configurationPostID, AbstractBlock $block)
     {
         $configurationPost = \get_post($configurationPostID);
@@ -54,39 +90,78 @@ abstract class AbstractGraphQLQueryConfigurator
         );
     }
 
+    /**
+     * Lazy load and return the `$namespacedTypeNameClasses` array
+     *
+     * @return array
+     */
     protected function getNamespacedTypeNameClasses(): array
     {
         if (is_null($this->namespacedTypeNameClasses)) {
-            $instanceManager = InstanceManagerFacade::getInstance();
-            $typeRegistry = TypeRegistryFacade::getInstance();
-            $typeResolverClasses = $typeRegistry->getTypeResolverClasses();
-            // For each class, obtain its namespacedTypeName
-            $this->namespacedTypeNameClasses = [];
-            foreach ($typeResolverClasses as $typeResolverClass) {
-                $typeResolver = $instanceManager->getInstance($typeResolverClass);
-                $typeResolverNamespacedName = $typeResolver->getNamespacedTypeName();
-                $this->namespacedTypeNameClasses[$typeResolverNamespacedName] = $typeResolverClass;
-            }
+            $this->initNamespacedTypeNameClasses();
         }
         return $this->namespacedTypeNameClasses;
     }
+    /**
+     * Initialize the `$namespacedTypeNameClasses` array
+     *
+     * @return void
+     */
+    protected function initNamespacedTypeNameClasses(): void
+    {
+        $instanceManager = InstanceManagerFacade::getInstance();
+        $typeRegistry = TypeRegistryFacade::getInstance();
+        $typeResolverClasses = $typeRegistry->getTypeResolverClasses();
+        // For each class, obtain its namespacedTypeName
+        $this->namespacedTypeNameClasses = [];
+        foreach ($typeResolverClasses as $typeResolverClass) {
+            $typeResolver = $instanceManager->getInstance($typeResolverClass);
+            $typeResolverNamespacedName = $typeResolver->getNamespacedTypeName();
+            $this->namespacedTypeNameClasses[$typeResolverNamespacedName] = $typeResolverClass;
+        }
+    }
+
+    /**
+     * Lazy load and return the `$directiveNameClasses` array
+     *
+     * @return array
+     */
     protected function getDirectiveNameClasses(): array
     {
         if (is_null($this->directiveNameClasses)) {
-            $instanceManager = InstanceManagerFacade::getInstance();
-            $directiveRegistry = DirectiveRegistryFacade::getInstance();
-            $directiveResolverClasses = $directiveRegistry->getDirectiveResolverClasses();
-            // For each class, obtain its directive name. Notice that different directives can have the same name (eg: @translate as implemented for Google and Azure),
-            // then the mapping goes from name to list of resolvers
-            $this->directiveNameClasses = [];
-            foreach ($directiveResolverClasses as $directiveResolverClass) {
-                $directiveResolver = $instanceManager->getInstance($directiveResolverClass);
-                $directiveResolverName = $directiveResolver->getDirectiveName();
-                $this->directiveNameClasses[$directiveResolverName][] = $directiveResolverClass;
-            }
+            $this->initDirectiveNameClasses();
         }
         return $this->directiveNameClasses;
     }
+    /**
+     * Initialize the `$directiveNameClasses` array
+     *
+     * @param string $selectedField
+     * @param [type] $value
+     * @return array
+     */
+    protected function initDirectiveNameClasses(): void
+    {
+        $instanceManager = InstanceManagerFacade::getInstance();
+        $directiveRegistry = DirectiveRegistryFacade::getInstance();
+        $directiveResolverClasses = $directiveRegistry->getDirectiveResolverClasses();
+        // For each class, obtain its directive name. Notice that different directives can have the same name (eg: @translate as implemented for Google and Azure),
+        // then the mapping goes from name to list of resolvers
+        $this->directiveNameClasses = [];
+        foreach ($directiveResolverClasses as $directiveResolverClass) {
+            $directiveResolver = $instanceManager->getInstance($directiveResolverClass);
+            $directiveResolverName = $directiveResolver->getDirectiveName();
+            $this->directiveNameClasses[$directiveResolverName][] = $directiveResolverClass;
+        }
+    }
+
+    /**
+     * Create a service configuration entry comprising a field and its value
+     *
+     * @param string $selectedField
+     * @param [type] $value
+     * @return array
+     */
     protected function getEntryFromField(string $selectedField, $value): array
     {
         $namespacedTypeNameClasses = $this->getNamespacedTypeNameClasses();
@@ -102,6 +177,13 @@ abstract class AbstractGraphQLQueryConfigurator
         }
         return null;
     }
+    /**
+     * Create a service configuration entry comprising a directive and its value
+     *
+     * @param string $selectedField
+     * @param [type] $value
+     * @return array
+     */
     protected function getEntryFromDirective(string $selectedDirective, $value): array
     {
         $directiveNameClasses = $this->getDirectiveNameClasses();
