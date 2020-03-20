@@ -4,7 +4,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 /**
  * Access Control User Capabilities block
  */
-abstract class AbstractSelectableControlBlock extends AbstractBlock
+abstract class AbstractItemListControlBlock extends AbstractBlock
 {
     protected function isDynamicBlock(): bool
     {

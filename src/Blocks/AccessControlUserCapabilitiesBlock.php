@@ -4,7 +4,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 /**
  * Access Control User Capabilities block
  */
-class AccessControlUserCapabilitiesBlock extends AbstractSelectableControlBlock
+class AccessControlUserCapabilitiesBlock extends AbstractItemListControlBlock
 {
     use GraphQLByPoPBlockTrait;
 
