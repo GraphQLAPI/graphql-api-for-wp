@@ -12,8 +12,6 @@ import { LinkableInfoTooltip } from '../../../packages/components/src';
 const CacheControl = ( props ) => {
 	const { className, setAttributes, isSelected, attributes: { cacheControlMaxAge } } = props;
 	const componentClassName = `nested-component editable-on-focus is-selected-${ isSelected }`;
-	// We store the value as string instead of as integer, because we can't define 'integer|null' for the attribute, and the empty and '0' values are different
-	const cacheControlMaxAgeInt = parseInt(cacheControlMaxAge);
 	const documentationLink = 'https://graphql-api.com/documentation/#cache-control'
 	return (
 		<div className={ componentClassName }>
@@ -41,22 +39,22 @@ const CacheControl = ( props ) => {
 					) }
 					{ !isSelected && (
 						<span>
-							{ !cacheControlMaxAge && (
+							{ cacheControlMaxAge == null && (
 								__('---', 'graphql-api')
 							) }
-							{ !!cacheControlMaxAge && (
+							{ cacheControlMaxAge != null && (
 								<>
-									{ cacheControlMaxAgeInt === 0 && (
+									{ cacheControlMaxAge === 0 && (
 										sprintf(
 											__('%s seconds (%s)', 'graphql-api'),
-											cacheControlMaxAgeInt,
+											cacheControlMaxAge,
 											'no-store'
 										)
 									) }
-									{ cacheControlMaxAgeInt !== 0 && (
+									{ cacheControlMaxAge !== 0 && (
 										sprintf(
 											__('%s seconds', 'graphql-api'),
-											cacheControlMaxAgeInt
+											cacheControlMaxAge
 										)
 									) }
 								</>

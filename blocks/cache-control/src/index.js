@@ -59,10 +59,7 @@ registerBlockType( 'graphql-api/cache-control', {
 		 * The max-age amount, in seconds, to set on the Cache-Control header
 		 */
 		cacheControlMaxAge: {
-			/**
-			 * This should be 'integer', but then empty would be considered as "0" which are 2 different cases
-			 */
-			type: 'string',
+			type: 'integer',
 		},
 		/**
 		 * List of selected fields, cacheible by their type
