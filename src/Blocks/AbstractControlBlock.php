@@ -34,10 +34,10 @@ abstract class AbstractControlBlock extends AbstractBlock
                 $fieldTypeContent = '';
                 foreach ($typeFieldsForPrint as $typeName => $fields) {
                     $fieldTypeContent .= sprintf(
-                        '<strong>%s</strong><ul><li>%s</li></ul>',
+                        '<strong>%s</strong><ul><li><code>%s</code></li></ul>',
                         $typeName,
                         implode(
-                            '</li><li>',
+                            '</code></li><li><code>',
                             $fields
                         )
                     );
@@ -54,8 +54,8 @@ abstract class AbstractControlBlock extends AbstractBlock
         }
         if ($directives) {
             $directiveContent = sprintf(
-                '<ul><li>%s</li></ul>',
-                implode('</li><li>', $directives)
+                '<ul><li><code>%s</code></li></ul>',
+                implode('</code></li><li><code>', $directives)
             );
         }
         $blockDataPlaceholder = <<<EOT
