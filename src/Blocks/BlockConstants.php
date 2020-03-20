@@ -4,8 +4,11 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 class BlockConstants
 {
     /**
-     * When saving access control for a field, the format is "typeNamespacedName.fieldName"
+     * When saving the field (and its type) in the DB, the format is "typeNamespacedName.fieldName"
      */
     public const TYPE_FIELD_SEPARATOR_FOR_DB = '.';
+    /**
+     * When showing the field (and its type) to the user, the format is "typeName.fieldName"
+     */
     public const TYPE_FIELD_SEPARATOR_FOR_PRINT = '/';
 }

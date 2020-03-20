@@ -2,6 +2,7 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\BlockConstants;
+use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
@@ -14,8 +15,9 @@ trait WithTypeFieldControlBlockTrait
      * @param array $typeFields
      * @return array
      */
-    public function getTypeFieldsForPrint(array $typeFields, bool $groupFieldsUnderTypeForPrint): array
+    public function getTypeFieldsForPrint(array $typeFields): array
 	{
+        $groupFieldsUnderTypeForPrint = ComponentConfiguration::groupFieldsUnderTypeForPrint();
         $instanceManager = InstanceManagerFacade::getInstance();
         $typeRegistry = TypeRegistryFacade::getInstance();
         $typeResolverClasses = $typeRegistry->getTypeResolverClasses();
@@ -34,8 +36,10 @@ trait WithTypeFieldControlBlockTrait
             $namespacedTypeName = $entry[0];
             $field = $entry[1];
             $typeName = $namespacedTypeNameNames[$namespacedTypeName] ?? $namespacedTypeName;
-            // If $groupFieldsUnderTypeForPrint is true, combine all types under their shared typeName
-            // If $groupFieldsUnderTypeForPrint is false, replace namespacedTypeName for typeName and "." for "/"
+            /**
+             * If $groupFieldsUnderTypeForPrint is true, combine all types under their shared typeName
+             * If $groupFieldsUnderTypeForPrint is false, replace namespacedTypeName for typeName and "." for "/"
+             * */
             if ($groupFieldsUnderTypeForPrint) {
                 $typeFieldsForPrint[$typeName][] = $field;
             } else {

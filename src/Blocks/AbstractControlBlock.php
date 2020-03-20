@@ -2,6 +2,7 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
+use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 
 /**
  * Base Control block
@@ -23,14 +24,30 @@ abstract class AbstractControlBlock extends AbstractBlock
         $directives = $attributes['directives'] ?? [];
         $fieldTypeContent = $directiveContent = '---';
         if ($typeFields) {
-            $fieldTypeContent = '';
-            foreach ($this->getTypeFieldsForPrint($typeFields, true) as $typeName => $fields) {
-                $fieldTypeContent .= sprintf(
-                    '<strong>%s</strong><ul><li>%s</li></ul>',
-                    $typeName,
+            $typeFieldsForPrint = $this->getTypeFieldsForPrint($typeFields);
+            /**
+             * If $groupFieldsUnderTypeForPrint is true, combine all types under their shared typeName
+             * If $groupFieldsUnderTypeForPrint is false, replace namespacedTypeName for typeName and "." for "/"
+             * */
+            $groupFieldsUnderTypeForPrint = ComponentConfiguration::groupFieldsUnderTypeForPrint();
+            if ($groupFieldsUnderTypeForPrint) {
+                $fieldTypeContent = '';
+                foreach ($typeFieldsForPrint as $typeName => $fields) {
+                    $fieldTypeContent .= sprintf(
+                        '<strong>%s</strong><ul><li>%s</li></ul>',
+                        $typeName,
+                        implode(
+                            '</li><li>',
+                            $fields
+                        )
+                    );
+                }
+            } else {
+                $fieldTypeContent = sprintf(
+                    '<ul><li>%s</li></ul>',
                     implode(
                         '</li><li>',
-                        $fields
+                        $typeFieldsForPrint
                     )
                 );
             }
