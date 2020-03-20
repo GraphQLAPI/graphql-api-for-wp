@@ -19,14 +19,37 @@ import withErrorMessage from '../loading/with-error-message';
  */
 const FieldDirectivePrintout = ( props ) => {
 	const { typeFields, directives, typeFieldNames } = props;
+	const bandFieldsTogetherUnderType = true;
+
+	/**
+	 * Create a dictionary, with typeName as key, and an array with all its fields as the value
+	 */
+	let combinedTypeFieldNames = {};
+	typeFields.forEach(function(typeField) {
+		const typeFieldEntry = typeFieldNames[ typeField ];
+		combinedTypeFieldNames[ typeFieldEntry.typeName ] = combinedTypeFieldNames[ typeFieldEntry.typeName ] || [];
+		combinedTypeFieldNames[ typeFieldEntry.typeName ].push( typeFieldEntry.field );
+	} );
 	return (
 		<Card { ...props }>
 			<CardHeader isShady>{ __('Fields, by type:', 'graphql-api') }</CardHeader>
 			<CardBody>
-				{ !! typeFields.length && typeFields.map( typeField =>
-					<>
-						✅ { typeFieldNames[ typeField ] }<br/>
-					</>
+				{ !! typeFields.length && (
+						( !bandFieldsTogetherUnderType && typeFields.map( typeField =>
+							<>
+								✅ { `${ typeFieldNames[ typeField ].typeName }${ TYPE_FIELD_SEPARATOR_FOR_PRINT }${ typeFieldNames[ typeField ].field }` }<br/>
+							</>
+						)
+					) || ( bandFieldsTogetherUnderType && Object.keys(combinedTypeFieldNames).map( typeName =>
+						<>
+							<strong>{ typeName }</strong><br/>
+							{ combinedTypeFieldNames[ typeName ].map( field =>
+								<>
+									✅ { `${ field }` }<br/>
+								</>
+							) }
+						</>
+					) )
 				) }
 				{ !typeFields.length && (
 					__('---', 'graphql-api')
@@ -90,7 +113,10 @@ export default compose( [
 		const typeFieldNames = getTypeFields().flatMap(function(typeItem) {
 			return typeItem.fields.flatMap(function(field) {
 				return {
-					[`${ typeItem.typeNamespacedName }${ TYPE_FIELD_SEPARATOR_FOR_DB }${ field }`]: `${ typeItem.typeName }${ TYPE_FIELD_SEPARATOR_FOR_PRINT }${ field }`,
+					[`${ typeItem.typeNamespacedName }${ TYPE_FIELD_SEPARATOR_FOR_DB }${ field }`]: {
+						typeName: typeItem.typeName,
+						field: field,
+					},
 				}
 			})
 		}).reduce(reducer, {});
