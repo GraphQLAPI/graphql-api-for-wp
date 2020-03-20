@@ -27,7 +27,7 @@ abstract class AbstractControlBlock extends AbstractBlock
                 '<ul><li>%s</li></ul>',
                 implode(
                     '</li><li>',
-                    $this->getTypeFieldsForPrint($typeFields)
+                    $this->getTypeFieldsForPrint($typeFields, false)
                 )
             );
         }

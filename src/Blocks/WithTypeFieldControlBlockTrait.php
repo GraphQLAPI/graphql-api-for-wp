@@ -14,7 +14,7 @@ trait WithTypeFieldControlBlockTrait
      * @param array $typeFields
      * @return array
      */
-    public function getTypeFieldsForPrint(array $typeFields): array
+    public function getTypeFieldsForPrint(array $typeFields, bool $bandFieldsTogetherUnderType): array
 	{
         $instanceManager = InstanceManagerFacade::getInstance();
         $typeRegistry = TypeRegistryFacade::getInstance();
@@ -26,17 +26,22 @@ trait WithTypeFieldControlBlockTrait
             $typeResolverNamespacedName = $typeResolver->getNamespacedTypeName();
             $namespacedTypeNameNames[$typeResolverNamespacedName] = $typeResolver->getTypeName();
         }
-        return array_map(
-            function($selectedField) use($namespacedTypeNameNames) {
-                // The field is composed by the type namespaced name, and the field name, separated by "."
-                // Extract these values
-                $entry = explode(BlockConstants::TYPE_FIELD_SEPARATOR_FOR_DB, $selectedField);
-                $namespacedTypeName = $entry[0];
-                $field = $entry[1];
-                $typeName = $namespacedTypeNameNames[$namespacedTypeName] ?? $namespacedTypeName;
-                return $typeName.BlockConstants::TYPE_FIELD_SEPARATOR_FOR_PRINT.$field;
-            },
-            $typeFields
-        );
+        $typeFieldsForPrint = [];
+        foreach ($typeFields as $selectedField) {
+            // The field is composed by the type namespaced name, and the field name, separated by "."
+            // Extract these values
+            $entry = explode(BlockConstants::TYPE_FIELD_SEPARATOR_FOR_DB, $selectedField);
+            $namespacedTypeName = $entry[0];
+            $field = $entry[1];
+            $typeName = $namespacedTypeNameNames[$namespacedTypeName] ?? $namespacedTypeName;
+            // If $bandFieldsTogetherUnderType is true, combine all types under their shared typeName
+            // If $bandFieldsTogetherUnderType is false, replace namespacedTypeName for typeName and "." for "/"
+            if ($bandFieldsTogetherUnderType) {
+                $typeFieldsForPrint[$typeName][] = $field;
+            } else {
+                $typeFieldsForPrint[] = $typeName.BlockConstants::TYPE_FIELD_SEPARATOR_FOR_PRINT.$field;
+            }
+        }
+        return $typeFieldsForPrint;
     }
 }
