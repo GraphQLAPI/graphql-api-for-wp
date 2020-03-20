@@ -1,8 +1,9 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
-use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\BlockConstants;
 use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 /**
  * Access Control block
@@ -10,11 +11,6 @@ use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
 class AccessControlBlock extends AbstractBlock
 {
     use GraphQLByPoPBlockTrait;
-
-    /**
-     * When saving access control for a field, the format is "typeNamespacedName.fieldName"
-     */
-    public const TYPE_FIELD_SEPARATOR = '.';
 
     protected function getBlockName(): string
     {
@@ -60,7 +56,7 @@ class AccessControlBlock extends AbstractBlock
                     function($selectedField) use($namespacedTypeNameNames) {
                         // The field is composed by the type namespaced name, and the field name, separated by "."
                         // Extract these values
-                        $entry = explode(self::TYPE_FIELD_SEPARATOR, $selectedField);
+                        $entry = explode(BlockConstants::TYPE_FIELD_SEPARATOR, $selectedField);
                         $namespacedTypeName = $entry[0];
                         $field = $entry[1];
                         $typeName = $namespacedTypeNameNames[$namespacedTypeName] ?? $namespacedTypeName;

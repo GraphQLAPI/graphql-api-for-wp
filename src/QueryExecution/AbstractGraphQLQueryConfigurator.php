@@ -2,6 +2,7 @@
 namespace Leoloso\GraphQLByPoPWPPlugin\QueryExecution;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\BlockConstants;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
 use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
@@ -168,7 +169,7 @@ abstract class AbstractGraphQLQueryConfigurator
         $namespacedTypeNameClasses = $this->getNamespacedTypeNameClasses();
         // The field is composed by the type namespaced name, and the field name, separated by "."
         // Extract these values
-        $entry = explode(AccessControlBlock::TYPE_FIELD_SEPARATOR, $selectedField);
+        $entry = explode(BlockConstants::TYPE_FIELD_SEPARATOR, $selectedField);
         $namespacedTypeName = $entry[0];
         $field = $entry[1];
         // From the type, obtain which resolver class processes it
