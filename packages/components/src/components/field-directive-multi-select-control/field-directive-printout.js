@@ -3,7 +3,7 @@
  */
 import { compose } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
-import { Card, CardHeader, CardBody } from '@wordpress/components';
+import { Card, CardHeader, CardBody, CheckboxControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { TYPE_FIELD_SEPARATOR_FOR_DB, TYPE_FIELD_SEPARATOR_FOR_PRINT } from './block-constants';
 import withSpinner from '../loading/with-spinner';
@@ -38,7 +38,11 @@ const FieldDirectivePrintout = ( props ) => {
 				{ !! typeFields.length && (
 						( !groupFieldsUnderType && typeFields.map( typeField =>
 							<>
-								✅ { `${ typeFieldNames[ typeField ].typeName }${ TYPE_FIELD_SEPARATOR_FOR_PRINT }${ typeFieldNames[ typeField ].field }` }<br/>
+								<CheckboxControl
+									label={ `${ typeFieldNames[ typeField ].typeName }${ TYPE_FIELD_SEPARATOR_FOR_PRINT }${ typeFieldNames[ typeField ].field }` }
+									checked={ true }
+									disabled={ true }
+								/>
 							</>
 						)
 					) || ( groupFieldsUnderType && Object.keys(combinedTypeFieldNames).map( typeName =>
@@ -46,7 +50,11 @@ const FieldDirectivePrintout = ( props ) => {
 							<strong>{ typeName }</strong><br/>
 							{ combinedTypeFieldNames[ typeName ].map( field =>
 								<>
-									✅ { `${ field }` }<br/>
+									<CheckboxControl
+										label={ `${ field }` }
+										checked={ true }
+										disabled={ true }
+									/>
 								</>
 							) }
 						</>
@@ -60,7 +68,11 @@ const FieldDirectivePrintout = ( props ) => {
 			<CardBody>
 				{ !! directives.length && directives.map( directive =>
 					<>
-						✅ { directive }<br/>
+						<CheckboxControl
+							label={ `${ directive }` }
+							checked={ true }
+							disabled={ true }
+						/>
 					</>
 				) }
 				{ !directives.length && (
