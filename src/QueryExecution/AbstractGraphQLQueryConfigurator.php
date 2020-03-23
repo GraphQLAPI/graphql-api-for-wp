@@ -164,7 +164,7 @@ abstract class AbstractGraphQLQueryConfigurator
      * @param mixed $value
      * @return array|null
      */
-    protected function getEntryFromField(string $selectedField, $value): array
+    protected function getEntryFromField(string $selectedField, $value): ?array
     {
         $namespacedTypeNameClasses = $this->getNamespacedTypeNameClasses();
         // The field is composed by the type namespaced name, and the field name, separated by "."
@@ -187,7 +187,7 @@ abstract class AbstractGraphQLQueryConfigurator
      * @param mixed $value
      * @return array|null
      */
-    protected function getEntriesFromDirective(string $selectedDirective, $value): array
+    protected function getEntriesFromDirective(string $selectedDirective, $value): ?array
     {
         $directiveNameClasses = $this->getDirectiveNameClasses();
         // Obtain the directive resolver class from the directive name. If more than one resolver has the same directive name, add all of them
