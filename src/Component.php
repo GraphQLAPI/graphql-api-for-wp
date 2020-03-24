@@ -6,7 +6,9 @@ use PoP\Root\Component\YAMLServicesTrait;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use Leoloso\GraphQLByPoPWPPlugin\QueryExecution\AccessControlGraphQLQueryConfigurator;
 use Leoloso\GraphQLByPoPWPPlugin\QueryExecution\CacheControlGraphQLQueryConfigurator;
-
+use PoP\ComponentModel\AbstractComponentConfiguration;
+use PoP\ComponentModel\ComponentConfiguration;
+use PoP\ComponentModel\Environment;
 /**
  * Initialize component
  */
@@ -22,6 +24,27 @@ class Component extends AbstractComponent
     {
         parent::init();
         self::initYAMLServices(dirname(__DIR__));
+        self::initComponentConfiguration();
+    }
+
+    protected static function initComponentConfiguration(): void
+    {
+        /**
+         * Enable the schema entity registries, as to retrieve the type/directive resolver classes
+         * from the type/directive names, saved in the DB in the ACL/CCL Custom Post Types
+         */
+        $hookName = AbstractComponentConfiguration::getHookName(
+            ComponentConfiguration::class,
+            Environment::ENABLE_SCHEMA_ENTITY_REGISTRIES
+        );
+        \add_filter(
+            $hookName,
+            function ($value) {
+                return true;
+            },
+            PHP_INT_MAX,
+            1
+        );
     }
 
     /**
