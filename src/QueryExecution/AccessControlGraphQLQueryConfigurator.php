@@ -3,7 +3,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\QueryExecution;
 
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use PoP\AccessControl\Facades\AccessControlManagerFacade;
-use PoP\ComponentModel\GeneralUtils;
+use PoP\ComponentModel\Misc\GeneralUtils;
 
 class AccessControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigurator
 {

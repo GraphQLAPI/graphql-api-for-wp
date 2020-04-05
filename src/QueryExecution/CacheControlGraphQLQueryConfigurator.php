@@ -3,7 +3,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\QueryExecution;
 
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use PoP\CacheControl\Facades\CacheControlManagerFacade;
-use PoP\ComponentModel\GeneralUtils;
+use PoP\ComponentModel\Misc\GeneralUtils;
 
 class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigurator
 {

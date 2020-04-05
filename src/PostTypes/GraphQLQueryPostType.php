@@ -181,7 +181,7 @@ class GraphQLQueryPostType extends AbstractPostType
              * Execute first, before VarsHooks in the API package, to set-up the variables in $vars as soon as we knows if it's a singular post of this type
              */
             \add_action(
-                '\PoP\ComponentModel\Engine_Vars:addVars',
+                'ApplicationState:addVars',
                 [$this, 'addGraphQLVars'],
                 0,
                 1
@@ -322,7 +322,7 @@ class GraphQLQueryPostType extends AbstractPostType
             $instanceManager = InstanceManagerFacade::getInstance();
             $graphQLAPIRequestHookSet = $instanceManager->getInstance(\PoP\GraphQLAPIRequest\Hooks\VarsHooks::class);
             \remove_action(
-                '\PoP\ComponentModel\Engine_Vars:addVars',
+                'ApplicationState:addVars',
                 array($graphQLAPIRequestHookSet, 'addURLParamVars'),
                 20,
                 1
