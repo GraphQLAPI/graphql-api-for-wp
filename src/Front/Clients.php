@@ -1,11 +1,11 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\Front;
 
-use Leoloso\PoPAPIEndpointsForWP\EndpointUtils;
+use PoP\APIEndpointsForWP\EndpointUtils;
 use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
 
-class Clients {
-
+class Clients
+{
     public $GRAPHIQL_ENDPOINT;
     public $VOYAGER_ENDPOINT;
 
