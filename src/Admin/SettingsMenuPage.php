@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\AbstractMenuPage;
