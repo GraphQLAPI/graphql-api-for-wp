@@ -11,5 +11,5 @@ interface MenuPageInterface
      *
      * @return void
      */
-    function print(): void;
+    public function print(): void;
 }
