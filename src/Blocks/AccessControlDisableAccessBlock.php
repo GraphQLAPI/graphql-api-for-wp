@@ -19,11 +19,11 @@ class AccessControlDisableAccessBlock extends AbstractBlock
     }
 
     public function renderBlock(array $attributes, string $content): string
-	{
-		return sprintf(
+    {
+        return sprintf(
             '<ul class="%s"><li>%s</li></ul>',
             $this->getBlockClassName(),
             __('Nobody', 'graphql-api')
         );
-	}
+    }
 }

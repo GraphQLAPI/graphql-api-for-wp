@@ -81,7 +81,7 @@ abstract class AbstractPostType
                     \__('<p class="%s"><strong>Description: </strong>%s</p>'),
                     $this->getAlignClass(),
                     $excerpt
-                ).$content;
+                ) . $content;
             }
         }
         return $content;
@@ -339,7 +339,7 @@ abstract class AbstractPostType
         if (!empty($template) && $this->enableOnlyGutenbergTemplateBlocks()) {
             // Get all the blocks involved in the template
             return array_values(array_unique(array_map(
-                function(array $blockConfiguration) {
+                function (array $blockConfiguration) {
                     // The block is the first item from the $blockConfiguration
                     return $blockConfiguration[0];
                 },

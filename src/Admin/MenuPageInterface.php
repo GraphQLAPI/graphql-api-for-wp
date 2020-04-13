@@ -4,7 +4,8 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 /**
  * Menu Page
  */
-interface MenuPageInterface {
+interface MenuPageInterface
+{
     /**
      * Print the menu page HTML content
      *

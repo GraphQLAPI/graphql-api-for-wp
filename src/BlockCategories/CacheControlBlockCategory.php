@@ -24,7 +24,8 @@ class CacheControlBlockCategory
      * @param [type] $post
      * @return void
      */
-    public function getBlockCategories( array $categories, $post ) {
+    public function getBlockCategories(array $categories, $post)
+    {
         /**
          * Only register for the Access Control CPT
          */
@@ -34,7 +35,7 @@ class CacheControlBlockCategory
                 array(
                     array(
                         'slug' => self::CACHE_CONTROL_BLOCK_CATEGORY,
-                        'title' => __( 'Cache Control for GraphQL', 'graphql-api' ),
+                        'title' => __('Cache Control for GraphQL', 'graphql-api'),
                     ),
                 )
             );

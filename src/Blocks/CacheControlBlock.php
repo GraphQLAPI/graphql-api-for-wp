@@ -55,7 +55,7 @@ EOF;
         }
         return sprintf(
             $blockContentPlaceholder,
-            $this->getBlockClassName().'__content',
+            $this->getBlockClassName() . '__content',
             $cacheControlMaxAgeText
         );
     }

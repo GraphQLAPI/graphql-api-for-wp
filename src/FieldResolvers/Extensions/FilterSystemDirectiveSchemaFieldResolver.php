@@ -84,7 +84,7 @@ class FilterSystemDirectiveSchemaFieldResolver extends SchemaFieldResolver
                     ];
                     // Calculate the directive IDs
                     $systemDirectiveIDs = array_map(
-                        function($directiveResolverClass) {
+                        function ($directiveResolverClass) {
                             // To retrieve the ID, use the same method to calculate the ID used when creating a new Directive instance (which we can't do here, since it has side-effects)
                             $directiveSchemaDefinitionPath = [
                                 SchemaDefinition::ARGNAME_GLOBAL_DIRECTIVES,

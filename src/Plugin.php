@@ -17,8 +17,8 @@ use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
 
-class Plugin {
-
+class Plugin
+{
     public function init(): void
     {
         /**

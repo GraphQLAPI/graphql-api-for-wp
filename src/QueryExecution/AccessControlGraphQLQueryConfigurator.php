@@ -38,7 +38,7 @@ class AccessControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigur
                             // Extract the saved fields
                             if ($entriesForFields = array_filter(
                                 array_map(
-                                    function($selectedField) use($value) {
+                                    function ($selectedField) use ($value) {
                                         return $this->getEntryFromField($selectedField, $value);
                                     },
                                     $aclBlockItemTypeFields
@@ -53,7 +53,7 @@ class AccessControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigur
                             // Extract the saved directives
                             if ($entriesForDirectives = GeneralUtils::arrayFlatten(array_filter(
                                 array_map(
-                                    function($selectedDirective) use($value) {
+                                    function ($selectedDirective) use ($value) {
                                         return $this->getEntriesFromDirective($selectedDirective, $value);
                                     },
                                     $aclBlockItemDirectives

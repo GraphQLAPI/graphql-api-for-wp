@@ -37,4 +37,3 @@ class Environment
         return isset($_ENV[self::EMPTY_LABEL]) ? $_ENV[self::EMPTY_LABEL] : \__('---', 'graphql-api');
     }
 }
-

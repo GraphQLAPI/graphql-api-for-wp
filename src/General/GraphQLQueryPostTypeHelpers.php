@@ -3,7 +3,8 @@ namespace Leoloso\GraphQLByPoPWPPlugin\General;
 
 use Leoloso\GraphQLByPoPWPPlugin\General\GraphiQLBlockHelpers;
 
-class GraphQLQueryPostTypeHelpers {
+class GraphQLQueryPostTypeHelpers
+{
 
     /**
      * A GraphQL Query Custom Post Type is hierarchical: each query post can have a parent, enabling to fetch attributes from the parent post
@@ -49,5 +50,5 @@ class GraphQLQueryPostTypeHelpers {
             $graphQLQuery,
             $graphQLVariables,
         ];
-	}
+    }
 }

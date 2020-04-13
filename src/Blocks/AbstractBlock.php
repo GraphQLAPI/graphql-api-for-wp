@@ -63,8 +63,8 @@ abstract class AbstractBlock
      * @return string
      */
     public function renderBlock(array $attributes, string $content): string
-	{
-		return '';
+    {
+        return '';
     }
     /**
      * Register editor.css
@@ -141,11 +141,11 @@ abstract class AbstractBlock
      */
     public function initBlock(): void
     {
-        $dir = $this->getPluginDir().'/blocks/'.$this->getBlockName();
+        $dir = $this->getPluginDir() . '/blocks/' . $this->getBlockName();
         $blockFullName = $this->getBlockFullName();
 
         $script_asset_path = "$dir/build/index.asset.php";
-        if ( ! file_exists( $script_asset_path ) ) {
+        if (!file_exists($script_asset_path)) {
             throw new Error(
                 sprintf(
                     \__('You need to run `npm start` or `npm run build` for the "%s" block first.', 'graphql-api'),
@@ -154,20 +154,20 @@ abstract class AbstractBlock
             );
         }
 
-        $url = $this->getPluginURL().'/blocks/'.$this->getBlockName().'/';
+        $url = $this->getPluginURL() . '/blocks/' . $this->getBlockName() . '/';
         $blockRegistrationName = $this->getBlockRegistrationName();
         $blockConfiguration = [];
 
         // Load the block scripts and styles
         $index_js     = 'build/index.js';
-        $script_asset = require( $script_asset_path );
+        $script_asset = require($script_asset_path);
         \wp_register_script(
-            $blockRegistrationName.'-block-editor',
-            $url.$index_js,
+            $blockRegistrationName . '-block-editor',
+            $url . $index_js,
             $script_asset['dependencies'],
             $script_asset['version']
         );
-        $blockConfiguration['editor_script'] = $blockRegistrationName.'-block-editor';
+        $blockConfiguration['editor_script'] = $blockRegistrationName . '-block-editor';
 
         /**
          * Register editor CSS file
@@ -175,12 +175,12 @@ abstract class AbstractBlock
         if ($this->registerEditorCSS()) {
             $editor_css = 'editor.css';
             \wp_register_style(
-                $blockRegistrationName.'-block-editor',
-                $url.$editor_css,
+                $blockRegistrationName . '-block-editor',
+                $url . $editor_css,
                 array(),
-                filemtime( "$dir/$editor_css" )
+                filemtime("$dir/$editor_css")
             );
-            $blockConfiguration['editor_style'] = $blockRegistrationName.'-block-editor';
+            $blockConfiguration['editor_style'] = $blockRegistrationName . '-block-editor';
         }
 
         /**
@@ -189,12 +189,12 @@ abstract class AbstractBlock
         if ($this->registerCommonStyleCSS()) {
             $style_css = 'style.css';
             \wp_register_style(
-                $blockRegistrationName.'-block',
-                $url.$style_css,
+                $blockRegistrationName . '-block',
+                $url . $style_css,
                 array(),
-                filemtime( "$dir/$style_css" )
+                filemtime("$dir/$style_css")
             );
-            $blockConfiguration['style'] = $blockRegistrationName.'-block';
+            $blockConfiguration['style'] = $blockRegistrationName . '-block';
         }
 
         /**
@@ -204,6 +204,6 @@ abstract class AbstractBlock
             $blockConfiguration['render_callback'] = [$this, 'renderBlock'];
         }
 
-        \register_block_type( $blockFullName, $blockConfiguration );
-	}
+        \register_block_type($blockFullName, $blockConfiguration);
+    }
 }

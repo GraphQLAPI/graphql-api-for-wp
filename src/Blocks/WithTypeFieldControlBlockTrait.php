@@ -16,7 +16,7 @@ trait WithTypeFieldControlBlockTrait
      * @return array
      */
     public function getTypeFieldsForPrint(array $typeFields): array
-	{
+    {
         $groupFieldsUnderTypeForPrint = ComponentConfiguration::groupFieldsUnderTypeForPrint();
         $instanceManager = InstanceManagerFacade::getInstance();
         $typeRegistry = TypeRegistryFacade::getInstance();
@@ -43,7 +43,7 @@ trait WithTypeFieldControlBlockTrait
             if ($groupFieldsUnderTypeForPrint) {
                 $typeFieldsForPrint[$typeName][] = $field;
             } else {
-                $typeFieldsForPrint[] = $typeName.BlockConstants::TYPE_FIELD_SEPARATOR_FOR_PRINT.$field;
+                $typeFieldsForPrint[] = $typeName . BlockConstants::TYPE_FIELD_SEPARATOR_FOR_PRINT . $field;
             }
         }
         return $typeFieldsForPrint;

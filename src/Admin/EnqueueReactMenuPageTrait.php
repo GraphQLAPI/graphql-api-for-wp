@@ -1,7 +1,8 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 
-trait EnqueueReactMenuPageTrait {
+trait EnqueueReactMenuPageTrait
+{
 
     /**
      * Enqueue the required assets and initialize the localized scripts
@@ -12,14 +13,14 @@ trait EnqueueReactMenuPageTrait {
     {
         \wp_enqueue_script(
             'graphql-api-react',
-            \GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/vendors/react.min.js',
+            \GRAPHQL_BY_POP_PLUGIN_URL . 'assets/js/vendors/react.min.js',
             array(),
             \GRAPHQL_BY_POP_VERSION,
             $addInFooter
         );
         \wp_enqueue_script(
             'graphql-api-react-dom',
-            \GRAPHQL_BY_POP_PLUGIN_URL.'assets/js/vendors/react-dom.min.js',
+            \GRAPHQL_BY_POP_PLUGIN_URL . 'assets/js/vendors/react-dom.min.js',
             array('graphql-api-react'),
             \GRAPHQL_BY_POP_VERSION,
             $addInFooter

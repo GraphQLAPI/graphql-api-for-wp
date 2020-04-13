@@ -7,8 +7,8 @@ use Leoloso\GraphQLByPoPWPPlugin\Admin\GraphiQLMenuPage;
 /**
  * Admin menu class
  */
-class Menu {
-
+class Menu
+{
     const NAME = 'graphql_api';
     /**
      * Initialize the endpoints
@@ -103,23 +103,26 @@ class Menu {
         );
     }
 
-    function printGraphiQLPage() {
-        if (!\current_user_can('manage_options'))  {
-            \wp_die(__( 'You do not have sufficient permissions to access this page.'));
+    function printGraphiQLPage()
+    {
+        if (!\current_user_can('manage_options')) {
+            \wp_die(__('You do not have sufficient permissions to access this page.'));
         }
         echo 'GraphiQL!';
     }
 
-    function printOverview() {
-        if (!\current_user_can('manage_options'))  {
-            \wp_die(__( 'You do not have sufficient permissions to access this page.'));
+    function printOverview()
+    {
+        if (!\current_user_can('manage_options')) {
+            \wp_die(__('You do not have sufficient permissions to access this page.'));
         }
         echo 'Overview';
     }
 
-    function printAbout() {
-        if (!\current_user_can('manage_options'))  {
-            \wp_die(__( 'You do not have sufficient permissions to access this page.'));
+    function printAbout()
+    {
+        if (!\current_user_can('manage_options')) {
+            \wp_die(__('You do not have sufficient permissions to access this page.'));
         }
         echo 'About';
     }

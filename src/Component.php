@@ -58,7 +58,7 @@ class Component extends AbstractComponent
 
         // Initialize classes
         // Attach the Extensions with a higher priority, so it executes first
-        ContainerBuilderUtils::attachFieldResolversFromNamespace(__NAMESPACE__.'\\FieldResolvers\\Extensions', false, 100);
+        ContainerBuilderUtils::attachFieldResolversFromNamespace(__NAMESPACE__ . '\\FieldResolvers\\Extensions', false, 100);
     }
 
     /**

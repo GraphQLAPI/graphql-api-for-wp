@@ -81,7 +81,7 @@ class GraphQLAccessControlListPostType extends AbstractPostType
                 $aclBlock->getBlockFullName(),
             ],
             array_map(
-                function($aclNestedBlock) {
+                function ($aclNestedBlock) {
                     return $aclNestedBlock->getBlockFullName();
                 },
                 $aclNestedBlocks

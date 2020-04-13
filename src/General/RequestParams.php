@@ -1,7 +1,8 @@
 <?php
 namespace Leoloso\GraphQLByPoPWPPlugin\General;
 
-class RequestParams {
+class RequestParams
+{
     const VIEW = 'view';
     const VIEW_SOURCE = 'source';
 }

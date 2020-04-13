@@ -31,7 +31,7 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
                     if ($typeFields = $cclBlockItem['attrs']['typeFields']) {
                         if ($entriesForFields = array_filter(
                             array_map(
-                                function($selectedField) use($maxAge) {
+                                function ($selectedField) use ($maxAge) {
                                     return $this->getEntryFromField($selectedField, $maxAge);
                                 },
                                 $typeFields
@@ -47,7 +47,7 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
                     if ($directives = $cclBlockItem['attrs']['directives']) {
                         if ($entriesForDirectives = GeneralUtils::arrayFlatten(array_filter(
                             array_map(
-                                function($selectedDirective) use($maxAge) {
+                                function ($selectedDirective) use ($maxAge) {
                                     return $this->getEntriesFromDirective($selectedDirective, $maxAge);
                                 },
                                 $directives
@@ -58,7 +58,7 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
                             );
                         }
                     }
-				}
+                }
             }
         }
     }

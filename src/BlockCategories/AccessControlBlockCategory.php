@@ -24,7 +24,8 @@ class AccessControlBlockCategory
      * @param [type] $post
      * @return void
      */
-    public function getBlockCategories( array $categories, $post ) {
+    public function getBlockCategories(array $categories, $post)
+    {
         /**
          * Only register for the Access Control CPT
          */
@@ -34,7 +35,7 @@ class AccessControlBlockCategory
                 array(
                     array(
                         'slug' => self::ACCESS_CONTROL_BLOCK_CATEGORY,
-                        'title' => __( 'Access Control for GraphQL', 'graphql-api' ),
+                        'title' => __('Access Control for GraphQL', 'graphql-api'),
                     ),
                 )
             );

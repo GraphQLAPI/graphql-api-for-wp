@@ -12,7 +12,7 @@ abstract class AbstractItemListControlBlock extends AbstractBlock
     }
 
     public function renderBlock(array $attributes, string $content): string
-	{
+    {
         $blockContentPlaceholder = <<<EOF
         <div class="%s">
             %s

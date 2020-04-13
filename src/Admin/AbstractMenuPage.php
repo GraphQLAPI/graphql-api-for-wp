@@ -6,8 +6,8 @@ use Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPageInterface;
 /**
  * Menu page
  */
-abstract class AbstractMenuPage implements MenuPageInterface {
-
+abstract class AbstractMenuPage implements MenuPageInterface
+{
     public function __construct()
     {
         $this->init();
@@ -42,7 +42,7 @@ abstract class AbstractMenuPage implements MenuPageInterface {
             // If it is the top level page, the current screen is prepended with "toplevel_page_"
             // If not, the current screen is prepended with the section name
             // Then, check that the screen ends with the requested screen ID
-            $enqueueAssets = substr($currentScreen, -1*strlen($screenID)) == $screenID;
+            $enqueueAssets = substr($currentScreen, -1 * strlen($screenID)) == $screenID;
         } else {
             $enqueueAssets = true;
         }

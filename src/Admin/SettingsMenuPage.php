@@ -8,8 +8,8 @@ use PoP\Posts\TypeResolvers\PostTypeResolver;
 /**
  * Settings menu page
  */
-class SettingsMenuPage extends AbstractMenuPage {
-
+class SettingsMenuPage extends AbstractMenuPage
+{
     /**
      * Indicate if the option is on. Made static so it can be used without instantiation
      *
@@ -387,13 +387,13 @@ class SettingsMenuPage extends AbstractMenuPage {
             array(
                 'label' => sprintf(
                     \__('Enable fields (%s) to fetch data from external web services. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                    '<code>'.implode(
-                        '</code>'.__(',').'<code>',
+                    '<code>' . implode(
+                        '</code>' . __(',') . '<code>',
                         [
                             'getJSON',
                             'getAsyncJSON',
                         ]
-                    ).'</code>',
+                    ) . '</code>',
                     'https://graphql.getpop.org/wp/documentation/#external-services'
                 ),
                 'id'    => 'graphql-api-extendedgraphql-guzzle',
@@ -421,7 +421,7 @@ class SettingsMenuPage extends AbstractMenuPage {
         $value = self::isOptionOn($name);
         ?>
             <label for="<?php echo $args['id']; ?>">
-                <input type="checkbox" name="<?php echo 'graphql-api-settings['.$name.']'; ?>" id="<?php echo $name; ?>" value="1" <?php checked(1, $value); ?> />
+                <input type="checkbox" name="<?php echo 'graphql-api-settings[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="1" <?php checked(1, $value); ?> />
                 <?php echo $args['label']; ?>
             </label>
         <?php
@@ -437,10 +437,10 @@ class SettingsMenuPage extends AbstractMenuPage {
     {
         $name = $args['id'];
         $value = self::getOptionValue($name) ?? '';
-        $label = $args['label'] ? '<br/>'.$args['label'] : '';
+        $label = $args['label'] ? '<br/>' . $args['label'] : '';
         ?>
             <label for="<?php echo $args['id']; ?>">
-                <input type="text" name="<?php echo 'graphql-api-settings['.$name.']'; ?>" id="<?php echo $name; ?>" value="<?php echo $value; ?>" />
+                <input type="text" name="<?php echo 'graphql-api-settings[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="<?php echo $value; ?>" />
                 <?php echo $label; ?>
             </label>
         <?php
@@ -457,8 +457,8 @@ class SettingsMenuPage extends AbstractMenuPage {
                 \__('Please refer to the <a href="%s">documentation page</a> for detailed information on all features.', 'graphql-api'),
                 menu_page_url('graphql_api_documentation', false)
             );*/echo sprintf(
-                \__('Please refer to the <a href="%s">documentation</a> for detailed information on all features.', 'graphql-api'),
-                'https://graphql.getpop.org/wp/documentation/'
+            \__('Please refer to the <a href="%s">documentation</a> for detailed information on all features.', 'graphql-api'),
+            'https://graphql.getpop.org/wp/documentation/'
             );?>
         </p>
         <?php

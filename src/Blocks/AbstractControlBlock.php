@@ -17,9 +17,9 @@ abstract class AbstractControlBlock extends AbstractBlock
     }
 
     public function renderBlock(array $attributes, string $content): string
-	{
+    {
         // Append "-front" because this style must be used only on the client, not on the admin
-        $className = $this->getBlockClassName().'-front';
+        $className = $this->getBlockClassName() . '-front';
         $typeFields = $attributes['typeFields'] ?? [];
         $directives = $attributes['directives'] ?? [];
         $fieldTypeContent = $directiveContent = ComponentConfiguration::getEmptyLabel();
@@ -85,13 +85,13 @@ EOT;
 EOT;
         return sprintf(
             $blockContentPlaceholder,
-            $className.' '.$this->getAlignClass(),
-            $className.'__data',
-            $className.'__title',
+            $className . ' ' . $this->getAlignClass(),
+            $className . '__data',
+            $className . '__title',
             $this->getBlockDataTitle(),
             $blockDataContent,
-            $className.'__content',
-            $className.'__title',
+            $className . '__content',
+            $className . '__title',
             $this->getBlockContentTitle(),
             $this->getBlockContent($attributes, $content)
         );

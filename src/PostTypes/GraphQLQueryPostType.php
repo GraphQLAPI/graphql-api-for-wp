@@ -156,7 +156,7 @@ class GraphQLQueryPostType extends AbstractPostType
      *
      * @return boolean
      */
-     protected function resolveGraphQLQuery(): bool
+    protected function resolveGraphQLQuery(): bool
     {
         return $_REQUEST[RequestParams::VIEW] != RequestParams::VIEW_SOURCE;
     }
@@ -254,8 +254,7 @@ class GraphQLQueryPostType extends AbstractPostType
                         $inheritedGraphQLVariables
                     ) = GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, true);
                     // If the 2 sets of attributes are different, then render the block again
-                    if (
-                        ($graphQLQuery != $inheritedGraphQLQuery) ||
+                    if (($graphQLQuery != $inheritedGraphQLQuery) ||
                         ($graphQLVariables != $inheritedGraphQLVariables)
                     ) {
                         // Render the block again, using the inherited attributes

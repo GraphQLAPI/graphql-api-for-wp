@@ -50,11 +50,10 @@ class PluginConfiguration
      */
     public static function useWPConfigConstant($value, $class, $envVariable)
     {
-        $constantName = self::getWPConfigConstantPrefix().$envVariable;
+        $constantName = self::getWPConfigConstantPrefix() . $envVariable;
         if (defined($constantName)) {
             return constant($constantName);
         }
         return $value;
     }
 }
-

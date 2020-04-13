@@ -6,8 +6,8 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
 
-class PluginState {
-
+class PluginState
+{
     public static $graphiQLBlock;
     public static $accessControlBlock;
     public static $accessControlNestedBlocks = [];

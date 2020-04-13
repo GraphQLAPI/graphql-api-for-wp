@@ -85,7 +85,7 @@ abstract class AbstractGraphQLQueryConfigurator
         $blockFullName = $block->getBlockFullName();
         return array_filter(
             $blocks,
-            function($block) use($blockFullName) {
+            function ($block) use ($blockFullName) {
                 return $block['blockName'] == $blockFullName;
             }
         );
