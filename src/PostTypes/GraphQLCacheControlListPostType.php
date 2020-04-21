@@ -37,7 +37,7 @@ class GraphQLCacheControlListPostType extends AbstractPostType
     /**
      * Custom Post Type plural name
      *
-     * @param boolean $uppercase Indicate if the name must be uppercase (for starting a sentence) or, otherwise, lowercase
+     * @param bool $uppercase Indicate if the name must be uppercase (for starting a sentence) or, otherwise, lowercase
      * @return string
      */
     protected function getPostTypePluralNames(bool $uppercase): string
