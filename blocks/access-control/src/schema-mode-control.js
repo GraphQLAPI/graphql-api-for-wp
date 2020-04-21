@@ -1,32 +1,47 @@
+/**
+ * WordPress dependencies
+ */
 import { __ } from '@wordpress/i18n';
-import { Card, CardBody, RadioControl } from '@wordpress/components';
+import { Card, CardHeader, CardBody, RadioControl } from '@wordpress/components';
+
+/**
+ * Internal dependencies
+ */
 import { DEFAULT_SCHEMA_MODE, PUBLIC_SCHEMA_MODE, PRIVATE_SCHEMA_MODE } from './schema-modes';
+import { LinkableInfoTooltip } from '../../../packages/components/src';
 
 const SchemaModeControl = ( props ) => {
 	const { className, isSelected, setAttributes, attributes: { schemaMode } } = props;
 	const options = [
 		{
-			label: __('Default mode', 'graphql-api'),
+			label: __('Default', 'graphql-api'),
 			value: DEFAULT_SCHEMA_MODE,
 		},
 		{
-			label: __('Public mode', 'graphql-api'),
+			label: __('Public', 'graphql-api'),
 			value: PUBLIC_SCHEMA_MODE,
 		},
 		{
-			label: __('Private mode', 'graphql-api'),
+			label: __('Private', 'graphql-api'),
 			value: PRIVATE_SCHEMA_MODE,
 		},
 	];
 	const componentClassName = `nested-component editable-on-focus is-selected-${ isSelected }`;
+	const documentationLink = 'https://graphql-api.com/documentation/#schema-mode'
 	return (
 		<div className={ componentClassName }>
 			<Card { ...props }>
+				<CardHeader isShady>
+					{ __('Schema mode:', 'graphql-api') }
+					<LinkableInfoTooltip
+						text={ __('Default: use mode saved in settings. Public: field/directives are always visible. Private: field/directives are hidden unless rules are satisfied.', 'graphql-api') }
+						href={ documentationLink }
+					/ >
+				</CardHeader>
 				<CardBody>
 					{ isSelected &&
 						<RadioControl
 							{ ...props }
-							// label={ __('User is...', 'graphql-api') }
 							options={ options }
 							selected={ schemaMode }
 							onChange={ schemaMode => (
@@ -39,13 +54,13 @@ const SchemaModeControl = ( props ) => {
 					{ !isSelected && (
 						<div className={ className+'__read'}>
 							{ (schemaMode == DEFAULT_SCHEMA_MODE) &&
-								<span>🌝 { __('Default mode', 'graphql-api') }</span>
+								<span>🌝 { __('Default', 'graphql-api') }</span>
 							}
 							{ (schemaMode == PUBLIC_SCHEMA_MODE) &&
-								<span>🌕 { __('Public mode', 'graphql-api') }</span>
+								<span>🌕 { __('Public', 'graphql-api') }</span>
 							}
 							{ (schemaMode == PRIVATE_SCHEMA_MODE) &&
-								<span>🌑 { __('Private mode', 'graphql-api') }</span>
+								<span>🌑 { __('Private', 'graphql-api') }</span>
 							}
 						</div>
 					) }
