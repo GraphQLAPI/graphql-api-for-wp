@@ -46,7 +46,7 @@ class AccessControlBlock extends AbstractControlBlock
     protected function getLocalizedData(): array
     {
         return [
-            'enableIndividualSchemaMode' => true,
+            'enableIndividualControlForSchemaMode' => true,
         ];
     }
 

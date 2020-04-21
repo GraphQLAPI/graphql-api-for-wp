@@ -10,20 +10,25 @@ import SchemaMode from './schema-mode.js';
 const ACCESS_CONTROL_BLOCK_CATEGORY = 'graphql-api-access-control';
 
 const AccessControl = ( props ) => {
-	const { className } = props;
+	const { className, enableIndividualControlForSchemaMode } = props;
 	/**
 	 * Only allow blocks under the "Access Control" category, except for this self block
 	 */
 	const allowedBlocks = getBlockTypes().filter(
 		blockType => blockType.category == ACCESS_CONTROL_BLOCK_CATEGORY && blockType.name != BLOCK_NAME
 	).map(blockType => blockType.name)
+	/**
+	 * Add component SchemaMode only if option "individual schema mode" is enabled
+	 */
 	return (
 		<>
-			<div className={ className+'__schema_mode' }>
-				<SchemaMode
-					{ ...props }
-				/>
-			</div>
+			{ enableIndividualControlForSchemaMode &&
+				<div className={ className+'__schema_mode' }>
+					<SchemaMode
+						{ ...props }
+					/>
+				</div>
+			}
 			<div className={ className+'__who' }>
 				<InnerBlocks
 					allowedBlocks={ allowedBlocks }
