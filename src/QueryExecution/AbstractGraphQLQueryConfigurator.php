@@ -149,7 +149,8 @@ abstract class AbstractGraphQLQueryConfigurator
         $instanceManager = InstanceManagerFacade::getInstance();
         $directiveRegistry = DirectiveRegistryFacade::getInstance();
         $directiveResolverClasses = $directiveRegistry->getDirectiveResolverClasses();
-        // For each class, obtain its directive name. Notice that different directives can have the same name (eg: @translate as implemented for Google and Azure),
+        // For each class, obtain its directive name. Notice that different directives
+        // can have the same name (eg: @translate as implemented for Google and Azure),
         // then the mapping goes from name to list of resolvers
         $this->directiveNameClasses = [];
         foreach ($directiveResolverClasses as $directiveResolverClass) {
@@ -193,7 +194,8 @@ abstract class AbstractGraphQLQueryConfigurator
     protected function getEntriesFromDirective(string $selectedDirective, $value): ?array
     {
         $directiveNameClasses = $this->getDirectiveNameClasses();
-        // Obtain the directive resolver class from the directive name. If more than one resolver has the same directive name, add all of them
+        // Obtain the directive resolver class from the directive name.
+        // If more than one resolver has the same directive name, add all of them
         if ($selectedDirectiveResolverClasses = $directiveNameClasses[$selectedDirective]) {
             $entriesForDirective = [];
             foreach ($selectedDirectiveResolverClasses as $directiveResolverClass) {
