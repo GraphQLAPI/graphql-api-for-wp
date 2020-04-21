@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\AbstractMenuPage;
+use Leoloso\GraphQLByPoPWPPlugin\Settings\Settings;
 use PoP\API\Schema\QueryInputs;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 
@@ -21,7 +22,7 @@ class SettingsMenuPage extends AbstractMenuPage
      */
     public static function isOptionOn(string $name): bool
     {
-        $options = \get_option('graphql-api-settings');
+        $options = \get_option(Settings::OPTIONS_NAME);
         return !empty($options[$name]);
     }
 
@@ -33,7 +34,7 @@ class SettingsMenuPage extends AbstractMenuPage
      */
     public static function getOptionValue(string $name): ?string
     {
-        $options = \get_option('graphql-api-settings');
+        $options = \get_option(Settings::OPTIONS_NAME);
         return $options[$name];
     }
 
@@ -408,7 +409,7 @@ class SettingsMenuPage extends AbstractMenuPage
          */
         \register_setting(
             'graphql-api-settings',
-            'graphql-api-settings'
+            Settings::OPTIONS_NAME
         );
     }
 
