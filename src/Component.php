@@ -9,7 +9,7 @@ use PoP\Root\Component\YAMLServicesTrait;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use Leoloso\GraphQLByPoPWPPlugin\QueryExecution\AccessControlGraphQLQueryConfigurator;
 use Leoloso\GraphQLByPoPWPPlugin\QueryExecution\CacheControlGraphQLQueryConfigurator;
-use PoP\ComponentModel\AbstractComponentConfiguration;
+use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use PoP\ComponentModel\ComponentConfiguration;
 use PoP\ComponentModel\Environment;
 /**
@@ -36,7 +36,7 @@ class Component extends AbstractComponent
          * Enable the schema entity registries, as to retrieve the type/directive resolver classes
          * from the type/directive names, saved in the DB in the ACL/CCL Custom Post Types
          */
-        $hookName = AbstractComponentConfiguration::getHookName(
+        $hookName = ComponentConfigurationHelpers::getHookName(
             ComponentConfiguration::class,
             Environment::ENABLE_SCHEMA_ENTITY_REGISTRIES
         );

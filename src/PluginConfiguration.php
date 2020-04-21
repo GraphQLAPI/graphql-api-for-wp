@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
-use PoP\ComponentModel\AbstractComponentConfiguration;
+use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\Environment;
 
@@ -23,7 +23,7 @@ class PluginConfiguration
         ];
         // For each environment variable, see if it has been defined as a wp-config.php constant
         foreach ($mappings as $mappingClass => $mappingEnvVariable) {
-            $hookName = AbstractComponentConfiguration::getHookName($mappingClass, $mappingEnvVariable);
+            $hookName = ComponentConfigurationHelpers::getHookName($mappingClass, $mappingEnvVariable);
             \add_filter(
                 $hookName,
                 [self::class, 'useWPConfigConstant'],
