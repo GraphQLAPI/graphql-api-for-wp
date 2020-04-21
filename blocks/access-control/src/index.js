@@ -22,6 +22,7 @@ import { InnerBlocks } from '@wordpress/block-editor';
  */
 import EditBlock from './edit-block.js';
 import BLOCK_NAME from './block-name.js';
+import { DEFAULT_SCHEMA_MODE } from './schema-modes';
 import './style.scss';
 
 /**
@@ -61,9 +62,10 @@ registerBlockType( BLOCK_NAME, {
 	 * Block default attributes.
 	 */
 	attributes: {
-		// accessControlGroup: {
-		// 	type: 'string',
-		// },
+		schemaMode: {
+			type: 'string',
+			default: DEFAULT_SCHEMA_MODE,
+		},
 		/**
 		 * List of selected fields, accessible by their type
 		 */
@@ -115,7 +117,7 @@ registerBlockType( BLOCK_NAME, {
 			<div class={ className }>
 				<EditBlock
 					selectLabel={ __('Define access for:', 'graphql-api') }
-					configurationLabel={ __('Who can access:', 'graphql-api') }
+					configurationLabel={ __('Schema mode:', 'graphql-api') }
 					accessControlComponentClassName={ `nested-component editable-on-focus is-selected-${ isSelected }` }
 					{ ...props}
 				/>

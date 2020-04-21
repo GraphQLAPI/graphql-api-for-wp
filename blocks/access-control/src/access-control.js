@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { getBlockTypes } from '@wordpress/blocks';
 import BLOCK_NAME from './block-name.js';
+import SchemaMode from './schema-mode.js';
 
 /**
  * Category containing all Access Control blocks, as defined in \Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory::ACCESS_CONTROL_BLOCK_CATEGORY
@@ -17,11 +18,18 @@ const AccessControl = ( props ) => {
 		blockType => blockType.category == ACCESS_CONTROL_BLOCK_CATEGORY && blockType.name != BLOCK_NAME
 	).map(blockType => blockType.name)
 	return (
-		<div className={ className+'__who' }>
-			<InnerBlocks
-				allowedBlocks={ allowedBlocks }
-			/>
-		</div>
+		<>
+			<div className={ className+'__schema_mode' }>
+				<SchemaMode
+					{ ...props }
+				/>
+			</div>
+			<div className={ className+'__who' }>
+				<InnerBlocks
+					allowedBlocks={ allowedBlocks }
+				/>
+			</div>
+		</>
 	);
 }
 

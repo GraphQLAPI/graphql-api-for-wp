@@ -3,3 +3,15 @@
 .wp-block-graphql-api-access-control {
 	@include editable-on-focus();
 }
+
+.wp-block-graphql-api-access-control {
+	&__item_data {
+		&__title {
+			text-align: center;
+		}
+	}
+}
+
+.wp-block-graphql-api-access-control__item_data_schema_mode {
+	margin-bottom: 28px;
+}
