@@ -7,6 +7,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
 use PoP\AccessControl\ComponentConfiguration;
+use PoP\AccessControl\Schema\SchemaModes;
 
 /**
  * Access Control block
@@ -36,6 +37,9 @@ class AccessControlBlock extends AbstractControlBlock
     }
     protected function getBlockContentTitle(): string
     {
+        if (ComponentConfiguration::enableIndividualControlForPublicPrivateSchemaMode()) {
+            return \__('Access Control Rules:', 'graphql-api');
+        }
         return \__('Who can access:', 'graphql-api');
     }
 
@@ -60,10 +64,31 @@ class AccessControlBlock extends AbstractControlBlock
      */
     protected function getBlockContent(array $attributes, string $content): string
     {
-        if ($content) {
-            return $content;
+        $maybeSchemaModeContent = '';
+        if (ComponentConfiguration::enableIndividualControlForPublicPrivateSchemaMode()) {
+            $blockContentPlaceholder = <<<EOT
+                <p><strong>%s</strong> %s</p>
+                <h4 class="%s">%s</h4>
+EOT;
+            $className = $this->getBlockClassName() . '-front';
+            $schemaModeLabels = [
+                SchemaModes::PUBLIC_SCHEMA_MODE => \__('Public', 'graphql-api'),
+                SchemaModes::PRIVATE_SCHEMA_MODE => \__('Private', 'graphql-api'),
+            ];
+            $maybeSchemaModeContent = sprintf(
+                $blockContentPlaceholder,
+                \__('Schema mode:', 'graphql-api'),
+                $attributes['schemaMode'] ?
+                    $schemaModeLabels[$attributes['schemaMode']]
+                    : \__('Default', 'graphql-api'),
+                $className . '__title',
+                \__('Who can access:', 'graphql-api')
+            );
         }
-        return sprintf(
+        if ($content) {
+            return $maybeSchemaModeContent.$content;
+        }
+        return $maybeSchemaModeContent.sprintf(
             '<em>%s</em>',
             \__('(not set)', 'graphql-api')
         );
