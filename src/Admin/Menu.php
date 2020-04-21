@@ -37,7 +37,7 @@ class Menu
             20
         );
     }
-    function addMenuPagesTop(): void
+    public function addMenuPagesTop(): void
     {
         \add_menu_page(
             __('GraphQL API', 'graphql-api'),
@@ -67,17 +67,8 @@ class Menu
         );
     }
 
-    function addMenuPagesBottom(): void
+    public function addMenuPagesBottom(): void
     {
-        \add_submenu_page(
-            self::NAME,
-            __('Overview', 'graphql-api'),
-            __('Overview', 'graphql-api'),
-            'manage_options',
-            'graphql_api_overview',
-            [$this, 'printOverview']
-        );
-
         \add_submenu_page(
             self::NAME,
             __('Settings', 'graphql-api'),
@@ -87,46 +78,13 @@ class Menu
             [new SettingsMenuPage(), 'print']
         );
 
-        if (\current_user_can('manage_options')) {
-            global $submenu;
-            $submenu[self::NAME][] = [
-                __('Documentation', 'graphql-api'),
-                'manage_options',
-                'https://graphql.getpop.org/wp/documentation/',
-            ];
-        }
-
-        \add_submenu_page(
-            self::NAME,
-            __('About', 'graphql-api'),
-            __('About', 'graphql-api'),
-            'manage_options',
-            'graphql_api_about',
-            [$this, 'printAbout']
-        );
-    }
-
-    function printGraphiQLPage()
-    {
-        if (!\current_user_can('manage_options')) {
-            \wp_die(__('You do not have sufficient permissions to access this page.'));
-        }
-        echo 'GraphiQL!';
-    }
-
-    function printOverview()
-    {
-        if (!\current_user_can('manage_options')) {
-            \wp_die(__('You do not have sufficient permissions to access this page.'));
-        }
-        echo 'Overview';
-    }
-
-    function printAbout()
-    {
-        if (!\current_user_can('manage_options')) {
-            \wp_die(__('You do not have sufficient permissions to access this page.'));
-        }
-        echo 'About';
+        // if (\current_user_can('manage_options')) {
+        //     global $submenu;
+        //     $submenu[self::NAME][] = [
+        //         __('Documentation', 'graphql-api'),
+        //         'manage_options',
+        //         'https://graphql-api.com/documentation/',
+        //     ];
+        // }
     }
 }
