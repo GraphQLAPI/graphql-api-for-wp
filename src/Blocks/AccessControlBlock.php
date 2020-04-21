@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
-use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
 
@@ -38,6 +37,19 @@ class AccessControlBlock extends AbstractControlBlock
     {
         return \__('Who can access:', 'graphql-api');
     }
+
+    /**
+     * Pass localized data to the block
+     *
+     * @return array
+     */
+    protected function getLocalizedData(): array
+    {
+        return [
+            'enableIndividualSchemaMode' => true,
+        ];
+    }
+
     /**
      * Return the nested blocks' content
      *

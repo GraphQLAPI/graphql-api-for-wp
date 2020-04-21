@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Error;
+use Leoloso\GraphQLByPoPWPPlugin\General\GeneralUtils;
 
 /**
  * Base class for a Gutenberg block, within a multi-block plugin.
@@ -114,6 +115,15 @@ abstract class AbstractBlock
         );
     }
     /**
+     * Block registration name: namespace-blockName
+     *
+     * @return string
+     */
+    final protected function getBlockLocalizationName(): string
+    {
+        return GeneralUtils::dashesToCamelCase($this->getBlockRegistrationName());
+    }
+    /**
      * Block class name: wp-block-namespace-blockName
      *
      * @return string
@@ -134,6 +144,16 @@ abstract class AbstractBlock
     public function getAlignClass(): string
     {
         return 'alignwide';
+    }
+
+    /**
+     * Pass localized data to the block
+     *
+     * @return array
+     */
+    protected function getLocalizedData(): array
+    {
+        return [];
     }
 
     /**
@@ -164,8 +184,9 @@ abstract class AbstractBlock
         // Load the block scripts and styles
         $index_js     = 'build/index.js';
         $script_asset = require($script_asset_path);
+        $scriptRegistrationName = $blockRegistrationName . '-block-editor';
         \wp_register_script(
-            $blockRegistrationName . '-block-editor',
+            $scriptRegistrationName,
             $url . $index_js,
             $script_asset['dependencies'],
             $script_asset['version']
@@ -205,6 +226,17 @@ abstract class AbstractBlock
          */
         if ($this->isDynamicBlock()) {
             $blockConfiguration['render_callback'] = [$this, 'renderBlock'];
+        }
+
+        /**
+         * Localize the script with custom data
+         */
+        if ($localizedData = $this->getLocalizedData()) {
+            \wp_localize_script(
+                $scriptRegistrationName,
+                $this->getBlockLocalizationName(),
+                $localizedData
+            );
         }
 
         \register_block_type($blockFullName, $blockConfiguration);
