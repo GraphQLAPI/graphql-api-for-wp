@@ -11,11 +11,21 @@ use Leoloso\GraphQLByPoPWPPlugin\Environment;
 class PluginConfiguration
 {
     /**
-     * Map the environment variables from the components, to WordPress wp-config.php constants
+     * Initialize all configuration
      *
      * @return array
      */
     public static function init(): void
+    {
+        self::mapEnvVariablesToWPConfigConstants();
+    }
+
+    /**
+     * Map the environment variables from the components, to WordPress wp-config.php constants
+     *
+     * @return array
+     */
+    protected static function mapEnvVariablesToWPConfigConstants(): void
     {
         // All the environment variables to override
         $mappings = [
@@ -44,7 +54,8 @@ class PluginConfiguration
     }
 
     /**
-     * Override the value of an environment variable if it has been defined as a constant in wp-config.php, with the environment name prepended with "GRAPHQL_API_"
+     * Override the value of an environment variable if it has been definedas a constant
+     * in wp-config.php, with the environment name prepended with "GRAPHQL_API_"
      *
      * @param [type] $value
      * @param [type] $class
