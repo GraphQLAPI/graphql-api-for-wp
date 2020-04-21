@@ -6,6 +6,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use PoP\AccessControl\ComponentConfiguration;
 
 /**
  * Access Control block
@@ -46,7 +47,7 @@ class AccessControlBlock extends AbstractControlBlock
     protected function getLocalizedData(): array
     {
         return [
-            'enableIndividualControlForSchemaMode' => true,
+            'enableIndividualControlForSchemaMode' => ComponentConfiguration::enableIndividualControlForPublicPrivateSchemaMode(),
         ];
     }
 

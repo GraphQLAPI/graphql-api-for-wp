@@ -25,6 +25,10 @@ define('GRAPHQL_BY_POP_VERSION', '0.1');
 // Load Composer’s autoloader
 require_once (__DIR__.'/vendor/autoload.php');
 
+// Configure the plugin. This defines hooks to set environment variables, so must be executed
+// before those hooks are triggered for first time (in ComponentConfiguration classes)
+\Leoloso\GraphQLByPoPWPPlugin\PluginConfiguration::init();
+
 // Load the current plugin's Component
 \Leoloso\GraphQLByPoPWPPlugin\Component::init();
 

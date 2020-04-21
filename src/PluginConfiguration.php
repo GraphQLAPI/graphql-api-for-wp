@@ -7,6 +7,9 @@ namespace Leoloso\GraphQLByPoPWPPlugin;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\Environment;
+use Leoloso\GraphQLByPoPWPPlugin\Settings\Settings;
+use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
+use PoP\AccessControl\Environment as AccessControlEnvironment;
 
 class PluginConfiguration
 {
@@ -18,6 +21,49 @@ class PluginConfiguration
     public static function init(): void
     {
         self::mapEnvVariablesToWPConfigConstants();
+        self::defineEnvironmentConstantsFromSettings();
+    }
+
+    /**
+     * Define the values for certain environment constants from the plugin settings
+     *
+     * @return array
+     */
+    protected static function defineEnvironmentConstantsFromSettings(): void
+    {
+        // All the environment variables to override
+        $mappings = [
+            [
+                'class' => AccessControlComponentConfiguration::class,
+                'envVariable' => AccessControlEnvironment::USE_PRIVATE_SCHEMA_MODE,
+                'optionName' => 'usePrivateSchemaMode',
+                'defaultValue' => false,
+            ],
+            [
+                'class' => AccessControlComponentConfiguration::class,
+                'envVariable' => AccessControlEnvironment::ENABLE_INDIVIDUAL_CONTROL_FOR_PUBLIC_PRIVATE_SCHEMA_MODE,
+                'optionName' => 'enableIndividualControlForPublicPrivateSchemaMode',
+                'defaultValue' => true,
+            ],
+        ];
+        // For each environment variable, see if its value has been saved in the settings
+        $settings = \get_option(Settings::OPTIONS_NAME);
+        foreach ($mappings as $mapping) {
+            $hookName = ComponentConfigurationHelpers::getHookName($mapping['class'], $mapping['envVariable']);
+            $optionName = $mapping['optionName'];
+            $defaultValue = $mapping['defaultValue'];
+            \add_filter(
+                $hookName,
+                function () use ($settings, $optionName, $defaultValue) {
+                    if (isset($settings[$optionName])) {
+                        return $settings[$optionName];
+                    }
+                    return $defaultValue;
+                },
+                10,
+                3
+            );
+        }
     }
 
     /**
