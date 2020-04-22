@@ -98,7 +98,8 @@ abstract class AbstractPostType
     abstract protected function getPostTypeName(): string;
     /**
      * Custom Post Type under which it will be registered
-     * From documentation: Max. 20 characters and may only contain lowercase alphanumeric characters, dashes, and underscores.
+     * From documentation: Max. 20 characters and may only contain lowercase alphanumeric characters,
+     * dashes, and underscores.
      * @see https://codex.wordpress.org/Function_Reference/register_post_type#Parameters
      *
      * @return string
@@ -110,7 +111,7 @@ abstract class AbstractPostType
     /**
      * Custom Post Type plural name
      *
-     * @param boolean $uppercase Indicate if the name must be uppercase (for starting a sentence) or, otherwise, lowercase
+     * @param bool $uppercase Indicate if the name must be uppercase (for starting a sentence) or, otherwise, lowercase
      * @return string
      */
     protected function getPostTypePluralNames(bool $uppercase): string
@@ -273,11 +274,14 @@ abstract class AbstractPostType
     }
 
     /**
-     * Comment: this function below to remove block types doesn't work, because some of the most basic ones, such as "core/paragraph",
-     * are never registered using `register_block_types`, then they can't be obtained from `\WP_Block_Type_Registry::get_instance()->get_all_registered()`,
+     * Comment: this function below to remove block types doesn't work,
+     * because some of the most basic ones, such as "core/paragraph",
+     * are never registered using `register_block_types`, then they can't be obtained
+     * from `\WP_Block_Type_Registry::get_instance()->get_all_registered()`,
      * and this information exists nowhere.
      *
-     * As a consequence, I am currently disabling blocks by assigning them a category (Eg: "Access Control for GraphiQL") which is not registered for other CPTs
+     * As a consequence, I am currently disabling blocks by assigning them a category
+     * (Eg: "Access Control for GraphiQL") which is not registered for other CPTs
      * Unluckily, this produces an error on JavaScript:
      * > The block "graphql-api/access-control" must have a registered category.
      * > The block "graphql-api/access-control-disable-access" must have a registered category.
