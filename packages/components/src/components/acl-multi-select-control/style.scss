@@ -1,5 +1,0 @@
-@import '../base-styles/mixins.scss';
-
-.graphql-api-access-control-list-select {
-	@include editable-on-focus();
-}

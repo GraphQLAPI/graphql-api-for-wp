@@ -24,6 +24,7 @@ import EditBlock from './edit-block.js';
 import BLOCK_NAME from './block-name.js';
 import { DEFAULT_SCHEMA_MODE } from './schema-modes';
 import './style.scss';
+import '../../../packages/components/src/components/base-styles/editable-on-focus.scss';
 
 /**
  * Every block starts by registering a new block type definition.

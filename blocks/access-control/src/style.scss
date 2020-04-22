@@ -1,9 +1,3 @@
-@import '../../../packages/components/src/components/base-styles/mixins.scss';
-
-.wp-block-graphql-api-access-control {
-	@include editable-on-focus();
-}
-
 .wp-block-graphql-api-access-control {
 	&__item_data {
 		&__title {
