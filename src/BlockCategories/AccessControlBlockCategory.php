@@ -6,44 +6,37 @@ namespace Leoloso\GraphQLByPoPWPPlugin\BlockCategories;
 
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
 
-class AccessControlBlockCategory
+class AccessControlBlockCategory extends AbstractBlockCategory
 {
     public const ACCESS_CONTROL_BLOCK_CATEGORY = 'graphql-api-access-control';
 
-    public function init()
+    /**
+     * Custom Post Type for which to enable the block category
+     *
+     * @return string
+     */
+    protected function getPostType(): string
     {
-        \add_filter(
-            'block_categories',
-            [$this, 'getBlockCategories'],
-            10,
-            2
-        );
+        return GraphQLAccessControlListPostType::POST_TYPE;
     }
 
     /**
-     * Register the "Access Control for GraphQL" category when in the Access Control CPT
+     * Block category's slug
      *
-     * @param [type] $categories
-     * @param [type] $post
-     * @return void
+     * @return string
      */
-    public function getBlockCategories(array $categories, $post)
+    protected function getBlockCategorySlug(): string
     {
-        /**
-         * Only register for the Access Control CPT
-         */
-        if ($post->post_type == GraphQLAccessControlListPostType::POST_TYPE) {
-            return array_merge(
-                $categories,
-                array(
-                    array(
-                        'slug' => self::ACCESS_CONTROL_BLOCK_CATEGORY,
-                        'title' => __('Access Control for GraphQL', 'graphql-api'),
-                    ),
-                )
-            );
-        }
+        return self::ACCESS_CONTROL_BLOCK_CATEGORY;
+    }
 
-        return $categories;
+    /**
+     * Block category's title
+     *
+     * @return string
+     */
+    protected function getBlockCategoryTitle(): string
+    {
+        return __('Access Control for GraphQL', 'graphql-api');
     }
 }

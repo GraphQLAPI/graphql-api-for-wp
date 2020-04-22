@@ -6,44 +6,37 @@ namespace Leoloso\GraphQLByPoPWPPlugin\BlockCategories;
 
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
 
-class CacheControlBlockCategory
+class CacheControlBlockCategory extends AbstractBlockCategory
 {
     public const CACHE_CONTROL_BLOCK_CATEGORY = 'graphql-api-cache-control';
 
-    public function init()
+    /**
+     * Custom Post Type for which to enable the block category
+     *
+     * @return string
+     */
+    protected function getPostType(): string
     {
-        \add_filter(
-            'block_categories',
-            [$this, 'getBlockCategories'],
-            10,
-            2
-        );
+        return GraphQLCacheControlListPostType::POST_TYPE;
     }
 
     /**
-     * Register the "Cache Control for GraphQL" category when in the Cache Control CPT
+     * Block category's slug
      *
-     * @param [type] $categories
-     * @param [type] $post
-     * @return void
+     * @return string
      */
-    public function getBlockCategories(array $categories, $post)
+    protected function getBlockCategorySlug(): string
     {
-        /**
-         * Only register for the Access Control CPT
-         */
-        if ($post->post_type == GraphQLCacheControlListPostType::POST_TYPE) {
-            return array_merge(
-                $categories,
-                array(
-                    array(
-                        'slug' => self::CACHE_CONTROL_BLOCK_CATEGORY,
-                        'title' => __('Cache Control for GraphQL', 'graphql-api'),
-                    ),
-                )
-            );
-        }
+        return self::CACHE_CONTROL_BLOCK_CATEGORY;
+    }
 
-        return $categories;
+    /**
+     * Block category's title
+     *
+     * @return string
+     */
+    protected function getBlockCategoryTitle(): string
+    {
+        return __('Cache Control for GraphQL', 'graphql-api');
     }
 }
