@@ -88,7 +88,7 @@ registerBlockType( 'graphql-api/cache-control', {
 	 */
 	supports: {
 		// Alignment options
-		align: [ 'center', 'wide', 'full' ],
+		align: [ 'wide' ],
 		// Remove the support for the custom className.
 		customClassName: false,
 		// Remove support for an HTML mode.
