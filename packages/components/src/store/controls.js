@@ -13,6 +13,9 @@ const controls = {
 	RECEIVE_DIRECTIVES( action ) {
 		return fetchGraphQLQuery( action.query );
 	},
+	RECEIVE_ACCESS_CONTROL_LISTS( action ) {
+		return fetchGraphQLQuery( action.query );
+	},
 };
 
 export default controls;
