@@ -142,6 +142,6 @@ export default {
 			setAccessControlLists( [], maybeErrorMessage );
 			return;
 		}
-		return setAccessControlLists( response.data?.accessControlLists );
+		return setAccessControlLists( response.data?.posts );
 	},
 };

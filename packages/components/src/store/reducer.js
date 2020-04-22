@@ -43,7 +43,7 @@ const schemaInstrospection = (
 		case 'SET_ACCESS_CONTROL_LISTS':
 			return {
 				...state,
-				directives: action.accessControlLists,
+				accessControlLists: action.accessControlLists,
 				hasRetrievedAccessControlLists: true,
 				retrievingAccessControlListsErrorMessage: action.errorMessage,
 			};
