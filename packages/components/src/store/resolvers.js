@@ -46,12 +46,18 @@ export const FETCH_DIRECTIVES_GRAPHQL_QUERY = `
 `
 
 /**
+ * Custom Post Type name
+ * Same value as Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType::POST_TYPE
+ */
+const ACCESS_CONTROL_LIST_POST_TYPE = 'graphql-acl';
+
+/**
  * GraphQL query to fetch the list of Access Control Lists from the GraphQL schema
  */
 const noTitleLabel = __('(No title)', 'graphql-api');
 export const FETCH_ACCESS_CONTROL_LISTS_GRAPHQL_QUERY = `
 	query GetAccessControlLists {
-		posts {
+		posts(postTypes: ["${ ACCESS_CONTROL_LIST_POST_TYPE }"]) {
 			id
 			title @default(value: "${ noTitleLabel }", condition: is_empty)
 		}
