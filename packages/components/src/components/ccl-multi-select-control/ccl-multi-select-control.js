@@ -21,13 +21,14 @@ const CacheControlListMultiSelectControl = compose( [
 		} = select ( 'graphql-api/components' );
 		/**
 		 * Convert the cacheControlLists array to this structure:
-		 * [{group:"CacheControlLists",title:"cacheControlList.title",value:"cacheControlList.id"},...]
+		 * [{group:"CacheControlLists",title:"cacheControlList.title",value:"cacheControlList.id",help:"cacheControlList.excerpt"},...]
 		 */
 		const items = getCacheControlLists().map( cacheControlList => (
 			{
 				group: __('Cache Control Lists', 'graphql-api'),
 				title: cacheControlList.title,
 				value: cacheControlList.id,
+				help: cacheControlList.excerpt,
 			}
 		) );
 		return {

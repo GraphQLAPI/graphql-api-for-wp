@@ -21,13 +21,14 @@ const AccessControlListMultiSelectControl = compose( [
 		} = select ( 'graphql-api/components' );
 		/**
 		 * Convert the accessControlLists array to this structure:
-		 * [{group:"AccessControlLists",title:"accessControlList.title",value:"accessControlList.id"},...]
+		 * [{group:"AccessControlLists",title:"accessControlList.title",value:"accessControlList.id",help:"accessControlList.excerpt"},...]
 		 */
 		const items = getAccessControlLists().map( accessControlList => (
 			{
 				group: __('Access Control Lists', 'graphql-api'),
 				title: accessControlList.title,
 				value: accessControlList.id,
+				help: accessControlList.excerpt,
 			}
 		) );
 		return {

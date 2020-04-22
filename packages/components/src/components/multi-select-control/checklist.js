@@ -6,7 +6,7 @@ import { partial } from 'lodash';
 /**
  * WordPress dependencies
  */
-import { CheckboxControl } from '@wordpress/components';
+import { CheckboxControl, Tooltip, Icon } from '@wordpress/components';
 
 function MultiSelectControlGroupChecklist( { items, value, onItemChange } ) {
 	return (
@@ -20,6 +20,7 @@ function MultiSelectControlGroupChecklist( { items, value, onItemChange } ) {
 						label={ item.title }
 						checked={ value.includes( item.value ) }
 						onChange={ partial( onItemChange, item.value ) }
+						help={ item.help }
 					/>
 				</li>
 			) ) }

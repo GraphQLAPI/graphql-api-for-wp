@@ -145,3 +145,10 @@
 	padding-right: $grid-size-xlarge;
 	border-top: $border-width solid $light-gray-500;
 }
+
+// Change the style of the help in the Checkbox Control:
+// by default it adds 28px on bottom and italics, and they look ugly
+.editor-styles-wrapper ul.multi-select-control__checklist p {
+	margin-bottom: 0;
+	font-style: normal;
+}

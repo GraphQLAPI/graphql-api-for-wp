@@ -65,6 +65,7 @@ export const FETCH_ACCESS_CONTROL_LISTS_GRAPHQL_QUERY = `
 		posts(postTypes: ["${ ACCESS_CONTROL_LIST_POST_TYPE }"]) {
 			id
 			title @default(value: "${ noTitleLabel }", condition: IS_EMPTY)
+			excerpt
 		}
 	}
 `
@@ -82,6 +83,7 @@ export const FETCH_CACHE_CONTROL_LISTS_GRAPHQL_QUERY = `
 		posts(postTypes: ["${ CACHE_CONTROL_LIST_POST_TYPE }"]) {
 			id
 			title @default(value: "${ noTitleLabel }", condition: IS_EMPTY)
+			excerpt
 		}
 	}
 `
