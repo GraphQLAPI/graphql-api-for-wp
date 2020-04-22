@@ -32,7 +32,7 @@ const AccessControlListPrintout = ( props ) => {
 				{ !! accessControlLists.length && accessControlLists.map( selectedAccessControlListID =>
 					<>
 						<CheckboxControl
-							label={ `${ accessControlListsDictionary[selectedAccessControlListID] }` }
+							label={ accessControlListsDictionary[selectedAccessControlListID] || __(`(Undefined element with ID ${ selectedAccessControlListID })`, 'graphql-api') }
 							checked={ true }
 							disabled={ true }
 						/>
