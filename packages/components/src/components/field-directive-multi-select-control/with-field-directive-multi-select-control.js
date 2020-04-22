@@ -11,7 +11,7 @@ import FieldDirectivePrintout from './field-directive-printout';
  */
 const withFieldDirectiveMultiSelectControl = () => createHigherOrderComponent(
 	( WrappedComponent ) => ( props ) => {
-		const { setAttributes, isSelected, attributes: { typeFields, directives }, accessControlComponentClassName, selectLabel, configurationLabel } = props;
+		const { setAttributes, isSelected, attributes: { typeFields, directives }, componentClassName, selectLabel, configurationLabel } = props;
 		const className = 'graphql-api-access-control-list';
 		const leftSideLabel = selectLabel || __('Select fields and directives:', 'graphql-api');
 		const rightSideLabel = configurationLabel || __('Configuration:', 'graphql-api');
@@ -24,7 +24,7 @@ const withFieldDirectiveMultiSelectControl = () => createHigherOrderComponent(
 								<div className={ className+'__item_data__title' }>
 									<strong>{ leftSideLabel }</strong>
 								</div>
-								<div className={ accessControlComponentClassName }>
+								<div className={ componentClassName }>
 									{ isSelected &&
 										<FieldDirectiveTabPanel
 											{ ...props }

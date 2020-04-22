@@ -112,7 +112,7 @@ registerBlockType( 'graphql-api/cache-control', {
 				<EditBlock
 					selectLabel={ __('Set cache-control header for:', 'graphql-api') }
 					configurationLabel={ __('Max-age:', 'graphql-api') }
-					accessControlComponentClassName={ getEditableOnFocusComponentClass(isSelected) }
+					componentClassName={ getEditableOnFocusComponentClass(isSelected) }
 					{ ...props }
 				/>
 			</div>
