@@ -14,11 +14,13 @@ use Leoloso\GraphQLByPoPWPPlugin\Admin\BlockDevelopmentHotReload;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserRolesBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserStateBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlDisableAccessBlock;
-use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\CacheControlBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserCapabilitiesBlock;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\CacheControlBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\SchemaConfigurationBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLSchemaConfigurationPostType;
 
 class Plugin
 {
@@ -38,6 +40,7 @@ class Plugin
         (new GraphQLQueryPostType())->init();
         (new GraphQLAccessControlListPostType())->init();
         (new GraphQLCacheControlListPostType())->init();
+        (new GraphQLSchemaConfigurationPostType())->init();
 
         /**
          * Blocks
@@ -72,6 +75,7 @@ class Plugin
          */
         (new AccessControlBlockCategory())->init();
         (new CacheControlBlockCategory())->init();
+        (new SchemaConfigurationBlockCategory())->init();
 
         /**
          * Clients
