@@ -8,6 +8,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock;
 
 class PluginState
 {
@@ -15,6 +16,7 @@ class PluginState
     public static $accessControlBlock;
     public static $accessControlNestedBlocks = [];
     public static $cacheControlBlock;
+    public static $schemaConfigAccessControlListBlock;
 
     /**
      * Get the value of graphiQLBlock
@@ -86,5 +88,23 @@ class PluginState
     public static function setCacheControlBlock(CacheControlBlock $cacheControlBlock): void
     {
         self::$cacheControlBlock = $cacheControlBlock;
+    }
+
+    /**
+     * Get the value of schemaConfigAccessControlListBlock
+     */
+    public static function getSchemaConfigAccessControlListBlock(): SchemaConfigAccessControlListBlock
+    {
+        return self::$schemaConfigAccessControlListBlock;
+    }
+
+    /**
+     * Set the value of schemaConfigAccessControlListBlock
+     *
+     * @return void
+     */
+    public static function setSchemaConfigAccessControlListBlock(SchemaConfigAccessControlListBlock $schemaConfigAccessControlListBlock): void
+    {
+        self::$schemaConfigAccessControlListBlock = $schemaConfigAccessControlListBlock;
     }
 }

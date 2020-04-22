@@ -11,6 +11,8 @@ import {
 	setTypeFields,
 	receiveDirectives,
 	setDirectives,
+	receiveAccessControlLists,
+	setAccessControlLists,
 } from './action-creators';
 
 /**
@@ -39,6 +41,18 @@ export const FETCH_DIRECTIVES_GRAPHQL_QUERY = `
 			directives(skipSystemDirectives: true) {
 				name
 			}
+		}
+	}
+`
+
+/**
+ * GraphQL query to fetch the list of Access Control Lists from the GraphQL schema
+ */
+export const FETCH_ACCESS_CONTROL_LISTS_GRAPHQL_QUERY = `
+	query GetAccessControlLists {
+		posts {
+			id
+			title
 		}
 	}
 `
@@ -112,5 +126,22 @@ export default {
 		 */
 		const directives = response.data?.__schema?.directives?.map(element => element.name) || [];
 		return setDirectives( directives );
+	},
+
+	/**
+	 * Fetch the Access Control Lists from the GraphQL server
+	 */
+	* getAccessControlLists() {
+
+		const response = yield receiveAccessControlLists( FETCH_ACCESS_CONTROL_LISTS_GRAPHQL_QUERY );
+		/**
+		 * If there were erros when executing the query, return an empty list, and keep the error in the state
+		 */
+		const maybeErrorMessage = maybeGetErrorMessage(response);
+		if (maybeErrorMessage) {
+			setAccessControlLists( [], maybeErrorMessage );
+			return;
+		}
+		return setAccessControlLists( response.data?.accessControlLists );
 	},
 };

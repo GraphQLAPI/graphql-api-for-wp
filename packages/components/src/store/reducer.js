@@ -8,6 +8,9 @@ const DEFAULT_STATE = {
 	directives: [],
 	hasRetrievedDirectives: false,
 	retrievingDirectivesErrorMessage: null,
+	accessControlLists: [],
+	hasRetrievedAccessControlLists: false,
+	retrievingAccessControlListsErrorMessage: null,
 };
 
 /**
@@ -36,6 +39,13 @@ const schemaInstrospection = (
 				directives: action.directives,
 				hasRetrievedDirectives: true,
 				retrievingDirectivesErrorMessage: action.errorMessage,
+			};
+		case 'SET_ACCESS_CONTROL_LISTS':
+			return {
+				...state,
+				directives: action.accessControlLists,
+				hasRetrievedAccessControlLists: true,
+				retrievingAccessControlListsErrorMessage: action.errorMessage,
 			};
 	}
 	return state;

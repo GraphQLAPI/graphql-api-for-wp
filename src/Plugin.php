@@ -9,6 +9,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Front\Clients;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\BlockDevelopmentHotReload;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserRolesBlock;
@@ -69,6 +70,10 @@ class Plugin
         $cacheControlBlock = new CacheControlBlock();
         $cacheControlBlock->init();
         PluginState::setCacheControlBlock($cacheControlBlock);
+
+        $schemaConfigAccessControlListBlock = new SchemaConfigAccessControlListBlock();
+        $schemaConfigAccessControlListBlock->init();
+        PluginState::setSchemaConfigAccessControlListBlock($schemaConfigAccessControlListBlock);
 
         /**
          * Block categories

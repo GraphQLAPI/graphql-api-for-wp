@@ -55,16 +55,26 @@ class GraphQLSchemaConfigurationPostType extends AbstractPostType
         return true;
     }
 
-    // /**
-    //  * Gutenberg templates to lock down the Custom Post Type to
-    //  *
-    //  * @return array
-    //  */
-    // protected function getGutenbergTemplate(): array
-    // {
-    //     $cacheControlBlock = PluginState::getCacheControlBlock();
-    //     return [
-    //         [$cacheControlBlock->getBlockFullName()],
-    //     ];
-    // }
+    /**
+     * Gutenberg templates to lock down the Custom Post Type to
+     *
+     * @return array
+     */
+    protected function getGutenbergTemplate(): array
+    {
+        $schemaConfigAccessControlListBlock = PluginState::getSchemaConfigAccessControlListBlock();
+        return [
+            [$schemaConfigAccessControlListBlock->getBlockFullName()],
+        ];
+    }
+
+    /**
+     * Indicates if to lock the Gutenberg templates
+     *
+     * @return boolean
+     */
+    protected function lockGutenbergTemplate(): bool
+    {
+        return true;
+    }
 }
