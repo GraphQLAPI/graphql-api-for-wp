@@ -11,11 +11,10 @@
 import { AccessControlListEditableOnFocusMultiSelectControl } from '../../../packages/components/src';
 
 const EditBlock = ( props ) => {
-	const { isSelected, className } = props;
+	const { className } = props;
 	return (
 		<div class={ className }>
 			<AccessControlListEditableOnFocusMultiSelectControl
-				accessControlComponentClassName={ `nested-component editable-on-focus is-selected-${ isSelected }` }
 				{ ...props}
 			/>
 		</div>

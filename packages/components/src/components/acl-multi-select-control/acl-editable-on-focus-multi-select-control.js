@@ -10,11 +10,12 @@ import AccessControlListMultiSelectControl from './acl-multi-select-control';
 import AccessControlListPrintout from './acl-printout';
 
 const AccessControlListEditableOnFocusMultiSelectControl = ( props ) => {
-	const { setAttributes, isSelected, attributes: { accessControlLists }, accessControlComponentClassName } = props;
+	const { setAttributes, isSelected, attributes: { accessControlLists } } = props;
 	const className = 'graphql-api-access-control-list-select';
+	const componentClassName = `nested-component editable-on-focus is-selected-${ isSelected }`;
 	return (
 		<div className={ className }>
-			<div className={ accessControlComponentClassName }>
+			<div className={ componentClassName }>
 				{ isSelected &&
 					<AccessControlListMultiSelectControl
 						{ ...props }
