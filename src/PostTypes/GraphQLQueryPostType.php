@@ -58,26 +58,26 @@ class GraphQLQueryPostType extends AbstractPostType
         return \__('GraphQL persisted queries', 'graphql-api');
     }
 
-    // /**
-    //  * Labels for registering the post type
-    //  *
-    //  * @param string $name_uc Singular name uppercase
-    //  * @param string $names_uc Plural name uppercase
-    //  * @param string $names_lc Plural name lowercase
-    //  * @return array
-    //  */
-    // protected function getPostTypeLabels(string $name_uc, string $names_uc, string $names_lc): array
-    // {
-    //     /**
-    //      * Because the name is too long, shorten it for the admin menu only
-    //      */
-    //     return array_merge(
-    //         parent::getPostTypeLabels($name_uc, $names_uc, $names_lc),
-    //         array(
-    //             'all_items' => \__('Persisted queries', 'graphql-api'),
-    //         )
-    //     );
-    // }
+    /**
+     * Labels for registering the post type
+     *
+     * @param string $name_uc Singular name uppercase
+     * @param string $names_uc Plural name uppercase
+     * @param string $names_lc Plural name lowercase
+     * @return array
+     */
+    protected function getPostTypeLabels(string $name_uc, string $names_uc, string $names_lc): array
+    {
+        /**
+         * Because the name is too long, shorten it for the admin menu only
+         */
+        return array_merge(
+            parent::getPostTypeLabels($name_uc, $names_uc, $names_lc),
+            array(
+                'all_items' => \__('Persisted queries', 'graphql-api'),
+            )
+        );
+    }
 
     /**
      * Arguments for registering the post type
