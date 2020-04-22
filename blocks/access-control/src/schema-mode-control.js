@@ -8,7 +8,7 @@ import { Card, CardHeader, CardBody, RadioControl } from '@wordpress/components'
  * Internal dependencies
  */
 import { DEFAULT_SCHEMA_MODE, PUBLIC_SCHEMA_MODE, PRIVATE_SCHEMA_MODE } from './schema-modes';
-import { LinkableInfoTooltip } from '../../../packages/components/src';
+import { LinkableInfoTooltip, getEditableOnFocusComponentClass } from '../../../packages/components/src';
 
 const SchemaModeControl = ( props ) => {
 	const { className, isSelected, setAttributes, attributes: { schemaMode } } = props;
@@ -26,7 +26,7 @@ const SchemaModeControl = ( props ) => {
 			value: PRIVATE_SCHEMA_MODE,
 		},
 	];
-	const componentClassName = `nested-component editable-on-focus is-selected-${ isSelected }`;
+	const componentClassName = getEditableOnFocusComponentClass(isSelected);
 	const documentationLink = 'https://graphql-api.com/documentation/#schema-mode'
 	return (
 		<div className={ componentClassName }>

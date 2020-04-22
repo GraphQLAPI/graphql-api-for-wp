@@ -23,6 +23,7 @@ import { InnerBlocks } from '@wordpress/block-editor';
 import EditBlock from './edit-block.js';
 import BLOCK_NAME from './block-name.js';
 import { DEFAULT_SCHEMA_MODE } from './schema-modes';
+import { getEditableOnFocusComponentClass } from '../../../packages/components/src';
 import './style.scss';
 import '../../../packages/components/src/components/base-styles/editable-on-focus.scss';
 
@@ -125,7 +126,7 @@ registerBlockType( BLOCK_NAME, {
 				<EditBlock
 					selectLabel={ __('Define access for:', 'graphql-api') }
 					configurationLabel={ enableIndividualControlForSchemaMode ? __('Access Control Rules:', 'graphql-api') : __('Who can access:', 'graphql-api') }
-					accessControlComponentClassName={ `nested-component editable-on-focus is-selected-${ isSelected }` }
+					accessControlComponentClassName={ getEditableOnFocusComponentClass(isSelected) }
 					enableIndividualControlForSchemaMode={ enableIndividualControlForSchemaMode }
 					{ ...props}
 				/>

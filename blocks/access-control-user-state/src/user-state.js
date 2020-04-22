@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { Card, CardBody, RadioControl } from '@wordpress/components';
 import { IN as USER_STATE_IN, OUT as USER_STATE_OUT } from './user-states';
+import { getEditableOnFocusComponentClass } from '../../../packages/components/src';
 
 const UserState = ( props ) => {
 	const { className, isSelected, setAttributes, attributes: { value } } = props;
@@ -24,7 +25,7 @@ const UserState = ( props ) => {
 			value: USER_STATE_OUT,
 		},
 	];
-	const componentClassName = `nested-component editable-on-focus is-selected-${ isSelected }`;
+	const componentClassName = getEditableOnFocusComponentClass(isSelected);
 	return (
 		<div className={ componentClassName }>
 			<Card { ...props }>

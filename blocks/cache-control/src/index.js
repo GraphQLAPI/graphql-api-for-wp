@@ -16,6 +16,7 @@ import { __ } from '@wordpress/i18n';
  * Application imports
  */
 import EditBlock from './edit-block.js';
+import { getEditableOnFocusComponentClass } from '../../../packages/components/src';
 import '../../../packages/components/src/components/base-styles/editable-on-focus.scss';
 
 /**
@@ -111,7 +112,7 @@ registerBlockType( 'graphql-api/cache-control', {
 				<EditBlock
 					selectLabel={ __('Set cache-control header for:', 'graphql-api') }
 					configurationLabel={ __('Max-age:', 'graphql-api') }
-					accessControlComponentClassName={ `nested-component editable-on-focus is-selected-${ isSelected }` }
+					accessControlComponentClassName={ getEditableOnFocusComponentClass(isSelected) }
 					{ ...props }
 				/>
 			</div>

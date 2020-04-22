@@ -8,11 +8,12 @@ import { __ } from '@wordpress/i18n';
  */
 import AccessControlListMultiSelectControl from './acl-multi-select-control';
 import AccessControlListPrintout from './acl-printout';
+import { getEditableOnFocusComponentClass } from '../base-styles'
 
 const AccessControlListEditableOnFocusMultiSelectControl = ( props ) => {
 	const { setAttributes, isSelected, attributes: { accessControlLists } } = props;
 	const className = 'graphql-api-access-control-list-select';
-	const componentClassName = `nested-component editable-on-focus is-selected-${ isSelected }`;
+	const componentClassName = getEditableOnFocusComponentClass(isSelected);
 	return (
 		<div className={ className }>
 			<div className={ componentClassName }>

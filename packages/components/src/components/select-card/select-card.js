@@ -3,6 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { Card, CardHeader, CardBody } from '@wordpress/components';
+import { getEditableOnFocusComponentClass } from '../base-styles'
 
 /**
  * External dependencies
@@ -24,7 +25,7 @@ const SelectCard = ( props ) => {
 	const options = items.map(item => ( { value: item, label: item } ) )
 	const selectedValues = value.map(val => ( { value: val, label: val } ) )
 	const componentClassName = 'graphql-api-select-card';
-	const componentClass = `${ componentClassName } nested-component editable-on-focus is-selected-${ isSelected }`;
+	const componentClass = `${ componentClassName } ${ getEditableOnFocusComponentClass(isSelected) }`;
 	return (
 		<div className={ componentClass }>
 			<Card { ...props }>

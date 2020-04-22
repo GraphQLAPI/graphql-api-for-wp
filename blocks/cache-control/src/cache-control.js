@@ -7,11 +7,11 @@ import { TextControl, Card, CardHeader, CardBody, Tooltip, Icon, ExternalLink } 
 /**
  * Internal dependencies
  */
-import { LinkableInfoTooltip } from '../../../packages/components/src';
+import { LinkableInfoTooltip, getEditableOnFocusComponentClass } from '../../../packages/components/src';
 
 const CacheControl = ( props ) => {
 	const { className, setAttributes, isSelected, attributes: { cacheControlMaxAge } } = props;
-	const componentClassName = `nested-component editable-on-focus is-selected-${ isSelected }`;
+	const componentClassName = getEditableOnFocusComponentClass(isSelected);
 	const documentationLink = 'https://graphql-api.com/documentation/#cache-control'
 	return (
 		<div className={ componentClassName }>
