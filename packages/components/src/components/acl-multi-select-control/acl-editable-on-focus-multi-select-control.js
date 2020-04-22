@@ -26,7 +26,6 @@ const AccessControlListEditableOnFocusMultiSelectControl = ( props ) => {
 				{ !isSelected && (
 					<AccessControlListPrintout
 						{ ...props }
-						// accessControlListEntries={ accessControlListEntries }
 						accessControlLists={ accessControlLists }
 						className={ className }
 					/>
