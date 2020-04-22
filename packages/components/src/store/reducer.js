@@ -11,6 +11,9 @@ const DEFAULT_STATE = {
 	accessControlLists: [],
 	hasRetrievedAccessControlLists: false,
 	retrievingAccessControlListsErrorMessage: null,
+	cacheControlLists: [],
+	hasRetrievedCacheControlLists: false,
+	retrievingCacheControlListsErrorMessage: null,
 };
 
 /**
@@ -46,6 +49,13 @@ const schemaInstrospection = (
 				accessControlLists: action.accessControlLists,
 				hasRetrievedAccessControlLists: true,
 				retrievingAccessControlListsErrorMessage: action.errorMessage,
+			};
+		case 'SET_CACHE_CONTROL_LISTS':
+			return {
+				...state,
+				cacheControlLists: action.cacheControlLists,
+				hasRetrievedCacheControlLists: true,
+				retrievingCacheControlListsErrorMessage: action.errorMessage,
 			};
 	}
 	return state;

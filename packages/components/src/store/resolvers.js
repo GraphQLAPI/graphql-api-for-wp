@@ -13,6 +13,8 @@ import {
 	setDirectives,
 	receiveAccessControlLists,
 	setAccessControlLists,
+	receiveCacheControlLists,
+	setCacheControlLists,
 } from './action-creators';
 
 /**
@@ -46,18 +48,38 @@ export const FETCH_DIRECTIVES_GRAPHQL_QUERY = `
 `
 
 /**
+ * Title to use when the CPT doesn't have a title
+ */
+const noTitleLabel = __('(No title)', 'graphql-api');
+
+/**
  * Custom Post Type name
  * Same value as Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType::POST_TYPE
  */
 const ACCESS_CONTROL_LIST_POST_TYPE = 'graphql-acl';
-
 /**
  * GraphQL query to fetch the list of Access Control Lists from the GraphQL schema
  */
-const noTitleLabel = __('(No title)', 'graphql-api');
 export const FETCH_ACCESS_CONTROL_LISTS_GRAPHQL_QUERY = `
 	query GetAccessControlLists {
 		posts(postTypes: ["${ ACCESS_CONTROL_LIST_POST_TYPE }"]) {
+			id
+			title @default(value: "${ noTitleLabel }", condition: IS_EMPTY)
+		}
+	}
+`
+
+/**
+ * Custom Post Type name
+ * Same value as Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType::POST_TYPE
+ */
+const CACHE_CONTROL_LIST_POST_TYPE = 'graphql-ccl';
+/**
+ * GraphQL query to fetch the list of Cache Control Lists from the GraphQL schema
+ */
+export const FETCH_CACHE_CONTROL_LISTS_GRAPHQL_QUERY = `
+	query GetCacheControlLists {
+		posts(postTypes: ["${ CACHE_CONTROL_LIST_POST_TYPE }"]) {
 			id
 			title @default(value: "${ noTitleLabel }", condition: IS_EMPTY)
 		}
@@ -150,5 +172,22 @@ export default {
 			return;
 		}
 		return setAccessControlLists( response.data?.posts );
+	},
+
+	/**
+	 * Fetch the Cache Control Lists from the GraphQL server
+	 */
+	* getCacheControlLists() {
+
+		const response = yield receiveCacheControlLists( FETCH_CACHE_CONTROL_LISTS_GRAPHQL_QUERY );
+		/**
+		 * If there were erros when executing the query, return an empty list, and keep the error in the state
+		 */
+		const maybeErrorMessage = maybeGetErrorMessage(response);
+		if (maybeErrorMessage) {
+			setCacheControlLists( [], maybeErrorMessage );
+			return;
+		}
+		return setCacheControlLists( response.data?.posts );
 	},
 };

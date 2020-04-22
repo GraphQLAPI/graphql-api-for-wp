@@ -88,3 +88,33 @@ export function receiveAccessControlLists( query ) {
 		query,
 	};
 };
+
+/**
+ * Returns an action object used in setting the cacheControlLists in the state
+ *
+ * @param {Array} cacheControlLists Array of cacheControlLists received.
+ * @param {string} errorMessage Error message if fetching the objects failed
+ *
+ * @return {Object} Action object.
+ */
+export function setCacheControlLists( cacheControlLists, errorMessage ) {
+	return {
+		type: 'SET_CACHE_CONTROL_LISTS',
+		cacheControlLists,
+		errorMessage,
+	};
+};
+
+/**
+ * Returns an action object used in signalling that the cacheControlLists must be received.
+ *
+ * @param {string} query GraphQL query to execute
+ *
+ * @return {Object} Action object.
+ */
+export function receiveCacheControlLists( query ) {
+	return {
+		type: 'RECEIVE_CACHE_CONTROL_LISTS',
+		query,
+	};
+};

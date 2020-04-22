@@ -121,3 +121,36 @@ export function hasRetrievedAccessControlLists( state ) {
 export function getRetrievingAccessControlListsErrorMessage( state ) {
 	return state.retrievingAccessControlListsErrorMessage;
 };
+
+/**
+ * Get the Cache Control Lists from the GraphQL schema
+ *
+ * @param {Object} state Store state
+ *
+ * @return {array} The list of Cache Control Lists
+ */
+export function getCacheControlLists( state ) {
+	return state.cacheControlLists;
+};
+
+/**
+ * Have the Cache Control Lists been retrieved from the GraphQL server?
+ *
+ * @param {Object} state Store state
+ *
+ * @return {bool} The list of Cache Control Lists
+ */
+export function hasRetrievedCacheControlLists( state ) {
+	return state.hasRetrievedCacheControlLists;
+};
+
+/**
+ * Get the error message from retrieving the Cache Control Lists from the GraphQL server, if any
+ *
+ * @param {Object} state Store state
+ *
+ * @return {string|null} The error message
+ */
+export function getRetrievingCacheControlListsErrorMessage( state ) {
+	return state.retrievingCacheControlListsErrorMessage;
+};
