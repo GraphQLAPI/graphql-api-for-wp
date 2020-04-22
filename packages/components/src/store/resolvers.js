@@ -48,11 +48,12 @@ export const FETCH_DIRECTIVES_GRAPHQL_QUERY = `
 /**
  * GraphQL query to fetch the list of Access Control Lists from the GraphQL schema
  */
+const noTitleLabel = __('(No title)', 'graphql-api');
 export const FETCH_ACCESS_CONTROL_LISTS_GRAPHQL_QUERY = `
 	query GetAccessControlLists {
 		posts {
 			id
-			title
+			title @default(value: "${ noTitleLabel }", condition: is_empty)
 		}
 	}
 `
