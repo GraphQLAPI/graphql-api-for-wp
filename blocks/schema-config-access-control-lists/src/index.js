@@ -15,7 +15,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Application imports
  */
-import { AccessControlListEditableOnFocusMultiSelectControl } from '../../../packages/components/src';
+import EditBlock from './edit-block';
 
 /**
  * Every block starts by registering a new block type definition.
@@ -82,7 +82,7 @@ registerBlockType( 'graphql-api/schema-config-access-control-lists', {
 	 *
 	 * @return {WPElement} Element to render.
 	 */
-	edit: AccessControlListEditableOnFocusMultiSelectControl,
+	edit: EditBlock,
 
 	/**
 	 * The save function defines the way in which the different attributes should be combined
