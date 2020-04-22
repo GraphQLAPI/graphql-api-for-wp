@@ -50,7 +50,7 @@ class GraphQLQueryPostType extends AbstractPostType
     /**
      * Custom Post Type plural name
      *
-     * @param boolean $uppercase Indicate if the name must be uppercase (for starting a sentence) or, otherwise, lowercase
+     * @param bool $uppercase Indicate if the name must be uppercase (for starting a sentence) or, otherwise, lowercase
      * @return string
      */
     protected function getPostTypePluralNames(bool $uppercase): string
@@ -181,7 +181,8 @@ class GraphQLQueryPostType extends AbstractPostType
          */
         if ($this->resolveGraphQLQuery()) {
             /**
-             * Execute first, before VarsHooks in the API package, to set-up the variables in $vars as soon as we knows if it's a singular post of this type
+             * Execute first, before VarsHooks in the API package, to set-up the variables in $vars
+             * as soon as we knows if it's a singular post of this type
              */
             \add_action(
                 'ApplicationState:addVars',
@@ -238,7 +239,8 @@ class GraphQLQueryPostType extends AbstractPostType
         if (\is_singular($this->getPostType())) {
             global $post;
             /**
-             * If the GraphQL query has a parent, possibly it is missing the query/variables/acl/ccl attributes, which inherits from some parent
+             * If the GraphQL query has a parent, possibly it is missing the query/variables/acl/ccl attributes,
+             * which inherits from some parent
              * In that case, render the block twice:
              * 1. The current block, with missing attributes
              * 2. The final block, completing the missing attributes from its parent
@@ -280,7 +282,7 @@ class GraphQLQueryPostType extends AbstractPostType
                 /**
                  * Prettyprint the code
                  */
-                $content .= \sprintf('<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>');
+                $content .= '<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>';
             }
         }
         return $content;
@@ -331,7 +333,8 @@ class GraphQLQueryPostType extends AbstractPostType
             );
 
             /**
-             * Remove any query passed through the request, to avoid users executing a custom query, bypassing the persisted one
+             * Remove any query passed through the request, to avoid users executing a custom query,
+             * bypassing the persisted one
              */
             unset($_REQUEST[QueryInputs::QUERY]);
 
@@ -352,7 +355,10 @@ class GraphQLQueryPostType extends AbstractPostType
             ) = GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, true);
             if (!$graphQLQuery) {
                 throw new Exception(
-                    \__('This GraphQL query either has no query defined, or it has corrupted content, so it can\'t be processed.', 'graphql-api')
+                    \__(
+                        'This GraphQL query either has no query defined, or it has corrupted content, so it can\'t be processed.',
+                        'graphql-api'
+                    )
                 );
             }
             /**
@@ -369,7 +375,8 @@ class GraphQLQueryPostType extends AbstractPostType
                  * Then doing `json_decode` will return NULL. In that case, do nothing or the application will fail
                  */
                 if (!is_null($graphQLVariables)) {
-                    // There may already be variables from the request, which must override any fixed variable stored in the query
+                    // There may already be variables from the request, which must override
+                    // any fixed variable stored in the query
                     $vars['variables'] = array_merge(
                         $graphQLVariables,
                         $vars['variables'] ?? []
