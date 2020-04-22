@@ -19,11 +19,11 @@ const AccessControlListPrintout = ( props ) => {
 	const emptyLabelString = emptyLabel != undefined ? emptyLabel : EMPTY_LABEL;
 
 	/**
-	 * Create a dictionary, with ID as key, and name as the value
+	 * Create a dictionary, with ID as key, and title as the value
 	 */
 	let accessControlListsDictionary = {};
 	accessControlListEntries.forEach(function(accessControlList) {
-		accessControlListsDictionary[ accessControlList.id ] = accessControlList.name;
+		accessControlListsDictionary[ accessControlList.id ] = accessControlList.title;
 	} );
 	return (
 		<Card { ...props }>

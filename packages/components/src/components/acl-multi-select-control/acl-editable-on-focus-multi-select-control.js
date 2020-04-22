@@ -18,7 +18,7 @@ const AccessControlListEditableOnFocusMultiSelectControl = ( props ) => {
 				{ isSelected &&
 					<AccessControlListMultiSelectControl
 						{ ...props }
-						accessControlLists={ accessControlLists }
+						selectedItems={ accessControlLists }
 						setAttributes={ setAttributes }
 						className={ className }
 					/>
