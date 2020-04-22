@@ -15,7 +15,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Application imports
  */
-import EditBlock from './EditBlock.js';
+import EditBlock from './edit-block.js';
 
 /**
  * Every block starts by registering a new block type definition.
