@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\Config;
 
 use PoP\Engine\TypeResolvers\RootTypeResolver;
-use PoP\Users\TypeResolvers\UserTypeResolver;
 use PoP\Root\Component\PHPServiceConfigurationTrait;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use PoP\UserRolesAccessControl\Services\AccessControlGroups as UserRolesAccessControlGroups;
+use PoP\AccessControl\Schema\SchemaModes;
 
 class ServiceConfiguration
 {
@@ -27,8 +27,8 @@ class ServiceConfiguration
                 'addEntriesForFields',
                 UserRolesAccessControlGroups::CAPABILITIES,
                 [
-                    [RootTypeResolver::class, 'accessControlLists', $capabilities],
-                    [RootTypeResolver::class, 'cacheControlLists', $capabilities],
+                    [RootTypeResolver::class, 'accessControlLists', $capabilities, SchemaModes::PRIVATE_SCHEMA_MODE],
+                    [RootTypeResolver::class, 'cacheControlLists', $capabilities, SchemaModes::PRIVATE_SCHEMA_MODE],
                 ]
             );
         }
