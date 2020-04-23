@@ -8,6 +8,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
 use Leoloso\GraphQLByPoPWPPlugin\Front\Clients;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLWithExplorerBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
@@ -53,7 +54,7 @@ class Plugin
         $schemaConfigurationBlock->init();
         PluginState::setSchemaConfigurationBlock($schemaConfigurationBlock);
 
-        $graphiQLBlock = new GraphiQLBlock();
+        $graphiQLBlock = true ? new GraphiQLWithExplorerBlock() : new GraphiQLBlock();
         $graphiQLBlock->init();
         PluginState::setGraphiQLBlock($graphiQLBlock);
 

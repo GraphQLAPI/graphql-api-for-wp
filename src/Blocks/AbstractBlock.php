@@ -170,6 +170,16 @@ abstract class AbstractBlock
     }
 
     /**
+     * Where is the block stored
+     *
+     * @return string
+     */
+    protected function getBlockDirURL(): string
+    {
+        return $this->getPluginURL() . '/blocks/' . $this->getBlockName() . '/';
+    }
+
+    /**
      * Registers all block assets so that they can be enqueued through the block editor
      * in the corresponding context.
      *
@@ -190,7 +200,7 @@ abstract class AbstractBlock
             );
         }
 
-        $url = $this->getPluginURL() . '/blocks/' . $this->getBlockName() . '/';
+        $url = $this->getBlockDirURL();
         $blockRegistrationName = $this->getBlockRegistrationName();
         $blockConfiguration = [];
 
