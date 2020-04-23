@@ -9,7 +9,6 @@ import "./GraphiQLWithExplorer.css";
 import { __ } from '@wordpress/i18n';
 
 const fetchURL = window.location.origin + '/api/graphql';
-
 function fetcher(params) {
 	return fetch(
 		fetchURL,
@@ -71,8 +70,13 @@ class GraphiQLWithExplorer extends Component {
 	constructor(props) {
 		super(props);
 		this._graphiql = null;
-		this.state = { schema: null, query: DEFAULT_QUERY, explorerIsOpen: true };
+		this.state = {
+			schema: null,
+			// query: DEFAULT_QUERY,
+			explorerIsOpen: true,
+		};
 		this._handleEditQuery = this._handleEditQuery.bind(this);
+		this._handleEditVariables = this._handleEditVariables.bind(this);
 		this._handleToggleExplorer = this._handleToggleExplorer.bind(this);
 	}
 
@@ -86,7 +90,7 @@ class GraphiQLWithExplorer extends Component {
 				"Shift-Alt-LeftClick": this._handleInspectOperation
 			});
 
-			this.setState({ schema: buildClientSchema(result.data) });
+			this.setState( { schema: buildClientSchema(result.data) } );
 		});
 	}
 
@@ -94,10 +98,13 @@ class GraphiQLWithExplorer extends Component {
 		cm,
 		mousePos
 	) {
-		const parsedQuery = parse(this.state.query || "");
+		const {
+			attributes: { query },
+		} = this.props;
+		const parsedQuery = parse(/*this.state.query*/query || "");
 
 		if (!parsedQuery) {
-			console.error("Couldn't parse query document");
+			console.error(__('Couldn\'t parse query document', 'graphql-api'));
 			return null;
 		}
 
@@ -148,8 +155,16 @@ class GraphiQLWithExplorer extends Component {
 		el && el.scrollIntoView();
 	};
 
-	_handleEditQuery(query) {
-		this.setState({ query });
+	_handleEditQuery( query ) {
+		// Synchronize state for the Explorer
+		// this.setState({ query });
+		// Save state to Gutenberg
+		this.props.setAttributes({ query });
+	}
+
+	_handleEditVariables( variables ) {
+		// Save state to Gutenberg
+		this.props.setAttributes({ variables });
 	}
 
 	_handleToggleExplorer() {
@@ -157,12 +172,18 @@ class GraphiQLWithExplorer extends Component {
 	}
 
 	render() {
-		const { query, schema } = this.state;
+		// State for the Explorer
+		const { /*query,*/ schema } = this.state;
+		// State from Gutenberg
+		const {
+			attributes: { query, variables },
+		} = this.props;
 		return (
 			<div className="graphiql-container">
 				<GraphiQLExplorer
 					schema={ schema }
 					query={ query }
+					variables={ variables }
 					onEdit={ this._handleEditQuery }
 					onRunOperation={ operationName =>
 						this._graphiql.handleRunQuery( operationName )
@@ -175,7 +196,9 @@ class GraphiQLWithExplorer extends Component {
 					fetcher={ fetcher }
 					schema={ schema }
 					query={ query }
+					variables={ variables }
 					onEditQuery={ this._handleEditQuery }
+					onEditVariables={ this._handleEditVariables }
 					docExplorerOpen={ false }
 				>
 					<GraphiQL.Toolbar>
