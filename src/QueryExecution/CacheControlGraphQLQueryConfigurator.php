@@ -16,7 +16,8 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
     }
 
     /**
-     * Extract the access control items defined in the CPT, and inject them into the service as to take effect in the current GraphQL query
+     * Extract the access control items defined in the CPT,
+     * and inject them into the service as to take effect in the current GraphQL query
      *
      * @return void
      */
@@ -24,7 +25,10 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
     {
         // If we found a CCL, load its rules/restrictions
         if ($cclPostID = $this->getConfigurationCustomPostID('ccl-post-id')) {
-            $cclBlockItems = $this->getBlocksOfTypeFromConfigurationCustomPost($cclPostID, PluginState::getCacheControlBlock());
+            $cclBlockItems = $this->getBlocksOfTypeFromConfigurationCustomPost(
+                $cclPostID,
+                PluginState::getCacheControlBlock()
+            );
             $cacheControlManager = CacheControlManagerFacade::getInstance();
             // The "Cache Control" type contains the fields/directives and the max-age
             foreach ($cclBlockItems as $cclBlockItem) {
