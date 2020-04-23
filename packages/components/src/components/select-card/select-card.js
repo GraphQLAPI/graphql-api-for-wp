@@ -41,10 +41,18 @@ const SelectCardBody = ( props ) => {
 	const getLabelForNotFoundValueCallback = props.getLabelForNotFoundValueCallback || GetLabelForNotFoundValue;
 	/**
 	 * Create a dictionary, with value as key, and label as the value
+	 * The options may be grouped, in that case extract the options from within them
+	 * To find out, check if the first element itself has entry "options",then it's grouped
 	 */
+	const maybeUngroupedOptions = (options || []).length ?
+		(options[0].options != undefined ?
+			options.map( option => option.options).flat()
+			: options
+		)
+		: [];
 	let valueLabelDictionary = {};
 	value.forEach( function( val ) {
-		var entry = ((options || []).filter( option => option.value == val )).shift();
+		var entry = (maybeUngroupedOptions.filter( option => option.value == val )).shift();
 		valueLabelDictionary[ val ] = entry ?
 			entry.label
 			: getLabelForNotFoundValueCallback( val );

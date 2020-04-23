@@ -22,14 +22,15 @@ const SchemaConfigurationSelectCard = ( props ) => {
 	 */
 	const schemaConfigurationOptions = schemaConfigurations.map( schemaConfiguration => (
 		{
-			label: `→ ${ schemaConfiguration.title }`,
+			// label: `→ ${ schemaConfiguration.title }`,
+			label: schemaConfiguration.title,
 			value: schemaConfiguration.id,
 		}
 	) );
 	/**
 	 * If this query has a parent, then add option "Inherit from parent"
 	 */
-	const options = ( schemaConfiguration == -2 || queryPostParent ?
+	const metaOptions = ( schemaConfiguration == -2 || queryPostParent ?
 		[
 			{
 				label: __('🛑 Inherit from parent', 'graphql-api'),
@@ -46,9 +47,21 @@ const SchemaConfigurationSelectCard = ( props ) => {
 			label: __('❌ None', 'graphql-api'),
 			value: -1,
 		},
-	]).concat(
+	])
+
+	const options = metaOptions.concat(
 		schemaConfigurationOptions
 	);
+	const groupedOptions = [
+		{
+		  label: '',
+		  options: metaOptions,
+		},
+		{
+		  label: '',
+		  options: schemaConfigurationOptions,
+		},
+	  ];
 	/**
 	 * Create a dictionary, with ID as key, and title as the value
 	 */
@@ -71,7 +84,7 @@ const SchemaConfigurationSelectCard = ( props ) => {
 			{ ...props }
 			isMulti={ false }
 			attributeName="schemaConfiguration"
-			options={ options }
+			options={ groupedOptions/*options*/ }
 			defaultValue={ defaultValue }
 			getLabelForNotFoundValueCallback={ GetLabelForNotFoundValue }
 			maybeShowSpinnerOrError={ maybeShowSpinnerOrError }
