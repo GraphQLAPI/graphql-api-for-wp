@@ -6,7 +6,6 @@ import { buildClientSchema, getIntrospectionQuery, parse } from "graphql";
 import "graphiql/graphiql.css";
 import "./GraphiQLWithExplorer.css";
 
-// import { GraphQLSchema } from "graphql";
 import { __ } from '@wordpress/i18n';
 
 const fetchURL = window.location.origin + '/api/graphql';
@@ -52,13 +51,7 @@ const DEFAULT_QUERY = `{
   }
 }`;
 
-// type State = {
-//   schema: ?GraphQLSchema,
-//   query: string,
-//   explorerIsOpen: boolean
-// };
-
-class GraphiQLWithExplorer extends Component/*<{}, State>*/ {
+class GraphiQLWithExplorer extends Component {
 
 	constructor(props) {
     super(props);
