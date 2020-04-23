@@ -10,6 +10,8 @@ import { __ } from '@wordpress/i18n';
  */
 import { withErrorMessage, withSpinner, SelectCard } from '../../../packages/components/src';
 
+const GetLabelForNotFoundValue = ( val ) => __(`(Undefined item with ID ${ val })`, 'graphql-api');
+
 const SchemaConfigurationSelectCard = ( props ) => {
 	const { schemaConfigurations, attributes: { schemaConfiguration } } = props;
 	/**
@@ -42,6 +44,7 @@ const SchemaConfigurationSelectCard = ( props ) => {
 			attributeName="schemaConfiguration"
 			options={ options }
 			defaultValue={ defaultValue }
+			getLabelForNotFoundValueCallback={ GetLabelForNotFoundValue }
 		/>
 	);
 }
@@ -52,14 +55,15 @@ const WithSpinnerSchemaConfiguration = compose( [
 ] )( SchemaConfigurationSelectCard );
 
 /**
- * Check if the schema configurations have not been fetched yet, and editing the component (isSelected => true), then show the spinner
- * This is an improvement when loading a new Persisted Query post, that it has no data, so the user is not waiting for nothing
+ * Check if the schema configurations have not been fetched yet,
+ * or if there are selected items (for which we need the data to know the label),
+ * then show the spinner
  *
  * @param {Object} props
  */
 const MaybeWithSpinnerSchemaConfiguration = ( props ) => {
-	const { isSelected, schemaConfigurations } = props;
-	if ( !schemaConfigurations?.length && isSelected ) {
+	const { schemaConfigurations, attributes: { schemaConfiguration } } = props;
+	if ( !schemaConfigurations?.length || schemaConfiguration != null ) {
 		return (
 			<WithSpinnerSchemaConfiguration { ...props } />
 		)
