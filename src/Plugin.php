@@ -54,7 +54,10 @@ class Plugin
         $schemaConfigurationBlock->init();
         PluginState::setSchemaConfigurationBlock($schemaConfigurationBlock);
 
-        $graphiQLBlock = true ? new GraphiQLWithExplorerBlock() : new GraphiQLBlock();
+        // Maybe use GraphiQL with Explorer
+        $graphiQLBlock = ComponentConfiguration::useGraphiQLWithExplorer() ?
+            new GraphiQLWithExplorerBlock() :
+            new GraphiQLBlock();
         $graphiQLBlock->init();
         PluginState::setGraphiQLBlock($graphiQLBlock);
 

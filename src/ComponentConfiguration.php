@@ -11,6 +11,7 @@ class ComponentConfiguration extends AbstractComponentConfiguration
     private static $addExcerptAsDescription;
     private static $groupFieldsUnderTypeForPrint;
     private static $getEmptyLabel;
+    private static $useGraphiQLWithExplorer;
 
     public static function addExcerptAsDescription(): bool
     {
@@ -50,6 +51,22 @@ class ComponentConfiguration extends AbstractComponentConfiguration
         $envVariable = Environment::EMPTY_LABEL;
         $selfProperty = &self::$getEmptyLabel;
         $callback = [Environment::class, 'getEmptyLabel'];
+
+        // Initialize property from the environment/hook
+        self::maybeInitEnvironmentVariable(
+            $envVariable,
+            $selfProperty,
+            $callback
+        );
+        return $selfProperty;
+    }
+
+    public static function useGraphiQLWithExplorer(): bool
+    {
+        // Define properties
+        $envVariable = Environment::USE_GRAPHIQL_WITH_EXPLORER;
+        $selfProperty = &self::$useGraphiQLWithExplorer;
+        $callback = [Environment::class, 'useGraphiQLWithExplorer'];
 
         // Initialize property from the environment/hook
         self::maybeInitEnvironmentVariable(

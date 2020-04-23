@@ -5,6 +5,7 @@ import { buildClientSchema, getIntrospectionQuery, parse } from "graphql";
 
 import "graphiql/graphiql.css";
 import '../../graphiql/src/style.scss';
+import './style.scss';
 
 import { __ } from '@wordpress/i18n';
 

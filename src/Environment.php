@@ -9,6 +9,7 @@ class Environment
     public const ADD_EXCERPT_AS_DESCRIPTION = 'ADD_EXCERPT_AS_DESCRIPTION';
     public const GROUP_FIELDS_UNDER_TYPE_FOR_PRINT = 'GROUP_FIELDS_UNDER_TYPE_FOR_PRINT';
     public const EMPTY_LABEL = 'EMPTY_LABEL';
+    public const USE_GRAPHIQL_WITH_EXPLORER = 'USE_GRAPHIQL_WITH_EXPLORER';
 
     /**
      * Print the excerpt as description in the custom post types
@@ -38,5 +39,15 @@ class Environment
     public static function getEmptyLabel(): string
     {
         return isset($_ENV[self::EMPTY_LABEL]) ? $_ENV[self::EMPTY_LABEL] : \__('---', 'graphql-api');
+    }
+
+    /**
+     * Use GraphiQL with the Explorer
+     *
+     * @return boolean
+     */
+    public static function useGraphiQLWithExplorer(): bool
+    {
+        return isset($_ENV[self::USE_GRAPHIQL_WITH_EXPLORER]) ? $_ENV[self::USE_GRAPHIQL_WITH_EXPLORER] : true;
     }
 }
