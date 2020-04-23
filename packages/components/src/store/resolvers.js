@@ -53,16 +53,11 @@ export const FETCH_DIRECTIVES_GRAPHQL_QUERY = `
 const noTitleLabel = __('(No title)', 'graphql-api');
 
 /**
- * Custom Post Type name
- * Same value as Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType::POST_TYPE
- */
-const ACCESS_CONTROL_LIST_POST_TYPE = 'graphql-acl';
-/**
  * GraphQL query to fetch the list of Access Control Lists from the GraphQL schema
  */
 export const FETCH_ACCESS_CONTROL_LISTS_GRAPHQL_QUERY = `
 	query GetAccessControlLists {
-		posts(postTypes: ["${ ACCESS_CONTROL_LIST_POST_TYPE }"]) {
+		accessControlLists {
 			id
 			title @default(value: "${ noTitleLabel }", condition: IS_EMPTY)
 			excerpt
@@ -71,16 +66,11 @@ export const FETCH_ACCESS_CONTROL_LISTS_GRAPHQL_QUERY = `
 `
 
 /**
- * Custom Post Type name
- * Same value as Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType::POST_TYPE
- */
-const CACHE_CONTROL_LIST_POST_TYPE = 'graphql-ccl';
-/**
  * GraphQL query to fetch the list of Cache Control Lists from the GraphQL schema
  */
 export const FETCH_CACHE_CONTROL_LISTS_GRAPHQL_QUERY = `
 	query GetCacheControlLists {
-		posts(postTypes: ["${ CACHE_CONTROL_LIST_POST_TYPE }"]) {
+		cacheControlLists {
 			id
 			title @default(value: "${ noTitleLabel }", condition: IS_EMPTY)
 			excerpt
@@ -171,7 +161,7 @@ export default {
 		if (maybeErrorMessage) {
 			return setAccessControlLists( [], maybeErrorMessage );
 		}
-		return setAccessControlLists( response.data?.posts );
+		return setAccessControlLists( response.data?.accessControlLists );
 	},
 
 	/**
@@ -187,6 +177,6 @@ export default {
 		if (maybeErrorMessage) {
 			return setCacheControlLists( [], maybeErrorMessage );
 		}
-		return setCacheControlLists( response.data?.posts );
+		return setCacheControlLists( response.data?.cacheControlLists );
 	},
 };

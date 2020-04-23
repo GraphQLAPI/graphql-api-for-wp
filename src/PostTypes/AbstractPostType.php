@@ -133,23 +133,35 @@ abstract class AbstractPostType
         $name_uc = $this->getPostTypeName();
         $names_uc = $this->getPostTypePluralNames(true);
         $names_lc = $this->getPostTypePluralNames(false);
-        $postTypeArgs = array(
-            'label' => $this->getPostTypeName(),
-            'labels' => $this->getPostTypeLabels($name_uc, $names_uc, $names_lc),
-            'capability_type' => 'post',
-            'hierarchical' => false,
-            'exclude_from_search' => true,
-            'show_in_admin_bar' => false,
-            'show_in_menu' => Menu::NAME,
-            'show_in_rest' => true,
-            'public' => true,
-            'supports' => [
-                'title',
-                'editor',
-                'author',
-                'revisions',
-                'custom-fields',
-            ],
+        // All these CPTs are to configure data, and not to be directly accessible by themselves
+        // Then, do not make them public, but still allow to access them
+        // This way, executing query `{ posts(postTypes:["graphql-acl"]) }` will fail,
+        // and we execute instead `{ accessControlLists }` which can be @validated
+        $securityPostTypeArgs = array(
+            'public' => false,
+            'show_in_nav_menus' => true,
+            'show_ui' => true,
+            'publicly_queryable' => true,
+        );
+        $postTypeArgs = array_merge(
+            $securityPostTypeArgs,
+            array(
+                'label' => $this->getPostTypeName(),
+                'labels' => $this->getPostTypeLabels($name_uc, $names_uc, $names_lc),
+                'capability_type' => 'post',
+                'hierarchical' => false,
+                'exclude_from_search' => true,
+                'show_in_admin_bar' => false,
+                'show_in_menu' => Menu::NAME,
+                'show_in_rest' => true,
+                'supports' => [
+                    'title',
+                    'editor',
+                    'author',
+                    'revisions',
+                    'custom-fields',
+                ],
+            )
         );
         if ($this->usePostExcerptAsDescription()) {
             $postTypeArgs['supports'][] = 'excerpt';
