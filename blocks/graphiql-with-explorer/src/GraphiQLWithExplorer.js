@@ -3,12 +3,12 @@ import GraphiQL from "graphiql";
 import GraphiQLExplorer from "graphiql-explorer";
 import { buildClientSchema, getIntrospectionQuery, parse } from "graphql";
 
-import { makeDefaultArg, getDefaultScalarArgValue } from "./CustomArgs";
-
 import "graphiql/graphiql.css";
 import "./GraphiQLWithExplorer.css";
 
 // import { GraphQLSchema } from "graphql";
+import { __ } from '@wordpress/i18n';
+
 const fetchURL = window.location.origin + '/api/graphql';
 
 function fetcher(params) {
@@ -153,39 +153,37 @@ class GraphiQLWithExplorer extends Component/*<{}, State>*/ {
     return (
       <div className="graphiql-container">
         <GraphiQLExplorer
-          schema={schema}
-          query={query}
-          onEdit={this._handleEditQuery}
-          onRunOperation={operationName =>
-            this._graphiql.handleRunQuery(operationName)
+          schema={ schema }
+          query={ query }
+          onEdit={ this._handleEditQuery }
+          onRunOperation={ operationName =>
+            this._graphiql.handleRunQuery( operationName )
           }
-          explorerIsOpen={this.state.explorerIsOpen}
-          onToggleExplorer={this._handleToggleExplorer}
-          getDefaultScalarArgValue={getDefaultScalarArgValue}
-          makeDefaultArg={makeDefaultArg}
+          explorerIsOpen={ this.state.explorerIsOpen }
+          onToggleExplorer={ this._handleToggleExplorer }
         />
         <GraphiQL
-          ref={ref => (this._graphiql = ref)}
-          fetcher={fetcher}
-          schema={schema}
-          query={query}
-          onEditQuery={this._handleEditQuery}
+          ref={ ref => ( this._graphiql = ref ) }
+          fetcher={ fetcher }
+          schema={ schema }
+          query={ query }
+          onEditQuery={ this._handleEditQuery }
         >
           <GraphiQL.Toolbar>
             <GraphiQL.Button
-              onClick={() => this._graphiql.handlePrettifyQuery()}
-              label="Prettify"
-              title="Prettify Query (Shift-Ctrl-P)"
+              onClick={ () => this._graphiql.handlePrettifyQuery() }
+              label={ __('Prettify', 'graphql-api') }
+              title={ __('Prettify Query (Shift-Ctrl-P)', 'graphql-api') }
             />
             <GraphiQL.Button
-              onClick={() => this._graphiql.handleToggleHistory()}
-              label="History"
-              title="Show History"
+              onClick={ () => this._graphiql.handleToggleHistory() }
+              label={ __('History', 'graphql-api') }
+              title={ __('Show History', 'graphql-api') }
             />
             <GraphiQL.Button
-              onClick={this._handleToggleExplorer}
-              label="Explorer"
-              title="Toggle Explorer"
+              onClick={ this._handleToggleExplorer }
+              label={ __('Explorer', 'graphql-api') }
+              title={ __('Toggle Explorer', 'graphql-api') }
             />
           </GraphiQL.Toolbar>
         </GraphiQL>
