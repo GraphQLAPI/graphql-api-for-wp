@@ -86,8 +86,12 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         return parent::enableOrderedSchemaFieldArgs($typeResolver, $fieldName);
     }
 
-    protected function getQuery(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = []): array
-    {
+    protected function getQuery(
+        TypeResolverInterface $typeResolver,
+        $resultItem,
+        string $fieldName,
+        array $fieldArgs = []
+    ): array {
         switch ($fieldName) {
             case 'accessControlLists':
             case 'cacheControlLists':
@@ -102,8 +106,15 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         return [];
     }
 
-    public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
-    {
+    public function resolveValue(
+        TypeResolverInterface $typeResolver,
+        $resultItem,
+        string $fieldName,
+        array $fieldArgs = [],
+        ?array $variables = null,
+        ?array $expressions = null,
+        array $options = []
+    ) {
         $postTypeAPI = PostTypeAPIFacade::getInstance();
         switch ($fieldName) {
             case 'accessControlLists':
@@ -128,11 +139,22 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
                 return $postTypeAPI->getPosts($query, $options);
         }
 
-        return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
+        return parent::resolveValue(
+            $typeResolver,
+            $resultItem,
+            $fieldName,
+            $fieldArgs,
+            $variables,
+            $expressions,
+            $options
+        );
     }
 
-    public function resolveFieldTypeResolverClass(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): ?string
-    {
+    public function resolveFieldTypeResolverClass(
+        TypeResolverInterface $typeResolver,
+        string $fieldName,
+        array $fieldArgs = []
+    ): ?string {
         switch ($fieldName) {
             case 'accessControlLists':
             case 'cacheControlLists':
