@@ -13,19 +13,42 @@ import { /*withErrorMessage, withSpinner, */SelectCard } from '../../../packages
 const GetLabelForNotFoundValue = ( val ) => __(`(Undefined item with ID ${ val })`, 'graphql-api');
 
 const SchemaConfigurationSelectCard = ( props ) => {
-	const { schemaConfigurations, attributes: { schemaConfiguration } } = props;
+	const { queryPostParent, schemaConfigurations, attributes: { schemaConfiguration } } = props;
 	/**
 	 * React Select expects an object with this format:
 	 * { value: ..., label: ... },
 	 * Convert the schemaConfigurations array to this structure:
 	 * [{label:"schemaConfiguration.title",value:"schemaConfiguration.id"},...]
 	 */
-	const options = schemaConfigurations.map( schemaConfiguration => (
+	const schemaConfigurationOptions = schemaConfigurations.map( schemaConfiguration => (
 		{
-			label: schemaConfiguration.title,
+			label: `→ ${ schemaConfiguration.title }`,
 			value: schemaConfiguration.id,
 		}
 	) );
+	/**
+	 * If this query has a parent, then add option "Inherit from parent"
+	 */
+	const options = ( schemaConfiguration == -2 || queryPostParent ?
+		[
+			{
+				label: __('🛑 Inherit from parent', 'graphql-api'),
+				value: -2,
+			}
+		]
+		: []
+	).concat([
+		{
+			label: __('⭕️ Default', 'graphql-api'),
+			value: 0,
+		},
+		{
+			label: __('❌ None', 'graphql-api'),
+			value: -1,
+		},
+	]).concat(
+		schemaConfigurationOptions
+	);
 	/**
 	 * Create a dictionary, with ID as key, and title as the value
 	 */
@@ -34,7 +57,7 @@ const SchemaConfigurationSelectCard = ( props ) => {
 	 * including the label
 	 * { value: ..., label: ... },
 	 */
-	const defaultValue = schemaConfiguration ?
+	const defaultValue = schemaConfiguration != null ?
 		options.filter( option => option.value == schemaConfiguration ).shift() :
 		null;
 	/**
@@ -94,6 +117,14 @@ export default compose( [
 			schemaConfigurations: getSchemaConfigurations(),
 			hasRetrievedItems: hasRetrievedSchemaConfigurations(),
 			errorMessage: getRetrievingSchemaConfigurationsErrorMessage(),
+		};
+	} ),
+	withSelect( ( select ) => {
+		const { getEditedPostAttribute } = select(
+			'core/editor'
+		);
+		return {
+			queryPostParent: getEditedPostAttribute( 'parent' ),
 		};
 	} ),
 ] )( SchemaConfigurationSelectCard/*MaybeWithSpinnerSchemaConfiguration*/ );

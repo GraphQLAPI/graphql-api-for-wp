@@ -56,6 +56,7 @@ registerBlockType( 'graphql-api/schema-configuration', {
 	attributes: {
 		schemaConfiguration: {
 			type: 'integer',
+			default: 0,
 		},
 	},
 
