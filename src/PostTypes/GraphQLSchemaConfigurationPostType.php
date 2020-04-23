@@ -42,7 +42,7 @@ class GraphQLSchemaConfigurationPostType extends AbstractPostType
      */
     protected function getPostTypePluralNames(bool $uppercase): string
     {
-        return \__('Schema Configuration', 'graphql-api');
+        return \__('Schema Configurations', 'graphql-api');
     }
 
     /**
