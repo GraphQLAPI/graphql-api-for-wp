@@ -1,7 +1,7 @@
 {
-	"name": "graphiql-explorer-block",
+	"name": "graphiql-with-explorer-block",
 	"version": "0.1.0",
-	"description": "Block for adding a GraphiQL client, to query the GraphQL server, to the WordPress editor",
+	"description": "Block for adding a GraphiQL client with Explorer",
 	"author": "Leonardo Losoviz",
 	"license": "MIT",
 	"main": "build/index.js",
