@@ -12,7 +12,7 @@ import './store';
 import { withErrorMessage, withSpinner, SelectCard } from '../../../packages/components/src';
 
 const UserCapabilitiesSelectCard = ( props ) => {
-	const { capabilities, attributes: { value } } = props;
+	const { capabilities, isSelected, attributes: { value } } = props;
 	/**
 	 * React Select expects an object with this format:
 	 * { value: ..., label: ... },
@@ -24,38 +24,44 @@ const UserCapabilitiesSelectCard = ( props ) => {
 	 * { value: ..., label: ... },
 	 */
 	const defaultValue = value.map(item => ( { value: item, label: item } ) )
+	/**
+	 * Check if the capabilities have not been fetched yet, and editing the component (isSelected => true), then show the spinner
+	 * This is an improvement when loading a new Access Control post, that it has no data, so the user is not waiting for nothing
+	 */
+	const maybeShowSpinnerOrError = !capabilities?.length && isSelected;
 	return (
 		<SelectCard
 			{ ...props }
 			attributeName="value"
 			options={ options }
 			defaultValue={ defaultValue }
+			maybeShowSpinnerOrError={ maybeShowSpinnerOrError }
 		/>
 	);
 }
 
-const WithSpinnerUserCapabilities = compose( [
-	withSpinner(),
-	withErrorMessage(),
-] )( UserCapabilitiesSelectCard );
+// const WithSpinnerUserCapabilities = compose( [
+// 	withSpinner(),
+// 	withErrorMessage(),
+// ] )( UserCapabilitiesSelectCard );
 
-/**
- * Check if the capabilities have not been fetched yet, and editing the component (isSelected => true), then show the spinner
- * This is an improvement when loading a new Access Control post, that it has no data, so the user is not waiting for nothing
- *
- * @param {Object} props
- */
-const MaybeWithSpinnerUserCapabilities = ( props ) => {
-	const { isSelected, capabilities } = props;
-	if ( !capabilities?.length && isSelected ) {
-		return (
-			<WithSpinnerUserCapabilities { ...props } />
-		)
-	}
-	return (
-		<UserCapabilitiesSelectCard { ...props } />
-	);
-}
+// /**
+//  * Check if the capabilities have not been fetched yet, and editing the component (isSelected => true), then show the spinner
+//  * This is an improvement when loading a new Access Control post, that it has no data, so the user is not waiting for nothing
+//  *
+//  * @param {Object} props
+//  */
+// const MaybeWithSpinnerUserCapabilities = ( props ) => {
+// 	const { isSelected, capabilities } = props;
+// 	if ( !capabilities?.length && isSelected ) {
+// 		return (
+// 			<WithSpinnerUserCapabilities { ...props } />
+// 		)
+// 	}
+// 	return (
+// 		<UserCapabilitiesSelectCard { ...props } />
+// 	);
+// }
 
 export default compose( [
 	withState( {
@@ -73,4 +79,4 @@ export default compose( [
 			errorMessage: getRetrievingCapabilitiesErrorMessage(),
 		};
 	} ),
-] )( MaybeWithSpinnerUserCapabilities );
+] )( UserCapabilitiesSelectCard/*MaybeWithSpinnerUserCapabilities*/ );

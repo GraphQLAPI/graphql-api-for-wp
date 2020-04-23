@@ -12,7 +12,7 @@ import './store';
 import { withErrorMessage, withSpinner, SelectCard } from '../../../packages/components/src';
 
 const UserRolesSelectCard = ( props ) => {
-	const { roles, attributes: { value } } = props;
+	const { roles, isSelected, attributes: { value } } = props;
 	/**
 	 * React Select expects an object with this format:
 	 * { value: ..., label: ... },
@@ -24,38 +24,44 @@ const UserRolesSelectCard = ( props ) => {
 	 * { value: ..., label: ... },
 	 */
 	const defaultValue = value.map(item => ( { value: item, label: item } ) )
+	/**
+	 * Check if the roles have not been fetched yet, and editing the component (isSelected => true), then show the spinner
+	 * This is an improvement when loading a new Access Control post, that it has no data, so the user is not waiting for nothing
+	 */
+	const maybeShowSpinnerOrError = !roles?.length && isSelected;
 	return (
 		<SelectCard
 			{ ...props }
 			attributeName="value"
 			options={ options }
 			defaultValue={ defaultValue }
+			maybeShowSpinnerOrError={ maybeShowSpinnerOrError }
 		/>
 	);
 }
 
-const WithSpinnerUserRoles = compose( [
-	withSpinner(),
-	withErrorMessage(),
-] )( UserRolesSelectCard );
+// const WithSpinnerUserRoles = compose( [
+// 	withSpinner(),
+// 	withErrorMessage(),
+// ] )( UserRolesSelectCard );
 
-/**
- * Check if the roles have not been fetched yet, and editing the component (isSelected => true), then show the spinner
- * This is an improvement when loading a new Access Control post, that it has no data, so the user is not waiting for nothing
- *
- * @param {Object} props
- */
-const MaybeWithSpinnerUserRoles = ( props ) => {
-	const { isSelected, roles } = props;
-	if ( !roles?.length && isSelected ) {
-		return (
-			<WithSpinnerUserRoles { ...props } />
-		)
-	}
-	return (
-		<UserRolesSelectCard { ...props } />
-	);
-}
+// /**
+//  * Check if the roles have not been fetched yet, and editing the component (isSelected => true), then show the spinner
+//  * This is an improvement when loading a new Access Control post, that it has no data, so the user is not waiting for nothing
+//  *
+//  * @param {Object} props
+//  */
+// const MaybeWithSpinnerUserRoles = ( props ) => {
+// 	const { isSelected, roles } = props;
+// 	if ( !roles?.length && isSelected ) {
+// 		return (
+// 			<WithSpinnerUserRoles { ...props } />
+// 		)
+// 	}
+// 	return (
+// 		<UserRolesSelectCard { ...props } />
+// 	);
+// }
 
 export default compose( [
 	withState( {
@@ -73,4 +79,4 @@ export default compose( [
 			errorMessage: getRetrievingRolesErrorMessage(),
 		};
 	} ),
-] )( MaybeWithSpinnerUserRoles );
+] )( UserRolesSelectCard/*MaybeWithSpinnerUserRoles*/ );
