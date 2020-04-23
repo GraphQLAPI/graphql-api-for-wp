@@ -54,13 +54,13 @@ const SchemaModeControl = ( props ) => {
 					{ !isSelected && (
 						<div className={ className+'__read'}>
 							{ (schemaMode == DEFAULT_SCHEMA_MODE) &&
-								<span>🌝 { __('Default', 'graphql-api') }</span>
+								<span>🟡 { __('Default', 'graphql-api') }</span>
 							}
 							{ (schemaMode == PUBLIC_SCHEMA_MODE) &&
-								<span>🌕 { __('Public', 'graphql-api') }</span>
+								<span>⚪️ { __('Public', 'graphql-api') }</span>
 							}
 							{ (schemaMode == PRIVATE_SCHEMA_MODE) &&
-								<span>🌑 { __('Private', 'graphql-api') }</span>
+								<span>⚫️ { __('Private', 'graphql-api') }</span>
 							}
 						</div>
 					) }

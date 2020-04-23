@@ -33,18 +33,18 @@ const SchemaConfigurationSelectCard = ( props ) => {
 	const metaOptions = ( schemaConfiguration == -2 || queryPostParent ?
 		[
 			{
-				label: __('🛑 Inherit from parent', 'graphql-api'),
+				label: `🛑 ${ __('Inherit from parent', 'graphql-api') }`,
 				value: -2,
 			}
 		]
 		: []
 	).concat([
 		{
-			label: __('⭕️ Default', 'graphql-api'),
+			label: `⭕️ ${ __('Default', 'graphql-api') }`,
 			value: 0,
 		},
 		{
-			label: __('❌ None', 'graphql-api'),
+			label: `❌ ${ __('None', 'graphql-api') }`,
 			value: -1,
 		},
 	])
