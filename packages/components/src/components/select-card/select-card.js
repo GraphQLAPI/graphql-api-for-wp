@@ -26,6 +26,11 @@ const SelectCard = ( props ) => {
 	const selectedValues = value.map(val => ( { value: val, label: val } ) )
 	const componentClassName = 'graphql-api-select-card';
 	const componentClass = `${ componentClassName } ${ getEditableOnFocusComponentClass(isSelected) }`;
+	/**
+	 * Optional props
+	 */
+	const isMulti = props.isMulti != undefined ? props.isMulti : true;
+	const closeMenuOnSelect = props.closeMenuOnSelect != undefined ? props.closeMenuOnSelect : false;
 	return (
 		<div className={ componentClass }>
 			<Card { ...props }>
@@ -37,8 +42,8 @@ const SelectCard = ( props ) => {
 						<Select
 							defaultValue={ selectedValues }
 							options={ options }
-							isMulti
-							closeMenuOnSelect={ false }
+							isMulti={ isMulti }
+							closeMenuOnSelect={ closeMenuOnSelect }
 							onChange={ selectedOptions =>
 								// Extract the attribute "value"
 								setAttributes( {
