@@ -43,7 +43,7 @@ EOF;
                 $postContentElems[] = \sprintf(
                     '<code><a href="%s">%s</a></code>%s',
                     \get_permalink($postObject->ID),
-                    $postObject->post_title,
+                    $postObject->post_title ? $postObject->post_title : \__('(No title)', 'graphql-api'),
                     $postObject->post_excerpt ?
                         '<br/><small>' . $postObject->post_excerpt . '</small>'
                         : ''
