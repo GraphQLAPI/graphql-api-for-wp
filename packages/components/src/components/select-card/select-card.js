@@ -49,6 +49,7 @@ const SelectCard = ( props ) => {
 	} );
 	const componentClassName = 'graphql-api-select-card';
 	const componentClass = `${ componentClassName } ${ getEditableOnFocusComponentClass(isSelected) }`;
+	const multiOrSingleClass = isMulti ? 'multi' : 'single';
 	return (
 		<div className={ componentClass }>
 			<Card { ...props }>
@@ -72,9 +73,9 @@ const SelectCard = ( props ) => {
 						/>
 					}
 					{ !isSelected && !!value.length && (
-						<div className={ `${ className }__label-group ${ componentClassName }__label-group` }>
+						<div className={ `${ className }__label-group ${ componentClassName }__label-group ${ multiOrSingleClass }` }>
 							{ value.map( val =>
-								<div className={ `${ className }__label-item ${ componentClassName }__label-item` }>
+								<div className={ `${ className }__label-item ${ componentClassName }__label-item ${ multiOrSingleClass } ` }>
 									{ valueLabelDictionary[ val ] }
 								</div>
 							) }
