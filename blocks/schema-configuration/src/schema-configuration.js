@@ -35,7 +35,7 @@ const SchemaConfigurationSelectCard = ( props ) => {
 	 * { value: ..., label: ... },
 	 */
 	const defaultValue = schemaConfiguration ?
-		options.filter( option => option.id == schemaConfiguration ).shift() :
+		options.filter( option => option.value == schemaConfiguration ).shift() :
 		null;
 	return (
 		<SelectCard
