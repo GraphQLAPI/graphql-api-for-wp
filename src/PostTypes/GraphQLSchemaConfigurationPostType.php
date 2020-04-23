@@ -79,4 +79,14 @@ class GraphQLSchemaConfigurationPostType extends AbstractPostType
     {
         return true;
     }
+
+    /**
+     * Block align class
+     *
+     * @return boolean
+     */
+    public function getAlignClass(): string
+    {
+        return 'aligncenter';
+    }
 }

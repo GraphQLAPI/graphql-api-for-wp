@@ -4,27 +4,30 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
 
 /**
  * Cache Control block
  */
-class SchemaConfigCacheControlListBlock extends AbstractBlock
+class SchemaConfigCacheControlListBlock extends AbstractSchemaConfigPostListBlock
 {
-    use GraphQLByPoPBlockTrait;
-
     protected function getBlockName(): string
     {
         return 'schema-config-cache-control-lists';
     }
 
-    protected function isDynamicBlock(): bool
+    protected function getAttributeName(): string
     {
-        return true;
+        return 'cacheControlLists';
     }
 
-    public function renderBlock(array $attributes, string $content): string
+    protected function getPostType(): string
     {
-        return 'saraza';
+        return GraphQLCacheControlListPostType::POST_TYPE;
+    }
+
+    protected function getHeader(): string
+    {
+        return \__('Cache Control Lists:');
     }
 }

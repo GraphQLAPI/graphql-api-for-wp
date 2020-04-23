@@ -4,27 +4,30 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
 
 /**
  * Cache Control block
  */
-class SchemaConfigAccessControlListBlock extends AbstractBlock
+class SchemaConfigAccessControlListBlock extends AbstractSchemaConfigPostListBlock
 {
-    use GraphQLByPoPBlockTrait;
-
     protected function getBlockName(): string
     {
         return 'schema-config-access-control-lists';
     }
 
-    protected function isDynamicBlock(): bool
+    protected function getAttributeName(): string
     {
-        return true;
+        return 'accessControlLists';
     }
 
-    public function renderBlock(array $attributes, string $content): string
+    protected function getPostType(): string
     {
-        return 'saraza';
+        return GraphQLAccessControlListPostType::POST_TYPE;
+    }
+
+    protected function getHeader(): string
+    {
+        return \__('Access Control Lists:');
     }
 }
