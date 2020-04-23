@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
+use PoP\ComponentModel\Environment;
 use PoP\Root\Component\AbstractComponent;
 use PoP\Root\Component\YAMLServicesTrait;
-use PoP\ComponentModel\Container\ContainerBuilderUtils;
-use Leoloso\GraphQLByPoPWPPlugin\QueryExecution\AccessControlGraphQLQueryConfigurator;
-use Leoloso\GraphQLByPoPWPPlugin\QueryExecution\CacheControlGraphQLQueryConfigurator;
-use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use PoP\ComponentModel\ComponentConfiguration;
-use PoP\ComponentModel\Environment;
+use PoP\ComponentModel\Container\ContainerBuilderUtils;
+use Leoloso\GraphQLByPoPWPPlugin\Config\ServiceConfiguration;
+use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
+use Leoloso\GraphQLByPoPWPPlugin\QueryExecution\CacheControlGraphQLQueryConfigurator;
+use Leoloso\GraphQLByPoPWPPlugin\QueryExecution\AccessControlGraphQLQueryConfigurator;
 /**
  * Initialize component
  */
@@ -28,6 +29,7 @@ class Component extends AbstractComponent
         parent::init();
         self::initYAMLServices(dirname(__DIR__));
         self::initComponentConfiguration();
+        ServiceConfiguration::init();
     }
 
     protected static function initComponentConfiguration(): void
