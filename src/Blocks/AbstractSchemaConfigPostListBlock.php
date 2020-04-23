@@ -28,7 +28,7 @@ abstract class AbstractSchemaConfigPostListBlock extends AbstractBlock
          */
         $blockContentPlaceholder = <<<EOF
         <div class="%s">
-            <p><strong>%s</strong></p>
+            <h3 class="%s">%s</strong></h3>
             %s
         </div>
 EOF;
@@ -50,9 +50,11 @@ EOF;
                 );
             }
         }
+        $className = $this->getBlockClassName();
         return sprintf(
             $blockContentPlaceholder,
-            $this->getBlockClassName(),
+            $className,
+            $className . '-front',
             $this->getHeader(),
             $postContentElems ?
                 sprintf(
