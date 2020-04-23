@@ -6,6 +6,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Error;
 use Leoloso\GraphQLByPoPWPPlugin\General\GeneralUtils;
+use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
 
 /**
  * Base class for a Gutenberg block, within a multi-block plugin.
@@ -69,6 +70,18 @@ abstract class AbstractBlock
     public function renderBlock(array $attributes, string $content): string
     {
         return '';
+    }
+    /**
+     * Do not output the content, and show an error message to the visitor
+     *
+     * @return string
+     */
+    public function renderUnauthorizedAccess(): string
+    {
+        return sprintf(
+            '<p>%s</p>',
+            \__('You are not authorized to see this content', 'graphql-api')
+        );
     }
     /**
      * Register editor.css
@@ -225,7 +238,14 @@ abstract class AbstractBlock
          * Register callback function for dynamic block
          */
         if ($this->isDynamicBlock()) {
-            $blockConfiguration['render_callback'] = [$this, 'renderBlock'];
+            /**
+             * Show only if the user has the right permission
+             */
+            if (UserAuthorization::canAccessConfigurationContent()) {
+                $blockConfiguration['render_callback'] = [$this, 'renderBlock'];
+            } else {
+                $blockConfiguration['render_callback'] = [$this, 'renderUnauthorizedAccess'];
+            }
         }
 
         /**
