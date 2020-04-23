@@ -8,7 +8,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import { withErrorMessage, withSpinner, SelectCard } from '../../../packages/components/src';
+import { /*withErrorMessage, withSpinner, */SelectCard } from '../../../packages/components/src';
 
 const GetLabelForNotFoundValue = ( val ) => __(`(Undefined item with ID ${ val })`, 'graphql-api');
 
@@ -37,6 +37,12 @@ const SchemaConfigurationSelectCard = ( props ) => {
 	const defaultValue = schemaConfiguration ?
 		options.filter( option => option.value == schemaConfiguration ).shift() :
 		null;
+	/**
+	 * Check if the schema configurations have not been fetched yet,
+	 * or if there are selected items (for which we need the data to know the label),
+	 * then show the spinner
+	 */
+	const maybeShowSpinnerOrError = !schemaConfigurations?.length || schemaConfiguration != null;
 	return (
 		<SelectCard
 			{ ...props }
@@ -45,33 +51,34 @@ const SchemaConfigurationSelectCard = ( props ) => {
 			options={ options }
 			defaultValue={ defaultValue }
 			getLabelForNotFoundValueCallback={ GetLabelForNotFoundValue }
+			maybeShowSpinnerOrError={ maybeShowSpinnerOrError }
 		/>
 	);
 }
 
-const WithSpinnerSchemaConfiguration = compose( [
-	withSpinner(),
-	withErrorMessage(),
-] )( SchemaConfigurationSelectCard );
+// const WithSpinnerSchemaConfiguration = compose( [
+// 	withSpinner(),
+// 	withErrorMessage(),
+// ] )( SchemaConfigurationSelectCard );
 
-/**
- * Check if the schema configurations have not been fetched yet,
- * or if there are selected items (for which we need the data to know the label),
- * then show the spinner
- *
- * @param {Object} props
- */
-const MaybeWithSpinnerSchemaConfiguration = ( props ) => {
-	const { schemaConfigurations, attributes: { schemaConfiguration } } = props;
-	if ( !schemaConfigurations?.length || schemaConfiguration != null ) {
-		return (
-			<WithSpinnerSchemaConfiguration { ...props } />
-		)
-	}
-	return (
-		<SchemaConfigurationSelectCard { ...props } />
-	);
-}
+// /**
+//  * Check if the schema configurations have not been fetched yet,
+//  * or if there are selected items (for which we need the data to know the label),
+//  * then show the spinner
+//  *
+//  * @param {Object} props
+//  */
+// const MaybeWithSpinnerSchemaConfiguration = ( props ) => {
+// 	const { schemaConfigurations, attributes: { schemaConfiguration } } = props;
+// 	if ( !schemaConfigurations?.length || schemaConfiguration != null ) {
+// 		return (
+// 			<WithSpinnerSchemaConfiguration { ...props } />
+// 		)
+// 	}
+// 	return (
+// 		<SchemaConfigurationSelectCard { ...props } />
+// 	);
+// }
 
 export default compose( [
 	withState( {
@@ -89,4 +96,4 @@ export default compose( [
 			errorMessage: getRetrievingSchemaConfigurationsErrorMessage(),
 		};
 	} ),
-] )( MaybeWithSpinnerSchemaConfiguration );
+] )( SchemaConfigurationSelectCard/*MaybeWithSpinnerSchemaConfiguration*/ );

@@ -1,6 +1,7 @@
 /**
  * WordPress dependencies
  */
+import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import { Card, CardHeader, CardBody } from '@wordpress/components';
 import { getEditableOnFocusComponentClass } from '../base-styles'
@@ -13,12 +14,13 @@ import Select from 'react-select';
 /**
  * Internal dependencies
  */
+import { withErrorMessage, withSpinner } from '../loading';
 import './style.scss';
 
 const GetLabelForNotFoundValue = ( val ) => val;
 
-const SelectCard = ( props ) => {
-	const { label, options, defaultValue, className, setAttributes, isSelected, attributes, attributeName } = props;
+const SelectCardBody = ( props ) => {
+	const { options, defaultValue, className, setAttributes, isSelected, attributes, attributeName } = props;
 	/**
 	 * Optional props
 	 */
@@ -48,8 +50,66 @@ const SelectCard = ( props ) => {
 			: getLabelForNotFoundValueCallback( val );
 	} );
 	const componentClassName = 'graphql-api-select-card';
-	const componentClass = `${ componentClassName } ${ getEditableOnFocusComponentClass(isSelected) }`;
 	const multiOrSingleClass = isMulti ? 'multi' : 'single';
+	return (
+		<>
+			{ isSelected &&
+				<Select
+					defaultValue={ defaultValue }
+					options={ options }
+					isMulti={ isMulti }
+					closeMenuOnSelect={ closeMenuOnSelect }
+					onChange={ selected =>
+						setAttributes( {
+							[ attributeName ]: isMulti ?
+								(selected || []).map(option => option.value) :
+								selected.value
+						} )
+					}
+				/>
+			}
+			{ !isSelected && !!value.length && (
+				<div className={ `${ className }__label-group ${ componentClassName }__label-group ${ multiOrSingleClass }` }>
+					{ value.map( val =>
+						<div className={ `${ className }__label-item ${ componentClassName }__label-item ${ multiOrSingleClass } ` }>
+							{ valueLabelDictionary[ val ] }
+						</div>
+					) }
+				</div>
+			) }
+			{ !isSelected && !value.length && (
+				<em>{ __('(not set)', 'graphql-api') }</em>
+			) }
+		</>
+	)
+}
+
+const WithDataLoadingSelectCardBody = compose( [
+	withSpinner(),
+	withErrorMessage(),
+] )( SelectCardBody );
+
+/**
+ * If data has not been fetched yet, show a spinner instead of the body
+ *
+ * @param {Object} props
+ */
+const MaybeWithDataLoadingSelectCardBody = ( props ) => {
+	const { maybeShowSpinnerOrError } = props;
+	if ( maybeShowSpinnerOrError ) {
+		return (
+			<WithDataLoadingSelectCardBody { ...props } />
+		)
+	}
+	return (
+		<SelectCardBody { ...props } />
+	);
+}
+
+const SelectCard = ( props ) => {
+	const { label, isSelected } = props;
+	const componentClassName = 'graphql-api-select-card';
+	const componentClass = `${ componentClassName } ${ getEditableOnFocusComponentClass(isSelected) }`;
 	return (
 		<div className={ componentClass }>
 			<Card { ...props }>
@@ -57,33 +117,9 @@ const SelectCard = ( props ) => {
 					{ label }
 				</CardHeader>
 				<CardBody>
-					{ isSelected &&
-						<Select
-							defaultValue={ defaultValue }
-							options={ options }
-							isMulti={ isMulti }
-							closeMenuOnSelect={ closeMenuOnSelect }
-							onChange={ selected =>
-								setAttributes( {
-									[ attributeName ]: isMulti ?
-										(selected || []).map(option => option.value) :
-										selected.value
-								} )
-							}
-						/>
-					}
-					{ !isSelected && !!value.length && (
-						<div className={ `${ className }__label-group ${ componentClassName }__label-group ${ multiOrSingleClass }` }>
-							{ value.map( val =>
-								<div className={ `${ className }__label-item ${ componentClassName }__label-item ${ multiOrSingleClass } ` }>
-									{ valueLabelDictionary[ val ] }
-								</div>
-							) }
-						</div>
-					) }
-					{ !isSelected && !value.length && (
-						<em>{ __('(not set)', 'graphql-api') }</em>
-					) }
+					<MaybeWithDataLoadingSelectCardBody
+						{ ...props }
+					/>
 				</CardBody>
 			</Card>
 		</div>
