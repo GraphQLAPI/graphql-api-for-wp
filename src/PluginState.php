@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
@@ -13,12 +14,31 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
 
 class PluginState
 {
+    public static $schemaConfigurationBlock;
     public static $graphiQLBlock;
     public static $accessControlBlock;
     public static $accessControlNestedBlocks = [];
     public static $cacheControlBlock;
     public static $schemaConfigAccessControlListBlock;
     public static $schemaConfigCacheControlListBlock;
+
+    /**
+     * Get the value of schemaConfigurationBlock
+     */
+    public static function getSchemaConfigurationBlock(): SchemaConfigurationBlock
+    {
+        return self::$schemaConfigurationBlock;
+    }
+
+    /**
+     * Set the value of schemaConfigurationBlock
+     *
+     * @return void
+     */
+    public static function setSchemaConfigurationBlock(SchemaConfigurationBlock $schemaConfigurationBlock): void
+    {
+        self::$schemaConfigurationBlock = $schemaConfigurationBlock;
+    }
 
     /**
      * Get the value of graphiQLBlock

@@ -9,14 +9,35 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import './store';
-import { withErrorMessage } from '../../../packages/components/src';
-import { withSpinner } from '../../../packages/components/src';
-import { SelectCard } from '../../../packages/components/src';
+import { withErrorMessage, withSpinner, SelectCard } from '../../../packages/components/src';
+
+const UserRolesSelectCard = ( props ) => {
+	const { roles, attributes: { value } } = props;
+	/**
+	 * React Select expects an object with this format:
+	 * { value: ..., label: ... },
+	 */
+	const options = roles.map(item => ( { value: item, label: item } ) )
+	/**
+	 * React Select expects to pass the same elements from the options as defaultValue,
+	 * including the label
+	 * { value: ..., label: ... },
+	 */
+	const defaultValue = value.map(item => ( { value: item, label: item } ) )
+	return (
+		<SelectCard
+			{ ...props }
+			attributeName="value"
+			options={ options }
+			defaultValue={ defaultValue }
+		/>
+	);
+}
 
 const WithSpinnerUserRoles = compose( [
 	withSpinner(),
 	withErrorMessage(),
-] )( SelectCard );
+] )( UserRolesSelectCard );
 
 /**
  * Check if the roles have not been fetched yet, and editing the component (isSelected => true), then show the spinner
@@ -32,7 +53,7 @@ const MaybeWithSpinnerUserRoles = ( props ) => {
 		)
 	}
 	return (
-		<SelectCard { ...props } />
+		<UserRolesSelectCard { ...props } />
 	);
 }
 
@@ -46,10 +67,8 @@ export default compose( [
 			hasRetrievedRoles,
 			getRetrievingRolesErrorMessage,
 		} = select ( 'graphql-api/access-control-user-roles' );
-		const roles = getRoles();
 		return {
-			roles,
-			items: roles,
+			roles: getRoles(),
 			hasRetrievedItems: hasRetrievedRoles(),
 			errorMessage: getRetrievingRolesErrorMessage(),
 		};

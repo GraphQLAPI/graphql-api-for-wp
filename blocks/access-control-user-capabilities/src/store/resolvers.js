@@ -33,8 +33,7 @@ export default {
 		 */
 		const maybeErrorMessage = maybeGetErrorMessage(response);
 		if (maybeErrorMessage) {
-			setCapabilities( [], maybeErrorMessage );
-			return;
+			return setCapabilities( [], maybeErrorMessage );
 		}
 		return setCapabilities( response.data?.capabilities || [] );
 	},

@@ -1,0 +1,88 @@
+/**
+ * WordPress dependencies
+ */
+import { withSelect } from '@wordpress/data';
+import { compose, withState } from '@wordpress/compose';
+import { __ } from '@wordpress/i18n';
+
+/**
+ * Internal dependencies
+ */
+import { withErrorMessage, withSpinner, SelectCard } from '../../../packages/components/src';
+
+const SchemaConfigurationSelectCard = ( props ) => {
+	const { schemaConfigurations, attributes: { schemaConfiguration } } = props;
+	/**
+	 * React Select expects an object with this format:
+	 * { value: ..., label: ... },
+	 * Convert the schemaConfigurations array to this structure:
+	 * [{label:"schemaConfiguration.title",value:"schemaConfiguration.id"},...]
+	 */
+	const options = schemaConfigurations.map( schemaConfiguration => (
+		{
+			label: schemaConfiguration.title,
+			value: schemaConfiguration.id,
+		}
+	) );
+	/**
+	 * Create a dictionary, with ID as key, and title as the value
+	 */
+	/**
+	 * React Select expects to pass the same elements from the options as defaultValue,
+	 * including the label
+	 * { value: ..., label: ... },
+	 */
+	const defaultValue = schemaConfiguration ?
+		options.filter( option => option.id == schemaConfiguration ).shift() :
+		null;
+	return (
+		<SelectCard
+			{ ...props }
+			isMulti={ false }
+			attributeName="schemaConfiguration"
+			options={ options }
+			defaultValue={ defaultValue }
+		/>
+	);
+}
+
+const WithSpinnerSchemaConfiguration = compose( [
+	withSpinner(),
+	withErrorMessage(),
+] )( SchemaConfigurationSelectCard );
+
+/**
+ * Check if the schema configurations have not been fetched yet, and editing the component (isSelected => true), then show the spinner
+ * This is an improvement when loading a new Persisted Query post, that it has no data, so the user is not waiting for nothing
+ *
+ * @param {Object} props
+ */
+const MaybeWithSpinnerSchemaConfiguration = ( props ) => {
+	const { isSelected, schemaConfigurations } = props;
+	if ( !schemaConfigurations?.length && isSelected ) {
+		return (
+			<WithSpinnerSchemaConfiguration { ...props } />
+		)
+	}
+	return (
+		<SchemaConfigurationSelectCard { ...props } />
+	);
+}
+
+export default compose( [
+	withState( {
+		label: __('Schema configuration:', 'graphql-api'),
+	} ),
+	withSelect( ( select ) => {
+		const {
+			getSchemaConfigurations,
+			hasRetrievedSchemaConfigurations,
+			getRetrievingSchemaConfigurationsErrorMessage,
+		} = select ( 'graphql-api/schema-configuration' );
+		return {
+			schemaConfigurations: getSchemaConfigurations(),
+			hasRetrievedItems: hasRetrievedSchemaConfigurations(),
+			errorMessage: getRetrievingSchemaConfigurationsErrorMessage(),
+		};
+	} ),
+] )( MaybeWithSpinnerSchemaConfiguration );

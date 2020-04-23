@@ -9,14 +9,35 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import './store';
-import { withErrorMessage } from '../../../packages/components/src';
-import { withSpinner } from '../../../packages/components/src';
-import { SelectCard } from '../../../packages/components/src';
+import { withErrorMessage, withSpinner, SelectCard } from '../../../packages/components/src';
+
+const UserCapabilitiesSelectCard = ( props ) => {
+	const { capabilities, attributes: { value } } = props;
+	/**
+	 * React Select expects an object with this format:
+	 * { value: ..., label: ... },
+	 */
+	const options = capabilities.map(item => ( { value: item, label: item } ) )
+	/**
+	 * React Select expects to pass the same elements from the options as defaultValue,
+	 * including the label
+	 * { value: ..., label: ... },
+	 */
+	const defaultValue = value.map(item => ( { value: item, label: item } ) )
+	return (
+		<SelectCard
+			{ ...props }
+			attributeName="value"
+			options={ options }
+			defaultValue={ defaultValue }
+		/>
+	);
+}
 
 const WithSpinnerUserCapabilities = compose( [
 	withSpinner(),
 	withErrorMessage(),
-] )( SelectCard );
+] )( UserCapabilitiesSelectCard );
 
 /**
  * Check if the capabilities have not been fetched yet, and editing the component (isSelected => true), then show the spinner
@@ -32,7 +53,7 @@ const MaybeWithSpinnerUserCapabilities = ( props ) => {
 		)
 	}
 	return (
-		<SelectCard { ...props } />
+		<UserCapabilitiesSelectCard { ...props } />
 	);
 }
 
@@ -46,10 +67,8 @@ export default compose( [
 			hasRetrievedCapabilities,
 			getRetrievingCapabilitiesErrorMessage,
 		} = select ( 'graphql-api/access-control-user-capabilities' );
-		const capabilities = getCapabilities();
 		return {
-			capabilities,
-			items: capabilities,
+			capabilities: getCapabilities(),
 			hasRetrievedItems: hasRetrievedCapabilities(),
 			errorMessage: getRetrievingCapabilitiesErrorMessage(),
 		};

@@ -17,20 +17,30 @@ import './style.scss';
 
 
 const SelectCard = ( props ) => {
-	const { label, items, className, setAttributes, isSelected, attributes: { value } } = props;
-	/**
-	 * React Select expects an object with this format:
-	 * { value: ..., label: ... },
-	 */
-	const options = items.map(item => ( { value: item, label: item } ) )
-	const selectedValues = value.map(val => ( { value: val, label: val } ) )
-	const componentClassName = 'graphql-api-select-card';
-	const componentClass = `${ componentClassName } ${ getEditableOnFocusComponentClass(isSelected) }`;
+	const { label, options, defaultValue, className, setAttributes, isSelected, attributes, attributeName } = props;
 	/**
 	 * Optional props
 	 */
 	const isMulti = props.isMulti != undefined ? props.isMulti : true;
-	const closeMenuOnSelect = props.closeMenuOnSelect != undefined ? props.closeMenuOnSelect : false;
+	/**
+	 * By default, if not defined, use the opposite value to isMulti
+	 */
+	const closeMenuOnSelect = props.closeMenuOnSelect != undefined ? props.closeMenuOnSelect : !isMulti;
+	/**
+	 * The attribute to update is passed through `attributeName`
+	 */
+	const value = isMulti ? attributes[ attributeName ] : ( attributes[ attributeName ] ? [attributes[ attributeName ]] : [])
+	/**
+	 * Create a dictionary, with value as key, and label as the value
+	 */
+	let valueLabelDictionary = {};
+	value.forEach(function(val) {
+		// var entry = (options || []).filter( option => option.value == val ).shift();
+		// valueLabelDictionary[ val ] = entry ? entry.label : _(`(Undefined item with ID ${ val }`, 'graphql-api');
+		valueLabelDictionary[ val ] = val;
+	} );
+	const componentClassName = 'graphql-api-select-card';
+	const componentClass = `${ componentClassName } ${ getEditableOnFocusComponentClass(isSelected) }`;
 	return (
 		<div className={ componentClass }>
 			<Card { ...props }>
@@ -40,14 +50,15 @@ const SelectCard = ( props ) => {
 				<CardBody>
 					{ isSelected &&
 						<Select
-							defaultValue={ selectedValues }
+							defaultValue={ defaultValue }
 							options={ options }
 							isMulti={ isMulti }
 							closeMenuOnSelect={ closeMenuOnSelect }
-							onChange={ selectedOptions =>
-								// Extract the attribute "value"
+							onChange={ selected =>
 								setAttributes( {
-									value: (selectedOptions || []).map(option => option.value)
+									[ attributeName ]: isMulti ?
+										(selected || []).map(option => option.value) :
+										selected.value
 								} )
 							}
 						/>
@@ -56,7 +67,7 @@ const SelectCard = ( props ) => {
 						<div className={ `${ className }__label-group ${ componentClassName }__label-group` }>
 							{ value.map( val =>
 								<div className={ `${ className }__label-item ${ componentClassName }__label-item` }>
-									{ val }
+									{ valueLabelDictionary[ val ] }
 								</div>
 							) }
 						</div>

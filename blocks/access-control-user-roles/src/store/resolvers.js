@@ -35,8 +35,7 @@ export default {
 		 */
 		const maybeErrorMessage = maybeGetErrorMessage(response);
 		if (maybeErrorMessage) {
-			setRoles( [], maybeErrorMessage );
-			return;
+			return setRoles( [], maybeErrorMessage );
 		}
 		/**
 		 * Flatten the response to an array containing the role name directly (extracting them from under the "name" key)

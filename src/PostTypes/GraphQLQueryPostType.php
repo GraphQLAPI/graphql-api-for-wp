@@ -137,8 +137,10 @@ class GraphQLQueryPostType extends AbstractPostType
      */
     protected function getGutenbergTemplate(): array
     {
+        $schemaConfigurationBlock = PluginState::getSchemaConfigurationBlock();
         $graphiQLBlock = PluginState::getGraphiQLBlock();
         return [
+            [$schemaConfigurationBlock->getBlockFullName()],
             [$graphiQLBlock->getBlockFullName()],
         ];
     }
