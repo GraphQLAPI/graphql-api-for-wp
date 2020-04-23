@@ -140,8 +140,8 @@ class GraphQLQueryPostType extends AbstractPostType
         $schemaConfigurationBlock = PluginState::getSchemaConfigurationBlock();
         $graphiQLBlock = PluginState::getGraphiQLBlock();
         return [
-            [$schemaConfigurationBlock->getBlockFullName()],
             [$graphiQLBlock->getBlockFullName()],
+            [$schemaConfigurationBlock->getBlockFullName()],
         ];
     }
 
