@@ -22,7 +22,7 @@ import GraphiQLWithExplorer from './GraphiQLWithExplorer.js';
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'graphql-api/graphiql-explorer', {
+registerBlockType( 'graphql-api/graphiql', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
