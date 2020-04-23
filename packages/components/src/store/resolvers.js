@@ -149,8 +149,7 @@ export default {
 		 */
 		const maybeErrorMessage = maybeGetErrorMessage(response);
 		if (maybeErrorMessage) {
-			setDirectives( [], maybeErrorMessage );
-			return;
+			return setDirectives( [], maybeErrorMessage );
 		}
 		/**
 		 * Flatten the response to an array containing the directive name directly (extracting them from under the "name" key)
@@ -170,8 +169,7 @@ export default {
 		 */
 		const maybeErrorMessage = maybeGetErrorMessage(response);
 		if (maybeErrorMessage) {
-			setAccessControlLists( [], maybeErrorMessage );
-			return;
+			return setAccessControlLists( [], maybeErrorMessage );
 		}
 		return setAccessControlLists( response.data?.posts );
 	},
@@ -187,8 +185,7 @@ export default {
 		 */
 		const maybeErrorMessage = maybeGetErrorMessage(response);
 		if (maybeErrorMessage) {
-			setCacheControlLists( [], maybeErrorMessage );
-			return;
+			return setCacheControlLists( [], maybeErrorMessage );
 		}
 		return setCacheControlLists( response.data?.posts );
 	},
