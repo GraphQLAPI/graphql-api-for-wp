@@ -4,7 +4,7 @@ import GraphiQLExplorer from "graphiql-explorer";
 import { buildClientSchema, getIntrospectionQuery, parse } from "graphql";
 
 import "graphiql/graphiql.css";
-import "./GraphiQLWithExplorer.css";
+import '../../graphiql/src/style.scss';
 
 import { __ } from '@wordpress/i18n';
 
@@ -177,53 +177,56 @@ class GraphiQLWithExplorer extends Component {
 		// State from Gutenberg
 		const {
 			attributes: { query, variables },
+			className,
 		} = this.props;
 		return (
-			<div className="graphiql-container">
-				<GraphiQLExplorer
-					schema={ schema }
-					query={ query }
-					variables={ variables }
-					onEdit={ this._handleEditQuery }
-					onRunOperation={ operationName =>
-						this._graphiql.handleRunQuery( operationName )
-					}
-					explorerIsOpen={ this.state.explorerIsOpen }
-					onToggleExplorer={ this._handleToggleExplorer }
-				/>
-				<GraphiQL
-					ref={ ref => ( this._graphiql = ref ) }
-					fetcher={ fetcher }
-					schema={ schema }
-					query={ query }
-					variables={ variables }
-					onEditQuery={ this._handleEditQuery }
-					onEditVariables={ this._handleEditVariables }
-					docExplorerOpen={ false }
-				>
-					<GraphiQL.Toolbar>
-						<GraphiQL.Button
-							onClick={ () => this._graphiql.handlePrettifyQuery() }
-							label={ __('Prettify', 'graphql-api') }
-							title={ __('Prettify Query (Shift-Ctrl-P)', 'graphql-api') }
-						/>
-						<GraphiQL.Button
-							onClick={ () => this._graphiql.handleCopyQuery() }
-							title={ __('Copy Query (Shift-Ctrl-C)', 'graphql-api') }
-							label={ __('Copy', 'graphql-api') }
-						/>
-						<GraphiQL.Button
-							onClick={ () => this._graphiql.handleToggleHistory() }
-							label={ __('History', 'graphql-api') }
-							title={ __('Show History', 'graphql-api') }
-						/>
-						<GraphiQL.Button
-							onClick={ this._handleToggleExplorer }
-							label={ __('Explorer', 'graphql-api') }
-							title={ __('Toggle Explorer', 'graphql-api') }
-						/>
-					</GraphiQL.Toolbar>
-				</GraphiQL>
+			<div className={ className }>
+				<div className="graphiql-container">
+					<GraphiQLExplorer
+						schema={ schema }
+						query={ query }
+						variables={ variables }
+						onEdit={ this._handleEditQuery }
+						onRunOperation={ operationName =>
+							this._graphiql.handleRunQuery( operationName )
+						}
+						explorerIsOpen={ this.state.explorerIsOpen }
+						onToggleExplorer={ this._handleToggleExplorer }
+					/>
+					<GraphiQL
+						ref={ ref => ( this._graphiql = ref ) }
+						fetcher={ fetcher }
+						schema={ schema }
+						query={ query }
+						variables={ variables }
+						onEditQuery={ this._handleEditQuery }
+						onEditVariables={ this._handleEditVariables }
+						docExplorerOpen={ false }
+					>
+						<GraphiQL.Toolbar>
+							<GraphiQL.Button
+								onClick={ () => this._graphiql.handlePrettifyQuery() }
+								label={ __('Prettify', 'graphql-api') }
+								title={ __('Prettify Query (Shift-Ctrl-P)', 'graphql-api') }
+							/>
+							<GraphiQL.Button
+								onClick={ () => this._graphiql.handleCopyQuery() }
+								title={ __('Copy Query (Shift-Ctrl-C)', 'graphql-api') }
+								label={ __('Copy', 'graphql-api') }
+							/>
+							<GraphiQL.Button
+								onClick={ () => this._graphiql.handleToggleHistory() }
+								label={ __('History', 'graphql-api') }
+								title={ __('Show History', 'graphql-api') }
+							/>
+							<GraphiQL.Button
+								onClick={ this._handleToggleExplorer }
+								label={ __('Explorer', 'graphql-api') }
+								title={ __('Toggle Explorer', 'graphql-api') }
+							/>
+						</GraphiQL.Toolbar>
+					</GraphiQL>
+				</div>
 			</div>
 		);
 	}
