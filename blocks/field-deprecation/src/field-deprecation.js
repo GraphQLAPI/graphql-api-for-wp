@@ -10,23 +10,31 @@ import { TextControl, Card, CardHeader, CardBody, Tooltip, Icon, ExternalLink } 
 import { LinkableInfoTooltip, getEditableOnFocusComponentClass } from '../../../packages/components/src';
 
 const FieldDeprecation = ( props ) => {
-	const { className, setAttributes, isSelected, attributes: { deprecationReason } } = props;
+	const {
+		className,
+		setAttributes,
+		isSelected,
+		attributes: { deprecationReason },
+		disableHeader
+	} = props;
 	const componentClassName = getEditableOnFocusComponentClass(isSelected);
 	const documentationLink = 'https://graphql-api.com/documentation/#cache-control'
 	return (
 		<div className={ componentClassName }>
 			<Card>
-				<CardHeader isShady>
-					{ __('Reason', 'graphql-api') }
-					<LinkableInfoTooltip
-						text={ __('Deprecated fields must not be queried anymore. The reason can indicate what replacement to use instead', 'graphql-api') }
-						href={ documentationLink }
-					/ >
-				</CardHeader>
+				{ ! disableHeader && (
+					<CardHeader isShady>
+						{ __('Deprecation reason', 'graphql-api') }
+						<LinkableInfoTooltip
+							text={ __('Deprecated fields must not be queried anymore. The reason can indicate what replacement to use instead', 'graphql-api') }
+							href={ documentationLink }
+						/ >
+					</CardHeader>
+				) }
 				<CardBody>
 					{ isSelected && (
 						<TextControl
-							label={ __('Deprecation Reason', 'graphql-api') }
+							// label={ __('Deprecation Reason', 'graphql-api') }
 							type="text"
 							value={ deprecationReason }
 							className={ className+'__reason' }

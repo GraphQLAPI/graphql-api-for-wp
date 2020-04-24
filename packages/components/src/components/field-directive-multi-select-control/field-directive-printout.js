@@ -44,7 +44,9 @@ const FieldDirectivePrintout = ( props ) => {
 		<Card { ...props }>
 			{ ! disableFields && (
 				<>
-					<CardHeader isShady>{ __('Fields, by type:', 'graphql-api') }</CardHeader>
+					{ ! disableDirectives && (
+						<CardHeader isShady>{ __('Fields, by type:', 'graphql-api') }</CardHeader>
+					) }
 					<CardBody>
 						{ !! typeFields.length && (
 								( !groupFieldsUnderType && typeFields.map( typeField =>
@@ -79,7 +81,9 @@ const FieldDirectivePrintout = ( props ) => {
 			) }
 			{ ! disableDirectives && (
 				<>
-					<CardHeader isShady>{ __('(Non-system) Directives:', 'graphql-api') }</CardHeader>
+					{ ! disableFields && (
+						<CardHeader isShady>{ __('(Non-system) Directives:', 'graphql-api') }</CardHeader>
+					) }
 					<CardBody>
 						{ !! directives.length && directives.map( directive =>
 							<>

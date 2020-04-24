@@ -5,6 +5,7 @@ import { withFieldDirectiveMultiSelectControl } from '../../../packages/componen
 export default compose( [
 	withState( {
 		disableDirectives: true,
+		disableHeader: true,
 	} ),
 	withFieldDirectiveMultiSelectControl(),
 ] )( FieldDeprecation );
