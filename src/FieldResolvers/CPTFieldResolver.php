@@ -6,15 +6,16 @@ namespace Leoloso\GraphQLByPoPWPPlugin\FieldResolvers;
 
 use PoP\Posts\Facades\PostTypeAPIFacade;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
+use PoP\Engine\TypeResolvers\RootTypeResolver;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\Schema\TypeCastingHelpers;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\FieldResolvers\AbstractQueryableFieldResolver;
-use PoP\Engine\TypeResolvers\RootTypeResolver;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLSchemaConfigurationPostType;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLFieldDeprecationListPostType;
 
 class CPTFieldResolver extends AbstractQueryableFieldResolver
 {
@@ -33,6 +34,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         return [
             'accessControlLists',
             'cacheControlLists',
+            'fieldDeprecationLists',
             'schemaConfigurations',
         ];
     }
@@ -42,6 +44,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         $types = [
             'accessControlLists' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
             'cacheControlLists' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
+            'fieldDeprecationLists' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
             'schemaConfigurations' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
         ];
         return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
@@ -53,6 +56,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         $descriptions = [
             'accessControlLists' => $translationAPI->__('Access Control Lists', 'graphql-api'),
             'cacheControlLists' => $translationAPI->__('Cache Control Lists', 'graphql-api'),
+            'fieldDeprecationLists' => $translationAPI->__('Field Deprecation Lists', 'graphql-api'),
             'schemaConfigurations' => $translationAPI->__('Schema Configurations', 'graphql-api'),
         ];
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
@@ -64,6 +68,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         switch ($fieldName) {
             case 'accessControlLists':
             case 'cacheControlLists':
+            case 'fieldDeprecationLists':
             case 'schemaConfigurations':
                 $schemaFieldArgs = array_merge(
                     $schemaFieldArgs,
@@ -86,6 +91,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         switch ($fieldName) {
             case 'accessControlLists':
             case 'cacheControlLists':
+            case 'fieldDeprecationLists':
             case 'schemaConfigurations':
                 return false;
         }
@@ -101,6 +107,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         switch ($fieldName) {
             case 'accessControlLists':
             case 'cacheControlLists':
+            case 'fieldDeprecationLists':
             case 'schemaConfigurations':
                 $query = [
                     'limit' => -1,
@@ -126,6 +133,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         switch ($fieldName) {
             case 'accessControlLists':
             case 'cacheControlLists':
+            case 'fieldDeprecationLists':
             case 'schemaConfigurations':
                 // Remove the "postTypes" field argument
                 unset($fieldArgs['postTypes']);
@@ -134,6 +142,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
                 $postTypes = [
                     'accessControlLists' => GraphQLAccessControlListPostType::POST_TYPE,
                     'cacheControlLists' => GraphQLCacheControlListPostType::POST_TYPE,
+                    'fieldDeprecationLists' => GraphQLFieldDeprecationListPostType::POST_TYPE,
                     'schemaConfigurations' => GraphQLSchemaConfigurationPostType::POST_TYPE,
                 ];
                 $query['post-types'] = [
@@ -167,6 +176,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         switch ($fieldName) {
             case 'accessControlLists':
             case 'cacheControlLists':
+            case 'fieldDeprecationLists':
             case 'schemaConfigurations':
                 return PostTypeResolver::class;
         }

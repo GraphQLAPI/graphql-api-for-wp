@@ -18,6 +18,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserRolesBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserStateBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlDisableAccessBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\CacheControlBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\FieldDeprecationBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserCapabilitiesBlock;
@@ -97,6 +98,10 @@ class Plugin
         $schemaConfigCacheControlListBlock = new SchemaConfigCacheControlListBlock();
         $schemaConfigCacheControlListBlock->init();
         PluginState::setSchemaConfigCacheControlListBlock($schemaConfigCacheControlListBlock);
+
+        $schemaConfigFieldDeprecationListBlock = new SchemaConfigFieldDeprecationListBlock();
+        $schemaConfigFieldDeprecationListBlock->init();
+        PluginState::setSchemaConfigFieldDeprecationListBlock($schemaConfigFieldDeprecationListBlock);
 
         /**
          * Block categories

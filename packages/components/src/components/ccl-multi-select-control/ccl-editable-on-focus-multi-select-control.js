@@ -11,7 +11,7 @@ import CacheControlListPrintout from './ccl-printout';
 import { getEditableOnFocusComponentClass } from '../base-styles'
 
 const CacheControlListEditableOnFocusMultiSelectControl = ( props ) => {
-	const { setAttributes, isSelected, attributes: { cacheControlLists } } = props;
+	const { isSelected, attributes: { cacheControlLists } } = props;
 	const className = 'graphql-api-cache-control-list-select';
 	const componentClassName = getEditableOnFocusComponentClass(isSelected);
 	return (
@@ -21,7 +21,6 @@ const CacheControlListEditableOnFocusMultiSelectControl = ( props ) => {
 					<CacheControlListMultiSelectControl
 						{ ...props }
 						selectedItems={ cacheControlLists }
-						setAttributes={ setAttributes }
 						className={ className }
 					/>
 				}

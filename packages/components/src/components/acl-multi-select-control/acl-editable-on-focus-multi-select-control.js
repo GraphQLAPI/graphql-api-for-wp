@@ -11,7 +11,7 @@ import AccessControlListPrintout from './acl-printout';
 import { getEditableOnFocusComponentClass } from '../base-styles'
 
 const AccessControlListEditableOnFocusMultiSelectControl = ( props ) => {
-	const { setAttributes, isSelected, attributes: { accessControlLists } } = props;
+	const { isSelected, attributes: { accessControlLists } } = props;
 	const className = 'graphql-api-access-control-list-select';
 	const componentClassName = getEditableOnFocusComponentClass(isSelected);
 	return (
@@ -21,7 +21,6 @@ const AccessControlListEditableOnFocusMultiSelectControl = ( props ) => {
 					<AccessControlListMultiSelectControl
 						{ ...props }
 						selectedItems={ accessControlLists }
-						setAttributes={ setAttributes }
 						className={ className }
 					/>
 				}

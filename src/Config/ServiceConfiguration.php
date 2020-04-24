@@ -29,6 +29,7 @@ class ServiceConfiguration
                 [
                     [RootTypeResolver::class, 'accessControlLists', $capabilities, SchemaModes::PRIVATE_SCHEMA_MODE],
                     [RootTypeResolver::class, 'cacheControlLists', $capabilities, SchemaModes::PRIVATE_SCHEMA_MODE],
+                    [RootTypeResolver::class, 'fieldDeprecationLists', $capabilities, SchemaModes::PRIVATE_SCHEMA_MODE],
                 ]
             );
         }

@@ -64,9 +64,11 @@ class GraphQLSchemaConfigurationPostType extends AbstractPostType
     {
         $schemaConfigAccessControlListBlock = PluginState::getSchemaConfigAccessControlListBlock();
         $schemaConfigCacheControlListBlock = PluginState::getSchemaConfigCacheControlListBlock();
+        $schemaConfigFieldDeprecationListBlock = PluginState::getSchemaConfigFieldDeprecationListBlock();
         return [
             [$schemaConfigAccessControlListBlock->getBlockFullName()],
             [$schemaConfigCacheControlListBlock->getBlockFullName()],
+            [$schemaConfigFieldDeprecationListBlock->getBlockFullName()],
         ];
     }
 

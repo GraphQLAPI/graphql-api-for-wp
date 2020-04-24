@@ -19,6 +19,9 @@ const controls = {
 	RECEIVE_CACHE_CONTROL_LISTS( action ) {
 		return fetchGraphQLQuery( action.query );
 	},
+	RECEIVE_FIELD_DEPRECATION_LISTS( action ) {
+		return fetchGraphQLQuery( action.query );
+	},
 };
 
 export default controls;

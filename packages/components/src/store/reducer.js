@@ -14,6 +14,9 @@ const DEFAULT_STATE = {
 	cacheControlLists: [],
 	hasRetrievedCacheControlLists: false,
 	retrievingCacheControlListsErrorMessage: null,
+	fieldDeprecationLists: [],
+	hasRetrievedFieldDeprecationLists: false,
+	retrievingFieldDeprecationListsErrorMessage: null,
 };
 
 /**
@@ -56,6 +59,13 @@ const schemaInstrospection = (
 				cacheControlLists: action.cacheControlLists,
 				hasRetrievedCacheControlLists: true,
 				retrievingCacheControlListsErrorMessage: action.errorMessage,
+			};
+		case 'SET_FIELD_DEPRECATION_LISTS':
+			return {
+				...state,
+				fieldDeprecationLists: action.fieldDeprecationLists,
+				hasRetrievedFieldDeprecationLists: true,
+				retrievingFieldDeprecationListsErrorMessage: action.errorMessage,
 			};
 	}
 	return state;
