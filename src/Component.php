@@ -81,6 +81,6 @@ class Component extends AbstractComponent
         // Configure the GraphQL query with Access/Cache Control Lists
         (new AccessControlGraphQLQueryConfigurator())->init();
         (new CacheControlGraphQLQueryConfigurator())->init();
-        // (new FieldDeprecationGraphQLQueryConfigurator())->init();
+        (new FieldDeprecationGraphQLQueryConfigurator())->init();
     }
 }
