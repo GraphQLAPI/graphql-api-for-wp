@@ -19,6 +19,11 @@ class FieldDeprecationBlock extends AbstractControlBlock
         return 'field-deprecation';
     }
 
+    protected function disableDirectives(): bool
+    {
+        return true;
+    }
+
     protected function registerCommonStyleCSS(): bool
     {
         return true;
@@ -26,7 +31,7 @@ class FieldDeprecationBlock extends AbstractControlBlock
 
     protected function getBlockDataTitle(): string
     {
-        return \__('Set deprecation for fields:', 'graphql-api');
+        return \__('Fields to deprecate:', 'graphql-api');
     }
     protected function getBlockContentTitle(): string
     {
