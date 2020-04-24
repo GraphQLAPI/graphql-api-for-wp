@@ -12,6 +12,7 @@ use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use Leoloso\GraphQLByPoPWPPlugin\Config\ServiceConfiguration;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\QueryExecution\CacheControlGraphQLQueryConfigurator;
+use Leoloso\GraphQLByPoPWPPlugin\QueryExecution\FieldDeprecationGraphQLQueryConfigurator;
 use Leoloso\GraphQLByPoPWPPlugin\QueryExecution\AccessControlGraphQLQueryConfigurator;
 /**
  * Initialize component
@@ -80,5 +81,6 @@ class Component extends AbstractComponent
         // Configure the GraphQL query with Access/Cache Control Lists
         (new AccessControlGraphQLQueryConfigurator())->init();
         (new CacheControlGraphQLQueryConfigurator())->init();
+        // (new FieldDeprecationGraphQLQueryConfigurator())->init();
     }
 }
