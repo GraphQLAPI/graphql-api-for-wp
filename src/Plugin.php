@@ -47,10 +47,10 @@ class Plugin
          * Post Types
          */
         (new GraphQLQueryPostType())->init();
+        (new GraphQLSchemaConfigurationPostType())->init();
         (new GraphQLAccessControlListPostType())->init();
         (new GraphQLCacheControlListPostType())->init();
         (new GraphQLFieldDeprecationListPostType())->init();
-        (new GraphQLSchemaConfigurationPostType())->init();
 
         /**
          * Blocks
