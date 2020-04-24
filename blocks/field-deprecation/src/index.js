@@ -103,8 +103,9 @@ registerBlockType( 'graphql-api/field-deprecation', {
 		return (
 			<div className={ className }>
 				<EditBlock
-					selectLabel={ __('Fields to deprecate:', 'graphql-api') }
-					configurationLabel={ __('Deprecation reason:', 'graphql-api') }
+					// selectLabel={ __('Fields to deprecate:', 'graphql-api') }
+					// configurationLabel={ __('Deprecation reason:', 'graphql-api') }
+					hideLabels={ true }
 					componentClassName={ getEditableOnFocusComponentClass(isSelected) }
 					{ ...props }
 				/>

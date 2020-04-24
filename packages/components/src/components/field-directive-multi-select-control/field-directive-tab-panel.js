@@ -4,7 +4,7 @@ import FieldMultiSelectControl from './field-multi-select-control';
 import DirectiveMultiSelectControl from './directive-multi-select-control';
 
 const FieldDirectiveTabPanel = ( props ) => {
-	const { className, setAttributes, typeFields, directives } = props;
+	const { className, typeFields, directives } = props;
 	return (
 		<TabPanel
 			className={ className + '__tab_panel' }
@@ -25,12 +25,12 @@ const FieldDirectiveTabPanel = ( props ) => {
 			{
 				( tab ) => tab.name == 'tabFields' ?
 					<FieldMultiSelectControl
+						{ ...props }
 						selectedItems={ typeFields }
-						setAttributes={ setAttributes }
 					/> :
 					<DirectiveMultiSelectControl
+						{ ...props }
 						selectedItems={ directives }
-						setAttributes={ setAttributes }
 					/>
 			}
 		</TabPanel>

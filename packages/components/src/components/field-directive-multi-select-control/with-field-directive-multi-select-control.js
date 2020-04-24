@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import { createHigherOrderComponent, compose } from '@wordpress/compose';
+import { createHigherOrderComponent } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import FieldDirectiveTabPanel from './field-directive-tab-panel';
 import FieldDirectivePrintout from './field-directive-printout';
@@ -14,7 +14,6 @@ import DirectiveMultiSelectControl from './directive-multi-select-control';
 const withFieldDirectiveMultiSelectControl = () => createHigherOrderComponent(
 	( WrappedComponent ) => ( props ) => {
 		const {
-			setAttributes,
 			isSelected,
 			attributes: {
 				typeFields,
@@ -24,7 +23,8 @@ const withFieldDirectiveMultiSelectControl = () => createHigherOrderComponent(
 			selectLabel,
 			configurationLabel,
 			disableFields,
-			disableDirectives
+			disableDirectives,
+			hideLabels
 		} = props;
 		const className = 'graphql-api-access-control-list';
 		const leftSideLabel = selectLabel || __('Select fields and directives:', 'graphql-api');
@@ -35,9 +35,11 @@ const withFieldDirectiveMultiSelectControl = () => createHigherOrderComponent(
 					<div className={ className+'__item' }>
 						<div className={ className+'__item_data' }>
 							<div className={ className+'__item_data_for' }>
-								<div className={ className+'__item_data__title' }>
-									<strong>{ leftSideLabel }</strong>
-								</div>
+								{ ! hideLabels &&
+									<div className={ className+'__item_data__title' }>
+										<strong>{ leftSideLabel }</strong>
+									</div>
+								}
 								<div className={ componentClassName }>
 									{ isSelected && (
 										<>
@@ -46,20 +48,19 @@ const withFieldDirectiveMultiSelectControl = () => createHigherOrderComponent(
 													{ ...props }
 													typeFields={ typeFields }
 													directives={ directives }
-													setAttributes={ setAttributes }
 													className={ className }
 												/>
 											}
 											{ ! disableFields && disableDirectives &&
 												<FieldMultiSelectControl
+													{ ...props }
 													selectedItems={ typeFields }
-													setAttributes={ setAttributes }
 												/>
 											}
 											{ disableFields && ! disableDirectives &&
 												<DirectiveMultiSelectControl
+													{ ...props }
 													selectedItems={ directives }
-													setAttributes={ setAttributes }
 												/>
 											}
 										</>
@@ -75,9 +76,11 @@ const withFieldDirectiveMultiSelectControl = () => createHigherOrderComponent(
 								</div>
 							</div>
 							<div className={ className+'__item_data_who' }>
-								<div className={ className+'__item_data__title' }>
-									<strong>{ rightSideLabel }</strong>
-								</div>
+								{ ! hideLabels &&
+									<div className={ className+'__item_data__title' }>
+										<strong>{ rightSideLabel }</strong>
+									</div>
+								}
 								<div className={ className+'__item_data__who' }>
 									<WrappedComponent
 										className={ className }
