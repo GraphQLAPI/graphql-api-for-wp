@@ -19,7 +19,15 @@ import { GROUP_FIELDS_UNDER_TYPE_FOR_PRINT, EMPTY_LABEL } from '../../default-co
  * @param {Object} props
  */
 const FieldDirectivePrintout = ( props ) => {
-	const { typeFields, directives, typeFieldNames, groupFieldsUnderTypeForPrint, emptyLabel } = props;
+	const {
+		typeFields,
+		directives,
+		typeFieldNames,
+		groupFieldsUnderTypeForPrint,
+		emptyLabel,
+		disableFields,
+		disableDirectives
+	} = props;
 	const groupFieldsUnderType = groupFieldsUnderTypeForPrint != undefined ? groupFieldsUnderTypeForPrint : GROUP_FIELDS_UNDER_TYPE_FOR_PRINT;
 	const emptyLabelString = emptyLabel != undefined ? emptyLabel : EMPTY_LABEL;
 
@@ -34,52 +42,60 @@ const FieldDirectivePrintout = ( props ) => {
 	} );
 	return (
 		<Card { ...props }>
-			<CardHeader isShady>{ __('Fields, by type:', 'graphql-api') }</CardHeader>
-			<CardBody>
-				{ !! typeFields.length && (
-						( !groupFieldsUnderType && typeFields.map( typeField =>
+			{ ! disableFields && (
+				<>
+					<CardHeader isShady>{ __('Fields, by type:', 'graphql-api') }</CardHeader>
+					<CardBody>
+						{ !! typeFields.length && (
+								( !groupFieldsUnderType && typeFields.map( typeField =>
+									<>
+										<CheckboxControl
+											label={ `${ typeFieldNames[ typeField ].typeName }${ TYPE_FIELD_SEPARATOR_FOR_PRINT }${ typeFieldNames[ typeField ].field }` }
+											checked={ true }
+											disabled={ true }
+										/>
+									</>
+								)
+							) || ( groupFieldsUnderType && Object.keys(combinedTypeFieldNames).map( typeName =>
+								<>
+									<strong>{ typeName }</strong><br/>
+									{ combinedTypeFieldNames[ typeName ].map( field =>
+										<>
+											<CheckboxControl
+												label={ `${ field }` }
+												checked={ true }
+												disabled={ true }
+											/>
+										</>
+									) }
+								</>
+							) )
+						) }
+						{ !typeFields.length && (
+							emptyLabelString
+						) }
+					</CardBody>
+				</>
+			) }
+			{ ! disableDirectives && (
+				<>
+					<CardHeader isShady>{ __('(Non-system) Directives:', 'graphql-api') }</CardHeader>
+					<CardBody>
+						{ !! directives.length && directives.map( directive =>
 							<>
 								<CheckboxControl
-									label={ `${ typeFieldNames[ typeField ].typeName }${ TYPE_FIELD_SEPARATOR_FOR_PRINT }${ typeFieldNames[ typeField ].field }` }
+									label={ `${ directive }` }
 									checked={ true }
 									disabled={ true }
 								/>
 							</>
-						)
-					) || ( groupFieldsUnderType && Object.keys(combinedTypeFieldNames).map( typeName =>
-						<>
-							<strong>{ typeName }</strong><br/>
-							{ combinedTypeFieldNames[ typeName ].map( field =>
-								<>
-									<CheckboxControl
-										label={ `${ field }` }
-										checked={ true }
-										disabled={ true }
-									/>
-								</>
-							) }
-						</>
-					) )
-				) }
-				{ !typeFields.length && (
-					emptyLabelString
-				) }
-			</CardBody>
-			<CardHeader isShady>{ __('(Non-system) Directives:', 'graphql-api') }</CardHeader>
-			<CardBody>
-				{ !! directives.length && directives.map( directive =>
-					<>
-						<CheckboxControl
-							label={ `${ directive }` }
-							checked={ true }
-							disabled={ true }
-						/>
-					</>
-				) }
-				{ !directives.length && (
-					emptyLabelString
-				) }
-			</CardBody>
+						) }
+						{ !directives.length && (
+							emptyLabelString
+						) }
+					</CardBody>
+				</>
+			)}
 		</Card>
 	);
 }
@@ -111,7 +127,12 @@ const WithSpinnerFieldDirectivePrintout = compose( [
 ] )( FieldDirectivePrintout );
 
 export default compose( [
-	withSelect( ( select ) => {
+	withSelect( ( select, ownProps ) => {
+		const { disableFields } = ownProps;
+		if ( disableFields ) {
+			return {};
+		}
+
 		const {
 			getTypeFields,
 			hasRetrievedTypeFields,

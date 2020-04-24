@@ -5,13 +5,27 @@ import { createHigherOrderComponent, compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import FieldDirectiveTabPanel from './field-directive-tab-panel';
 import FieldDirectivePrintout from './field-directive-printout';
+import FieldMultiSelectControl from './field-multi-select-control';
+import DirectiveMultiSelectControl from './directive-multi-select-control';
 
 /**
  * Display an error message if loading data failed
  */
 const withFieldDirectiveMultiSelectControl = () => createHigherOrderComponent(
 	( WrappedComponent ) => ( props ) => {
-		const { setAttributes, isSelected, attributes: { typeFields, directives }, componentClassName, selectLabel, configurationLabel } = props;
+		const {
+			setAttributes,
+			isSelected,
+			attributes: {
+				typeFields,
+				directives
+			},
+			componentClassName,
+			selectLabel,
+			configurationLabel,
+			disableFields,
+			disableDirectives
+		} = props;
 		const className = 'graphql-api-access-control-list';
 		const leftSideLabel = selectLabel || __('Select fields and directives:', 'graphql-api');
 		const rightSideLabel = configurationLabel || __('Configuration:', 'graphql-api');
@@ -25,15 +39,31 @@ const withFieldDirectiveMultiSelectControl = () => createHigherOrderComponent(
 									<strong>{ leftSideLabel }</strong>
 								</div>
 								<div className={ componentClassName }>
-									{ isSelected &&
-										<FieldDirectiveTabPanel
-											{ ...props }
-											typeFields={ typeFields }
-											directives={ directives }
-											setAttributes={ setAttributes }
-											className={ className }
-										/>
-									}
+									{ isSelected && (
+										<>
+											{ ! disableFields && ! disableDirectives &&
+												<FieldDirectiveTabPanel
+													{ ...props }
+													typeFields={ typeFields }
+													directives={ directives }
+													setAttributes={ setAttributes }
+													className={ className }
+												/>
+											}
+											{ ! disableFields && disableDirectives &&
+												<FieldMultiSelectControl
+													selectedItems={ typeFields }
+													setAttributes={ setAttributes }
+												/>
+											}
+											{ disableFields && ! disableDirectives &&
+												<DirectiveMultiSelectControl
+													selectedItems={ directives }
+													setAttributes={ setAttributes }
+												/>
+											}
+										</>
+									) }
 									{ !isSelected && (
 										<FieldDirectivePrintout
 											{ ...props }

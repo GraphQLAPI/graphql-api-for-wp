@@ -10,6 +10,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLWithExplorerBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\FieldDeprecationBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\BlockDevelopmentHotReload;
@@ -18,9 +19,11 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserStateBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlDisableAccessBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\CacheControlBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\FieldDeprecationBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserCapabilitiesBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLFieldDeprecationListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\PersistedQueryBlockCategory;
@@ -45,6 +48,7 @@ class Plugin
         (new GraphQLQueryPostType())->init();
         (new GraphQLAccessControlListPostType())->init();
         (new GraphQLCacheControlListPostType())->init();
+        (new GraphQLFieldDeprecationListPostType())->init();
         (new GraphQLSchemaConfigurationPostType())->init();
 
         /**
@@ -82,6 +86,10 @@ class Plugin
         $cacheControlBlock->init();
         PluginState::setCacheControlBlock($cacheControlBlock);
 
+        $fieldDeprecationBlock = new FieldDeprecationBlock();
+        $fieldDeprecationBlock->init();
+        PluginState::setFieldDeprecationBlock($fieldDeprecationBlock);
+
         $schemaConfigAccessControlListBlock = new SchemaConfigAccessControlListBlock();
         $schemaConfigAccessControlListBlock->init();
         PluginState::setSchemaConfigAccessControlListBlock($schemaConfigAccessControlListBlock);
@@ -96,6 +104,7 @@ class Plugin
         (new PersistedQueryBlockCategory())->init();
         (new AccessControlBlockCategory())->init();
         (new CacheControlBlockCategory())->init();
+        (new FieldDeprecationBlockCategory())->init();
         (new SchemaConfigurationBlockCategory())->init();
 
         /**

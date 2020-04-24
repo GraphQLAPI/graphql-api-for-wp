@@ -9,6 +9,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\FieldDeprecationBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
 
@@ -19,6 +20,7 @@ class PluginState
     public static $accessControlBlock;
     public static $accessControlNestedBlocks = [];
     public static $cacheControlBlock;
+    public static $fieldDeprecationBlock;
     public static $schemaConfigAccessControlListBlock;
     public static $schemaConfigCacheControlListBlock;
 
@@ -110,6 +112,24 @@ class PluginState
     public static function setCacheControlBlock(CacheControlBlock $cacheControlBlock): void
     {
         self::$cacheControlBlock = $cacheControlBlock;
+    }
+
+    /**
+     * Get the value of fieldDeprecationBlock
+     */
+    public static function getFieldDeprecationBlock(): FieldDeprecationBlock
+    {
+        return self::$fieldDeprecationBlock;
+    }
+
+    /**
+     * Set the value of fieldDeprecationBlock
+     *
+     * @return void
+     */
+    public static function setFieldDeprecationBlock(FieldDeprecationBlock $fieldDeprecationBlock): void
+    {
+        self::$fieldDeprecationBlock = $fieldDeprecationBlock;
     }
 
     /**
