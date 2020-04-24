@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\QueryExecution;
 
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
-use PoP\FieldDeprecation\Facades\FieldDeprecationManagerFacade;
+use PoP\FieldDeprecationByDirective\Facades\FieldDeprecationManagerFacade;
 
 class FieldDeprecationGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigurator
 {
