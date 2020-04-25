@@ -162,6 +162,16 @@ abstract class AbstractPostType
     }
 
     /**
+     * If provided, rewrite the slug
+     *
+     * @return string|null
+     */
+    protected function getSlugBase(): ?string
+    {
+        return null;
+    }
+
+    /**
      * Arguments for registering the post type
      *
      * @return array
@@ -201,6 +211,9 @@ abstract class AbstractPostType
                 ],
             )
         );
+        if ($slugBase = $this->getSlugBase()) {
+            $postTypeArgs['rewrite'] = ['slug' => $slugBase];
+        }
         if ($taxonomies = $this->getTaxonomies()) {
             $postTypeArgs['taxonomies'] = $taxonomies;
         }

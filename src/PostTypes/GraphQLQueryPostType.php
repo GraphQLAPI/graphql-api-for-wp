@@ -4,20 +4,14 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
-use Exception;
-use PoP\Routing\RouteNatures;
-use PoP\API\Schema\QueryInputs;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
-use PoP\CacheControl\Facades\CacheControlEngineFacade;
 use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
-use PoP\CacheControl\Environment as CacheControlEnvironment;
-use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractGraphQLQueryExecutionPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
 use Leoloso\GraphQLByPoPWPPlugin\General\GraphQLQueryPostTypeHelpers;
-use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
 
-class GraphQLQueryPostType extends AbstractPostType
+class GraphQLQueryPostType extends AbstractGraphQLQueryExecutionPostType
 {
     /**
      * Custom Post Type name
@@ -32,6 +26,16 @@ class GraphQLQueryPostType extends AbstractPostType
     protected function getPostType(): string
     {
         return self::POST_TYPE;
+    }
+
+    /**
+     * Access endpoints under /graphql-query, or wherever it is configured to
+     *
+     * @return string|null
+     */
+    protected function getSlugBase(): ?string
+    {
+        return ComponentConfiguration::getPersistedQuerySlugBase();
     }
 
     /**
@@ -108,15 +112,15 @@ class GraphQLQueryPostType extends AbstractPostType
         return true;
     }
 
-    /**
-     * Show in admin bar
-     *
-     * @return bool
-     */
-    protected function showInAdminBar(): bool
-    {
-        return true;
-    }
+    // /**
+    //  * Show in admin bar
+    //  *
+    //  * @return bool
+    //  */
+    // protected function showInAdminBar(): bool
+    // {
+    //     return true;
+    // }
 
     /**
      * Gutenberg templates to lock down the Custom Post Type to
@@ -144,68 +148,6 @@ class GraphQLQueryPostType extends AbstractPostType
     }
 
     /**
-     * Indicates if we executing the GraphQL query (`true`) or visualizing the query source (`false`)
-     * It returns always `true`, unless passing ?view=source in the single post URL
-     *
-     * @return boolean
-     */
-    protected function resolveGraphQLQuery(): bool
-    {
-        return $_REQUEST[RequestParams::VIEW] != RequestParams::VIEW_SOURCE;
-    }
-
-    /**
-     * Add the hook to initialize the different post types
-     *
-     * @return void
-     */
-    public function init(): void
-    {
-        parent::init();
-
-        /**
-         * 2 outputs:
-         *
-         * - `resolveGraphQLQuery` = true, then resolve the GraphQL query
-         * - `resolveGraphQLQuery` = false, then view the source for the GraphQL query
-         */
-        if ($this->resolveGraphQLQuery()) {
-            /**
-             * Execute first, before VarsHooks in the API package, to set-up the variables in $vars
-             * as soon as we knows if it's a singular post of this type
-             */
-            \add_action(
-                'ApplicationState:addVars',
-                [$this, 'addGraphQLVars'],
-                0,
-                1
-            );
-            /**
-             * Assign the single endpoint
-             */
-            \add_filter(
-                'WPCMSRoutingState:nature',
-                [$this, 'getNature'],
-                10,
-                2
-            );
-            /**
-             * Manage Cache Control
-             */
-            \add_action(
-                'popcms:boot',
-                [$this, 'manageCacheControl']
-            );
-        } else {
-            /** Add the excerpt, which is the description of the GraphQL query */
-            \add_filter(
-                'the_content',
-                [$this, 'setGraphQLQuerySourceContent']
-            );
-        }
-    }
-
-    /**
      * Indicate if the excerpt must be used as the CPT's description and rendered when rendering the post
      *
      * @return boolean
@@ -213,6 +155,31 @@ class GraphQLQueryPostType extends AbstractPostType
     public function usePostExcerptAsDescription(): bool
     {
         return true;
+    }
+
+    /**
+     * Indicates if we executing the GraphQL query (`true`) or visualizing the query source (`false`)
+     * It returns always `true`, unless passing ?view=source in the single post URL
+     *
+     * @return boolean
+     */
+    protected function isGraphQLQueryExecution(): bool
+    {
+        return $_REQUEST[RequestParams::VIEW] != RequestParams::VIEW_SOURCE;
+    }
+
+    /**
+     * Print the Query source
+     *
+     * @return void
+     */
+    protected function doSomethingElse(): void
+    {
+        /** Add the excerpt, which is the description of the GraphQL query */
+        \add_filter(
+            'the_content',
+            [$this, 'setGraphQLQuerySourceContent']
+        );
     }
 
     /**
@@ -242,12 +209,19 @@ class GraphQLQueryPostType extends AbstractPostType
                     $graphQLQuery,
                     $graphQLVariables
                 ) = GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, false);
+                // To render the variables in the block, they must be json_encoded
+                if ($graphQLVariables) {
+                    $graphQLVariables = json_encode($graphQLVariables);
+                }
                 if (!$graphQLQuery || !$graphQLVariables) {
                     // Fetch the attributes using inheritance
                     list(
                         $inheritedGraphQLQuery,
                         $inheritedGraphQLVariables
                     ) = GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, true);
+                    if ($inheritedGraphQLVariables) {
+                        $inheritedGraphQLVariables = json_encode($inheritedGraphQLVariables);
+                    }
                     // If the 2 sets of attributes are different, then render the block again
                     if (($graphQLQuery != $inheritedGraphQLQuery) ||
                         ($graphQLVariables != $inheritedGraphQLVariables)
@@ -279,102 +253,17 @@ class GraphQLQueryPostType extends AbstractPostType
     }
 
     /**
-     * Disable Cache Control when previewing the new GraphQL query
-     */
-    public function manageCacheControl()
-    {
-        // If cache control enabled and it is a preview of the GraphQL query...
-        if (!CacheControlEnvironment::disableCacheControl() && \is_singular($this->getPostType()) && \is_preview()) {
-            // Disable cache control by setting maxAge => 0
-            $cacheControlEngine = CacheControlEngineFacade::getInstance();
-            $cacheControlEngine->addMaxAge(0);
-        }
-    }
-
-    /**
-     * Assign the single endpoint by setting it as the Home nature
-     */
-    public function getNature($nature, $query)
-    {
-        if ($query->is_singular($this->getPostType())) {
-            return RouteNatures::HOME;
-        }
-
-        return $nature;
-    }
-
-    /**
-     * Check if requesting the single post of this CPT and, in this case, set the request with the needed API params
+     * Provide the query to execute and its variables
      *
-     * @return void
+     * @return array
      */
-    public function addGraphQLVars($vars_in_array)
+    protected function getGraphQLQueryAndVariables(): array
     {
-        if (\is_singular($this->getPostType())) {
-            // Remove the VarsHooks from the GraphQLAPIRequest, so it doesn't process the GraphQL query
-            // Otherwise it will add error "The query in the body is empty"
-            $instanceManager = InstanceManagerFacade::getInstance();
-            $graphQLAPIRequestHookSet = $instanceManager->getInstance(\PoP\GraphQLAPIRequest\Hooks\VarsHooks::class);
-            \remove_action(
-                'ApplicationState:addVars',
-                array($graphQLAPIRequestHookSet, 'addURLParamVars'),
-                20,
-                1
-            );
-
-            /**
-             * Remove any query passed through the request, to avoid users executing a custom query,
-             * bypassing the persisted one
-             */
-            unset($_REQUEST[QueryInputs::QUERY]);
-
-            // Indicate it is an API, of type GraphQL
-            $vars = &$vars_in_array[0];
-            $vars['scheme'] = \POP_SCHEME_API;
-            $vars['datastructure'] = GraphQLDataStructureFormatter::getName();
-
-            /**
-             * Extract the query from the post (or from its parents), and set it in $vars
-             *
-             */
-            global $post;
-            $graphQLQueryPost = $post;
-            list(
-                $graphQLQuery,
-                $graphQLVariables
-            ) = GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, true);
-            if (!$graphQLQuery) {
-                throw new Exception(
-                    \__(
-                        'This GraphQL query either has no query defined, or it has corrupted content, so it can\'t be processed.',
-                        'graphql-api'
-                    )
-                );
-            }
-            /**
-             * Merge the variables into $vars
-             */
-            if ($graphQLVariables) {
-                // Variables is saved as a string, convert to array
-                $graphQLVariables = json_decode($graphQLVariables, true);
-                /**
-                 * Watch out! If the variables have a wrong format, eg: with an additional trailing comma, such as this:
-                 * {
-                 *   "limit": 3,
-                 * }
-                 * Then doing `json_decode` will return NULL. In that case, do nothing or the application will fail
-                 */
-                if (!is_null($graphQLVariables)) {
-                    // There may already be variables from the request, which must override
-                    // any fixed variable stored in the query
-                    $vars['variables'] = array_merge(
-                        $graphQLVariables,
-                        $vars['variables'] ?? []
-                    );
-                }
-            }
-            // Add the query into $vars
-            $graphQLAPIRequestHookSet->addGraphQLQueryToVars($vars, $graphQLQuery);
-        }
+        /**
+         * Extract the query from the post (or from its parents), and set it in $vars
+         */
+        global $post;
+        $graphQLQueryPost = $post;
+        return GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, true);
     }
 }

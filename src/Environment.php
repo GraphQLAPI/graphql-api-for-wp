@@ -10,6 +10,8 @@ class Environment
     public const GROUP_FIELDS_UNDER_TYPE_FOR_PRINT = 'GROUP_FIELDS_UNDER_TYPE_FOR_PRINT';
     public const EMPTY_LABEL = 'EMPTY_LABEL';
     public const USE_GRAPHIQL_WITH_EXPLORER = 'USE_GRAPHIQL_WITH_EXPLORER';
+    public const ENDPOINT_SLUG_BASE = 'ENDPOINT_SLUG_BASE';
+    public const PERSISTED_QUERY_SLUG_BASE = 'PERSISTED_QUERY_SLUG_BASE';
 
     /**
      * Print the excerpt as description in the custom post types
@@ -49,5 +51,25 @@ class Environment
     public static function useGraphiQLWithExplorer(): bool
     {
         return isset($_ENV[self::USE_GRAPHIQL_WITH_EXPLORER]) ? $_ENV[self::USE_GRAPHIQL_WITH_EXPLORER] : true;
+    }
+
+    /**
+     * The slug to use as base when accessing the endpoint
+     *
+     * @return string
+     */
+    public static function getEndpointSlugBase(): string
+    {
+        return $_ENV[self::ENDPOINT_SLUG_BASE] ? $_ENV[self::ENDPOINT_SLUG_BASE] : 'graphql';
+    }
+
+    /**
+     * The slug to use as base when accessing the persisted query
+     *
+     * @return string
+     */
+    public static function getPersistedQuerySlugBase(): string
+    {
+        return $_ENV[self::PERSISTED_QUERY_SLUG_BASE] ? $_ENV[self::PERSISTED_QUERY_SLUG_BASE] : 'graphql-query';
     }
 }

@@ -49,6 +49,17 @@ class GraphQLQueryPostTypeHelpers
                 $graphQLQueryPost = null;
             }
         }
+        if ($graphQLVariables) {
+            /**
+             * Variables is saved as a string, convert to array
+             * Watch out! If the variables have a wrong format, eg: with an additional trailing comma, such as this:
+             * {
+             *   "limit": 3,
+             * }
+             * Then doing `json_decode` will return NULL
+             */
+            $graphQLVariables = json_decode($graphQLVariables, true);
+        }
         return [
             $graphQLQuery,
             $graphQLVariables,

@@ -12,6 +12,8 @@ class ComponentConfiguration extends AbstractComponentConfiguration
     private static $groupFieldsUnderTypeForPrint;
     private static $getEmptyLabel;
     private static $useGraphiQLWithExplorer;
+    private static $getEndpointSlugBase;
+    private static $getPersistedQuerySlugBase;
 
     public static function addExcerptAsDescription(): bool
     {
@@ -67,6 +69,38 @@ class ComponentConfiguration extends AbstractComponentConfiguration
         $envVariable = Environment::USE_GRAPHIQL_WITH_EXPLORER;
         $selfProperty = &self::$useGraphiQLWithExplorer;
         $callback = [Environment::class, 'useGraphiQLWithExplorer'];
+
+        // Initialize property from the environment/hook
+        self::maybeInitEnvironmentVariable(
+            $envVariable,
+            $selfProperty,
+            $callback
+        );
+        return $selfProperty;
+    }
+
+    public static function getEndpointSlugBase(): string
+    {
+        // Define properties
+        $envVariable = Environment::ENDPOINT_SLUG_BASE;
+        $selfProperty = &self::$getEndpointSlugBase;
+        $callback = [Environment::class, 'getEndpointSlugBase'];
+
+        // Initialize property from the environment/hook
+        self::maybeInitEnvironmentVariable(
+            $envVariable,
+            $selfProperty,
+            $callback
+        );
+        return $selfProperty;
+    }
+
+    public static function getPersistedQuerySlugBase(): string
+    {
+        // Define properties
+        $envVariable = Environment::PERSISTED_QUERY_SLUG_BASE;
+        $selfProperty = &self::$getPersistedQuerySlugBase;
+        $callback = [Environment::class, 'getPersistedQuerySlugBase'];
 
         // Initialize property from the environment/hook
         self::maybeInitEnvironmentVariable(
