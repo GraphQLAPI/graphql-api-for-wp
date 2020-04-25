@@ -80,6 +80,16 @@ class GraphQLQueryPostType extends AbstractPostType
     }
 
     /**
+     * The Query is publicly accessible, and the permalink must be configurable
+     *
+     * @return boolean
+     */
+    protected function isPublic(): bool
+    {
+        return true;
+    }
+
+    /**
      * Arguments for registering the post type
      *
      * @return array

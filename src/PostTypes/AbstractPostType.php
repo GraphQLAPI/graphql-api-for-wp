@@ -129,6 +129,19 @@ abstract class AbstractPostType
     }
 
     /**
+     * Indicate if to make the Custom Post Type public.
+     * By default it's false because, for configuration CPTs (Access Control Lists,
+     * Cache Control Lists, Schema Configuration, etc), this data is private,
+     * must not be exposed.
+     *
+     * @return boolean
+     */
+    protected function isPublic(): bool
+    {
+        return false;
+    }
+
+    /**
      * Arguments for registering the post type
      *
      * @return array
@@ -138,12 +151,12 @@ abstract class AbstractPostType
         $name_uc = $this->getPostTypeName();
         $names_uc = $this->getPostTypePluralNames(true);
         $names_lc = $this->getPostTypePluralNames(false);
-        // All these CPTs are to configure data, and not to be directly accessible by themselves
+        // Configuration CPTs are to configure data, and not to be directly accessible by themselves
         // Then, do not make them public, but still allow to access them
         // This way, executing query `{ posts(postTypes:["graphql-acl"]) }` will fail,
         // and we execute instead `{ accessControlLists }` which can be @validated
         $securityPostTypeArgs = array(
-            'public' => false,
+            'public' => $this->isPublic(),
             'show_in_nav_menus' => true,
             'show_ui' => true,
             'publicly_queryable' => true,
