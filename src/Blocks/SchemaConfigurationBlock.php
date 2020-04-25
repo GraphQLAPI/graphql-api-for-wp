@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
-use Leoloso\GraphQLByPoPWPPlugin\General\URLParamHelpers;
-
 /**
  * SchemaConfiguration block
  */

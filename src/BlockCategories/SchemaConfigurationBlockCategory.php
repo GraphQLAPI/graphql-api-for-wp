@@ -15,9 +15,11 @@ class SchemaConfigurationBlockCategory extends AbstractBlockCategory
      *
      * @return string
      */
-    protected function getPostType(): string
+    protected function getPostTypes(): array
     {
-        return GraphQLSchemaConfigurationPostType::POST_TYPE;
+        return [
+            GraphQLSchemaConfigurationPostType::POST_TYPE,
+        ];
     }
 
     /**

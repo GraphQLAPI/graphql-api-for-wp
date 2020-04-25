@@ -15,9 +15,11 @@ class AccessControlBlockCategory extends AbstractBlockCategory
      *
      * @return string
      */
-    protected function getPostType(): string
+    protected function getPostTypes(): array
     {
-        return GraphQLAccessControlListPostType::POST_TYPE;
+        return [
+            GraphQLAccessControlListPostType::POST_TYPE,
+        ];
     }
 
     /**
