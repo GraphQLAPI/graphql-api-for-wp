@@ -142,6 +142,26 @@ abstract class AbstractPostType
     }
 
     /**
+     * Hierarchical
+     *
+     * @return bool
+     */
+    protected function isHierarchical(): bool
+    {
+        return false;
+    }
+
+    /**
+     * Show in admin bar
+     *
+     * @return bool
+     */
+    protected function showInAdminBar(): bool
+    {
+        return false;
+    }
+
+    /**
      * Arguments for registering the post type
      *
      * @return array
@@ -167,20 +187,26 @@ abstract class AbstractPostType
                 'label' => $this->getPostTypeName(),
                 'labels' => $this->getPostTypeLabels($name_uc, $names_uc, $names_lc),
                 'capability_type' => 'post',
-                'hierarchical' => false,
+                'hierarchical' => $this->isHierarchical(),
                 'exclude_from_search' => true,
-                'show_in_admin_bar' => false,
+                'show_in_admin_bar' => $this->showInAdminBar(),
                 'show_in_menu' => Menu::NAME,
                 'show_in_rest' => true,
                 'supports' => [
                     'title',
                     'editor',
-                    'author',
+                    // 'author',
                     'revisions',
-                    'custom-fields',
+                    // 'custom-fields',
                 ],
             )
         );
+        if ($taxonomies = $this->getTaxonomies()) {
+            $postTypeArgs['taxonomies'] = $taxonomies;
+        }
+        if ($this->isHierarchical()) {
+            $postTypeArgs['supports'][] = 'page-attributes';
+        }
         if ($this->usePostExcerptAsDescription()) {
             $postTypeArgs['supports'][] = 'excerpt';
         }
@@ -217,56 +243,24 @@ abstract class AbstractPostType
     }
 
     /**
-     * Labels for registering the taxonomy
-     *
-     * @param string $name_uc Singular name uppercase
-     * @param string $names_uc Plural name uppercase
-     * @param string $name_lc Singulare name lowercase
-     * @param string $names_lc Plural name lowercase
-     * @return array
-     */
-    protected function getTaxonomyLabels(string $name_uc, string $names_uc, string $name_lc, string $names_lc): array
-    {
-        return array(
-            'name'                           => $names_uc,
-            'singular_name'                  => $name_uc,
-            'menu_name'                      => $names_uc,
-            'search_items'                   => \sprintf(\__('Search %s', 'graphql-api'), $names_uc),
-            'all_items'                      => $names_uc,//\sprintf(\__('All %s', 'graphql-api'), $names_uc),
-            'edit_item'                      => \sprintf(\__('Edit %s', 'graphql-api'), $name_uc),
-            'update_item'                    => \sprintf(\__('Update %s', 'graphql-api'), $name_uc),
-            'add_new_item'                   => \sprintf(\__('Add New %s', 'graphql-api'), $name_uc),
-            'new_item_name'                  => \sprintf(\__('Add New %s', 'graphql-api'), $name_uc),
-            'view_item'                      => \sprintf(\__('View %s', 'graphql-api'), $name_uc),
-            'popular_items'                  => \sprintf(\__('Popular %s', 'graphql-api'), $names_lc),
-            'separate_items_with_commas'     => \sprintf(\__('Separate %s with commas', 'graphql-api'), $names_lc),
-            'add_or_remove_items'            => \sprintf(\__('Add or remove %s', 'graphql-api'), $name_lc),
-            'choose_from_most_used'          => \sprintf(\__('Choose from the most used %s', 'graphql-api'), $names_lc),
-            'not_found'                      => \sprintf(\__('No %s found', 'graphql-api'), $names_lc),
-        );
-    }
-
-    /**
      * Initialize the different post types
      *
      * @return void
      */
     public function initPostType(): void
     {
-        // First install the taxonomies, if any
-        $this->installTaxonomies();
         // Then register the post type
         \register_post_type($this->getPostType(), $this->getPostTypeArgs());
     }
 
     /**
-     * Install the taxonomies, if any
+     * Taxonomies
      *
-     * @return void
+     * @return array
      */
-    protected function installTaxonomies(): void
+    protected function getTaxonomies(): array
     {
-        // By default, nothing to do
+        return [];
     }
 
     /**

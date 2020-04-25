@@ -13,6 +13,7 @@ use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
 use PoP\CacheControl\Environment as CacheControlEnvironment;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
 use Leoloso\GraphQLByPoPWPPlugin\General\GraphQLQueryPostTypeHelpers;
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
 
@@ -22,10 +23,6 @@ class GraphQLQueryPostType extends AbstractPostType
      * Custom Post Type name
      */
     public const POST_TYPE = 'graphql-query';
-    /**
-     * "Category" taxonomy
-     */
-    public const TAXONOMY_CATEGORY = 'graphql-category';
 
     /**
      * Custom Post Type name
@@ -90,54 +87,35 @@ class GraphQLQueryPostType extends AbstractPostType
     }
 
     /**
-     * Arguments for registering the post type
+     * Taxonomies
      *
      * @return array
      */
-    protected function getPostTypeArgs(): array
+    protected function getTaxonomies(): array
     {
-        $postTypeArgs = parent::getPostTypeArgs();
-        $postTypeArgs['supports'][] = 'page-attributes';
-        return array_merge(
-            $postTypeArgs,
-            [
-                'hierarchical' => true,
-                'taxonomies' => [
-                    self::TAXONOMY_CATEGORY,
-                ],
-                'show_in_admin_bar' => true,
-            ]
-        );
+        return [
+            GraphQLQueryTaxonomy::TAXONOMY_CATEGORY,
+        ];
     }
 
     /**
-     * Install the "Category" taxonomy
+     * Hierarchical
      *
-     * @return void
+     * @return bool
      */
-    protected function installTaxonomies(): void
+    protected function isHierarchical(): bool
     {
-        $labels = $this->getTaxonomyLabels(
-            \__('Category', 'graphql-api'),
-            \__('Categories', 'graphql-api'),
-            \__('category', 'graphql-api'),
-            \__('categories', 'graphql-api')
-        );
-        $args = array(
-            'label' => \__('Categories', 'graphql-api'),
-            'labels' => $labels,
-            'hierarchical' => true,
-            'public' => true,
-            'show_ui' => true,
-            'show_in_nav_menus' => true,
-            'show_tagcloud' => false,
-            'show_in_rest' => true,
-        );
-        \register_taxonomy(
-            self::TAXONOMY_CATEGORY,
-            $this->getPostType(),
-            $args
-        );
+        return true;
+    }
+
+    /**
+     * Show in admin bar
+     *
+     * @return bool
+     */
+    protected function showInAdminBar(): bool
+    {
+        return true;
     }
 
     /**
