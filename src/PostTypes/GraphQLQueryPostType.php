@@ -10,6 +10,7 @@ use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractGraphQLQueryExecutionPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
 use Leoloso\GraphQLByPoPWPPlugin\General\GraphQLQueryPostTypeHelpers;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 class GraphQLQueryPostType extends AbstractGraphQLQueryExecutionPostType
 {
@@ -265,5 +266,29 @@ class GraphQLQueryPostType extends AbstractGraphQLQueryExecutionPostType
         global $post;
         $graphQLQueryPost = $post;
         return GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, true);
+    }
+
+    /**
+     * Check if requesting the single post of this CPT and, in this case, set the request with the needed API params
+     *
+     * @return void
+     */
+    public function addGraphQLVars($vars_in_array)
+    {
+        if (\is_singular($this->getPostType())) {
+            // Remove the VarsHooks from the GraphQLAPIRequest, so it doesn't process the GraphQL query
+            // Otherwise it will add error "The query in the body is empty"
+            $instanceManager = InstanceManagerFacade::getInstance();
+            $graphQLAPIRequestHookSet = $instanceManager->getInstance(\PoP\GraphQLAPIRequest\Hooks\VarsHooks::class);
+            \remove_action(
+                'ApplicationState:addVars',
+                array($graphQLAPIRequestHookSet, 'addURLParamVars'),
+                20,
+                1
+            );
+
+            // Execute the original logic
+            parent::addGraphQLVars($vars_in_array);
+        }
     }
 }

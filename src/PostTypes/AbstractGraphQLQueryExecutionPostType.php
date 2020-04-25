@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
-use Exception;
 use PoP\Routing\RouteNatures;
 use PoP\API\Schema\QueryInputs;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
@@ -130,30 +129,17 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
     public function addGraphQLVars($vars_in_array)
     {
         if (\is_singular($this->getPostType())) {
-            // Remove the VarsHooks from the GraphQLAPIRequest, so it doesn't process the GraphQL query
-            // Otherwise it will add error "The query in the body is empty"
-            $instanceManager = InstanceManagerFacade::getInstance();
-            $graphQLAPIRequestHookSet = $instanceManager->getInstance(\PoP\GraphQLAPIRequest\Hooks\VarsHooks::class);
-            \remove_action(
-                'ApplicationState:addVars',
-                array($graphQLAPIRequestHookSet, 'addURLParamVars'),
-                20,
-                1
-            );
-
             /**
              * Remove any query passed through the request, to avoid users executing a custom query,
              * bypassing the persisted one
              */
             unset($_REQUEST[QueryInputs::QUERY]);
 
-            // Indicate it is an API, of type GraphQL
+            // Indicate it is an API, of type GraphQL. Just by doing is, class
+            // \PoP\GraphQLAPIRequest\Hooks\VarsHooks will process the GraphQL request
             $vars = &$vars_in_array[0];
             $vars['scheme'] = \POP_SCHEME_API;
             $vars['datastructure'] = GraphQLDataStructureFormatter::getName();
-
-            // Add a flag indicating that we are doing standard GraphQL
-            $vars['standard-graphql'] = true;
 
             /**
              * Get the query and variables from the implementing class
@@ -163,12 +149,8 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
                 $graphQLVariables
             ) = $this->getGraphQLQueryAndVariables();
             if (!$graphQLQuery) {
-                throw new Exception(
-                    \__(
-                        'No query defined it has corrupted content, so GraphQL can\'t be executed.',
-                        'graphql-api'
-                    )
-                );
+                // If there is no query, nothing to do!
+                return;
             }
             /**
              * Merge the variables into $vars
@@ -182,6 +164,8 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
                 );
             }
             // Add the query into $vars
+            $instanceManager = InstanceManagerFacade::getInstance();
+            $graphQLAPIRequestHookSet = $instanceManager->getInstance(\PoP\GraphQLAPIRequest\Hooks\VarsHooks::class);
             $graphQLAPIRequestHookSet->addGraphQLQueryToVars($vars, $graphQLQuery);
         }
     }
