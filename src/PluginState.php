@@ -13,6 +13,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\FieldDeprecationBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
 
 class PluginState
 {
@@ -25,6 +26,7 @@ class PluginState
     public static $schemaConfigAccessControlListBlock;
     public static $schemaConfigCacheControlListBlock;
     public static $schemaConfigFieldDeprecationListBlock;
+    public static $schemaConfigOptionsBlock;
 
     /**
      * Get the value of schemaConfigurationBlock
@@ -186,5 +188,23 @@ class PluginState
     public static function setSchemaConfigFieldDeprecationListBlock(SchemaConfigFieldDeprecationListBlock $schemaConfigFieldDeprecationListBlock): void
     {
         self::$schemaConfigFieldDeprecationListBlock = $schemaConfigFieldDeprecationListBlock;
+    }
+
+    /**
+     * Get the value of schemaConfigOptionsBlock
+     */
+    public static function getSchemaConfigOptionsBlock(): SchemaConfigOptionsBlock
+    {
+        return self::$schemaConfigOptionsBlock;
+    }
+
+    /**
+     * Set the value of schemaConfigOptionsBlock
+     *
+     * @return void
+     */
+    public static function setSchemaConfigOptionsBlock(SchemaConfigOptionsBlock $schemaConfigOptionsBlock): void
+    {
+        self::$schemaConfigOptionsBlock = $schemaConfigOptionsBlock;
     }
 }

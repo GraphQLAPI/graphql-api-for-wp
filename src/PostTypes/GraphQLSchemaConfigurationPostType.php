@@ -62,10 +62,12 @@ class GraphQLSchemaConfigurationPostType extends AbstractPostType
      */
     protected function getGutenbergTemplate(): array
     {
+        $schemaConfigOptionsBlock = PluginState::getSchemaConfigOptionsBlock();
         $schemaConfigAccessControlListBlock = PluginState::getSchemaConfigAccessControlListBlock();
         $schemaConfigCacheControlListBlock = PluginState::getSchemaConfigCacheControlListBlock();
         $schemaConfigFieldDeprecationListBlock = PluginState::getSchemaConfigFieldDeprecationListBlock();
         return [
+            [$schemaConfigOptionsBlock->getBlockFullName()],
             [$schemaConfigAccessControlListBlock->getBlockFullName()],
             [$schemaConfigCacheControlListBlock->getBlockFullName()],
             [$schemaConfigFieldDeprecationListBlock->getBlockFullName()],

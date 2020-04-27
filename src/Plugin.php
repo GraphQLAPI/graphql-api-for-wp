@@ -28,6 +28,7 @@ use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\PersistedQueryBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLSchemaConfigurationPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\FieldDeprecationBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLFieldDeprecationListPostType;
@@ -110,6 +111,10 @@ class Plugin
         $schemaConfigFieldDeprecationListBlock = new SchemaConfigFieldDeprecationListBlock();
         $schemaConfigFieldDeprecationListBlock->init();
         PluginState::setSchemaConfigFieldDeprecationListBlock($schemaConfigFieldDeprecationListBlock);
+
+        $schemaConfigOptionsBlock = new SchemaConfigOptionsBlock();
+        $schemaConfigOptionsBlock->init();
+        PluginState::setSchemaConfigOptionsBlock($schemaConfigOptionsBlock);
 
         /**
          * Block categories

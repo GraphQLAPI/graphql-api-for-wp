@@ -10,7 +10,16 @@ import { RadioControl } from '@wordpress/components';
 import { DEFAULT_SCHEMA_MODE, PUBLIC_SCHEMA_MODE, PRIVATE_SCHEMA_MODE } from './schema-modes';
 
 const SchemaModeControl = ( props ) => {
-	const { className, isSelected, setAttributes, attributes: { schemaMode }, addDefault } = props;
+	const {
+		className,
+		isSelected,
+		setAttributes,
+		attributes,
+		attributeName,
+		addDefault = false,
+		defaultValue = DEFAULT_SCHEMA_MODE,
+	} = props;
+	const schemaMode = attributes[ attributeName ] || defaultValue;
 	const options = (addDefault ?
 		[
 			{
@@ -40,7 +49,7 @@ const SchemaModeControl = ( props ) => {
 					selected={ schemaMode }
 					onChange={ schemaMode => (
 						setAttributes( {
-							schemaMode
+							[ attributeName ]: schemaMode
 						} )
 					)}
 				/>

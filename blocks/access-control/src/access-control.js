@@ -26,6 +26,7 @@ const AccessControl = ( props ) => {
 				<div className={ className+'__schema_mode' }>
 					<SchemaMode
 						{ ...props }
+						attributeName="schemaMode"
 						addDefault={ true }
 					/>
 				</div>
