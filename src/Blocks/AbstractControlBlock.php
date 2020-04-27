@@ -87,9 +87,9 @@ abstract class AbstractControlBlock extends AbstractBlock
 EOT;
             $blockDataContent = sprintf(
                 $blockDataPlaceholder,
-                __('Fields, by type:', 'graphql-api'),
+                __('Fields', 'graphql-api'),
                 $fieldTypeContent,
-                __('(Non-system) Directives:', 'graphql-api'),
+                __('Directives', 'graphql-api'),
                 $directiveContent
             );
         } elseif (!$this->disableFields()) {

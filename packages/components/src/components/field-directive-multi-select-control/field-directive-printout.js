@@ -28,8 +28,8 @@ const FieldDirectivePrintout = ( props ) => {
 		disableFields,
 		disableDirectives,
 		removeHeaderIfItemDisabled,
-		fieldHeader = __('Fields, by type:', 'graphql-api'),
-		directiveHeader = __('(Non-system) Directives:', 'graphql-api'),
+		fieldHeader = __('Fields', 'graphql-api'),
+		directiveHeader = __('Directives', 'graphql-api'),
 	} = props;
 	const groupFieldsUnderType = groupFieldsUnderTypeForPrint != undefined ? groupFieldsUnderTypeForPrint : GROUP_FIELDS_UNDER_TYPE_FOR_PRINT;
 	const emptyLabelString = emptyLabel != undefined ? emptyLabel : EMPTY_LABEL;
