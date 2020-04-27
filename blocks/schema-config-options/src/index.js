@@ -54,11 +54,12 @@ registerBlockType( 'graphql-api/schema-config-options', {
 	 * Block default attributes.
 	 */
 	attributes: {
-		namespaced: {
+		useNamespacing: {
 			type: 'boolean',
+			default: false,
 		},
 		defaultSchemaMode: {
-			type: 'boolean',
+			type: 'string',
 		},
 	},
 
