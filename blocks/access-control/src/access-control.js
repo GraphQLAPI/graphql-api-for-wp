@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { getBlockTypes } from '@wordpress/blocks';
 import BLOCK_NAME from './block-name.js';
-import SchemaMode from './schema-mode.js';
+import { SchemaMode } from '../../../packages/components/src';
 
 /**
  * Category containing all Access Control blocks, as defined in \Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory::ACCESS_CONTROL_BLOCK_CATEGORY
@@ -26,6 +26,7 @@ const AccessControl = ( props ) => {
 				<div className={ className+'__schema_mode' }>
 					<SchemaMode
 						{ ...props }
+						addDefault={ true }
 					/>
 				</div>
 			}

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import SchemaModeControl from './schema-mode-control';
+import SchemaModeControlCard from './schema-mode-control-card';
 
 const SchemaMode = ( props ) => {
 	const { className } = props;
@@ -7,7 +7,7 @@ const SchemaMode = ( props ) => {
 		<>
 			<div className={ className+'__item_data_schema_mode' }>
 				<div className={ className+'__item_data__schema_mode' }>
-					<SchemaModeControl
+					<SchemaModeControlCard
 						{ ...props }
 					/>
 				</div>

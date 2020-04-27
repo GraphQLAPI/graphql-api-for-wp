@@ -22,7 +22,7 @@ import { InnerBlocks } from '@wordpress/block-editor';
  */
 import EditBlock from './edit-block.js';
 import BLOCK_NAME from './block-name.js';
-import { DEFAULT_SCHEMA_MODE } from './schema-modes';
+import { DEFAULT_SCHEMA_MODE } from '../../../packages/components/src';
 import { getEditableOnFocusComponentClass } from '../../../packages/components/src';
 import './style.scss';
 import '../../../packages/components/src/components/base-styles/editable-on-focus.scss';

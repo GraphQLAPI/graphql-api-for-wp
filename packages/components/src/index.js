@@ -8,11 +8,12 @@ import './store';
  */
 export { default as MultiSelectControl } from './components/multi-select-control';
 export { default as withFieldDirectiveMultiSelectControl } from './components/field-directive-multi-select-control';
-export { withErrorMessage } from './components/loading';
-export { withSpinner } from './components/loading';
+export { withErrorMessage, withSpinner } from './components/loading';
 export { SelectCard } from './components/select-card';
 export { LinkableInfoTooltip } from './components/linkable-info-tooltip';
 export { AccessControlListEditableOnFocusMultiSelectControl } from './components/acl-multi-select-control';
 export { CacheControlListEditableOnFocusMultiSelectControl } from './components/ccl-multi-select-control';
 export { FieldDeprecationListEditableOnFocusMultiSelectControl } from './components/fdl-multi-select-control';
 export { getEditableOnFocusComponentClass } from './components/base-styles';
+export { SchemaMode, SchemaModeControl, SchemaModeControlCard } from './components/schema-mode';
+export { DEFAULT_SCHEMA_MODE, PUBLIC_SCHEMA_MODE, PRIVATE_SCHEMA_MODE } from './components/schema-mode';
