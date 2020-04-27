@@ -9,7 +9,6 @@ import { Card, CardHeader, CardBody } from '@wordpress/components';
  */
 import {
 	SchemaModeControl,
-	PUBLIC_SCHEMA_MODE,
 	LinkableInfoTooltip,
 	getEditableOnFocusComponentClass,
 } from '../../../packages/components/src';
@@ -32,7 +31,6 @@ const SchemaConfigOptionsCard = ( props ) => {
 					<SchemaModeControl
 						{ ...props }
 						attributeName="defaultSchemaMode"
-						defaultValue={ PUBLIC_SCHEMA_MODE }
 						addDefault={ false }
 					/>
 				</CardBody>

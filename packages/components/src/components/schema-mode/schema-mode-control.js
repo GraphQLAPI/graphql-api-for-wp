@@ -17,7 +17,7 @@ const SchemaModeControl = ( props ) => {
 		attributes,
 		attributeName,
 		addDefault = false,
-		defaultValue = DEFAULT_SCHEMA_MODE,
+		defaultValue = addDefault ? DEFAULT_SCHEMA_MODE : PUBLIC_SCHEMA_MODE,
 	} = props;
 	const schemaMode = attributes[ attributeName ] || defaultValue;
 	const options = (addDefault ?
@@ -47,9 +47,9 @@ const SchemaModeControl = ( props ) => {
 					{ ...props }
 					options={ options }
 					selected={ schemaMode }
-					onChange={ schemaMode => (
+					onChange={ newValue => (
 						setAttributes( {
-							[ attributeName ]: schemaMode
+							[ attributeName ]: newValue
 						} )
 					)}
 				/>
