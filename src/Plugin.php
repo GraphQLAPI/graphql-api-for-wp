@@ -27,8 +27,11 @@ use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\PersistedQueryBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\QueryExecutionBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\EndpointBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\EndpointOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLSchemaConfigurationPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\FieldDeprecationBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLFieldDeprecationListPostType;
@@ -116,9 +119,15 @@ class Plugin
         $schemaConfigOptionsBlock->init();
         PluginState::setSchemaConfigOptionsBlock($schemaConfigOptionsBlock);
 
+        $endpointOptionsBlock = new EndpointOptionsBlock();
+        $endpointOptionsBlock->init();
+        PluginState::setEndpointOptionsBlock($endpointOptionsBlock);
+
         /**
          * Block categories
          */
+        (new QueryExecutionBlockCategory())->init();
+        (new EndpointBlockCategory())->init();
         (new PersistedQueryBlockCategory())->init();
         (new AccessControlBlockCategory())->init();
         (new CacheControlBlockCategory())->init();

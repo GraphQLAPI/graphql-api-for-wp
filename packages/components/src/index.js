@@ -17,3 +17,5 @@ export { FieldDeprecationListEditableOnFocusMultiSelectControl } from './compone
 export { getEditableOnFocusComponentClass } from './components/base-styles';
 export { SchemaMode, SchemaModeControl, SchemaModeControlCard } from './components/schema-mode';
 export { DEFAULT_SCHEMA_MODE, PUBLIC_SCHEMA_MODE, PRIVATE_SCHEMA_MODE } from './components/schema-mode';
+export { withCard } from './components/card';
+export { withEditableOnFocus } from './components/editable-on-focus';

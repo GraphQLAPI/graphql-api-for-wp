@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\BlockCategories;
 
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLEndpointPostType;
 
-class PersistedQueryBlockCategory extends AbstractBlockCategory
+/**
+ * It comprises the endpoint and the persisted query CPTs
+ */
+class QueryExecutionBlockCategory extends AbstractBlockCategory
 {
-    public const PERSISTED_QUERY_BLOCK_CATEGORY = 'graphql-api-persisted-query';
+    public const QUERY_EXECUTION_BLOCK_CATEGORY = 'graphql-api-query-exec';
 
     /**
      * Custom Post Type for which to enable the block category
@@ -19,6 +23,7 @@ class PersistedQueryBlockCategory extends AbstractBlockCategory
     {
         return [
             GraphQLQueryPostType::POST_TYPE,
+            GraphQLEndpointPostType::POST_TYPE,
         ];
     }
 
@@ -29,7 +34,7 @@ class PersistedQueryBlockCategory extends AbstractBlockCategory
      */
     protected function getBlockCategorySlug(): string
     {
-        return self::PERSISTED_QUERY_BLOCK_CATEGORY;
+        return self::QUERY_EXECUTION_BLOCK_CATEGORY;
     }
 
     /**
@@ -39,6 +44,6 @@ class PersistedQueryBlockCategory extends AbstractBlockCategory
      */
     protected function getBlockCategoryTitle(): string
     {
-        return __('GraphQL persisted query', 'graphql-api');
+        return __('Query execution (endpoint/persisted query)', 'graphql-api');
     }
 }

@@ -119,8 +119,10 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     protected function getGutenbergTemplate(): array
     {
         $schemaConfigurationBlock = PluginState::getSchemaConfigurationBlock();
+        $endpointOptionsBlock = PluginState::getEndpointOptionsBlock();
         return [
             [$schemaConfigurationBlock->getBlockFullName()],
+            [$endpointOptionsBlock->getBlockFullName()],
         ];
     }
 

@@ -15,26 +15,26 @@ import { __ } from '@wordpress/i18n';
 /**
  * Application imports
  */
-import EditBlock from './edit-block.js';
+import EditBlock from './edit-block';
 
 /**
  * Every block starts by registering a new block type definition.
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'graphql-api/schema-configuration', {
+registerBlockType( 'graphql-api/endpoint-options', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __( 'Schema Configuration', 'graphql-api' ),
+	title: __( 'Options for the GraphQL endpoint', 'graphql-api' ),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
 	 * It will be shown in the Block Tab in the Settings Sidebar.
 	 */
 	description: __(
-		'Select the Schema Configuration for the GraphQL query',
+		'Configure the GraphQL endpoint',
 		'graphql-api'
 	),
 
@@ -42,7 +42,7 @@ registerBlockType( 'graphql-api/schema-configuration', {
 	 * Blocks are grouped into categories to help users browse and discover them.
 	 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
 	 */
-	category: 'graphql-api-query-exec',
+	category: 'graphql-api-endpoint',
 
 	/**
 	 * An icon property should be specified to make it easier to identify a block.
@@ -54,9 +54,17 @@ registerBlockType( 'graphql-api/schema-configuration', {
 	 * Block default attributes.
 	 */
 	attributes: {
-		schemaConfiguration: {
-			type: 'integer',
-			default: 0,
+		isEnabled: {
+			type: 'boolean',
+			default: true,
+		},
+		isGraphiQLEnabled: {
+			type: 'boolean',
+			default: true,
+		},
+		isVoyagerEnabled: {
+			type: 'boolean',
+			default: true,
 		},
 	},
 
@@ -68,7 +76,7 @@ registerBlockType( 'graphql-api/schema-configuration', {
 		customClassName: false,
 		// Remove support for an HTML mode.
 		html: false,
-		// Only insert block through a template
+		// Insert programatically only
 		inserter: false,
 	},
 
