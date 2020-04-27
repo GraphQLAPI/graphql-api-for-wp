@@ -56,7 +56,7 @@ const WithSpinnerPostListPrintoutBody = compose( [
  *
  * @param {Object} props
  */
-const MaybeWithSpinnerPostListPrintoutBody = ( props ) => {
+const MaybeWithSpinnerPostListPrintout = ( props ) => {
 	const { selectedItems } = props;
 	if ( !! selectedItems.length ) {
 		return (
@@ -73,13 +73,13 @@ const MaybeWithSpinnerPostListPrintoutBody = ( props ) => {
  *
  * @param {Object} props
  */
-const PostListPrintout = ( props ) => {
+const PostListPrintoutCard = ( props ) => {
 	const { header } = props;
 	return (
 		<Card { ...props }>
 			<CardHeader isShady>{ header }</CardHeader>
 			<CardBody>
-				<MaybeWithSpinnerPostListPrintoutBody
+				<MaybeWithSpinnerPostListPrintout
 					{ ...props }
 				/>
 			</CardBody>
@@ -87,32 +87,5 @@ const PostListPrintout = ( props ) => {
 	);
 }
 
-export default PostListPrintout;
-
-// /**
-//  * Check if the selectedItems are empty, then do not show the spinner
-//  * This is an improvement when loading a new Access Control post, that it has no data, so the user is not waiting for nothing
-//  *
-//  * @param {Object} props
-//  */
-// const MaybeWithSpinnerPostListPrintout = ( props ) => {
-// 	const { selectedItems } = props;
-// 	if ( !! selectedItems.length ) {
-// 		return (
-// 			<WithSpinnerPostListPrintout { ...props } />
-// 		)
-// 	}
-// 	return (
-// 		<PostListPrintout { ...props } />
-// 	);
-// }
-
-// /**
-//  * Add a spinner when loading the typeFieldNames and typeFields is not empty
-//  */
-// const WithSpinnerPostListPrintout = compose( [
-// 	withSpinner(),
-// 	withErrorMessage(),
-// ] )( PostListPrintout );
-
-// export default MaybeWithSpinnerPostListPrintout;
+export { MaybeWithSpinnerPostListPrintout };
+export default PostListPrintoutCard;
