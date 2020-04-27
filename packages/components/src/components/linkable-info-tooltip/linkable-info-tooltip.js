@@ -10,13 +10,18 @@ import './style.scss';
 
 
 const LinkableInfoTooltip = ( props ) => {
-	const { text, className, href } = props;
+	const {
+		text,
+		className,
+		href,
+		iconSize = 24,
+	} = props;
 	const linkClassName = ( className ? ( className+'__link' ) : '' ) + 'linkable-info-tooltip__link';
 	return (
 		<span className={ className }>
 			<Tooltip text={ text }>
 				<span>
-					<Icon icon="editor-help" size="24" />
+					<Icon icon="editor-help" size={ iconSize } />
 					<sup>
 						<ExternalLink
 							className={ linkClassName }

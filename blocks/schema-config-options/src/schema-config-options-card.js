@@ -28,6 +28,11 @@ const SchemaConfigOptionsCard = ( props ) => {
 					/ >
 				</CardHeader>
 				<CardBody>
+					<strong>{ __('Default Schema Mode:', 'graphql-api') }</strong>
+					<LinkableInfoTooltip
+						text={ __('Public: field/directives are always visible. Private: field/directives are hidden unless rules are satisfied.', 'graphql-api') }
+						href={ documentationLink }
+					/ >
 					<SchemaModeControl
 						{ ...props }
 						attributeName="defaultSchemaMode"

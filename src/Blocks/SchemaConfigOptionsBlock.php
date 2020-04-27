@@ -50,6 +50,7 @@ EOT;
         return sprintf(
             $blockContentPlaceholder,
             $className . ' ' . $this->getAlignClass(),
+            $className . '__title',
             \__('Options', 'graphql-api'),
             $blockSchemaModeContent
         );
