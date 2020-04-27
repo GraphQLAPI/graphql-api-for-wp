@@ -15,6 +15,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\EndpointOptionsBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock;
 
 class PluginState
 {
@@ -29,6 +30,7 @@ class PluginState
     public static $schemaConfigFieldDeprecationListBlock;
     public static $schemaConfigOptionsBlock;
     public static $endpointOptionsBlock;
+    public static $persistedQueryOptionsBlock;
 
     /**
      * Get the value of schemaConfigurationBlock
@@ -226,5 +228,23 @@ class PluginState
     public static function setEndpointOptionsBlock(EndpointOptionsBlock $endpointOptionsBlock): void
     {
         self::$endpointOptionsBlock = $endpointOptionsBlock;
+    }
+
+    /**
+     * Get the value of persistedQueryOptionsBlock
+     */
+    public static function getPersistedQueryOptionsBlock(): PersistedQueryOptionsBlock
+    {
+        return self::$persistedQueryOptionsBlock;
+    }
+
+    /**
+     * Set the value of persistedQueryOptionsBlock
+     *
+     * @return void
+     */
+    public static function setPersistedQueryOptionsBlock(PersistedQueryOptionsBlock $persistedQueryOptionsBlock): void
+    {
+        self::$persistedQueryOptionsBlock = $persistedQueryOptionsBlock;
     }
 }

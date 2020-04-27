@@ -7,15 +7,15 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
 
 /**
- * Endpoint Options block
+ * Persisted Query Options block
  */
-class EndpointOptionsBlock extends AbstractBlock
+class PersistedQueryOptionsBlock extends AbstractBlock
 {
     use GraphQLByPoPBlockTrait;
 
     protected function getBlockName(): string
     {
-        return 'endpoint-options';
+        return 'persisted-query-options';
     }
 
     protected function isDynamicBlock(): bool
@@ -37,13 +37,8 @@ EOT;
         );
         $blockSchemaModeContent .= sprintf(
             $blockContentPlaceholder,
-            \__('Expose GraphiQL client?', 'graphql-api'),
-            $attributes['isGraphiQLEnabled'] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
-        );
-        $blockSchemaModeContent .= sprintf(
-            $blockContentPlaceholder,
-            \__('Expose the Interactive Schema client?', 'graphql-api'),
-            $attributes['isVoyagerEnabled'] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
+            \__('Accept variables as URL params:', 'graphql-api'),
+            $attributes['acceptVariablesAsURLParams'] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
         );
 
         $blockContentPlaceholder = <<<EOT

@@ -32,6 +32,7 @@ use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\EndpointBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\EndpointOptionsBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLSchemaConfigurationPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\FieldDeprecationBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLFieldDeprecationListPostType;
@@ -122,6 +123,10 @@ class Plugin
         $endpointOptionsBlock = new EndpointOptionsBlock();
         $endpointOptionsBlock->init();
         PluginState::setEndpointOptionsBlock($endpointOptionsBlock);
+
+        $persistedQueryOptionsBlock = new PersistedQueryOptionsBlock();
+        $persistedQueryOptionsBlock->init();
+        PluginState::setPersistedQueryOptionsBlock($persistedQueryOptionsBlock);
 
         /**
          * Block categories

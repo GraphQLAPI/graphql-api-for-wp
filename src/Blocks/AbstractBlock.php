@@ -180,6 +180,16 @@ abstract class AbstractBlock
     }
 
     /**
+     * Where is the block stored
+     *
+     * @return string
+     */
+    protected function getBlockDir(): string
+    {
+        return $this->getPluginDir() . '/blocks/' . $this->getBlockName();
+    }
+
+    /**
      * Registers all block assets so that they can be enqueued through the block editor
      * in the corresponding context.
      *
@@ -187,7 +197,7 @@ abstract class AbstractBlock
      */
     public function initBlock(): void
     {
-        $dir = $this->getPluginDir() . '/blocks/' . $this->getBlockName();
+        $dir = $this->getBlockDir();
         $blockFullName = $this->getBlockFullName();
 
         $script_asset_path = "$dir/build/index.asset.php";

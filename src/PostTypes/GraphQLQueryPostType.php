@@ -130,11 +130,13 @@ class GraphQLQueryPostType extends AbstractGraphQLQueryExecutionPostType
      */
     protected function getGutenbergTemplate(): array
     {
-        $schemaConfigurationBlock = PluginState::getSchemaConfigurationBlock();
         $graphiQLBlock = PluginState::getGraphiQLBlock();
+        $schemaConfigurationBlock = PluginState::getSchemaConfigurationBlock();
+        $persistedQueryOptionsBlock = PluginState::getPersistedQueryOptionsBlock();
         return [
             [$graphiQLBlock->getBlockFullName()],
             [$schemaConfigurationBlock->getBlockFullName()],
+            [$persistedQueryOptionsBlock->getBlockFullName()],
         ];
     }
 
