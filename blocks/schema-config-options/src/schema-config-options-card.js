@@ -39,20 +39,29 @@ const SchemaConfigOptionsCard = ( props ) => {
 							addDefault={ false }
 						/>
 					</div>
+					<hr />
 					<div className={ `${ className }__namespacing` }>
 						<strong>{ __('Namespace Types and Interfaces?', 'graphql-api') }</strong>
 						<LinkableInfoTooltip
 							text={ __('Prepend types and interfaces using the PHP package\'s owner and name', 'graphql-api') }
 							href="https://graphql-api.com/documentation/#namespacing"
 						/ >
-						<ToggleControl
-							{ ...props }
-							label={ useNamespacing ? __('Namespacing enabled', 'graphql-api') : __('Namespacing disabled', 'graphql-api') }
-							checked={ useNamespacing }
-							onChange={ newValue => setAttributes( {
-								useNamespacing: newValue,
-							} ) }
-						/>
+						{ !isSelected && (
+							<>
+								<br />
+								{ useNamespacing ? `✅ ${ __('Enabled', 'graphql-api') }` : `❌ ${ __('Disabled', 'graphql-api') }` }
+							</>
+						) }
+						{ isSelected &&
+							<ToggleControl
+								{ ...props }
+								label={ useNamespacing ? __('Namespacing enabled', 'graphql-api') : __('Namespacing disabled', 'graphql-api') }
+								checked={ useNamespacing }
+								onChange={ newValue => setAttributes( {
+									useNamespacing: newValue,
+								} ) }
+							/>
+						}
 					</div>
 				</CardBody>
 			</Card>
