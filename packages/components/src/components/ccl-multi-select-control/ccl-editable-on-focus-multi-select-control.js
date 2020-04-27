@@ -2,38 +2,43 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { compose, withState } from '@wordpress/compose';
 
 /**
  * Internal dependencies
  */
 import CacheControlListMultiSelectControl from './ccl-multi-select-control';
 import CacheControlListPrintout from './ccl-printout';
-import { getEditableOnFocusComponentClass } from '../base-styles'
+import { withCard } from '../card'
+import { withEditableOnFocus } from '../editable-on-focus'
 
 const CacheControlListEditableOnFocusMultiSelectControl = ( props ) => {
-	const { isSelected, attributes: { cacheControlLists } } = props;
-	const className = 'graphql-api-cache-control-list-select';
-	const componentClassName = getEditableOnFocusComponentClass(isSelected);
+	const { className, isSelected, attributes: { cacheControlLists } } = props;
 	return (
-		<div className={ className }>
-			<div className={ componentClassName }>
-				{ isSelected &&
-					<CacheControlListMultiSelectControl
-						{ ...props }
-						selectedItems={ cacheControlLists }
-						className={ className }
-					/>
-				}
-				{ !isSelected && (
-					<CacheControlListPrintout
-						{ ...props }
-						selectedItems={ cacheControlLists }
-						className={ className }
-					/>
-				) }
-			</div>
-		</div>
+		<>
+			{ isSelected &&
+				<CacheControlListMultiSelectControl
+					{ ...props }
+					selectedItems={ cacheControlLists }
+					className={ className }
+				/>
+			}
+			{ !isSelected && (
+				<CacheControlListPrintout
+					{ ...props }
+					selectedItems={ cacheControlLists }
+					className={ className }
+				/>
+			) }
+		</>
 	);
 }
 
-export default CacheControlListEditableOnFocusMultiSelectControl;
+export default compose( [
+	withState( {
+		header: __('Cache Control Lists', 'graphql-api'),
+		className: 'graphql-api-cache-control-list-select',
+	 } ),
+	 withEditableOnFocus(),
+	 withCard(),
+] )( CacheControlListEditableOnFocusMultiSelectControl );

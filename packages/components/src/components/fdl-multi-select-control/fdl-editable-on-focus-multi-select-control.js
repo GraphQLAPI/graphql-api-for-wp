@@ -2,38 +2,43 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { compose, withState } from '@wordpress/compose';
 
 /**
  * Internal dependencies
  */
 import FieldDeprecationListMultiSelectControl from './fdl-multi-select-control';
 import FieldDeprecationListPrintout from './fdl-printout';
-import { getEditableOnFocusComponentClass } from '../base-styles'
+import { withCard } from '../card'
+import { withEditableOnFocus } from '../editable-on-focus'
 
 const FieldDeprecationListEditableOnFocusMultiSelectControl = ( props ) => {
-	const { isSelected, attributes: { fieldDeprecationLists } } = props;
-	const className = 'graphql-api-field-deprecation-list-select';
-	const componentClassName = getEditableOnFocusComponentClass(isSelected);
+	const { className, isSelected, attributes: { fieldDeprecationLists } } = props;
 	return (
-		<div className={ className }>
-			<div className={ componentClassName }>
-				{ isSelected &&
-					<FieldDeprecationListMultiSelectControl
-						{ ...props }
-						selectedItems={ fieldDeprecationLists }
-						className={ className }
-					/>
-				}
-				{ !isSelected && (
-					<FieldDeprecationListPrintout
-						{ ...props }
-						selectedItems={ fieldDeprecationLists }
-						className={ className }
-					/>
-				) }
-			</div>
-		</div>
+		<>
+			{ isSelected &&
+				<FieldDeprecationListMultiSelectControl
+					{ ...props }
+					selectedItems={ fieldDeprecationLists }
+					className={ className }
+				/>
+			}
+			{ !isSelected && (
+				<FieldDeprecationListPrintout
+					{ ...props }
+					selectedItems={ fieldDeprecationLists }
+					className={ className }
+				/>
+			) }
+		</>
 	);
 }
 
-export default FieldDeprecationListEditableOnFocusMultiSelectControl;
+export default compose( [
+	withState( {
+		header: __('Field Deprecation Lists', 'graphql-api'),
+		className: 'graphql-api-field-deprecation-list-select',
+	 } ),
+	 withEditableOnFocus(),
+	 withCard(),
+] )( FieldDeprecationListEditableOnFocusMultiSelectControl );
