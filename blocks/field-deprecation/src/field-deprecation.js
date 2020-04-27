@@ -26,6 +26,7 @@ const FieldDeprecation = ( props ) => {
 					<CardHeader isShady>
 						{ __('Deprecation reason', 'graphql-api') }
 						<LinkableInfoTooltip
+							{ ...props }
 							text={ __('Deprecated fields must not be queried anymore. The reason can indicate what replacement to use instead', 'graphql-api') }
 							href={ documentationLink }
 						/ >

@@ -126,6 +126,7 @@ const SelectCard = ( props ) => {
 					{ label }
 					{ !! tooltip && !! tooltipLink &&
 						<LinkableInfoTooltip
+							{ ...props }
 							text={ tooltip }
 							href={ tooltipLink }
 						/ >

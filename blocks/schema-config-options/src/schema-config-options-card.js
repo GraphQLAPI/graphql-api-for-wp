@@ -22,14 +22,16 @@ const SchemaConfigOptionsCard = ( props ) => {
 				<CardHeader isShady>
 					{ __('Options', 'graphql-api') }
 					<LinkableInfoTooltip
+						{ ...props }
 						text={ __('Select the default behavior of the Schema', 'graphql-api') }
 						href="https://graphql-api.com/documentation/#schema-config-options"
 					/ >
 				</CardHeader>
 				<CardBody>
 					<div className={ `${ className }__schema_mode` }>
-						<strong>{ __('Default Schema Mode:', 'graphql-api') }</strong>
+						<em>{ __('Default Schema Mode:', 'graphql-api') }</em>
 						<LinkableInfoTooltip
+							{ ...props }
 							text={ __('Public: field/directives are always visible. Private: field/directives are hidden unless rules are satisfied.', 'graphql-api') }
 							href="https://graphql-api.com/documentation/#schema-mode"
 						/ >
@@ -41,8 +43,9 @@ const SchemaConfigOptionsCard = ( props ) => {
 					</div>
 					<hr />
 					<div className={ `${ className }__namespacing` }>
-						<strong>{ __('Namespace Types and Interfaces?', 'graphql-api') }</strong>
+						<em>{ __('Namespace Types and Interfaces?', 'graphql-api') }</em>
 						<LinkableInfoTooltip
+							{ ...props }
 							text={ __('Prepend types and interfaces using the PHP package\'s owner and name', 'graphql-api') }
 							href="https://graphql-api.com/documentation/#namespacing"
 						/ >

@@ -15,7 +15,12 @@ const LinkableInfoTooltip = ( props ) => {
 		className,
 		href,
 		iconSize = 24,
+		onlyIfIsSelected = true,
+		isSelected
 	} = props;
+	if (onlyIfIsSelected && !isSelected) {
+		return '';
+	}
 	const linkClassName = ( className ? ( className+'__link' ) : '' ) + 'linkable-info-tooltip__link';
 	return (
 		<span className={ className }>
