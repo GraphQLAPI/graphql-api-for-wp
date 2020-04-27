@@ -128,7 +128,7 @@ registerBlockType( BLOCK_NAME, {
 					configurationLabel={ enableIndividualControlForSchemaMode ? __('Access Control Rules:', 'graphql-api') : __('Who can access:', 'graphql-api') }
 					componentClassName={ getEditableOnFocusComponentClass(isSelected) }
 					enableIndividualControlForSchemaMode={ enableIndividualControlForSchemaMode }
-					{ ...props}
+					{ ...props }
 				/>
 			</div>
 		)

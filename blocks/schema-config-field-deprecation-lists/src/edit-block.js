@@ -15,7 +15,7 @@ const EditBlock = ( props ) => {
 	return (
 		<div class={ className }>
 			<FieldDeprecationListEditableOnFocusMultiSelectControl
-				{ ...props}
+				{ ...props }
 			/>
 		</div>
 	)
