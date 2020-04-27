@@ -65,7 +65,7 @@ const UserCapabilitiesSelectCard = ( props ) => {
 
 export default compose( [
 	withState( {
-		label: __('Users with any of these capabilities:', 'graphql-api'),
+		label: __('Users with any of these capabilities', 'graphql-api'),
 	} ),
 	withSelect( ( select ) => {
 		const {

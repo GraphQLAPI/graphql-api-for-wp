@@ -65,7 +65,7 @@ const UserRolesSelectCard = ( props ) => {
 
 export default compose( [
 	withState( {
-		label: __('Users with any of these roles:', 'graphql-api'),
+		label: __('Users with any of these roles', 'graphql-api'),
 	} ),
 	withSelect( ( select ) => {
 		const {

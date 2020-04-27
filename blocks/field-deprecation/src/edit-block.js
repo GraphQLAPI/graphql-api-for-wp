@@ -7,7 +7,7 @@ export default compose( [
 	withState( {
 		disableDirectives: true,
 		// disableHeader: true,
-		fieldHeader: __('Fields to deprecate:', 'graphql-api'),
+		fieldHeader: __('Fields to deprecate', 'graphql-api'),
 	} ),
 	withFieldDirectiveMultiSelectControl(),
 ] )( FieldDeprecation );

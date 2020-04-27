@@ -18,6 +18,6 @@ class AccessControlUserCapabilitiesBlock extends AbstractItemListControlBlock
 
     protected function getHeader(): string
     {
-        return __('Users with any of these capabilities:', 'graphql-api');
+        return __('Users with any of these capabilities', 'graphql-api');
     }
 }

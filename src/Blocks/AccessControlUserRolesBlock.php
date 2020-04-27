@@ -18,6 +18,6 @@ class AccessControlUserRolesBlock extends AbstractItemListControlBlock
 
     protected function getHeader(): string
     {
-        return __('Users with any of these roles:', 'graphql-api');
+        return __('Users with any of these roles', 'graphql-api');
     }
 }

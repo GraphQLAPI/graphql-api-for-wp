@@ -14,7 +14,7 @@ import MaybeWithSpinnerPostListPrintout from '../post-list-multi-select-control/
 const MaybeWithSpinnerCacheControlListPrintout = ( props ) => {
 	return (
 		<MaybeWithSpinnerPostListPrintout
-			header={ __('Cache Control Lists:', 'graphql-api') }
+			header={ __('Cache Control Lists', 'graphql-api') }
 			{ ...props }
 		/>
 	);

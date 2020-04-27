@@ -14,7 +14,7 @@ import MaybeWithSpinnerPostListPrintout from '../post-list-multi-select-control/
 const MaybeWithSpinnerAccessControlListPrintout = ( props ) => {
 	return (
 		<MaybeWithSpinnerPostListPrintout
-			header={ __('Access Control Lists:', 'graphql-api') }
+			header={ __('Access Control Lists', 'graphql-api') }
 			{ ...props }
 		/>
 	);

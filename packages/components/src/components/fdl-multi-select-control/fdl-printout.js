@@ -14,7 +14,7 @@ import MaybeWithSpinnerPostListPrintout from '../post-list-multi-select-control/
 const MaybeWithSpinnerFieldDeprecationListPrintout = ( props ) => {
 	return (
 		<MaybeWithSpinnerPostListPrintout
-			header={ __('Field Deprecation Lists:', 'graphql-api') }
+			header={ __('Field Deprecation Lists', 'graphql-api') }
 			{ ...props }
 		/>
 	);
