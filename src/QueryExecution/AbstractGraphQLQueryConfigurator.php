@@ -8,7 +8,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\BlockConstants;
 use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
 use PoP\ComponentModel\Facades\Registries\DirectiveRegistryFacade;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLEndpointPostType;
 
@@ -37,7 +37,7 @@ abstract class AbstractGraphQLQueryConfigurator
      */
     public function init(): void
     {
-        if (\is_singular(GraphQLQueryPostType::POST_TYPE) || \is_singular(GraphQLEndpointPostType::POST_TYPE)) {
+        if (\is_singular(GraphQLPersistedQueryPostType::POST_TYPE) || \is_singular(GraphQLEndpointPostType::POST_TYPE)) {
             $this->doInit();
         }
     }

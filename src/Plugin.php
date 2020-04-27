@@ -10,7 +10,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\FieldDeprecationBlock;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\BlockDevelopmentHotReload;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
@@ -59,7 +59,7 @@ class Plugin
          * Post Types
          */
         (new GraphQLEndpointPostType())->init();
-        (new GraphQLQueryPostType())->init();
+        (new GraphQLPersistedQueryPostType())->init();
         (new GraphQLSchemaConfigurationPostType())->init();
         (new GraphQLAccessControlListPostType())->init();
         (new GraphQLCacheControlListPostType())->init();

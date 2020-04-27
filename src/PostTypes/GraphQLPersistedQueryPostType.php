@@ -12,7 +12,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
 use Leoloso\GraphQLByPoPWPPlugin\General\GraphQLQueryPostTypeHelpers;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
-class GraphQLQueryPostType extends AbstractGraphQLQueryExecutionPostType
+class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostType
 {
     /**
      * Custom Post Type name

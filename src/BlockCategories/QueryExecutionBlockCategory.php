@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\BlockCategories;
 
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLEndpointPostType;
 
 /**
@@ -22,7 +22,7 @@ class QueryExecutionBlockCategory extends AbstractBlockCategory
     protected function getPostTypes(): array
     {
         return [
-            GraphQLQueryPostType::POST_TYPE,
+            GraphQLPersistedQueryPostType::POST_TYPE,
             GraphQLEndpointPostType::POST_TYPE,
         ];
     }

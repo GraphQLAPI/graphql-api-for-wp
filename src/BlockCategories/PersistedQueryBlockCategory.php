@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\BlockCategories;
 
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLQueryPostType;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
 
 class PersistedQueryBlockCategory extends AbstractBlockCategory
 {
@@ -18,7 +18,7 @@ class PersistedQueryBlockCategory extends AbstractBlockCategory
     protected function getPostTypes(): array
     {
         return [
-            GraphQLQueryPostType::POST_TYPE,
+            GraphQLPersistedQueryPostType::POST_TYPE,
         ];
     }
 
