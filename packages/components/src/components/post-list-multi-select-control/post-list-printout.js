@@ -13,8 +13,8 @@ import withErrorMessage from '../loading/with-error-message';
  *
  * @param {Object} props
  */
-const PostListPrintout = ( props ) => {
-	const { items, selectedItems, emptyLabel, header } = props;
+const PostListPrintoutBody = ( props ) => {
+	const { items, selectedItems, emptyLabel } = props;
 	const emptyLabelString = emptyLabel != undefined ? emptyLabel : EMPTY_LABEL;
 
 	/**
@@ -25,25 +25,30 @@ const PostListPrintout = ( props ) => {
 		itemsDictionary[ item.id ] = item.title;
 	} );
 	return (
-		<Card { ...props }>
-			<CardHeader isShady>{ header }</CardHeader>
-			<CardBody>
-				{ !! selectedItems.length && selectedItems.map( selectedItemID =>
-					<>
-						<CheckboxControl
-							label={ itemsDictionary[selectedItemID] || __(`(Undefined element with ID ${ selectedItemID })`, 'graphql-api') }
-							checked={ true }
-							disabled={ true }
-						/>
-					</>
-				) }
-				{ !selectedItems.length && (
-					emptyLabelString
-				) }
-			</CardBody>
-		</Card>
+		<>
+			{ !! selectedItems.length && selectedItems.map( selectedItemID =>
+				<>
+					<CheckboxControl
+						label={ itemsDictionary[selectedItemID] || __(`(Undefined element with ID ${ selectedItemID })`, 'graphql-api') }
+						checked={ true }
+						disabled={ true }
+					/>
+				</>
+			) }
+			{ !selectedItems.length && (
+				emptyLabelString
+			) }
+		</>
 	);
 }
+
+/**
+ * Add a spinner when loading the typeFieldNames and typeFields is not empty
+ */
+const WithSpinnerPostListPrintoutBody = compose( [
+	withSpinner(),
+	withErrorMessage(),
+] )( PostListPrintoutBody );
 
 /**
  * Check if the selectedItems are empty, then do not show the spinner
@@ -51,24 +56,63 @@ const PostListPrintout = ( props ) => {
  *
  * @param {Object} props
  */
-const MaybeWithSpinnerPostListPrintout = ( props ) => {
+const MaybeWithSpinnerPostListPrintoutBody = ( props ) => {
 	const { selectedItems } = props;
 	if ( !! selectedItems.length ) {
 		return (
-			<WithSpinnerPostListPrintout { ...props } />
+			<WithSpinnerPostListPrintoutBody { ...props } />
 		)
 	}
 	return (
-		<PostListPrintout { ...props } />
+		<PostListPrintoutBody { ...props } />
 	);
 }
 
 /**
- * Add a spinner when loading the typeFieldNames and typeFields is not empty
+ * Print the selected Access Control Lists.
+ *
+ * @param {Object} props
  */
-const WithSpinnerPostListPrintout = compose( [
-	withSpinner(),
-	withErrorMessage(),
-] )( PostListPrintout );
+const PostListPrintout = ( props ) => {
+	const { header } = props;
+	return (
+		<Card { ...props }>
+			<CardHeader isShady>{ header }</CardHeader>
+			<CardBody>
+				<MaybeWithSpinnerPostListPrintoutBody
+					{ ...props }
+				/>
+			</CardBody>
+		</Card>
+	);
+}
 
-export default MaybeWithSpinnerPostListPrintout;
+export default PostListPrintout;
+
+// /**
+//  * Check if the selectedItems are empty, then do not show the spinner
+//  * This is an improvement when loading a new Access Control post, that it has no data, so the user is not waiting for nothing
+//  *
+//  * @param {Object} props
+//  */
+// const MaybeWithSpinnerPostListPrintout = ( props ) => {
+// 	const { selectedItems } = props;
+// 	if ( !! selectedItems.length ) {
+// 		return (
+// 			<WithSpinnerPostListPrintout { ...props } />
+// 		)
+// 	}
+// 	return (
+// 		<PostListPrintout { ...props } />
+// 	);
+// }
+
+// /**
+//  * Add a spinner when loading the typeFieldNames and typeFields is not empty
+//  */
+// const WithSpinnerPostListPrintout = compose( [
+// 	withSpinner(),
+// 	withErrorMessage(),
+// ] )( PostListPrintout );
+
+// export default MaybeWithSpinnerPostListPrintout;
