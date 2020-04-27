@@ -21,7 +21,13 @@ import withErrorMessage from '../loading/with-error-message';
 import withSpinner from '../loading/with-spinner';
 
 function MultiSelectControl( props ) {
-	const { setState, showSearch, search, items } = props;
+	const {
+		setState,
+		showSearch,
+		showSearchBtn = false,
+		search,
+		items,
+	} = props;
 	// Filtering occurs here (as opposed to `withSelect`) to avoid wasted
 	// wasted renders by consequence of `Array#filter` producing a new
 	// value reference on each call.
@@ -35,19 +41,21 @@ function MultiSelectControl( props ) {
 	return (
 		<div className="multi-select-control__content">
 			<div className="multi-select-control__content_search">
-				<Button
-					isSmall
-					icon={ searchIcon }
-					onClick={
-						() => setState( {
-							showSearch: !showSearch
-						} )
-					}
-				>
-					{ showSearch ? __( 'Hide search' ) : __( 'Show search' ) }
-				</Button>
+				{ showSearchBtn && (
+					<Button
+						isSmall
+						icon={ searchIcon }
+						onClick={
+							() => setState( {
+								showSearch: !showSearch
+							} )
+						}
+					>
+						{ showSearch ? __( 'Hide search' ) : __( 'Show search' ) }
+					</Button>
+				) }
 			</div>
-			{ showSearch &&
+			{ ( !showSearchBtn || showSearch ) &&
 				<TextControl
 					type="search"
 					label={ __( 'Search' ) }
