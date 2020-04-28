@@ -32,8 +32,15 @@ class BlockHelpers
             // Only fetch the object if blocks not yet cached
             if (!isset(self::$blockCache[$configurationPostID])) {
                 $configurationPost = \get_post($configurationPostID);
+            } else {
+                $configurationPost = self::$blockCache[$configurationPostID];
             }
         }
+        // If there's either no post or ID, then that object doesn't exist (or maybe it's draft)
+        if (!$configurationPost || !$configurationPostID) {
+            return [];
+        }
+
         // Get the blocks from the inner cache, if available
         if (isset(self::$blockCache[$configurationPostID])) {
             $blocks = self::$blockCache[$configurationPostID];
