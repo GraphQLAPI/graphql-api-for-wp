@@ -132,11 +132,7 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
      */
     protected function isEnabled(): bool
     {
-        global $post;
-        $optionsBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
-            $post->ID,
-            $this->getQueryExecutionOptionsBlock()
-        );
+        $optionsBlockDataItem = $this->getOptionsBlockDataItem();
         // If there was no options block, something went wrong in the post content
         if (is_null($optionsBlockDataItem)) {
             return false;
@@ -144,6 +140,25 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 
         // `true` is the default option in Gutenberg, so it's not saved to the DB!
         return $optionsBlockDataItem['attrs'][AbstractQueryExecutionOptionsBlock::ATTRIBUTE_NAME_IS_ENABLED] ?? true;
+    }
+
+    protected function getOptionsBlockDataItem(): ?array
+    {
+        global $post;
+        return BlockHelpers::getSingleBlockOfTypeFromCustomPost(
+            $post->ID,
+            $this->getQueryExecutionOptionsBlock()
+        );
+    }
+
+    /**
+     * Indicate if the GraphQL variables must override the URL params
+     *
+     * @return boolean
+     */
+    protected function doURLParamsOverrideGraphQLVariables(): bool
+    {
+        return true;
     }
 
     /**
@@ -185,12 +200,18 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
              * Merge the variables into $vars
              */
             if ($graphQLVariables) {
-                // There may already be variables from the request, which must override
-                // any fixed variable stored in the query
-                $vars['variables'] = array_merge(
-                    $graphQLVariables,
-                    $vars['variables'] ?? []
-                );
+                // Normally, GraphQL variables must not override the variables from the request
+                // But this behavior can be overriden for the persisted query,
+                // by setting "Accept Variables as URL Params" => false
+                $vars['variables'] = $this->doURLParamsOverrideGraphQLVariables() ?
+                    array_merge(
+                        $graphQLVariables,
+                        $vars['variables'] ?? []
+                    ) :
+                    array_merge(
+                        $vars['variables'] ?? [],
+                        $graphQLVariables
+                    );
             }
             // Add the query into $vars
             $instanceManager = InstanceManagerFacade::getInstance();

@@ -6,10 +6,12 @@ namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
+use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\General\GraphQLQueryPostTypeHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractGraphQLQueryExecutionPostType;
@@ -275,6 +277,19 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
     protected function getQueryExecutionOptionsBlock(): AbstractQueryExecutionOptionsBlock
     {
         return PluginState::getPersistedQueryOptionsBlock();
+    }
+
+    /**
+     * Indicate if the GraphQL variables must override the URL params
+     *
+     * @return boolean
+     */
+    protected function doURLParamsOverrideGraphQLVariables(): bool
+    {
+        $optionsBlockDataItem = $this->getOptionsBlockDataItem();
+
+        // `true` is the default option in Gutenberg, so it's not saved to the DB!
+        return $optionsBlockDataItem['attrs'][PersistedQueryOptionsBlock::ATTRIBUTE_NAME_ACCEPT_VARIABLES_AS_URL_PARAMS] ?? true;
     }
 
     /**
