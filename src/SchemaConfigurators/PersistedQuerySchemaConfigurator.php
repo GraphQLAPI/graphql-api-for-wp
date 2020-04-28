@@ -7,14 +7,29 @@ namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\CacheControlGraphQLQueryConfigurator;
 
 class PersistedQuerySchemaConfigurator extends AbstractQueryExecutionSchemaConfigurator
 {
-    protected function getQueryExecutionOptionsBlock(): AbstractQueryExecutionOptionsBlock
+    /**
+     * Process the variables
+     *
+     * @return void
+     */
+    protected function executeOptionsSchemaConfiguration(int $customPostID): void
     {
-        return PluginState::getPersistedQueryOptionsBlock();
+        $optionsBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
+            $customPostID,
+            PluginState::getPersistedQueryOptionsBlock()
+        );
+        // `true` is the default option in Gutenberg, so it's not saved to the DB!
+        $acceptVariablesAsURLParams = $optionsBlockDataItem['attrs'][PersistedQueryOptionsBlock::ATTRIBUTE_NAME_ACCEPT_VARIABLES_AS_URL_PARAMS] ?? true;
+        if ($acceptVariablesAsURLParams) {
+
+        } else {
+
+        }
     }
     /**
      * Apply all the settings defined in the Schema Configuration:

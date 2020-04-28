@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractGraphQLQueryExecutionPostType;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
 use Leoloso\GraphQLByPoPWPPlugin\General\GraphQLQueryPostTypeHelpers;
-use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractGraphQLQueryExecutionPostType;
 
 class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostType
 {
@@ -271,14 +272,23 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
         return GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, true);
     }
 
+    protected function getQueryExecutionOptionsBlock(): AbstractQueryExecutionOptionsBlock
+    {
+        return PluginState::getPersistedQueryOptionsBlock();
+    }
+
     /**
      * Check if requesting the single post of this CPT and, in this case, set the request with the needed API params
      *
      * @return void
      */
-    public function addGraphQLVars($vars_in_array)
+    public function addGraphQLVars($vars_in_array): void
     {
         if (\is_singular($this->getPostType())) {
+            // Check if it is enabled, by configuration
+            if (!$this->isEnabled()) {
+                return;
+            }
             // Remove the VarsHooks from the GraphQLAPIRequest, so it doesn't process the GraphQL query
             // Otherwise it will add error "The query in the body is empty"
             $instanceManager = InstanceManagerFacade::getInstance();

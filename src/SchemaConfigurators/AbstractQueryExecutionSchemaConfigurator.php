@@ -12,7 +12,6 @@ use PoP\AccessControl\Environment as AccessControlEnvironment;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
@@ -31,34 +30,22 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
      */
     public function executeSchemaConfiguration(int $customPostID): void
     {
-        // Check if it is enabled
-        if (!$this->isEnabled($customPostID)) {
-            return;
-        }
+        // Each Configurator has an Options block
+        $this->executeOptionsSchemaConfiguration($customPostID);
         if ($schemaConfigurationID = $this->getSchemaConfigurationID($customPostID)) {
             // Get that Schema Configuration, and load its settings
             $this->executeSchemaConfigurationItems($schemaConfigurationID);
         }
     }
-    abstract protected function getQueryExecutionOptionsBlock(): AbstractQueryExecutionOptionsBlock;
+
     /**
-     * Read the options block and check the value of attribute "isEnabled"
+     * Function to override
      *
      * @return void
      */
-    protected function isEnabled(int $customPostID): bool
+    protected function executeOptionsSchemaConfiguration(int $customPostID): void
     {
-        $optionsBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
-            $customPostID,
-            $this->getQueryExecutionOptionsBlock()
-        );
-        // If there was no options block, something went wrong in the post content
-        if (is_null($optionsBlockDataItem)) {
-            return false;
-        }
-
-        // `true` is the default option in Gutenberg, so it's not saved to the DB!
-        return $optionsBlockDataItem['attrs'][AbstractQueryExecutionOptionsBlock::ATTRIBUTE_NAME_IS_ENABLED] ?? true;
+        // Do nothing here
     }
 
     /**

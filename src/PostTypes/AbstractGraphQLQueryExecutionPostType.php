@@ -6,9 +6,11 @@ namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
 use PoP\Routing\RouteNatures;
 use PoP\API\Schema\QueryInputs;
+use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
 
 abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 {
@@ -121,14 +123,41 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
      */
     abstract protected function getGraphQLQueryAndVariables(): array;
 
+    abstract protected function getQueryExecutionOptionsBlock(): AbstractQueryExecutionOptionsBlock;
+
+    /**
+     * Read the options block and check the value of attribute "isEnabled"
+     *
+     * @return void
+     */
+    protected function isEnabled(): bool
+    {
+        global $post;
+        $optionsBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
+            $post->ID,
+            $this->getQueryExecutionOptionsBlock()
+        );
+        // If there was no options block, something went wrong in the post content
+        if (is_null($optionsBlockDataItem)) {
+            return false;
+        }
+
+        // `true` is the default option in Gutenberg, so it's not saved to the DB!
+        return $optionsBlockDataItem['attrs'][AbstractQueryExecutionOptionsBlock::ATTRIBUTE_NAME_IS_ENABLED] ?? true;
+    }
+
     /**
      * Check if requesting the single post of this CPT and, in this case, set the request with the needed API params
      *
      * @return void
      */
-    public function addGraphQLVars($vars_in_array)
+    public function addGraphQLVars($vars_in_array): void
     {
         if (\is_singular($this->getPostType())) {
+            // Check if it is enabled, by configuration
+            if (!$this->isEnabled()) {
+                return;
+            }
             /**
              * Remove any query passed through the request, to avoid users executing a custom query,
              * bypassing the persisted one

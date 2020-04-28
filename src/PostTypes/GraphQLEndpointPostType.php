@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
-use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractGraphQLQueryExecutionPostType;
-use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
+use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
+use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractGraphQLQueryExecutionPostType;
 
 class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 {
@@ -157,5 +158,10 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
          * Extract the query from the BODY through standard GraphQL endpoint execution
          */
         return QueryExecutionHelpers::getRequestedGraphQLQueryAndVariables();
+    }
+
+    protected function getQueryExecutionOptionsBlock(): AbstractQueryExecutionOptionsBlock
+    {
+        return PluginState::getEndpointOptionsBlock();
     }
 }
