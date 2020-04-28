@@ -15,7 +15,10 @@ use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\FieldDeprecationGraphQLQuer
 use Leoloso\GraphQLByPoPWPPlugin\Settings\Settings;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
+use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
+use PoP\AccessControl\Environment as AccessControlEnvironment;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
+use PoP\AccessControl\Schema\SchemaModes;
 
 abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfiguratorInterface
 {
@@ -94,6 +97,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     protected function executeSchemaConfigurationOptions(int $schemaConfigurationID): void
     {
         $this->executeSchemaConfigurationOptionsNamespacing($schemaConfigurationID);
+        $this->executeSchemaConfigurationOptionsDefaultSchemaMode($schemaConfigurationID);
     }
 
     /**
@@ -131,6 +135,47 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
                 $hookName,
                 function () use ($useNamespacing) {
                     return $useNamespacing == SchemaConfigOptionsBlock::ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED;
+                },
+                PHP_INT_MAX
+            );
+        }
+    }
+
+    /**
+     * Apply the Default Schema Mode settings
+     *
+     * @param integer $schemaConfigurationID
+     * @return void
+     */
+    protected function executeSchemaConfigurationOptionsDefaultSchemaMode(int $schemaConfigurationID): void
+    {
+        $schemaConfigOptionsBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
+            $schemaConfigurationID,
+            PluginState::getSchemaConfigOptionsBlock()
+        );
+        if (!is_null($schemaConfigOptionsBlockDataItem)) {
+            /**
+             * Default value (if not defined in DB): `default`. Then do nothing
+             */
+            $defaultSchemaMode = $schemaConfigOptionsBlockDataItem['attrs'][SchemaConfigOptionsBlock::ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE];
+            // Only execute if it has value "public" or "private".
+            // If "default", then the general settings will already take effect, so do nothing
+            // (And if any other unsupported value, also do nothing)
+            if (!in_array($defaultSchemaMode, [
+                SchemaModes::PUBLIC_SCHEMA_MODE,
+                SchemaModes::PRIVATE_SCHEMA_MODE,
+            ])) {
+                return;
+            }
+            // Define the settings value through a hook. Execute last so it overrides the default settings
+            $hookName = ComponentConfigurationHelpers::getHookName(
+                AccessControlComponentConfiguration::class,
+                AccessControlEnvironment::USE_PRIVATE_SCHEMA_MODE
+            );
+            \add_filter(
+                $hookName,
+                function () use ($defaultSchemaMode) {
+                    return $defaultSchemaMode == SchemaModes::PRIVATE_SCHEMA_MODE;
                 },
                 PHP_INT_MAX
             );
