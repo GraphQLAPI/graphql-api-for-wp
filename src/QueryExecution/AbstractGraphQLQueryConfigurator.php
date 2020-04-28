@@ -30,24 +30,24 @@ abstract class AbstractGraphQLQueryConfigurator
      */
     protected $directiveNameClasses;
 
-    /**
-     * If executing a persisted GraphQL query, then initialize the configuration of different involved services
-     *
-     * @return void
-     */
-    public function init(): void
-    {
-        if (\is_singular(GraphQLPersistedQueryPostType::POST_TYPE) || \is_singular(GraphQLEndpointPostType::POST_TYPE)) {
-            $this->doInit();
-        }
-    }
+    // /**
+    //  * If executing a persisted GraphQL query, then initialize the configuration of different involved services
+    //  *
+    //  * @return void
+    //  */
+    // public function init(): void
+    // {
+    //     if (\is_singular(GraphQLPersistedQueryPostType::POST_TYPE) || \is_singular(GraphQLEndpointPostType::POST_TYPE)) {
+    //         $this->doInit();
+    //     }
+    // }
 
-    /**
-     * Function to override, to initialize the configuration of services before the execution of the GraphQL query
-     *
-     * @return void
-     */
-    abstract protected function doInit(): void;
+    // /**
+    //  * Function to override, to initialize the configuration of services before the execution of the GraphQL query
+    //  *
+    //  * @return void
+    //  */
+    // abstract protected function doInit(): void;
 
     /**
      * Obtain the ID from the configuration custom post types, containing the configuration for the GraphQL query
@@ -73,26 +73,26 @@ abstract class AbstractGraphQLQueryConfigurator
         return $aclPostID;
     }
 
-    /**
-     * Read the configuration post, and extract the configuration, contained through the specified block
-     *
-     * @param string $configurationPostID
-     * @param AbstractBlock $block
-     * @return void
-     */
-    protected function getBlocksOfTypeFromConfigurationCustomPost(string $configurationPostID, AbstractBlock $block)
-    {
-        $configurationPost = \get_post($configurationPostID);
-        $blocks = \parse_blocks($configurationPost->post_content);
-        // Obtain the blocks of "Access Control" type
-        $blockFullName = $block->getBlockFullName();
-        return array_filter(
-            $blocks,
-            function ($block) use ($blockFullName) {
-                return $block['blockName'] == $blockFullName;
-            }
-        );
-    }
+    // /**
+    //  * Read the configuration post, and extract the configuration, contained through the specified block
+    //  *
+    //  * @param string $configurationPostID
+    //  * @param AbstractBlock $block
+    //  * @return void
+    //  */
+    // protected function getBlocksOfTypeFromConfigurationCustomPost(string $configurationPostID, AbstractBlock $block)
+    // {
+    //     $configurationPost = \get_post($configurationPostID);
+    //     $blocks = \parse_blocks($configurationPost->post_content);
+    //     // Obtain the blocks of "Access Control" type
+    //     $blockFullName = $block->getBlockFullName();
+    //     return array_filter(
+    //         $blocks,
+    //         function ($block) use ($blockFullName) {
+    //             return $block['blockName'] == $blockFullName;
+    //         }
+    //     );
+    // }
 
     /**
      * Lazy load and return the `$namespacedTypeNameClasses` array
