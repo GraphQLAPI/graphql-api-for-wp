@@ -15,7 +15,7 @@ class SchemaConfigOptionsBlock extends AbstractBlock
     public const ATTRIBUTE_NAME_USE_NAMESPACING = 'useNamespacing';
     public const ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE = 'defaultSchemaMode';
 
-    public const ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT = 'default';
+    // public const ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT = 'default';
     public const ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED = 'enabled';
     public const ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED = 'disabled';
 

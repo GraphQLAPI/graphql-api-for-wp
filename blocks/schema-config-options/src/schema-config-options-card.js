@@ -35,6 +35,7 @@ const SchemaConfigOptionsCard = ( props ) => {
 			value: ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED,
 		},
 	];
+	const optionValues = options.map( option => option.value );
 	return (
 		<div className={ componentClassName }>
 			<Card { ...props }>
@@ -71,7 +72,7 @@ const SchemaConfigOptionsCard = ( props ) => {
 						{ !isSelected && (
 							<>
 								<br />
-								{ useNamespacing == ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT &&
+								{ ( useNamespacing == ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT || !optionValues.includes(useNamespacing) ) &&
 									<span>⭕️ { __('Default', 'graphql-api') }</span>
 								}
 								{ useNamespacing == ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED &&

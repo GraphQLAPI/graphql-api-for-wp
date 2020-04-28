@@ -110,24 +110,30 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         );
         if (!is_null($schemaConfigOptionsBlockDataItem)) {
             /**
-             * Default value (if not defined in DB): `default`
+             * Default value (if not defined in DB): `default`. Then do nothing
              */
-            $useNamespacing = $schemaConfigOptionsBlockDataItem['attrs'][SchemaConfigOptionsBlock::ATTRIBUTE_NAME_USE_NAMESPACING] ?? SchemaConfigOptionsBlock::ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT;
-            // Define the settings value through a hook. Execute last so it overrides the default settings
-            // Only execute if enabled or disabled. If default, then the general settings will already take effect
-            if ($useNamespacing != SchemaConfigOptionsBlock::ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT) {
-                $hookName = ComponentConfigurationHelpers::getHookName(
-                    ComponentModelComponentConfiguration::class,
-                    ComponentModelEnvironment::NAMESPACE_TYPES_AND_INTERFACES
-                );
-                \add_filter(
-                    $hookName,
-                    function () use ($useNamespacing) {
-                        return $useNamespacing == SchemaConfigOptionsBlock::ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED;
-                    },
-                    PHP_INT_MAX
-                );
+            $useNamespacing = $schemaConfigOptionsBlockDataItem['attrs'][SchemaConfigOptionsBlock::ATTRIBUTE_NAME_USE_NAMESPACING];
+            // Only execute if it has value "enabled" or "disabled".
+            // If "default", then the general settings will already take effect, so do nothing
+            // (And if any other unsupported value, also do nothing)
+            if (!in_array($useNamespacing, [
+                SchemaConfigOptionsBlock::ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED,
+                SchemaConfigOptionsBlock::ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED,
+            ])) {
+                return;
             }
+            // Define the settings value through a hook. Execute last so it overrides the default settings
+            $hookName = ComponentConfigurationHelpers::getHookName(
+                ComponentModelComponentConfiguration::class,
+                ComponentModelEnvironment::NAMESPACE_TYPES_AND_INTERFACES
+            );
+            \add_filter(
+                $hookName,
+                function () use ($useNamespacing) {
+                    return $useNamespacing == SchemaConfigOptionsBlock::ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED;
+                },
+                PHP_INT_MAX
+            );
         }
     }
 
