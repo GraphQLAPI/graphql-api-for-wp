@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
+use PoP\AccessControl\Schema\SchemaModes;
+use Leoloso\GraphQLByPoPWPPlugin\PluginState;
+use Leoloso\GraphQLByPoPWPPlugin\Settings\Settings;
+use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
+use PoP\AccessControl\Environment as AccessControlEnvironment;
+use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
-use Leoloso\GraphQLByPoPWPPlugin\PluginState;
-use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock;
+use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
+use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
+use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\AccessControlGraphQLQueryConfigurator;
 use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\FieldDeprecationGraphQLQueryConfigurator;
-use Leoloso\GraphQLByPoPWPPlugin\Settings\Settings;
-use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
-use PoP\ComponentModel\Environment as ComponentModelEnvironment;
-use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
-use PoP\AccessControl\Environment as AccessControlEnvironment;
-use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
-use PoP\AccessControl\Schema\SchemaModes;
 
 abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfiguratorInterface
 {
@@ -30,11 +31,36 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
      */
     public function executeSchemaConfiguration(int $customPostID): void
     {
+        // Check if it is enabled
+        if (!$this->isEnabled($customPostID)) {
+            return;
+        }
         if ($schemaConfigurationID = $this->getSchemaConfigurationID($customPostID)) {
             // Get that Schema Configuration, and load its settings
             $this->executeSchemaConfigurationItems($schemaConfigurationID);
         }
     }
+    abstract protected function getQueryExecutionOptionsBlock(): AbstractQueryExecutionOptionsBlock;
+    /**
+     * Read the options block and check the value of attribute "isEnabled"
+     *
+     * @return void
+     */
+    protected function isEnabled(int $customPostID): bool
+    {
+        $optionsBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
+            $customPostID,
+            $this->getQueryExecutionOptionsBlock()
+        );
+        // If there was no options block, something went wrong in the post content
+        if (is_null($optionsBlockDataItem)) {
+            return false;
+        }
+
+        // `true` is the default option in Gutenberg, so it's not saved to the DB!
+        return $optionsBlockDataItem['attrs'][AbstractQueryExecutionOptionsBlock::ATTRIBUTE_NAME_IS_ENABLED] ?? true;
+    }
+
     /**
      * Extract the Schema Configuration ID from the block stored in the post
      *

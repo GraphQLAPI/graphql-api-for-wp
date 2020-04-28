@@ -4,13 +4,18 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\CacheControlGraphQLQueryConfigurator;
 
 class PersistedQuerySchemaConfigurator extends AbstractQueryExecutionSchemaConfigurator
 {
+    protected function getQueryExecutionOptionsBlock(): AbstractQueryExecutionOptionsBlock
+    {
+        return PluginState::getPersistedQueryOptionsBlock();
+    }
     /**
      * Apply all the settings defined in the Schema Configuration:
      * - Access Control Lists
