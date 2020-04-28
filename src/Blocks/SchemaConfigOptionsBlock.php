@@ -33,19 +33,20 @@ class SchemaConfigOptionsBlock extends AbstractBlock
         $className = $this->getBlockClassName() . '-front';
 
         $blockContentPlaceholder = '<p><strong>%s</strong> %s</p>';
-        $blockContent .= sprintf(
-            $blockContentPlaceholder,
-            \__('Use namespacing?', 'graphql-api'),
-            $attributes[self::ATTRIBUTE_NAME_USE_NAMESPACING] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
-        );
         $schemaModeLabels = [
             SchemaModes::PUBLIC_SCHEMA_MODE => \__('Public', 'graphql-api'),
             SchemaModes::PRIVATE_SCHEMA_MODE => \__('Private', 'graphql-api'),
         ];
-        $blockContent .= sprintf(
+        $blockContent = sprintf(
             $blockContentPlaceholder,
             \__('Default Schema Mode:', 'graphql-api'),
             $schemaModeLabels[$attributes[self::ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE]]
+        );
+
+        $blockContent .= sprintf(
+            $blockContentPlaceholder,
+            \__('Use namespacing?', 'graphql-api'),
+            $attributes[self::ATTRIBUTE_NAME_USE_NAMESPACING] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
         );
 
         $blockContentPlaceholder = <<<EOT
