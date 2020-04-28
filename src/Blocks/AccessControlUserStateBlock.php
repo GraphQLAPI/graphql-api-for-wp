@@ -9,7 +9,7 @@ use PoP\UserStateAccessControl\ConfigurationEntries\UserStates;
 /**
  * Access Control Disable Access block
  */
-class AccessControlUserStateBlock extends AbstractBlock
+class AccessControlUserStateBlock extends AbstractAccessControlRuleBlock
 {
     use GraphQLByPoPBlockTrait;
 
@@ -25,7 +25,7 @@ class AccessControlUserStateBlock extends AbstractBlock
 
     public function renderBlock(array $attributes, string $content): string
     {
-        $label = $attributes['value'] == UserStates::IN ?
+        $label = $attributes[self::ATTRIBUTE_NAME_VALUE] == UserStates::IN ?
             __('Logged-in users', 'graphql-api') :
             __('Not logged-in users', 'graphql-api');
         return sprintf(

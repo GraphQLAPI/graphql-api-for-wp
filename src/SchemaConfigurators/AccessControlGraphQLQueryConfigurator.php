@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractAccessControlRuleBlock;
 use PoP\ComponentModel\Misc\GeneralUtils;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
@@ -44,10 +45,10 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
 
                 // Iterate all the nested blocks
                 foreach ($aclBlockItemNestedBlocks as $aclBlockItemNestedBlock) {
-                    if ($accessControlGroup = $aclBlockItemNestedBlock['attrs']['accessControlGroup']) {
+                    if ($accessControlGroup = $aclBlockItemNestedBlock['attrs'][AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_ACCESS_CONTROL_GROUP]) {
                         // The value can be NULL, it depends on the actual nestedBlock
                         // (eg: Disable access doesn't have any, while Disable by role has the list of roles)
-                        $value = $aclBlockItemNestedBlock['attrs']['value'];
+                        $value = $aclBlockItemNestedBlock['attrs'][AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_VALUE];
 
                         // Extract the saved fields
                         if ($entriesForFields = array_filter(

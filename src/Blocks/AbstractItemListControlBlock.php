@@ -7,7 +7,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 /**
  * Access Control User Capabilities block
  */
-abstract class AbstractItemListControlBlock extends AbstractBlock
+abstract class AbstractItemListControlBlock extends AbstractAccessControlRuleBlock
 {
     protected function isDynamicBlock(): bool
     {
@@ -21,7 +21,7 @@ abstract class AbstractItemListControlBlock extends AbstractBlock
             %s
         </div>
 EOF;
-        $values = $attributes['value'];
+        $values = $attributes[self::ATTRIBUTE_NAME_VALUE];
         return sprintf(
             $blockContentPlaceholder,
             $this->getBlockClassName(),

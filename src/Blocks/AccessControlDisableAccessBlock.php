@@ -7,7 +7,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 /**
  * Access Control Disable Access block
  */
-class AccessControlDisableAccessBlock extends AbstractBlock
+class AccessControlDisableAccessBlock extends AbstractAccessControlRuleBlock
 {
     use GraphQLByPoPBlockTrait;
 

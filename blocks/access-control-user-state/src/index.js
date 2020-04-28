@@ -59,9 +59,17 @@ registerBlockType( 'graphql-api/access-control-user-state', {
 	 * Block default attributes.
 	 */
 	attributes: {
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_ACCESS_CONTROL_GROUP
+		 */
 		accessControlGroup: {
 			type: 'string',
 		},
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_VALUE
+		 */
 		value: {
 			type: 'string',
 		},

@@ -59,6 +59,10 @@ registerBlockType( 'graphql-api/access-control-disable-access', {
 	 * Block default attributes.
 	 */
 	attributes: {
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_ACCESS_CONTROL_GROUP
+		 */
 		accessControlGroup: {
 			type: 'string',
 		},
