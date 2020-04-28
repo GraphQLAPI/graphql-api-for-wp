@@ -11,8 +11,8 @@ use PoP\ComponentModel\ComponentConfiguration;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use Leoloso\GraphQLByPoPWPPlugin\Config\ServiceConfiguration;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\EndpointSchemaConfigurator;
-use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\PersistedQuerySchemaConfigurator;
+use Leoloso\GraphQLByPoPWPPlugin\SchemaConfiguratorExecuters\EndpointSchemaConfiguratorExecuter;
+use Leoloso\GraphQLByPoPWPPlugin\SchemaConfiguratorExecuters\PersistedQuerySchemaConfiguratorExecuter;
 /**
  * Initialize component
  */
@@ -78,7 +78,7 @@ class Component extends AbstractComponent
         parent::boot();
 
         // Configure the GraphQL query with Access/Cache Control Lists
-        (new PersistedQuerySchemaConfigurator())->init();
-        (new EndpointSchemaConfigurator())->init();
+        (new PersistedQuerySchemaConfiguratorExecuter())->init();
+        (new EndpointSchemaConfiguratorExecuter())->init();
     }
 }

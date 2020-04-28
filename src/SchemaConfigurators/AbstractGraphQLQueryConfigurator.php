@@ -2,20 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\QueryExecution;
+namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\BlockConstants;
 use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
 use PoP\ComponentModel\Facades\Registries\DirectiveRegistryFacade;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLEndpointPostType;
 
 /**
  * Base class for configuring the persisted GraphQL query before its execution
  */
-abstract class AbstractGraphQLQueryConfigurator
+abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInterface
 {
     /**
      * Keep a map of all namespaced type names to their resolver classes

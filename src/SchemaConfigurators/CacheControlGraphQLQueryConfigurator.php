@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\QueryExecution;
+namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
 use PoP\ComponentModel\Misc\GeneralUtils;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
@@ -17,7 +17,7 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
      *
      * @return void
      */
-    public function executeConfiguration(int $cclPostID)
+    public function executeSchemaConfiguration(int $cclPostID): void
     {
         $cclBlockItems = BlockHelpers::getBlocksOfTypeFromCustomPost(
             $cclPostID,

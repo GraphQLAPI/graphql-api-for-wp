@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\QueryExecution;
+namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
@@ -17,7 +17,7 @@ class FieldDeprecationGraphQLQueryConfigurator extends AbstractGraphQLQueryConfi
      *
      * @return void
      */
-    public function executeConfiguration($fdlPostID)
+    public function executeSchemaConfiguration($fdlPostID): void
     {
         $fdlBlockItems = BlockHelpers::getBlocksOfTypeFromCustomPost(
             $fdlPostID,

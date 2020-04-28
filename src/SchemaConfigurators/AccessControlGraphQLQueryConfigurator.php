@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\QueryExecution;
+namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
 use PoP\ComponentModel\Misc\GeneralUtils;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
@@ -22,7 +22,7 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
      *
      * @return void
      */
-    public function executeConfiguration(int $aclPostID)
+    public function executeSchemaConfiguration(int $aclPostID): void
     {
         $aclBlockItems = BlockHelpers::getBlocksOfTypeFromCustomPost(
             $aclPostID,

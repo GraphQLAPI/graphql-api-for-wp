@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\QueryExecution;
+namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
 abstract class AbstractIndividualControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigurator
 {

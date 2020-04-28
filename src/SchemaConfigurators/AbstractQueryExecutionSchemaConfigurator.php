@@ -6,37 +6,33 @@ namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\QueryExecution\AccessControlGraphQLQueryConfigurator;
-use Leoloso\GraphQLByPoPWPPlugin\QueryExecution\FieldDeprecationGraphQLQueryConfigurator;
+use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\AccessControlGraphQLQueryConfigurator;
+use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\FieldDeprecationGraphQLQueryConfigurator;
 
-abstract class AbstractQueryExecutionSchemaConfigurator extends AbstractSchemaConfigurator
+abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfiguratorInterface
 {
-    /**
-     * Initialize the configuration of services before the execution of the GraphQL query
-     *
-     * @return void
-     */
-    protected function doInit(): void
-    {
-        /**
-         * The endpoint/persisted query CPTs contain the Schema configuration block
-         * Execute it
-         */
-        $this->readSchemaConfigurationBlock();
-    }
-
     /**
      * Extract the items defined in the Schema Configuration,
      * and inject them into the service as to take effect in the current GraphQL query
      *
      * @return void
      */
-    protected function readSchemaConfigurationBlock(): void
+    public function executeSchemaConfiguration(int $customPostID): void
     {
-        // If we found a CCL, load its rules/restrictions
-        global $post;
+        if ($schemaConfigurationID = $this->getSchemaConfigurationID($customPostID)) {
+            // Get that Schema Configuration, and load its settings
+            $this->executeSchemaConfigurationItems($schemaConfigurationID);
+        }
+    }
+    /**
+     * Extract the Schema Configuration ID from the block stored in the post
+     *
+     * @return void
+     */
+    protected function getSchemaConfigurationID(int $customPostID): ?int
+    {
         $schemaConfigurationBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
-            $post,
+            $customPostID,
             PluginState::getSchemaConfigurationBlock()
         );
         // If there was no schema configuration, use the default one
@@ -52,7 +48,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator extends AbstractSchemaCo
         $schemaConfiguration = $schemaConfigurationBlockDataItem['attrs']['schemaConfiguration'];
         // $schemaConfiguration is either an ID or one of the meta options (default, none, inherit)
         if ($schemaConfiguration == 'none') {
-            return;
+            return null;
         } elseif ($schemaConfiguration == 'default') {
             $schemaConfigurationID = 824;
         } elseif ($schemaConfiguration == 'inherit') {
@@ -61,8 +57,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator extends AbstractSchemaCo
             $schemaConfigurationID = $schemaConfiguration;
         }
 
-        // Get that Schema Configuration, and load its settings
-        $this->executeSchemaConfiguration($schemaConfigurationID);
+        return $schemaConfigurationID;
     }
 
     /**
@@ -73,7 +68,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator extends AbstractSchemaCo
      * @param integer $schemaConfigurationID
      * @return void
      */
-    protected function executeSchemaConfiguration(int $schemaConfigurationID): void
+    protected function executeSchemaConfigurationItems(int $schemaConfigurationID): void
     {
         $this->executeSchemaConfigurationAccessControlLists($schemaConfigurationID);
         $this->executeSchemaConfigurationFieldDeprecationLists($schemaConfigurationID);
@@ -96,7 +91,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator extends AbstractSchemaCo
             if ($accessControlLists = $schemaConfigACLBlockDataItem['attrs']['accessControlLists']) {
                 $configurator = new AccessControlGraphQLQueryConfigurator();
                 foreach ($accessControlLists as $accessControlListID) {
-                    $configurator->executeConfiguration($accessControlListID);
+                    $configurator->executeSchemaConfiguration($accessControlListID);
                 }
             }
         }
@@ -119,7 +114,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator extends AbstractSchemaCo
             if ($fieldDeprecationLists = $schemaConfigFDLBlockDataItem['attrs']['fieldDeprecationLists']) {
                 $configurator = new FieldDeprecationGraphQLQueryConfigurator();
                 foreach ($fieldDeprecationLists as $fieldDeprecationListID) {
-                    $configurator->executeConfiguration($fieldDeprecationListID);
+                    $configurator->executeSchemaConfiguration($fieldDeprecationListID);
                 }
             }
         }

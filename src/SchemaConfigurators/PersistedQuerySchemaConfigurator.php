@@ -5,17 +5,11 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\QueryExecution\CacheControlGraphQLQueryConfigurator;
+use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\CacheControlGraphQLQueryConfigurator;
 
 class PersistedQuerySchemaConfigurator extends AbstractQueryExecutionSchemaConfigurator
 {
-    protected function getPostType(): string
-    {
-        return GraphQLPersistedQueryPostType::POST_TYPE;
-    }
-
     /**
      * Apply all the settings defined in the Schema Configuration:
      * - Access Control Lists
@@ -25,9 +19,9 @@ class PersistedQuerySchemaConfigurator extends AbstractQueryExecutionSchemaConfi
      * @param integer $schemaConfigurationID
      * @return void
      */
-    protected function executeSchemaConfiguration(int $schemaConfigurationID): void
+    protected function executeSchemaConfigurationItems(int $schemaConfigurationID): void
     {
-        parent::executeSchemaConfiguration($schemaConfigurationID);
+        parent::executeSchemaConfigurationItems($schemaConfigurationID);
 
         // Also execute the Cache Control
         $this->executeSchemaConfigurationCacheControlLists($schemaConfigurationID);
@@ -50,7 +44,7 @@ class PersistedQuerySchemaConfigurator extends AbstractQueryExecutionSchemaConfi
             if ($cacheControlLists = $schemaConfigCCLBlockDataItem['attrs']['cacheControlLists']) {
                 $configurator = new CacheControlGraphQLQueryConfigurator();
                 foreach ($cacheControlLists as $cacheControlListID) {
-                    $configurator->executeConfiguration($cacheControlListID);
+                    $configurator->executeSchemaConfiguration($cacheControlListID);
                 }
             }
         }
