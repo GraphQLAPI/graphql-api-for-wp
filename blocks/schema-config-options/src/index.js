@@ -54,10 +54,18 @@ registerBlockType( 'graphql-api/schema-config-options', {
 	 * Block default attributes.
 	 */
 	attributes: {
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock::ATTRIBUTE_NAME_USE_NAMESPACING
+		 */
 		useNamespacing: {
 			type: 'boolean',
 			default: false,
 		},
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock::ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE
+		 */
 		defaultSchemaMode: {
 			type: 'string',
 		},

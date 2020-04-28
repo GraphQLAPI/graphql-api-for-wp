@@ -12,6 +12,9 @@ use PoP\AccessControl\Schema\SchemaModes;
  */
 class SchemaConfigOptionsBlock extends AbstractBlock
 {
+    public const ATTRIBUTE_NAME_USE_NAMESPACING = 'useNamespacing';
+    public const ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE = 'defaultSchemaMode';
+
     use GraphQLByPoPBlockTrait;
 
     protected function getBlockName(): string
@@ -28,17 +31,21 @@ class SchemaConfigOptionsBlock extends AbstractBlock
     {
         // Append "-front" because this style must be used only on the client, not on the admin
         $className = $this->getBlockClassName() . '-front';
-        $blockContentPlaceholder = <<<EOT
-            <p><strong>%s</strong> %s</p>
-EOT;
+
+        $blockContentPlaceholder = '<p><strong>%s</strong> %s</p>';
+        $blockContent .= sprintf(
+            $blockContentPlaceholder,
+            \__('Use namespacing?', 'graphql-api'),
+            $attributes[self::ATTRIBUTE_NAME_USE_NAMESPACING] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
+        );
         $schemaModeLabels = [
             SchemaModes::PUBLIC_SCHEMA_MODE => \__('Public', 'graphql-api'),
             SchemaModes::PRIVATE_SCHEMA_MODE => \__('Private', 'graphql-api'),
         ];
-        $blockSchemaModeContent = sprintf(
+        $blockContent .= sprintf(
             $blockContentPlaceholder,
             \__('Default Schema Mode:', 'graphql-api'),
-            $schemaModeLabels[$attributes['defaultSchemaMode']]
+            $schemaModeLabels[$attributes[self::ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE]]
         );
 
         $blockContentPlaceholder = <<<EOT
@@ -52,7 +59,7 @@ EOT;
             $className . ' ' . $this->getAlignClass(),
             $className . '__title',
             \__('Options', 'graphql-api'),
-            $blockSchemaModeContent
+            $blockContent
         );
     }
 }
