@@ -7,7 +7,14 @@ import { RadioControl } from '@wordpress/components';
 /**
  * Internal dependencies
  */
-import { DEFAULT_SCHEMA_MODE, PUBLIC_SCHEMA_MODE, PRIVATE_SCHEMA_MODE } from './schema-modes';
+import {
+	DEFAULT_SCHEMA_MODE,
+	PUBLIC_SCHEMA_MODE,
+	PRIVATE_SCHEMA_MODE
+} from './schema-modes';
+import {
+	SETTINGS_VALUE_LABEL,
+} from '../../default-configuration';
 
 const SchemaModeControl = ( props ) => {
 	const {
@@ -16,30 +23,25 @@ const SchemaModeControl = ( props ) => {
 		setAttributes,
 		attributes,
 		attributeName,
-		addDefault = false,
-		defaultValue = addDefault ? DEFAULT_SCHEMA_MODE : PUBLIC_SCHEMA_MODE,
+		defaultLabel = SETTINGS_VALUE_LABEL,
+		defaultValue = DEFAULT_SCHEMA_MODE,
 	} = props;
 	const schemaMode = attributes[ attributeName ] || defaultValue;
-	const options = (addDefault ?
-		[
-			{
-				label: __('Default', 'graphql-api'),
-				value: DEFAULT_SCHEMA_MODE,
-			},
-		] :
-		[]
-	).concat(
-		[
-			{
-				label: __('Public', 'graphql-api'),
-				value: PUBLIC_SCHEMA_MODE,
-			},
-			{
-				label: __('Private', 'graphql-api'),
-				value: PRIVATE_SCHEMA_MODE,
-			},
-		]
-	);
+	const options = [
+		{
+			label: defaultLabel,
+			value: DEFAULT_SCHEMA_MODE,
+		},
+		{
+			label: __('Public', 'graphql-api'),
+			value: PUBLIC_SCHEMA_MODE,
+		},
+		{
+			label: __('Private', 'graphql-api'),
+			value: PRIVATE_SCHEMA_MODE,
+		},
+	];
+	const optionValues = options.map( option => option.value );
 	return (
 		<>
 			{ isSelected &&
@@ -56,8 +58,8 @@ const SchemaModeControl = ( props ) => {
 			}
 			{ !isSelected && (
 				<div className={ className+'__read'}>
-					{ (addDefault && schemaMode == DEFAULT_SCHEMA_MODE) &&
-						<span>🟡 { __('Default', 'graphql-api') }</span>
+					{ (schemaMode == DEFAULT_SCHEMA_MODE || !optionValues.includes(schemaMode) ) &&
+						<span>🟡 { defaultLabel }</span>
 					}
 					{ (schemaMode == PUBLIC_SCHEMA_MODE) &&
 						<span>⚪️ { __('Public', 'graphql-api') }</span>

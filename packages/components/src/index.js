@@ -19,3 +19,4 @@ export { SchemaMode, SchemaModeControl, SchemaModeControlCard } from './componen
 export { DEFAULT_SCHEMA_MODE, PUBLIC_SCHEMA_MODE, PRIVATE_SCHEMA_MODE } from './components/schema-mode';
 export { withCard } from './components/card';
 export { withEditableOnFocus } from './components/editable-on-focus';
+export { EMPTY_LABEL, SETTINGS_VALUE_LABEL } from './default-configuration';

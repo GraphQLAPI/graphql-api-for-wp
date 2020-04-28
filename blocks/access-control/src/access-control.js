@@ -27,7 +27,7 @@ const AccessControl = ( props ) => {
 					<SchemaMode
 						{ ...props }
 						attributeName="schemaMode"
-						addDefault={ true }
+						defaultLabel={ __('As defined in the Schema Configuration', 'graphql-api') }
 					/>
 				</div>
 			}

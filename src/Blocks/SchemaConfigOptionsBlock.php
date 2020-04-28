@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use PoP\AccessControl\Schema\SchemaModes;
 
 /**
@@ -43,14 +44,18 @@ class SchemaConfigOptionsBlock extends AbstractBlock
         ];
         $blockContent = sprintf(
             $blockContentPlaceholder,
-            \__('Default Schema Mode:', 'graphql-api'),
-            $schemaModeLabels[$attributes[self::ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE]]
+            \__('Default Schema Mode for the Access Control Lists:', 'graphql-api'),
+            $schemaModeLabels[$attributes[self::ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE]] ?? ComponentConfiguration::getSettingsValueLabel()
         );
 
+        $useNamespacingLabels = [
+            self::ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED => \__('yes', 'graphql-api'),
+            self::ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED => \__('no', 'graphql-api'),
+        ];
         $blockContent .= sprintf(
             $blockContentPlaceholder,
             \__('Use namespacing?', 'graphql-api'),
-            $attributes[self::ATTRIBUTE_NAME_USE_NAMESPACING] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
+            $useNamespacingLabels[$attributes[self::ATTRIBUTE_NAME_USE_NAMESPACING]] ?? ComponentConfiguration::getSettingsValueLabel()
         );
 
         $blockContentPlaceholder = <<<EOT

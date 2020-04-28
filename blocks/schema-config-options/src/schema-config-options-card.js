@@ -11,6 +11,7 @@ import {
 	SchemaModeControl,
 	LinkableInfoTooltip,
 	getEditableOnFocusComponentClass,
+	SETTINGS_VALUE_LABEL,
 } from '../../../packages/components/src';
 import {
 	ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT,
@@ -23,7 +24,7 @@ const SchemaConfigOptionsCard = ( props ) => {
 	const componentClassName = `${ className } ${ getEditableOnFocusComponentClass(isSelected) }`;
 	const options = [
 		{
-			label: __('Default', 'graphql-api'),
+			label: SETTINGS_VALUE_LABEL,
 			value: ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT,
 		},
 		{
@@ -49,7 +50,7 @@ const SchemaConfigOptionsCard = ( props ) => {
 				</CardHeader>
 				<CardBody>
 					<div className={ `${ className }__schema_mode` }>
-						<em>{ __('Default Schema Mode:', 'graphql-api') }</em>
+						<em>{ __('Default Schema Mode for the Access Control Lists:', 'graphql-api') }</em>
 						<LinkableInfoTooltip
 							{ ...props }
 							text={ __('Public: field/directives are always visible. Private: field/directives are hidden unless rules are satisfied.', 'graphql-api') }
@@ -58,7 +59,6 @@ const SchemaConfigOptionsCard = ( props ) => {
 						<SchemaModeControl
 							{ ...props }
 							attributeName="defaultSchemaMode"
-							addDefault={ false }
 						/>
 					</div>
 					<hr />

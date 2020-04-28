@@ -11,6 +11,7 @@ class ComponentConfiguration extends AbstractComponentConfiguration
     private static $addExcerptAsDescription;
     private static $groupFieldsUnderTypeForPrint;
     private static $getEmptyLabel;
+    private static $getSettingsValueLabel;
     private static $useGraphiQLWithExplorer;
     private static $getEndpointSlugBase;
     private static $getPersistedQuerySlugBase;
@@ -53,6 +54,22 @@ class ComponentConfiguration extends AbstractComponentConfiguration
         $envVariable = Environment::EMPTY_LABEL;
         $selfProperty = &self::$getEmptyLabel;
         $callback = [Environment::class, 'getEmptyLabel'];
+
+        // Initialize property from the environment/hook
+        self::maybeInitEnvironmentVariable(
+            $envVariable,
+            $selfProperty,
+            $callback
+        );
+        return $selfProperty;
+    }
+
+    public static function getSettingsValueLabel(): string
+    {
+        // Define properties
+        $envVariable = Environment::SETTINGS_VALUE_LABEL;
+        $selfProperty = &self::$getSettingsValueLabel;
+        $callback = [Environment::class, 'getSettingsValueLabel'];
 
         // Initialize property from the environment/hook
         self::maybeInitEnvironmentVariable(

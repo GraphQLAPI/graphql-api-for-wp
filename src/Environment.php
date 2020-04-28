@@ -9,6 +9,7 @@ class Environment
     public const ADD_EXCERPT_AS_DESCRIPTION = 'ADD_EXCERPT_AS_DESCRIPTION';
     public const GROUP_FIELDS_UNDER_TYPE_FOR_PRINT = 'GROUP_FIELDS_UNDER_TYPE_FOR_PRINT';
     public const EMPTY_LABEL = 'EMPTY_LABEL';
+    public const SETTINGS_VALUE_LABEL = 'SETTINGS_VALUE_LABEL';
     public const USE_GRAPHIQL_WITH_EXPLORER = 'USE_GRAPHIQL_WITH_EXPLORER';
     public const ENDPOINT_SLUG_BASE = 'ENDPOINT_SLUG_BASE';
     public const PERSISTED_QUERY_SLUG_BASE = 'PERSISTED_QUERY_SLUG_BASE';
@@ -41,6 +42,16 @@ class Environment
     public static function getEmptyLabel(): string
     {
         return isset($_ENV[self::EMPTY_LABEL]) ? $_ENV[self::EMPTY_LABEL] : \__('---', 'graphql-api');
+    }
+
+    /**
+     * The label to show when the value comes from the settings
+     *
+     * @return boolean
+     */
+    public static function getSettingsValueLabel(): string
+    {
+        return isset($_ENV[self::SETTINGS_VALUE_LABEL]) ? $_ENV[self::SETTINGS_VALUE_LABEL] : \__('As defined in the General Settings', 'graphql-api');
     }
 
     /**
