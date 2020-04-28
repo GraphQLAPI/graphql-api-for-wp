@@ -76,7 +76,7 @@ registerBlockType( BLOCK_NAME, {
 		 * List of selected fields, accessible by their type
 		 *
 		 * Same attribute name as defined in
-		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS
 		 */
 		typeFields: {
 			type: 'array',
@@ -86,7 +86,7 @@ registerBlockType( BLOCK_NAME, {
 		 * List of selected directives
 		 *
 		 * Same attribute name as defined in
-		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock::ATTRIBUTE_NAME_DIRECTIVES
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock::ATTRIBUTE_NAME_DIRECTIVES
 		 */
 		directives: {
 			type: 'array',

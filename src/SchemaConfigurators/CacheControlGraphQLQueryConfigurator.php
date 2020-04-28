@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
 use PoP\ComponentModel\Misc\GeneralUtils;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
@@ -27,7 +28,7 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
         $cacheControlManager = CacheControlManagerFacade::getInstance();
         // The "Cache Control" type contains the fields/directives and the max-age
         foreach ($cclBlockItems as $cclBlockItem) {
-            $maxAge = $cclBlockItem['attrs']['cacheControlMaxAge'];
+            $maxAge = $cclBlockItem['attrs'][CacheControlBlock::ATTRIBUTE_NAME_CACHE_CONTROL_MAX_AGE];
             if (!is_null($maxAge) && $maxAge >= 0) {
                 // Extract the saved fields
                 if ($typeFields = $cclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS]) {

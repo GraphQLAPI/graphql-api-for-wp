@@ -12,6 +12,8 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
  */
 class CacheControlBlock extends AbstractControlBlock
 {
+    public const ATTRIBUTE_NAME_CACHE_CONTROL_MAX_AGE = 'cacheControlMaxAge';
+
     use GraphQLByPoPBlockTrait;
 
     protected function getBlockName(): string
@@ -39,7 +41,7 @@ class CacheControlBlock extends AbstractControlBlock
             %s
         </div>
 EOF;
-        $cacheControlMaxAge = $attributes['cacheControlMaxAge'];
+        $cacheControlMaxAge = $attributes[self::ATTRIBUTE_NAME_CACHE_CONTROL_MAX_AGE];
         if (is_null($cacheControlMaxAge) || $cacheControlMaxAge < 0) {
             $cacheControlMaxAgeText = sprintf(
                 '<em>%s</em>',
