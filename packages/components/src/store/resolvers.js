@@ -102,7 +102,7 @@ export const FETCH_FIELD_DEPRECATION_LISTS_GRAPHQL_QUERY = `
 const maybeGetErrorMessage = (response) => {
 	if (response.errors && response.errors.length) {
 		return sprintf(
-			__(`There were errors when retrieving data: %s`, 'graphql-api'),
+			__(`There were errors connecting to the API: %s`, 'graphql-api'),
 			response.errors.map(error => error.message).join(';')
 		);
 	}

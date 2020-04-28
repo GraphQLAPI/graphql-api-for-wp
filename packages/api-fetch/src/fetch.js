@@ -4,6 +4,11 @@
 import { request } from 'graphql-request'
 
 /**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
+
+/**
  * The endpoint against which to execute GraphQL queries while on the WordPress admin
  */
 const GRAPHQL_ADMIN_ENDPOINT = '/api/graphql';
@@ -23,7 +28,16 @@ const fetchGraphQLQuery = (query, variables) => {
 		.then(response => ({
 			data: response
 		}))
-		.catch(err => err.response);
+		.catch(
+			/**
+			 * If it is a 500 response, return its error message under entry "errors"
+			 */
+			err => err.response.status == 500 ? {
+				errors: [ {
+					message: `${ __('[Internal Server Error (500)]:', 'graphql-api') } ${ err.response.message }`
+				} ],
+			} : err.response
+		);
 };
 
 /**
