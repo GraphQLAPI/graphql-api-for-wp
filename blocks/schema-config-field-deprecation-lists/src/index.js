@@ -54,6 +54,10 @@ registerBlockType( 'graphql-api/schema-config-field-deprecation-lists', {
 	 * Block default attributes.
 	 */
 	attributes: {
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock::ATTRIBUTE_NAME_FIELD_DEPRECATION_LISTS
+		 */
 		fieldDeprecationLists: {
 			type: 'array',
 			default: [],

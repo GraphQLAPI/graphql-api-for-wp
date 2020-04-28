@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
@@ -114,7 +115,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             PluginState::getSchemaConfigFieldDeprecationListBlock()
         );
         if (!is_null($schemaConfigFDLBlockDataItem)) {
-            if ($fieldDeprecationLists = $schemaConfigFDLBlockDataItem['attrs']['fieldDeprecationLists']) {
+            if ($fieldDeprecationLists = $schemaConfigFDLBlockDataItem['attrs'][SchemaConfigFieldDeprecationListBlock::ATTRIBUTE_NAME_FIELD_DEPRECATION_LISTS]) {
                 $configurator = new FieldDeprecationGraphQLQueryConfigurator();
                 foreach ($fieldDeprecationLists as $fieldDeprecationListID) {
                     $configurator->executeSchemaConfiguration($fieldDeprecationListID);

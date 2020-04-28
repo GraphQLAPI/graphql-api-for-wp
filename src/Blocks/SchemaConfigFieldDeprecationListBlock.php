@@ -11,6 +11,8 @@ use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLFieldDeprecationListPostType;
  */
 class SchemaConfigFieldDeprecationListBlock extends AbstractSchemaConfigPostListBlock
 {
+    public const ATTRIBUTE_NAME_FIELD_DEPRECATION_LISTS = 'fieldDeprecationLists';
+
     protected function getBlockName(): string
     {
         return 'schema-config-field-deprecation-lists';
@@ -18,7 +20,7 @@ class SchemaConfigFieldDeprecationListBlock extends AbstractSchemaConfigPostList
 
     protected function getAttributeName(): string
     {
-        return 'fieldDeprecationLists';
+        return self::ATTRIBUTE_NAME_FIELD_DEPRECATION_LISTS;
     }
 
     protected function getPostType(): string
