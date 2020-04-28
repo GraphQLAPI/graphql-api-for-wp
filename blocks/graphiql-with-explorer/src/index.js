@@ -25,8 +25,6 @@ import { blockTypeSettings } from '../../graphiql/src/block-type-settings';
 let explorerBlockTypeSettings = blockTypeSettings;
 explorerBlockTypeSettings.edit = GraphiQLWithExplorer;
 
-// console.log(blockTypeSettings, explorerBlockTypeSettings);
-
 /**
  * Every block starts by registering a new block type definition.
  *
