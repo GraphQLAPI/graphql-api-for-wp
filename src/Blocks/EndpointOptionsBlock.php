@@ -9,8 +9,11 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
 /**
  * Endpoint Options block
  */
-class EndpointOptionsBlock extends AbstractBlock
+class EndpointOptionsBlock extends AbstractQueryExecutionOptionsBlock
 {
+    public const ATTRIBUTE_NAME_IS_GRAPHIQL_ENABLED = 'isGraphiQLEnabled';
+    public const ATTRIBUTE_NAME_IS_VOYAGER_ENABLED = 'isVoyagerEnabled';
+
     use GraphQLByPoPBlockTrait;
 
     protected function getBlockName(): string
@@ -18,46 +21,22 @@ class EndpointOptionsBlock extends AbstractBlock
         return 'endpoint-options';
     }
 
-    protected function isDynamicBlock(): bool
+    protected function getBlockContent(array $attributes, string $content): string
     {
-        return true;
-    }
+        $blockContent = parent::getBlockContent($attributes, $content);
 
-    public function renderBlock(array $attributes, string $content): string
-    {
-        // Append "-front" because this style must be used only on the client, not on the admin
-        $className = $this->getBlockClassName() . '-front';
-        $blockContentPlaceholder = <<<EOT
-            <p><strong>%s</strong> %s</p>
-EOT;
-        $blockSchemaModeContent = sprintf(
-            $blockContentPlaceholder,
-            \__('Enabled:', 'graphql-api'),
-            $attributes['isEnabled'] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
-        );
-        $blockSchemaModeContent .= sprintf(
+        $blockContentPlaceholder = '<p><strong>%s</strong> %s</p>';
+        $blockContent .= sprintf(
             $blockContentPlaceholder,
             \__('Expose GraphiQL client?', 'graphql-api'),
-            $attributes['isGraphiQLEnabled'] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
+            $attributes[self::ATTRIBUTE_NAME_IS_GRAPHIQL_ENABLED] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
         );
-        $blockSchemaModeContent .= sprintf(
+        $blockContent .= sprintf(
             $blockContentPlaceholder,
             \__('Expose the Interactive Schema client?', 'graphql-api'),
-            $attributes['isVoyagerEnabled'] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
+            $attributes[self::ATTRIBUTE_NAME_IS_VOYAGER_ENABLED] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
         );
 
-        $blockContentPlaceholder = <<<EOT
-        <div class="%s">
-            <h3 class="%s">%s</h3>
-            %s
-        </div>
-EOT;
-        return sprintf(
-            $blockContentPlaceholder,
-            $className . ' ' . $this->getAlignClass(),
-            $className . '__title',
-            \__('Options', 'graphql-api'),
-            $blockSchemaModeContent
-        );
+        return $blockContent;
     }
 }

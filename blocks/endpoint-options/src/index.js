@@ -54,14 +54,26 @@ registerBlockType( 'graphql-api/endpoint-options', {
 	 * Block default attributes.
 	 */
 	attributes: {
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock::ATTRIBUTE_NAME_IS_ENABLED
+		 */
 		isEnabled: {
 			type: 'boolean',
 			default: true,
 		},
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\EndpointOptionsBlock::ATTRIBUTE_NAME_IS_GRAPHIQL_ENABLED
+		 */
 		isGraphiQLEnabled: {
 			type: 'boolean',
 			default: true,
 		},
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\EndpointOptionsBlock::ATTRIBUTE_NAME_IS_VOYAGER_ENABLED
+		 */
 		isVoyagerEnabled: {
 			type: 'boolean',
 			default: true,

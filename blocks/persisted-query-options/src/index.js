@@ -54,10 +54,18 @@ registerBlockType( 'graphql-api/persisted-query-options', {
 	 * Block default attributes.
 	 */
 	attributes: {
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock::ATTRIBUTE_NAME_IS_ENABLED
+		 */
 		isEnabled: {
 			type: 'boolean',
 			default: true,
 		},
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock::ATTRIBUTE_NAME_ACCEPT_VARIABLES_AS_URL_PARAMS
+		 */
 		acceptVariablesAsURLParams: {
 			type: 'boolean',
 			default: true,
