@@ -54,6 +54,10 @@ registerBlockType( 'graphql-api/schema-config-access-control-lists', {
 	 * Block default attributes.
 	 */
 	attributes: {
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock::ATTRIBUTE_NAME_CACHE_CONTROL_MAX_AGE
+		 */
 		accessControlLists: {
 			type: 'array',
 			default: [],

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
@@ -90,7 +91,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             PluginState::getSchemaConfigAccessControlListBlock()
         );
         if (!is_null($schemaConfigACLBlockDataItem)) {
-            if ($accessControlLists = $schemaConfigACLBlockDataItem['attrs']['accessControlLists']) {
+            if ($accessControlLists = $schemaConfigACLBlockDataItem['attrs'][SchemaConfigAccessControlListBlock::ATTRIBUTE_NAME_ACCESS_CONTROL_LISTS]) {
                 $configurator = new AccessControlGraphQLQueryConfigurator();
                 foreach ($accessControlLists as $accessControlListID) {
                     $configurator->executeSchemaConfiguration($accessControlListID);

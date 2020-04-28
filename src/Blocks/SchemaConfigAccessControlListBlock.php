@@ -11,6 +11,8 @@ use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
  */
 class SchemaConfigAccessControlListBlock extends AbstractSchemaConfigPostListBlock
 {
+    public const ATTRIBUTE_NAME_ACCESS_CONTROL_LISTS = 'accessControlLists';
+
     protected function getBlockName(): string
     {
         return 'schema-config-access-control-lists';
@@ -18,7 +20,7 @@ class SchemaConfigAccessControlListBlock extends AbstractSchemaConfigPostListBlo
 
     protected function getAttributeName(): string
     {
-        return 'accessControlLists';
+        return self::ATTRIBUTE_NAME_ACCESS_CONTROL_LISTS;
     }
 
     protected function getPostType(): string
