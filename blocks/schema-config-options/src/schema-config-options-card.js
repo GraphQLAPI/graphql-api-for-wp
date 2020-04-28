@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Card, CardHeader, CardBody, ToggleControl } from '@wordpress/components';
+import { Card, CardHeader, CardBody, RadioControl } from '@wordpress/components';
 
 /**
  * Internal dependencies
@@ -12,10 +12,29 @@ import {
 	LinkableInfoTooltip,
 	getEditableOnFocusComponentClass,
 } from '../../../packages/components/src';
+import {
+	ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT,
+	ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED,
+	ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED,
+} from './namespacing-values';
 
 const SchemaConfigOptionsCard = ( props ) => {
 	const { isSelected, className, setAttributes, attributes: { useNamespacing } } = props;
 	const componentClassName = `${ className } ${ getEditableOnFocusComponentClass(isSelected) }`;
+	const options = [
+		{
+			label: __('Default', 'graphql-api'),
+			value: ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT,
+		},
+		{
+			label: __('Use namespacing', 'graphql-api'),
+			value: ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED,
+		},
+		{
+			label: __('Do not use namespacing', 'graphql-api'),
+			value: ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED,
+		},
+	];
 	return (
 		<div className={ componentClassName }>
 			<Card { ...props }>
@@ -52,17 +71,27 @@ const SchemaConfigOptionsCard = ( props ) => {
 						{ !isSelected && (
 							<>
 								<br />
-								{ useNamespacing ? `✅ ${ __('Enabled', 'graphql-api') }` : `❌ ${ __('Disabled', 'graphql-api') }` }
+								{ useNamespacing == ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT &&
+									<span>⭕️ { __('Default', 'graphql-api') }</span>
+								}
+								{ useNamespacing == ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED &&
+									<span>✅ { __('Use namespacing', 'graphql-api') }</span>
+								}
+								{ useNamespacing == ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED &&
+									<span>❌ { __('Do not use namespacing', 'graphql-api') }</span>
+								}
 							</>
 						) }
 						{ isSelected &&
-							<ToggleControl
+							<RadioControl
 								{ ...props }
-								label={ useNamespacing ? __('Namespacing enabled', 'graphql-api') : __('Namespacing disabled', 'graphql-api') }
-								checked={ useNamespacing }
-								onChange={ newValue => setAttributes( {
-									useNamespacing: newValue,
-								} ) }
+								options={ options }
+								selected={ useNamespacing }
+								onChange={ newValue => (
+									setAttributes( {
+										useNamespacing: newValue
+									} )
+								)}
 							/>
 						}
 					</div>

@@ -16,7 +16,9 @@ import { __ } from '@wordpress/i18n';
  * Application imports
  */
 import EditBlock from './edit-block';
-
+import {
+	ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT,
+} from './namespacing-values';
 /**
  * Every block starts by registering a new block type definition.
  *
@@ -59,8 +61,8 @@ registerBlockType( 'graphql-api/schema-config-options', {
 		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock::ATTRIBUTE_NAME_USE_NAMESPACING
 		 */
 		useNamespacing: {
-			type: 'boolean',
-			default: false,
+			type: 'string',
+			default: ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT,
 		},
 		/**
 		 * Same attribute name as defined in
