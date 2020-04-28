@@ -9,6 +9,7 @@ use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\AccessControlGraphQLQueryConfigurator;
 use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\FieldDeprecationGraphQLQueryConfigurator;
+use Leoloso\GraphQLByPoPWPPlugin\Settings\Settings;
 
 abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfiguratorInterface
 {
@@ -47,18 +48,24 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         }
 
         $schemaConfiguration = $schemaConfigurationBlockDataItem['attrs']['schemaConfiguration'];
-        // $schemaConfiguration is either an ID or one of the meta options (default, none, inherit)
+        // Check if $schemaConfiguration is one of the meta options (default, none, inherit)
         if ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_NONE) {
+            // Return nothing
             return null;
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT) {
-            $schemaConfigurationID = 824;
+            // Return the default
+            return Settings::getDefaultSchemaConfiguration();
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT) {
-            $schemaConfigurationID = 824;
-        } else {
-            $schemaConfigurationID = $schemaConfiguration;
+            // Return the schema configuration from the parent
+            $customPost = \get_post($customPostID);
+            if ($customPost->post_parent) {
+                return $this->getSchemaConfigurationID($customPost->post_parent);
+            }
+            // If it inherits from a parent that doesn't exist, return nothing
+            return null;
         }
-
-        return $schemaConfigurationID;
+        // It is already the ID
+        return $schemaConfiguration;
     }
 
     /**

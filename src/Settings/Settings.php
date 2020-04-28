@@ -10,4 +10,9 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Settings;
 class Settings
 {
     public const OPTIONS_NAME = 'graphql-api-settings';
+
+    public static function getDefaultSchemaConfiguration(): ?int
+    {
+        return null;
+    }
 }
