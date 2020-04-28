@@ -30,22 +30,10 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
      */
     public function executeSchemaConfiguration(int $customPostID): void
     {
-        // Each Configurator has an Options block
-        $this->executeOptionsSchemaConfiguration($customPostID);
         if ($schemaConfigurationID = $this->getSchemaConfigurationID($customPostID)) {
             // Get that Schema Configuration, and load its settings
             $this->executeSchemaConfigurationItems($schemaConfigurationID);
         }
-    }
-
-    /**
-     * Function to override
-     *
-     * @return void
-     */
-    protected function executeOptionsSchemaConfiguration(int $customPostID): void
-    {
-        // Do nothing here
     }
 
     /**
