@@ -58,12 +58,18 @@ registerBlockType( 'graphql-api/field-deprecation', {
 	attributes: {
 		/**
 		 * The max-age amount, in seconds, to set on the Cache-Control header
+		 *
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\FieldDeprecationBlock::ATTRIBUTE_NAME_DEPRECATION_REASON
 		 */
 		deprecationReason: {
 			type: 'string',
 		},
 		/**
 		 * List of selected fields, cacheible by their type
+		 *
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS
 		 */
 		typeFields: {
 			type: 'array',

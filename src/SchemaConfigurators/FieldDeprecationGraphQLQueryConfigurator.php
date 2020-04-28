@@ -7,6 +7,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\FieldDeprecationBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\FieldDeprecationByDirective\Facades\FieldDeprecationManagerFacade;
 
@@ -27,7 +28,7 @@ class FieldDeprecationGraphQLQueryConfigurator extends AbstractGraphQLQueryConfi
         $fieldDeprecationManager = FieldDeprecationManagerFacade::getInstance();
         $instanceManager = InstanceManagerFacade::getInstance();
         foreach ($fdlBlockItems as $fdlBlockItem) {
-            if ($deprecationReason = $fdlBlockItem['attrs']['deprecationReason']) {
+            if ($deprecationReason = $fdlBlockItem['attrs'][FieldDeprecationBlock::ATTRIBUTE_NAME_DEPRECATION_REASON]) {
                 // Extract the saved fields
                 if ($typeFields = $fdlBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS]) {
                     if ($entriesForFields = array_filter(

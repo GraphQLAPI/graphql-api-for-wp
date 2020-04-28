@@ -12,6 +12,8 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
  */
 class FieldDeprecationBlock extends AbstractControlBlock
 {
+    public const ATTRIBUTE_NAME_DEPRECATION_REASON = 'deprecationReason';
+
     use GraphQLByPoPBlockTrait;
 
     protected function getBlockName(): string
@@ -44,7 +46,7 @@ class FieldDeprecationBlock extends AbstractControlBlock
             %s
         </div>
 EOF;
-        $deprecationReason = $attributes['deprecationReason'];
+        $deprecationReason = $attributes[self::ATTRIBUTE_NAME_DEPRECATION_REASON];
         if (!$deprecationReason) {
             $deprecationReason = sprintf(
                 '<em>%s</em>',
