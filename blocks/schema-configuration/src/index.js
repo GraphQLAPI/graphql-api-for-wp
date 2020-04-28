@@ -16,6 +16,7 @@ import { __ } from '@wordpress/i18n';
  * Application imports
  */
 import EditBlock from './edit-block.js';
+import { ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT } from './schema-configuration-meta-values'
 
 /**
  * Every block starts by registering a new block type definition.
@@ -54,9 +55,13 @@ registerBlockType( 'graphql-api/schema-configuration', {
 	 * Block default attributes.
 	 */
 	attributes: {
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock::ATTRIBUTE_NAME_SCHEMA_CONFIGURATION
+		 */
 		schemaConfiguration: {
 			type: 'integer',
-			default: 0,
+			default: ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT,
 		},
 	},
 

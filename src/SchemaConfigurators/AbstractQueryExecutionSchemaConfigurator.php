@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\AccessControlGraphQLQueryConfigurator;
@@ -40,18 +41,18 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             // If there are none, use the default
             $schemaConfigurationBlockDataItem = [
                 'attrs' => [
-                    'schemaConfiguration' => 'default',
+                    SchemaConfigurationBlock::ATTRIBUTE_NAME_SCHEMA_CONFIGURATION => SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT,
                 ]
             ];
         }
 
         $schemaConfiguration = $schemaConfigurationBlockDataItem['attrs']['schemaConfiguration'];
         // $schemaConfiguration is either an ID or one of the meta options (default, none, inherit)
-        if ($schemaConfiguration == 'none') {
+        if ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_NONE) {
             return null;
-        } elseif ($schemaConfiguration == 'default') {
+        } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT) {
             $schemaConfigurationID = 824;
-        } elseif ($schemaConfiguration == 'inherit') {
+        } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT) {
             $schemaConfigurationID = 824;
         } else {
             $schemaConfigurationID = $schemaConfiguration;

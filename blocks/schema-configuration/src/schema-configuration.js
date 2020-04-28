@@ -9,6 +9,11 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import { /*withErrorMessage, withSpinner, */SelectCard } from '../../../packages/components/src';
+import {
+	ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT,
+	ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_NONE,
+	ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT,
+} from './schema-configuration-meta-values'
 
 const GetLabelForNotFoundValue = ( val ) => __(`(Undefined item with ID ${ val })`, 'graphql-api');
 
@@ -30,22 +35,22 @@ const SchemaConfigurationSelectCard = ( props ) => {
 	/**
 	 * If this query has a parent, then add option "Inherit from parent"
 	 */
-	const metaOptions = ( schemaConfiguration == -2 || queryPostParent ?
+	const metaOptions = ( schemaConfiguration == ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT || queryPostParent ?
 		[
 			{
 				label: `🛑 ${ __('Inherit from parent', 'graphql-api') }`,
-				value: -2,
+				value: ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT,
 			}
 		]
 		: []
 	).concat([
 		{
 			label: `⭕️ ${ __('Default', 'graphql-api') }`,
-			value: 0,
+			value: ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT,
 		},
 		{
 			label: `❌ ${ __('None', 'graphql-api') }`,
-			value: -1,
+			value: ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_NONE,
 		},
 	])
 
