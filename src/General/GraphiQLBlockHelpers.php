@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\General;
 
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 
 class GraphiQLBlockHelpers
@@ -32,8 +33,8 @@ class GraphiQLBlockHelpers
         }
         $graphiQLBlock = $graphiQLBlocks[0];
         return [
-            $graphiQLBlock['attrs']['query'],
-            $graphiQLBlock['attrs']['variables']
+            $graphiQLBlock['attrs'][GraphiQLBlock::ATTRIBUTE_NAME_QUERY],
+            $graphiQLBlock['attrs'][GraphiQLBlock::ATTRIBUTE_NAME_VARIABLES]
         ];
     }
 }

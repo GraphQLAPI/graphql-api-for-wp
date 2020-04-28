@@ -11,6 +11,9 @@ use Leoloso\GraphQLByPoPWPPlugin\General\URLParamHelpers;
  */
 class GraphiQLBlock extends AbstractBlock
 {
+    public const ATTRIBUTE_NAME_QUERY = 'query';
+    public const ATTRIBUTE_NAME_VARIABLES = 'variables';
+
     use GraphQLByPoPBlockTrait;
 
     protected function getBlockName(): string
@@ -29,8 +32,8 @@ class GraphiQLBlock extends AbstractBlock
             '<div class="%s">',
             $this->getBlockClassName() . ' ' . $this->getAlignClass()
         );
-        $query = $attributes['query'];
-        $variables = $attributes['variables'];
+        $query = $attributes[self::ATTRIBUTE_NAME_QUERY];
+        $variables = $attributes[self::ATTRIBUTE_NAME_VARIABLES];
         if ($query) {
             if (true) {
                 $url = 'http://playground.localhost:8888/graphiql/';

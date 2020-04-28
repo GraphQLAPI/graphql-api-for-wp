@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
@@ -231,8 +232,8 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
                     ) {
                         // Render the block again, using the inherited attributes
                         $inheritedGraphQLBlockAttributes = [
-                            'query' => $inheritedGraphQLQuery,
-                            'variables' => $inheritedGraphQLVariables,
+                            GraphiQLBlock::ATTRIBUTE_NAME_QUERY => $inheritedGraphQLQuery,
+                            GraphiQLBlock::ATTRIBUTE_NAME_VARIABLES => $inheritedGraphQLVariables,
                         ];
                         // Add the new rendering to the output, and a description for each
                         $graphiQLBlock = PluginState::getGraphiQLBlock();

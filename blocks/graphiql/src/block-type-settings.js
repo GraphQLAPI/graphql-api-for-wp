@@ -67,6 +67,9 @@ export const blockTypeSettings = {
 		 * This is because of a potential bug: the state is not saved until executing `onEditQuery` or `onEditVariables`, meaning that the user needs to edit the inputs
 		 * However, if the previous input is good (eg: the new query uses the same variables as the last query) and the user never edits it again, the state will not be saved
 		 * To force the user to always edit the query, and thus save the state, then initialize the inputs to some default empty value, which is not useful as it is to the query
+		 *
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock::ATTRIBUTE_NAME_QUERY
 		 */
 		query: {
 			type: 'string',
@@ -75,6 +78,10 @@ export const blockTypeSettings = {
 				'graphql-api'
 			),
 		},
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock::ATTRIBUTE_NAME_VARIABLES
+		 */
 		variables: {
 			type: 'string',
 			default: '',
