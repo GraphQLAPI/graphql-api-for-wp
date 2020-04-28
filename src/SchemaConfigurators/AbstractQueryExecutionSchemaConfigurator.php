@@ -37,31 +37,25 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             $customPostID,
             PluginState::getSchemaConfigurationBlock()
         );
-        // If there was no schema configuration, use the default one
+        // If there was no schema configuration, then the default one has been selected
+        // It is not saved in the DB, because it has been set as the default value in
+        // blocks/schema-configuration/src/index.js
         if (is_null($schemaConfigurationBlockDataItem)) {
-            // If there are none, use the default
-            $schemaConfigurationBlockDataItem = [
-                'attrs' => [
-                    SchemaConfigurationBlock::ATTRIBUTE_NAME_SCHEMA_CONFIGURATION => SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT,
-                ]
-            ];
+            return Settings::getDefaultSchemaConfiguration();
         }
 
-        $schemaConfiguration = $schemaConfigurationBlockDataItem['attrs']['schemaConfiguration'];
+        $schemaConfiguration = $schemaConfigurationBlockDataItem['attrs'][SchemaConfigurationBlock::ATTRIBUTE_NAME_SCHEMA_CONFIGURATION];
         // Check if $schemaConfiguration is one of the meta options (default, none, inherit)
         if ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_NONE) {
-            // Return nothing
             return null;
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT) {
-            // Return the default
             return Settings::getDefaultSchemaConfiguration();
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT) {
-            // Return the schema configuration from the parent
+            // Return the schema configuration from the parent, or null if no parent exists
             $customPost = \get_post($customPostID);
             if ($customPost->post_parent) {
                 return $this->getSchemaConfigurationID($customPost->post_parent);
             }
-            // If it inherits from a parent that doesn't exist, return nothing
             return null;
         }
         // It is already the ID

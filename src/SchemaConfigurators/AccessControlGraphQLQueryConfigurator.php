@@ -8,6 +8,8 @@ use PoP\ComponentModel\Misc\GeneralUtils;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
 use PoP\AccessControl\Facades\AccessControlManagerFacade;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
 
 class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGraphQLQueryConfigurator
 {
@@ -33,12 +35,12 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
         foreach ($aclBlockItems as $aclBlockItem) {
             // The rule to apply is contained inside the nested blocks
             if ($aclBlockItemNestedBlocks = $aclBlockItem['innerBlocks']) {
-                $aclBlockItemTypeFields = $aclBlockItem['attrs']['typeFields'] ?? [];
-                $aclBlockItemDirectives = $aclBlockItem['attrs']['directives'] ?? [];
+                $aclBlockItemTypeFields = $aclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS] ?? [];
+                $aclBlockItemDirectives = $aclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_DIRECTIVES] ?? [];
 
                 // The value can be NULL, then it's the default mode
                 // In that case do nothing, since the default mode is already injected into GraphQL by PoP
-                $schemaMode = $aclBlockItem['attrs']['schemaMode'];
+                $schemaMode = $aclBlockItem['attrs'][AccessControlBlock::ATTRIBUTE_NAME_SCHEMA_MODE];
 
                 // Iterate all the nested blocks
                 foreach ($aclBlockItemNestedBlocks as $aclBlockItemNestedBlock) {

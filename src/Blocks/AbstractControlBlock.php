@@ -12,6 +12,9 @@ use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
  */
 abstract class AbstractControlBlock extends AbstractBlock
 {
+    public const ATTRIBUTE_NAME_TYPE_FIELDS = 'typeFields';
+    public const ATTRIBUTE_NAME_DIRECTIVES = 'directives';
+
     use WithTypeFieldControlBlockTrait;
 
     protected function isDynamicBlock(): bool
@@ -36,7 +39,7 @@ abstract class AbstractControlBlock extends AbstractBlock
         $fieldTypeContent = $directiveContent = '';
         if (!$this->disableFields()) {
             $fieldTypeContent = ComponentConfiguration::getEmptyLabel();
-            $typeFields = $attributes['typeFields'] ?? [];
+            $typeFields = $attributes[self::ATTRIBUTE_NAME_TYPE_FIELDS] ?? [];
             if ($typeFields) {
                 $typeFieldsForPrint = $this->getTypeFieldsForPrint($typeFields);
                 /**
@@ -69,7 +72,7 @@ abstract class AbstractControlBlock extends AbstractBlock
         }
         if (!$this->disableDirectives()) {
             $directiveContent = ComponentConfiguration::getEmptyLabel();
-            $directives = $attributes['directives'] ?? [];
+            $directives = $attributes[self::ATTRIBUTE_NAME_DIRECTIVES] ?? [];
             if ($directives) {
                 $directiveContent = sprintf(
                     '<ul><li><code>%s</code></li></ul>',

@@ -14,6 +14,9 @@ use PoP\AccessControl\Schema\SchemaModes;
  */
 class AccessControlBlock extends AbstractControlBlock
 {
+    public const ATTRIBUTE_NAME_SCHEMA_MODE = 'schemaMode';
+
+
     use GraphQLByPoPBlockTrait;
 
     protected function getBlockName(): string
@@ -78,17 +81,17 @@ EOT;
             $maybeSchemaModeContent = sprintf(
                 $blockContentPlaceholder,
                 \__('Schema mode:', 'graphql-api'),
-                $attributes['schemaMode'] ?
-                    $schemaModeLabels[$attributes['schemaMode']]
+                $attributes[self::ATTRIBUTE_NAME_SCHEMA_MODE] ?
+                    $schemaModeLabels[$attributes[self::ATTRIBUTE_NAME_SCHEMA_MODE]]
                     : \__('Default', 'graphql-api'),
                 $className . '__title',
                 \__('Who can access:', 'graphql-api')
             );
         }
         if ($content) {
-            return $maybeSchemaModeContent.$content;
+            return $maybeSchemaModeContent . $content;
         }
-        return $maybeSchemaModeContent.sprintf(
+        return $maybeSchemaModeContent . sprintf(
             '<em>%s</em>',
             \__('(not set)', 'graphql-api')
         );

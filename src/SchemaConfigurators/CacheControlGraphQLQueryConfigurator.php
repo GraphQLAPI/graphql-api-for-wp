@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
 use PoP\ComponentModel\Misc\GeneralUtils;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
@@ -29,7 +30,7 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
             $maxAge = $cclBlockItem['attrs']['cacheControlMaxAge'];
             if (!is_null($maxAge) && $maxAge >= 0) {
                 // Extract the saved fields
-                if ($typeFields = $cclBlockItem['attrs']['typeFields']) {
+                if ($typeFields = $cclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS]) {
                     if ($entriesForFields = array_filter(
                         array_map(
                             function ($selectedField) use ($maxAge) {
@@ -45,7 +46,7 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
                 }
 
                 // Extract the saved directives
-                if ($directives = $cclBlockItem['attrs']['directives']) {
+                if ($directives = $cclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_DIRECTIVES]) {
                     if ($entriesForDirectives = GeneralUtils::arrayFlatten(array_filter(
                         array_map(
                             function ($selectedDirective) use ($maxAge) {
