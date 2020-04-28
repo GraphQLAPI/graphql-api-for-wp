@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\CacheControlGraphQLQueryConfigurator;
@@ -41,7 +42,7 @@ class PersistedQuerySchemaConfigurator extends AbstractQueryExecutionSchemaConfi
             PluginState::getSchemaConfigCacheControlListBlock()
         );
         if (!is_null($schemaConfigCCLBlockDataItem)) {
-            if ($cacheControlLists = $schemaConfigCCLBlockDataItem['attrs']['cacheControlLists']) {
+            if ($cacheControlLists = $schemaConfigCCLBlockDataItem['attrs'][SchemaConfigCacheControlListBlock::ATTRIBUTE_NAME_CACHE_CONTROL_LISTS]) {
                 $configurator = new CacheControlGraphQLQueryConfigurator();
                 foreach ($cacheControlLists as $cacheControlListID) {
                     $configurator->executeSchemaConfiguration($cacheControlListID);

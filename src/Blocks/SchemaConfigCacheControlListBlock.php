@@ -11,6 +11,8 @@ use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
  */
 class SchemaConfigCacheControlListBlock extends AbstractSchemaConfigPostListBlock
 {
+    public const ATTRIBUTE_NAME_CACHE_CONTROL_LISTS = 'cacheControlLists';
+
     protected function getBlockName(): string
     {
         return 'schema-config-cache-control-lists';
@@ -18,7 +20,7 @@ class SchemaConfigCacheControlListBlock extends AbstractSchemaConfigPostListBloc
 
     protected function getAttributeName(): string
     {
-        return 'cacheControlLists';
+        return self::ATTRIBUTE_NAME_CACHE_CONTROL_LISTS;
     }
 
     protected function getPostType(): string

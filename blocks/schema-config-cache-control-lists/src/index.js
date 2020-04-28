@@ -54,6 +54,10 @@ registerBlockType( 'graphql-api/schema-config-cache-control-lists', {
 	 * Block default attributes.
 	 */
 	attributes: {
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock::ATTRIBUTE_NAME_CACHE_CONTROL_LISTS
+		 */
 		cacheControlLists: {
 			type: 'array',
 			default: [],
