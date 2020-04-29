@@ -23,12 +23,12 @@
     "packages-update": "wp-scripts packages-update"
   },
   "devDependencies": {
-    "@wordpress/base-styles": "^1.4.0",
-    "@wordpress/components": "^9.2.3",
-    "@wordpress/compose": "^3.11.0",
-    "@wordpress/data": "^4.14.1",
-    "@wordpress/edit-post": "^3.13.5",
-    "@wordpress/scripts": "^7.1.2",
+    "@wordpress/base-styles": "^1.6.0",
+    "@wordpress/components": "^9.4.1",
+    "@wordpress/compose": "^3.13.1",
+    "@wordpress/data": "^4.16.1",
+    "@wordpress/edit-post": "^3.15.1",
+    "@wordpress/scripts": "^8.0.1",
     "css-loader": "^3.4.2",
     "node-sass": "^4.13.1",
     "prettier": "npm:wp-prettier@1.19.1",

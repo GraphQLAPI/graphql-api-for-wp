@@ -15,7 +15,7 @@
 		"flow": "flow"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^7.1.2",
+		"@wordpress/scripts": "^8.0.1",
 		"css-loader": "^3.4.2",
 		"graphiql": "^0.17.5",
 		"graphql": "^14.6.0",

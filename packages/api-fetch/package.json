@@ -25,7 +25,7 @@
     "packages-update": "wp-scripts packages-update"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^7.1.2",
+    "@wordpress/scripts": "^8.0.1",
     "graphql-request": "^1.8.2",
     "prettier": "npm:wp-prettier@1.19.1"
   }
