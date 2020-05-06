@@ -13,6 +13,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\EndpointOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractGraphQLQueryExecutionPostType;
+use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 
 class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 {
@@ -186,9 +187,14 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
      */
     protected function doSomethingElse(): void
     {
+        /**
+         * Execute at the very last, because Component::boot is executed also on hook "wp",
+         * and there is useNamespacing set
+         */
         \add_action(
             'wp',
-            [$this, 'maybePrintClient']
+            [$this, 'maybePrintClient'],
+            PHP_INT_MAX
         );
     }
     /**
@@ -227,13 +233,15 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
             ];
             if ($jsFileName = $jsFileNames[$_REQUEST[RequestParams::VIEW]]) {
                 $jsFileURL = \trim(\GRAPHQL_BY_POP_PLUGIN_URL, '/') . $dirPath . '/' . $jsFileName;
-                $useNamespace = '';
-                if (false) {
-                    $useNamespace = '&use_namespace=1';
-                }
                 $endpointURL = \remove_query_arg(RequestParams::VIEW, RequestUtils::getCurrentUrl());
-                $endpointURL .= $useNamespace;
-                $fileContents = \str_replace($jsFileName . '?', $jsFileURL . '?endpoint=' . $endpointURL . '&', $fileContents);
+                if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
+                    $endpointURL = \add_query_arg('use_namespace', true, $endpointURL);
+                }
+                $fileContents = \str_replace(
+                    $jsFileName . '?',
+                    $jsFileURL . '?endpoint=' . $endpointURL . '&',
+                    $fileContents
+                );
             }
             // Print, and that's it!
             echo $fileContents;
