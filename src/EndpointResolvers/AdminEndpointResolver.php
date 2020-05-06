@@ -7,7 +7,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers;
 use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\EndpointResolverTrait;
-use PoP\EngineWP\Component;
+use PoP\EngineWP\Templates\TemplateHelpers;
 
 class AdminEndpointResolver
 {
@@ -63,7 +63,7 @@ class AdminEndpointResolver
         \add_action(
             'admin_init',
             function() {
-                include Component::getTemplatesDir() . '/Output.php';
+                include TemplateHelpers::getTemplateFile();
                 die;
             }
         );
