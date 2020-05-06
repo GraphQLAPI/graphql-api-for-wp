@@ -41,7 +41,6 @@
         "getpop/users-wp": "dev-master",
         "getpop/useful-directives": "dev-master",
         "getpop/field-deprecation-by-directive": "dev-master",
-        "getpop/api-endpoints-for-wp": "dev-master",
         "leoloso/pop-graphiql": "^1.3",
         "leoloso/pop-graphql-voyager": "^1.3",
         "wikimedia/composer-merge-plugin": "^1.4"
