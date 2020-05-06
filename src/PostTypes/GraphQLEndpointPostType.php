@@ -233,7 +233,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
             ];
             if ($jsFileName = $jsFileNames[$_REQUEST[RequestParams::VIEW]]) {
                 $jsFileURL = \trim(\GRAPHQL_BY_POP_PLUGIN_URL, '/') . $dirPath . '/' . $jsFileName;
-                $endpointURL = \remove_query_arg(RequestParams::VIEW, RequestUtils::getCurrentUrl());
+                $endpointURL = \remove_query_arg(RequestParams::VIEW, \fullUrl());
                 if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
                     $endpointURL = \add_query_arg('use_namespace', true, $endpointURL);
                 }
