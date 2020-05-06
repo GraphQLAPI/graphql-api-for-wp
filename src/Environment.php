@@ -61,7 +61,7 @@ class Environment
      */
     public static function useGraphiQLWithExplorer(): bool
     {
-        return isset($_ENV[self::USE_GRAPHIQL_WITH_EXPLORER]) ? $_ENV[self::USE_GRAPHIQL_WITH_EXPLORER] : true;
+        return isset($_ENV[self::USE_GRAPHIQL_WITH_EXPLORER]) ? strtolower($_ENV[self::USE_GRAPHIQL_WITH_EXPLORER]) == 'true' : true;
     }
 
     /**
