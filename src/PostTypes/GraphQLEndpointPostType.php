@@ -239,7 +239,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
                 }
                 $fileContents = \str_replace(
                     $jsFileName . '?',
-                    $jsFileURL . '?endpoint=' . $endpointURL . '&',
+                    $jsFileURL . '?endpoint=' . urlencode($endpointURL) . '&',
                     $fileContents
                 );
             }
