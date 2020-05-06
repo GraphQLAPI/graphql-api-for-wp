@@ -11,10 +11,10 @@ use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
  */
 class GraphiQLBlock extends AbstractBlock
 {
+    use GraphQLByPoPBlockTrait;
+
     public const ATTRIBUTE_NAME_QUERY = 'query';
     public const ATTRIBUTE_NAME_VARIABLES = 'variables';
-
-    use GraphQLByPoPBlockTrait;
 
     protected function getBlockName(): string
     {
