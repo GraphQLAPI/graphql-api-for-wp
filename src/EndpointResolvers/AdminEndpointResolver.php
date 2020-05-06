@@ -28,14 +28,17 @@ class AdminEndpointResolver
     }
     
     /**
-     * Indicates if we executing the GraphQL query (`true`) or doing something else
-     * (such as visualizing the query source)
+     * Execute the GraphQL query when posting to:
+     * /wp-admin/edit.php?page=graphql_api&action=execute_query
      *
      * @return boolean
      */
     protected function isGraphQLQueryExecution(): bool
     {
-        return \is_admin() && $_GET['page'] == Menu::NAME && in_array($_REQUEST[RequestParams::VIEW], ['saraza']);
+        return \is_admin()
+            && 'POST' == $_SERVER['REQUEST_METHOD']
+            && $_GET['page'] == Menu::NAME
+            && $_GET[RequestParams::ACTION] == RequestParams::ACTION_EXECUTE_QUERY;
     }
 
     /**

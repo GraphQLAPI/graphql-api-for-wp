@@ -8,4 +8,6 @@ class RequestParams
 {
     const VIEW = 'view';
     const VIEW_SOURCE = 'source';
+    const ACTION = 'action';
+    const ACTION_EXECUTE_QUERY = 'execute_query';
 }
