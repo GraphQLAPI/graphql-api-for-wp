@@ -21,6 +21,7 @@ trait GraphQLByPoPBlockTrait
 
     protected function getPluginURL(): string
     {
-        return \GRAPHQL_BY_POP_PLUGIN_URL;
+        // Remove the trailing slash
+        return trim(\GRAPHQL_BY_POP_PLUGIN_URL, '/');
     }
 }
