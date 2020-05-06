@@ -270,12 +270,12 @@ abstract class AbstractBlock
 
         /**
          * Localize the script with custom data
-         * Execute on hook "wp" because `getLocalizedData` might call
-         * EndpointHelpers::getGraphQLEndpoint(), which calls
-         * ComponentModelComponentConfiguration::namespaceTypesAndInterfaces(),
+         * Execute on hook "admin_enqueue_scripts" and not now,
+         * because `getLocalizedData` might call EndpointHelpers::getGraphQLEndpoint(),
+         * which calls ComponentModelComponentConfiguration::namespaceTypesAndInterfaces(),
          * which is initialized during "wp"
          */
-        \add_action('wp', function () use ($scriptRegistrationName) {
+        \add_action('admin_enqueue_scripts', function () use ($scriptRegistrationName) {
             if ($localizedData = $this->getLocalizedData()) {
                 \wp_localize_script(
                     $scriptRegistrationName,
