@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers;
 
+use PoP\EngineWP\Templates\TemplateHelpers;
+use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
 use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\EndpointResolverTrait;
-use PoP\EngineWP\Templates\TemplateHelpers;
 
 class AdminEndpointResolver
 {
@@ -34,7 +35,7 @@ class AdminEndpointResolver
      */
     protected function isGraphQLQueryExecution(): bool
     {
-        return \is_admin() && in_array($_REQUEST[RequestParams::VIEW], ['saraza']);
+        return \is_admin() && $_GET['page'] == Menu::NAME && in_array($_REQUEST[RequestParams::VIEW], ['saraza']);
     }
 
     /**
