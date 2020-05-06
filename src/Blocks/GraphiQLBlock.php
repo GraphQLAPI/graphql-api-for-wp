@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
+use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\General\URLParamHelpers;
 
 /**
@@ -24,6 +25,22 @@ class GraphiQLBlock extends AbstractBlock
     protected function isDynamicBlock(): bool
     {
         return true;
+    }
+
+    /**
+     * Pass localized data to the block
+     *
+     * @return array
+     */
+    protected function getLocalizedData(): array
+    {
+        return array_merge(
+            parent::getLocalizedData(),
+            [
+                'nonce' => \wp_create_nonce('wp_rest'),
+                'endpoint' => EndpointHelpers::getGraphQLEndpoint(),
+            ]
+        );
     }
 
     public function renderBlock(array $attributes, string $content): string

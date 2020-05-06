@@ -9,15 +9,15 @@ import './style.scss';
 
 import { __ } from '@wordpress/i18n';
 
-const fetchURL = window.location.origin + '/api/graphql';
 function fetcher(params) {
 	return fetch(
-		fetchURL,
+		window.graphqlApiGraphiql.endpoint,
 		{
 			method: "POST",
 			headers: {
 				Accept: "application/json",
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				'X-WP-Nonce': window.graphqlApiGraphiql.nonce
 			},
 			body: JSON.stringify(params)
 		}

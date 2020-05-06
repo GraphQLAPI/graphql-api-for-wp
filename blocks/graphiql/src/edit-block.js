@@ -4,9 +4,13 @@ import 'graphiql/graphiql.css';
 import './style.scss';
 
 const graphQLFetcher = ( graphQLParams ) => {
-	return fetch( window.location.origin + '/api/graphql', {
+	return fetch( window.graphqlApiGraphiql.endpoint, {
 		method: 'post',
-		headers: { 'Content-Type': 'application/json' },
+		headers: {
+			Accept: 'application/json',
+			'Content-Type': 'application/json',
+			'X-WP-Nonce': window.graphqlApiGraphiql.nonce
+		},
 		body: JSON.stringify( graphQLParams ),
 	} ).then( ( response ) => response.json() );
 }
