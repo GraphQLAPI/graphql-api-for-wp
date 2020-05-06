@@ -7,6 +7,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers;
 use PoP\EngineWP\Templates\TemplateHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
 use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
+use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
 use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\EndpointResolverTrait;
 
@@ -42,12 +43,20 @@ class AdminEndpointResolver
     }
 
     /**
-     * Maybe execute the GraphQL query
+     * Initialize the resolver
      *
      * @return void
      */
     public function init(): void
     {
+        /**
+         * Print the global JS variables, required by the blocks
+         */
+        $this->printGlobalVariables();
+
+        /**
+         * If executing the GraphQL query, resolve it
+         */
         if ($this->isGraphQLQueryExecution()) {
             $this->executeGraphQLQuery();
             $this->printTemplateInAdminAndExit();
@@ -62,7 +71,7 @@ class AdminEndpointResolver
      *
      * @return void
      */
-    public function printTemplateInAdminAndExit(): void
+    protected function printTemplateInAdminAndExit(): void
     {
         \add_action(
             'admin_init',
@@ -71,5 +80,24 @@ class AdminEndpointResolver
                 die;
             }
         );
+    }
+
+    /**
+     * Print JS variables which are used by several blocks,
+     * before the blocks are loaded
+     *
+     * @return void
+     */
+    protected function printGlobalVariables(): void
+    {
+        \add_action('admin_print_scripts', function () {
+            /**
+             * The endpoint against which to execute GraphQL queries while on the WordPress admin
+             */
+            \printf(
+                '<script type="text/javascript">var GRAPHQL_API_ADMIN_ENDPOINT = "%s"</script>',
+                EndpointHelpers::getGraphQLEndpoint()
+            );
+        });
     }
 }

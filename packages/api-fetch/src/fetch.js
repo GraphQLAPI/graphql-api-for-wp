@@ -9,22 +9,24 @@ import { request } from 'graphql-request'
 import { __ } from '@wordpress/i18n';
 
 /**
- * The endpoint against which to execute GraphQL queries while on the WordPress admin
- */
-const GRAPHQL_ADMIN_ENDPOINT = '/api/graphql';
-
-/**
  * Execute a GraphQL Query and return its results
  *
  * @param {string} query The GraphQL query to execute
+ * @param {Array|null} variables An array of variables and their values
+ * @param {string|null} endpoint The endpoint against which to execute the query
+ * 
  * @return {Object} The response from the GraphQL server
  */
-const fetchGraphQLQuery = (query, variables) => {
+const fetchGraphQLQuery = (query, variables, endpoint) => {
+	/**
+	 * If the endpoint is not provided, use the admin endpoint GRAPHQL_API_ADMIN_ENDPOINT
+	 */
+	const endpointURL = endpoint || GRAPHQL_API_ADMIN_ENDPOINT;
 	/**
 	 * Return the response always, both in case of success and error
 	 * Add the successful response under key "data", which is stripped by "graphql-request"
 	 */
-	return request(`${ window.location.origin }${ GRAPHQL_ADMIN_ENDPOINT }`, query, variables)
+	return request(endpointURL, query, variables)
 		.then(response => ({
 			data: response
 		}))
