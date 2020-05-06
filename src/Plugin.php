@@ -9,16 +9,21 @@ use Leoloso\GraphQLByPoPWPPlugin\Front\Clients;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\EndpointOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\FieldDeprecationBlock;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\BlockDevelopmentHotReload;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
+use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\AdminEndpointResolver;
 use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLWithExplorerBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLEndpointPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserRolesBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserStateBlock;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\EndpointBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlDisableAccessBlock;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\CacheControlBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserCapabilitiesBlock;
@@ -28,11 +33,7 @@ use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\PersistedQueryBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\QueryExecutionBlockCategory;
-use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\EndpointBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\EndpointOptionsBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLSchemaConfigurationPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\FieldDeprecationBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLFieldDeprecationListPostType;
@@ -48,6 +49,11 @@ class Plugin
         if (\is_admin()) {
             (new Menu())->init();
             (new BlockDevelopmentHotReload())->init();
+
+            /**
+             * Endpoint resolvers
+             */
+            (new AdminEndpointResolver())->init();
         }
 
         /**

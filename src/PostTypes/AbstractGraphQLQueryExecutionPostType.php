@@ -4,16 +4,18 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
-use PoP\Routing\RouteNatures;
-use PoP\API\Schema\QueryInputs;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
-use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
+use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\EndpointResolverTrait;
 
 abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 {
+    use EndpointResolverTrait {
+        EndpointResolverTrait::getNature as getUpstreamNature;
+        EndpointResolverTrait::addGraphQLVars as upstreamAddGraphQLVars;
+    }
+    
     /**
      * Indicates if we executing the GraphQL query (`true`) or doing something else
      * (such as visualizing the query source)
@@ -47,41 +49,6 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
     }
 
     /**
-     * Execute the GraphQL query
-     *
-     * @return void
-     */
-    protected function executeGraphQLQuery(): void
-    {
-        /**
-         * Execute first, before VarsHooks in the API package, to set-up the variables in $vars
-         * as soon as we knows if it's a singular post of this type
-         */
-        \add_action(
-            'ApplicationState:addVars',
-            [$this, 'addGraphQLVars'],
-            0,
-            1
-        );
-        /**
-         * Assign the single endpoint
-         */
-        \add_filter(
-            'WPCMSRoutingState:nature',
-            [$this, 'getNature'],
-            10,
-            2
-        );
-        // /**
-        //  * Manage Cache Control
-        //  */
-        // \add_action(
-        //     'popcms:boot',
-        //     [$this, 'manageCacheControl']
-        // );
-    }
-
-    /**
      * Do something else, not the execution of the GraphQL query
      *
      * @return void
@@ -91,37 +58,17 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
         // By default, do nothing
     }
 
-    // /**
-    //  * Disable Cache Control when previewing the new GraphQL query
-    //  */
-    // public function manageCacheControl()
-    // {
-    //     // If cache control enabled and it is a preview of the GraphQL query...
-    //     if (!CacheControlEnvironment::disableCacheControl() && \is_singular($this->getPostType()) && \is_preview()) {
-    //         // Disable cache control by setting maxAge => 0
-    //         $cacheControlEngine = CacheControlEngineFacade::getInstance();
-    //         $cacheControlEngine->addMaxAge(0);
-    //     }
-    // }
-
     /**
      * Assign the single endpoint by setting it as the Home nature
      */
     public function getNature($nature, $query)
     {
         if ($query->is_singular($this->getPostType())) {
-            return RouteNatures::HOME;
+            return $this->getUpstreamNature($nature, $query);
         }
 
         return $nature;
     }
-
-    /**
-     * Provide the query to execute and its variables
-     *
-     * @return array Array of 2 elements: [query, variables]
-     */
-    abstract protected function getGraphQLQueryAndVariables(): array;
 
     abstract protected function getQueryExecutionOptionsBlock(): AbstractQueryExecutionOptionsBlock;
 
@@ -168,55 +115,9 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
      */
     public function addGraphQLVars($vars_in_array): void
     {
-        if (\is_singular($this->getPostType())) {
-            // Check if it is enabled, by configuration
-            if (!$this->isEnabled()) {
-                return;
-            }
-            /**
-             * Remove any query passed through the request, to avoid users executing a custom query,
-             * bypassing the persisted one
-             */
-            unset($_REQUEST[QueryInputs::QUERY]);
-
-            // Indicate it is an API, of type GraphQL. Just by doing is, class
-            // \PoP\GraphQLAPIRequest\Hooks\VarsHooks will process the GraphQL request
-            $vars = &$vars_in_array[0];
-            $vars['scheme'] = \POP_SCHEME_API;
-            $vars['datastructure'] = GraphQLDataStructureFormatter::getName();
-
-            /**
-             * Get the query and variables from the implementing class
-             */
-            list(
-                $graphQLQuery,
-                $graphQLVariables
-            ) = $this->getGraphQLQueryAndVariables();
-            if (!$graphQLQuery) {
-                // If there is no query, nothing to do!
-                return;
-            }
-            /**
-             * Merge the variables into $vars
-             */
-            if ($graphQLVariables) {
-                // Normally, GraphQL variables must not override the variables from the request
-                // But this behavior can be overriden for the persisted query,
-                // by setting "Accept Variables as URL Params" => false
-                $vars['variables'] = $this->doURLParamsOverrideGraphQLVariables() ?
-                    array_merge(
-                        $graphQLVariables,
-                        $vars['variables'] ?? []
-                    ) :
-                    array_merge(
-                        $vars['variables'] ?? [],
-                        $graphQLVariables
-                    );
-            }
-            // Add the query into $vars
-            $instanceManager = InstanceManagerFacade::getInstance();
-            $graphQLAPIRequestHookSet = $instanceManager->getInstance(\PoP\GraphQLAPIRequest\Hooks\VarsHooks::class);
-            $graphQLAPIRequestHookSet->addGraphQLQueryToVars($vars, $graphQLQuery);
+        if (\is_singular($this->getPostType()) && $this->isEnabled()) {
+            
+            $this->upstreamAddGraphQLVars($vars_in_array);
         }
     }
 }
