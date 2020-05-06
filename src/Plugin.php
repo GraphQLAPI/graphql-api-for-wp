@@ -144,10 +144,5 @@ class Plugin
         (new CacheControlBlockCategory())->init();
         (new FieldDeprecationBlockCategory())->init();
         (new SchemaConfigurationBlockCategory())->init();
-
-        /**
-         * Clients
-         */
-        (new Clients())->init();
     }
 }
