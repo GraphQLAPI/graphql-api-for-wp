@@ -13,12 +13,14 @@ use Leoloso\GraphQLByPoPWPPlugin\Config\ServiceConfiguration;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\SchemaConfiguratorExecuters\EndpointSchemaConfiguratorExecuter;
 use Leoloso\GraphQLByPoPWPPlugin\SchemaConfiguratorExecuters\PersistedQuerySchemaConfiguratorExecuter;
+
 /**
  * Initialize component
  */
 class Component extends AbstractComponent
 {
     use YAMLServicesTrait;
+    
     // const VERSION = '0.1.0';
 
     /**
@@ -60,7 +62,7 @@ class Component extends AbstractComponent
     public static function beforeBoot()
     {
         parent::beforeBoot();
-
+        
         // Initialize classes
         ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Hooks');
         ContainerBuilderUtils::attachFieldResolversFromNamespace(__NAMESPACE__ . '\\FieldResolvers', false);
@@ -76,7 +78,7 @@ class Component extends AbstractComponent
     public static function boot()
     {
         parent::boot();
-
+        
         // Configure the GraphQL query with Access/Cache Control Lists
         (new PersistedQuerySchemaConfiguratorExecuter())->init();
         (new EndpointSchemaConfiguratorExecuter())->init();
