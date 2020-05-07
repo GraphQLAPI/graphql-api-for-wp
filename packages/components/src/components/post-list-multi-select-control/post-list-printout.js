@@ -7,6 +7,7 @@ import { __ } from '@wordpress/i18n';
 import { EMPTY_LABEL } from '../../default-configuration';
 import withSpinner from '../loading/with-spinner';
 import withErrorMessage from '../loading/with-error-message';
+import '../base-styles/checkbox-list.scss';
 
 /**
  * Print the selected Access Control Lists.
@@ -26,14 +27,20 @@ const PostListPrintoutBody = ( props ) => {
 	} );
 	return (
 		<>
-			{ !! selectedItems.length && selectedItems.map( selectedItemID =>
-				<>
-					<CheckboxControl
-						label={ itemsDictionary[selectedItemID] || __(`(Undefined element with ID ${ selectedItemID })`, 'graphql-api') }
-						checked={ true }
-						disabled={ true }
-					/>
-				</>
+			{ !! selectedItems.length && (
+				<ul class="checkbox-list">
+					{ selectedItems.map( selectedItemID =>
+						<li
+							key={ selectedItemID }
+						>
+							<CheckboxControl
+								label={ itemsDictionary[selectedItemID] || __(`(Undefined element with ID ${ selectedItemID })`, 'graphql-api') }
+								checked={ true }
+								disabled={ true }
+							/>
+						</li>
+					) }
+				</ul>
 			) }
 			{ !selectedItems.length && (
 				emptyLabelString

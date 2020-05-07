@@ -9,6 +9,7 @@ import { TYPE_FIELD_SEPARATOR_FOR_DB, TYPE_FIELD_SEPARATOR_FOR_PRINT } from './b
 import withSpinner from '../loading/with-spinner';
 import withErrorMessage from '../loading/with-error-message';
 import { GROUP_FIELDS_UNDER_TYPE_FOR_PRINT, EMPTY_LABEL } from '../../default-configuration';
+import '../base-styles/checkbox-list.scss';
 
 const FieldPrintoutBody = ( props ) => {
 	const {
@@ -31,27 +32,33 @@ const FieldPrintoutBody = ( props ) => {
 	return (
 		<>
 			{ !! typeFields.length && (
-					( !groupFieldsUnderType && typeFields.map( typeField =>
-						<>
-							<CheckboxControl
-								label={ `${ typeFieldNames[ typeField ].typeName }${ TYPE_FIELD_SEPARATOR_FOR_PRINT }${ typeFieldNames[ typeField ].field }` }
-								checked={ true }
-								disabled={ true }
-							/>
-						</>
+					( !groupFieldsUnderType && (
+						<ul class="checkbox-list">
+							{ typeFields.map( typeField =>
+								<li>
+									<CheckboxControl
+										label={ `${ typeFieldNames[ typeField ].typeName }${ TYPE_FIELD_SEPARATOR_FOR_PRINT }${ typeFieldNames[ typeField ].field }` }
+										checked={ true }
+										disabled={ true }
+									/>
+								</li>
+							) }
+						</ul>
 					)
 				) || ( groupFieldsUnderType && Object.keys(combinedTypeFieldNames).map( typeName =>
 					<>
-						<strong>{ typeName }</strong><br/>
-						{ combinedTypeFieldNames[ typeName ].map( field =>
-							<>
-								<CheckboxControl
-									label={ `${ field }` }
-									checked={ true }
-									disabled={ true }
-								/>
-							</>
-						) }
+						<strong>{ typeName }</strong>
+						<ul class="checkbox-list">
+							{ combinedTypeFieldNames[ typeName ].map( field =>
+								<li>
+									<CheckboxControl
+										label={ `${ field }` }
+										checked={ true }
+										disabled={ true }
+									/>
+								</li>
+							) }
+						</ul>
 					</>
 				) )
 			) }
@@ -103,14 +110,20 @@ const DirectivePrintoutBody = ( props ) => {
 	} = props;
 	return (
 		<>
-			{ !! directives.length && directives.map( directive =>
-				<>
-					<CheckboxControl
-						label={ `${ directive }` }
-						checked={ true }
-						disabled={ true }
-					/>
-				</>
+			{ !! directives.length && (
+				<ul class="checkbox-list">
+					{ directives.map( directive =>
+						<li
+							key={ directive }
+						>
+							<CheckboxControl
+								label={ `${ directive }` }
+								checked={ true }
+								disabled={ true }
+							/>
+						</li>
+					) }
+				</ul>
 			) }
 			{ !directives.length && (
 				emptyLabelString
