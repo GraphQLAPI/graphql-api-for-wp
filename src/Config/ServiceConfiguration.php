@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\Config;
 
+use PoP\AccessControl\Schema\SchemaModes;
 use PoP\Engine\TypeResolvers\RootTypeResolver;
 use PoP\Root\Component\PHPServiceConfigurationTrait;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
+use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use PoP\UserRolesAccessControl\Services\AccessControlGroups as UserRolesAccessControlGroups;
-use PoP\AccessControl\Schema\SchemaModes;
 
 class ServiceConfiguration
 {
@@ -21,7 +22,8 @@ class ServiceConfiguration
      */
     protected static function configure()
     {
-        if ($capabilities = ['manage_options']) {
+        if ($schemaEditorAccessCapability = ComponentConfiguration::getSchemaEditorAccessCapability()) {
+            $capabilities = [$schemaEditorAccessCapability];
             ContainerBuilderUtils::injectValuesIntoService(
                 'access_control_manager',
                 'addEntriesForFields',

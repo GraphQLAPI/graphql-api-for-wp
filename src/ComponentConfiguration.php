@@ -15,6 +15,7 @@ class ComponentConfiguration extends AbstractComponentConfiguration
     private static $useGraphiQLWithExplorer;
     private static $getEndpointSlugBase;
     private static $getPersistedQuerySlugBase;
+    private static $getSchemaEditorAccessCapability;
 
     public static function addExcerptAsDescription(): bool
     {
@@ -118,6 +119,22 @@ class ComponentConfiguration extends AbstractComponentConfiguration
         $envVariable = Environment::PERSISTED_QUERY_SLUG_BASE;
         $selfProperty = &self::$getPersistedQuerySlugBase;
         $callback = [Environment::class, 'getPersistedQuerySlugBase'];
+
+        // Initialize property from the environment/hook
+        self::maybeInitEnvironmentVariable(
+            $envVariable,
+            $selfProperty,
+            $callback
+        );
+        return $selfProperty;
+    }
+
+    public static function getSchemaEditorAccessCapability(): ?string
+    {
+        // Define properties
+        $envVariable = Environment::SCHEMA_EDITOR_ACCESS_CAPABILITY;
+        $selfProperty = &self::$getSchemaEditorAccessCapability;
+        $callback = [Environment::class, 'getSchemaEditorAccessCapability'];
 
         // Initialize property from the environment/hook
         self::maybeInitEnvironmentVariable(
