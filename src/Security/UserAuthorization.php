@@ -42,7 +42,7 @@ class UserAuthorization
             self::ACCESS_SCHEME_POST => 'edit_posts',
         ];
         // If the option chosen does not exist, or none provided, use the "admin" by default
-        return $accessSchemeCapabilities[$accessScheme] ?? 'edit_posts';//'manage_options';
+        return $accessSchemeCapabilities[$accessScheme] ?? 'manage_options';
     }
 
     public static function canAccessConfigurationContent(): bool

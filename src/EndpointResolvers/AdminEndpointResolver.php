@@ -9,6 +9,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
 use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
 use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
+use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
 use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\EndpointResolverTrait;
 
 class AdminEndpointResolver
@@ -75,9 +76,12 @@ class AdminEndpointResolver
     {
         \add_action(
             'admin_init',
-            function() {
-                include TemplateHelpers::getTemplateFile();
-                die;
+            function () {
+                // Make sure the user has access to the editor
+                if (UserAuthorization::canAccessConfigurationContent()) {
+                    include TemplateHelpers::getTemplateFile();
+                    die;
+                }
             }
         );
     }
