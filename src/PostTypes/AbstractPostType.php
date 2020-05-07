@@ -191,16 +191,17 @@ abstract class AbstractPostType
             'show_ui' => true,
             'publicly_queryable' => true,
         );
+        $canAccessSchemaEditor = UserAuthorization::canAccessSchemaEditor();
         $postTypeArgs = array_merge(
             $securityPostTypeArgs,
             array(
                 'label' => $this->getPostTypeName(),
                 'labels' => $this->getPostTypeLabels($name_uc, $names_uc, $names_lc),
-                'capability_type' => 'post',
+                'capability_type' => $canAccessSchemaEditor ? 'post' : '',
                 'hierarchical' => $this->isHierarchical(),
                 'exclude_from_search' => true,
                 'show_in_admin_bar' => $this->showInAdminBar(),
-                'show_in_menu' => UserAuthorization::canAccessSchemaEditor() ? Menu::NAME : false,
+                'show_in_menu' => $canAccessSchemaEditor ? Menu::NAME : false,
                 'show_in_rest' => true,
                 'supports' => [
                     'title',
