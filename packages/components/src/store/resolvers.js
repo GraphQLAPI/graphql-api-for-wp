@@ -45,7 +45,7 @@ export const FETCH_TYPE_FIELDS_GRAPHQL_QUERY = `
 export const FETCH_DIRECTIVES_GRAPHQL_QUERY = `
 	query GetDirectives {
 		__schema {
-			directives(ofTypes: [ ${ DIRECTIVE_TYPE_QUERY } ]) {
+			directives(ofTypes: [ "${ DIRECTIVE_TYPE_QUERY }" ]) {
 				name
 			}
 		}
