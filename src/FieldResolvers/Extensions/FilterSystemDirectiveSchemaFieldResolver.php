@@ -86,21 +86,6 @@ class FilterSystemDirectiveSchemaFieldResolver extends SchemaFieldResolver
         return $schemaFieldArgs;
     }
 
-    protected function getSchemaDefinitionEnumValues(TypeResolverInterface $typeResolver, string $fieldName): ?array
-    {
-        switch ($fieldName) {
-            case '':
-                $input_classes = [
-                    'memberstatus' => GD_URE_FormInput_MultiMemberStatus::class,
-                    'memberprivileges' => GD_URE_FormInput_FilterMemberPrivileges::class,
-                    'membertags' => GD_URE_FormInput_FilterMemberTags::class,
-                ];
-                $class = $input_classes[$fieldName];
-                return array_keys((new $class())->getAllValues());
-        }
-        return null;
-    }
-
     public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
         $schema = $resultItem;
