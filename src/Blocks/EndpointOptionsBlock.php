@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\EndpointBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
 
 /**
  * Endpoint Options block
@@ -19,6 +22,11 @@ class EndpointOptionsBlock extends AbstractQueryExecutionOptionsBlock
     protected function getBlockName(): string
     {
         return 'endpoint-options';
+    }
+
+    protected function getBlockCategory(): ?AbstractBlockCategory
+    {
+        return new EndpointBlockCategory();
     }
 
     protected function getBlockContent(array $attributes, string $content): string

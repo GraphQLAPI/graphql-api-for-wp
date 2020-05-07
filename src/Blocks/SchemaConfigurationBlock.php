@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\QueryExecutionBlockCategory;
+
 /**
  * SchemaConfiguration block
  */
@@ -22,6 +25,11 @@ class SchemaConfigurationBlock extends AbstractBlock
     protected function getBlockName(): string
     {
         return 'schema-configuration';
+    }
+
+    protected function getBlockCategory(): ?AbstractBlockCategory
+    {
+        return new QueryExecutionBlockCategory();
     }
 
     protected function isDynamicBlock(): bool

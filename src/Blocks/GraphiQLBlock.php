@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\PersistedQueryBlockCategory;
 
 /**
  * GraphiQL block
@@ -19,6 +21,11 @@ class GraphiQLBlock extends AbstractBlock
     protected function getBlockName(): string
     {
         return 'graphiql';
+    }
+
+    protected function getBlockCategory(): ?AbstractBlockCategory
+    {
+        return new PersistedQueryBlockCategory();
     }
 
     protected function isDynamicBlock(): bool

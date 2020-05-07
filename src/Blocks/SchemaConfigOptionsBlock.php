@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
-use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use PoP\AccessControl\Schema\SchemaModes;
+use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\SchemaConfigurationBlockCategory;
 
 /**
  * Schema Config Options block
@@ -25,6 +27,11 @@ class SchemaConfigOptionsBlock extends AbstractBlock
     protected function getBlockName(): string
     {
         return 'schema-config-options';
+    }
+
+    protected function getBlockCategory(): ?AbstractBlockCategory
+    {
+        return new SchemaConfigurationBlockCategory();
     }
 
     protected function isDynamicBlock(): bool

@@ -15,7 +15,7 @@ class CacheControlBlockCategory extends AbstractBlockCategory
      *
      * @return string
      */
-    protected function getPostTypes(): array
+    public function getPostTypes(): array
     {
         return [
             GraphQLCacheControlListPostType::POST_TYPE,

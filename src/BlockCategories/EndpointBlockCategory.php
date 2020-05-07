@@ -15,7 +15,7 @@ class EndpointBlockCategory extends AbstractBlockCategory
      *
      * @return string
      */
-    protected function getPostTypes(): array
+    public function getPostTypes(): array
     {
         return [
             GraphQLEndpointPostType::POST_TYPE,

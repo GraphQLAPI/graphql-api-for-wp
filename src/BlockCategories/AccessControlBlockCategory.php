@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\BlockCategories;
 
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
 
 class AccessControlBlockCategory extends AbstractBlockCategory
@@ -15,7 +16,7 @@ class AccessControlBlockCategory extends AbstractBlockCategory
      *
      * @return string
      */
-    protected function getPostTypes(): array
+    public function getPostTypes(): array
     {
         return [
             GraphQLAccessControlListPostType::POST_TYPE,

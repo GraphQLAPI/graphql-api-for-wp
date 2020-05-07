@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\SchemaConfigurationBlockCategory;
 
 abstract class AbstractSchemaConfigPostListBlock extends AbstractBlock
 {
@@ -13,6 +15,11 @@ abstract class AbstractSchemaConfigPostListBlock extends AbstractBlock
     protected function isDynamicBlock(): bool
     {
         return true;
+    }
+
+    protected function getBlockCategory(): ?AbstractBlockCategory
+    {
+        return new SchemaConfigurationBlockCategory();
     }
 
     abstract protected function getAttributeName(): string;

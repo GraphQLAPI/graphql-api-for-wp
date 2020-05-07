@@ -6,6 +6,8 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\FieldDeprecationBlockCategory;
 
 /**
  * Field Deprecation block
@@ -19,6 +21,11 @@ class FieldDeprecationBlock extends AbstractControlBlock
     protected function getBlockName(): string
     {
         return 'field-deprecation';
+    }
+
+    protected function getBlockCategory(): ?AbstractBlockCategory
+    {
+        return new FieldDeprecationBlockCategory();
     }
 
     protected function disableDirectives(): bool

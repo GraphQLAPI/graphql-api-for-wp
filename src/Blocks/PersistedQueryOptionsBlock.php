@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\PersistedQueryBlockCategory;
 
 /**
  * Persisted Query Options block
@@ -18,6 +21,11 @@ class PersistedQueryOptionsBlock extends AbstractQueryExecutionOptionsBlock
     protected function getBlockName(): string
     {
         return 'persisted-query-options';
+    }
+
+    protected function getBlockCategory(): ?AbstractBlockCategory
+    {
+        return new PersistedQueryBlockCategory();
     }
 
     protected function getBlockContent(array $attributes, string $content): string

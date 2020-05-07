@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Error;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\General\GeneralUtils;
 use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
 
@@ -23,6 +24,8 @@ abstract class AbstractBlock
      */
     public function init(): void
     {
+        // \add_action('load-post-new.php', [$this, 'initBlock']);
+        // \add_action('load-post.php', [$this, 'initBlock']);
         \add_action('init', [$this, 'initBlock']);
     }
 
@@ -189,6 +192,11 @@ abstract class AbstractBlock
         return $this->getPluginDir() . '/blocks/' . $this->getBlockName();
     }
 
+    protected function getBlockCategory(): ?AbstractBlockCategory
+    {
+        return null;
+    }
+
     /**
      * Registers all block assets so that they can be enqueued through the block editor
      * in the corresponding context.
@@ -197,6 +205,45 @@ abstract class AbstractBlock
      */
     public function initBlock(): void
     {
+        /**
+         * In the admin, if the block belongs to a category, and the category works only under certain CPTs,
+         * then register the block only if we are on any of those CPTs.
+         * Otherwise, the block would be registered but the category is not,
+         * printing error console such as:
+         * > The block "graphql-api/schema-configuration" must have a registered category.
+         */
+        if (\is_admin()) {
+            $blockCategory = $this->getBlockCategory();
+            if ($blockCategory && !empty($blockCategory->getPostTypes())) {
+                // When in the editor, there is no direct way to obtain the post type yet,
+                // in hook "init", since $typenow has not been initialized yet
+                // Hence, recreate the logic to get post type from URL if we are on post-new.php, or
+                // from edited post in post.php
+                global $pagenow;
+                $typenow = '';
+                if ( 'post-new.php' === $pagenow ) {
+                    if ( isset( $_REQUEST['post_type'] ) && \post_type_exists( $_REQUEST['post_type'] ) ) {
+                        $typenow = $_REQUEST['post_type'];
+                    };
+                } elseif ( 'post.php' === $pagenow ) {
+                    if ( isset( $_GET['post'] ) && isset( $_POST['post_ID'] ) && (int) $_GET['post'] !== (int) $_POST['post_ID'] ) {
+                        // wp_die( __( 'A post ID mismatch has been detected.' ), __( 'Sorry, you are not allowed to edit this item.' ), 400 );
+                    } elseif ( isset( $_GET['post'] ) ) {
+                        $post_id = (int) $_GET['post'];
+                    } elseif ( isset( $_POST['post_ID'] ) ) {
+                        $post_id = (int) $_POST['post_ID'];
+                    }
+                    if ( $post_id ) {
+                        $post = \get_post( $post_id );
+                        $typenow        = $post->post_type;
+                    }
+                }
+                if (!$typenow || !in_array($typenow, $blockCategory->getPostTypes())) {
+                    return;
+                }
+            }
+        }
+
         $dir = $this->getBlockDir();
         $blockFullName = $this->getBlockFullName();
 

@@ -6,6 +6,8 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\CacheControlBlockCategory;
 
 /**
  * Cache Control block
@@ -19,6 +21,11 @@ class CacheControlBlock extends AbstractControlBlock
     protected function getBlockName(): string
     {
         return 'cache-control';
+    }
+
+    protected function getBlockCategory(): ?AbstractBlockCategory
+    {
+        return new CacheControlBlockCategory();
     }
 
     protected function registerCommonStyleCSS(): bool

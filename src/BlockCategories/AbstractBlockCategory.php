@@ -21,7 +21,10 @@ abstract class AbstractBlockCategory
      *
      * @return string
      */
-    abstract protected function getPostTypes(): array;
+    public function getPostTypes(): array
+    {
+        return [];
+    }
 
     /**
      * Block category's slug
@@ -47,9 +50,9 @@ abstract class AbstractBlockCategory
     public function getBlockCategories(array $categories, $post)
     {
         /**
-         * Only register for the Access Control CPT
+         * If specified CPTs, register the category only for them
          */
-        if (in_array($post->post_type, $this->getPostTypes())) {
+        if (empty($this->getPostTypes()) || in_array($post->post_type, $this->getPostTypes())) {
             return array_merge(
                 $categories,
                 array(

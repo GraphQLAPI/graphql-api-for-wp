@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
+use PoP\AccessControl\Schema\SchemaModes;
+use PoP\AccessControl\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
-use PoP\AccessControl\ComponentConfiguration;
-use PoP\AccessControl\Schema\SchemaModes;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
 
 /**
  * Access Control block
@@ -22,6 +24,11 @@ class AccessControlBlock extends AbstractControlBlock
     protected function getBlockName(): string
     {
         return 'access-control';
+    }
+
+    protected function getBlockCategory(): ?AbstractBlockCategory
+    {
+        return new AccessControlBlockCategory();
     }
 
     protected function registerEditorCSS(): bool
