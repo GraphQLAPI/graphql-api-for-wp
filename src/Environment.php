@@ -14,6 +14,7 @@ class Environment
     public const ENDPOINT_SLUG_BASE = 'ENDPOINT_SLUG_BASE';
     public const PERSISTED_QUERY_SLUG_BASE = 'PERSISTED_QUERY_SLUG_BASE';
     public const SCHEMA_EDITOR_ACCESS_SCHEME = 'SCHEMA_EDITOR_ACCESS_SCHEME';
+    public const ENABLE_LOW_LEVEL_SCHEMA_EDITING = 'ENABLE_LOW_LEVEL_SCHEMA_EDITING';
 
     /**
      * Print the excerpt as description in the custom post types
@@ -95,5 +96,15 @@ class Environment
     public static function getSchemaEditorAccessScheme(): ?string
     {
         return $_ENV[self::SCHEMA_EDITOR_ACCESS_SCHEME];
+    }
+
+    /**
+     * If `true`, it makes Schema-type directives available in the GraphiQL editor
+     *
+     * @return boolean
+     */
+    public static function enableLowLevelSchemaEditing(): bool
+    {
+        return isset($_ENV[self::ENABLE_LOW_LEVEL_SCHEMA_EDITING]) ? strtolower($_ENV[self::ENABLE_LOW_LEVEL_SCHEMA_EDITING]) == 'true' : false;
     }
 }

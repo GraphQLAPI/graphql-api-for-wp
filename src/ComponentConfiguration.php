@@ -16,6 +16,7 @@ class ComponentConfiguration extends AbstractComponentConfiguration
     private static $getEndpointSlugBase;
     private static $getPersistedQuerySlugBase;
     private static $getSchemaEditorAccessScheme;
+    private static $enableLowLevelSchemaEditing;
 
     public static function addExcerptAsDescription(): bool
     {
@@ -135,6 +136,22 @@ class ComponentConfiguration extends AbstractComponentConfiguration
         $envVariable = Environment::SCHEMA_EDITOR_ACCESS_SCHEME;
         $selfProperty = &self::$getSchemaEditorAccessScheme;
         $callback = [Environment::class, 'getSchemaEditorAccessScheme'];
+
+        // Initialize property from the environment/hook
+        self::maybeInitEnvironmentVariable(
+            $envVariable,
+            $selfProperty,
+            $callback
+        );
+        return $selfProperty;
+    }
+
+    public static function enableLowLevelSchemaEditing(): bool
+    {
+        // Define properties
+        $envVariable = Environment::ENABLE_LOW_LEVEL_SCHEMA_EDITING;
+        $selfProperty = &self::$enableLowLevelSchemaEditing;
+        $callback = [Environment::class, 'enableLowLevelSchemaEditing'];
 
         // Initialize property from the environment/hook
         self::maybeInitEnvironmentVariable(
