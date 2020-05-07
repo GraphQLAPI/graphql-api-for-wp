@@ -19,6 +19,8 @@ import {
 	setFieldDeprecationLists,
 } from './action-creators';
 
+import { DIRECTIVE_TYPE_QUERY } from '../constants/directive-types'
+
 /**
  * GraphQL query to fetch the list of types and their fields from the GraphQL schema
  */
@@ -38,12 +40,12 @@ export const FETCH_TYPE_FIELDS_GRAPHQL_QUERY = `
 
 /**
  * GraphQL query to fetch the list of directives from the GraphQL schema
+ * Fetch only query-type directives, exclude schema-type ones.
  */
-const QUERY_DIRECTIVE_TYPE = 'query';
 export const FETCH_DIRECTIVES_GRAPHQL_QUERY = `
 	query GetDirectives {
 		__schema {
-			directives(ofTypes: [${ QUERY_DIRECTIVE_TYPE }]) {
+			directives(ofTypes: [ ${ DIRECTIVE_TYPE_QUERY } ]) {
 				name
 			}
 		}
