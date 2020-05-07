@@ -12,6 +12,21 @@ use PoP\GraphQL\Configuration\Request as GraphQLRequest;
 
 class EndpointHelpers
 {
+    
+    /**
+     * Indicate if we are requesting
+     * /wp-admin/edit.php?page=graphql_api&action=execute_query
+     *
+     * @return boolean
+     */
+    public static function isRequestingAdminGraphQLEndpoint(): bool
+    {
+        return \is_admin()
+            && 'POST' == $_SERVER['REQUEST_METHOD']
+            && $_GET['page'] == Menu::NAME
+            && $_GET[RequestParams::ACTION] == RequestParams::ACTION_EXECUTE_QUERY;
+    }
+
     public static function getAdminGraphQLEndpoint(): string
     {
         $endpoint = \admin_url(sprintf(

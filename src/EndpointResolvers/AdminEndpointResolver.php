@@ -39,10 +39,7 @@ class AdminEndpointResolver
      */
     protected function isGraphQLQueryExecution(): bool
     {
-        return \is_admin()
-            && 'POST' == $_SERVER['REQUEST_METHOD']
-            && $_GET['page'] == Menu::NAME
-            && $_GET[RequestParams::ACTION] == RequestParams::ACTION_EXECUTE_QUERY;
+        return EndpointHelpers::isRequestingAdminGraphQLEndpoint();
     }
 
     /**
