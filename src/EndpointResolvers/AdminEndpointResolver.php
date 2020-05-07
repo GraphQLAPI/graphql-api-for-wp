@@ -83,7 +83,7 @@ class AdminEndpointResolver
                  */
                 \printf(
                     '<script type="text/javascript">var GRAPHQL_API_ADMIN_ENDPOINT = "%s"</script>',
-                    EndpointHelpers::getGraphQLEndpoint()
+                    EndpointHelpers::getAdminGraphQLEndpoint()
                 );
             }
         });

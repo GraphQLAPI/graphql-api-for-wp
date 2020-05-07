@@ -6,11 +6,12 @@ namespace Leoloso\GraphQLByPoPWPPlugin\General;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
-use PoP\API\Configuration\Request;
+use PoP\API\Configuration\Request as APIRequest;
+use PoP\GraphQL\Configuration\Request as GraphQLRequest;
 
 class EndpointHelpers
 {
-    public static function getGraphQLEndpoint(): string
+    public static function getAdminGraphQLEndpoint(): string
     {
         $endpoint = \admin_url(sprintf(
             'edit.php?page=%s&%s=%s',
@@ -19,7 +20,7 @@ class EndpointHelpers
             RequestParams::ACTION_EXECUTE_QUERY
         ));
         if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
-            $endpoint = \add_query_arg(Request::URLPARAM_USE_NAMESPACE, true, $endpoint);
+            $endpoint = \add_query_arg(APIRequest::URLPARAM_USE_NAMESPACE, true, $endpoint);
         }
         return $endpoint;
     }

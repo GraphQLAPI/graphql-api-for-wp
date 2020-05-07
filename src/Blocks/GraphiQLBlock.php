@@ -37,7 +37,7 @@ class GraphiQLBlock extends AbstractBlock
             parent::getLocalizedData(),
             [
                 'nonce' => \wp_create_nonce('wp_rest'),
-                'endpoint' => EndpointHelpers::getGraphQLEndpoint(),
+                'endpoint' => EndpointHelpers::getAdminGraphQLEndpoint(),
             ]
         );
     }

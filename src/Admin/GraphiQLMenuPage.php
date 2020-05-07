@@ -71,7 +71,7 @@ class GraphiQLMenuPage extends AbstractMenuPage
             'graphQLByPoPGraphiQLSettings',
             array(
                 'nonce' => \wp_create_nonce('wp_rest'),
-                'endpoint' => EndpointHelpers::getGraphQLEndpoint(),
+                'endpoint' => EndpointHelpers::getAdminGraphQLEndpoint(),
                 'defaultQuery' => $this->getDefaultQuery(),
             )
         );
