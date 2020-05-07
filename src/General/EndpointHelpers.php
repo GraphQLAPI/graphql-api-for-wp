@@ -6,6 +6,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\General;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
+use PoP\API\Configuration\Request;
 
 class EndpointHelpers
 {
@@ -18,7 +19,7 @@ class EndpointHelpers
             RequestParams::ACTION_EXECUTE_QUERY
         ));
         if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
-            $endpoint = \add_query_arg('use_namespace', true, $endpoint);
+            $endpoint = \add_query_arg(Request::URLPARAM_USE_NAMESPACE, true, $endpoint);
         }
         return $endpoint;
     }

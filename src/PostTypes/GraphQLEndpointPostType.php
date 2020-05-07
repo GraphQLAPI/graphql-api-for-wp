@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
-use PoP\ComponentModel\Misc\RequestUtils;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
@@ -14,6 +13,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractGraphQLQueryExecutionPostType;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
+use PoP\API\Configuration\Request;
 
 class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 {
@@ -235,7 +235,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
                 $jsFileURL = \trim(\GRAPHQL_BY_POP_PLUGIN_URL, '/') . $dirPath . '/' . $jsFileName;
                 $endpointURL = \remove_query_arg(RequestParams::VIEW, \fullUrl());
                 if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
-                    $endpointURL = \add_query_arg('use_namespace', true, $endpointURL);
+                    $endpointURL = \add_query_arg(Request::URLPARAM_USE_NAMESPACE, true, $endpointURL);
                 }
                 $fileContents = \str_replace(
                     $jsFileName . '?',
