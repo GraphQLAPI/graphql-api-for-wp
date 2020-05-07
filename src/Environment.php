@@ -13,7 +13,7 @@ class Environment
     public const USE_GRAPHIQL_WITH_EXPLORER = 'USE_GRAPHIQL_WITH_EXPLORER';
     public const ENDPOINT_SLUG_BASE = 'ENDPOINT_SLUG_BASE';
     public const PERSISTED_QUERY_SLUG_BASE = 'PERSISTED_QUERY_SLUG_BASE';
-    public const SCHEMA_EDITOR_ACCESS_CAPABILITY = 'SCHEMA_EDITOR_ACCESS_CAPABILITY';
+    public const SCHEMA_EDITOR_ACCESS_SCHEME = 'SCHEMA_EDITOR_ACCESS_SCHEME';
 
     /**
      * Print the excerpt as description in the custom post types
@@ -86,13 +86,14 @@ class Environment
     }
 
     /**
-     * The capability needed to access the schema editor (i.e. access clients GraphiQL/Voyager
-     * against the admin endpoint /wp-admin/?page=graphql_api, and execute queries against it)
+     * If `"admin"`, only the admin can compose a GraphQL query and endpoint
+     * If `"post"`, the workflow from creating posts is employed (i.e. Author role can create
+     * but not publish the query, Editor role can publish it, etc)
      *
      * @return string
      */
-    public static function getSchemaEditorAccessCapability(): ?string
+    public static function getSchemaEditorAccessScheme(): ?string
     {
-        return $_ENV[self::SCHEMA_EDITOR_ACCESS_CAPABILITY] ? $_ENV[self::SCHEMA_EDITOR_ACCESS_CAPABILITY] : 'manage_options';
+        return $_ENV[self::SCHEMA_EDITOR_ACCESS_SCHEME];
     }
 }

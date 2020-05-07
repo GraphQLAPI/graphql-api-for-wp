@@ -6,7 +6,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\GraphiQLMenuPage;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\SettingsMenuPage;
-use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
+use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
 
 /**
  * Admin menu class
@@ -40,7 +40,7 @@ class Menu
     }
     public function addMenuPagesTop(): void
     {
-        $schemaEditorAccessCapability = ComponentConfiguration::getSchemaEditorAccessCapability();
+        $schemaEditorAccessCapability = UserAuthorization::getSchemaEditorAccessCapability();
         \add_menu_page(
             __('GraphQL API', 'graphql-api'),
             __('GraphQL API', 'graphql-api'),
@@ -71,16 +71,16 @@ class Menu
 
     public function addMenuPagesBottom(): void
     {
-        $schemaEditorAccessCapability = ComponentConfiguration::getSchemaEditorAccessCapability();
         \add_submenu_page(
             self::NAME,
             __('Settings', 'graphql-api'),
             __('Settings', 'graphql-api'),
-            $schemaEditorAccessCapability,
+            'manage_options',
             'graphql_api_settings',
             [new SettingsMenuPage(), 'print']
         );
 
+        // $schemaEditorAccessCapability = UserAuthorization::getSchemaEditorAccessCapability();
         // if (\current_user_can($schemaEditorAccessCapability)) {
         //     global $submenu;
         //     $submenu[self::NAME][] = [
