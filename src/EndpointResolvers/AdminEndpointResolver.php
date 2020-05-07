@@ -14,7 +14,9 @@ use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\EndpointResolverTrait;
 
 class AdminEndpointResolver
 {
-    use EndpointResolverTrait;
+    use EndpointResolverTrait {
+        EndpointResolverTrait::executeGraphQLQuery as upstreamExecuteGraphQLQuery;
+    }
 
     /**
      * Provide the query to execute and its variables
@@ -64,6 +66,51 @@ class AdminEndpointResolver
         }
     }
 
+
+    /**
+     * Print JS variables which are used by several blocks,
+     * before the blocks are loaded
+     *
+     * @return void
+     */
+    protected function printGlobalVariables(): void
+    {
+        \add_action('admin_print_scripts', function () {
+            // Make sure the user has access to the editor
+            if (UserAuthorization::canAccessSchemaEditor()) {
+                /**
+                 * The endpoint against which to execute GraphQL queries while on the WordPress admin
+                 */
+                \printf(
+                    '<script type="text/javascript">var GRAPHQL_API_ADMIN_ENDPOINT = "%s"</script>',
+                    EndpointHelpers::getGraphQLEndpoint()
+                );
+            }
+        });
+    }
+    
+    /**
+     * Execute the GraphQL query
+     *
+     * @return void
+     */
+    protected function executeGraphQLQuery(): void
+    {
+        /**
+         * Only in "init" we can execute `wp_get_current_user`, to validate that the
+         * user can execute the query
+         */
+        \add_action(
+            'init',
+            function () {
+                // Make sure the user has access to the editor
+                if (UserAuthorization::canAccessSchemaEditor()) {
+                    $this->upstreamExecuteGraphQLQuery();
+                }
+            }
+        );
+    }
+
     /**
      * To print the JSON output, we use WordPress templates,
      * which are used only in the front-end.
@@ -78,30 +125,11 @@ class AdminEndpointResolver
             'admin_init',
             function () {
                 // Make sure the user has access to the editor
-                if (UserAuthorization::canAccessConfigurationContent()) {
+                if (UserAuthorization::canAccessSchemaEditor()) {
                     include TemplateHelpers::getTemplateFile();
                     die;
                 }
             }
         );
-    }
-
-    /**
-     * Print JS variables which are used by several blocks,
-     * before the blocks are loaded
-     *
-     * @return void
-     */
-    protected function printGlobalVariables(): void
-    {
-        \add_action('admin_print_scripts', function () {
-            /**
-             * The endpoint against which to execute GraphQL queries while on the WordPress admin
-             */
-            \printf(
-                '<script type="text/javascript">var GRAPHQL_API_ADMIN_ENDPOINT = "%s"</script>',
-                EndpointHelpers::getGraphQLEndpoint()
-            );
-        });
     }
 }

@@ -45,7 +45,7 @@ class UserAuthorization
         return $accessSchemeCapabilities[$accessScheme] ?? 'manage_options';
     }
 
-    public static function canAccessConfigurationContent(): bool
+    public static function canAccessSchemaEditor(): bool
     {
         return \current_user_can(self::getSchemaEditorAccessCapability());
     }

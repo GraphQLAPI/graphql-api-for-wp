@@ -77,7 +77,7 @@ abstract class AbstractPostType
          */
         if (
             ComponentConfiguration::addExcerptAsDescription()
-            && UserAuthorization::canAccessConfigurationContent()
+            && UserAuthorization::canAccessSchemaEditor()
             && \is_singular($this->getPostType())
         ) {
             /**
@@ -200,7 +200,7 @@ abstract class AbstractPostType
                 'hierarchical' => $this->isHierarchical(),
                 'exclude_from_search' => true,
                 'show_in_admin_bar' => $this->showInAdminBar(),
-                'show_in_menu' => UserAuthorization::canAccessConfigurationContent() ? Menu::NAME : false,
+                'show_in_menu' => UserAuthorization::canAccessSchemaEditor() ? Menu::NAME : false,
                 'show_in_rest' => true,
                 'supports' => [
                     'title',

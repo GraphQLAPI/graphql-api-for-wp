@@ -261,7 +261,7 @@ abstract class AbstractBlock
             /**
              * Show only if the user has the right permission
              */
-            if (UserAuthorization::canAccessConfigurationContent()) {
+            if (UserAuthorization::canAccessSchemaEditor()) {
                 $blockConfiguration['render_callback'] = [$this, 'renderBlock'];
             } else {
                 $blockConfiguration['render_callback'] = [$this, 'renderUnauthorizedAccess'];
