@@ -39,10 +39,11 @@ export const FETCH_TYPE_FIELDS_GRAPHQL_QUERY = `
 /**
  * GraphQL query to fetch the list of directives from the GraphQL schema
  */
+const QUERY_DIRECTIVE_TYPE = 'query';
 export const FETCH_DIRECTIVES_GRAPHQL_QUERY = `
 	query GetDirectives {
 		__schema {
-			directives(skipSystemDirectives: true) {
+			directives(ofTypes: [${ QUERY_DIRECTIVE_TYPE }]) {
 				name
 			}
 		}

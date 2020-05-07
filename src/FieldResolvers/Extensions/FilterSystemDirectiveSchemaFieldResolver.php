@@ -5,14 +5,19 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\FieldResolvers\Extensions;
 
 use PoP\API\Schema\SchemaDefinition;
+use PoP\ComponentModel\Schema\SchemaHelpers;
+use PoP\GraphQL\Schema\SchemaDefinitionHelpers;
+use PoP\ComponentModel\Directives\DirectiveTypes;
+use PoP\ComponentModel\Schema\TypeCastingHelpers;
 use PoP\GraphQL\TypeResolvers\SchemaTypeResolver;
 use PoP\Translation\Facades\TranslationAPIFacade;
-use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\Engine\DirectiveResolvers\SkipDirectiveResolver;
-use PoP\Engine\DirectiveResolvers\IncludeDirectiveResolver;
-use PoP\CacheControl\DirectiveResolvers\AbstractCacheControlDirectiveResolver;
 use PoP\GraphQL\FieldResolvers\SchemaFieldResolver;
-use PoP\GraphQL\Schema\SchemaDefinitionHelpers;
+use PoP\Engine\DirectiveResolvers\SkipDirectiveResolver;
+use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
+use PoP\Engine\DirectiveResolvers\IncludeDirectiveResolver;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use PoP\ComponentModel\Facades\Registries\DirectiveRegistryFacade;
+use PoP\CacheControl\DirectiveResolvers\AbstractCacheControlDirectiveResolver;
 
 class FilterSystemDirectiveSchemaFieldResolver extends SchemaFieldResolver
 {
@@ -29,7 +34,8 @@ class FilterSystemDirectiveSchemaFieldResolver extends SchemaFieldResolver
     }
 
     /**
-     * Only use this fieldResolver when parameter `skipSystemDirectives` is provided. Otherwise, use the default implementation
+     * Only use this fieldResolver when parameter `ofTypes` is provided.
+     * Otherwise, use the default implementation
      *
      * @param TypeResolverInterface $typeResolver
      * @param string $fieldName
@@ -38,7 +44,7 @@ class FilterSystemDirectiveSchemaFieldResolver extends SchemaFieldResolver
      */
     public function resolveCanProcess(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): bool
     {
-        return $fieldName == 'directives' && isset($fieldArgs['skipSystemDirectives']);
+        return $fieldName == 'directives' && isset($fieldArgs['ofTypes']);
     }
 
     public function getSchemaFieldDescription(TypeResolverInterface $typeResolver, string $fieldName): ?string
@@ -60,10 +66,18 @@ class FilterSystemDirectiveSchemaFieldResolver extends SchemaFieldResolver
                     $schemaFieldArgs,
                     [
                         [
-                            SchemaDefinition::ARGNAME_NAME => 'skipSystemDirectives',
-                            SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_BOOL,
-                            SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Skip the system directives', 'graphql-api'),
+                            SchemaDefinition::ARGNAME_NAME => 'ofTypes',
+                            SchemaDefinition::ARGNAME_TYPE => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ENUM),
+                            SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Include only directives of provided types', 'graphql-api'),
                             SchemaDefinition::ARGNAME_MANDATORY => true,
+                            SchemaDefinition::ARGNAME_ENUMVALUES => SchemaHelpers::convertToSchemaFieldArgEnumValueDefinitions(
+                                [
+                                    DirectiveTypes::QUERY,
+                                    DirectiveTypes::SCHEMA,
+                                    DirectiveTypes::SCRIPTING,
+                                    DirectiveTypes::SYSTEM,
+                                ]
+                            ),
                         ],
                     ]
                 );
@@ -72,34 +86,54 @@ class FilterSystemDirectiveSchemaFieldResolver extends SchemaFieldResolver
         return $schemaFieldArgs;
     }
 
+    protected function getSchemaDefinitionEnumValues(TypeResolverInterface $typeResolver, string $fieldName): ?array
+    {
+        switch ($fieldName) {
+            case '':
+                $input_classes = [
+                    'memberstatus' => GD_URE_FormInput_MultiMemberStatus::class,
+                    'memberprivileges' => GD_URE_FormInput_FilterMemberPrivileges::class,
+                    'membertags' => GD_URE_FormInput_FilterMemberTags::class,
+                ];
+                $class = $input_classes[$fieldName];
+                return array_keys((new $class())->getAllValues());
+        }
+        return null;
+    }
+
     public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
         $schema = $resultItem;
         switch ($fieldName) {
             case 'directives':
                 $directiveIDs = $schema->getDirectiveIDs();
-                if ($fieldArgs['skipSystemDirectives']) {
-                    // System directives are: "@skip", "@include" and "@cacheControl"
-                    $systemDirectiveResolverClasses = [
-                        SkipDirectiveResolver::class,
-                        IncludeDirectiveResolver::class,
-                        AbstractCacheControlDirectiveResolver::class,
-                    ];
+                if ($ofTypes = $fieldArgs['ofTypes']) {
+                    $instanceManager = InstanceManagerFacade::getInstance();
+                    $directiveRegistry = DirectiveRegistryFacade::getInstance();
+                    $ofTypeDirectiveResolverClasses = array_filter(
+                        $directiveRegistry->getDirectiveResolverClasses(),
+                        function ($directiveResolverClass) use ($instanceManager, $ofTypes) {
+                            $directiveResolver = $instanceManager->getInstance($directiveResolverClass);
+                            return in_array($directiveResolver->getDirectiveType(), $ofTypes);
+                        }
+                    );
                     // Calculate the directive IDs
-                    $systemDirectiveIDs = array_map(
+                    $ofTypeDirectiveIDs = array_map(
                         function ($directiveResolverClass) {
-                            // To retrieve the ID, use the same method to calculate the ID used when creating a new Directive instance (which we can't do here, since it has side-effects)
+                            // To retrieve the ID, use the same method to calculate the ID
+                            // used when creating a new Directive instance
+                            // (which we can't do here, since it has side-effects)
                             $directiveSchemaDefinitionPath = [
                                 SchemaDefinition::ARGNAME_GLOBAL_DIRECTIVES,
                                 $directiveResolverClass::getDirectiveName(),
                             ];
                             return SchemaDefinitionHelpers::getID($directiveSchemaDefinitionPath);
                         },
-                        $systemDirectiveResolverClasses
+                        $ofTypeDirectiveResolverClasses
                     );
-                    $directiveIDs = array_diff(
+                    return array_intersect(
                         $directiveIDs,
-                        $systemDirectiveIDs
+                        $ofTypeDirectiveIDs
                     );
                 }
                 return $directiveIDs;
