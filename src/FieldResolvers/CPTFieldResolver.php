@@ -39,6 +39,19 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         ];
     }
 
+    /**
+     * These fields are used only by the application, so no need to
+     * expose them to the user
+     *
+     * @param TypeResolverInterface $typeResolver
+     * @param string $fieldName
+     * @return boolean
+     */
+    public function skipAddingToSchemaDefinition(TypeResolverInterface $typeResolver, string $fieldName): bool
+    {
+        return true;
+    }
+
     public function getSchemaFieldType(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $types = [
