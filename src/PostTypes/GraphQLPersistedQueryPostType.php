@@ -230,8 +230,9 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
                         $inheritedGraphQLVariables = json_encode($inheritedGraphQLVariables);
                     }
                     // If the 2 sets of attributes are different, then render the block again
-                    if (($graphQLQuery != $inheritedGraphQLQuery) ||
-                        ($graphQLVariables != $inheritedGraphQLVariables)
+                    if (
+                        $graphQLQuery != $inheritedGraphQLQuery
+                        || $graphQLVariables != $inheritedGraphQLVariables
                     ) {
                         // Render the block again, using the inherited attributes
                         $inheritedGraphQLBlockAttributes = [
