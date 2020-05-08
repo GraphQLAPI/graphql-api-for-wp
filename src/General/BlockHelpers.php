@@ -36,8 +36,12 @@ class BlockHelpers
                 $configurationPost = self::$blockCache[$configurationPostID];
             }
         }
-        // If there's either no post or ID, then that object doesn't exist (or maybe it's draft)
+        // If there's either no post or ID, then that object doesn't exist (or maybe it's draft or trashed)
         if (!$configurationPost || !$configurationPostID) {
+            return [];
+        }
+        // If it's trashed, then do not use
+        if ($configurationPost->post_status == 'trash') {
             return [];
         }
 
