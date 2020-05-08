@@ -60,7 +60,7 @@ abstract class AbstractPostType
      */
     public function getAlignClass(): string
     {
-        return 'alignwide';
+        return 'aligncenter';
     }
 
     /**

@@ -160,7 +160,7 @@ abstract class AbstractBlock
      */
     public function getAlignClass(): string
     {
-        return 'alignwide';
+        return 'aligncenter';
     }
 
     /**

@@ -32,6 +32,16 @@ abstract class AbstractControlBlock extends AbstractBlock
         return false;
     }
 
+    /**
+     * Block align class
+     *
+     * @return boolean
+     */
+    public function getAlignClass(): string
+    {
+        return 'alignwide';
+    }
+
     public function renderBlock(array $attributes, string $content): string
     {
         // Append "-front" because this style must be used only on the client, not on the admin
