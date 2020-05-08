@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
 use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
+use PoP\ComponentModel\State\ApplicationState;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
 
@@ -130,7 +131,8 @@ abstract class AbstractPostType
             /**
              * Add the excerpt (if not empty) as description of the GraphQL query
              */
-            global $post;
+            $vars = ApplicationState::getVars();
+            $post = $vars['routing-state']['queried-object'];
             if ($excerpt = $post->post_excerpt) {
                 $content = \sprintf(
                     \__('<p class="%s"><strong>Description: </strong>%s</p>'),

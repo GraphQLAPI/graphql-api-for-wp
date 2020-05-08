@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
+use PoP\ComponentModel\State\ApplicationState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
-use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\EndpointResolverTrait;
 use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
+use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\EndpointResolverTrait;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
 
 abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 {
@@ -115,7 +116,8 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
          * Check if it is this CPT...
          */
         if (\is_singular($this->getPostType())) {
-            global $post;
+            $vars = ApplicationState::getVars();
+            $post = $vars['routing-state']['queried-object'];
             return $this->getGraphQLQuerySourceContent($content, $post);
         }
         return $content;

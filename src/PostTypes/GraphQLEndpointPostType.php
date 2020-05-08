@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
+use PoP\API\Configuration\Request;
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
+use PoP\ComponentModel\State\ApplicationState;
 use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
@@ -13,7 +15,6 @@ use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractGraphQLQueryExecutionPostType;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
-use PoP\API\Configuration\Request;
 
 class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 {
@@ -215,7 +216,9 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
      */
     public function maybePrintClient(): void
     {
-        global $post;
+        $vars = ApplicationState::getVars();
+        $post = $vars['routing-state']['queried-object'];
+        
         // Read from the configuration if to expose the GraphiQL/Voyager client
         switch ($_REQUEST[RequestParams::VIEW]) {
             case RequestParams::VIEW_GRAPHIQL:

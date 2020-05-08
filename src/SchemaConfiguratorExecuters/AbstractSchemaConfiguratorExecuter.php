@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfiguratorExecuters;
 
+use PoP\ComponentModel\State\ApplicationState;
 use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\SchemaConfiguratorInterface;
 
 abstract class AbstractSchemaConfiguratorExecuter
@@ -16,9 +17,10 @@ abstract class AbstractSchemaConfiguratorExecuter
     public function init(): void
     {
         if (\is_singular($this->getPostType())) {
-            global $post;
+            $vars = ApplicationState::getVars();
+            $postID = $vars['routing-state']['queried-object-id'];
             $schemaConfigurator = $this->getSchemaConfigurator();
-            $schemaConfigurator->executeSchemaConfiguration($post->ID);
+            $schemaConfigurator->executeSchemaConfiguration($postID);
         }
     }
 
