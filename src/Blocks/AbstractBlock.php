@@ -24,8 +24,6 @@ abstract class AbstractBlock
      */
     public function init(): void
     {
-        // \add_action('load-post-new.php', [$this, 'initBlock']);
-        // \add_action('load-post.php', [$this, 'initBlock']);
         \add_action('init', [$this, 'initBlock']);
     }
 
