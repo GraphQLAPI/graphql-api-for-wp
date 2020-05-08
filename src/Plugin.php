@@ -40,6 +40,8 @@ use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\SchemaConfigurationBlockCategor
 
 class Plugin
 {
+    protected $postTypeObjects = [];
+
     public function init(): void
     {
         /**
@@ -63,12 +65,15 @@ class Plugin
         /**
          * Post Types
          */
-        (new GraphQLEndpointPostType())->init();
-        (new GraphQLPersistedQueryPostType())->init();
-        (new GraphQLSchemaConfigurationPostType())->init();
-        (new GraphQLAccessControlListPostType())->init();
-        (new GraphQLCacheControlListPostType())->init();
-        (new GraphQLFieldDeprecationListPostType())->init();
+        $this->postTypeObjects[] = new GraphQLEndpointPostType();
+        $this->postTypeObjects[] = new GraphQLPersistedQueryPostType();
+        $this->postTypeObjects[] = new GraphQLSchemaConfigurationPostType();
+        $this->postTypeObjects[] = new GraphQLAccessControlListPostType();
+        $this->postTypeObjects[] = new GraphQLCacheControlListPostType();
+        $this->postTypeObjects[] = new GraphQLFieldDeprecationListPostType();
+        foreach ($this->postTypeObjects as $postTypeObject) {
+            $postTypeObject->init();
+        }
 
         /**
          * Blocks
@@ -143,5 +148,44 @@ class Plugin
         (new CacheControlBlockCategory())->init();
         (new FieldDeprecationBlockCategory())->init();
         (new SchemaConfigurationBlockCategory())->init();
+
+        /**
+         * Plugin activation/deactivation
+         */
+        $this->handlePluginActivation();
+    }
+
+    /**
+     * Handle all tasks required when activating/deactivating the plugin
+     *
+     * @return void
+     */
+    protected function handlePluginActivation(): void
+    {
+        /**
+         * Get permalinks to work when activating the plugin
+         * @see https://codex.wordpress.org/Function_Reference/register_post_type#Flushing_Rewrite_on_Activation
+         */
+        \register_activation_hook(__FILE__, [$this, 'rewriteFlush']);
+    }
+
+    /**
+     * Flush rewrite to enable custom post permalinks
+     *
+     * @see https://codex.wordpress.org/Function_Reference/register_post_type#Flushing_Rewrite_on_Activation
+     * @return void
+     */
+    public function rewriteFlush(): void
+    {
+        // First, initialize all the custom post types. Their classes have already
+        // been instantiated. Calling `initPostType` will have them
+        // call function `register_post_type`
+        $postTypeObjects = [];
+        foreach ($postTypeObjects as $postTypeObject) {
+            $postTypeObject->initPostType();
+        }
+    
+        // Then, flush rewrite rules
+        flush_rewrite_rules();
     }
 }
