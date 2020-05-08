@@ -37,11 +37,15 @@ EOT;
 
     protected function getBlockContent(array $attributes, string $content): string
     {
+        $labels = [
+            true =>  \__('yes', 'graphql-api'),
+            false =>  __('no', 'graphql-api'),
+        ];
         $blockContentPlaceholder = '<p><strong>%s</strong> %s</p>';
         return sprintf(
             $blockContentPlaceholder,
             \__('Enabled:', 'graphql-api'),
-            $attributes[self::ATTRIBUTE_NAME_IS_ENABLED] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
+            $labels[$attributes[self::ATTRIBUTE_NAME_IS_ENABLED] ?? true]
         );
     }
 }

@@ -33,16 +33,20 @@ class EndpointOptionsBlock extends AbstractQueryExecutionOptionsBlock
     {
         $blockContent = parent::getBlockContent($attributes, $content);
 
+        $labels = [
+            true =>  \__('yes', 'graphql-api'),
+            false =>  __('no', 'graphql-api'),
+        ];
         $blockContentPlaceholder = '<p><strong>%s</strong> %s</p>';
         $blockContent .= sprintf(
             $blockContentPlaceholder,
             \__('Expose GraphiQL client?', 'graphql-api'),
-            $attributes[self::ATTRIBUTE_NAME_IS_GRAPHIQL_ENABLED] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
+            $labels[$attributes[self::ATTRIBUTE_NAME_IS_GRAPHIQL_ENABLED] ?? true]
         );
         $blockContent .= sprintf(
             $blockContentPlaceholder,
             \__('Expose the Interactive Schema client?', 'graphql-api'),
-            $attributes[self::ATTRIBUTE_NAME_IS_VOYAGER_ENABLED] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
+            $labels[$attributes[self::ATTRIBUTE_NAME_IS_VOYAGER_ENABLED] ?? true]
         );
 
         return $blockContent;

@@ -177,7 +177,14 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
      */
     protected function isGraphQLQueryExecution(): bool
     {
-        return !in_array($_REQUEST[RequestParams::VIEW], ['graphiql', 'schema']);
+        return !in_array(
+            $_REQUEST[RequestParams::VIEW],
+            [
+                RequestParams::VIEW_GRAPHIQL,
+                RequestParams::VIEW_SCHEMA,
+                RequestParams::VIEW_SOURCE,
+            ]
+        );
     }
 
     /**
@@ -187,15 +194,19 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
      */
     protected function doSomethingElse(): void
     {
-        /**
-         * Execute at the very last, because Component::boot is executed also on hook "wp",
-         * and there is useNamespacing set
-         */
-        \add_action(
-            'wp',
-            [$this, 'maybePrintClient'],
-            PHP_INT_MAX
-        );
+        if ($_REQUEST[RequestParams::VIEW] == RequestParams::VIEW_SOURCE) {
+            parent::doSomethingElse();
+        } else {
+            /**
+             * Execute at the very last, because Component::boot is executed also on hook "wp",
+             * and there is useNamespacing set
+             */
+            \add_action(
+                'wp',
+                [$this, 'maybePrintClient'],
+                PHP_INT_MAX
+            );
+        }
     }
     /**
      * Expose the GraphiQL/Voyager clients

@@ -8,6 +8,7 @@ use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\EndpointResolverTrait;
+use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 
 abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 {
@@ -17,14 +18,14 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
     }
     
     /**
-     * Indicates if we executing the GraphQL query (`true`) or doing something else
-     * (such as visualizing the query source)
+     * Indicates if we executing the GraphQL query (`true`) or visualizing the query source (`false`)
+     * It returns always `true`, unless passing ?view=source in the single post URL
      *
      * @return boolean
      */
     protected function isGraphQLQueryExecution(): bool
     {
-        return true;
+        return $_REQUEST[RequestParams::VIEW] != RequestParams::VIEW_SOURCE;
     }
 
     /**
@@ -49,13 +50,51 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
     }
 
     /**
-     * Do something else, not the execution of the GraphQL query
+     * Do something else, not the execution of the GraphQL query.
+     * By default, print the Query source
      *
      * @return void
      */
     protected function doSomethingElse(): void
     {
-        // By default, do nothing
+        /** Add the excerpt, which is the description of the GraphQL query */
+        \add_filter(
+            'the_content',
+            [$this, 'maybeGetGraphQLQuerySourceContent']
+        );
+    }
+
+    /**
+     * Render the GraphQL Query CPT
+     *
+     * @param [type] $content
+     * @return string
+     */
+    public function maybeGetGraphQLQuerySourceContent(string $content): string
+    {
+        /**
+         * Check if it is this CPT...
+         */
+        if (\is_singular($this->getPostType())) {
+            global $post;
+            return $this->getGraphQLQuerySourceContent($content, $post);
+        }
+        return $content;
+    }
+
+    /**
+     * Render the GraphQL Query CPT
+     *
+     * @param [type] $content
+     * @return string
+     */
+    protected function getGraphQLQuerySourceContent(string $content, $graphQLQueryPost): string
+    {
+        /**
+         * Prettyprint the code
+         */
+        $content .= '<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>';
+        return $content;
     }
 
     /**

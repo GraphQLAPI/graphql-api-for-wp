@@ -6,8 +6,6 @@ namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
 use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
-use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
@@ -165,98 +163,64 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
     }
 
     /**
-     * Indicates if we executing the GraphQL query (`true`) or visualizing the query source (`false`)
-     * It returns always `true`, unless passing ?view=source in the single post URL
+     * Add the parent query to the rendering of the GraphQL Query CPT
      *
-     * @return boolean
-     */
-    protected function isGraphQLQueryExecution(): bool
-    {
-        return $_REQUEST[RequestParams::VIEW] != RequestParams::VIEW_SOURCE;
-    }
-
-    /**
-     * Print the Query source
-     *
-     * @return void
-     */
-    protected function doSomethingElse(): void
-    {
-        /** Add the excerpt, which is the description of the GraphQL query */
-        \add_filter(
-            'the_content',
-            [$this, 'setGraphQLQuerySourceContent']
-        );
-    }
-
-    /**
-     * Render the GraphQL Query CPT
-     *
-     * @param [type] $content
+     * @param Object $graphQLQueryPost
      * @return string
      */
-    public function setGraphQLQuerySourceContent($content): string
+    protected function getGraphQLQuerySourceContent(string $content, $graphQLQueryPost): string
     {
+        $content = parent::getGraphQLQuerySourceContent($content, $graphQLQueryPost);
+
         /**
-         * Check if it is this CPT...
+         * If the GraphQL query has a parent, possibly it is missing the query/variables/acl/ccl attributes,
+         * which inherits from some parent
+         * In that case, render the block twice:
+         * 1. The current block, with missing attributes
+         * 2. The final block, completing the missing attributes from its parent
          */
-        if (\is_singular($this->getPostType())) {
-            global $post;
-            /**
-             * If the GraphQL query has a parent, possibly it is missing the query/variables/acl/ccl attributes,
-             * which inherits from some parent
-             * In that case, render the block twice:
-             * 1. The current block, with missing attributes
-             * 2. The final block, completing the missing attributes from its parent
-             */
-            $graphQLQueryPost = $post;
-            if ($graphQLQueryPost->post_parent) {
-                // Check if any attribute is missing
+        if ($graphQLQueryPost->post_parent) {
+            // Check if any attribute is missing
+            list(
+                $graphQLQuery,
+                $graphQLVariables
+            ) = GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, false);
+            // To render the variables in the block, they must be json_encoded
+            if ($graphQLVariables) {
+                $graphQLVariables = json_encode($graphQLVariables);
+            }
+            if (!$graphQLQuery || !$graphQLVariables) {
+                // Fetch the attributes using inheritance
                 list(
-                    $graphQLQuery,
-                    $graphQLVariables
-                ) = GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, false);
-                // To render the variables in the block, they must be json_encoded
-                if ($graphQLVariables) {
-                    $graphQLVariables = json_encode($graphQLVariables);
+                    $inheritedGraphQLQuery,
+                    $inheritedGraphQLVariables
+                ) = GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, true);
+                if ($inheritedGraphQLVariables) {
+                    $inheritedGraphQLVariables = json_encode($inheritedGraphQLVariables);
                 }
-                if (!$graphQLQuery || !$graphQLVariables) {
-                    // Fetch the attributes using inheritance
-                    list(
-                        $inheritedGraphQLQuery,
-                        $inheritedGraphQLVariables
-                    ) = GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, true);
-                    if ($inheritedGraphQLVariables) {
-                        $inheritedGraphQLVariables = json_encode($inheritedGraphQLVariables);
-                    }
-                    // If the 2 sets of attributes are different, then render the block again
-                    if (
-                        $graphQLQuery != $inheritedGraphQLQuery
-                        || $graphQLVariables != $inheritedGraphQLVariables
-                    ) {
-                        // Render the block again, using the inherited attributes
-                        $inheritedGraphQLBlockAttributes = [
-                            GraphiQLBlock::ATTRIBUTE_NAME_QUERY => $inheritedGraphQLQuery,
-                            GraphiQLBlock::ATTRIBUTE_NAME_VARIABLES => $inheritedGraphQLVariables,
-                        ];
-                        // Add the new rendering to the output, and a description for each
-                        $graphiQLBlock = PluginState::getGraphiQLBlock();
-                        $content = sprintf(
-                            '%s%s<hr/>%s%s',
-                            \__('<p><u>Complete GraphQL query, with attributes inherited from parent(s): </u></p>'),
-                            $graphiQLBlock->renderBlock($inheritedGraphQLBlockAttributes, ''),
-                            \__('<p><u>Current GraphQL query, with missing attributes: </u></p>'),
-                            $content
-                        );
-                    }
+                // If the 2 sets of attributes are different, then render the block again
+                if (
+                    $graphQLQuery != $inheritedGraphQLQuery
+                    || $graphQLVariables != $inheritedGraphQLVariables
+                ) {
+                    // Render the block again, using the inherited attributes
+                    $inheritedGraphQLBlockAttributes = [
+                        GraphiQLBlock::ATTRIBUTE_NAME_QUERY => $inheritedGraphQLQuery,
+                        GraphiQLBlock::ATTRIBUTE_NAME_VARIABLES => $inheritedGraphQLVariables,
+                    ];
+                    // Add the new rendering to the output, and a description for each
+                    $graphiQLBlock = PluginState::getGraphiQLBlock();
+                    $content = sprintf(
+                        '%s%s<hr/>%s%s',
+                        \__('<p><u>Executable GraphQL query (with inherited properties): </u></p>'),
+                        $graphiQLBlock->renderBlock($inheritedGraphQLBlockAttributes, ''),
+                        \__('<p><u>Defined GraphQL query (without inherited properties): </u></p>'),
+                        $content
+                    );
                 }
             }
-
-            /**
-             * Prettyprint the code
-             */
-            $content .= '<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>';
         }
+
         return $content;
     }
 

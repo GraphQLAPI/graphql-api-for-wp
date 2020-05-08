@@ -6,8 +6,10 @@ namespace Leoloso\GraphQLByPoPWPPlugin\General;
 
 class RequestParams
 {
-    const VIEW = 'view';
-    const VIEW_SOURCE = 'source';
-    const ACTION = 'action';
-    const ACTION_EXECUTE_QUERY = 'execute_query';
+    public const VIEW = 'view';
+    public const VIEW_SOURCE = 'source';
+    public const VIEW_GRAPHIQL = 'graphiql';
+    public const VIEW_SCHEMA = 'schema';
+    public const ACTION = 'action';
+    public const ACTION_EXECUTE_QUERY = 'execute_query';
 }
