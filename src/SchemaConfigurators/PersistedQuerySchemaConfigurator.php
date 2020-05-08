@@ -24,8 +24,10 @@ class PersistedQuerySchemaConfigurator extends AbstractQueryExecutionSchemaConfi
     {
         parent::executeSchemaConfigurationItems($schemaConfigurationID);
 
-        // Also execute the Cache Control
-        $this->executeSchemaConfigurationCacheControlLists($schemaConfigurationID);
+        // Also execute the Cache Control, unless previewing the query
+        if (!\is_preview()) {
+            $this->executeSchemaConfigurationCacheControlLists($schemaConfigurationID);
+        }
     }
 
     /**

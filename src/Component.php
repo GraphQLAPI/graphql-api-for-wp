@@ -10,6 +10,8 @@ use PoP\Root\Component\YAMLServicesTrait;
 use PoP\ComponentModel\ComponentConfiguration;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use Leoloso\GraphQLByPoPWPPlugin\Config\ServiceConfiguration;
+use PoP\ComponentModel\Facades\Engine\DataloadingEngineFacade;
+use PoP\CacheControl\DirectiveResolvers\CacheControlDirectiveResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\SchemaConfiguratorExecuters\EndpointSchemaConfiguratorExecuter;
 use Leoloso\GraphQLByPoPWPPlugin\SchemaConfiguratorExecuters\PersistedQuerySchemaConfiguratorExecuter;
@@ -76,6 +78,14 @@ class Component extends AbstractComponent
     public static function boot()
     {
         parent::boot();
+
+        // Enable the CacheControl, unless previewing the query
+        if (!\is_preview()) {
+            $dataloadingEngine = DataloadingEngineFacade::getInstance();
+            $dataloadingEngine->addMandatoryDirectives([
+                CacheControlDirectiveResolver::getDirectiveName(),
+            ]);
+        }
         
         // Configure the GraphQL query with Access/Cache Control Lists
         (new PersistedQuerySchemaConfiguratorExecuter())->init();

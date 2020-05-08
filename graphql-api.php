@@ -16,14 +16,18 @@ Domain Path: /languages
 
 // Exit if accessed directly
 if (!defined('ABSPATH')) {
-	exit;
+    exit;
 }
+
 define('GRAPHQL_BY_POP_PLUGIN_DIR', dirname(__FILE__));
 define('GRAPHQL_BY_POP_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('GRAPHQL_BY_POP_VERSION', '0.1');
 
+// Set all the pre-required environment variables, before loading all other modules
+require_once(__DIR__ . '/environment.php');
+
 // Load Composer’s autoloader
-require_once (__DIR__.'/vendor/autoload.php');
+require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure the plugin. This defines hooks to set environment variables, so must be executed
 // before those hooks are triggered for first time (in ComponentConfiguration classes)
@@ -33,7 +37,7 @@ require_once (__DIR__.'/vendor/autoload.php');
 \Leoloso\GraphQLByPoPWPPlugin\Component::init();
 
 // Load the "must-use" plugin to boot PoP
-require_once (__DIR__.'/wp-content/mu-plugins/engine-wp-bootloader/pop-engine-wp-bootloader.php');
+require_once(__DIR__ . '/wp-content/mu-plugins/engine-wp-bootloader/pop-engine-wp-bootloader.php');
 
 // Initialize this plugin
 (new \Leoloso\GraphQLByPoPWPPlugin\Plugin())->init();
