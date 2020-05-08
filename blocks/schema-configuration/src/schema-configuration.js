@@ -71,16 +71,34 @@ const SchemaConfigurationSelectCard = ( props ) => {
 		},
 	  ];
 	/**
-	 * Create a dictionary, with ID as key, and title as the value
-	 */
-	/**
 	 * React Select expects to pass the same elements from the options as defaultValue,
-	 * including the label
-	 * { value: ..., label: ... },
+	 * including the label: { value: ..., label: ... }
+	 * Retrieve this object from the options
 	 */
-	const defaultValue = schemaConfiguration != null ?
-		options.filter( option => option.value == schemaConfiguration ).shift() :
-		null;
+	let defaultValue = null;
+	if (schemaConfiguration != null) {
+		const selectedOptions = options.filter( option => option.value == schemaConfiguration );
+		if (selectedOptions.length) {
+			/**
+			 * React Select expects to pass the same elements from the options as defaultValue,
+			 * including the label: { value: ..., label: ... }
+			 */
+			defaultValue = selectedOptions[0];
+		} else {
+			/**
+			 * If the defaultValue is not part of the options, it's a stranded ID
+			 * (eg: from a deleted custom post)
+			 */
+			defaultValue = {
+				label: sprintf(
+					__('(Undefined or unpublished item with ID %s)', 'graphql-api'),
+					schemaConfiguration
+				),
+				value: schemaConfiguration,
+			}
+		}
+	}
+		
 	/**
 	 * Check if the schema configurations have not been fetched yet,
 	 * or if there are selected items (for which we need the data to know the label),
