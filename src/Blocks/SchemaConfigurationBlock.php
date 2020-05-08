@@ -6,6 +6,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\QueryExecutionBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\General\BlockRenderingHelpers;
 
 /**
  * SchemaConfiguration block
@@ -58,21 +59,10 @@ EOF;
             $schemaConfigurationContent = \__('Inherit from parent', 'graphql-api');
         } elseif ($schemaConfigurationID > 0) {
             $schemaConfigurationObject = \get_post($schemaConfigurationID);
-            $schemaConfigurationObjectTitle = $schemaConfigurationObject->post_title ?
-                $schemaConfigurationObject->post_title :
-                \__('(No title)', 'graphql-api');
-            // If the post is either draft/pending/trash, add that info in the title
-            if ($schemaConfigurationObject->post_status != 'publish') {
-                $schemaConfigurationObjectTitle = sprintf(
-                    \__('(%s) %s', 'graphql-api'),
-                    ucwords($schemaConfigurationObject->post_status),
-                    $schemaConfigurationObjectTitle
-                );
-            }
             $schemaConfigurationContent = \sprintf(
                 '<code><a href="%s">%s</a></code>%s',
                 \get_permalink($schemaConfigurationObject->ID),
-                $schemaConfigurationObjectTitle,
+                BlockRenderingHelpers::getCustomPostTitle($schemaConfigurationObject),
                 $schemaConfigurationObject->post_excerpt ?
                     '<br/><small>' . $schemaConfigurationObject->post_excerpt . '</small>'
                     : ''

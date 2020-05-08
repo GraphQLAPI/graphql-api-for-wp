@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
+use Leoloso\GraphQLByPoPWPPlugin\General\BlockRenderingHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\SchemaConfigurationBlockCategory;
@@ -39,21 +40,41 @@ abstract class AbstractSchemaConfigPostListBlock extends AbstractBlock
             %s
         </div>
 EOF;
-        $postContentElems = [];
+        $postContentElems = $foundPostListIDs = [];
         if ($postListIDs = $attributes[$this->getAttributeName()]) {
             $postObjects = \get_posts([
                 'include' => $postListIDs,
                 'posts_per_page' => -1,
                 'post_type' => $this->getPostType(),
+                'post_status' => [
+                    'publish',
+                    'draft',
+                    'pending',
+                ],
             ]);
             foreach ($postObjects as $postObject) {
+                $foundPostListIDs[] = $postObject->ID;
                 $postContentElems[] = \sprintf(
                     '<code><a href="%s">%s</a></code>%s',
                     \get_permalink($postObject->ID),
-                    $postObject->post_title ? $postObject->post_title : \__('(No title)', 'graphql-api'),
+                    BlockRenderingHelpers::getCustomPostTitle($postObject),
                     $postObject->post_excerpt ?
                         '<br/><small>' . $postObject->post_excerpt . '</small>'
                         : ''
+                );
+            }
+            // If any ID was not retrieved as an object, it is a deleted post
+            $notFoundPostListIDs = array_diff(
+                $postListIDs,
+                $foundPostListIDs
+            );
+            foreach ($notFoundPostListIDs as $notFoundPostID) {
+                $postContentElems[] = \sprintf(
+                    '<code>%s</code>',
+                    \sprintf(
+                        \__('Undefined item with ID %s', 'graphql-api'),
+                        $notFoundPostID
+                    )
                 );
             }
         }
