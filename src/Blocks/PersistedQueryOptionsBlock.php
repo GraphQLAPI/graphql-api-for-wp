@@ -14,9 +14,9 @@ use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\PersistedQueryBlockCategory;
  */
 class PersistedQueryOptionsBlock extends AbstractQueryExecutionOptionsBlock
 {
-    public const ATTRIBUTE_NAME_ACCEPT_VARIABLES_AS_URL_PARAMS = 'acceptVariablesAsURLParams';
-
     use GraphQLByPoPBlockTrait;
+
+    public const ATTRIBUTE_NAME_ACCEPT_VARIABLES_AS_URL_PARAMS = 'acceptVariablesAsURLParams';
 
     protected function getBlockName(): string
     {

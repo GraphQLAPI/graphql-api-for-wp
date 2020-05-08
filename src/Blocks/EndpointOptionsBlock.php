@@ -14,10 +14,10 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
  */
 class EndpointOptionsBlock extends AbstractQueryExecutionOptionsBlock
 {
+    use GraphQLByPoPBlockTrait;
+
     public const ATTRIBUTE_NAME_IS_GRAPHIQL_ENABLED = 'isGraphiQLEnabled';
     public const ATTRIBUTE_NAME_IS_VOYAGER_ENABLED = 'isVoyagerEnabled';
-
-    use GraphQLByPoPBlockTrait;
 
     protected function getBlockName(): string
     {

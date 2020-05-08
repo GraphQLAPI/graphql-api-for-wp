@@ -12,8 +12,11 @@ use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
 /**
  * Base class for a Gutenberg block, within a multi-block plugin.
  * The JS/CSS assets for each block is contained in folder {pluginDir}/blocks/{blockName}, and follows
- * the architecture from @wordpress/create-block package(https://developer.wordpress.org/block-editor/packages/packages-create-block/),
- * (this package provides the scaffolding for a single-block plugin, so the plugin .php file is ignored registering a single block is ignored, and everything else is used)
+ * the architecture from @wordpress/create-block package
+ *
+ * @see https://developer.wordpress.org/block-editor/packages/packages-create-block/
+ * (this package provides the scaffolding for a single-block plugin,
+ * so the plugin .php file is ignored registering a single block is ignored, and everything else is used)
  */
 abstract class AbstractBlock
 {
@@ -219,21 +222,21 @@ abstract class AbstractBlock
                 // from edited post in post.php
                 global $pagenow;
                 $typenow = '';
-                if ( 'post-new.php' === $pagenow ) {
-                    if ( isset( $_REQUEST['post_type'] ) && \post_type_exists( $_REQUEST['post_type'] ) ) {
+                if ('post-new.php' === $pagenow) {
+                    if (isset($_REQUEST['post_type']) && \post_type_exists($_REQUEST['post_type'])) {
                         $typenow = $_REQUEST['post_type'];
                     };
-                } elseif ( 'post.php' === $pagenow ) {
-                    if ( isset( $_GET['post'] ) && isset( $_POST['post_ID'] ) && (int) $_GET['post'] !== (int) $_POST['post_ID'] ) {
-                        // wp_die( __( 'A post ID mismatch has been detected.' ), __( 'Sorry, you are not allowed to edit this item.' ), 400 );
-                    } elseif ( isset( $_GET['post'] ) ) {
+                } elseif ('post.php' === $pagenow) {
+                    if (isset($_GET['post']) && isset($_POST['post_ID']) && (int) $_GET['post'] !== (int) $_POST['post_ID']) {
+                        // Do nothing
+                    } elseif (isset($_GET['post'])) {
                         $post_id = (int) $_GET['post'];
-                    } elseif ( isset( $_POST['post_ID'] ) ) {
+                    } elseif (isset($_POST['post_ID'])) {
                         $post_id = (int) $_POST['post_ID'];
                     }
-                    if ( $post_id ) {
-                        $post = \get_post( $post_id );
-                        $typenow        = $post->post_type;
+                    if ($post_id) {
+                        $post = \get_post($post_id);
+                        $typenow = $post->post_type;
                     }
                 }
                 if (!$typenow || !in_array($typenow, $blockCategory->getPostTypes())) {

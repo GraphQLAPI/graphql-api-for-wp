@@ -14,9 +14,9 @@ use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\FieldDeprecationBlockCategory;
  */
 class FieldDeprecationBlock extends AbstractControlBlock
 {
-    public const ATTRIBUTE_NAME_DEPRECATION_REASON = 'deprecationReason';
-
     use GraphQLByPoPBlockTrait;
+
+    public const ATTRIBUTE_NAME_DEPRECATION_REASON = 'deprecationReason';
 
     protected function getBlockName(): string
     {

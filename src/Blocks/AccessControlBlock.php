@@ -16,10 +16,9 @@ use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
  */
 class AccessControlBlock extends AbstractControlBlock
 {
-    public const ATTRIBUTE_NAME_SCHEMA_MODE = 'schemaMode';
-
-
     use GraphQLByPoPBlockTrait;
+
+    public const ATTRIBUTE_NAME_SCHEMA_MODE = 'schemaMode';
 
     protected function getBlockName(): string
     {
