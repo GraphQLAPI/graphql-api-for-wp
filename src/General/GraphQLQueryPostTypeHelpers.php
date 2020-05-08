@@ -44,6 +44,10 @@ class GraphQLQueryPostTypeHelpers
             // If any of them is still empty, and this post has a parent, then load it for the next iteration
             if ($inheritAttributes && (!$graphQLQuery || !$graphQLVariables) && $graphQLQueryPost->post_parent) {
                 $graphQLQueryPost = \get_post($graphQLQueryPost->post_parent);
+                // If it's trashed, then do not use
+                if ($graphQLQueryPost->post_status == 'trash') {
+                    $graphQLQueryPost = null;
+                }
             } else {
                 // Otherwise, finish iterating
                 $graphQLQueryPost = null;
