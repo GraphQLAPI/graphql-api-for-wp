@@ -23,6 +23,18 @@ const fetchGraphQLQuery = (query, variables, endpoint) => {
 	 */
 	const endpointURL = endpoint || GRAPHQL_API_ADMIN_ENDPOINT;
 	/**
+	 * If there is no endpoint (eg: not passing param endpoint,
+	 * and running component outside context of WordPress, so GRAPHQL_API_ADMIN_ENDPOINT is not set)
+	 * then return an error message
+	 */
+	if (!endpointURL) {
+		return  {
+			errors: [ {
+				message: __('No endpoint provided to execute the GraphQL query', 'graphql-api')
+			} ]
+		};
+	}
+	/**
 	 * Return the response always, both in case of success and error
 	 * Add the successful response under key "data", which is stripped by "graphql-request"
 	 */
