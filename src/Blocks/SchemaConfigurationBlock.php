@@ -39,12 +39,22 @@ class SchemaConfigurationBlock extends AbstractBlock
 
     public function renderBlock(array $attributes, string $content): string
     {
-        $content = sprintf(
+        $blockContent = sprintf(
             '<div class="%s">',
             $this->getBlockClassName() . ' ' . $this->getAlignClass()
         );
-        $content .= 'saraza';
-        $content .= '</div>';
-        return $content;
+        $blockContent .= $content;
+        $blockContent .= '</div>';
+        return $blockContent;
+    }
+
+    /**
+     * Block align class
+     *
+     * @return boolean
+     */
+    public function getAlignClass(): string
+    {
+        return 'aligncenter';
     }
 }
