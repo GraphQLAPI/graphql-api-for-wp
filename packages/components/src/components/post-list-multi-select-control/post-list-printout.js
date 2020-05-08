@@ -3,11 +3,12 @@
  */
 import { compose } from '@wordpress/compose';
 import { Card, CardHeader, CardBody, CheckboxControl } from '@wordpress/components';
-import { __, sprintf } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import { EMPTY_LABEL } from '../../default-configuration';
 import withSpinner from '../loading/with-spinner';
 import withErrorMessage from '../loading/with-error-message';
 import '../base-styles/checkbox-list.scss';
+import { getLabelForNotFoundElement } from '../helpers';
 
 /**
  * Print the selected Access Control Lists.
@@ -34,7 +35,7 @@ const PostListPrintoutBody = ( props ) => {
 							key={ selectedItemID }
 						>
 							<CheckboxControl
-								label={ itemsDictionary[selectedItemID] || sprintf(__('(Undefined or unpublished item with ID %s)', 'graphql-api'), selectedItemID) }
+								label={ itemsDictionary[selectedItemID] || getLabelForNotFoundElement(selectedItemID) }
 								checked={ true }
 								disabled={ true }
 							/>

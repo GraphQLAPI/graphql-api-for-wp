@@ -3,22 +3,17 @@
  */
 import { withSelect } from '@wordpress/data';
 import { compose, withState } from '@wordpress/compose';
-import { __, sprintf } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 
 /**
  * Internal dependencies
  */
-import { /*withErrorMessage, withSpinner, */SelectCard } from '../../../packages/components/src';
+import { SelectCard, getLabelForNotFoundElement } from '../../../packages/components/src';
 import {
 	ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT,
 	ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_NONE,
 	ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT,
 } from './schema-configuration-meta-values'
-
-const GetLabelForNotFoundValue = ( val ) => sprintf(
-	__('(Undefined or unpublished item with ID %s)', 'graphql-api'),
-	val
-);
 
 const SchemaConfigurationSelectCard = ( props ) => {
 	const { queryPostParent, schemaConfigurations, attributes: { schemaConfiguration } } = props;
@@ -90,10 +85,7 @@ const SchemaConfigurationSelectCard = ( props ) => {
 			 * (eg: from a deleted custom post)
 			 */
 			defaultValue = {
-				label: sprintf(
-					__('(Undefined or unpublished item with ID %s)', 'graphql-api'),
-					schemaConfiguration
-				),
+				label: getLabelForNotFoundElement(schemaConfiguration),
 				value: schemaConfiguration,
 			}
 		}
@@ -112,7 +104,7 @@ const SchemaConfigurationSelectCard = ( props ) => {
 			attributeName="schemaConfiguration"
 			options={ groupedOptions/*options*/ }
 			defaultValue={ defaultValue }
-			getLabelForNotFoundValueCallback={ GetLabelForNotFoundValue }
+			getLabelForNotFoundValueCallback={ getLabelForNotFoundElement }
 			maybeShowSpinnerOrError={ maybeShowSpinnerOrError }
 		/>
 	);

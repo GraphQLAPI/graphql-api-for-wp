@@ -2,7 +2,8 @@
  * WordPress dependencies
  */
 import { withSelect } from '@wordpress/data';
-import { __, sprintf } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
+import { getLabelForNotFoundElement } from '../helpers';
 
 const AddUndefinedSelectedItemIDs = withSelect(
 	( select, { items, selectedItems } ) => {
@@ -17,10 +18,7 @@ const AddUndefinedSelectedItemIDs = withSelect(
 			items: items.concat(undefinedSelectedItemIDs.map( undefinedSelectedItemID => (
 				{
 					group: __('Undefined elements', 'graphql-api'),
-					title: sprintf(
-						__('(Undefined or unpublished item with ID %s)', 'graphql-api'),
-						undefinedSelectedItemID
-					),
+					title: getLabelForNotFoundElement(undefinedSelectedItemID),
 					value: undefinedSelectedItemID,
 				}
 			) ) )
