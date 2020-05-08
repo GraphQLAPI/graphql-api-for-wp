@@ -157,7 +157,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
      *
      * @return array
      */
-    protected function getGraphQLQueryAndVariables(): array
+    protected function getGraphQLQueryAndVariables($graphQLQueryPost): array
     {
         /**
          * Extract the query from the BODY through standard GraphQL endpoint execution
@@ -218,7 +218,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     {
         $vars = ApplicationState::getVars();
         $post = $vars['routing-state']['queried-object'];
-        
+
         // Read from the configuration if to expose the GraphiQL/Voyager client
         switch ($_REQUEST[RequestParams::VIEW]) {
             case RequestParams::VIEW_GRAPHIQL:

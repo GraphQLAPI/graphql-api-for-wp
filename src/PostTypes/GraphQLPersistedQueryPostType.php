@@ -239,13 +239,11 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
      *
      * @return array
      */
-    protected function getGraphQLQueryAndVariables(): array
+    protected function getGraphQLQueryAndVariables($graphQLQueryPost): array
     {
         /**
          * Extract the query from the post (or from its parents), and set it in $vars
          */
-        global $post;
-        $graphQLQueryPost = $post;
         return GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, true);
     }
 

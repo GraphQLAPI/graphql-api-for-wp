@@ -55,7 +55,7 @@ trait EndpointResolverTrait
      *
      * @return array Array of 2 elements: [query, variables]
      */
-    abstract protected function getGraphQLQueryAndVariables(): array;
+    abstract protected function getGraphQLQueryAndVariables($graphQLQueryPost): array;
 
     /**
      * Indicate if the GraphQL variables must override the URL params
@@ -92,7 +92,7 @@ trait EndpointResolverTrait
         list(
             $graphQLQuery,
             $graphQLVariables
-        ) = $this->getGraphQLQueryAndVariables();
+        ) = $this->getGraphQLQueryAndVariables($vars['routing-state']['queried-object']);
         if (!$graphQLQuery) {
             // If there is no query, nothing to do!
             return;

@@ -23,7 +23,7 @@ class AdminEndpointResolver
      *
      * @return array
      */
-    protected function getGraphQLQueryAndVariables(): array
+    protected function getGraphQLQueryAndVariables($graphQLQueryPost): array
     {
         /**
          * Extract the query from the BODY through standard GraphQL endpoint execution
