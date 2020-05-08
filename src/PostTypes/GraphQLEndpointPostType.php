@@ -215,14 +215,17 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
      */
     public function maybePrintClient(): void
     {
+        global $post;
         // Read from the configuration if to expose the GraphiQL/Voyager client
-        $exposeClient = false;
-        $optionsBlockDataItem = $this->getOptionsBlockDataItem();
-        if ($_REQUEST[RequestParams::VIEW] == 'graphiql') {
-            // `true` is the default option in Gutenberg, so it's not saved to the DB!
-            $exposeClient = $optionsBlockDataItem['attrs'][EndpointOptionsBlock::ATTRIBUTE_NAME_IS_GRAPHIQL_ENABLED] ?? true;
-        } elseif ($_REQUEST[RequestParams::VIEW] == 'schema') {
-            $exposeClient = $optionsBlockDataItem['attrs'][EndpointOptionsBlock::ATTRIBUTE_NAME_IS_VOYAGER_ENABLED] ?? true;
+        switch ($_REQUEST[RequestParams::VIEW]) {
+            case RequestParams::VIEW_GRAPHIQL:
+                $exposeClient = $this->isGraphiQLEnabled($post);
+                break;
+            case RequestParams::VIEW_SCHEMA:
+                $exposeClient = $this->isVoyagerEnabled($post);
+                break;
+            default:
+                $exposeClient = false;
         }
         if (!$exposeClient) {
             return;
@@ -230,8 +233,8 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
         // Read from the static HTML files and replace their endpoints
         $dirPaths = [
-            'graphiql' => '/vendor/leoloso/pop-graphiql',
-            'schema' => '/vendor/leoloso/pop-graphql-voyager',
+            RequestParams::VIEW_GRAPHIQL => '/vendor/leoloso/pop-graphiql',
+            RequestParams::VIEW_SCHEMA => '/vendor/leoloso/pop-graphql-voyager',
         ];
         if ($dirPath = $dirPaths[$_REQUEST[RequestParams::VIEW]]) {
             // Read the file, and return it already
@@ -239,8 +242,8 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
             $fileContents = \file_get_contents($file, true);
             // Modify the script path
             $jsFileNames = [
-                'graphiql' => 'graphiql.js',
-                'schema' => 'voyager.js',
+                RequestParams::VIEW_GRAPHIQL => 'graphiql.js',
+                RequestParams::VIEW_SCHEMA => 'voyager.js',
             ];
             if ($jsFileName = $jsFileNames[$_REQUEST[RequestParams::VIEW]]) {
                 $jsFileURL = \trim(\GRAPHQL_BY_POP_PLUGIN_URL, '/') . $dirPath . '/' . $jsFileName;
@@ -258,5 +261,102 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
             echo $fileContents;
             die;
         }
+    }
+    
+    /**
+     * Read the options block and check the value of attribute "isGraphiQLEnabled"
+     *
+     * @return void
+     */
+    protected function isGraphiQLEnabled($postOrID): bool
+    {
+        // If the endpoint is disabled, then also disable this client
+        if (!$this->isEnabled($postOrID)) {
+            return false;
+        }
+
+        // `true` is the default option in Gutenberg, so it's not saved to the DB!
+        return $this->isOptionsBlockValueOn(
+            $postOrID,
+            EndpointOptionsBlock::ATTRIBUTE_NAME_IS_GRAPHIQL_ENABLED,
+            true
+        );
+    }
+    
+    /**
+     * Read the options block and check the value of attribute "isVoyagerEnabled"
+     *
+     * @return void
+     */
+    protected function isVoyagerEnabled($postOrID): bool
+    {
+        // If the endpoint is disabled, then also disable this client
+        if (!$this->isEnabled($postOrID)) {
+            return false;
+        }
+
+        // `true` is the default option in Gutenberg, so it's not saved to the DB!
+        return $this->isOptionsBlockValueOn(
+            $postOrID,
+            EndpointOptionsBlock::ATTRIBUTE_NAME_IS_VOYAGER_ENABLED,
+            true
+        );
+    }
+
+    /**
+     * Get actions to add for this CPT
+     *
+     * @param Object $post
+     * @return array
+     */
+    protected function getPostTypeTableActions($post): array
+    {
+        $actions = parent::getPostTypeTableActions($post);
+
+        /**
+         * If neither GraphiQL or Voyager are enabled, then already return
+         */
+        $isGraphiQLEnabled = $this->isGraphiQLEnabled($post);
+        $isVoyagerEnabled = $this->isVoyagerEnabled($post);
+        if (!$isGraphiQLEnabled && !$isVoyagerEnabled) {
+            return $actions;
+        }
+
+        $title = \_draft_or_post_title();
+        $permalink = \get_permalink($post->ID);
+        /**
+         * Attach the GraphiQL/Voyager clients
+         */
+        return array_merge(
+            $actions,
+            // If GraphiQL enabled, add the "GraphiQL" action
+            $isGraphiQLEnabled ? [
+                'graphiql' => sprintf(
+                    '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
+                    \add_query_arg(
+                        RequestParams::VIEW,
+                        RequestParams::VIEW_GRAPHIQL,
+                        $permalink
+                    ),
+                    /* translators: %s: Post title. */
+                    \esc_attr(\sprintf(\__('GraphiQL &#8220;%s&#8221;'), $title)),
+                    __('GraphiQL', 'graphql-api')
+                ),
+            ] : [],
+            // If Voyager enabled, add the "Schema" action
+            $isVoyagerEnabled ? [
+                'schema' => sprintf(
+                    '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
+                    \add_query_arg(
+                        RequestParams::VIEW,
+                        RequestParams::VIEW_SCHEMA,
+                        $permalink
+                    ),
+                    /* translators: %s: Post title. */
+                    \esc_attr(\sprintf(\__('Schema &#8220;%s&#8221;'), $title)),
+                    __('Schema', 'graphql-api')
+                )
+            ] : []
+        );
     }
 }

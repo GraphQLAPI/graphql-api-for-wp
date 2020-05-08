@@ -29,6 +29,45 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
     }
 
     /**
+     * Get actions to add for this CPT
+     *
+     * @param Object $post
+     * @return array
+     */
+    protected function getPostTypeTableActions($post): array
+    {
+        $title = \_draft_or_post_title();
+        /**
+         * View must be attached ?view=source, and the previous "View" is renamed "Execute"
+         */
+        return array_merge(
+            [
+                'view' => sprintf(
+                    '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
+                    \add_query_arg(
+                        RequestParams::VIEW,
+                        RequestParams::VIEW_SOURCE,
+                        \get_permalink($post->ID)
+                    ),
+                    /* translators: %s: Post title. */
+                    \esc_attr(\sprintf(\__('View &#8220;%s&#8221;'), $title)),
+                    __('View', 'graphql-api')
+                ),
+            ],
+            $this->isEnabled($post) ?
+            [
+                'execute' => sprintf(
+                    '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
+                    \get_permalink($post->ID),
+                    /* translators: %s: Post title. */
+                    \esc_attr(\sprintf(\__('Execute &#8220;%s&#8221;'), $title)),
+                    __('Execute', 'graphql-api')
+                )
+            ] : []
+        );
+    }
+
+    /**
      * Add the hook to initialize the different post types
      *
      * @return void
@@ -116,23 +155,37 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
      *
      * @return void
      */
-    protected function isEnabled(): bool
+    protected function isOptionsBlockValueOn($postOrID, string $attribute, bool $default): bool
     {
-        $optionsBlockDataItem = $this->getOptionsBlockDataItem();
+        $optionsBlockDataItem = $this->getOptionsBlockDataItem($postOrID);
         // If there was no options block, something went wrong in the post content
         if (is_null($optionsBlockDataItem)) {
-            return false;
+            return null;
         }
 
+        // The default value is not saved in the DB in Gutenberg!
+        return $optionsBlockDataItem['attrs'][$attribute] ?? $default;
+    }
+    
+    /**
+     * Read the options block and check the value of attribute "isEnabled"
+     *
+     * @return void
+     */
+    protected function isEnabled($postOrID): bool
+    {
         // `true` is the default option in Gutenberg, so it's not saved to the DB!
-        return $optionsBlockDataItem['attrs'][AbstractQueryExecutionOptionsBlock::ATTRIBUTE_NAME_IS_ENABLED] ?? true;
+        return $this->isOptionsBlockValueOn(
+            $postOrID,
+            AbstractQueryExecutionOptionsBlock::ATTRIBUTE_NAME_IS_ENABLED,
+            true
+        );
     }
 
-    protected function getOptionsBlockDataItem(): ?array
+    protected function getOptionsBlockDataItem($postOrID): ?array
     {
-        global $post;
         return BlockHelpers::getSingleBlockOfTypeFromCustomPost(
-            $post->ID,
+            $postOrID,
             $this->getQueryExecutionOptionsBlock()
         );
     }
@@ -142,7 +195,7 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
      *
      * @return boolean
      */
-    protected function doURLParamsOverrideGraphQLVariables(): bool
+    protected function doURLParamsOverrideGraphQLVariables($postOrID): bool
     {
         return true;
     }
@@ -154,7 +207,8 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
      */
     public function addGraphQLVars($vars_in_array): void
     {
-        if (\is_singular($this->getPostType()) && $this->isEnabled()) {
+        $vars = &$vars_in_array[0];
+        if (\is_singular($this->getPostType()) && $this->isEnabled($vars['routing-state']['queried-object-id'])) {
             
             $this->upstreamAddGraphQLVars($vars_in_array);
         }

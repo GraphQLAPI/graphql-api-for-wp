@@ -259,9 +259,9 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
      *
      * @return boolean
      */
-    protected function doURLParamsOverrideGraphQLVariables(): bool
+    protected function doURLParamsOverrideGraphQLVariables($postOrID): bool
     {
-        $optionsBlockDataItem = $this->getOptionsBlockDataItem();
+        $optionsBlockDataItem = $this->getOptionsBlockDataItem($postOrID);
 
         // `true` is the default option in Gutenberg, so it's not saved to the DB!
         return $optionsBlockDataItem['attrs'][PersistedQueryOptionsBlock::ATTRIBUTE_NAME_ACCEPT_VARIABLES_AS_URL_PARAMS] ?? true;
@@ -276,7 +276,8 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
     {
         if (\is_singular($this->getPostType())) {
             // Check if it is enabled, by configuration
-            if (!$this->isEnabled()) {
+            $vars = &$vars_in_array[0];
+            if (!$this->isEnabled($vars['routing-state']['queried-object-id'])) {
                 return;
             }
             // Remove the VarsHooks from the GraphQLAPIRequest, so it doesn't process the GraphQL query

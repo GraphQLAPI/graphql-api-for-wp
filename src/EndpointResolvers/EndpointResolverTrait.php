@@ -20,13 +20,15 @@ trait EndpointResolverTrait
     protected function executeGraphQLQuery(): void
     {
         /**
-         * Execute first, before VarsHooks in the API package, to set-up the variables in $vars
-         * as soon as we knows if it's a singular post of this type
+         * Priority 1: Execute before VarsHooks in the API package, to set-up the variables
+         * in $vars as soon as we knows if it's a singular post of this type.
+         * But after setting $vars['routing-state']['queried-object-id'], to get the current
+         * post ID from $vars instead of the global context
          */
         \add_action(
             'ApplicationState:addVars',
             [$this, 'addGraphQLVars'],
-            0,
+            1,
             1
         );
         /**
@@ -60,7 +62,7 @@ trait EndpointResolverTrait
      *
      * @return boolean
      */
-    protected function doURLParamsOverrideGraphQLVariables(): bool
+    protected function doURLParamsOverrideGraphQLVariables($postOrID): bool
     {
         return false;
     }
@@ -102,7 +104,7 @@ trait EndpointResolverTrait
             // Normally, GraphQL variables must not override the variables from the request
             // But this behavior can be overriden for the persisted query,
             // by setting "Accept Variables as URL Params" => false
-            $vars['variables'] = $this->doURLParamsOverrideGraphQLVariables() ?
+            $vars['variables'] = $this->doURLParamsOverrideGraphQLVariables($vars['routing-state']['queried-object-id']) ?
                 array_merge(
                     $graphQLVariables,
                     $vars['variables'] ?? []

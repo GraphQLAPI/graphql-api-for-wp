@@ -41,6 +41,53 @@ abstract class AbstractPostType
                 PHP_INT_MAX
             );
         }
+
+        /**
+         * Add extra actions to the CPT table. 
+         * If they are hierarchical, they use hook "page_row_actions"
+         */
+        \add_filter(
+            'post_row_actions',
+            [$this, 'maybeAddPostTypeTableActions'],
+            10,
+            2
+        );
+        \add_filter(
+            'page_row_actions',
+            [$this, 'maybeAddPostTypeTableActions'],
+            10,
+            2
+        );
+    }
+
+    /**
+     * Add extra actions to the Custom Post Type list
+     *
+     * @see https://developer.wordpress.org/reference/hooks/post_row_actions/
+     * @param Array $actions
+     * @param Object $post
+     * @return array
+     */
+    public function maybeAddPostTypeTableActions(array $actions, $post): array
+    {
+        if ($post->post_type == $this->getPostType()) {
+            $actions = \array_merge(
+                $actions,
+                $this->getPostTypeTableActions($post)
+            );
+        }
+        return $actions;
+    }
+
+    /**
+     * Get actions to add for this CPT
+     *
+     * @param Object $post
+     * @return array
+     */
+    protected function getPostTypeTableActions($post): array
+    {
+        return [];
     }
 
     /**
