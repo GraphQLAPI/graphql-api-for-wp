@@ -21,6 +21,11 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
      */
     public function executeSchemaConfiguration(int $cclPostID): void
     {
+        // Only execute for GET operations
+        if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+            return;
+        }
+
         $cclBlockItems = BlockHelpers::getBlocksOfTypeFromCustomPost(
             $cclPostID,
             PluginState::getCacheControlBlock()
@@ -32,14 +37,16 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
             if (!is_null($maxAge) && $maxAge >= 0) {
                 // Extract the saved fields
                 if ($typeFields = $cclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS]) {
-                    if ($entriesForFields = array_filter(
-                        array_map(
-                            function ($selectedField) use ($maxAge) {
-                                return $this->getEntryFromField($selectedField, $maxAge);
-                            },
-                            $typeFields
+                    if (
+                        $entriesForFields = array_filter(
+                            array_map(
+                                function ($selectedField) use ($maxAge) {
+                                    return $this->getEntryFromField($selectedField, $maxAge);
+                                },
+                                $typeFields
+                            )
                         )
-                    )) {
+                    ) {
                         $cacheControlManager->addEntriesForFields(
                             $entriesForFields
                         );
@@ -48,14 +55,16 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
 
                 // Extract the saved directives
                 if ($directives = $cclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_DIRECTIVES]) {
-                    if ($entriesForDirectives = GeneralUtils::arrayFlatten(array_filter(
-                        array_map(
-                            function ($selectedDirective) use ($maxAge) {
-                                return $this->getEntriesFromDirective($selectedDirective, $maxAge);
-                            },
-                            $directives
-                        )
-                    ))) {
+                    if (
+                        $entriesForDirectives = GeneralUtils::arrayFlatten(array_filter(
+                            array_map(
+                                function ($selectedDirective) use ($maxAge) {
+                                    return $this->getEntriesFromDirective($selectedDirective, $maxAge);
+                                },
+                                $directives
+                            )
+                        ))
+                    ) {
                         $cacheControlManager->addEntriesForDirectives(
                             $entriesForDirectives
                         );
