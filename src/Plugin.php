@@ -166,26 +166,30 @@ class Plugin
          * Get permalinks to work when activating the plugin
          * @see https://codex.wordpress.org/Function_Reference/register_post_type#Flushing_Rewrite_on_Activation
          */
-        \register_activation_hook(__FILE__, [$this, 'rewriteFlush']);
-    }
+        \register_activation_hook(__FILE__, function () {
+            // First, initialize all the custom post types. Their classes have already been instantiated
+            $postTypeObjects = [];
+            foreach ($postTypeObjects as $postTypeObject) {
+                $postTypeObject->registerPostType();
+            }
+        
+            // Then, flush rewrite rules
+            \flush_rewrite_rules();
+        });
 
-    /**
-     * Flush rewrite to enable custom post permalinks
-     *
-     * @see https://codex.wordpress.org/Function_Reference/register_post_type#Flushing_Rewrite_on_Activation
-     * @return void
-     */
-    public function rewriteFlush(): void
-    {
-        // First, initialize all the custom post types. Their classes have already
-        // been instantiated. Calling `initPostType` will have them
-        // call function `register_post_type`
-        $postTypeObjects = [];
-        foreach ($postTypeObjects as $postTypeObject) {
-            $postTypeObject->initPostType();
-        }
-    
-        // Then, flush rewrite rules
-        flush_rewrite_rules();
+        /**
+         * Remove permalinks when deactivating the plugin
+         * @see https://developer.wordpress.org/plugins/plugin-basics/activation-deactivation-hooks/
+         */
+        \register_deactivation_hook(__FILE__, function () {
+            // First, unregister the post type, so the rules are no longer in memory.
+            $postTypeObjects = [];
+            foreach ($postTypeObjects as $postTypeObject) {
+                $postTypeObject->unregisterPostType();
+            }
+        
+            // Then, clear the permalinks to remove the post type's rules from the database.
+            \flush_rewrite_rules();
+        });
     }
 }

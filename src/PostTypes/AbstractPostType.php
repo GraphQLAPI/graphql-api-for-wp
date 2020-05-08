@@ -306,11 +306,31 @@ abstract class AbstractPostType
     }
 
     /**
-     * Initialize the different post types
+     * Initialize the post type
      *
      * @return void
      */
     public function initPostType(): void
+    {
+        $this->registerPostType();
+    }
+
+    /**
+     * Register the post type
+     *
+     * @return void
+     */
+    public function registerPostType(): void
+    {
+        \register_post_type($this->getPostType(), $this->getPostTypeArgs());
+    }
+
+    /**
+     * Initialize the different post types
+     *
+     * @return void
+     */
+    public function unregisterPostType(): void
     {
         // Then register the post type
         \register_post_type($this->getPostType(), $this->getPostTypeArgs());
