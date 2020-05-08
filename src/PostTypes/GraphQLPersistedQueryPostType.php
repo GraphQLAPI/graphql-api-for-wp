@@ -249,12 +249,12 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
                         );
                     }
                 }
-
-                /**
-                 * Prettyprint the code
-                 */
-                $content .= '<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>';
             }
+
+            /**
+             * Prettyprint the code
+             */
+            $content .= '<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>';
         }
         return $content;
     }
