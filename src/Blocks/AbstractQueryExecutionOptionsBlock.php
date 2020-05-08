@@ -7,7 +7,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 /**
  * Query Execution (endpoint and persisted query) Options block
  */
-abstract class AbstractQueryExecutionOptionsBlock extends AbstractBlock
+abstract class AbstractQueryExecutionOptionsBlock extends AbstractOptionsBlock
 {
     public const ATTRIBUTE_NAME_IS_ENABLED = 'isEnabled';
 
@@ -37,10 +37,7 @@ EOT;
 
     protected function getBlockContent(array $attributes, string $content): string
     {
-        $labels = [
-            true =>  \__('yes', 'graphql-api'),
-            false =>  __('no', 'graphql-api'),
-        ];
+        $labels = $this->getBooleanLabels();
         $blockContentPlaceholder = '<p><strong>%s</strong> %s</p>';
         return sprintf(
             $blockContentPlaceholder,

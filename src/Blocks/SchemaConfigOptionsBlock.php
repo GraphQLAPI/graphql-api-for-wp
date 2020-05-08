@@ -13,7 +13,7 @@ use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\SchemaConfigurationBlockCategor
 /**
  * Schema Config Options block
  */
-class SchemaConfigOptionsBlock extends AbstractBlock
+class SchemaConfigOptionsBlock extends AbstractOptionsBlock
 {
     use GraphQLByPoPBlockTrait;
 
@@ -56,8 +56,8 @@ class SchemaConfigOptionsBlock extends AbstractBlock
         );
 
         $useNamespacingLabels = [
-            self::ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED => \__('yes', 'graphql-api'),
-            self::ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED => \__('no', 'graphql-api'),
+            self::ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED => \__('✅ Yes', 'graphql-api'),
+            self::ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED => \__('❌ No', 'graphql-api'),
         ];
         $blockContent .= sprintf(
             $blockContentPlaceholder,

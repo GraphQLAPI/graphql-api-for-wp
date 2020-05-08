@@ -32,10 +32,7 @@ class PersistedQueryOptionsBlock extends AbstractQueryExecutionOptionsBlock
     {
         $blockContent = parent::getBlockContent($attributes, $content);
 
-        $labels = [
-            true =>  \__('yes', 'graphql-api'),
-            false =>  __('no', 'graphql-api'),
-        ];
+        $labels = $this->getBooleanLabels();
         $blockContentPlaceholder = '<p><strong>%s</strong> %s</p>';
         $blockContent .= sprintf(
             $blockContentPlaceholder,
