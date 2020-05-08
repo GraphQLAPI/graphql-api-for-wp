@@ -32,11 +32,15 @@ class PersistedQueryOptionsBlock extends AbstractQueryExecutionOptionsBlock
     {
         $blockContent = parent::getBlockContent($attributes, $content);
 
+        $labels = [
+            true =>  \__('yes', 'graphql-api'),
+            false =>  __('no', 'graphql-api'),
+        ];
         $blockContentPlaceholder = '<p><strong>%s</strong> %s</p>';
         $blockContent .= sprintf(
             $blockContentPlaceholder,
             \__('Accept variables as URL params:', 'graphql-api'),
-            $attributes[self::ATTRIBUTE_NAME_ACCEPT_VARIABLES_AS_URL_PARAMS] ? \__('yes', 'graphql-api') : \__('no', 'graphql-api')
+            $labels[$attributes[self::ATTRIBUTE_NAME_ACCEPT_VARIABLES_AS_URL_PARAMS] ?? true]
         );
 
         return $blockContent;
