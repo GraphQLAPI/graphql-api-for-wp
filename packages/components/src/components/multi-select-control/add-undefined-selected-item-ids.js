@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { withSelect } from '@wordpress/data';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 
 const AddUndefinedSelectedItemIDs = withSelect(
 	( select, { items, selectedItems } ) => {
@@ -17,7 +17,10 @@ const AddUndefinedSelectedItemIDs = withSelect(
 			items: items.concat(undefinedSelectedItemIDs.map( undefinedSelectedItemID => (
 				{
 					group: __('Undefined elements', 'graphql-api'),
-					title: __(`(Undefined element with ID ${ undefinedSelectedItemID })`, 'graphql-api'),
+					title: sprintf(
+						__('(Undefined or unpublished item with ID %s)', 'graphql-api'),
+						undefinedSelectedItemID
+					),
 					value: undefinedSelectedItemID,
 				}
 			) ) )

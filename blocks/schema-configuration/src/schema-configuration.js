@@ -3,7 +3,7 @@
  */
 import { withSelect } from '@wordpress/data';
 import { compose, withState } from '@wordpress/compose';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 
 /**
  * Internal dependencies
@@ -15,7 +15,10 @@ import {
 	ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT,
 } from './schema-configuration-meta-values'
 
-const GetLabelForNotFoundValue = ( val ) => __(`(Undefined item with ID ${ val })`, 'graphql-api');
+const GetLabelForNotFoundValue = ( val ) => sprintf(
+	__('(Undefined or unpublished item with ID %s)', 'graphql-api'),
+	val
+);
 
 const SchemaConfigurationSelectCard = ( props ) => {
 	const { queryPostParent, schemaConfigurations, attributes: { schemaConfiguration } } = props;

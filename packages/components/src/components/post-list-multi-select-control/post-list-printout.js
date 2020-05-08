@@ -3,7 +3,7 @@
  */
 import { compose } from '@wordpress/compose';
 import { Card, CardHeader, CardBody, CheckboxControl } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { EMPTY_LABEL } from '../../default-configuration';
 import withSpinner from '../loading/with-spinner';
 import withErrorMessage from '../loading/with-error-message';
@@ -34,7 +34,7 @@ const PostListPrintoutBody = ( props ) => {
 							key={ selectedItemID }
 						>
 							<CheckboxControl
-								label={ itemsDictionary[selectedItemID] || __(`(Undefined element with ID ${ selectedItemID })`, 'graphql-api') }
+								label={ itemsDictionary[selectedItemID] || sprintf(__('(Undefined or unpublished item with ID %s)', 'graphql-api'), selectedItemID) }
 								checked={ true }
 								disabled={ true }
 							/>
