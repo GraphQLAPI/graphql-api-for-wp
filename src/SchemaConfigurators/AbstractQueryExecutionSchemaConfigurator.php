@@ -68,7 +68,8 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             }
             return null;
         }
-        // It is already the ID
+        // It is already the ID, or null if blocks returned empty
+        // (eg: because parent post was trashed)
         return $schemaConfiguration;
     }
 
