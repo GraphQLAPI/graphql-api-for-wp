@@ -30,42 +30,81 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
     }
 
     /**
+     * Label to show on the "execute" action in the CPT table
+     *
+     * @return string
+     */
+    protected function getExecuteActionLabel(): string
+    {
+        return __('Execute', 'graphql-api');
+    }
+
+    /**
      * Get actions to add for this CPT
+     * "View" action must be attached ?view=source, and the view link is called "Execute"
      *
      * @param Object $post
      * @return array
      */
     protected function getPostTypeTableActions($post): array
     {
-        $title = \_draft_or_post_title();
+        $actions = parent::getPostTypeTableActions($post);
+        $post_type_object = \get_post_type_object($post->post_type);
+
         /**
-         * View must be attached ?view=source, and the previous "View" is renamed "Execute"
+         * Code copied from function `handle_row_actions` in file
+         * wp-admin/includes/class-wp-posts-list-table.php
          */
-        return array_merge(
-            [
-                'view' => sprintf(
+        if (is_post_type_viewable($post_type_object)) {
+            $title = \_draft_or_post_title();
+            $isEnabled = $this->isEnabled($post);
+            $executeLabel = $this->getExecuteActionLabel();
+            if (in_array($post->post_status, array('pending', 'draft', 'future'))) {
+                $can_edit_post = \current_user_can('edit_post', $post->ID);
+                if ($can_edit_post) {
+                    $preview_link = \get_preview_post_link($post);
+                    $actions['view'] = sprintf(
+                        '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
+                        esc_url(\add_query_arg(
+                            RequestParams::VIEW,
+                            RequestParams::VIEW_SOURCE,
+                            $preview_link
+                        )),
+                        /* translators: %s: Post title. */
+                        esc_attr(sprintf(__('Preview source &#8220;%s&#8221;', 'graphql-api'), $title)),
+                        __('Preview source', 'graphql-api')
+                    );
+                    if ($isEnabled) {
+                        $actions['execute'] = sprintf(
+                            '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
+                            esc_url($preview_link),
+                            esc_attr(sprintf(__('%s &#8220;%s&#8221;', 'graphql-api'), $executeLabel, $title)),
+                            $executeLabel
+                        );
+                    }
+                }
+            } elseif ('trash' != $post->post_status) {
+                $actions['view'] = sprintf(
                     '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
                     \add_query_arg(
                         RequestParams::VIEW,
                         RequestParams::VIEW_SOURCE,
-                        \get_permalink($post->ID)
+                        get_permalink($post->ID)
                     ),
-                    /* translators: %s: Post title. */
-                    \esc_attr(\sprintf(\__('View &#8220;%s&#8221;'), $title)),
-                    __('View', 'graphql-api')
-                ),
-            ],
-            $this->isEnabled($post) ?
-            [
-                'execute' => sprintf(
-                    '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
-                    \get_permalink($post->ID),
-                    /* translators: %s: Post title. */
-                    \esc_attr(\sprintf(\__('Execute &#8220;%s&#8221;'), $title)),
-                    __('Execute', 'graphql-api')
-                )
-            ] : []
-        );
+                    esc_attr(sprintf(__('View source &#8220;%s&#8221;', 'graphql-api'), $title)),
+                    __('View source', 'graphql-api')
+                );
+                if ($isEnabled) {
+                    $actions['execute'] = sprintf(
+                        '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
+                        get_permalink($post->ID),
+                        esc_attr(sprintf(__('%s &#8220;%s&#8221;', 'graphql-api'), $executeLabel, $title)),
+                        $executeLabel
+                    );
+                }
+            }
+        }
+        return $actions;
     }
 
     /**
@@ -211,7 +250,6 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
     {
         $vars = &$vars_in_array[0];
         if (\is_singular($this->getPostType()) && $this->isEnabled($vars['routing-state']['queried-object-id'])) {
-            
             $this->upstreamAddGraphQLVars($vars_in_array);
         }
     }

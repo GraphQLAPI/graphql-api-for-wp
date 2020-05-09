@@ -153,6 +153,16 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     }
 
     /**
+     * Label to show on the "execute" action in the CPT table
+     *
+     * @return string
+     */
+    protected function getExecuteActionLabel(): string
+    {
+        return __('View endpoint', 'graphql-api');
+    }
+
+    /**
      * Provide the query to execute and its variables
      *
      * @return array

@@ -64,6 +64,16 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
     }
 
     /**
+     * Label to show on the "execute" action in the CPT table
+     *
+     * @return string
+     */
+    protected function getExecuteActionLabel(): string
+    {
+        return __('Execute query', 'graphql-api');
+    }
+
+    /**
      * Labels for registering the post type
      *
      * @param string $name_uc Singular name uppercase
