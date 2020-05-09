@@ -13,7 +13,6 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\FieldDeprecationBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Admin\BlockDevelopmentHotReload;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
-use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\AdminEndpointResolver;
 use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLWithExplorerBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock;
@@ -22,6 +21,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserRolesBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserStateBlock;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\EndpointBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlDisableAccessBlock;
+use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\AdminEndpointResolver;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\CacheControlBlockCategory;
@@ -32,6 +32,7 @@ use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\PersistedQueryBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\QueryExecutionBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\EditorScripts\EndpointEditorComponentScript;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLSchemaConfigurationPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\FieldDeprecationBlockCategory;
@@ -74,6 +75,11 @@ class Plugin
         foreach ($this->postTypeObjects as $postTypeObject) {
             $postTypeObject->init();
         }
+
+        /**
+         * Editor Scripts
+         */
+        (new EndpointEditorComponentScript())->init();
 
         /**
          * Blocks

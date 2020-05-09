@@ -126,10 +126,13 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     {
         $schemaConfigurationBlock = PluginState::getSchemaConfigurationBlock();
         $endpointOptionsBlock = PluginState::getEndpointOptionsBlock();
-        return [
-            [$schemaConfigurationBlock->getBlockFullName()],
-            [$endpointOptionsBlock->getBlockFullName()],
-        ];
+        return array_merge(
+            parent::getGutenbergTemplate(),
+            [
+                [$schemaConfigurationBlock->getBlockFullName()],
+                [$endpointOptionsBlock->getBlockFullName()],
+            ]
+        );
     }
 
     /**
