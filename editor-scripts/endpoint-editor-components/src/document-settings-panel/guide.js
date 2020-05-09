@@ -15,7 +15,10 @@ const EndpointGuide = ( props ) => {
 		schemaConfigOptionsMarkdown,
 	]
 	return (
-		<Guide { ...props } >
+		<Guide
+			{ ...props }
+			contentLabel={ __('Endpoint guide', 'graphql-api') } 
+		>
 			{ pages.map( page => (
 				<GuidePage
 					{ ...props }
@@ -27,18 +30,15 @@ const EndpointGuide = ( props ) => {
 }
 const EndpointGuideButton = ( props ) => {
 	const [ isOpen, setOpen ] = useState( false );
-
-	const openGuide = () => setOpen( true );
-	const closeGuide = () => setOpen( false );
 	return (
 		<>
-			<Button isSecondary onClick={ openGuide }>
+			<Button isSecondary onClick={ () => setOpen( true ) }>
 				{ __('Open tutorial guide', 'graphql-api') }
 			</Button>
 			{ isOpen && (
 				<EndpointGuide 
 					{ ...props }
-					onFinish={ closeGuide }
+					onFinish={ () => setOpen( false ) }
 				/>
 			) }
 		</>

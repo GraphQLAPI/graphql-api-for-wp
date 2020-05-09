@@ -10,6 +10,7 @@ const { PluginDocumentSettingPanel } = wp.editPost;
 // import '../store';
 import './style.scss';
 import EndpointGuideButton from './guide';
+import EndpointModalButton from './modal';
 
 /**
  * Name of the Settings Panel
@@ -22,6 +23,7 @@ const DocumentSettingsPanel = () => (
         title={ __('Tutorials', 'graphql-api') }
     >
         <EndpointGuideButton />
+        <EndpointModalButton />
     </PluginDocumentSettingPanel>
 );
 export default DocumentSettingsPanel;
