@@ -9,7 +9,7 @@ const EndpointGuide = ( props ) => {
 	return (
 		<Guide { ...props } >
 			<GuidePage>
-				<h1>{ __('Tutorial video', 'graphql-api') }</h1>
+				<h2>{ __('Tutorial video', 'graphql-api') }</h2>
 				<video width="640" controls>
 					<source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
 					{ __('Your browser does not support the video tag.', 'graphql-api') }
