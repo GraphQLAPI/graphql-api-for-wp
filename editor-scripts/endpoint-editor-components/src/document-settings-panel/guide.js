@@ -51,8 +51,8 @@ export default compose( [
 			// getRetrievingMarkdownFilesErrorMessage,
 		} = select ( 'graphql-api/markdown-file' );
 		const langSources = {
-			'welcome-guide': schemaConfigOptionsMarkdown,
-			'schema-config-options': welcomeGuideMarkdown,
+			'welcome-guide': welcomeGuideMarkdown,
+			'schema-config-options': schemaConfigOptionsMarkdown,
 		}
 		return { 
 			pages: getMarkdownFiles( langSources )
