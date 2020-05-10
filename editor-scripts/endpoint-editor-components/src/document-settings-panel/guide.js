@@ -7,13 +7,12 @@ import { /*ExternalLink, */Button, Guide, GuidePage } from '@wordpress/component
 import {
 	welcomeGuideMarkdown,
 	schemaConfigOptionsMarkdown,
-} from '../markdown';
+} from '../../guides';
+import { compose, withState } from '@wordpress/compose';
+import { withSelect } from '@wordpress/data';
 
 const EndpointGuide = ( props ) => {
-	const pages = [
-		welcomeGuideMarkdown,
-		schemaConfigOptionsMarkdown,
-	]
+	const { pages } = props;
 	return (
 		<Guide
 			{ ...props }
@@ -44,4 +43,20 @@ const EndpointGuideButton = ( props ) => {
 		</>
 	);
 };
-export default EndpointGuideButton;
+export default compose( [
+	withSelect( ( select ) => {
+		const {
+			getMarkdownFiles,
+			// hasRetrievedMarkdownFiles,
+			// getRetrievingMarkdownFilesErrorMessage,
+		} = select ( 'graphql-api/markdown-file' );
+		const langSources = {
+			'welcome-guide': schemaConfigOptionsMarkdown,
+			'schema-config-options': welcomeGuideMarkdown,
+		}
+		return { 
+			pages: getMarkdownFiles( langSources )
+		};
+	} ),
+] )( EndpointGuideButton );
+// export default EndpointGuideButton;

@@ -1,9 +1,20 @@
+const path = require( 'path' );
+
 const config = require( '@wordpress/scripts/config/webpack.config' );
 const isProduction = process.env.NODE_ENV === 'production';
 
+/**
+ * Documentation
+ */
+config.entry['guides-es'] = path.resolve( process.cwd(), 'guides/es', 'index.js' )
+config.entry['guides-fr'] = path.resolve( process.cwd(), 'guides/fr', 'index.js' )
+
+/**
+ * Add support for additional file types
+ */
 config.module.rules.push( 
 	/**
-	 * Add SCSS
+	 * SCSS
 	 */
 	{
 		test: /\.s[ac]ss$/i,
@@ -17,7 +28,7 @@ config.module.rules.push(
 		],
 	},
 	/**
-	 * Add Markdown
+	 * Markdown
 	 */
 	{
 		test: /\.md$/,

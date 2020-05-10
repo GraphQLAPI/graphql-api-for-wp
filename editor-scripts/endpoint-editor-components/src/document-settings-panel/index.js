@@ -7,7 +7,7 @@ const { PluginDocumentSettingPanel } = wp.editPost;
 /**
  * Internal dependencies
  */
-// import '../store';
+import '../store';
 import './style.scss';
 import EndpointGuideButton from './guide';
 import EndpointModalButton from './modal';
