@@ -6,7 +6,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 /**
  * Documentation in different languages
  */
-langs = ['en', 'es', 'fr']
+langs = ['en', 'es']
 langs.forEach( lang => config.entry[`docs-${ lang }`] = path.resolve( process.cwd(), `docs/${ lang }`, 'index.js' ) )
 config.resolve.alias['@endpointDocs'] = path.resolve(process.cwd(), 'docs/')
 
@@ -16,7 +16,7 @@ config.resolve.alias['@endpointDocs'] = path.resolve(process.cwd(), 'docs/')
 // 	import: path.resolve( process.cwd(), 'src', 'index.js' ),
 // 	dependOn: 'docs'
 // }
-// config.entry.docs = ['docs-en', 'docs-es', 'docs-fr']
+// config.entry.docs = ['docs-en', 'docs-es']
 // ---------------------------------------------
 
 /**
