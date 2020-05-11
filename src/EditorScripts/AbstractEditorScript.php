@@ -210,35 +210,35 @@ abstract class AbstractEditorScript
          */
         // ---------------------------------------------
         // IMPORTANT: Uncomment for webpack v5, to not duplicate the content of the docs inside build/index.js
-        if ($defaultLang = $this->getDefaultLanguage()) {
-            \wp_register_script(
-                $scriptName . '-' . $defaultLang,
-                $url . 'build/docs-' . $defaultLang . '.js',
-                array_merge(
-                    $script_asset['dependencies'],
-                    $this->getScriptDependencies()
-                ),
-                $script_asset['version']
-            );
-            \wp_enqueue_script($scriptName . '-' . $defaultLang);
-        }
-        if ($this->addLocalLanguage()) {
-            $localeLang = $this->getLocaleLanguage();
-            // Check the current locale has been translated, otherwise if will try to load an unexisting file
-            // If the locale lang is the same as the default lang, the file has already been loaded
-            if ($localeLang != $defaultLang && in_array($localeLang, $this->getDocLanguages())) {
-                \wp_register_script(
-                    $scriptName . '-' . $localeLang,
-                    $url . 'build/docs-' . $localeLang . '.js',
-                    array_merge(
-                        $script_asset['dependencies'],
-                        $this->getScriptDependencies()
-                    ),
-                    $script_asset['version']
-                );
-                \wp_enqueue_script($scriptName . '-' . $localeLang);
-            }
-        }
+        // if ($defaultLang = $this->getDefaultLanguage()) {
+        //     \wp_register_script(
+        //         $scriptName . '-' . $defaultLang,
+        //         $url . 'build/docs-' . $defaultLang . '.js',
+        //         array_merge(
+        //             $script_asset['dependencies'],
+        //             $this->getScriptDependencies()
+        //         ),
+        //         $script_asset['version']
+        //     );
+        //     \wp_enqueue_script($scriptName . '-' . $defaultLang);
+        // }
+        // if ($this->addLocalLanguage()) {
+        //     $localeLang = $this->getLocaleLanguage();
+        //     // Check the current locale has been translated, otherwise if will try to load an unexisting file
+        //     // If the locale lang is the same as the default lang, the file has already been loaded
+        //     if ($localeLang != $defaultLang && in_array($localeLang, $this->getDocLanguages())) {
+        //         \wp_register_script(
+        //             $scriptName . '-' . $localeLang,
+        //             $url . 'build/docs-' . $localeLang . '.js',
+        //             array_merge(
+        //                 $script_asset['dependencies'],
+        //                 $this->getScriptDependencies()
+        //             ),
+        //             $script_asset['version']
+        //         );
+        //         \wp_enqueue_script($scriptName . '-' . $localeLang);
+        //     }
+        // }
         // ---------------------------------------------
 
         /**
