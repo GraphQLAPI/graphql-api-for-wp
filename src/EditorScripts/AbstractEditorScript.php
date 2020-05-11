@@ -148,26 +148,29 @@ abstract class AbstractEditorScript
         );
         \wp_enqueue_script($scriptName);
 
-        \wp_register_script(
-            $scriptName . '-es',
-            $url . 'build/guides-es.js',
-            array_merge(
-                $script_asset['dependencies'],
-                $this->getScriptDependencies()
-            ),
-            $script_asset['version']
-        );
-        \wp_enqueue_script($scriptName . '-en');
-        \wp_register_script(
-            $scriptName . '-en',
-            $url . 'build/guides-en.js',
-            array_merge(
-                $script_asset['dependencies'],
-                $this->getScriptDependencies()
-            ),
-            $script_asset['version']
-        );
-        \wp_enqueue_script($scriptName . '-en');
+        // ---------------------------------------------
+        // Uncomment for webpack v5, to not duplicate the content of the docs inside build/index.js
+        // \wp_register_script(
+        //     $scriptName . '-es',
+        //     $url . 'build/guides-es.js',
+        //     array_merge(
+        //         $script_asset['dependencies'],
+        //         $this->getScriptDependencies()
+        //     ),
+        //     $script_asset['version']
+        // );
+        // \wp_enqueue_script($scriptName . '-en');
+        // \wp_register_script(
+        //     $scriptName . '-en',
+        //     $url . 'build/guides-en.js',
+        //     array_merge(
+        //         $script_asset['dependencies'],
+        //         $this->getScriptDependencies()
+        //     ),
+        //     $script_asset['version']
+        // );
+        // \wp_enqueue_script($scriptName . '-en');
+        // ---------------------------------------------
 
         /**
          * Register CSS file
