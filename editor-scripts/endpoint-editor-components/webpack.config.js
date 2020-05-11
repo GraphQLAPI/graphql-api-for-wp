@@ -12,6 +12,15 @@ config.entry['guides-fr'] = path.resolve( process.cwd(), 'docs/fr', 'index.js' )
 
 config.resolve.alias['@endpointDocs'] = path.resolve(process.cwd(), 'docs/')
 
+// ---------------------------------------------
+// Uncomment for webpack v5, to not duplicate the content of the docs inside build/index.js
+// config.entry.index = {
+// 	import: path.resolve( process.cwd(), 'src', 'index.js' ),
+// 	dependOn: 'docs'
+// }
+// config.entry.docs = ['guides-en', 'guides-es', 'guides-fr']
+// ---------------------------------------------
+
 /**
  * Add support for additional file types
  */
