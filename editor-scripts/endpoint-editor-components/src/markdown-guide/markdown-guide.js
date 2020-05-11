@@ -11,13 +11,12 @@ import { Button, Guide, GuidePage } from '@wordpress/components';
 import { getMarkdownContentOrUseDefault } from '../markdown-loader';
 
 const EndpointGuide = ( props ) => {
+	const {
+		pageFilenames
+	} = props;
 	const [ pages, setPages ] = useState([]);
-	const markdownPageFilenames = [
-		'welcome-guide',
-		'schema-config-options',
-	]
 	useEffect(() => {
-		const importPromises = markdownPageFilenames.map(
+		const importPromises = pageFilenames.map(
 			fileName => getMarkdownContentOrUseDefault( fileName )
 		)
 		Promise.all(importPromises).then( values => {
@@ -28,7 +27,6 @@ const EndpointGuide = ( props ) => {
 	return (
 		<Guide
 			{ ...props }
-			contentLabel={ __('Endpoint guide', 'graphql-api') } 
 		>
 			{ pages.map( page => (
 				<GuidePage
@@ -40,11 +38,14 @@ const EndpointGuide = ( props ) => {
 	)
 }
 const EndpointGuideButton = ( props ) => {
+	const {
+		buttonLabel,
+	} = props;
 	const [ isOpen, setOpen ] = useState( false );
 	return (
 		<>
 			<Button isSecondary onClick={ () => setOpen( true ) }>
-				{ __('Open tutorial guide', 'graphql-api') }
+				{ buttonLabel }
 			</Button>
 			{ isOpen && (
 				<EndpointGuide 
