@@ -1,18 +1,33 @@
 /**
  * WordPress dependencies
  */
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { /*ExternalLink, */Button, Guide, GuidePage } from '@wordpress/components';
+import { Button, Guide, GuidePage } from '@wordpress/components';
 import {
 	welcomeGuideMarkdown,
 	schemaConfigOptionsMarkdown,
-} from '../../guides';
-import { compose, withState } from '@wordpress/compose';
-import { withSelect } from '@wordpress/data';
+} from '../../docs';
 
 const EndpointGuide = ( props ) => {
-	const { pages } = props;
+	const [ pages, setPages ] = useState([]);
+	const lang = 'es'
+	const langSources = {
+		'welcome-guide': welcomeGuideMarkdown,
+		'schema-config-options': schemaConfigOptionsMarkdown,
+	}
+	useEffect(() => {
+		const importPromises = Object.keys(langSources).map(
+			fileName => import( /* webpackMode: "eager" */ `../../docs/${ lang }/${ fileName }.md` )
+				.then(obj => obj.default)
+				// .then( ( { default: _ } ) )
+				.catch(err => langSources[ fileName ])
+		)
+		Promise.all(importPromises).then( values => {
+			setPages( values )
+		});
+	}, []);
+
 	return (
 		<Guide
 			{ ...props }
@@ -43,20 +58,4 @@ const EndpointGuideButton = ( props ) => {
 		</>
 	);
 };
-export default compose( [
-	withSelect( ( select ) => {
-		const {
-			getMarkdownFiles,
-			// hasRetrievedMarkdownFiles,
-			// getRetrievingMarkdownFilesErrorMessage,
-		} = select ( 'graphql-api/markdown-file' );
-		const langSources = {
-			'welcome-guide': welcomeGuideMarkdown,
-			'schema-config-options': schemaConfigOptionsMarkdown,
-		}
-		return { 
-			pages: getMarkdownFiles( langSources )
-		};
-	} ),
-] )( EndpointGuideButton );
-// export default EndpointGuideButton;
+export default EndpointGuideButton;
