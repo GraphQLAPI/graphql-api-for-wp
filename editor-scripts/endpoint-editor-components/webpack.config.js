@@ -6,8 +6,10 @@ const isProduction = process.env.NODE_ENV === 'production';
 /**
  * Documentation
  */
-config.entry['guides-es'] = path.resolve( process.cwd(), 'guides/es', 'index.js' )
-config.entry['guides-fr'] = path.resolve( process.cwd(), 'guides/fr', 'index.js' )
+config.entry['guides-es'] = path.resolve( process.cwd(), 'docs/es', 'index.js' )
+config.entry['guides-fr'] = path.resolve( process.cwd(), 'docs/fr', 'index.js' )
+
+config.resolve.alias['@endpointDocs'] = path.resolve(process.cwd(), 'docs/')
 
 /**
  * Add support for additional file types
