@@ -6,6 +6,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 /**
  * Documentation
  */
+config.entry['guides-en'] = path.resolve( process.cwd(), 'docs/en', 'index.js' )
 config.entry['guides-es'] = path.resolve( process.cwd(), 'docs/es', 'index.js' )
 config.entry['guides-fr'] = path.resolve( process.cwd(), 'docs/fr', 'index.js' )
 

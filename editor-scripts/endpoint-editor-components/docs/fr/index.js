@@ -1,1 +1,1 @@
-export { default as schemaConfigOptionsMarkdown } from './schema-config-options.md' ;
+export * from './schema-config-options.md' ;

@@ -157,19 +157,17 @@ abstract class AbstractEditorScript
             ),
             $script_asset['version']
         );
-        \wp_enqueue_script($scriptName . '-es');
-        // for ($i=0; $i<=3; $i++) {
-        //     \wp_register_script(
-        //         $scriptName . $i,
-        //         $url . 'build/' .$i . '.js',
-        //         array_merge(
-        //             $script_asset['dependencies'],
-        //             $this->getScriptDependencies()
-        //         ),
-        //         $script_asset['version']
-        //     );
-        //     \wp_enqueue_script($scriptName . $i);
-        // }
+        \wp_enqueue_script($scriptName . '-en');
+        \wp_register_script(
+            $scriptName . '-en',
+            $url . 'build/guides-en.js',
+            array_merge(
+                $script_asset['dependencies'],
+                $this->getScriptDependencies()
+            ),
+            $script_asset['version']
+        );
+        \wp_enqueue_script($scriptName . '-en');
 
         /**
          * Register CSS file
