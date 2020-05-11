@@ -4,12 +4,10 @@ const config = require( '@wordpress/scripts/config/webpack.config' );
 const isProduction = process.env.NODE_ENV === 'production';
 
 /**
- * Documentation
+ * Documentation in different languages
  */
-config.entry['docs-en'] = path.resolve( process.cwd(), 'docs/en', 'index.js' )
-config.entry['docs-es'] = path.resolve( process.cwd(), 'docs/es', 'index.js' )
-config.entry['docs-fr'] = path.resolve( process.cwd(), 'docs/fr', 'index.js' )
-
+langs = ['en', 'es', 'fr']
+langs.forEach( lang => config.entry[`docs-${ lang }`] = path.resolve( process.cwd(), `docs/${ lang }`, 'index.js' ) )
 config.resolve.alias['@endpointDocs'] = path.resolve(process.cwd(), 'docs/')
 
 // ---------------------------------------------
