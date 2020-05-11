@@ -15,7 +15,7 @@ const EndpointGuide = ( props ) => {
 	]
 	useEffect(() => {
 		const getMarkdownContent = ( lang, fileName ) => {
-			return import( /* webpackMode: "eager" */ `../../docs/${ lang }/${ fileName }.md` )
+			return import( /* webpackMode: "eager" */ `@endpointDocs/${ lang }/${ fileName }.md` )
 				.then(obj => obj.default)
 				// .then( ( { default: _ } ) )
 		}
