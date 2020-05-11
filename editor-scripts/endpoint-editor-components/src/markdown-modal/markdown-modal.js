@@ -10,22 +10,21 @@ import { InfoModalButton } from '../../../../packages/components/src';
  */
 import { getMarkdownContentOrUseDefault } from '../markdown-loader';
 
-const EndpointModalButton = ( props ) => {
+const MarkdownInfoModalButton = ( props ) => {
+	const { pageFilename } = props;
 	const [ page, setPage ] = useState([]);
-	const lang = 'fr'
+	const lang = 'es'
 	const defaultLang = 'en'
-	const markdownPageFilename = 'schema-config-options'
 	useEffect(() => {
-		return getMarkdownContentOrUseDefault( lang, defaultLang, markdownPageFilename ).then( value => {
+		return getMarkdownContentOrUseDefault( lang, defaultLang, pageFilename ).then( value => {
 			setPage( value )
 		});
 	}, []);
 	return (
 		<InfoModalButton
 			{ ...props }
-			title= { __('Using the options', 'graphql-api') }
 			content={ page }
 		/>
 	);
 };
-export default EndpointModalButton;
+export default MarkdownInfoModalButton;
