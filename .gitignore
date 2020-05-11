@@ -4,3 +4,6 @@ vendor/
 bin/
 wp-content/
 #src/Dependencies/
+
+# Mac stuff
+.DS_Store
