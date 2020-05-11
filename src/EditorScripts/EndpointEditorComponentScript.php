@@ -56,4 +56,19 @@ class EndpointEditorComponentScript extends AbstractEditorScript
         // English
         return 'en';
     }
+
+    /**
+     * In what languages is the documentation available
+     *
+     * @return array
+     */
+    protected function getDocLanguages(): array
+    {
+        return array_merge(
+            parent::getDocLanguages(),
+            [
+                'es', // Spanish
+            ]
+        );
+    }
 }
