@@ -24,6 +24,7 @@ const DocumentSettingsPanel = () => (
             pageFilenames={ [
                 'welcome-guide',
                 'schema-config-options',
+                'lorem-ipsum',
             ] }
             contentLabel={ __('Endpoint guide', 'graphql-api') } 
             buttonLabel={ __('Open tutorial guide', 'graphql-api') }
