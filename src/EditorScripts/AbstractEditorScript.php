@@ -16,6 +16,9 @@ use Leoloso\GraphQLByPoPWPPlugin\General\GeneralUtils;
  */
 abstract class AbstractEditorScript
 {
+    public const LOCALE_LANG = 'localeLang';
+    public const DEFAULT_LANG = 'defaultLang';
+
     /**
      * Execute this function to initialize the block
      *
@@ -64,6 +67,7 @@ abstract class AbstractEditorScript
     {
         return GeneralUtils::dashesToCamelCase($this->getScriptName());
     }
+    
     /**
      * Pass localized data to the block
      *
@@ -71,7 +75,46 @@ abstract class AbstractEditorScript
      */
     protected function getLocalizedData(): array
     {
-        return [];
+        $data = [];
+        // Add the locale language?
+        if ($this->addLocalLanguage()) {
+            $data[self::LOCALE_LANG] = $this->getLocaleLanguage();
+        }
+        // Add the default language?
+        if ($defaultLang = $this->getDefaultLanguage()) {
+            $data[self::DEFAULT_LANG] = $defaultLang;
+        }
+        return $data;
+    }
+
+    /**
+     * Add the locale language to the localized data?
+     *
+     * @return bool
+     */
+    protected function addLocalLanguage(): bool
+    {
+        return false;
+    }
+    /**
+     * Pass localized data to the block
+     *
+     * @return array
+     */
+    protected function getLocaleLanguage(): string
+    {
+        // locale has shape "en_US". Retrieve the language code only: "en"
+        $localeParts = explode('_', \get_locale());
+        return $localeParts[0];
+    }
+    /**
+     * Default language for the script/component's documentation
+     *
+     * @return array
+     */
+    protected function getDefaultLanguage(): ?string
+    {
+        return null;
     }
 
     /**

@@ -13,10 +13,8 @@ import { getMarkdownContentOrUseDefault } from '../markdown-loader';
 const MarkdownInfoModalButton = ( props ) => {
 	const { pageFilename } = props;
 	const [ page, setPage ] = useState([]);
-	const lang = 'es'
-	const defaultLang = 'en'
 	useEffect(() => {
-		return getMarkdownContentOrUseDefault( lang, defaultLang, pageFilename ).then( value => {
+		return getMarkdownContentOrUseDefault( pageFilename ).then( value => {
 			setPage( value )
 		});
 	}, []);

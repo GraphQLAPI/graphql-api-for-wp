@@ -12,15 +12,13 @@ import { getMarkdownContentOrUseDefault } from '../markdown-loader';
 
 const EndpointGuide = ( props ) => {
 	const [ pages, setPages ] = useState([]);
-	const lang = 'fr'
-	const defaultLang = 'en'
 	const markdownPageFilenames = [
 		'welcome-guide',
 		'schema-config-options',
 	]
 	useEffect(() => {
 		const importPromises = markdownPageFilenames.map(
-			fileName => getMarkdownContentOrUseDefault( lang, defaultLang, fileName )
+			fileName => getMarkdownContentOrUseDefault( fileName )
 		)
 		Promise.all(importPromises).then( values => {
 			setPages( values )

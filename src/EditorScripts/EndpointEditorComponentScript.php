@@ -35,14 +35,25 @@ class EndpointEditorComponentScript extends AbstractEditorScript
             ]
         );
     }
+
+    /**
+     * Add the locale language to the localized data?
+     *
+     * @return bool
+     */
+    protected function addLocalLanguage(): bool
+    {
+        return true;
+    }
     
-    // /**
-    //  * Pass localized data to the block
-    //  *
-    //  * @return array
-    //  */
-    // protected function getLocalizedData(): array
-    // {
-    //     return [];
-    // }
+    /**
+     * Default language for the script/component's documentation
+     *
+     * @return array
+     */
+    protected function getDefaultLanguage(): ?string
+    {
+        // English
+        return 'en';
+    }
 }
