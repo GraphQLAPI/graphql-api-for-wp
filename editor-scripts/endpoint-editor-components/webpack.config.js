@@ -6,9 +6,9 @@ const isProduction = process.env.NODE_ENV === 'production';
 /**
  * Documentation
  */
-config.entry['guides-en'] = path.resolve( process.cwd(), 'docs/en', 'index.js' )
-config.entry['guides-es'] = path.resolve( process.cwd(), 'docs/es', 'index.js' )
-config.entry['guides-fr'] = path.resolve( process.cwd(), 'docs/fr', 'index.js' )
+config.entry['docs-en'] = path.resolve( process.cwd(), 'docs/en', 'index.js' )
+config.entry['docs-es'] = path.resolve( process.cwd(), 'docs/es', 'index.js' )
+config.entry['docs-fr'] = path.resolve( process.cwd(), 'docs/fr', 'index.js' )
 
 config.resolve.alias['@endpointDocs'] = path.resolve(process.cwd(), 'docs/')
 
@@ -18,7 +18,7 @@ config.resolve.alias['@endpointDocs'] = path.resolve(process.cwd(), 'docs/')
 // 	import: path.resolve( process.cwd(), 'src', 'index.js' ),
 // 	dependOn: 'docs'
 // }
-// config.entry.docs = ['guides-en', 'guides-es', 'guides-fr']
+// config.entry.docs = ['docs-en', 'docs-es', 'docs-fr']
 // ---------------------------------------------
 
 /**

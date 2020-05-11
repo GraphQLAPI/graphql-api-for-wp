@@ -152,7 +152,7 @@ abstract class AbstractEditorScript
         // Uncomment for webpack v5, to not duplicate the content of the docs inside build/index.js
         // \wp_register_script(
         //     $scriptName . '-es',
-        //     $url . 'build/guides-es.js',
+        //     $url . 'build/docs-es.js',
         //     array_merge(
         //         $script_asset['dependencies'],
         //         $this->getScriptDependencies()
@@ -162,7 +162,7 @@ abstract class AbstractEditorScript
         // \wp_enqueue_script($scriptName . '-en');
         // \wp_register_script(
         //     $scriptName . '-en',
-        //     $url . 'build/guides-en.js',
+        //     $url . 'build/docs-en.js',
         //     array_merge(
         //         $script_asset['dependencies'],
         //         $this->getScriptDependencies()
