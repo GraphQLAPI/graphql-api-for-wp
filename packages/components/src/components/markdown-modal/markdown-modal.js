@@ -3,18 +3,16 @@
  */
 import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { InfoModalButton } from '../../../../packages/components/src';
-
-/**
- * Internal dependencies
- */
-import { getMarkdownContentOrUseDefault } from '../markdown-loader';
+import { InfoModalButton } from '../info-modal';
 
 const MarkdownInfoModalButton = ( props ) => {
-	const { pageFilename } = props;
+	const { 
+		pageFilename,
+		getMarkdownContentCallback,
+	} = props;
 	const [ page, setPage ] = useState([]);
 	useEffect(() => {
-		return getMarkdownContentOrUseDefault( pageFilename ).then( value => {
+		return getMarkdownContentCallback( pageFilename ).then( value => {
 			setPage( value )
 		});
 	}, []);

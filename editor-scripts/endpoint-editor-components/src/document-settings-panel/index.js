@@ -7,8 +7,8 @@ const { PluginDocumentSettingPanel } = wp.editPost;
 /**
  * Internal dependencies
  */
-import { MarkdownGuideButton } from '../markdown-guide';
-import { MarkdownInfoModalButton } from '../markdown-modal';
+import { MarkdownGuideButton, MarkdownInfoModalButton } from '../../../../packages/components/src';
+import { getMarkdownContentOrUseDefault } from '../markdown-loader';
 
 /**
  * Name of the Settings Panel
@@ -27,10 +27,12 @@ const DocumentSettingsPanel = () => (
             ] }
             contentLabel={ __('Endpoint guide', 'graphql-api') } 
             buttonLabel={ __('Open tutorial guide', 'graphql-api') }
+            getMarkdownContentCallback={ getMarkdownContentOrUseDefault }
         />
         <MarkdownInfoModalButton
             title={ __('Using the options', 'graphql-api') }
             pageFilename="welcome-guide"
+            getMarkdownContentCallback={ getMarkdownContentOrUseDefault }
         />
     </PluginDocumentSettingPanel>
 );

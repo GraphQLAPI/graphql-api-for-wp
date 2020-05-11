@@ -5,19 +5,15 @@ import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { Button, Guide, GuidePage } from '@wordpress/components';
 
-/**
- * Internal dependencies
- */
-import { getMarkdownContentOrUseDefault } from '../markdown-loader';
-
 const EndpointGuide = ( props ) => {
 	const {
-		pageFilenames
+		pageFilenames,
+		getMarkdownContentCallback,
 	} = props;
 	const [ pages, setPages ] = useState([]);
 	useEffect(() => {
 		const importPromises = pageFilenames.map(
-			fileName => getMarkdownContentOrUseDefault( fileName )
+			fileName => getMarkdownContentCallback( fileName )
 		)
 		Promise.all(importPromises).then( values => {
 			setPages( values )
