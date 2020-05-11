@@ -8,7 +8,7 @@ const { PluginDocumentSettingPanel } = wp.editPost;
  * Internal dependencies
  */
 import EndpointGuideButton from './guide';
-import { InfoModalButton } from '../../../../packages/components/src';
+import EndpointModalButton from './modal';
 
 /**
  * Name of the Settings Panel
@@ -21,13 +21,7 @@ const DocumentSettingsPanel = () => (
         title={ __('Welcome Guide', 'graphql-api') }
     >
         <EndpointGuideButton />
-        <p>
-            Here some text
-            <InfoModalButton
-                content="sarlanga"
-                title="maranga"
-            />
-        </p>
+        <EndpointModalButton />
     </PluginDocumentSettingPanel>
 );
 export default DocumentSettingsPanel;
