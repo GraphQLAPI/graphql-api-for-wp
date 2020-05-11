@@ -14,14 +14,17 @@ import InfoModal from './info-modal';
 const InfoModalButton = ( props ) => {
 	const { 
 		icon = "editor-help",
-		iconSize = 24,
+		// iconSize = 24,
 	} = props;
 	const [ isOpen, setOpen ] = useState( false );
 	return (
 		<>
-			<Button onClick={ () => setOpen( true ) }>
-				<Icon icon={ icon } size={ iconSize } />
-			</Button>
+			<Button
+				isTertiary
+				isSmall 
+				onClick={ () => setOpen( true ) }
+				icon={ icon } 
+			/>
 			{ isOpen && (
 				<InfoModal 
 					{ ...props }
