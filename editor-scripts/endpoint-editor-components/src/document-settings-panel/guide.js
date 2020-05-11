@@ -5,6 +5,11 @@ import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { Button, Guide, GuidePage } from '@wordpress/components';
 
+/**
+ * Internal dependencies
+ */
+import { getMarkdownContentOrUseDefault } from '../markdown-loader';
+
 const EndpointGuide = ( props ) => {
 	const [ pages, setPages ] = useState([]);
 	const lang = 'fr'
@@ -14,15 +19,6 @@ const EndpointGuide = ( props ) => {
 		'schema-config-options',
 	]
 	useEffect(() => {
-		const getMarkdownContent = ( lang, fileName ) => {
-			return import( /* webpackMode: "eager" */ `@endpointDocs/${ lang }/${ fileName }.md` )
-				.then(obj => obj.default)
-				// .then( ( { default: _ } ) )
-		}
-		const getMarkdownContentOrUseDefault = ( lang, defaultLang, fileName ) => {
-			return getMarkdownContent( lang, fileName )
-				.catch(err => getMarkdownContent( defaultLang, fileName ) )
-		}
 		const importPromises = markdownPageFilenames.map(
 			fileName => getMarkdownContentOrUseDefault( lang, defaultLang, fileName )
 		)
