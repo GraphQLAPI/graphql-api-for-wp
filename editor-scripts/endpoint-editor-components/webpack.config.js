@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV === 'production';
  */
 langs = ['en', 'es']
 langs.forEach( lang => config.entry[`docs-${ lang }`] = path.resolve( process.cwd(), `docs/${ lang }`, 'index.js' ) )
-config.resolve.alias['@endpointDocs'] = path.resolve(process.cwd(), 'docs/')
+config.resolve.alias['@docs'] = path.resolve(process.cwd(), 'docs/')
 
 // ---------------------------------------------
 // Uncomment for webpack v5, to not duplicate the content of the docs inside build/index.js
@@ -16,7 +16,7 @@ config.resolve.alias['@endpointDocs'] = path.resolve(process.cwd(), 'docs/')
 // 	import: path.resolve( process.cwd(), 'src', 'index.js' ),
 // 	dependOn: 'docs'
 // }
-// config.entry.docs = ['docs-en', 'docs-es']
+// config.entry.docs = langs.map( lang => `docs-${ lang }` )
 // ---------------------------------------------
 
 /**
