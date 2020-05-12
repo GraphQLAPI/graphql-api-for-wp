@@ -203,6 +203,17 @@ abstract class AbstractBlock
     }
 
     /**
+     * Post types for which to register the script
+     *
+     * @return array
+     */
+    protected function getAllowedPostTypes(): array
+    {
+        $blockCategory = $this->getBlockCategory();
+        return $blockCategory->getPostTypes();
+    }
+
+    /**
      * Registers all block assets so that they can be enqueued through the block editor
      * in the corresponding context.
      *
@@ -218,9 +229,8 @@ abstract class AbstractBlock
          * > The block "graphql-api/schema-configuration" must have a registered category.
          */
         if (\is_admin()) {
-            $blockCategory = $this->getBlockCategory();
-            if ($blockCategory && !empty($blockCategory->getPostTypes())) {
-                if (!in_array(EditorHelpers::getEditingPostType(), $blockCategory->getPostTypes())) {
+            if ($postTypes = $this->getAllowedPostTypes()) {
+                if (!in_array(EditorHelpers::getEditingPostType(), $postTypes)) {
                     return;
                 }
             }
