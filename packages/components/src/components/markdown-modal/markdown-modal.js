@@ -12,7 +12,7 @@ const MarkdownInfoModalButton = ( props ) => {
 	} = props;
 	const [ page, setPage ] = useState([]);
 	useEffect(() => {
-		return getMarkdownContentCallback( pageFilename ).then( value => {
+		getMarkdownContentCallback( pageFilename ).then( value => {
 			setPage( value )
 		});
 	}, []);
