@@ -18,6 +18,8 @@
 		"@wordpress/components": "^9.4.1",
 		"@wordpress/i18n": "^3.9.0",
 		"@wordpress/scripts": "^8.0.1",
+		"html-loader": "^1.1.0",
+		"markdown-loader": "^5.1.0",
 		"css-loader": "^3.4.2",
 		"node-sass": "^4.13.1",
 		"prettier": "npm:wp-prettier@1.19.1",

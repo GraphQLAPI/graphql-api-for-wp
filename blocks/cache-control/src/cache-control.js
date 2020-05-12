@@ -2,27 +2,30 @@
  * WordPress dependencies
  */
 import { __, sprintf } from '@wordpress/i18n';
-import { TextControl, Card, CardHeader, CardBody, Tooltip, Icon, ExternalLink } from '@wordpress/components';
+import { TextControl, Card, CardHeader, CardBody } from '@wordpress/components';
+import { getMarkdownContentOrUseDefault } from './markdown-loader';
 
 /**
  * Internal dependencies
  */
-import { LinkableInfoTooltip, getEditableOnFocusComponentClass } from '../../../packages/components/src';
+import { MarkdownInfoModalButton, getEditableOnFocusComponentClass } from '../../../packages/components/src';
 
 const CacheControl = ( props ) => {
 	const { className, setAttributes, isSelected, attributes: { cacheControlMaxAge } } = props;
+	const title = __('Cache-Control max-age', 'graphql-api')
 	const componentClassName = getEditableOnFocusComponentClass(isSelected);
-	const documentationLink = 'https://graphql-api.com/documentation/#cache-control'
 	return (
 		<div className={ componentClassName }>
 			<Card>
 				<CardHeader isShady>
-					{ __('Cache-Control max-age', 'graphql-api') }
-					<LinkableInfoTooltip
-						{ ...props }
-						text={ __('The Cache-Control header will contain the minimum max-age value from all fields/directives involved in the request, or "no-store" if the max-age is 0', 'graphql-api') }
-						href={ documentationLink }
-					/>
+					{ title }
+					{ isSelected && (
+						<MarkdownInfoModalButton
+							title={ title }
+							pageFilename="max-age"
+							getMarkdownContentCallback={ getMarkdownContentOrUseDefault }
+						/>
+					) }
 				</CardHeader>
 				<CardBody>
 					{ isSelected && (

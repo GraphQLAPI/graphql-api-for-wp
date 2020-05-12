@@ -174,7 +174,7 @@ abstract class AbstractBlock
      */
     protected function getLocalizedData(): array
     {
-        return [];
+        return $this->getDocsLocalizedData();
     }
 
     /**

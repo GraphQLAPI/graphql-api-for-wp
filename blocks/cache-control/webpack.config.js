@@ -1,20 +1,57 @@
+const path = require( 'path' );
+
 const config = require( '@wordpress/scripts/config/webpack.config' );
 const isProduction = process.env.NODE_ENV === 'production';
 
 /**
- * Add SCSS
+ * Documentation in different languages
  */
-config.module.rules.push( {
-	test: /\.s[ac]ss$/i,
-	use: [
-		// Creates `style` nodes from JS strings
-		'style-loader',
-		// Translates CSS into CommonJS
-		'css-loader',
-		// Compiles Sass to CSS
-		'sass-loader',
-	],
-} );
+langs = ['en']
+langs.forEach( lang => config.entry[`docs-${ lang }`] = path.resolve( process.cwd(), `docs/${ lang }`, 'index.js' ) )
+config.resolve.alias['@docs'] = path.resolve(process.cwd(), 'docs/')
+
+// ---------------------------------------------
+// Uncomment for webpack v5, to not duplicate the content of the docs inside build/index.js
+// config.entry.index = {
+// 	import: path.resolve( process.cwd(), 'src', 'index.js' ),
+// 	dependOn: 'docs'
+// }
+// config.entry.docs = langs.map( lang => `docs-${ lang }` )
+// ---------------------------------------------
+
+/**
+ * Add support for additional file types
+ */
+config.module.rules.push( 
+	/**
+	 * SCSS
+	 */
+	{
+		test: /\.s[ac]ss$/i,
+		use: [
+			// Creates `style` nodes from JS strings
+			'style-loader',
+			// Translates CSS into CommonJS
+			'css-loader',
+			// Compiles Sass to CSS
+			'sass-loader',
+		],
+	},
+	/**
+	 * Markdown
+	 */
+	{
+		test: /\.md$/,
+		use: [
+			{
+				loader: "html-loader"
+			},
+			{
+				loader: "markdown-loader"
+			}
+		]
+	}
+);
 
 if ( ! isProduction ) {
 	/**
