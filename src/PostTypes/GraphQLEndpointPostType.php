@@ -252,31 +252,40 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
             RequestParams::VIEW_GRAPHIQL => '/vendor/leoloso/pop-graphiql',
             RequestParams::VIEW_SCHEMA => '/vendor/leoloso/pop-graphql-voyager',
         ];
-        if ($dirPath = $dirPaths[$_REQUEST[RequestParams::VIEW]]) {
-            // Read the file, and return it already
-            $file = \GRAPHQL_BY_POP_PLUGIN_DIR . $dirPath . '/index.html';
-            $fileContents = \file_get_contents($file, true);
-            // Modify the script path
-            $jsFileNames = [
-                RequestParams::VIEW_GRAPHIQL => 'graphiql.js',
-                RequestParams::VIEW_SCHEMA => 'voyager.js',
-            ];
-            if ($jsFileName = $jsFileNames[$_REQUEST[RequestParams::VIEW]]) {
-                $jsFileURL = \trim(\GRAPHQL_BY_POP_PLUGIN_URL, '/') . $dirPath . '/' . $jsFileName;
-                $endpointURL = \remove_query_arg(RequestParams::VIEW, \fullUrl());
-                if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
-                    $endpointURL = \add_query_arg(Request::URLPARAM_USE_NAMESPACE, true, $endpointURL);
-                }
-                $fileContents = \str_replace(
-                    $jsFileName . '?',
-                    $jsFileURL . '?endpoint=' . urlencode($endpointURL) . '&',
-                    $fileContents
-                );
-            }
-            // Print, and that's it!
-            echo $fileContents;
-            die;
+        $dirPath = $dirPaths[$_REQUEST[RequestParams::VIEW]];
+        // Read the file, and return it already
+        $file = \GRAPHQL_BY_POP_PLUGIN_DIR . $dirPath . '/index.html';
+        $fileContents = \file_get_contents($file, true);
+        // Modify the script path
+        $jsFileNames = [
+            RequestParams::VIEW_GRAPHIQL => 'graphiql.js',
+            RequestParams::VIEW_SCHEMA => 'voyager.js',
+        ];
+        $jsFileName = $jsFileNames[$_REQUEST[RequestParams::VIEW]];
+        /**
+         * Relative asset paths do not work, since the location of the JS/CSS file is
+         * different than the URL under which the client is accessed.
+         * Then add the URL to the plugin to all assets (they are all located under "assets/...")
+         */
+        $fileContents = \str_replace(
+            '"assets/',
+            '"' . \trim(\GRAPHQL_BY_POP_PLUGIN_URL, '/') . $dirPath . '/assets/',
+            $fileContents
+        );
+
+        $endpointURL = \remove_query_arg(RequestParams::VIEW, \fullUrl());
+        if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
+            $endpointURL = \add_query_arg(Request::URLPARAM_USE_NAMESPACE, true, $endpointURL);
         }
+        $fileContents = \str_replace(
+            '/' . $jsFileName . '?',
+            '/' . $jsFileName . '?endpoint=' . urlencode($endpointURL) . '&',
+            $fileContents
+        );
+        
+        // Print, and that's it!
+        echo $fileContents;
+        die;
     }
     
     /**
