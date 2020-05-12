@@ -6,11 +6,6 @@
 import { __ } from '@wordpress/i18n';
 
 /**
- * Application imports
- */
-import EditBlock from './edit-block.js';
-
-/**
  * Settings to recorded the block type. Exportable so it can be re-used by other blocks
  */
 export const blockTypeSettings = {
@@ -115,18 +110,6 @@ export const blockTypeSettings = {
 		// Only insert block through a template
 		inserter: false,
 	},
-
-	/**
-	 * The edit function describes the structure of your block in the context of the editor.
-	 * This represents what the editor will render when the block is used.
-	 *
-	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
-	 *
-	 * @param {Object} [props] Properties passed from the editor.
-	 *
-	 * @return {WPElement} Element to render.
-	 */
-	edit: EditBlock,
 
 	/**
 	 * The save function defines the way in which the different attributes should be combined
