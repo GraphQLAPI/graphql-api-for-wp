@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { useState, useEffect } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { Button, Guide, GuidePage } from '@wordpress/components';
 
 const EndpointGuide = ( props ) => {
@@ -35,7 +35,11 @@ const EndpointGuide = ( props ) => {
 }
 const EndpointGuideButton = ( props ) => {
 	const {
-		buttonLabel,
+		guideName,
+		buttonLabel = guideName ? sprintf(
+			__('→ Open Guide: “%s”', 'graphql-api'),
+			guideName
+		) : __('→ Open Guide', 'graphql-api'),
 	} = props;
 	const [ isOpen, setOpen ] = useState( false );
 	return (

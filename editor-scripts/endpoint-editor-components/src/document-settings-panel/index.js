@@ -11,24 +11,28 @@ import { MarkdownGuideButton } from '../../../../packages/components/src';
 import { getMarkdownContentOrUseDefault } from '../markdown-loader';
 
 /**
- * Name of the Settings Panel
+ * Constants to customize
  */
 const DOCUMENT_SETTINGS_PANEL_NAME = 'endpoint-document-settings-panel';
-
+const guideName = __('Creating Custom Endpoints', 'graphql-api');
+const pageFilenames = [
+    'welcome-guide',
+    'schema-config-options',
+    'lorem-ipsum',
+]
+/**
+ * Component
+ */
 const DocumentSettingsPanel = () => (
     <PluginDocumentSettingPanel
         name={ DOCUMENT_SETTINGS_PANEL_NAME }
         title={ __('Welcome Guide', 'graphql-api') }
     >
         <MarkdownGuideButton
-            pageFilenames={ [
-                'welcome-guide',
-                'schema-config-options',
-                'lorem-ipsum',
-            ] }
-            contentLabel={ __('Endpoint guide', 'graphql-api') } 
-            buttonLabel={ __('→ Open Guide: “Creating Custom Endpoints”', 'graphql-api') }
             getMarkdownContentCallback={ getMarkdownContentOrUseDefault }
+            contentLabel={ guideName } 
+            guideName={ guideName }
+            pageFilenames={ pageFilenames }
         />
     </PluginDocumentSettingPanel>
 );
