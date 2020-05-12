@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\EditorScripts;
+namespace Leoloso\GraphQLByPoPWPPlugin\Scripts;
 
 /**
  * Trait to set common functions for a Gutenberg block for this plugin (GraphQL API)
  */
-trait GraphQLByPoPEditorScriptTrait
+trait GraphQLByPoPScriptTrait
 {
     protected function getPluginDir(): string
     {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\EditorScripts;
 
+use Leoloso\GraphQLByPoPWPPlugin\Scripts\GraphQLByPoPScriptTrait;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLEndpointPostType;
 
 /**
@@ -11,7 +12,7 @@ use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLEndpointPostType;
  */
 class EndpointEditorComponentScript extends AbstractEditorScript
 {
-    use GraphQLByPoPEditorScriptTrait;
+    use GraphQLByPoPScriptTrait;
 
     /**
      * Block name
