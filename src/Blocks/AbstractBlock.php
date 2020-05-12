@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Error;
-use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
-use Leoloso\GraphQLByPoPWPPlugin\General\EditorHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\General\GeneralUtils;
+use Leoloso\GraphQLByPoPWPPlugin\General\EditorHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
+use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\EditorScripts\HasDocumentationScriptTrait;
 
 /**
  * Base class for a Gutenberg block, within a multi-block plugin.
@@ -21,6 +22,8 @@ use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
  */
 abstract class AbstractBlock
 {
+    use HasDocumentationScriptTrait;
+
     /**
      * Execute this function to initialize the block
      *
@@ -296,12 +299,12 @@ abstract class AbstractBlock
 
         /**
          * Localize the script with custom data
-         * Execute on hook "admin_enqueue_scripts" and not now,
+         * Execute on hook "wp_print_scripts" and not now,
          * because `getLocalizedData` might call EndpointHelpers::getAdminGraphQLEndpoint(),
          * which calls ComponentModelComponentConfiguration::namespaceTypesAndInterfaces(),
          * which is initialized during "wp"
          */
-        \add_action('admin_enqueue_scripts', function () use ($scriptRegistrationName) {
+        \add_action('wp_print_scripts', function () use ($scriptRegistrationName) {
             if ($localizedData = $this->getLocalizedData()) {
                 \wp_localize_script(
                     $scriptRegistrationName,
@@ -312,5 +315,26 @@ abstract class AbstractBlock
         });
 
         \register_block_type($blockFullName, $blockConfiguration);
+
+        /**
+         * Register the documentation (from under folder "docs/"), for the locale and the default language
+         * IMPORTANT: Uncomment for webpack v5, to not duplicate the content of the docs inside build/index.js
+         */
+        // $this->initDocumentationScripts();
+    }
+
+    /**
+     * Register the documentation (from under folder "docs/"), for the locale and the default language
+     */
+    protected function initDocumentationScripts(): void
+    {
+        $dir = $this->getBlockDir();
+        $script_asset_path = "$dir/build/index.asset.php";
+        $url = $this->getBlockDirURL();
+        $script_asset = require($script_asset_path);
+        $blockRegistrationName = $this->getBlockRegistrationName();
+        $scriptRegistrationName = $blockRegistrationName . '-block-editor';
+
+        $this->registerDocumentationScripts($scriptRegistrationName, $url, $script_asset);
     }
 }

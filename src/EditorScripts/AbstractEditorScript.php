@@ -83,13 +83,13 @@ abstract class AbstractEditorScript extends AbstractScript
          * Register the documentation (from under folder "docs/"), for the locale and the default language
          * IMPORTANT: Uncomment for webpack v5, to not duplicate the content of the docs inside build/index.js
          */
-        // $this->registerDocumentationScripts();
+        // $this->initDocumentationScripts();
     }
 
     /**
      * Register the documentation (from under folder "docs/"), for the locale and the default language
      */
-    public function registerDocumentationScripts(): void
+    protected function initDocumentationScripts(): void
     {
         $dir = $this->getScriptDir();
         $scriptName = $this->getScriptName();
@@ -97,34 +97,6 @@ abstract class AbstractEditorScript extends AbstractScript
         $url = $this->getScriptDirURL();
         $script_asset = require($script_asset_path);
 
-        if ($defaultLang = $this->getDefaultLanguage()) {
-            \wp_register_script(
-                $scriptName . '-' . $defaultLang,
-                $url . 'build/docs-' . $defaultLang . '.js',
-                array_merge(
-                    $script_asset['dependencies'],
-                    $this->getScriptDependencies()
-                ),
-                $script_asset['version']
-            );
-            \wp_enqueue_script($scriptName . '-' . $defaultLang);
-        }
-        if ($this->addLocalLanguage()) {
-            $localeLang = $this->getLocaleLanguage();
-            // Check the current locale has been translated, otherwise if will try to load an unexisting file
-            // If the locale lang is the same as the default lang, the file has already been loaded
-            if ($localeLang != $defaultLang && in_array($localeLang, $this->getDocLanguages())) {
-                \wp_register_script(
-                    $scriptName . '-' . $localeLang,
-                    $url . 'build/docs-' . $localeLang . '.js',
-                    array_merge(
-                        $script_asset['dependencies'],
-                        $this->getScriptDependencies()
-                    ),
-                    $script_asset['version']
-                );
-                \wp_enqueue_script($scriptName . '-' . $localeLang);
-            }
-        }
+        $this->registerDocumentationScripts($scriptName, $url, $script_asset);
     }
 }
