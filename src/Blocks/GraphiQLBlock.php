@@ -57,15 +57,18 @@ class GraphiQLBlock extends AbstractBlock
         );
         $query = $attributes[self::ATTRIBUTE_NAME_QUERY];
         $variables = $attributes[self::ATTRIBUTE_NAME_VARIABLES];
-        if ($query) {
-            $content .= sprintf(
-                '<p><strong>%s</strong></p>',
-                \__('GraphQL Query:', 'graphql-api')
-            ) . sprintf(
+        $content .= sprintf(
+            '<p><strong>%s</strong></p>',
+            \__('GraphQL Query:', 'graphql-api')
+        ) . (
+            $query ? sprintf(
                 '<pre><code class="prettyprint language-graphql">%s</code></pre>',
                 $query
-            );
-        }
+            ) : sprintf(
+                '<p><em>%s</em></p>',
+                \__('(Not set)', 'graphql-api')
+            )
+        );
         if ($variables) {
             $content .= sprintf(
                 '<p><strong>%s</strong></p>',

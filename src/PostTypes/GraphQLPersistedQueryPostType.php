@@ -8,6 +8,7 @@ use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
+use Leoloso\GraphQLByPoPWPPlugin\General\BlockContentHelpers;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock;
@@ -191,43 +192,36 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
          * 2. The final block, completing the missing attributes from its parent
          */
         if ($graphQLQueryPost->post_parent) {
+            $graphiQLBlock = PluginState::getGraphiQLBlock();
+
             // Check if the user is authorized to see the content
             if (UserAuthorization::canAccessSchemaEditor()) {
-                // Check if any attribute is missing
+                /**
+                 * If the query has a parent, also render the inherited output
+                 */
                 list(
-                    $graphQLQuery,
-                    $graphQLVariables
-                ) = GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, false);
-                // To render the variables in the block, they must be json_encoded
-                if ($graphQLVariables) {
-                    $graphQLVariables = json_encode($graphQLVariables);
-                }
-                if (!$graphQLQuery || !$graphQLVariables) {
+                    $inheritQuery,
+                    $inheritVariables
+                ) = BlockContentHelpers::getSinglePersistedQueryOptionsBlockAttributesFromPost($graphQLQueryPost);
+                if ($inheritQuery || $inheritVariables) {
                     // Fetch the attributes using inheritance
                     list(
                         $inheritedGraphQLQuery,
                         $inheritedGraphQLVariables
                     ) = GraphQLQueryPostTypeHelpers::getGraphQLQueryPostAttributes($graphQLQueryPost, true);
+                    // To render the variables in the block, they must be json_encoded
                     if ($inheritedGraphQLVariables) {
                         $inheritedGraphQLVariables = json_encode($inheritedGraphQLVariables);
                     }
-                    // If the 2 sets of attributes are different, then render the block again
-                    if (
-                        $graphQLQuery != $inheritedGraphQLQuery
-                        || $graphQLVariables != $inheritedGraphQLVariables
-                    ) {
-                        // Render the block again, using the inherited attributes
-                        $inheritedGraphQLBlockAttributes = [
-                            GraphiQLBlock::ATTRIBUTE_NAME_QUERY => $inheritedGraphQLQuery,
-                            GraphiQLBlock::ATTRIBUTE_NAME_VARIABLES => $inheritedGraphQLVariables,
-                        ];
-                        // Add the new rendering to the output, and a description for each
-                        $graphiQLBlock = PluginState::getGraphiQLBlock();
-                        $ancestorContent = $graphiQLBlock->renderBlock($inheritedGraphQLBlockAttributes, '');
-                    }
+                    // Render the block again, using the inherited attributes
+                    $inheritedGraphQLBlockAttributes = [
+                        GraphiQLBlock::ATTRIBUTE_NAME_QUERY => $inheritedGraphQLQuery,
+                        GraphiQLBlock::ATTRIBUTE_NAME_VARIABLES => $inheritedGraphQLVariables,
+                    ];
+                    // Add the new rendering to the output, and a description for each
+                    $ancestorContent = $graphiQLBlock->renderBlock($inheritedGraphQLBlockAttributes, '');
                 }
             } else {
-                $graphiQLBlock = PluginState::getGraphiQLBlock();
                 $ancestorContent = $graphiQLBlock->renderUnauthorizedAccess();
             }
             if ($ancestorContent) {

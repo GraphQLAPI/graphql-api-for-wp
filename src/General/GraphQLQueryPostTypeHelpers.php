@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\General;
 
-use Leoloso\GraphQLByPoPWPPlugin\General\GraphiQLBlockHelpers;
+use Leoloso\GraphQLByPoPWPPlugin\General\BlockContentHelpers;
 
 class GraphQLQueryPostTypeHelpers
 {
@@ -37,12 +37,22 @@ class GraphQLQueryPostTypeHelpers
         $graphQLQuery = null;
         $graphQLVariables = [];
         while (!is_null($graphQLQueryPost)) {
+            /**
+             * If the query has a parent, maybe get the query/variables from the parent
+             */
+            $inheritQuery = $inheritVariables = false;
+            if ($inheritAttributes && $graphQLQueryPost->post_parent) {
+                list(
+                    $inheritQuery,
+                    $inheritVariables
+                ) = BlockContentHelpers::getSinglePersistedQueryOptionsBlockAttributesFromPost($graphQLQueryPost);
+            }
             list(
                 $postGraphQLQuery,
                 $postGraphQLVariables
-            ) = GraphiQLBlockHelpers::getSingleGraphiQLBlockAttributesFromPost($graphQLQueryPost);
-            // Get the first non-empty query
-            if (!$graphQLQuery) {
+            ) = BlockContentHelpers::getSingleGraphiQLBlockAttributesFromPost($graphQLQueryPost);
+            // Set the query unless it must be inherited from the parent
+            if (is_null($graphQLQuery) && !$inheritQuery) {
                 $graphQLQuery = $postGraphQLQuery;
             }
             /**
@@ -60,7 +70,7 @@ class GraphQLQueryPostTypeHelpers
             );
 
             // Keep iterating with this posts' ancestors
-            if ($inheritAttributes && $graphQLQueryPost->post_parent) {
+            if ($inheritQuery || $inheritVariables) {
                 $graphQLQueryPost = \get_post($graphQLQueryPost->post_parent);
                 // If it's trashed, then do not use
                 if ($graphQLQueryPost->post_status == 'trash') {
