@@ -70,6 +70,22 @@ registerBlockType( 'graphql-api/persisted-query-options', {
 			type: 'boolean',
 			default: true,
 		},
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock::ATTRIBUTE_NAME_INHERIT_QUERY
+		 */
+		inheritQuery: {
+			type: 'boolean',
+			default: false,
+		},
+		/**
+		 * Same attribute name as defined in
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock::ATTRIBUTE_NAME_INHERIT_VARIABLES
+		 */
+		inheritVariables: {
+			type: 'boolean',
+			default: false,
+		},
 	},
 
 	/**

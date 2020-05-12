@@ -17,6 +17,8 @@ class PersistedQueryOptionsBlock extends AbstractQueryExecutionOptionsBlock
     use GraphQLByPoPBlockTrait;
 
     public const ATTRIBUTE_NAME_ACCEPT_VARIABLES_AS_URL_PARAMS = 'acceptVariablesAsURLParams';
+    public const ATTRIBUTE_NAME_INHERIT_QUERY = 'inheritQuery';
+    public const ATTRIBUTE_NAME_INHERIT_VARIABLES = 'inheritVariables';
 
     protected function getBlockName(): string
     {
@@ -38,6 +40,16 @@ class PersistedQueryOptionsBlock extends AbstractQueryExecutionOptionsBlock
             $blockContentPlaceholder,
             \__('Accept variables as URL params:', 'graphql-api'),
             $labels[$attributes[self::ATTRIBUTE_NAME_ACCEPT_VARIABLES_AS_URL_PARAMS] ?? true]
+        );
+        $blockContent .= sprintf(
+            $blockContentPlaceholder,
+            \__('Inherit query from ancestor(s):', 'graphql-api'),
+            $labels[$attributes[self::ATTRIBUTE_NAME_INHERIT_QUERY] ?? false]
+        );
+        $blockContent .= sprintf(
+            $blockContentPlaceholder,
+            \__('Inherit variables from ancestor(s):', 'graphql-api'),
+            $labels[$attributes[self::ATTRIBUTE_NAME_INHERIT_VARIABLES] ?? false]
         );
 
         return $blockContent;

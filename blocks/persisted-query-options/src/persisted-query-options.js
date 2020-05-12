@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { withSelect } from '@wordpress/data';
 import { compose, withState } from '@wordpress/compose';
 import { ToggleControl } from '@wordpress/components';
 
@@ -14,15 +15,21 @@ import {
 	LinkableInfoTooltip,
 } from '../../../packages/components/src';
 
+const getViewBooleanLabel = ( value ) => value ? `✅ ${ __('Yes', 'graphql-api') }` : `❌ ${ __('No', 'graphql-api') }`
+const getEditBooleanLabel = ( value ) => value ? __('Yes', 'graphql-api') : __('No', 'graphql-api')
+
 const PersistedQueryOptions = ( props ) => {
 	const {
 		isSelected,
 		className,
+		queryPostParent,
 		setAttributes,
 		attributes:
 		{
 			isEnabled,
 			acceptVariablesAsURLParams,
+			inheritQuery,
+			inheritVariables,
 		}
 	} = props;
 	return (
@@ -32,13 +39,13 @@ const PersistedQueryOptions = ( props ) => {
 				{ !isSelected && (
 					<>
 						<br />
-						{ isEnabled ? `✅ ${ __('Yes', 'graphql-api') }` : `❌ ${ __('No', 'graphql-api') }` }
+						{ getViewBooleanLabel( isEnabled ) }
 					</>
 				) }
 				{ isSelected &&
 					<ToggleControl
 						{ ...props }
-						label={ isEnabled ? __('Yes', 'graphql-api') : __('No', 'graphql-api') }
+						label={ getEditBooleanLabel( isEnabled ) }
 						checked={ isEnabled }
 						onChange={ newValue => setAttributes( {
 							isEnabled: newValue,
@@ -57,13 +64,13 @@ const PersistedQueryOptions = ( props ) => {
 				{ !isSelected && (
 					<>
 						<br />
-						{ acceptVariablesAsURLParams ? `✅ ${ __('Yes', 'graphql-api') }` : `❌ ${ __('No', 'graphql-api') }` }
+						{ getViewBooleanLabel( acceptVariablesAsURLParams ) }
 					</>
 				) }
 				{ isSelected &&
 					<ToggleControl
 						{ ...props }
-						label={ acceptVariablesAsURLParams ? __('Yes', 'graphql-api') : __('No', 'graphql-api') }
+						label={ getEditBooleanLabel( acceptVariablesAsURLParams ) }
 						checked={ acceptVariablesAsURLParams }
 						onChange={ newValue => setAttributes( {
 							acceptVariablesAsURLParams: newValue,
@@ -71,6 +78,63 @@ const PersistedQueryOptions = ( props ) => {
 					/>
 				}
 			</div>
+			{/* If this post has a parent, then allow to inherit query/variables */ }
+			{
+				!! queryPostParent && (
+					<>
+						<hr />
+						<div className={ `${ className }__inherit_query` }>
+							<em>{ __('Inherit query from ancestor(s)?', 'graphql-api') }</em>
+							<LinkableInfoTooltip
+								{ ...props }
+								text={ __('Use the persisted query defined in the ancestor post', 'graphql-api') }
+								href="https://graphql-api.com/documentation/#inherit-query"
+							/>
+							{ !isSelected && (
+								<>
+									<br />
+									{ getViewBooleanLabel( inheritQuery ) }
+								</>
+							) }
+							{ isSelected &&
+								<ToggleControl
+									{ ...props }
+									label={ getEditBooleanLabel( inheritQuery ) }
+									checked={ inheritQuery }
+									onChange={ newValue => setAttributes( {
+										inheritQuery: newValue,
+									} ) }
+								/>
+							}
+						</div>
+						<hr />
+						<div className={ `${ className }__inherit_variables` }>
+							<em>{ __('Inherit variables from ancestor(s)?', 'graphql-api') }</em>
+							<LinkableInfoTooltip
+								{ ...props }
+								text={ __('Use the variables defined in the ancestor post', 'graphql-api') }
+								href="https://graphql-api.com/documentation/#inherit-variables"
+							/>
+							{ !isSelected && (
+								<>
+									<br />
+									{ getViewBooleanLabel( inheritVariables ) }
+								</>
+							) }
+							{ isSelected &&
+								<ToggleControl
+									{ ...props }
+									label={ getEditBooleanLabel( inheritVariables ) }
+									checked={ inheritVariables }
+									onChange={ newValue => setAttributes( {
+										inheritVariables: newValue,
+									} ) }
+								/>
+							}
+						</div>
+					</>
+				)
+			}
 		</>
 	);
 }
@@ -78,6 +142,14 @@ const PersistedQueryOptions = ( props ) => {
 export default compose( [
 	withState( {
 		header: __('Options', 'graphql-api'),
+	} ),
+	withSelect( ( select ) => {
+		const { getEditedPostAttribute } = select(
+			'core/editor'
+		);
+		return {
+			queryPostParent: getEditedPostAttribute( 'parent' ),
+		};
 	} ),
 	withEditableOnFocus(),
 	withCard(),
