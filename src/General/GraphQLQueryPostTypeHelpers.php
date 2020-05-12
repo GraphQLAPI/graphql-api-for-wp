@@ -10,39 +10,57 @@ class GraphQLQueryPostTypeHelpers
 {
 
     /**
-     * A GraphQL Query Custom Post Type is hierarchical: each query post can have a parent, enabling to fetch attributes from the parent post
-     * If a GraphiQL block has not defined a query or variables, or the CPT post has not defined its access control list or cache control list,
+     * A GraphQL Query Custom Post Type is hierarchical: each query post can have a parent,
+     * enabling to fetch attributes from the parent post
+     * If a GraphiQL block has not defined a query or variables, or the CPT post has not defined
+     * its access control list or cache control list,
      * then these attributes are retrieved from the parent, until all attributes have a value.
      *
      * This enables to implement strategies for different GraphQL query hierarchies, for instance:
      *
-     * 1. Define root queries called "MobileApp" and "Website", with their corresponding ACL/CCL, and have the actual GraphQL queries inherit from them
-     * 2. Define a root GraphQL query without variables, and extend with posts "MobileApp" and "Website" with different variables, eg: changing the value for `$limit`
+     * 1. Define root queries called "MobileApp" and "Website", with their corresponding ACL/CCL,
+     * and have the actual GraphQL queries inherit from them
+     * 2. Define a root GraphQL query without variables, and extend with posts "MobileApp" and "Website"
+     * with different variables, eg: changing the value for `$limit`
      *
      * @param [type] $graphQLQueryPost
-     * @param bool $inheritAttributes Indicate if to iterate towards the parent of the GraphQL query post to fetch the missing attributes
-     * @return array array with 4 elements: [$graphQLQuery, $graphQLVariables, $acl, $ccl]
+     * @param bool $inheritAttributes Indicate if to fetch attributes (query/variables) from ancestor posts
+     * @return array array with 2 elements: [$graphQLQuery, $graphQLVariables]
      */
     public static function getGraphQLQueryPostAttributes($graphQLQueryPost, bool $inheritAttributes): array
     {
         /**
-         * Obtain the attributes from the block. As long as any of them is empty, and the GraphQL query post still has a parent,
-         * attempt to fetch those missing attributes from it
+         * Obtain the attributes from the block:
+         * - Empty query: get it from the first ancestor that defines a query
+         * - Variables: combine them all, with descendant's having more priority
          */
-        $graphQLQuery = $graphQLVariables = null;
+        $graphQLQuery = null;
+        $graphQLVariables = [];
         while (!is_null($graphQLQueryPost)) {
             list(
                 $postGraphQLQuery,
                 $postGraphQLVariables
             ) = GraphiQLBlockHelpers::getSingleGraphiQLBlockAttributesFromPost($graphQLQueryPost);
+            // Get the first non-empty query
             if (!$graphQLQuery) {
                 $graphQLQuery = $postGraphQLQuery;
             }
-            if (!$graphQLVariables) {
-                $graphQLVariables = $postGraphQLVariables;
-            }
-            // If any of them is still empty, and this post has a parent, then load it for the next iteration
-            if ($inheritAttributes && (!$graphQLQuery || !$graphQLVariables) && $graphQLQueryPost->post_parent) {
+            /**
+             * Combine all variables. Variables is saved as a string, convert to array
+             * Watch out! If the variables have a wrong format, eg: with an additional trailing comma, such as this:
+             * {
+             *   "limit": 3,
+             * }
+             * Then doing `json_decode` will return NULL
+             */
+            $postGraphQLVariables = json_decode($postGraphQLVariables, true) ?? [];
+            $graphQLVariables = array_merge(
+                $postGraphQLVariables,
+                $graphQLVariables
+            );
+
+            // Keep iterating with this posts' ancestors
+            if ($inheritAttributes && $graphQLQueryPost->post_parent) {
                 $graphQLQueryPost = \get_post($graphQLQueryPost->post_parent);
                 // If it's trashed, then do not use
                 if ($graphQLQueryPost->post_status == 'trash') {
@@ -52,17 +70,6 @@ class GraphQLQueryPostTypeHelpers
                 // Otherwise, finish iterating
                 $graphQLQueryPost = null;
             }
-        }
-        if ($graphQLVariables) {
-            /**
-             * Variables is saved as a string, convert to array
-             * Watch out! If the variables have a wrong format, eg: with an additional trailing comma, such as this:
-             * {
-             *   "limit": 3,
-             * }
-             * Then doing `json_decode` will return NULL
-             */
-            $graphQLVariables = json_decode($graphQLVariables, true);
         }
         return [
             $graphQLQuery,
