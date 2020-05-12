@@ -22,8 +22,8 @@ const getMarkdownContent = ( fileName, lang ) => {
 const getMarkdownContentOrUseDefault = ( fileName, defaultLang, lang ) => {
 	/**
 	 * If lang or defaultLang are empty, then get them from the localized data under `window.endpointEditorComponents`
-	 * Property "localeLang": same as constant Leoloso\GraphQLByPoPWPPlugin\EditorScripts\AbstractEditorScript::LOCALE_LANG
-	 * Property "defaultLang": same as constants: same as constant Leoloso\GraphQLByPoPWPPlugin\EditorScripts\AbstractEditorScript::DEFAULT_LANG
+	 * Property "localeLang": same as constant Leoloso\GraphQLByPoPWPPlugin\EditorScripts\DocumentationConstants::LOCALE_LANG
+	 * Property "defaultLang": same as constants: same as constant Leoloso\GraphQLByPoPWPPlugin\EditorScripts\DocumentationConstants::DEFAULT_LANG
 	 */
 	lang = lang || window.endpointEditorComponents?.localeLang
 	defaultLang = defaultLang || window.endpointEditorComponents?.defaultLang	
