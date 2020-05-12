@@ -78,14 +78,6 @@ registerBlockType( 'graphql-api/persisted-query-options', {
 			type: 'boolean',
 			default: false,
 		},
-		/**
-		 * Same attribute name as defined in
-		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock::ATTRIBUTE_NAME_INHERIT_VARIABLES
-		 */
-		inheritVariables: {
-			type: 'boolean',
-			default: false,
-		},
 	},
 
 	/**

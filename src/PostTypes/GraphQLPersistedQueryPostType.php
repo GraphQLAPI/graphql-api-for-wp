@@ -200,10 +200,9 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
                  * If the query has a parent, also render the inherited output
                  */
                 list(
-                    $inheritQuery,
-                    $inheritVariables
+                    $inheritQuery
                 ) = BlockContentHelpers::getSinglePersistedQueryOptionsBlockAttributesFromPost($graphQLQueryPost);
-                if ($inheritQuery || $inheritVariables) {
+                if ($inheritQuery) {
                     // Fetch the attributes using inheritance
                     list(
                         $inheritedGraphQLQuery,
@@ -227,9 +226,9 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
             if ($ancestorContent) {
                 $content = sprintf(
                     '%s%s<hr/>%s%s',
-                    \__('<p><u>Executable GraphQL query (with inherited properties): </u></p>'),
+                    \__('<p><u>GraphQL query, inheriting properties from ancestor(s): </u></p>'),
                     $ancestorContent,
-                    \__('<p><u>Defined GraphQL query (without inherited properties): </u></p>'),
+                    \__('<p><u>GraphQL query, as defined in this level: </u></p>'),
                     $content
                 );
             }

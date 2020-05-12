@@ -37,7 +37,7 @@ class BlockContentHelpers
      * Extract the Persisted Query Options block attributes from the post
      *
      * @param [type] $post
-     * @return null|array an array of 2 items: [$inheritQuery, $inheritVariables], or null if the post contains 0 or more than 1 block
+     * @return null|array an array of 1 item: [$inheritQuery], or null if the post contains 0 or more than 1 block
      */
     public static function getSinglePersistedQueryOptionsBlockAttributesFromPost($post): ?array
     {
@@ -52,7 +52,6 @@ class BlockContentHelpers
         }
         return [
             $block['attrs'][PersistedQueryOptionsBlock::ATTRIBUTE_NAME_INHERIT_QUERY],
-            $block['attrs'][PersistedQueryOptionsBlock::ATTRIBUTE_NAME_INHERIT_VARIABLES]
         ];
     }
 }

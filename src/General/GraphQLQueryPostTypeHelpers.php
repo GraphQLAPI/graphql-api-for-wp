@@ -40,11 +40,10 @@ class GraphQLQueryPostTypeHelpers
             /**
              * If the query has a parent, maybe get the query/variables from the parent
              */
-            $inheritQuery = $inheritVariables = false;
+            $inheritQuery = false;
             if ($inheritAttributes && $graphQLQueryPost->post_parent) {
                 list(
                     $inheritQuery,
-                    $inheritVariables
                 ) = BlockContentHelpers::getSinglePersistedQueryOptionsBlockAttributesFromPost($graphQLQueryPost);
             }
             list(
@@ -70,7 +69,7 @@ class GraphQLQueryPostTypeHelpers
             );
 
             // Keep iterating with this posts' ancestors
-            if ($inheritQuery || $inheritVariables) {
+            if ($inheritQuery) {
                 $graphQLQueryPost = \get_post($graphQLQueryPost->post_parent);
                 // If it's trashed, then do not use
                 if ($graphQLQueryPost->post_status == 'trash') {

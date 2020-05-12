@@ -29,7 +29,6 @@ const PersistedQueryOptions = ( props ) => {
 			isEnabled,
 			acceptVariablesAsURLParams,
 			inheritQuery,
-			inheritVariables,
 		}
 	} = props;
 	return (
@@ -103,31 +102,6 @@ const PersistedQueryOptions = ( props ) => {
 									checked={ inheritQuery }
 									onChange={ newValue => setAttributes( {
 										inheritQuery: newValue,
-									} ) }
-								/>
-							}
-						</div>
-						<hr />
-						<div className={ `${ className }__inherit_variables` }>
-							<em>{ __('Inherit variables from ancestor(s)?', 'graphql-api') }</em>
-							<LinkableInfoTooltip
-								{ ...props }
-								text={ __('Use the variables defined in the ancestor post', 'graphql-api') }
-								href="https://graphql-api.com/documentation/#inherit-variables"
-							/>
-							{ !isSelected && (
-								<>
-									<br />
-									{ getViewBooleanLabel( inheritVariables ) }
-								</>
-							) }
-							{ isSelected &&
-								<ToggleControl
-									{ ...props }
-									label={ getEditBooleanLabel( inheritVariables ) }
-									checked={ inheritVariables }
-									onChange={ newValue => setAttributes( {
-										inheritVariables: newValue,
 									} ) }
 								/>
 							}
