@@ -6,6 +6,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\EditorScripts;
 
 use Error;
 use Leoloso\GraphQLByPoPWPPlugin\General\GeneralUtils;
+use Leoloso\GraphQLByPoPWPPlugin\General\EditorHelpers;
 
 /**
  * Base class for a Gutenberg script.
@@ -172,10 +173,31 @@ abstract class AbstractEditorScript
     }
 
     /**
+     * Post types for which to register the script
+     *
+     * @return array
+     */
+    protected function getAllowedPostTypes(): array
+    {
+        return [];
+    }
+
+    /**
      * Registers all script assets
      */
     public function initScript(): void
     {
+        /**
+         * Maybe only load the script when creating/editing for some CPT only
+         */
+        if (\is_admin()) {
+            if ($postTypes = $this->getAllowedPostTypes()) {
+                if (!in_array(EditorHelpers::getEditingPostType(), $postTypes)) {
+                    return;
+                }
+            }
+        }
+
         $dir = $this->getScriptDir();
         $scriptName = $this->getScriptName();
 

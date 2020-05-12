@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\EditorScripts;
 
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLEndpointPostType;
+
 /**
  * Components required to edit a GraphQL endpoint CPT
  */
@@ -68,6 +70,21 @@ class EndpointEditorComponentScript extends AbstractEditorScript
             parent::getDocLanguages(),
             [
                 'es', // Spanish
+            ]
+        );
+    }
+
+    /**
+     * Post types for which to register the script
+     *
+     * @return array
+     */
+    protected function getAllowedPostTypes(): array
+    {
+        return array_merge(
+            parent::getAllowedPostTypes(),
+            [
+                GraphQLEndpointPostType::POST_TYPE,
             ]
         );
     }

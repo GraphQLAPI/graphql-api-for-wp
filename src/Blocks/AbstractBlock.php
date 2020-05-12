@@ -6,6 +6,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Error;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\General\EditorHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\General\GeneralUtils;
 use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
 
@@ -216,30 +217,7 @@ abstract class AbstractBlock
         if (\is_admin()) {
             $blockCategory = $this->getBlockCategory();
             if ($blockCategory && !empty($blockCategory->getPostTypes())) {
-                // When in the editor, there is no direct way to obtain the post type yet,
-                // in hook "init", since $typenow has not been initialized yet
-                // Hence, recreate the logic to get post type from URL if we are on post-new.php, or
-                // from edited post in post.php
-                global $pagenow;
-                $typenow = '';
-                if ('post-new.php' === $pagenow) {
-                    if (isset($_REQUEST['post_type']) && \post_type_exists($_REQUEST['post_type'])) {
-                        $typenow = $_REQUEST['post_type'];
-                    };
-                } elseif ('post.php' === $pagenow) {
-                    if (isset($_GET['post']) && isset($_POST['post_ID']) && (int) $_GET['post'] !== (int) $_POST['post_ID']) {
-                        // Do nothing
-                    } elseif (isset($_GET['post'])) {
-                        $post_id = (int) $_GET['post'];
-                    } elseif (isset($_POST['post_ID'])) {
-                        $post_id = (int) $_POST['post_ID'];
-                    }
-                    if ($post_id) {
-                        $post = \get_post($post_id);
-                        $typenow = $post->post_type;
-                    }
-                }
-                if (!$typenow || !in_array($typenow, $blockCategory->getPostTypes())) {
+                if (!in_array(EditorHelpers::getEditingPostType(), $blockCategory->getPostTypes())) {
                     return;
                 }
             }
