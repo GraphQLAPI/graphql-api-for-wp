@@ -7,7 +7,7 @@ const { PluginDocumentSettingPanel } = wp.editPost;
 /**
  * Internal dependencies
  */
-import { MarkdownGuideButton, MarkdownInfoModalButton } from '../../../../packages/components/src';
+import { MarkdownGuideButton } from '../../../../packages/components/src';
 import { getMarkdownContentOrUseDefault } from '../markdown-loader';
 
 /**
@@ -27,12 +27,7 @@ const DocumentSettingsPanel = () => (
                 'lorem-ipsum',
             ] }
             contentLabel={ __('Endpoint guide', 'graphql-api') } 
-            buttonLabel={ __('Open tutorial guide', 'graphql-api') }
-            getMarkdownContentCallback={ getMarkdownContentOrUseDefault }
-        />
-        <MarkdownInfoModalButton
-            title={ __('Using the options', 'graphql-api') }
-            pageFilename="welcome-guide"
+            buttonLabel={ __('Open Guide: “Creating Custom Endpoints”', 'graphql-api') }
             getMarkdownContentCallback={ getMarkdownContentOrUseDefault }
         />
     </PluginDocumentSettingPanel>
