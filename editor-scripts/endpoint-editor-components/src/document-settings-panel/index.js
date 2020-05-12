@@ -27,7 +27,7 @@ const DocumentSettingsPanel = () => (
                 'lorem-ipsum',
             ] }
             contentLabel={ __('Endpoint guide', 'graphql-api') } 
-            buttonLabel={ __('Open Guide: “Creating Custom Endpoints”', 'graphql-api') }
+            buttonLabel={ __('→ Open Guide: “Creating Custom Endpoints”', 'graphql-api') }
             getMarkdownContentCallback={ getMarkdownContentOrUseDefault }
         />
     </PluginDocumentSettingPanel>
