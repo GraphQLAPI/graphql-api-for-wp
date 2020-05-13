@@ -1,5 +1,5 @@
 {
-    "name": "leoloso/graphql-api-wp-plugin",
+    "name": "GraphQLAPI/graphql-api",
     "type": "library",
     "description": "GraphQL API for WordPress",
     "keywords": [
@@ -8,7 +8,7 @@
         "GraphQL",
         "API"
     ],
-    "homepage": "https://github.com/leoloso/graphql-api-wp-plugin",
+    "homepage": "https://github.com/GraphQLAPI/graphql-api",
     "license": "MIT",
     "authors": [
         {
