@@ -9,7 +9,7 @@ const { PluginDocumentSettingPanel } = wp.editPost;
  */
 import { MarkdownGuideButton } from '../../../../packages/components/src';
 import { getMarkdownContentOrUseDefault } from '../markdown-loader';
-import PersistedQueryGuideButton from './guide-for-css-tricks-article';
+// import PersistedQueryGuideButton from './guide-for-css-tricks-article';
 
 /**
  * Constants to customize
@@ -29,13 +29,13 @@ const DocumentSettingsPanel = () => (
         name={ DOCUMENT_SETTINGS_PANEL_NAME }
         title={ __('Welcome Guide', 'graphql-api') }
     >
-        {/* <MarkdownGuideButton
+        <MarkdownGuideButton
             getMarkdownContentCallback={ getMarkdownContentOrUseDefault }
             contentLabel={ guideName } 
             guideName={ guideName }
             pageFilenames={ pageFilenames }
-        /> */}
-        <PersistedQueryGuideButton />
+        />
+        {/* <PersistedQueryGuideButton /> */}
     </PluginDocumentSettingPanel>
 );
 export default DocumentSettingsPanel;
