@@ -38,6 +38,7 @@ use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLSchemaConfigurationPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\FieldDeprecationBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLFieldDeprecationListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\SchemaConfigurationBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\EditorScripts\PersistedQueryEditorComponentScript;
 
 class Plugin
 {
@@ -80,6 +81,7 @@ class Plugin
          * Editor Scripts
          */
         (new EndpointEditorComponentScript())->init();
+        (new PersistedQueryEditorComponentScript())->init();
 
         /**
          * Blocks
