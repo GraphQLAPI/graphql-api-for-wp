@@ -21,7 +21,6 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserRolesBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserStateBlock;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\EndpointBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlDisableAccessBlock;
-use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\AdminEndpointResolver;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\CacheControlBlockCategory;
@@ -47,16 +46,12 @@ class Plugin
     public function init(): void
     {
         /**
-         * Menus
+         * Initialize classes for the admin panel
          */
         if (\is_admin()) {
             ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Admin\\Menus');
+            ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Admin\\EndpointResolvers');
             ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Admin\\Development');
-
-            /**
-             * Endpoint resolvers
-             */
-            (new AdminEndpointResolver())->init();
         }
 
         /**

@@ -2,15 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers;
+namespace Leoloso\GraphQLByPoPWPPlugin\Admin\EndpointResolvers;
 
 use PoP\EngineWP\Templates\TemplateHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
 use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
 use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\EndpointResolverTrait;
+use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\AbstractEndpointResolver;
 
-class AdminEndpointResolver
+class AdminEndpointResolver extends AbstractEndpointResolver
 {
     use EndpointResolverTrait {
         EndpointResolverTrait::executeGraphQLQuery as upstreamExecuteGraphQLQuery;
@@ -45,8 +46,10 @@ class AdminEndpointResolver
      *
      * @return void
      */
-    public function init(): void
+    protected function init(): void
     {
+        parent::init();
+
         /**
          * Print the global JS variables, required by the blocks
          */
