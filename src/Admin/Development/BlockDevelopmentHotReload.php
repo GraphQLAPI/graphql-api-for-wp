@@ -21,9 +21,10 @@ class BlockDevelopmentHotReload
     {
         // Enable Hot Reloading! Only for DEV
         // By either constant definition, or environment variable
-        if (\is_admin() &&
+        if (
+            \is_admin() &&
             (
-                (defined('ENABLE_HOT_RELOADING_FOR_DEV') && \ENABLE_HOT_RELOADING_FOR_DEV) ||
+                (defined('ENABLE_HOT_RELOADING_FOR_DEV') && constant('ENABLE_HOT_RELOADING_FOR_DEV')) ||
                 (isset($_ENV['ENABLE_HOT_RELOADING_FOR_DEV']) && $_ENV['ENABLE_HOT_RELOADING_FOR_DEV'])
             )
         ) {

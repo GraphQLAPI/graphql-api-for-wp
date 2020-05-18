@@ -49,7 +49,7 @@ abstract class AbstractPostType
         }
 
         /**
-         * Add extra actions to the CPT table. 
+         * Add extra actions to the CPT table.
          * If they are hierarchical, they use hook "page_row_actions"
          */
         \add_filter(
