@@ -13,12 +13,17 @@ abstract class AbstractTaxonomy
      */
     abstract public function getTaxonomy(): string;
 
+    public function __construct()
+    {
+        $this->init();
+    }
+
     /**
      * Add the hook to initialize the different taxonomies
      *
      * @return void
      */
-    public function init(): void
+    protected function init(): void
     {
         \add_action(
             'init',

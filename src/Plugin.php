@@ -57,7 +57,7 @@ class Plugin
         /**
          * Taxonomies (init them before Post Types)
          */
-        (new GraphQLQueryTaxonomy())->init();
+        ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Taxonomies');
 
         /**
          * Post Types

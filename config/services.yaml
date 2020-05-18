@@ -16,6 +16,10 @@ services:
         resource: '../src/Admin/Development/*'
         public: true
 
+    Leoloso\GraphQLByPoPWPPlugin\Taxonomies\:
+        resource: '../src/Taxonomies/*'
+        public: true
+
     Leoloso\GraphQLByPoPWPPlugin\Hooks\:
         resource: '../src/Hooks/*'
         public: true
