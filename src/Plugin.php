@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
-use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
+use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\EndpointOptionsBlock;
@@ -14,20 +14,26 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLWithExplorerBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLEndpointPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserRolesBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserStateBlock;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\EndpointBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlDisableAccessBlock;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\CacheControlBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserCapabilitiesBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\PersistedQueryBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\QueryExecutionBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\EditorScripts\EndpointComponentEditorScript;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLSchemaConfigurationPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\FieldDeprecationBlockCategory;
+use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLFieldDeprecationListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\SchemaConfigurationBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\EditorScripts\PersistedQueryComponentEditorScript;
 
@@ -48,7 +54,18 @@ class Plugin
          * Taxonomies must be initialized before Post Types
          */
         ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Taxonomies');
-        ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\PostTypes');
+        /**
+         * Initialize Post Types manually to control in what order they are added to the menu
+         */
+        ContainerBuilderUtils::instantiateService(GraphQLEndpointPostType::class);
+        ContainerBuilderUtils::instantiateService(GraphQLPersistedQueryPostType::class);
+        ContainerBuilderUtils::instantiateService(GraphQLSchemaConfigurationPostType::class);
+        ContainerBuilderUtils::instantiateService(GraphQLAccessControlListPostType::class);
+        ContainerBuilderUtils::instantiateService(GraphQLCacheControlListPostType::class);
+        ContainerBuilderUtils::instantiateService(GraphQLFieldDeprecationListPostType::class);
+        /**
+         * Editor Scripts
+         */
         ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\EditorScripts');
 
         /**
