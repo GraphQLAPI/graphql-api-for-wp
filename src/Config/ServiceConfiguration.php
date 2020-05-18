@@ -6,8 +6,11 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Config;
 
 use PoP\Engine\TypeResolvers\RootTypeResolver;
 use PoP\Root\Component\PHPServiceConfigurationTrait;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQL\GraphiQLBlock;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
+use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQL\GraphiQLWithExplorerBlock;
 use PoP\UserRolesAccessControl\Services\AccessControlGroups as UserRolesAccessControlGroups;
 
 class ServiceConfiguration
@@ -21,6 +24,17 @@ class ServiceConfiguration
      */
     protected static function configure()
     {
+        self::configureAccessControl();
+        self::configureOverridingBlocks();
+    }
+
+    /**
+     * Validate that only the right users can access private fields
+     *
+     * @return void
+     */
+    protected static function configureAccessControl()
+    {
         $schemaEditorAccessCapability = UserAuthorization::getSchemaEditorAccessCapability();
         $capabilities = [$schemaEditorAccessCapability];
         ContainerBuilderUtils::injectValuesIntoService(
@@ -33,5 +47,23 @@ class ServiceConfiguration
                 [RootTypeResolver::class, 'fieldDeprecationLists', $capabilities],
             ]
         );
+    }
+
+    /**
+     * Maybe override blocks
+     *
+     * @return void
+     */
+    protected static function configureOverridingBlocks()
+    {
+        // Maybe use GraphiQL with Explorer
+        if (ComponentConfiguration::useGraphiQLWithExplorer()) {
+            ContainerBuilderUtils::injectValuesIntoService(
+                'instance_manager',
+                'overrideClass',
+                GraphiQLBlock::class,
+                GraphiQLWithExplorerBlock::class
+            );
+        }
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\General;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQL\GraphiQLBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock;
 

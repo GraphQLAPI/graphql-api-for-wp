@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
+namespace Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQL;
 
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
 use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\PersistedQueryBlockCategory;
 
