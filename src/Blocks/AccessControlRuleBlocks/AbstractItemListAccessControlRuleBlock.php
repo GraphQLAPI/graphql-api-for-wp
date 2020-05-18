@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
+namespace Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlRuleBlocks;
+
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlRuleBlocks\AbstractAccessControlRuleBlock;
 
 /**
  * Access Control User Capabilities block
  */
-abstract class AbstractItemListControlBlock extends AbstractAccessControlRuleBlock
+abstract class AbstractItemListAccessControlRuleBlock extends AbstractAccessControlRuleBlock
 {
     protected function isDynamicBlock(): bool
     {

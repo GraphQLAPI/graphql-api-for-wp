@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
 use PoP\API\Configuration\Request;
-use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use PoP\ComponentModel\State\ApplicationState;
 use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\EndpointOptionsBlock;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractGraphQLQueryExecutionPostType;
@@ -124,8 +125,9 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
      */
     protected function getGutenbergTemplate(): array
     {
-        $schemaConfigurationBlock = PluginState::getSchemaConfigurationBlock();
-        $endpointOptionsBlock = PluginState::getEndpointOptionsBlock();
+        $instanceManager = InstanceManagerFacade::getInstance();
+        $schemaConfigurationBlock = $instanceManager->getInstance(SchemaConfigurationBlock::class);
+        $endpointOptionsBlock = $instanceManager->getInstance(EndpointOptionsBlock::class);
         return array_merge(
             parent::getGutenbergTemplate(),
             [
@@ -180,7 +182,8 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     protected function getQueryExecutionOptionsBlock(): AbstractQueryExecutionOptionsBlock
     {
-        return PluginState::getEndpointOptionsBlock();
+        $instanceManager = InstanceManagerFacade::getInstance();
+        return $instanceManager->getInstance(EndpointOptionsBlock::class);
     }
 
     /**

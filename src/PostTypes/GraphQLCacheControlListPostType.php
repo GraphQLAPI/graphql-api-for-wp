@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
-use Leoloso\GraphQLByPoPWPPlugin\PluginState;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 class GraphQLCacheControlListPostType extends AbstractPostType
 {
@@ -62,7 +63,8 @@ class GraphQLCacheControlListPostType extends AbstractPostType
      */
     protected function getGutenbergTemplate(): array
     {
-        $cacheControlBlock = PluginState::getCacheControlBlock();
+        $instanceManager = InstanceManagerFacade::getInstance();
+        $cacheControlBlock = $instanceManager->getInstance(CacheControlBlock::class);
         return [
             [$cacheControlBlock->getBlockFullName()],
         ];

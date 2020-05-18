@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractAccessControlRuleBlock;
 use PoP\ComponentModel\Misc\GeneralUtils;
-use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
 use PoP\AccessControl\Facades\AccessControlManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlRuleBlocks\AbstractAccessControlRuleBlock;
 
 class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGraphQLQueryConfigurator
 {
@@ -27,9 +27,10 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
      */
     public function executeSchemaConfiguration(int $aclPostID): void
     {
+        $instanceManager = InstanceManagerFacade::getInstance();
         $aclBlockItems = BlockHelpers::getBlocksOfTypeFromCustomPost(
             $aclPostID,
-            PluginState::getAccessControlBlock()
+            $instanceManager->getInstance(AccessControlBlock::class)
         );
         $accessControlManager = AccessControlManagerFacade::getInstance();
         // The "Access Control" type contains the fields/directives

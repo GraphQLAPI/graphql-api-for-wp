@@ -39,6 +39,11 @@ use Leoloso\GraphQLByPoPWPPlugin\EditorScripts\PersistedQueryComponentEditorScri
 
 class Plugin
 {
+    /**
+     * Plugin's namespace
+     */
+    public const NAMESPACE = __NAMESPACE__;
+
     public function init(): void
     {
         /**
@@ -71,65 +76,16 @@ class Plugin
         /**
          * Blocks
          */
-        $schemaConfigurationBlock = new SchemaConfigurationBlock();
-        $schemaConfigurationBlock->init();
-        PluginState::setSchemaConfigurationBlock($schemaConfigurationBlock);
-
+        ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Blocks', false);
+        /**
+         * Access Control Nested Blocks
+         */
+        ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Blocks\\AccessControlRuleBlocks', false);
+        
         // Maybe use GraphiQL with Explorer
-        $graphiQLBlock = ComponentConfiguration::useGraphiQLWithExplorer() ?
-            new GraphiQLWithExplorerBlock() :
-            new GraphiQLBlock();
-        $graphiQLBlock->init();
-        PluginState::setGraphiQLBlock($graphiQLBlock);
-
-        $accessControlBlock = new AccessControlBlock();
-        $accessControlBlock->init();
-        PluginState::setAccessControlBlock($accessControlBlock);
-
-        $accessControlNestedBlock = new AccessControlDisableAccessBlock();
-        $accessControlNestedBlock->init();
-        PluginState::addAccessControlNestedBlock($accessControlNestedBlock);
-        $accessControlNestedBlock = new AccessControlUserStateBlock();
-        $accessControlNestedBlock->init();
-        PluginState::addAccessControlNestedBlock($accessControlNestedBlock);
-        $accessControlNestedBlock = new AccessControlUserRolesBlock();
-        $accessControlNestedBlock->init();
-        PluginState::addAccessControlNestedBlock($accessControlNestedBlock);
-        $accessControlNestedBlock = new AccessControlUserCapabilitiesBlock();
-        $accessControlNestedBlock->init();
-        PluginState::addAccessControlNestedBlock($accessControlNestedBlock);
-
-        $cacheControlBlock = new CacheControlBlock();
-        $cacheControlBlock->init();
-        PluginState::setCacheControlBlock($cacheControlBlock);
-
-        $fieldDeprecationBlock = new FieldDeprecationBlock();
-        $fieldDeprecationBlock->init();
-        PluginState::setFieldDeprecationBlock($fieldDeprecationBlock);
-
-        $schemaConfigAccessControlListBlock = new SchemaConfigAccessControlListBlock();
-        $schemaConfigAccessControlListBlock->init();
-        PluginState::setSchemaConfigAccessControlListBlock($schemaConfigAccessControlListBlock);
-
-        $schemaConfigCacheControlListBlock = new SchemaConfigCacheControlListBlock();
-        $schemaConfigCacheControlListBlock->init();
-        PluginState::setSchemaConfigCacheControlListBlock($schemaConfigCacheControlListBlock);
-
-        $schemaConfigFieldDeprecationListBlock = new SchemaConfigFieldDeprecationListBlock();
-        $schemaConfigFieldDeprecationListBlock->init();
-        PluginState::setSchemaConfigFieldDeprecationListBlock($schemaConfigFieldDeprecationListBlock);
-
-        $schemaConfigOptionsBlock = new SchemaConfigOptionsBlock();
-        $schemaConfigOptionsBlock->init();
-        PluginState::setSchemaConfigOptionsBlock($schemaConfigOptionsBlock);
-
-        $endpointOptionsBlock = new EndpointOptionsBlock();
-        $endpointOptionsBlock->init();
-        PluginState::setEndpointOptionsBlock($endpointOptionsBlock);
-
-        $persistedQueryOptionsBlock = new PersistedQueryOptionsBlock();
-        $persistedQueryOptionsBlock->init();
-        PluginState::setPersistedQueryOptionsBlock($persistedQueryOptionsBlock);
+        // $graphiQLBlock = ComponentConfiguration::useGraphiQLWithExplorer() ?
+        //     new GraphiQLWithExplorerBlock() :
+        //     new GraphiQLBlock();
 
         /**
          * Block categories

@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
-use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\FieldDeprecationBlock;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 class GraphQLFieldDeprecationListPostType extends AbstractPostType
 {
@@ -62,7 +63,8 @@ class GraphQLFieldDeprecationListPostType extends AbstractPostType
      */
     protected function getGutenbergTemplate(): array
     {
-        $fieldDeprecationBlock = PluginState::getFieldDeprecationBlock();
+        $instanceManager = InstanceManagerFacade::getInstance();
+        $fieldDeprecationBlock = $instanceManager->getInstance(FieldDeprecationBlock::class);
         return [
             [$fieldDeprecationBlock->getBlockFullName()],
         ];

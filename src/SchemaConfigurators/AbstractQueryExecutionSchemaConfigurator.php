@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
 
 use PoP\AccessControl\Schema\SchemaModes;
-use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\Settings\Settings;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
@@ -43,9 +43,10 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
      */
     protected function getSchemaConfigurationID(int $customPostID): ?int
     {
+        $instanceManager = InstanceManagerFacade::getInstance();
         $schemaConfigurationBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $customPostID,
-            PluginState::getSchemaConfigurationBlock()
+            $instanceManager->getInstance(SchemaConfigurationBlock::class)
         );
         // If there was no schema configuration, then the default one has been selected
         // It is not saved in the DB, because it has been set as the default value in
@@ -110,9 +111,10 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
      */
     protected function executeSchemaConfigurationOptionsNamespacing(int $schemaConfigurationID): void
     {
+        $instanceManager = InstanceManagerFacade::getInstance();
         $schemaConfigOptionsBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $schemaConfigurationID,
-            PluginState::getSchemaConfigOptionsBlock()
+            $instanceManager->getInstance(SchemaConfigOptionsBlock::class)
         );
         if (!is_null($schemaConfigOptionsBlockDataItem)) {
             /**
@@ -153,9 +155,10 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
      */
     protected function executeSchemaConfigurationOptionsDefaultSchemaMode(int $schemaConfigurationID): void
     {
+        $instanceManager = InstanceManagerFacade::getInstance();
         $schemaConfigOptionsBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $schemaConfigurationID,
-            PluginState::getSchemaConfigOptionsBlock()
+            $instanceManager->getInstance(SchemaConfigOptionsBlock::class)
         );
         if (!is_null($schemaConfigOptionsBlockDataItem)) {
             /**
@@ -197,9 +200,10 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
      */
     protected function executeSchemaConfigurationAccessControlLists(int $schemaConfigurationID): void
     {
+        $instanceManager = InstanceManagerFacade::getInstance();
         $schemaConfigACLBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $schemaConfigurationID,
-            PluginState::getSchemaConfigAccessControlListBlock()
+            $instanceManager->getInstance(SchemaConfigAccessControlListBlock::class)
         );
         if (!is_null($schemaConfigACLBlockDataItem)) {
             if ($accessControlLists = $schemaConfigACLBlockDataItem['attrs'][SchemaConfigAccessControlListBlock::ATTRIBUTE_NAME_ACCESS_CONTROL_LISTS]) {
@@ -220,9 +224,10 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
      */
     protected function executeSchemaConfigurationFieldDeprecationLists(int $schemaConfigurationID): void
     {
+        $instanceManager = InstanceManagerFacade::getInstance();
         $schemaConfigFDLBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $schemaConfigurationID,
-            PluginState::getSchemaConfigFieldDeprecationListBlock()
+            $instanceManager->getInstance(SchemaConfigFieldDeprecationListBlock::class)
         );
         if (!is_null($schemaConfigFDLBlockDataItem)) {
             if ($fieldDeprecationLists = $schemaConfigFDLBlockDataItem['attrs'][SchemaConfigFieldDeprecationListBlock::ATTRIBUTE_NAME_FIELD_DEPRECATION_LISTS]) {

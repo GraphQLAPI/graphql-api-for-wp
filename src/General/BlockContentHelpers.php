@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\General;
 
-use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock;
 
 class BlockContentHelpers
@@ -19,9 +19,10 @@ class BlockContentHelpers
     public static function getSingleGraphiQLBlockAttributesFromPost($post): ?array
     {
         // There must be only one block of type GraphiQL. Fetch it
+        $instanceManager = InstanceManagerFacade::getInstance();
         $graphiQLBlock = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $post,
-            PluginState::getGraphiQLBlock()
+            $instanceManager->getInstance(GraphiQLBlock::class)
         );
         // If there is either 0 or more than 1, return nothing
         if (is_null($graphiQLBlock)) {
@@ -42,9 +43,10 @@ class BlockContentHelpers
     public static function getSinglePersistedQueryOptionsBlockAttributesFromPost($post): ?array
     {
         // There must be only one block of type PersistedQueryOptionsBlock. Fetch it
+        $instanceManager = InstanceManagerFacade::getInstance();
         $block = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $post,
-            PluginState::getPersistedQueryOptionsBlock()
+            $instanceManager->getInstance(PersistedQueryOptionsBlock::class)
         );
         // If there is either 0 or more than 1, return nothing
         if (is_null($block)) {

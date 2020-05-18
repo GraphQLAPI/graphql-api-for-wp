@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
-use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockContentHelpers;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\General\GraphQLQueryPostTypeHelpers;
@@ -144,9 +144,10 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
      */
     protected function getGutenbergTemplate(): array
     {
-        $graphiQLBlock = PluginState::getGraphiQLBlock();
-        $schemaConfigurationBlock = PluginState::getSchemaConfigurationBlock();
-        $persistedQueryOptionsBlock = PluginState::getPersistedQueryOptionsBlock();
+        $instanceManager = InstanceManagerFacade::getInstance();
+        $graphiQLBlock = $instanceManager->getInstance(GraphiQLBlock::class);
+        $schemaConfigurationBlock = $instanceManager->getInstance(SchemaConfigurationBlock::class);
+        $persistedQueryOptionsBlock = $instanceManager->getInstance(PersistedQueryOptionsBlock::class);
         return [
             [$graphiQLBlock->getBlockFullName()],
             [$schemaConfigurationBlock->getBlockFullName()],
@@ -192,7 +193,8 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
          * 2. The final block, completing the missing attributes from its parent
          */
         if ($graphQLQueryPost->post_parent) {
-            $graphiQLBlock = PluginState::getGraphiQLBlock();
+            $instanceManager = InstanceManagerFacade::getInstance();
+            $graphiQLBlock = $instanceManager->getInstance(GraphiQLBlock::class);
 
             // Check if the user is authorized to see the content
             if (UserAuthorization::canAccessSchemaEditor()) {
@@ -252,7 +254,8 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
 
     protected function getQueryExecutionOptionsBlock(): AbstractQueryExecutionOptionsBlock
     {
-        return PluginState::getPersistedQueryOptionsBlock();
+        $instanceManager = InstanceManagerFacade::getInstance();
+        return $instanceManager->getInstance(PersistedQueryOptionsBlock::class);
     }
 
     /**

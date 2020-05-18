@@ -24,12 +24,17 @@ abstract class AbstractBlock
 {
     use HasDocumentationScriptTrait;
 
+    public function __construct()
+    {
+        $this->init();
+    }
+
     /**
      * Execute this function to initialize the block
      *
      * @return void
      */
-    public function init(): void
+    protected function init(): void
     {
         \add_action('init', [$this, 'initBlock']);
     }

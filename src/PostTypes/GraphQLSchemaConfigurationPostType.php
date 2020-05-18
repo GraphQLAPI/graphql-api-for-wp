@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
-use Leoloso\GraphQLByPoPWPPlugin\PluginState;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
 
 class GraphQLSchemaConfigurationPostType extends AbstractPostType
 {
@@ -62,10 +66,11 @@ class GraphQLSchemaConfigurationPostType extends AbstractPostType
      */
     protected function getGutenbergTemplate(): array
     {
-        $schemaConfigAccessControlListBlock = PluginState::getSchemaConfigAccessControlListBlock();
-        $schemaConfigCacheControlListBlock = PluginState::getSchemaConfigCacheControlListBlock();
-        $schemaConfigFieldDeprecationListBlock = PluginState::getSchemaConfigFieldDeprecationListBlock();
-        $schemaConfigOptionsBlock = PluginState::getSchemaConfigOptionsBlock();
+        $instanceManager = InstanceManagerFacade::getInstance();
+        $schemaConfigAccessControlListBlock = $instanceManager->getInstance(SchemaConfigAccessControlListBlock::class);
+        $schemaConfigCacheControlListBlock = $instanceManager->getInstance(SchemaConfigCacheControlListBlock::class);
+        $schemaConfigFieldDeprecationListBlock = $instanceManager->getInstance(SchemaConfigFieldDeprecationListBlock::class);
+        $schemaConfigOptionsBlock = $instanceManager->getInstance(SchemaConfigOptionsBlock::class);
         return [
             [$schemaConfigAccessControlListBlock->getBlockFullName()],
             [$schemaConfigCacheControlListBlock->getBlockFullName()],

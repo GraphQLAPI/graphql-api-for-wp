@@ -61,14 +61,14 @@ registerBlockType( 'graphql-api/access-control-user-roles', {
 	attributes: {
 		/**
 		 * Same attribute name as defined in
-		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_ACCESS_CONTROL_GROUP
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlRuleBlocks\AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_ACCESS_CONTROL_GROUP
 		 */
 		accessControlGroup: {
 			type: 'string',
 		},
 		/**
 		 * Same attribute name as defined in
-		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_VALUE
+		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlRuleBlocks\AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_VALUE
 		 */
 		value: {
 			type: 'array',

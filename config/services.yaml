@@ -28,6 +28,10 @@ services:
         resource: '../src/EditorScripts/*'
         public: true
 
+    Leoloso\GraphQLByPoPWPPlugin\Blocks\:
+        resource: '../src/Blocks/*'
+        public: true
+
     Leoloso\GraphQLByPoPWPPlugin\Hooks\:
         resource: '../src/Hooks/*'
         public: true

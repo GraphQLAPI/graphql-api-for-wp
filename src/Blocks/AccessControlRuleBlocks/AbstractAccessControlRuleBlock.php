@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
+namespace Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlRuleBlocks;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;

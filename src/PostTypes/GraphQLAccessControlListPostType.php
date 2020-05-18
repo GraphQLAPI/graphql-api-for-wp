@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
-use Leoloso\GraphQLByPoPWPPlugin\PluginState;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Plugin;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
+use PoP\ComponentModel\Container\ContainerBuilderUtils;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 class GraphQLAccessControlListPostType extends AbstractPostType
 {
@@ -62,7 +65,8 @@ class GraphQLAccessControlListPostType extends AbstractPostType
      */
     protected function getGutenbergTemplate(): array
     {
-        $aclBlock = PluginState::getAccessControlBlock();
+        $instanceManager = InstanceManagerFacade::getInstance();
+        $aclBlock = $instanceManager->getInstance(AccessControlBlock::class);
         return [
             [$aclBlock->getBlockFullName()],
         ];
@@ -77,8 +81,11 @@ class GraphQLAccessControlListPostType extends AbstractPostType
      */
     protected function getGutenbergBlocksForCustomPostType()
     {
-        $aclBlock = PluginState::getAccessControlBlock();
-        $aclNestedBlocks = PluginState::getAccessControlNestedBlocks();
+        $instanceManager = InstanceManagerFacade::getInstance();
+        $aclBlock = $instanceManager->getInstance(AccessControlBlock::class);
+        $aclNestedBlocks = ContainerBuilderUtils::getServicesUnderNamespace(
+            Plugin::NAMESPACE . '\\Blocks\\AccessControlRuleBlocks'
+        );
         return array_merge(
             [
                 $aclBlock->getBlockFullName(),
