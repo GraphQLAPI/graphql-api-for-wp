@@ -10,7 +10,7 @@ use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
 /**
  * Components required to edit a GraphQL Persisted Query CPT
  */
-class PersistedQueryEditorComponentScript extends AbstractEditorScript
+class PersistedQueryComponentEditorScript extends AbstractEditorScript
 {
     use GraphQLByPoPScriptTrait;
 

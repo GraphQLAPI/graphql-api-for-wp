@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\EditorScripts;
 
+use Leoloso\GraphQLByPoPWPPlugin\General\DocumentationConstants;
+
 /**
  * Add translatable documentation to the script.
  * The JS/CSS assets for each block is contained in folder {pluginDir}/editor-scripts/{scriptName}, and follows

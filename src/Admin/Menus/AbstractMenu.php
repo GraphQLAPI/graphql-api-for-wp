@@ -21,7 +21,7 @@ abstract class AbstractMenu
      *
      * @return void
      */
-    public function init(): void
+    protected function init(): void
     {
         /**
          * Low priority to execute before adding the menus for the CPTs

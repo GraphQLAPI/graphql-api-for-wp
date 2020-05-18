@@ -17,12 +17,17 @@ use Leoloso\GraphQLByPoPWPPlugin\General\EditorHelpers;
  */
 abstract class AbstractScript
 {
+    public function __construct()
+    {
+        $this->init();
+    }
+
     /**
-     * Execute this function to initialize the block
+     * Execute this function to initialize the script
      *
      * @return void
      */
-    public function init(): void
+    protected function init(): void
     {
         \add_action('init', [$this, 'initScript']);
     }

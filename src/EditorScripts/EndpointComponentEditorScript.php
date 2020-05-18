@@ -10,7 +10,7 @@ use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLEndpointPostType;
 /**
  * Components required to edit a GraphQL endpoint CPT
  */
-class EndpointEditorComponentScript extends AbstractEditorScript
+class EndpointComponentEditorScript extends AbstractEditorScript
 {
     use GraphQLByPoPScriptTrait;
 

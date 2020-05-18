@@ -24,6 +24,10 @@ services:
         resource: '../src/PostTypes/*'
         public: true
 
+    Leoloso\GraphQLByPoPWPPlugin\EditorScripts\:
+        resource: '../src/EditorScripts/*'
+        public: true
+
     Leoloso\GraphQLByPoPWPPlugin\Hooks\:
         resource: '../src/Hooks/*'
         public: true

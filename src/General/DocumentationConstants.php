@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\EditorScripts;
+namespace Leoloso\GraphQLByPoPWPPlugin\General;
 
 /**
  * Documentation constants

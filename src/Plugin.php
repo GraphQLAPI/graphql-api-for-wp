@@ -25,11 +25,11 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\PersistedQueryBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\QueryExecutionBlockCategory;
-use Leoloso\GraphQLByPoPWPPlugin\EditorScripts\EndpointEditorComponentScript;
+use Leoloso\GraphQLByPoPWPPlugin\EditorScripts\EndpointComponentEditorScript;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\FieldDeprecationBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\SchemaConfigurationBlockCategory;
-use Leoloso\GraphQLByPoPWPPlugin\EditorScripts\PersistedQueryEditorComponentScript;
+use Leoloso\GraphQLByPoPWPPlugin\EditorScripts\PersistedQueryComponentEditorScript;
 
 class Plugin
 {
@@ -49,12 +49,7 @@ class Plugin
          */
         ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Taxonomies');
         ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\PostTypes');
-
-        /**
-         * Editor Scripts
-         */
-        (new EndpointEditorComponentScript())->init();
-        (new PersistedQueryEditorComponentScript())->init();
+        ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\EditorScripts');
 
         /**
          * Blocks
