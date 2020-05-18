@@ -83,8 +83,13 @@ class GraphQLAccessControlListPostType extends AbstractPostType
     {
         $instanceManager = InstanceManagerFacade::getInstance();
         $aclBlock = $instanceManager->getInstance(AccessControlBlock::class);
-        $aclNestedBlocks = ContainerBuilderUtils::getServicesUnderNamespace(
-            Plugin::NAMESPACE . '\\Blocks\\AccessControlRuleBlocks'
+        $aclNestedBlocks = array_map(
+            function ($serviceClass) use ($instanceManager) {
+                return $instanceManager->getInstance($serviceClass);
+            },
+            ContainerBuilderUtils::getServiceClassesUnderNamespace(
+                Plugin::NAMESPACE . '\\Blocks\\AccessControlRuleBlocks'
+            )
         );
         return array_merge(
             [

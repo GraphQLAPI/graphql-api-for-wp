@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLEndpointPostType;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
@@ -47,7 +48,6 @@ class Plugin
          * Editor Scripts
          */
         ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\EditorScripts');
-
         /**
          * Blocks
          */
@@ -56,12 +56,6 @@ class Plugin
          * Access Control Nested Blocks
          */
         ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Blocks\\AccessControlRuleBlocks', false);
-        
-        // Maybe use GraphiQL with Explorer
-        // $graphiQLBlock = ComponentConfiguration::useGraphiQLWithExplorer() ?
-        //     new GraphiQLWithExplorerBlock() :
-        //     new GraphiQLBlock();
-
         /**
          * Block categories
          */
@@ -75,7 +69,13 @@ class Plugin
     public function activate(): void
     {
         // First, initialize all the custom post types
-        $postTypeObjects = ContainerBuilderUtils::getServicesUnderNamespace(__NAMESPACE__ . '\\PostTypes');
+        $instanceManager = InstanceManagerFacade::getInstance();
+        $postTypeObjects = array_map(
+            function ($serviceClass) use ($instanceManager) {
+                return $instanceManager->getInstance($serviceClass);
+            },
+            ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\PostTypes')
+        );
         foreach ($postTypeObjects as $postTypeObject) {
             $postTypeObject->registerPostType();
         }
@@ -91,7 +91,13 @@ class Plugin
     public function deactivate(): void
     {
         // First, unregister the post type, so the rules are no longer in memory.
-        $postTypeObjects = ContainerBuilderUtils::getServicesUnderNamespace(__NAMESPACE__ . '\\PostTypes');
+        $instanceManager = InstanceManagerFacade::getInstance();
+        $postTypeObjects = array_map(
+            function ($serviceClass) use ($instanceManager) {
+                return $instanceManager->getInstance($serviceClass);
+            },
+            ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\PostTypes')
+        );
         foreach ($postTypeObjects as $postTypeObject) {
             $postTypeObject->unregisterPostType();
         }
