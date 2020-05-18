@@ -7,6 +7,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQL;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
 use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\PersistedQueryBlockCategory;
 
@@ -27,7 +28,8 @@ class GraphiQLBlock extends AbstractBlock
 
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
-        return new PersistedQueryBlockCategory();
+        $instanceManager = InstanceManagerFacade::getInstance();
+        return $instanceManager->getInstance(PersistedQueryBlockCategory::class);
     }
 
     protected function isDynamicBlock(): bool

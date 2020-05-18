@@ -6,6 +6,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\CacheControlBlockCategory;
 
@@ -25,7 +26,8 @@ class CacheControlBlock extends AbstractControlBlock
 
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
-        return new CacheControlBlockCategory();
+        $instanceManager = InstanceManagerFacade::getInstance();
+        return $instanceManager->getInstance(CacheControlBlockCategory::class);
     }
 
     protected function registerCommonStyleCSS(): bool

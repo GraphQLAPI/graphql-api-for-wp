@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
+use Leoloso\GraphQLByPoPWPPlugin\General\BlockRenderingHelpers;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\QueryExecutionBlockCategory;
-use Leoloso\GraphQLByPoPWPPlugin\General\BlockRenderingHelpers;
 
 /**
  * SchemaConfiguration block
@@ -30,7 +31,8 @@ class SchemaConfigurationBlock extends AbstractBlock
 
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
-        return new QueryExecutionBlockCategory();
+        $instanceManager = InstanceManagerFacade::getInstance();
+        return $instanceManager->getInstance(QueryExecutionBlockCategory::class);
     }
 
     protected function isDynamicBlock(): bool

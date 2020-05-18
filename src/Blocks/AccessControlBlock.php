@@ -8,6 +8,7 @@ use PoP\AccessControl\Schema\SchemaModes;
 use PoP\AccessControl\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
 
@@ -27,7 +28,8 @@ class AccessControlBlock extends AbstractControlBlock
 
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
-        return new AccessControlBlockCategory();
+        $instanceManager = InstanceManagerFacade::getInstance();
+        return $instanceManager->getInstance(AccessControlBlockCategory::class);
     }
 
     protected function registerEditorCSS(): bool

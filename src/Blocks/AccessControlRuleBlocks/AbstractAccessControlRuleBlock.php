@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlRuleBlocks;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
 
@@ -18,6 +19,7 @@ abstract class AbstractAccessControlRuleBlock extends AbstractBlock
 
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
-        return new AccessControlBlockCategory();
+        $instanceManager = InstanceManagerFacade::getInstance();
+        return $instanceManager->getInstance(AccessControlBlockCategory::class);
     }
 }

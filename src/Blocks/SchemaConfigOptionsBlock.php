@@ -7,6 +7,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 use PoP\AccessControl\Schema\SchemaModes;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\SchemaConfigurationBlockCategory;
 
@@ -31,7 +32,8 @@ class SchemaConfigOptionsBlock extends AbstractOptionsBlock
 
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
-        return new SchemaConfigurationBlockCategory();
+        $instanceManager = InstanceManagerFacade::getInstance();
+        return $instanceManager->getInstance(SchemaConfigurationBlockCategory::class);
     }
 
     protected function isDynamicBlock(): bool
