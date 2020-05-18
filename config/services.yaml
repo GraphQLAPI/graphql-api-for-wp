@@ -32,6 +32,10 @@ services:
         resource: '../src/Blocks/*'
         public: true
 
+    Leoloso\GraphQLByPoPWPPlugin\BlockCategories\:
+        resource: '../src/BlockCategories/*'
+        public: true
+
     Leoloso\GraphQLByPoPWPPlugin\Hooks\:
         resource: '../src/Hooks/*'
         public: true

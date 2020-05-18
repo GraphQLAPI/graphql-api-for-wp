@@ -6,7 +6,12 @@ namespace Leoloso\GraphQLByPoPWPPlugin\BlockCategories;
 
 abstract class AbstractBlockCategory
 {
-    public function init()
+    public function __construct()
+    {
+        $this->init();
+    }
+
+    protected function init(): void
     {
         \add_filter(
             'block_categories',
