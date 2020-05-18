@@ -23,7 +23,7 @@ class EndpointHelpers
     {
         return \is_admin()
             && 'POST' == $_SERVER['REQUEST_METHOD']
-            && $_GET['page'] == Menu::NAME
+            && $_GET['page'] == Menu::getName()
             && $_GET[RequestParams::ACTION] == RequestParams::ACTION_EXECUTE_QUERY;
     }
 
@@ -31,7 +31,7 @@ class EndpointHelpers
     {
         $endpoint = \admin_url(sprintf(
             'edit.php?page=%s&%s=%s',
-            Menu::NAME,
+            Menu::getName(),
             RequestParams::ACTION,
             RequestParams::ACTION_EXECUTE_QUERY
         ));

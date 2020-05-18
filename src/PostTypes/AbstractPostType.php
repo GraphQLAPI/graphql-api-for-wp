@@ -255,7 +255,7 @@ abstract class AbstractPostType
                 'hierarchical' => $this->isHierarchical(),
                 'exclude_from_search' => true,
                 'show_in_admin_bar' => $this->showInAdminBar(),
-                'show_in_menu' => $canAccessSchemaEditor ? Menu::NAME : false,
+                'show_in_menu' => $canAccessSchemaEditor ? Menu::getName() : false,
                 'show_in_rest' => true,
                 'supports' => [
                     'title',

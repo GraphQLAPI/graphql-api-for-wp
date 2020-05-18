@@ -25,7 +25,7 @@ class GraphiQLMenuPage extends AbstractMenuPage
 
     protected function getScreenID(): ?string
     {
-        return Menu::NAME;
+        return Menu::getName();
     }
 
     /**
