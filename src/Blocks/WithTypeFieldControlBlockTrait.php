@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\BlockConstants;
+use Leoloso\GraphQLByPoPWPPlugin\General\BlockConstants;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
