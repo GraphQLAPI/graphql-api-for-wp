@@ -8,6 +8,10 @@ services:
         resource: '../src/Admin/Menus/*'
         public: true
 
+    Leoloso\GraphQLByPoPWPPlugin\Admin\Development\:
+        resource: '../src/Admin/Development/*'
+        public: true
+
     Leoloso\GraphQLByPoPWPPlugin\Hooks\:
         resource: '../src/Hooks/*'
         public: true

@@ -2,12 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
+namespace Leoloso\GraphQLByPoPWPPlugin\Admin\Development;
 
 class BlockDevelopmentHotReload
 {
+    public function __construct()
+    {
+        $this->init();
+    }
 
-    public function init(): void
+    protected function init(): void
     {
         // Initialize the GraphiQL
         \add_action('init', [$this, 'maybeRegisterScript']);

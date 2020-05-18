@@ -10,7 +10,7 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\EndpointOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\FieldDeprecationBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Admin\BlockDevelopmentHotReload;
+use Leoloso\GraphQLByPoPWPPlugin\Admin\Development\BlockDevelopmentHotReload;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
@@ -51,7 +51,7 @@ class Plugin
          */
         if (\is_admin()) {
             ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Admin\\Menus');
-            (new BlockDevelopmentHotReload())->init();
+            ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Admin\\Development');
 
             /**
              * Endpoint resolvers
