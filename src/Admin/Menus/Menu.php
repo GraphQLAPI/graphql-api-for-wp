@@ -12,35 +12,19 @@ use Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages\GraphQLVoyagerMenuPage;
 /**
  * Admin menu class
  */
-class Menu
+class Menu extends AbstractMenu
 {
     public const NAME = 'graphql_api';
-    /**
-     * Initialize the endpoints
-     *
-     * @return void
-     */
-    public function init(): void
+
+    public static function getName()
     {
-        /**
-         * Low priority to execute before adding the menus for the CPTs
-         */
-        \add_action(
-            'admin_menu',
-            [$this, 'addMenuPagesTop'],
-            9
-        );
-        /**
-         * High priority to execute after adding the menus for the CPTs
-         */
-        \add_action(
-            'admin_menu',
-            [$this, 'addMenuPagesBottom'],
-            20
-        );
+        return static::NAME;
     }
+    
     public function addMenuPagesTop(): void
     {
+        parent::addMenuPagesTop();
+
         $schemaEditorAccessCapability = UserAuthorization::getSchemaEditorAccessCapability();
         \add_menu_page(
             __('GraphQL API', 'graphql-api'),
@@ -72,6 +56,8 @@ class Menu
 
     public function addMenuPagesBottom(): void
     {
+        parent::addMenuPagesBottom();
+        
         \add_submenu_page(
             self::NAME,
             __('Settings', 'graphql-api'),

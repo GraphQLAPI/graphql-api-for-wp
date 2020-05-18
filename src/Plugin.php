@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
-use Leoloso\GraphQLByPoPWPPlugin\Admin\Menus\Menu;
+use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
@@ -50,7 +50,7 @@ class Plugin
          * Menus
          */
         if (\is_admin()) {
-            (new Menu())->init();
+            ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Admin\\Menus');
             (new BlockDevelopmentHotReload())->init();
 
             /**

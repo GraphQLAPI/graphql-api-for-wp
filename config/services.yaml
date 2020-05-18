@@ -4,6 +4,10 @@ services:
             PoP\Hooks\HooksAPIInterface: '@hooks_api'
             PoP\Translation\TranslationAPIInterface: '@translation_api'
 
+    Leoloso\GraphQLByPoPWPPlugin\Admin\Menus\:
+        resource: '../src/Admin/Menus/*'
+        public: true
+
     Leoloso\GraphQLByPoPWPPlugin\Hooks\:
         resource: '../src/Hooks/*'
         public: true
