@@ -10,39 +10,29 @@ use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\EndpointOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\FieldDeprecationBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Admin\Development\BlockDevelopmentHotReload;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLWithExplorerBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLEndpointPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserRolesBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserStateBlock;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\EndpointBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlDisableAccessBlock;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\CacheControlBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlUserCapabilitiesBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\PersistedQueryBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\QueryExecutionBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\EditorScripts\EndpointEditorComponentScript;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLSchemaConfigurationPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\FieldDeprecationBlockCategory;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLFieldDeprecationListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\SchemaConfigurationBlockCategory;
 use Leoloso\GraphQLByPoPWPPlugin\EditorScripts\PersistedQueryEditorComponentScript;
 
 class Plugin
 {
-    protected $postTypeObjects = [];
-
     public function init(): void
     {
         /**
@@ -55,22 +45,10 @@ class Plugin
         }
 
         /**
-         * Taxonomies (init them before Post Types)
+         * Taxonomies must be initialized before Post Types
          */
         ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Taxonomies');
-
-        /**
-         * Post Types
-         */
-        $this->postTypeObjects[] = new GraphQLEndpointPostType();
-        $this->postTypeObjects[] = new GraphQLPersistedQueryPostType();
-        $this->postTypeObjects[] = new GraphQLSchemaConfigurationPostType();
-        $this->postTypeObjects[] = new GraphQLAccessControlListPostType();
-        $this->postTypeObjects[] = new GraphQLCacheControlListPostType();
-        $this->postTypeObjects[] = new GraphQLFieldDeprecationListPostType();
-        foreach ($this->postTypeObjects as $postTypeObject) {
-            $postTypeObject->init();
-        }
+        ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\PostTypes');
 
         /**
          * Editor Scripts
@@ -151,48 +129,37 @@ class Plugin
         (new CacheControlBlockCategory())->init();
         (new FieldDeprecationBlockCategory())->init();
         (new SchemaConfigurationBlockCategory())->init();
-
-        /**
-         * Plugin activation/deactivation
-         */
-        $this->handlePluginActivation();
     }
 
     /**
-     * Handle all tasks required when activating/deactivating the plugin
-     *
-     * @return void
+     * Get permalinks to work when activating the plugin
+     * @see https://codex.wordpress.org/Function_Reference/register_post_type#Flushing_Rewrite_on_Activation
      */
-    protected function handlePluginActivation(): void
+    public function activate(): void
     {
-        /**
-         * Get permalinks to work when activating the plugin
-         * @see https://codex.wordpress.org/Function_Reference/register_post_type#Flushing_Rewrite_on_Activation
-         */
-        \register_activation_hook(__FILE__, function () {
-            // First, initialize all the custom post types. Their classes have already been instantiated
-            $postTypeObjects = [];
-            foreach ($postTypeObjects as $postTypeObject) {
-                $postTypeObject->registerPostType();
-            }
-        
-            // Then, flush rewrite rules
-            \flush_rewrite_rules();
-        });
+        // First, initialize all the custom post types
+        $postTypeObjects = ContainerBuilderUtils::getServicesUnderNamespace(__NAMESPACE__ . '\\PostTypes');
+        foreach ($postTypeObjects as $postTypeObject) {
+            $postTypeObject->registerPostType();
+        }
+    
+        // Then, flush rewrite rules
+        \flush_rewrite_rules();
+    }
 
-        /**
-         * Remove permalinks when deactivating the plugin
-         * @see https://developer.wordpress.org/plugins/plugin-basics/activation-deactivation-hooks/
-         */
-        \register_deactivation_hook(__FILE__, function () {
-            // First, unregister the post type, so the rules are no longer in memory.
-            $postTypeObjects = [];
-            foreach ($postTypeObjects as $postTypeObject) {
-                $postTypeObject->unregisterPostType();
-            }
-        
-            // Then, clear the permalinks to remove the post type's rules from the database.
-            \flush_rewrite_rules();
-        });
+    /**
+     * Remove permalinks when deactivating the plugin
+     * @see https://developer.wordpress.org/plugins/plugin-basics/activation-deactivation-hooks/
+     */
+    public function deactivate(): void
+    {
+        // First, unregister the post type, so the rules are no longer in memory.
+        $postTypeObjects = ContainerBuilderUtils::getServicesUnderNamespace(__NAMESPACE__ . '\\PostTypes');
+        foreach ($postTypeObjects as $postTypeObject) {
+            $postTypeObject->unregisterPostType();
+        }
+    
+        // Then, clear the permalinks to remove the post type's rules from the database.
+        \flush_rewrite_rules();
     }
 }

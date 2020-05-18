@@ -20,6 +20,10 @@ services:
         resource: '../src/Taxonomies/*'
         public: true
 
+    Leoloso\GraphQLByPoPWPPlugin\PostTypes\:
+        resource: '../src/PostTypes/*'
+        public: true
+
     Leoloso\GraphQLByPoPWPPlugin\Hooks\:
         resource: '../src/Hooks/*'
         public: true

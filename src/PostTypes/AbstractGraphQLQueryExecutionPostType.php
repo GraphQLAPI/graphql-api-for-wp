@@ -112,7 +112,7 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
      *
      * @return void
      */
-    public function init(): void
+    protected function init(): void
     {
         parent::init();
 

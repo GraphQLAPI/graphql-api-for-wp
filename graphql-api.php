@@ -40,4 +40,9 @@ require_once(__DIR__ . '/vendor/autoload.php');
 require_once(__DIR__ . '/wp-content/mu-plugins/engine-wp-bootloader/pop-engine-wp-bootloader.php');
 
 // Initialize this plugin
-(new \Leoloso\GraphQLByPoPWPPlugin\Plugin())->init();
+$plugin = new \Leoloso\GraphQLByPoPWPPlugin\Plugin();
+$plugin->init();
+
+// Functions to execute when activating/deactivating the plugin
+\register_activation_hook(__FILE__, [$plugin, 'activate']);
+\register_deactivation_hook(__FILE__, [$plugin, 'deactivate']);

@@ -11,12 +11,17 @@ use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
 
 abstract class AbstractPostType
 {
+    public function __construct()
+    {
+        $this->init();
+    }
+
     /**
      * Add the hook to initialize the different post types
      *
      * @return void
      */
-    public function init(): void
+    protected function init(): void
     {
         \add_action(
             'init',
@@ -326,14 +331,13 @@ abstract class AbstractPostType
     }
 
     /**
-     * Initialize the different post types
+     * Unregister the post type
      *
      * @return void
      */
     public function unregisterPostType(): void
     {
-        // Then register the post type
-        \register_post_type($this->getPostType(), $this->getPostTypeArgs());
+        \unregister_post_type($this->getPostType());
     }
 
     /**
