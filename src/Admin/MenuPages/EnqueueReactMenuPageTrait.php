@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
+namespace Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages;
 
 trait EnqueueReactMenuPageTrait
 {

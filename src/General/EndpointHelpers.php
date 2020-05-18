@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\General;
 
-use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
+use Leoloso\GraphQLByPoPWPPlugin\Admin\Menus\Menu;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use PoP\API\Configuration\Request as APIRequest;

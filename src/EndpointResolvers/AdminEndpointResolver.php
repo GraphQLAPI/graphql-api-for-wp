@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers;
 
 use PoP\EngineWP\Templates\TemplateHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
-use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
 use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
 use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
 use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;

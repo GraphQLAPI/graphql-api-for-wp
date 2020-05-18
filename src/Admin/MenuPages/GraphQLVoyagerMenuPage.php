@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
+namespace Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages;
 
-use Leoloso\GraphQLByPoPWPPlugin\Admin\AbstractMenuPage;
-use Leoloso\GraphQLByPoPWPPlugin\Admin\EnqueueReactMenuPageTrait;
+use Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages\AbstractMenuPage;
+use Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages\EnqueueReactMenuPageTrait;
 use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
 
 /**

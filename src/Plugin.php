@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
-use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
+use Leoloso\GraphQLByPoPWPPlugin\Admin\Menus\Menu;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;

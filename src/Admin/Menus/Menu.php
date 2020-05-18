@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
+namespace Leoloso\GraphQLByPoPWPPlugin\Admin\Menus;
 
-use Leoloso\GraphQLByPoPWPPlugin\Admin\GraphiQLMenuPage;
-use Leoloso\GraphQLByPoPWPPlugin\Admin\SettingsMenuPage;
 use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
+use Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages\GraphiQLMenuPage;
+use Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages\SettingsMenuPage;
+use Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages\GraphQLVoyagerMenuPage;
 
 /**
  * Admin menu class

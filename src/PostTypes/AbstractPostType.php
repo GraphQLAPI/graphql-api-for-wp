@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
-use Leoloso\GraphQLByPoPWPPlugin\Admin\Menu;
+use Leoloso\GraphQLByPoPWPPlugin\Admin\Menus\Menu;
 use PoP\ComponentModel\State\ApplicationState;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;

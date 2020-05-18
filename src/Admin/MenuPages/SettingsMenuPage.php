@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Admin;
+namespace Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages;
 
-use Leoloso\GraphQLByPoPWPPlugin\Admin\AbstractMenuPage;
+use Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages\AbstractMenuPage;
 use Leoloso\GraphQLByPoPWPPlugin\Settings\Settings;
 use PoP\API\Schema\QueryInputs;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
