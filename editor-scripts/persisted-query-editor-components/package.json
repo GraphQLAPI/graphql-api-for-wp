@@ -17,6 +17,8 @@
 		"@wordpress/block-editor": "^3.7.5",
 		"@wordpress/components": "^9.4.1",
 		"@wordpress/i18n": "^3.9.0",
+		"@wordpress/edit-post": "^3.15.1",
+		"@wordpress/plugins": "^2.16.0",
 		"@wordpress/scripts": "^8.0.1",
 		"css-loader": "^3.4.2",
 		"html-loader": "^1.1.0",

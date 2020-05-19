@@ -1,7 +1,7 @@
 /**
  * WordPress imports
  */
-const { registerPlugin } = wp.plugins;
+import { registerPlugin } from '@wordpress/plugins';
 
 /**
  * Internal imports

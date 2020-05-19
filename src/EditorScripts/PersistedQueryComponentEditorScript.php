@@ -24,20 +24,20 @@ class PersistedQueryComponentEditorScript extends AbstractEditorScript
         return 'persisted-query-editor-components';
     }
 
-    /**
-     * Dependencies to load before the script
-     *
-     * @return array
-     */
-    protected function getScriptDependencies(): array
-    {
-        return array_merge(
-            parent::getScriptDependencies(),
-            [
-                'wp-edit-post',
-            ]
-        );
-    }
+    // /**
+    //  * Dependencies to load before the script
+    //  *
+    //  * @return array
+    //  */
+    // protected function getScriptDependencies(): array
+    // {
+    //     return array_merge(
+    //         parent::getScriptDependencies(),
+    //         [
+    //             'wp-edit-post',
+    //         ]
+    //     );
+    // }
 
     /**
      * Add the locale language to the localized data?
