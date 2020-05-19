@@ -4,6 +4,29 @@ const config = require( '@wordpress/scripts/config/webpack.config' );
 const isProduction = process.env.NODE_ENV === 'production';
 
 /**
+ * Exclude adding the docs into the bundle, add the handle to the external package
+ * This configuration requires docs to be moved to their own package "@graphql-api/cache-control-docs",
+ * and the name of the script handle for the docs must be "graphql-api-cache-control-docs"
+ * 
+ * @see https://github.com/WordPress/gutenberg/tree/master/packages/dependency-extraction-webpack-plugin
+ */
+const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
+config.plugins = [
+	...config.plugins.filter(
+		plugin => plugin.constructor.name !== 'DependencyExtractionWebpackPlugin',
+	),
+	new DependencyExtractionWebpackPlugin( {
+		injectPolyfill: true,
+		requestToHandle( request ) {
+			if ( request.startsWith('@graphql-api/cache-control-docs') ) {
+				return 'graphql-api-cache-control-docs';
+			}
+		},
+	} ),
+];
+
+
+/**
  * Documentation in different languages
  */
 langs = ['en']
