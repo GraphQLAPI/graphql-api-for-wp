@@ -30,10 +30,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 // before those hooks are triggered for first time (in ComponentConfiguration classes)
 \Leoloso\GraphQLByPoPWPPlugin\PluginConfiguration::initialize();
 
-// Load the current plugin's Component and, with it, all components
+// Initialize the plugin's Component and, with it, all dependencies from PoP
 \Leoloso\GraphQLByPoPWPPlugin\Component::initialize();
 
-// Initialize PoP Engine through the Bootloader
+// Initialize the PoP Engine through the Bootloader
 \PoP\Engine\Bootloader::bootComponents();
 
 // Initialize this plugin
