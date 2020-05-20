@@ -34,7 +34,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 \Leoloso\GraphQLByPoPWPPlugin\Component::initialize();
 
 // Initialize PoP Engine through the Bootloader
-\PoP\Engine\Bootloader\Initialization::init();
+\PoP\Engine\Bootloader::bootComponents();
 
 // Initialize this plugin
 $plugin = new \Leoloso\GraphQLByPoPWPPlugin\Plugin();
