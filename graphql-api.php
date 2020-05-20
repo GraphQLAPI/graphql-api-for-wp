@@ -29,32 +29,12 @@ require_once(__DIR__ . '/environment.php');
 // Load Composer’s autoloader
 require_once(__DIR__ . '/vendor/autoload.php');
 
-// Initialize all components
-$componentClasses = [
-    \PoP\CommentMetaWP\Component::class,
-    \PoP\GraphQL\Component::class,
-    \PoP\MediaWP\Component::class,
-    \PoP\PagesWP\Component::class,
-    \PoP\PostMediaWP\Component::class,
-    \PoP\PostMetaWP\Component::class,
-    \PoP\TaxonomyQueryWP\Component::class,
-    \PoP\UserRolesAccessControl\Component::class,
-    \PoP\UserRolesWP\Component::class,
-    \PoP\UserStateWP\Component::class,
-    \PoP\UserMetaWP\Component::class,
-    \PoP\UsefulDirectives\Component::class,
-    \PoP\FieldDeprecationByDirective\Component::class,
-];
-foreach ($componentClasses as $componentClass) {
-    $componentClass::initialize();
-}
-
 // Configure the plugin. This defines hooks to set environment variables, so must be executed
 // before those hooks are triggered for first time (in ComponentConfiguration classes)
 \Leoloso\GraphQLByPoPWPPlugin\PluginConfiguration::init();
 
-// Load the current plugin's Component
-\Leoloso\GraphQLByPoPWPPlugin\Component::init();
+// Load the current plugin's Component and, with it, all components
+\Leoloso\GraphQLByPoPWPPlugin\Component::initialize();
 
 // Load the "must-use" plugin to boot PoP
 require_once(__DIR__ . '/wp-content/mu-plugins/engine-wp-bootloader/pop-engine-wp-bootloader.php');

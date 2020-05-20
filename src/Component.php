@@ -25,6 +25,25 @@ class Component extends AbstractComponent
     
     // const VERSION = '0.1.0';
 
+    public static function getDependedComponentClasses(): array
+    {
+        return [
+            \PoP\CommentMetaWP\Component::class,
+            \PoP\GraphQL\Component::class,
+            \PoP\MediaWP\Component::class,
+            \PoP\PagesWP\Component::class,
+            \PoP\PostMediaWP\Component::class,
+            \PoP\PostMetaWP\Component::class,
+            \PoP\TaxonomyQueryWP\Component::class,
+            \PoP\UserRolesAccessControl\Component::class,
+            \PoP\UserRolesWP\Component::class,
+            \PoP\UserStateWP\Component::class,
+            \PoP\UserMetaWP\Component::class,
+            \PoP\UsefulDirectives\Component::class,
+            \PoP\FieldDeprecationByDirective\Component::class,
+        ];
+    }
+
     /**
      * Initialize services
      */
