@@ -36,8 +36,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 // Load the current plugin's Component and, with it, all components
 \Leoloso\GraphQLByPoPWPPlugin\Component::initialize();
 
-// Load the "must-use" plugin to boot PoP
-require_once(__DIR__ . '/wp-content/mu-plugins/engine-wp-bootloader/pop-engine-wp-bootloader.php');
+// Initialize PoP Engine through the Bootloader
+\PoP\Engine\Bootloader\Initialization::init();
 
 // Initialize this plugin
 $plugin = new \Leoloso\GraphQLByPoPWPPlugin\Plugin();
