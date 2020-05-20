@@ -68,7 +68,6 @@ class SettingsMenuPage extends AbstractMenuPage
             <h2 class="nav-tab-wrapper">
                 <a href="#main" class="nav-tab nav-tab-active"><?php echo \__('Main', 'graphql-api'); ?></a>
                 <a href="#graphql" class="nav-tab"><?php echo \__('GraphQL', 'graphql-api'); ?></a>
-                <a href="#rest" class="nav-tab"><?php echo \__('REST', 'graphql-api'); ?></a>
                 <a href="#extended_graphql" class="nav-tab"><?php echo \__('Extended GraphQL', 'graphql-api'); ?></a>
             </h2>
 
@@ -93,18 +92,6 @@ class SettingsMenuPage extends AbstractMenuPage
                     <?php $this->printGraphQLEnabledHeader2(); ?>
                     <?php echo '<table class="form-table">'; ?>
                     <?php \do_settings_fields('graphql-api-settings', 'graphql-api-settings-graphql-enabled-section-2'); ?>
-                    <?php echo '</table>'; ?>
-                </div>
-
-                <?php /* REST Section */ ?>
-                <div id="rest" class="tab-content">
-                    <?php $this->printRESTEnabledHeader1(); ?>
-                    <?php echo '<table class="form-table">'; ?>
-                    <?php \do_settings_fields('graphql-api-settings', 'graphql-api-settings-rest-enabled-section-1'); ?>
-                    <?php echo '</table>'; ?>
-                    <?php $this->printRESTEnabledHeader2(); ?>
-                    <?php echo '<table class="form-table">'; ?>
-                    <?php \do_settings_fields('graphql-api-settings', 'graphql-api-settings-rest-enabled-section-2'); ?>
                     <?php echo '</table>'; ?>
                 </div>
 
@@ -146,20 +133,6 @@ class SettingsMenuPage extends AbstractMenuPage
                     'https://graphql.getpop.org/wp/documentation/#graphql-endpoint'
                 ),
                 'id'    => 'graphql-api-graphql-endpoint',
-            )
-        );
-        \add_settings_field(
-            'graphql-api-rest-endpoint',
-            \__('REST endpoint', 'graphql-api'),
-            [$this, 'printInputField'],
-            'graphql-api-settings',
-            'graphql-api-settings-main-section',
-            array(
-                'label' => sprintf(
-                    \__('Endpoint to append at the end of a resource URL (single post, author, tag, page) to access its pre-defined data. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                    'https://graphql.getpop.org/wp/documentation/#rest-endpoint'
-                ),
-                'id'    => 'graphql-api-rest-endpoint',
             )
         );
         \add_settings_field(
@@ -264,96 +237,6 @@ class SettingsMenuPage extends AbstractMenuPage
                     'https://graphql.getpop.org/wp/documentation/#restrict-access-to-clients'
                 ),
                 'id'    => 'graphql-api-clients-restrictaccess',
-            )
-        );
-
-        /**
-         * REST section <= valid when REST enabled
-         * Header 1
-         */
-        \add_settings_section(
-            'graphql-api-settings-rest-enabled-section-1',
-            // The empty string ensures the render function won't output a h2.
-            '',
-            [$this, 'printRESTEnabledHeader1'],
-            'graphql-api-settings'
-        );
-        \add_settings_field(
-            'graphql-api-rest-enable-querying',
-            \__('Enable to query custom fields', 'graphql-api'),
-            [$this, 'printCheckboxField'],
-            'graphql-api-settings',
-            'graphql-api-settings-rest-enabled-section-1',
-            array(
-                'label' => sprintf(
-                    \__('Query custom fields in the REST endpoint through parameter <code>%s</code>. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                    QueryInputs::QUERY,
-                    'https://graphql.getpop.org/wp/documentation/#rest-custom-querying'
-                ),
-                'id'    => 'graphql-api-rest-enable-querying',
-            )
-        );
-        /**
-         * REST section Header 2
-         */
-        \add_settings_section(
-            'graphql-api-settings-rest-enabled-section-2',
-            // The empty string ensures the render function won't output a h2.
-            '',
-            [$this, 'printRESTEnabledHeader2'],
-            'graphql-api-settings'
-        );
-        \add_settings_field(
-            'graphql-api-rest-enabled-post-fields',
-            \__('Post fields', 'graphql-api'),
-            [$this, 'printInputField'],
-            'graphql-api-settings',
-            'graphql-api-settings-rest-enabled-section-2',
-            array(
-                'label' => sprintf(
-                    \__('Default fields for the single post URL, and the post list page URL (with slug <code>%s</code>)', 'graphql-api'),
-                    \POP_POSTS_ROUTE_POSTS
-                ),
-                'id'    => 'graphql-api-rest-enabled-post-fields',
-            )
-        );
-        \add_settings_field(
-            'graphql-api-rest-enabled-user-fields',
-            \__('User fields', 'graphql-api'),
-            [$this, 'printInputField'],
-            'graphql-api-settings',
-            'graphql-api-settings-rest-enabled-section-2',
-            array(
-                'label' => sprintf(
-                    \__('Default fields for the author URL, and the user list page URL (with slug <code>%s</code>)', 'graphql-api'),
-                    \POP_USERS_ROUTE_USERS
-                ),
-                'id'    => 'graphql-api-rest-enabled-user-fields',
-            )
-        );
-        \add_settings_field(
-            'graphql-api-rest-enabled-tag-fields',
-            \__('Tag fields', 'graphql-api'),
-            [$this, 'printInputField'],
-            'graphql-api-settings',
-            'graphql-api-settings-rest-enabled-section-2',
-            array(
-                'label' => sprintf(
-                    \__('Default fields for the single tag URL, and the tag list page URL (with slug <code>%s</code>)', 'graphql-api'),
-                    \POP_TAXONOMIES_ROUTE_TAGS
-                ),
-                'id'    => 'graphql-api-rest-enabled-tag-fields',
-            )
-        );
-        \add_settings_field(
-            'graphql-api-rest-enabled-page-fields',
-            \__('Page fields', 'graphql-api'),
-            [$this, 'printInputField'],
-            'graphql-api-settings',
-            'graphql-api-settings-rest-enabled-section-2',
-            array(
-                'label' => \__('Default fields for the page URL'),
-                'id'    => 'graphql-api-rest-enabled-page-fields',
             )
         );
 
@@ -477,52 +360,6 @@ class SettingsMenuPage extends AbstractMenuPage
         <h2>
         <?php echo \__('Main settings', 'graphql-api');?>
         </h2>
-        <?php
-    }
-
-    /**
-     * Section header
-     */
-    function printRESTEnabledHeader1(): void
-    {
-        ?>
-        <h2>
-        <?php echo \__('Settings if REST is enabled', 'graphql-api');?>
-        </h2>
-        <p>
-            <?php echo sprintf(
-                \__('<strong>Note:</strong> Fields (default ones for the REST endpoint, and custom ones when querying through the URL) are defined using the <a href="%s">Extended GraphQL syntax</a>.', 'graphql-api'),
-                'https://github.com/getpop/field-query'
-            );?>
-            <br/>
-            <?php echo \__('Examples for a post: ', 'graphql-api');?>
-        </p>
-        <ol>
-            <li>
-                <?php echo \__('<code>"id|title"</code> fetches the post\'s <code>ID</code> and <code>title</code> fields', 'graphql-api')?>
-            </li>
-            <li>
-                <?php echo \__('<code>"id|title|author.id|name"</code> fetches the post\'s <code>ID</code> and <code>title</code> fields, and the post author\'s <code>ID</code> and <code>name</code> fields', 'graphql-api')?>
-            </li>
-            <li>
-                <?php echo \__('<code>"id|title|comments.id|date|content|author.id|name"</code> fetches the post\'s <code>ID</code> and <code>title</code> fields, the post comments\' <code>ID</code>, <code>date</code> and <code>content</code> fields, and the comment\'s author\'s <code>ID</code> and <code>name</code> fields', 'graphql-api')?>
-            </li>
-        </ol>
-        <?php
-    }
-
-    /**
-     * Section header
-     */
-    function printRESTEnabledHeader2(): void
-    {
-        ?>
-        <!--h3>
-            <?php echo \__('Default REST fields ', 'graphql-api');?>
-        </h3-->
-        <h4><em>
-            <?php echo \__('Default REST fields for the different resources:', 'graphql-api');?>
-        </em></h4>
         <?php
     }
 

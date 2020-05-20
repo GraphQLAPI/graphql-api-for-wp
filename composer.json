@@ -21,7 +21,6 @@
     "prefer-stable": true,
     "require": {
         "php": "~7.1",
-        "getpop/api-rest": "dev-master",
         "getpop/commentmeta-wp": "dev-master",
         "getpop/comments-wp": "dev-master",
         "getpop/engine-wp": "dev-master",
