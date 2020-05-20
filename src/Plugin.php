@@ -22,7 +22,7 @@ class Plugin
      */
     public const NAMESPACE = __NAMESPACE__;
 
-    public function init(): void
+    public function initialize(): void
     {
         /**
          * Initialize classes for the admin panel

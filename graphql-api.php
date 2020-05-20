@@ -38,7 +38,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 // Initialize this plugin
 $plugin = new \Leoloso\GraphQLByPoPWPPlugin\Plugin();
-$plugin->init();
+$plugin->initialize();
 
 // Functions to execute when activating/deactivating the plugin
 \register_activation_hook(__FILE__, [$plugin, 'activate']);
