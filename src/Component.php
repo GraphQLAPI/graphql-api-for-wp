@@ -52,7 +52,7 @@ class Component extends AbstractComponent
         parent::doInitialize();
         self::initYAMLServices(dirname(__DIR__));
         self::initComponentConfiguration();
-        ServiceConfiguration::init();
+        ServiceConfiguration::initialize();
     }
 
     protected static function initComponentConfiguration(): void
