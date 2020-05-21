@@ -80,7 +80,10 @@ class Plugin
         /**
          * Access Control Nested Blocks
          */
-        ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Blocks\\AccessControlRuleBlocks', false);
+        $accessControlRuleBlockServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\Blocks\\AccessControlRuleBlocks', false);
+        foreach ($accessControlRuleBlockServiceClasses as $serviceClass) {
+            $instanceManager->getInstance($serviceClass)->initialize();
+        }
         /**
          * Block categories
          */
