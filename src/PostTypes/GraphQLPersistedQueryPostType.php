@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQL\GraphiQLBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
 use Leoloso\GraphQLByPoPWPPlugin\General\BlockContentHelpers;

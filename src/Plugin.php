@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Leoloso\GraphQLByPoPWPPlugin;
 
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQL\GraphiQLBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLEndpointPostType;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQL\GraphiQLWithExplorerBlock;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
 use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLSchemaConfigurationPostType;
@@ -58,19 +56,16 @@ class Plugin
         ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\EditorScripts');
         /**
          * Blocks
+         * The GraphiQL Block may be overriden to GraphiQLWithExplorerBlock
          */
-        ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Blocks', false);
+        $blockServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\Blocks', false);
+        foreach ($blockServiceClasses as $serviceClass) {
+            $instanceManager->getInstance($serviceClass)->initialize();
+        }
         /**
          * Access Control Nested Blocks
          */
         ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Blocks\\AccessControlRuleBlocks', false);
-        /**
-         * Choose one of the GraphiQL Blocks
-         */
-        $graphiQLBlockClass =
-            ComponentConfiguration::useGraphiQLWithExplorer() ?
-            GraphiQLWithExplorerBlock::class : GraphiQLBlock::class;
-        ContainerBuilderUtils::instantiateService($graphiQLBlockClass);
         /**
          * Block categories
          */

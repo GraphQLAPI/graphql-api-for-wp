@@ -6,11 +6,11 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Config;
 
 use PoP\Engine\TypeResolvers\RootTypeResolver;
 use PoP\Root\Component\PHPServiceConfigurationTrait;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQL\GraphiQLBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
 use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQL\GraphiQLWithExplorerBlock;
+use Leoloso\GraphQLByPoPWPPlugin\Blocks\Overrides\GraphiQLWithExplorerBlock;
 use PoP\UserRolesAccessControl\Services\AccessControlGroups as UserRolesAccessControlGroups;
 
 class ServiceConfiguration

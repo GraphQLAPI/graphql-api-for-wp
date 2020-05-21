@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQL;
+namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
 
 use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
 use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
@@ -52,7 +52,7 @@ class GraphiQLBlock extends AbstractBlock
             ]
         );
     }
-    
+
     public function renderBlock(array $attributes, string $content): string
     {
         $content = sprintf(
