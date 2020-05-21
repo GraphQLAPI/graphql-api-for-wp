@@ -17,7 +17,7 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
         EndpointResolverTrait::getNature as getUpstreamNature;
         EndpointResolverTrait::addGraphQLVars as upstreamAddGraphQLVars;
     }
-    
+
     /**
      * Indicates if we executing the GraphQL query (`true`) or visualizing the query source (`false`)
      * It returns always `true`, unless passing ?view=source in the single post URL
@@ -112,9 +112,9 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
      *
      * @return void
      */
-    protected function init(): void
+    public function initialize(): void
     {
-        parent::init();
+        parent::initialize();
 
         /**
          * Two outputs:
@@ -207,7 +207,7 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
         // The default value is not saved in the DB in Gutenberg!
         return $optionsBlockDataItem['attrs'][$attribute] ?? $default;
     }
-    
+
     /**
      * Read the options block and check the value of attribute "isEnabled"
      *

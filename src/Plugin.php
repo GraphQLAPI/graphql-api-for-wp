@@ -24,6 +24,7 @@ class Plugin
 
     public function initialize(): void
     {
+        $instanceManager = InstanceManagerFacade::getInstance();
         /**
          * Initialize classes for the admin panel
          */
@@ -40,12 +41,17 @@ class Plugin
         /**
          * Initialize Post Types manually to control in what order they are added to the menu
          */
-        ContainerBuilderUtils::instantiateService(GraphQLEndpointPostType::class);
-        ContainerBuilderUtils::instantiateService(GraphQLPersistedQueryPostType::class);
-        ContainerBuilderUtils::instantiateService(GraphQLSchemaConfigurationPostType::class);
-        ContainerBuilderUtils::instantiateService(GraphQLAccessControlListPostType::class);
-        ContainerBuilderUtils::instantiateService(GraphQLCacheControlListPostType::class);
-        ContainerBuilderUtils::instantiateService(GraphQLFieldDeprecationListPostType::class);
+        $postTypeServiceClasses = [
+            GraphQLEndpointPostType::class,
+            GraphQLPersistedQueryPostType::class,
+            GraphQLSchemaConfigurationPostType::class,
+            GraphQLAccessControlListPostType::class,
+            GraphQLCacheControlListPostType::class,
+            GraphQLFieldDeprecationListPostType::class,
+        ];
+        foreach ($postTypeServiceClasses as $serviceClass) {
+            $instanceManager->getInstance($serviceClass)->initialize();
+        }
         /**
          * Editor Scripts
          */
@@ -88,7 +94,7 @@ class Plugin
         foreach ($postTypeObjects as $postTypeObject) {
             $postTypeObject->registerPostType();
         }
-    
+
         // Then, flush rewrite rules
         \flush_rewrite_rules();
     }
@@ -110,7 +116,7 @@ class Plugin
         foreach ($postTypeObjects as $postTypeObject) {
             $postTypeObject->unregisterPostType();
         }
-    
+
         // Then, clear the permalinks to remove the post type's rules from the database.
         \flush_rewrite_rules();
     }
