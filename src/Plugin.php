@@ -44,7 +44,10 @@ class Plugin
         /**
          * Taxonomies must be initialized before Post Types
          */
-        ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Taxonomies');
+        $taxonomyServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\Taxonomies');
+        foreach ($taxonomyServiceClasses as $serviceClass) {
+            $instanceManager->getInstance($serviceClass)->initialize();
+        }
         /**
          * Initialize Post Types manually to control in what order they are added to the menu
          */
