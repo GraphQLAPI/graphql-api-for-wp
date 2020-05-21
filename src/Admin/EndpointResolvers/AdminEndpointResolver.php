@@ -29,7 +29,7 @@ class AdminEndpointResolver extends AbstractEndpointResolver
          */
         return QueryExecutionHelpers::getRequestedGraphQLQueryAndVariables();
     }
-    
+
     /**
      * Execute the GraphQL query when posting to:
      * /wp-admin/edit.php?page=graphql_api&action=execute_query
@@ -46,9 +46,9 @@ class AdminEndpointResolver extends AbstractEndpointResolver
      *
      * @return void
      */
-    protected function init(): void
+    public function initialize(): void
     {
-        parent::init();
+        parent::initialize();
 
         /**
          * Print the global JS variables, required by the blocks
@@ -86,7 +86,7 @@ class AdminEndpointResolver extends AbstractEndpointResolver
             }
         });
     }
-    
+
     /**
      * Execute the GraphQL query
      *

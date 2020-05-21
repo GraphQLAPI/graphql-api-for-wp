@@ -6,12 +6,7 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Admin\Development;
 
 class BlockDevelopmentHotReload
 {
-    public function __construct()
-    {
-        $this->init();
-    }
-
-    protected function init(): void
+    public function initialize(): void
     {
         // Initialize the GraphiQL
         \add_action('init', [$this, 'maybeRegisterScript']);

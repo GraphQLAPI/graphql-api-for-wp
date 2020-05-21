@@ -27,9 +27,18 @@ class Plugin
          * Initialize classes for the admin panel
          */
         if (\is_admin()) {
-            ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Admin\\Menus');
-            ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Admin\\EndpointResolvers');
-            ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Admin\\Development');
+            $menuServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\Admin\\Menus');
+            foreach ($menuServiceClasses as $serviceClass) {
+                $instanceManager->getInstance($serviceClass)->initialize();
+            }
+            $endpointResolverServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\Admin\\EndpointResolvers');
+            foreach ($endpointResolverServiceClasses as $serviceClass) {
+                $instanceManager->getInstance($serviceClass)->initialize();
+            }
+            $developmentServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\Admin\\Development');
+            foreach ($developmentServiceClasses as $serviceClass) {
+                $instanceManager->getInstance($serviceClass)->initialize();
+            }
         }
 
         /**

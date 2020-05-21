@@ -6,17 +6,12 @@ namespace Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers;
 
 abstract class AbstractEndpointResolver
 {
-    public function __construct()
-    {
-        $this->init();
-    }
-
     /**
      * Initialize the resolver
      *
      * @return void
      */
-    protected function init(): void
+    public function initialize(): void
     {
         // Do nothing
     }

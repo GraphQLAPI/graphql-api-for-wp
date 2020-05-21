@@ -9,11 +9,6 @@ namespace Leoloso\GraphQLByPoPWPPlugin\Admin\Menus;
  */
 abstract class AbstractMenu
 {
-    public function __construct()
-    {
-        $this->init();
-    }
-
     abstract public static function getName();
 
     /**
@@ -21,7 +16,7 @@ abstract class AbstractMenu
      *
      * @return void
      */
-    protected function init(): void
+    public function initialize(): void
     {
         /**
          * Low priority to execute before adding the menus for the CPTs
