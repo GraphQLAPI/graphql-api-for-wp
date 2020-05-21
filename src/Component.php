@@ -22,7 +22,7 @@ use Leoloso\GraphQLByPoPWPPlugin\SchemaConfiguratorExecuters\PersistedQuerySchem
 class Component extends AbstractComponent
 {
     use YAMLServicesTrait;
-    
+
     // const VERSION = '0.1.0';
 
     public static function getDependedComponentClasses(): array
@@ -47,7 +47,7 @@ class Component extends AbstractComponent
     /**
      * Initialize services
      */
-    protected static function doInitialize()
+    protected static function doInitialize(): void
     {
         parent::doInitialize();
         self::initYAMLServices(dirname(__DIR__));
@@ -80,10 +80,10 @@ class Component extends AbstractComponent
      *
      * @return void
      */
-    public static function beforeBoot()
+    public static function beforeBoot(): void
     {
         parent::beforeBoot();
-        
+
         // Initialize classes
         ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Hooks');
         ContainerBuilderUtils::attachFieldResolversFromNamespace(__NAMESPACE__ . '\\FieldResolvers', false);
@@ -94,7 +94,7 @@ class Component extends AbstractComponent
      *
      * @return void
      */
-    public static function boot()
+    public static function boot(): void
     {
         parent::boot();
 
@@ -105,7 +105,7 @@ class Component extends AbstractComponent
                 CacheControlDirectiveResolver::getDirectiveName(),
             ]);
         }
-        
+
         // Configure the GraphQL query with Access/Cache Control Lists
         (new PersistedQuerySchemaConfiguratorExecuter())->init();
         (new EndpointSchemaConfiguratorExecuter())->init();
