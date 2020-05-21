@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
+namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
-use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\FieldDeprecationBlock;
+use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
+use GraphQLAPI\GraphQLAPI\Blocks\AbstractControlBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\FieldDeprecationBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\FieldDeprecationByDirective\Facades\FieldDeprecationManagerFacade;
 

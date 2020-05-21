@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
+namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
 use PoP\ComponentModel\Misc\GeneralUtils;
-use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
+use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use PoP\CacheControl\Facades\CacheControlManagerFacade;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\CacheControlBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\AbstractControlBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigurator

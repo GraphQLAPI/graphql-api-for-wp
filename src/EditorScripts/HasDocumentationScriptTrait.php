@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\EditorScripts;
+namespace GraphQLAPI\GraphQLAPI\EditorScripts;
 
-use Leoloso\GraphQLByPoPWPPlugin\General\DocumentationConstants;
+use GraphQLAPI\GraphQLAPI\General\DocumentationConstants;
 
 /**
  * Add translatable documentation to the script.

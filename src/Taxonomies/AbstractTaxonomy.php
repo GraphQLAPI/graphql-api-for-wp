@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Taxonomies;
+namespace GraphQLAPI\GraphQLAPI\Taxonomies;
 
 abstract class AbstractTaxonomy
 {

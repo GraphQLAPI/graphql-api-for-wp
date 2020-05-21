@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfiguratorExecuters;
+namespace GraphQLAPI\GraphQLAPI\SchemaConfiguratorExecuters;
 
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLEndpointPostType;
-use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\EndpointSchemaConfigurator;
-use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\SchemaConfiguratorInterface;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLEndpointPostType;
+use GraphQLAPI\GraphQLAPI\SchemaConfigurators\EndpointSchemaConfigurator;
+use GraphQLAPI\GraphQLAPI\SchemaConfigurators\SchemaConfiguratorInterface;
 
 class EndpointSchemaConfiguratorExecuter extends AbstractSchemaConfiguratorExecuter
 {

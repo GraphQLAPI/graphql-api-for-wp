@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\EditorScripts;
+namespace GraphQLAPI\GraphQLAPI\EditorScripts;
 
-use Leoloso\GraphQLByPoPWPPlugin\Scripts\GraphQLByPoPScriptTrait;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
+use GraphQLAPI\GraphQLAPI\Scripts\GraphQLByPoPScriptTrait;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLPersistedQueryPostType;
 
 /**
  * Components required to edit a GraphQL Persisted Query CPT
@@ -48,7 +48,7 @@ class PersistedQueryComponentEditorScript extends AbstractEditorScript
     {
         return true;
     }
-    
+
     /**
      * Default language for the script/component's documentation
      *

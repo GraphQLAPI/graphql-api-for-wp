@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Admin\EndpointResolvers;
+namespace GraphQLAPI\GraphQLAPI\Admin\EndpointResolvers;
 
 use PoP\EngineWP\Templates\TemplateHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
+use GraphQLAPI\GraphQLAPI\General\EndpointHelpers;
 use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
-use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\EndpointResolverTrait;
-use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\AbstractEndpointResolver;
+use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
+use GraphQLAPI\GraphQLAPI\EndpointResolvers\EndpointResolverTrait;
+use GraphQLAPI\GraphQLAPI\EndpointResolvers\AbstractEndpointResolver;
 
 class AdminEndpointResolver extends AbstractEndpointResolver
 {

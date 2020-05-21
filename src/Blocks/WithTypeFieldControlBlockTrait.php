@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
+namespace GraphQLAPI\GraphQLAPI\Blocks;
 
-use Leoloso\GraphQLByPoPWPPlugin\General\BlockConstants;
-use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\General\BlockConstants;
+use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
+namespace GraphQLAPI\GraphQLAPI\Blocks;
 
 use Error;
-use Leoloso\GraphQLByPoPWPPlugin\General\GeneralUtils;
-use Leoloso\GraphQLByPoPWPPlugin\General\EditorHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
-use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
-use Leoloso\GraphQLByPoPWPPlugin\EditorScripts\HasDocumentationScriptTrait;
+use GraphQLAPI\GraphQLAPI\General\GeneralUtils;
+use GraphQLAPI\GraphQLAPI\General\EditorHelpers;
+use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
+use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
+use GraphQLAPI\GraphQLAPI\EditorScripts\HasDocumentationScriptTrait;
 
 /**
  * Base class for a Gutenberg block, within a multi-block plugin.

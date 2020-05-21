@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Admin\Development;
+namespace GraphQLAPI\GraphQLAPI\Admin\Development;
 
 class BlockDevelopmentHotReload
 {

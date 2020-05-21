@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers;
+namespace GraphQLAPI\GraphQLAPI\EndpointResolvers;
 
 use PoP\Routing\RouteNatures;
 use PoP\API\Schema\QueryInputs;

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\General;
+namespace GraphQLAPI\GraphQLAPI\General;
 
-use Leoloso\GraphQLByPoPWPPlugin\General\BlockContentHelpers;
+use GraphQLAPI\GraphQLAPI\General\BlockContentHelpers;
 
 class GraphQLQueryPostTypeHelpers
 {

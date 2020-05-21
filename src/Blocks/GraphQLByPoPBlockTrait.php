@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
+namespace GraphQLAPI\GraphQLAPI\Blocks;
 
-use Leoloso\GraphQLByPoPWPPlugin\Scripts\GraphQLByPoPScriptTrait;
+use GraphQLAPI\GraphQLAPI\Scripts\GraphQLByPoPScriptTrait;
 
 /**
  * Trait to set common functions for a Gutenberg block for this plugin (GraphQL API)

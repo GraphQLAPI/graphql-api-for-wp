@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages;
+namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 
-use Leoloso\GraphQLByPoPWPPlugin\Admin\Menus\Menu;
-use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages\AbstractMenuPage;
-use Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages\EnqueueReactMenuPageTrait;
+use GraphQLAPI\GraphQLAPI\Admin\Menus\Menu;
+use GraphQLAPI\GraphQLAPI\General\EndpointHelpers;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\EnqueueReactMenuPageTrait;
 
 /**
  * GraphiQL page
@@ -38,13 +38,13 @@ class GraphiQLMenuPage extends AbstractMenuPage
         // CSS
         \wp_enqueue_style(
             'graphql-api-graphiql-client',
-            \GRAPHQL_BY_POP_PLUGIN_URL . 'assets/css/graphiql-client.css',
+            \GRAPHQL_API_URL . 'assets/css/graphiql-client.css',
             array(),
             \GRAPHQL_BY_POP_VERSION
         );
         \wp_enqueue_style(
             'graphql-api-graphiql',
-            \GRAPHQL_BY_POP_PLUGIN_URL . 'assets/css/vendors/graphiql.min.css',
+            \GRAPHQL_API_URL . 'assets/css/vendors/graphiql.min.css',
             array(),
             \GRAPHQL_BY_POP_VERSION
         );
@@ -53,14 +53,14 @@ class GraphiQLMenuPage extends AbstractMenuPage
         $this->enqueueReactAssets(true);
         \wp_enqueue_script(
             'graphql-api-graphiql',
-            \GRAPHQL_BY_POP_PLUGIN_URL . 'assets/js/vendors/graphiql.min.js',
+            \GRAPHQL_API_URL . 'assets/js/vendors/graphiql.min.js',
             array('graphql-api-react-dom'),
             \GRAPHQL_BY_POP_VERSION,
             true
         );
         \wp_enqueue_script(
             'graphql-api-graphiql-client',
-            \GRAPHQL_BY_POP_PLUGIN_URL . 'assets/js/graphiql-client.js',
+            \GRAPHQL_API_URL . 'assets/js/graphiql-client.js',
             array('graphql-api-graphiql'),
             \GRAPHQL_BY_POP_VERSION,
             true

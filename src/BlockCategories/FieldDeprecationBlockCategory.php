@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\BlockCategories;
+namespace GraphQLAPI\GraphQLAPI\BlockCategories;
 
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLFieldDeprecationListPostType;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
 
 class FieldDeprecationBlockCategory extends AbstractBlockCategory
 {

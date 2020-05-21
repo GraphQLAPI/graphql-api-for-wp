@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
+namespace GraphQLAPI\GraphQLAPI\Blocks;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use GraphQLAPI\GraphQLAPI\Blocks\GraphQLByPoPBlockTrait;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
-use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\EndpointBlockCategory;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
+use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
+use GraphQLAPI\GraphQLAPI\BlockCategories\EndpointBlockCategory;
+use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
 
 /**
  * Endpoint Options block

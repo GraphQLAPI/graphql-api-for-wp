@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlRuleBlocks;
+namespace GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlRuleBlocks\AbstractAccessControlRuleBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AbstractAccessControlRuleBlock;
 
 /**
  * Access Control User Capabilities block

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages;
+namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 
-use Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages\MenuPageInterface;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\MenuPageInterface;
 
 /**
  * Menu page

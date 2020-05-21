@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\BlockCategories;
+namespace GraphQLAPI\GraphQLAPI\BlockCategories;
 
-use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLAccessControlListPostType;
+use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLAccessControlListPostType;
 
 class AccessControlBlockCategory extends AbstractBlockCategory
 {

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
+namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
 use PoP\ComponentModel\Misc\GeneralUtils;
-use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
+use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use PoP\AccessControl\Facades\AccessControlManagerFacade;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractControlBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\AccessControlBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\AbstractControlBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlRuleBlocks\AbstractAccessControlRuleBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AbstractAccessControlRuleBlock;
 
 class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGraphQLQueryConfigurator
 {

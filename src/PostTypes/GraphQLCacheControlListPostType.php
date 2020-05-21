@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
+namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\CacheControlBlock;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
+use GraphQLAPI\GraphQLAPI\Blocks\CacheControlBlock;
+use GraphQLAPI\GraphQLAPI\PostTypes\AbstractPostType;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 class GraphQLCacheControlListPostType extends AbstractPostType

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
+namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
+use GraphQLAPI\GraphQLAPI\PostTypes\AbstractPostType;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigCacheControlListBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigAccessControlListBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigFieldDeprecationListBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigCacheControlListBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigAccessControlListBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigFieldDeprecationListBlock;
 
 class GraphQLSchemaConfigurationPostType extends AbstractPostType
 {

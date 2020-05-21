@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators;
+namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
 class EndpointSchemaConfigurator extends AbstractQueryExecutionSchemaConfigurator
 {

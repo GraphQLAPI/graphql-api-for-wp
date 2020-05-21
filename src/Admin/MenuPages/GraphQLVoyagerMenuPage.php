@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages;
+namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 
-use Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages\AbstractMenuPage;
-use Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages\EnqueueReactMenuPageTrait;
-use Leoloso\GraphQLByPoPWPPlugin\General\EndpointHelpers;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\EnqueueReactMenuPageTrait;
+use GraphQLAPI\GraphQLAPI\General\EndpointHelpers;
 
 /**
  * Voyager page
@@ -37,13 +37,13 @@ class GraphQLVoyagerMenuPage extends AbstractMenuPage
         // CSS
         \wp_enqueue_style(
             'graphql-api-voyager-client',
-            \GRAPHQL_BY_POP_PLUGIN_URL . 'assets/css/voyager-client.css',
+            \GRAPHQL_API_URL . 'assets/css/voyager-client.css',
             array(),
             \GRAPHQL_BY_POP_VERSION
         );
         \wp_enqueue_style(
             'graphql-api-voyager',
-            \GRAPHQL_BY_POP_PLUGIN_URL . 'assets/css/vendors/voyager.css',
+            \GRAPHQL_API_URL . 'assets/css/vendors/voyager.css',
             array(),
             \GRAPHQL_BY_POP_VERSION
         );
@@ -52,14 +52,14 @@ class GraphQLVoyagerMenuPage extends AbstractMenuPage
         $this->enqueueReactAssets(true);
         \wp_enqueue_script(
             'graphql-api-voyager',
-            \GRAPHQL_BY_POP_PLUGIN_URL . 'assets/js/vendors/voyager.min.js',
+            \GRAPHQL_API_URL . 'assets/js/vendors/voyager.min.js',
             array('graphql-api-react-dom'),
             \GRAPHQL_BY_POP_VERSION,
             true
         );
         \wp_enqueue_script(
             'graphql-api-voyager-client',
-            \GRAPHQL_BY_POP_PLUGIN_URL . 'assets/js/voyager-client.js',
+            \GRAPHQL_API_URL . 'assets/js/voyager-client.js',
             array('graphql-api-voyager'),
             \GRAPHQL_BY_POP_VERSION,
             true

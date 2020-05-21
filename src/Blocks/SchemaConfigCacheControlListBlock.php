@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Blocks;
+namespace GraphQLAPI\GraphQLAPI\Blocks;
 
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLCacheControlListPostType;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLCacheControlListPostType;
 
 /**
  * Cache Control block

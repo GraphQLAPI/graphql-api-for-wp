@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\General;
+namespace GraphQLAPI\GraphQLAPI\General;
 
-use Leoloso\GraphQLByPoPWPPlugin\Admin\Menus\Menu;
-use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\Admin\Menus\Menu;
+use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use PoP\API\Configuration\Request as APIRequest;
 use PoP\GraphQL\Configuration\Request as GraphQLRequest;
 
 class EndpointHelpers
 {
-    
+
     /**
      * Indicate if we are requesting
      * /wp-admin/edit.php?page=graphql_api&action=execute_query

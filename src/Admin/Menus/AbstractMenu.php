@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Admin\Menus;
+namespace GraphQLAPI\GraphQLAPI\Admin\Menus;
 
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 

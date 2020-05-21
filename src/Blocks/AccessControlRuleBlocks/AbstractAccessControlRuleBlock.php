@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlRuleBlocks;
+namespace GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\AbstractBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AbstractBlockCategory;
-use Leoloso\GraphQLByPoPWPPlugin\BlockCategories\AccessControlBlockCategory;
+use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
+use GraphQLAPI\GraphQLAPI\BlockCategories\AccessControlBlockCategory;
 
 /**
  * Access Control rule block

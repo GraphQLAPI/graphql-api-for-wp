@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Security;
+namespace GraphQLAPI\GraphQLAPI\Security;
 
-use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 
 /**
  * UserAuthorization

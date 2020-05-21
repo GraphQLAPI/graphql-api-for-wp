@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
+namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
-use Leoloso\GraphQLByPoPWPPlugin\Admin\Menus\Menu;
+use GraphQLAPI\GraphQLAPI\Admin\Menus\Menu;
 use PoP\ComponentModel\State\ApplicationState;
-use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
-use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
+use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 
 abstract class AbstractPostType
 {

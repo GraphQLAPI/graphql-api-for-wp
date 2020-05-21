@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Scripts;
+namespace GraphQLAPI\GraphQLAPI\Scripts;
 
 use Error;
-use Leoloso\GraphQLByPoPWPPlugin\General\GeneralUtils;
-use Leoloso\GraphQLByPoPWPPlugin\General\EditorHelpers;
+use GraphQLAPI\GraphQLAPI\General\GeneralUtils;
+use GraphQLAPI\GraphQLAPI\General\EditorHelpers;
 
 /**
  * Base class for a Gutenberg script.

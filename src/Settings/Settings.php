@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Settings;
+namespace GraphQLAPI\GraphQLAPI\Settings;
 
 /**
  * Settings

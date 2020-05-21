@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\BlockCategories;
+namespace GraphQLAPI\GraphQLAPI\BlockCategories;
 
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLPersistedQueryPostType;
 
 class PersistedQueryBlockCategory extends AbstractBlockCategory
 {

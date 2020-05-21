@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Config;
+namespace GraphQLAPI\GraphQLAPI\Config;
 
 use PoP\Engine\TypeResolvers\RootTypeResolver;
 use PoP\Root\Component\PHPServiceConfigurationTrait;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\GraphiQLBlock;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
-use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
-use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\Overrides\GraphiQLWithExplorerBlock;
+use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
+use GraphQLAPI\GraphQLAPI\Blocks\Overrides\GraphiQLWithExplorerBlock;
 use PoP\UserRolesAccessControl\Services\AccessControlGroups as UserRolesAccessControlGroups;
 
 class ServiceConfiguration

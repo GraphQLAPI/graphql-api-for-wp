@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\General;
+namespace GraphQLAPI\GraphQLAPI\General;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\GraphiQLBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\PersistedQueryOptionsBlock;
 
 class BlockContentHelpers
 {

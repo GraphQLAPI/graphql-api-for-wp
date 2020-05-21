@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\BlockCategories;
+namespace GraphQLAPI\GraphQLAPI\BlockCategories;
 
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLEndpointPostType;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLEndpointPostType;
 
 class EndpointBlockCategory extends AbstractBlockCategory
 {

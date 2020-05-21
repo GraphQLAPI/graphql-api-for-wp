@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers;
+namespace GraphQLAPI\GraphQLAPI\EndpointResolvers;
 
 abstract class AbstractEndpointResolver
 {

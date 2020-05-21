@@ -58,7 +58,7 @@ registerBlockType( 'graphql-api/schema-config-options', {
 	attributes: {
 		/**
 		 * Same attribute name as defined in
-		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock::ATTRIBUTE_NAME_USE_NAMESPACING
+		 * GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock::ATTRIBUTE_NAME_USE_NAMESPACING
 		 */
 		useNamespacing: {
 			type: 'string',
@@ -66,7 +66,7 @@ registerBlockType( 'graphql-api/schema-config-options', {
 		},
 		/**
 		 * Same attribute name as defined in
-		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigOptionsBlock::ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE
+		 * GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock::ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE
 		 */
 		defaultSchemaMode: {
 			type: 'string',

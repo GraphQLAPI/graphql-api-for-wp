@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfiguratorExecuters;
+namespace GraphQLAPI\GraphQLAPI\SchemaConfiguratorExecuters;
 
 use PoP\ComponentModel\State\ApplicationState;
-use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\SchemaConfiguratorInterface;
+use GraphQLAPI\GraphQLAPI\SchemaConfigurators\SchemaConfiguratorInterface;
 
 abstract class AbstractSchemaConfiguratorExecuter
 {

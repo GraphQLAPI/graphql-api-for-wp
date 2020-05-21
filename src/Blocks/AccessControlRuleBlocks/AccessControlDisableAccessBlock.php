@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlRuleBlocks;
+namespace GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphQLByPoPBlockTrait;
+use GraphQLAPI\GraphQLAPI\Blocks\GraphQLByPoPBlockTrait;
 
 /**
  * Access Control Disable Access block

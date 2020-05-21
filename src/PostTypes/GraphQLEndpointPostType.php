@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
+namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
 use PoP\API\Configuration\Request;
 use PoP\ComponentModel\State\ApplicationState;
-use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
-use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\General\RequestParams;
+use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\EndpointOptionsBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\EndpointOptionsBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractGraphQLQueryExecutionPostType;
+use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigurationBlock;
+use GraphQLAPI\GraphQLAPI\Taxonomies\GraphQLQueryTaxonomy;
+use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
+use GraphQLAPI\GraphQLAPI\PostTypes\AbstractGraphQLQueryExecutionPostType;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 
 class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
@@ -257,7 +257,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
         ];
         $dirPath = $dirPaths[$_REQUEST[RequestParams::VIEW]];
         // Read the file, and return it already
-        $file = \GRAPHQL_BY_POP_PLUGIN_DIR . $dirPath . '/index.html';
+        $file = \GRAPHQL_API_DIR . $dirPath . '/index.html';
         $fileContents = \file_get_contents($file, true);
         // Modify the script path
         $jsFileNames = [
@@ -272,7 +272,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
          */
         $fileContents = \str_replace(
             '"assets/',
-            '"' . \trim(\GRAPHQL_BY_POP_PLUGIN_URL, '/') . $dirPath . '/assets/',
+            '"' . \trim(\GRAPHQL_API_URL, '/') . $dirPath . '/assets/',
             $fileContents
         );
 
@@ -285,12 +285,12 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
             '/' . $jsFileName . '?endpoint=' . urlencode($endpointURL) . '&',
             $fileContents
         );
-        
+
         // Print, and that's it!
         echo $fileContents;
         die;
     }
-    
+
     /**
      * Read the options block and check the value of attribute "isGraphiQLEnabled"
      *
@@ -310,7 +310,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
             true
         );
     }
-    
+
     /**
      * Read the options block and check the value of attribute "isVoyagerEnabled"
      *

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\SchemaConfiguratorExecuters;
+namespace GraphQLAPI\GraphQLAPI\SchemaConfiguratorExecuters;
 
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\GraphQLPersistedQueryPostType;
-use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\SchemaConfiguratorInterface;
-use Leoloso\GraphQLByPoPWPPlugin\SchemaConfigurators\PersistedQuerySchemaConfigurator;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLPersistedQueryPostType;
+use GraphQLAPI\GraphQLAPI\SchemaConfigurators\SchemaConfiguratorInterface;
+use GraphQLAPI\GraphQLAPI\SchemaConfigurators\PersistedQuerySchemaConfigurator;
 
 class PersistedQuerySchemaConfiguratorExecuter extends AbstractSchemaConfiguratorExecuter
 {

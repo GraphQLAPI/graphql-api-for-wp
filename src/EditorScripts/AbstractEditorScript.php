@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\EditorScripts;
+namespace GraphQLAPI\GraphQLAPI\EditorScripts;
 
-use Leoloso\GraphQLByPoPWPPlugin\General\EditorHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\Scripts\AbstractScript;
+use GraphQLAPI\GraphQLAPI\General\EditorHelpers;
+use GraphQLAPI\GraphQLAPI\Scripts\AbstractScript;
 
 /**
  * Base class for a Gutenberg script.

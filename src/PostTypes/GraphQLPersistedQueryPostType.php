@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
+namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
-use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
-use Leoloso\GraphQLByPoPWPPlugin\Security\UserAuthorization;
-use Leoloso\GraphQLByPoPWPPlugin\General\BlockContentHelpers;
+use GraphQLAPI\GraphQLAPI\Blocks\GraphiQLBlock;
+use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
+use GraphQLAPI\GraphQLAPI\General\BlockContentHelpers;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Taxonomies\GraphQLQueryTaxonomy;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\PersistedQueryOptionsBlock;
-use Leoloso\GraphQLByPoPWPPlugin\General\GraphQLQueryPostTypeHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractGraphQLQueryExecutionPostType;
+use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigurationBlock;
+use GraphQLAPI\GraphQLAPI\Taxonomies\GraphQLQueryTaxonomy;
+use GraphQLAPI\GraphQLAPI\Blocks\PersistedQueryOptionsBlock;
+use GraphQLAPI\GraphQLAPI\General\GraphQLQueryPostTypeHelpers;
+use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
+use GraphQLAPI\GraphQLAPI\PostTypes\AbstractGraphQLQueryExecutionPostType;
 
 class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostType
 {

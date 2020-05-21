@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
+namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
 use PoP\ComponentModel\State\ApplicationState;
-use Leoloso\GraphQLByPoPWPPlugin\General\BlockHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\General\RequestParams;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
-use Leoloso\GraphQLByPoPWPPlugin\EndpointResolvers\EndpointResolverTrait;
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AbstractQueryExecutionOptionsBlock;
+use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
+use GraphQLAPI\GraphQLAPI\General\RequestParams;
+use GraphQLAPI\GraphQLAPI\PostTypes\AbstractPostType;
+use GraphQLAPI\GraphQLAPI\EndpointResolvers\EndpointResolverTrait;
+use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
 
 abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 {

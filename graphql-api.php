@@ -19,8 +19,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('GRAPHQL_BY_POP_PLUGIN_DIR', dirname(__FILE__));
-define('GRAPHQL_BY_POP_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('GRAPHQL_API_DIR', dirname(__FILE__));
+define('GRAPHQL_API_URL', plugin_dir_url(__FILE__));
 define('GRAPHQL_BY_POP_VERSION', '0.1');
 
 // Load Composer’s autoloader
@@ -28,16 +28,16 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure the plugin. This defines hooks to set environment variables, so must be executed
 // before those hooks are triggered for first time (in ComponentConfiguration classes)
-\Leoloso\GraphQLByPoPWPPlugin\PluginConfiguration::initialize();
+\GraphQLAPI\GraphQLAPI\PluginConfiguration::initialize();
 
 // Initialize the plugin's Component and, with it, all dependencies from PoP
-\Leoloso\GraphQLByPoPWPPlugin\Component::initialize();
+\GraphQLAPI\GraphQLAPI\Component::initialize();
 
 // Initialize the PoP Engine through the Bootloader
 \PoP\Engine\Bootloader::bootComponents();
 
 // Initialize this plugin
-$plugin = new \Leoloso\GraphQLByPoPWPPlugin\Plugin();
+$plugin = new \GraphQLAPI\GraphQLAPI\Plugin();
 $plugin->initialize();
 
 // Functions to execute when activating/deactivating the plugin

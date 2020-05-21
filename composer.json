@@ -57,12 +57,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Leoloso\\GraphQLByPoPWPPlugin\\": "src"
+            "GraphQLAPI\\GraphQLAPI\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Leoloso\\GraphQLByPoPWPPlugin\\": "tests"
+            "GraphQLAPI\\GraphQLAPI\\": "tests"
         }
     },
     "scripts": {

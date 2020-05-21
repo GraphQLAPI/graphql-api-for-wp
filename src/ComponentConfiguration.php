@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin;
+namespace GraphQLAPI\GraphQLAPI;
 
 use PoP\ComponentModel\ComponentConfiguration\AbstractComponentConfiguration;
 

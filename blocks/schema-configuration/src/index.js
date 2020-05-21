@@ -57,7 +57,7 @@ registerBlockType( 'graphql-api/schema-configuration', {
 	attributes: {
 		/**
 		 * Same attribute name as defined in
-		 * Leoloso\GraphQLByPoPWPPlugin\Blocks\SchemaConfigurationBlock::ATTRIBUTE_NAME_SCHEMA_CONFIGURATION
+		 * GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigurationBlock::ATTRIBUTE_NAME_SCHEMA_CONFIGURATION
 		 */
 		schemaConfiguration: {
 			type: 'integer',

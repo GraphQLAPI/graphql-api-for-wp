@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\General;
+namespace GraphQLAPI\GraphQLAPI\General;
 
 class URLParamHelpers
 {

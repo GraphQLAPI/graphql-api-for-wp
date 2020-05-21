@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\PostTypes;
+namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\AccessControlBlock;
-use Leoloso\GraphQLByPoPWPPlugin\Plugin;
-use Leoloso\GraphQLByPoPWPPlugin\PostTypes\AbstractPostType;
+use GraphQLAPI\GraphQLAPI\Blocks\AccessControlBlock;
+use GraphQLAPI\GraphQLAPI\Plugin;
+use GraphQLAPI\GraphQLAPI\PostTypes\AbstractPostType;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 

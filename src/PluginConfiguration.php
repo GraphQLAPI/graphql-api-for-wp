@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin;
+namespace GraphQLAPI\GraphQLAPI;
 
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\ComponentConfiguration;
-use Leoloso\GraphQLByPoPWPPlugin\Environment;
-use Leoloso\GraphQLByPoPWPPlugin\Settings\Settings;
+use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\Environment;
+use GraphQLAPI\GraphQLAPI\Settings\Settings;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
 

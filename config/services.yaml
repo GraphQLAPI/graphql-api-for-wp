@@ -4,42 +4,42 @@ services:
             PoP\Hooks\HooksAPIInterface: '@hooks_api'
             PoP\Translation\TranslationAPIInterface: '@translation_api'
 
-    Leoloso\GraphQLByPoPWPPlugin\Admin\Menus\:
+    GraphQLAPI\GraphQLAPI\Admin\Menus\:
         resource: '../src/Admin/Menus/*'
         public: true
 
-    Leoloso\GraphQLByPoPWPPlugin\Admin\EndpointResolvers\:
+    GraphQLAPI\GraphQLAPI\Admin\EndpointResolvers\:
         resource: '../src/Admin/EndpointResolvers/*'
         public: true
 
-    Leoloso\GraphQLByPoPWPPlugin\Admin\Development\:
+    GraphQLAPI\GraphQLAPI\Admin\Development\:
         resource: '../src/Admin/Development/*'
         public: true
 
-    Leoloso\GraphQLByPoPWPPlugin\Taxonomies\:
+    GraphQLAPI\GraphQLAPI\Taxonomies\:
         resource: '../src/Taxonomies/*'
         public: true
 
-    Leoloso\GraphQLByPoPWPPlugin\PostTypes\:
+    GraphQLAPI\GraphQLAPI\PostTypes\:
         resource: '../src/PostTypes/*'
         public: true
 
-    Leoloso\GraphQLByPoPWPPlugin\EditorScripts\:
+    GraphQLAPI\GraphQLAPI\EditorScripts\:
         resource: '../src/EditorScripts/*'
         public: true
 
-    Leoloso\GraphQLByPoPWPPlugin\Blocks\:
+    GraphQLAPI\GraphQLAPI\Blocks\:
         resource: '../src/Blocks/*'
         public: true
 
-    Leoloso\GraphQLByPoPWPPlugin\BlockCategories\:
+    GraphQLAPI\GraphQLAPI\BlockCategories\:
         resource: '../src/BlockCategories/*'
         public: true
 
-    Leoloso\GraphQLByPoPWPPlugin\Hooks\:
+    GraphQLAPI\GraphQLAPI\Hooks\:
         resource: '../src/Hooks/*'
         public: true
 
-    Leoloso\GraphQLByPoPWPPlugin\FieldResolvers\:
+    GraphQLAPI\GraphQLAPI\FieldResolvers\:
         resource: '../src/FieldResolvers/*'
         public: true

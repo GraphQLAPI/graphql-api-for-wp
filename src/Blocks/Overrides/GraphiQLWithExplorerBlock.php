@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin\Blocks\Overrides;
+namespace GraphQLAPI\GraphQLAPI\Blocks\Overrides;
 
-use Leoloso\GraphQLByPoPWPPlugin\Blocks\GraphiQLBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\GraphiQLBlock;
 
 /**
  * GraphiQL with Explorer block

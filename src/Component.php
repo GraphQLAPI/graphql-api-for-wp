@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Leoloso\GraphQLByPoPWPPlugin;
+namespace GraphQLAPI\GraphQLAPI;
 
 use PoP\ComponentModel\Environment;
 use PoP\Root\Component\AbstractComponent;
 use PoP\Root\Component\YAMLServicesTrait;
 use PoP\ComponentModel\ComponentConfiguration;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
-use Leoloso\GraphQLByPoPWPPlugin\Config\ServiceConfiguration;
+use GraphQLAPI\GraphQLAPI\Config\ServiceConfiguration;
 use PoP\ComponentModel\Facades\Engine\DataloadingEngineFacade;
 use PoP\CacheControl\DirectiveResolvers\CacheControlDirectiveResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
-use Leoloso\GraphQLByPoPWPPlugin\SchemaConfiguratorExecuters\EndpointSchemaConfiguratorExecuter;
-use Leoloso\GraphQLByPoPWPPlugin\SchemaConfiguratorExecuters\PersistedQuerySchemaConfiguratorExecuter;
+use GraphQLAPI\GraphQLAPI\SchemaConfiguratorExecuters\EndpointSchemaConfiguratorExecuter;
+use GraphQLAPI\GraphQLAPI\SchemaConfiguratorExecuters\PersistedQuerySchemaConfiguratorExecuter;
 
 /**
  * Initialize component
