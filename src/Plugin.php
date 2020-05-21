@@ -87,7 +87,10 @@ class Plugin
         /**
          * Block categories
          */
-        ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\BlockCategories');
+        $blockCategoryServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\BlockCategories');
+        foreach ($blockCategoryServiceClasses as $serviceClass) {
+            $instanceManager->getInstance($serviceClass)->initialize();
+        }
     }
 
     /**
