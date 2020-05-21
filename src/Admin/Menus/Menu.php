@@ -21,7 +21,16 @@ class Menu extends AbstractMenu
     {
         return static::NAME;
     }
-    
+
+    protected function getMenuPageClasses(): array
+    {
+        return [
+            GraphiQLMenuPage::class,
+            GraphQLVoyagerMenuPage::class,
+            SettingsMenuPage::class,
+        ];
+    }
+
     public function addMenuPagesTop(): void
     {
         parent::addMenuPagesTop();

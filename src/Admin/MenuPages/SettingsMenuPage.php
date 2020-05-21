@@ -109,191 +109,195 @@ class SettingsMenuPage extends AbstractMenuPage
         <?php
     }
 
-    protected function init(): void
+    public function initialize(): void
     {
-        /**
-         * Main section
-         */
-        \add_settings_section(
-            'graphql-api-settings-main-section',
-            // The empty string ensures the render function won't output a h2.
-            '',
-            [$this, 'printMainSectionDescription'],
-            'graphql-api-settings'
-        );
-        \add_settings_field(
-            'graphql-api-graphql-endpoint',
-            \__('GraphQL endpoint', 'graphql-api'),
-            [$this, 'printInputField'],
-            'graphql-api-settings',
-            'graphql-api-settings-main-section',
-            array(
-                'label' => sprintf(
-                    \__('Make the GraphQL service available under the specified endpoint. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                    'https://graphql.getpop.org/wp/documentation/#graphql-endpoint'
-                ),
-                'id'    => 'graphql-api-graphql-endpoint',
-            )
-        );
-        \add_settings_field(
-            'graphql-api-enable-extended-graphql',
-            \__('Enable Extended GraphQL', 'graphql-api'),
-            [$this, 'printCheckboxField'],
-            'graphql-api-settings',
-            'graphql-api-settings-main-section',
-            array(
-                'label' => sprintf(
-                    \__('Supercharge the GraphQL API with additional features. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                    'https://graphql.getpop.org/wp/documentation/#extended-graphql'
-                ),
-                'id'    => 'graphql-api-enable-extended-graphql',
-            )
-        );
-        \add_settings_field(
-            'graphql-api-blockmetadata',
-            \__('Enable querying Gutenberg', 'graphql-api'),
-            [$this, 'printCheckboxField'],
-            'graphql-api-settings',
-            'graphql-api-settings-main-section',
-            array(
-                'label' => sprintf(
-                    \__('Add a field <code>blockMetadata</code> on type <code>%s</code> to retrieve the meta-data from its Guntenberg blocks. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                    PostTypeResolver::NAME,
-                    'https://graphql.getpop.org/wp/documentation/#gutenberg'
-                ),
-                'id'    => 'graphql-api-blockmetadata',
-            )
-        );
+        parent::initialize();
 
-        /**
-         * GraphQL section <= valid when GraphQL enabled
-         */
-        \add_settings_section(
-            'graphql-api-settings-graphql-enabled-section-1',
-            // The empty string ensures the render function won't output a h2.
-            '',
-            [$this, 'printGraphQLEnabledHeader1'],
-            'graphql-api-settings'
-        );
-        \add_settings_field(
-            'graphql-api-namespacing',
-            \__('Enable schema namespacing', 'graphql-api'),
-            [$this, 'printCheckboxField'],
-            'graphql-api-settings',
-            'graphql-api-settings-graphql-enabled-section-1',
-            array(
-                'label' => sprintf(
-                    \__('Automatically namespace types and interfaces as to avoid potential naming clashes. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                    'https://graphql.getpop.org/wp/documentation/#namespacing'
-                ),
-                'id'    => 'graphql-api-namespacing',
-            )
-        );
-        \add_settings_section(
-            'graphql-api-settings-graphql-enabled-section-2',
-            // The empty string ensures the render function won't output a h2.
-            '',
-            [$this, 'printGraphQLEnabledHeader2'],
-            'graphql-api-settings'
-        );
-        \add_settings_field(
-            'graphql-api-public-graphiql',
-            \__('GraphiQL client URL path', 'graphql-api'),
-            [$this, 'printInputField'],
-            'graphql-api-settings',
-            'graphql-api-settings-graphql-enabled-section-2',
-            array(
-                'label' => sprintf(
-                    \__('Make the GraphiQL client publicly available under the specified URL path. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                    'https://graphql.getpop.org/wp/documentation/#graphiql'
-                ),
-                'id'    => 'graphql-api-public-graphiql',
-            )
-        );
-        \add_settings_field(
-            'graphql-api-public-voyager',
-            \__('Interactive schema URL path', 'graphql-api'),
-            [$this, 'printInputField'],
-            'graphql-api-settings',
-            'graphql-api-settings-graphql-enabled-section-2',
-            array(
-                'label' => sprintf(
-                    \__('Make the interactive schema publicly available under the specified URL path. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                    'https://graphql.getpop.org/wp/documentation/#voyager'
-                ),
-                'id'    => 'graphql-api-public-voyager',
-            )
-        );
-        \add_settings_field(
-            'graphql-api-clients-restrictaccess',
-            \__('Restrict access by user capability', 'graphql-api'),
-            [$this, 'printCheckboxField'],
-            'graphql-api-settings',
-            'graphql-api-settings-graphql-enabled-section-2',
-            array(
-                'label' => sprintf(
-                    \__('Allow only logged-in users with capability <code>%s</code> to access the GraphiQL and interactive schema clients. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                    'access_graphql_clients',
-                    'https://graphql.getpop.org/wp/documentation/#restrict-access-to-clients'
-                ),
-                'id'    => 'graphql-api-clients-restrictaccess',
-            )
-        );
+        \add_action('admin_init', function () {
+            /**
+             * Main section
+             */
+            \add_settings_section(
+                'graphql-api-settings-main-section',
+                // The empty string ensures the render function won't output a h2.
+                '',
+                [$this, 'printMainSectionDescription'],
+                'graphql-api-settings'
+            );
+            \add_settings_field(
+                'graphql-api-graphql-endpoint',
+                \__('GraphQL endpoint', 'graphql-api'),
+                [$this, 'printInputField'],
+                'graphql-api-settings',
+                'graphql-api-settings-main-section',
+                array(
+                    'label' => sprintf(
+                        \__('Make the GraphQL service available under the specified endpoint. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
+                        'https://graphql.getpop.org/wp/documentation/#graphql-endpoint'
+                    ),
+                    'id'    => 'graphql-api-graphql-endpoint',
+                )
+            );
+            \add_settings_field(
+                'graphql-api-enable-extended-graphql',
+                \__('Enable Extended GraphQL', 'graphql-api'),
+                [$this, 'printCheckboxField'],
+                'graphql-api-settings',
+                'graphql-api-settings-main-section',
+                array(
+                    'label' => sprintf(
+                        \__('Supercharge the GraphQL API with additional features. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
+                        'https://graphql.getpop.org/wp/documentation/#extended-graphql'
+                    ),
+                    'id'    => 'graphql-api-enable-extended-graphql',
+                )
+            );
+            \add_settings_field(
+                'graphql-api-blockmetadata',
+                \__('Enable querying Gutenberg', 'graphql-api'),
+                [$this, 'printCheckboxField'],
+                'graphql-api-settings',
+                'graphql-api-settings-main-section',
+                array(
+                    'label' => sprintf(
+                        \__('Add a field <code>blockMetadata</code> on type <code>%s</code> to retrieve the meta-data from its Guntenberg blocks. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
+                        PostTypeResolver::NAME,
+                        'https://graphql.getpop.org/wp/documentation/#gutenberg'
+                    ),
+                    'id'    => 'graphql-api-blockmetadata',
+                )
+            );
 
-        /**
-         * Extended GraphQL section <= valid when Extended GraphQL enabled
-         * Header 1
-         */
-        \add_settings_section(
-            'graphql-api-settings-extendedgraphql-enabled-section',
-            // The empty string ensures the render function won't output a h2.
-            '',
-            [$this, 'printXTGraphQLEnabledHeader'],
-            'graphql-api-settings'
-        );
-        \add_settings_field(
-            'graphql-api-extendedgraphql-cachecontrol',
-            \__('Cache-control max-age', 'graphql-api'),
-            [$this, 'printInputField'],
-            'graphql-api-settings',
-            'graphql-api-settings-extendedgraphql-enabled-section',
-            array(
-                'label' => sprintf(
-                    \__('HTTP Caching: Set the default max-age value in seconds for the Cache-Control header. From this value, the overall max-age from all requested fields will be calculated. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                    'https://graphql.getpop.org/wp/documentation/#cache-control'
-                ),
-                'id'    => 'graphql-api-extendedgraphql-cachecontrol',
-            )
-        );
-        \add_settings_field(
-            'graphql-api-extendedgraphql-guzzle',
-            \__('Enable sending requests to external web services', 'graphql-api'),
-            [$this, 'printCheckboxField'],
-            'graphql-api-settings',
-            'graphql-api-settings-extendedgraphql-enabled-section',
-            array(
-                'label' => sprintf(
-                    \__('Enable fields (%s) to fetch data from external web services. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                    '<code>' . implode(
-                        '</code>' . __(',') . '<code>',
-                        [
-                            'getJSON',
-                            'getAsyncJSON',
-                        ]
-                    ) . '</code>',
-                    'https://graphql.getpop.org/wp/documentation/#external-services'
-                ),
-                'id'    => 'graphql-api-extendedgraphql-guzzle',
-            )
-        );
+            /**
+             * GraphQL section <= valid when GraphQL enabled
+             */
+            \add_settings_section(
+                'graphql-api-settings-graphql-enabled-section-1',
+                // The empty string ensures the render function won't output a h2.
+                '',
+                [$this, 'printGraphQLEnabledHeader1'],
+                'graphql-api-settings'
+            );
+            \add_settings_field(
+                'graphql-api-namespacing',
+                \__('Enable schema namespacing', 'graphql-api'),
+                [$this, 'printCheckboxField'],
+                'graphql-api-settings',
+                'graphql-api-settings-graphql-enabled-section-1',
+                array(
+                    'label' => sprintf(
+                        \__('Automatically namespace types and interfaces as to avoid potential naming clashes. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
+                        'https://graphql.getpop.org/wp/documentation/#namespacing'
+                    ),
+                    'id'    => 'graphql-api-namespacing',
+                )
+            );
+            \add_settings_section(
+                'graphql-api-settings-graphql-enabled-section-2',
+                // The empty string ensures the render function won't output a h2.
+                '',
+                [$this, 'printGraphQLEnabledHeader2'],
+                'graphql-api-settings'
+            );
+            \add_settings_field(
+                'graphql-api-public-graphiql',
+                \__('GraphiQL client URL path', 'graphql-api'),
+                [$this, 'printInputField'],
+                'graphql-api-settings',
+                'graphql-api-settings-graphql-enabled-section-2',
+                array(
+                    'label' => sprintf(
+                        \__('Make the GraphiQL client publicly available under the specified URL path. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
+                        'https://graphql.getpop.org/wp/documentation/#graphiql'
+                    ),
+                    'id'    => 'graphql-api-public-graphiql',
+                )
+            );
+            \add_settings_field(
+                'graphql-api-public-voyager',
+                \__('Interactive schema URL path', 'graphql-api'),
+                [$this, 'printInputField'],
+                'graphql-api-settings',
+                'graphql-api-settings-graphql-enabled-section-2',
+                array(
+                    'label' => sprintf(
+                        \__('Make the interactive schema publicly available under the specified URL path. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
+                        'https://graphql.getpop.org/wp/documentation/#voyager'
+                    ),
+                    'id'    => 'graphql-api-public-voyager',
+                )
+            );
+            \add_settings_field(
+                'graphql-api-clients-restrictaccess',
+                \__('Restrict access by user capability', 'graphql-api'),
+                [$this, 'printCheckboxField'],
+                'graphql-api-settings',
+                'graphql-api-settings-graphql-enabled-section-2',
+                array(
+                    'label' => sprintf(
+                        \__('Allow only logged-in users with capability <code>%s</code> to access the GraphiQL and interactive schema clients. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
+                        'access_graphql_clients',
+                        'https://graphql.getpop.org/wp/documentation/#restrict-access-to-clients'
+                    ),
+                    'id'    => 'graphql-api-clients-restrictaccess',
+                )
+            );
 
-        /**
-         * Finally register all the settings
-         */
-        \register_setting(
-            'graphql-api-settings',
-            Settings::OPTIONS_NAME
-        );
+            /**
+             * Extended GraphQL section <= valid when Extended GraphQL enabled
+             * Header 1
+             */
+            \add_settings_section(
+                'graphql-api-settings-extendedgraphql-enabled-section',
+                // The empty string ensures the render function won't output a h2.
+                '',
+                [$this, 'printXTGraphQLEnabledHeader'],
+                'graphql-api-settings'
+            );
+            \add_settings_field(
+                'graphql-api-extendedgraphql-cachecontrol',
+                \__('Cache-control max-age', 'graphql-api'),
+                [$this, 'printInputField'],
+                'graphql-api-settings',
+                'graphql-api-settings-extendedgraphql-enabled-section',
+                array(
+                    'label' => sprintf(
+                        \__('HTTP Caching: Set the default max-age value in seconds for the Cache-Control header. From this value, the overall max-age from all requested fields will be calculated. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
+                        'https://graphql.getpop.org/wp/documentation/#cache-control'
+                    ),
+                    'id'    => 'graphql-api-extendedgraphql-cachecontrol',
+                )
+            );
+            \add_settings_field(
+                'graphql-api-extendedgraphql-guzzle',
+                \__('Enable sending requests to external web services', 'graphql-api'),
+                [$this, 'printCheckboxField'],
+                'graphql-api-settings',
+                'graphql-api-settings-extendedgraphql-enabled-section',
+                array(
+                    'label' => sprintf(
+                        \__('Enable fields (%s) to fetch data from external web services. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
+                        '<code>' . implode(
+                            '</code>' . __(',') . '<code>',
+                            [
+                                'getJSON',
+                                'getAsyncJSON',
+                            ]
+                        ) . '</code>',
+                        'https://graphql.getpop.org/wp/documentation/#external-services'
+                    ),
+                    'id'    => 'graphql-api-extendedgraphql-guzzle',
+                )
+            );
+
+            /**
+             * Finally register all the settings
+             */
+            \register_setting(
+                'graphql-api-settings',
+                Settings::OPTIONS_NAME
+            );
+        });
     }
 
     /**

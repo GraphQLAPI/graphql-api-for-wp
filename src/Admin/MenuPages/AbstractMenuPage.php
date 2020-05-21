@@ -11,22 +11,17 @@ use Leoloso\GraphQLByPoPWPPlugin\Admin\MenuPages\MenuPageInterface;
  */
 abstract class AbstractMenuPage implements MenuPageInterface
 {
-    public function __construct()
-    {
-        $this->init();
-        \add_action(
-            'admin_enqueue_scripts',
-            [$this, 'maybeEnqueueAssets']
-        );
-    }
-
     /**
      * Initialize menu page. Function to override
      *
      * @return void
      */
-    protected function init(): void
+    public function initialize(): void
     {
+        \add_action(
+            'admin_enqueue_scripts',
+            [$this, 'maybeEnqueueAssets']
+        );
     }
 
     /**
