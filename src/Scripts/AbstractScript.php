@@ -17,17 +17,12 @@ use Leoloso\GraphQLByPoPWPPlugin\General\EditorHelpers;
  */
 abstract class AbstractScript
 {
-    public function __construct()
-    {
-        $this->init();
-    }
-
     /**
      * Execute this function to initialize the script
      *
      * @return void
      */
-    protected function init(): void
+    public function initialize(): void
     {
         \add_action('init', [$this, 'initScript']);
     }
@@ -70,7 +65,7 @@ abstract class AbstractScript
     {
         return GeneralUtils::dashesToCamelCase($this->getScriptName());
     }
-    
+
     /**
      * Pass localized data to the block
      *
@@ -140,7 +135,7 @@ abstract class AbstractScript
         }
 
         $url = $this->getScriptDirURL();
-        
+
         // Load the block scripts and styles
         $index_js     = 'build/index.js';
         $script_asset = require($script_asset_path);

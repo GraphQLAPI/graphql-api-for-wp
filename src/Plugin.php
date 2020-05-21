@@ -65,7 +65,10 @@ class Plugin
         /**
          * Editor Scripts
          */
-        ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\EditorScripts');
+        $editorScriptServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\EditorScripts');
+        foreach ($editorScriptServiceClasses as $serviceClass) {
+            $instanceManager->getInstance($serviceClass)->initialize();
+        }
         /**
          * Blocks
          * The GraphiQL Block may be overriden to GraphiQLWithExplorerBlock
