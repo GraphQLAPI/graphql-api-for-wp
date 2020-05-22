@@ -40,15 +40,15 @@ class ModuleListTable extends AbstractItemListTable
     public static function getItems($per_page = 5, $page_number = 1)
     {
         $results = [
-            ['ID' => 'a1', 'name' => 'Alfreds Futterkiste ', 'description' => 'nearly all default'],
-            ['ID' => 'a2', 'name' => 'Ana Trujillo ', 'description' => 'But creating one'],
-            ['ID' => 'a3', 'name' => 'Antonio Moreno', 'description' => 'done it before'],
-            ['ID' => 'a4', 'name' => 'Thomas Hardy ', 'description' => 'WordPress provides functionality'],
-            ['ID' => 'a5', 'name' => 'Christina Berglund ', 'description' => 'The WordPress Admin'],
-            ['ID' => 'a9', 'name' => 'Hanna Moos', 'description' => 'handbook, in'],
-            ['ID' => 'a10','name' =>  'Frédérique Citeaux', 'description' => 'with common traps'],
-            ['ID' => 'a11','name' =>  'Martín Sommer', 'description' => 'Presentation Of A'],
-            ['ID' => 'a12','name' =>  'Laurence Lebihans', 'description' => 'better understand the'],
+            ['id' => 'a1', 'name' => 'Alfreds Futterkiste ', 'description' => 'nearly all default'],
+            ['id' => 'a2', 'name' => 'Ana Trujillo ', 'description' => 'But creating one'],
+            ['id' => 'a3', 'name' => 'Antonio Moreno', 'description' => 'done it before'],
+            ['id' => 'a4', 'name' => 'Thomas Hardy ', 'description' => 'WordPress provides functionality'],
+            ['id' => 'a5', 'name' => 'Christina Berglund ', 'description' => 'The WordPress Admin'],
+            ['id' => 'a9', 'name' => 'Hanna Moos', 'description' => 'handbook, in'],
+            ['id' => 'a10','name' =>  'Frédérique Citeaux', 'description' => 'with common traps'],
+            ['id' => 'a11','name' =>  'Martín Sommer', 'description' => 'Presentation Of A'],
+            ['id' => 'a12','name' =>  'Laurence Lebihans', 'description' => 'better understand the'],
         ];
         return array_splice(
             $results,
@@ -116,8 +116,8 @@ class ModuleListTable extends AbstractItemListTable
     public function column_cb($item)
     {
         return sprintf(
-            '<input type="checkbox" name="bulk-delete[]" value="%s" />',
-            $item['ID']
+            '<input type="checkbox" name="bulk-action-items[]" value="%s" />',
+            $item['id']
         );
     }
 
@@ -131,17 +131,26 @@ class ModuleListTable extends AbstractItemListTable
      */
     public function column_name($item)
     {
-        $delete_nonce = \wp_create_nonce( 'graphql_api_enable_or_disable_module' );
-
+        $nonce = \wp_create_nonce( 'graphql_api_enable_or_disable_module' );
         $title = '<strong>' . $item['name'] . '</strong>';
-
+        $linkPlaceholder = '<a href="?page=%s&action=%s&item=%s&_wpnonce=%s">%s</a>';
+        $page = esc_attr($_REQUEST['page']);
         $actions = [
-            'delete' => \sprintf(
-                '<a href="?page=%s&action=%s&item=%s&_wpnonce=%s">Delete</a>',
-                esc_attr($_REQUEST['page']),
-                'delete',
-                $item['ID'],
-                $delete_nonce
+            'enable' => \sprintf(
+                $linkPlaceholder,
+                $page,
+                'enable',
+                $item['id'],
+                $nonce,
+                \__('Enable', 'graphql-api')
+            ),
+            'disable' => \sprintf(
+                $linkPlaceholder,
+                $page,
+                'disable',
+                $item['id'],
+                $nonce,
+                \__('Disable', 'graphql-api')
             ),
         ];
 
@@ -185,7 +194,8 @@ class ModuleListTable extends AbstractItemListTable
     public function get_bulk_actions()
     {
         return [
-            'bulk-delete' => 'Delete'
+            'bulk-enable' => \__('Enable', 'graphql-api'),
+            'bulk-disable' => \__('Disable', 'graphql-api'),
         ];
     }
 
@@ -216,46 +226,45 @@ class ModuleListTable extends AbstractItemListTable
     }
 
     /**
-     * Process actions
+     * Process bulk and single actions
      *
      * @return void
      */
     public function process_action()
     {
-        $isBulkAction =
-            (isset($_POST['action']) && $_POST['action'] == 'bulk-delete') ||
-            (isset($_POST['action2']) && $_POST['action2'] == 'bulk-delete');
+        $bulkActions = array_keys($this->get_bulk_actions());
+        $isBulkAction = in_array($_POST['action'], $bulkActions) || in_array($_POST['action2'], $bulkActions);
+        /**
+         * The Bulk takes precedence, because it's executed as a POST on the current URL
+         * Then, the URL can contain an ?action=... which was just executed,
+         * and we don't want to execute it again
+         */
+        if ($isBulkAction) {
+            $itemIDs = \esc_sql($_POST['bulk-action-items'] ?? '');
+            // Enable or disable
+            if ($_POST['action'] == 'bulk-enable' || $_POST['action2'] == 'bulk-enable') {
+                foreach ($itemIDs as $id) {
+                    self::enableModule($id);
+                }
+            } elseif ($_POST['action'] == 'bulk-disable' || $_POST['action2'] == 'bulk-disable') {
+                foreach ($itemIDs as $id) {
+                    self::disableModule($id);
+                }
+            }
+            return;
+        }
         $isSingleAction = 'delete' === $this->current_action() || 'delete' === $this->current_action();
-        if ($isBulkAction || $isSingleAction) {
-            /**
-             * The Bulk takes precedence, because it's executed as a POST on the current URL
-             * Then, the URL can contain an ?action=... which was just executed,
-             * and we don't want to execute it again
-             */
-            if ($isBulkAction) {
-                $itemIDs = \esc_sql($_POST['bulk-delete']);
-                // Enable or disable
-                if (true) {
-                    foreach ($itemIDs as $id) {
-                        self::enableModule($id);
-                    }
-                } else {
-                    foreach ($itemIDs as $id) {
-                        self::disableModule($id);
-                    }
-                }
-            } elseif ($isSingleAction) {
-                // Verify the nonce
-                $nonce = \esc_attr($_REQUEST['_wpnonce']);
-                if (!\wp_verify_nonce($nonce, 'graphql_api_enable_or_disable_module')) {
-                    die(__('This URL is not valid. Please load the page anew, and try again', 'graphql-api'));
-                }
-                // Enable or disable
-                if ('delete' === $this->current_action()) {
-                    self::enableModule($_GET['item']);
-                } elseif ('delete' === $this->current_action()) {
-                    self::disableModule($_GET['item']);
-                }
+        if ($isSingleAction) {
+            // Verify the nonce
+            $nonce = \esc_attr($_REQUEST['_wpnonce']);
+            if (!\wp_verify_nonce($nonce, 'graphql_api_enable_or_disable_module')) {
+                die(__('This URL is not valid. Please load the page anew, and try again', 'graphql-api'));
+            }
+            // Enable or disable
+            if ('delete' === $this->current_action()) {
+                self::enableModule($_GET['item']);
+            } elseif ('delete' === $this->current_action()) {
+                self::disableModule($_GET['item']);
             }
         }
     }
