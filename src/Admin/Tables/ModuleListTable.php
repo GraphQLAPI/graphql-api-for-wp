@@ -137,7 +137,7 @@ class ModuleListTable extends AbstractItemListTable
                 'enabled' => true,
                 'has-settings' => true,
                 'name' => \__('Directive Set: Convert Lower/Uppercase', 'graphql-api'),
-                'description' => \__('Set of directives to manipulate strings: @upperCase, @lowerCase and @titleCase', 'graphql-api'),
+                'description' => \__('Set of directives to manipulate strings: <code>@upperCase</code>, <code>@lowerCase</code> and <code>@titleCase</code>', 'graphql-api'),
             ],
             [
                 'id' => 'schema-post-type',
