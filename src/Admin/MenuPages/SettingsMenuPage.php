@@ -6,7 +6,6 @@ namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
 use GraphQLAPI\GraphQLAPI\Settings\Settings;
-use PoP\API\Schema\QueryInputs;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 
 /**
@@ -40,7 +39,15 @@ class SettingsMenuPage extends AbstractMenuPage
 
     public function print(): void
     {
+        /**
+         * Override the box-shadow added to a:focus, when clicking on the tab
+         */
         ?>
+        <style>
+            #graphql-api-settings .nav-tab-active:focus {
+                box-shadow: none;
+            }
+        </style>
         <script type="application/javascript">
             jQuery( document ).ready( function($){
                 $('#graphql-api-settings .tab-content').hide(); // Hide all tabs first
@@ -61,7 +68,7 @@ class SettingsMenuPage extends AbstractMenuPage
             id="graphql-api-settings"
             class="wrap"
         >
-            <h1><?php echo \__('GraphQL API — Settings', 'graphql-api'); ?></h1>
+            <h1><?php \_e('GraphQL API — Settings', 'graphql-api'); ?></h1>
             <?php settings_errors(); ?>
             <?php $this->printMainSectionDescription(); ?>
 

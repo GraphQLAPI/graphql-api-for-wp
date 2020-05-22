@@ -11,6 +11,18 @@ use GraphQLAPI\GraphQLAPI\Admin\MenuPages\MenuPageInterface;
  */
 abstract class AbstractMenuPage implements MenuPageInterface
 {
+    protected $hookName;
+
+    public function setHookName(string $hookName): void
+    {
+        $this->hookName = $hookName;
+    }
+
+    public function getHookName(): ?string
+    {
+        return $this->hookName;
+    }
+
     /**
      * Initialize menu page. Function to override
      *

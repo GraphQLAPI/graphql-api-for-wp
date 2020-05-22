@@ -7,6 +7,7 @@ namespace GraphQLAPI\GraphQLAPI\Admin\Menus;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphiQLMenuPage;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphQLVoyagerMenuPage;
 
@@ -27,6 +28,7 @@ class Menu extends AbstractMenu
         return [
             GraphiQLMenuPage::class,
             GraphQLVoyagerMenuPage::class,
+            ModulesMenuPage::class,
             SettingsMenuPage::class,
         ];
     }
@@ -48,7 +50,7 @@ class Menu extends AbstractMenu
         );
 
         $graphiQLMenuPage = $instanceManager->getInstance(GraphiQLMenuPage::class);
-        \add_submenu_page(
+        $hookName = \add_submenu_page(
             self::NAME,
             __('GraphiQL', 'graphql-api'),
             __('GraphiQL', 'graphql-api'),
@@ -56,9 +58,10 @@ class Menu extends AbstractMenu
             self::NAME,
             [$graphiQLMenuPage, 'print']
         );
+        $graphiQLMenuPage->setHookName($hookName);
 
         $graphQLVoyagerMenuPage = $instanceManager->getInstance(GraphQLVoyagerMenuPage::class);
-        \add_submenu_page(
+        $hookName = \add_submenu_page(
             self::NAME,
             __('Interactive schema', 'graphql-api'),
             __('Interactive schema', 'graphql-api'),
@@ -66,6 +69,7 @@ class Menu extends AbstractMenu
             'graphql_api_voyager',
             [$graphQLVoyagerMenuPage, 'print']
         );
+        $graphQLVoyagerMenuPage->setHookName($hookName);
     }
 
     public function addMenuPagesBottom(): void
@@ -73,8 +77,19 @@ class Menu extends AbstractMenu
         parent::addMenuPagesBottom();
 
         $instanceManager = InstanceManagerFacade::getInstance();
+        $modulesMenuPage = $instanceManager->getInstance(ModulesMenuPage::class);
+        $hookName = \add_submenu_page(
+            self::NAME,
+            __('Modules', 'graphql-api'),
+            __('Modules', 'graphql-api'),
+            'manage_options',
+            'graphql_api_modules',
+            [$modulesMenuPage, 'print']
+        );
+        $modulesMenuPage->setHookName($hookName);
+
         $settingsMenuPage = $instanceManager->getInstance(SettingsMenuPage::class);
-        \add_submenu_page(
+        $hookName = \add_submenu_page(
             self::NAME,
             __('Settings', 'graphql-api'),
             __('Settings', 'graphql-api'),
@@ -82,6 +97,7 @@ class Menu extends AbstractMenu
             'graphql_api_settings',
             [$settingsMenuPage, 'print']
         );
+        $settingsMenuPage->setHookName($hookName);
 
         // $schemaEditorAccessCapability = UserAuthorization::getSchemaEditorAccessCapability();
         // if (\current_user_can($schemaEditorAccessCapability)) {
