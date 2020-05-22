@@ -68,7 +68,7 @@ class SettingsMenuPage extends AbstractMenuPage
             id="graphql-api-settings"
             class="wrap"
         >
-            <h1><?php echo \__('GraphQL API — Settings', 'graphql-api'); ?></h1>
+            <h1><?php \_e('GraphQL API — Settings', 'graphql-api'); ?></h1>
             <?php settings_errors(); ?>
             <?php $this->printMainSectionDescription(); ?>
 
