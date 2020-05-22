@@ -252,11 +252,6 @@ class ModuleListTable extends AbstractItemListTable
                     }
                 }
             }
-
-            // esc_url_raw() is used to prevent converting ampersand in url to "#038;"
-            // add_query_arg() return the current url
-            \wp_redirect(\esc_url_raw(\add_query_arg()));
-            exit;
         }
     }
 }
