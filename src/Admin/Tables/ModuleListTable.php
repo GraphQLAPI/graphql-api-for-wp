@@ -130,7 +130,7 @@ class ModuleListTable extends AbstractItemListTable
                 'enabled' => true,
                 'has-settings' => true,
                 'name' => \__('Welcome Guides', 'graphql-api'),
-                'description' => \__('Display helpful welcome guides to demonstrate the different functionalities available in the plugin', 'graphql-api'),
+                'description' => \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities', 'graphql-api'),
             ],
             [
                 'id' => 'directive-set-convert-lower-uppercase',
