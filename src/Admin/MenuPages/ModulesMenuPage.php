@@ -12,7 +12,7 @@ use GraphQLAPI\GraphQLAPI\Admin\Tables\ModuleListTable;
  */
 class ModulesMenuPage extends AbstractTableMenuPage
 {
-    public const SCREEN_OPTION_NAME = 'modules_per_page';
+    public const SCREEN_OPTION_NAME = 'graphql_api_modules_per_page';
 
     protected function getHeader(): string
     {
