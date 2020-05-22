@@ -29,17 +29,9 @@ class ModuleListTable extends AbstractItemListTable
         return \__('Modules', 'graphql-api');
     }
 
-    /**
-     * List of item data
-     *
-     * @param int $per_page
-     * @param int $page_number
-     *
-     * @return mixed
-     */
-    public static function getItems($per_page = 5, $page_number = 1)
+    public function getAllItems(): array
     {
-        $results = [
+        return [
             ['id' => 'Custom-Endpoints', 'enabled' => true, 'name' => 'Custom Endpoints', 'description' => 'So, here I tell you about Custom Endpoints, oh yeah you know'],
             ['id' => 'Persisted-Queries', 'enabled' => true, 'name' => 'Persisted Queries', 'description' => 'So, here I tell you about Persisted Queries, oh yeah you know'],
             ['id' => 'Access-Control', 'enabled' => true, 'name' => 'Access Control', 'description' => 'So, here I tell you about Access Control, oh yeah you know'],
@@ -61,6 +53,19 @@ class ModuleListTable extends AbstractItemListTable
             ['id' => 'Schema-Page-Type', 'enabled' => true, 'name' => 'Schema Page Type', 'description' => 'So, here I tell you about Schema Page Type, oh yeah you know'],
             ['id' => 'Single-endpoint', 'enabled' => false, 'name' => 'Single endpoint', 'description' => 'So, here I tell you about Single endpoint, oh yeah you know'],
         ];
+    }
+
+    /**
+     * List of item data
+     *
+     * @param int $per_page
+     * @param int $page_number
+     *
+     * @return mixed
+     */
+    public function getItems($per_page = 5, $page_number = 1)
+    {
+        $results = $this->getAllItems();
         return array_splice(
             $results,
             ($page_number - 1) * $per_page,
@@ -93,9 +98,10 @@ class ModuleListTable extends AbstractItemListTable
      *
      * @return null|string
      */
-    public static function record_count()
+    public function record_count()
     {
-        return 9;
+        $results = $this->getAllItems();
+        return count($results);
     }
 
     /**
@@ -229,14 +235,14 @@ class ModuleListTable extends AbstractItemListTable
             $this->getDefaultItemsPerPage()
         );
         $current_page = $this->get_pagenum();
-        $total_items  = self::record_count();
+        $total_items  = $this->record_count();
 
         $this->set_pagination_args([
             'total_items' => $total_items,
             'per_page'    => $per_page,
         ]);
 
-        $this->items = self::getItems($per_page, $current_page);
+        $this->items = $this->getItems($per_page, $current_page);
     }
 
     /**
@@ -258,11 +264,11 @@ class ModuleListTable extends AbstractItemListTable
             // Enable or disable
             if ($_POST['action'] == 'bulk-enable' || $_POST['action2'] == 'bulk-enable') {
                 foreach ($itemIDs as $id) {
-                    self::enableModule($id);
+                    $this->enableModule($id);
                 }
             } elseif ($_POST['action'] == 'bulk-disable' || $_POST['action2'] == 'bulk-disable') {
                 foreach ($itemIDs as $id) {
-                    self::disableModule($id);
+                    $this->disableModule($id);
                 }
             }
             return;
@@ -280,9 +286,9 @@ class ModuleListTable extends AbstractItemListTable
             }
             // Enable or disable
             if ('enable' === $this->current_action()) {
-                self::enableModule($_GET['item']);
+                $this->enableModule($_GET['item']);
             } elseif ('disable' === $this->current_action()) {
-                self::disableModule($_GET['item']);
+                $this->disableModule($_GET['item']);
             }
         }
     }
