@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\Tables;
 
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+
 /**
  * Module Table
  */
@@ -31,150 +33,20 @@ class ModuleListTable extends AbstractItemListTable
 
     public function getAllItems(): array
     {
-        return [
-            [
-                'id' => 'single-endpoint',
-                'enabled' => false,
-                'has-settings' => true,
-                'name' => \__('Single Endpoint', 'graphql-api'),
-                'description' => \sprintf(
-                    \__('Make data queryable through a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
-                    '/graphql/'
-                ),
-            ],
-            [
-                'id' => 'persisted-queries',
-                'enabled' => true,
-                'has-settings' => true,
-                'name' => \__('Persisted Queries', 'graphql-api'),
-                'description' => \__('Expose a predefined response by publishing persisted GraphQL queries, and accessing them under their permalink', 'graphql-api'),
-            ],
-            [
-                'id' => 'custom-endpoints',
-                'enabled' => true,
-                'has-settings' => true,
-                'name' => \__('Custom Endpoints', 'graphql-api'),
-                'description' => \__('Make data queryable through custom endpoints, each accepting a different configuration (access control, cache control, etc)', 'graphql-api'),
-            ],
-            [
-                'id' => 'graphiql-for-custom-endpoints',
-                'enabled' => true,
-                'has-settings' => true,
-                'name' => \__('GraphiQL for Custom Endpoints', 'graphql-api'),
-                'description' => \__('Enable custom endpoints to be attached a GraphiQL client, to execute queries against them. It depends on module "Custom Endpoints"', 'graphql-api'),
-            ],
-            [
-                'id' => 'interactive-schema-for-custom-endpoints',
-                'enabled' => true,
-                'has-settings' => true,
-                'name' => \__('Interactive Schema for Custom Endpoints', 'graphql-api'),
-                'description' => \__('Enable custom endpoints to be attached an Interactive schema client, to visualize the schema from the custom endpoint after applying all the access control rules. It depends on module "Custom Endpoints"', 'graphql-api'),
-            ],
-            [
-                'id' => 'access-control',
-                'enabled' => true,
-                'has-settings' => false,
-                'name' => \__('Access Control', 'graphql-api'),
-                'description' => \__('Set-up rules to define who can access the different fields and directives from a schema', 'graphql-api'),
-            ],
-            // ['id' => 'access-control---remove-access',
-            //     'enabled' => true,
-            //     'has-settings' => true,
-            //     'name' => \__('Access Control - Remove Access', 'graphql-api'),
-            //     'description' => \__('So, here I tell you about Access Control - Remove Access, oh yeah you know', 'graphql-api'),
-            // ],
-            [
-                'id' => 'access-control-rule-user-state',
-                'enabled' => true,
-                'has-settings' => false,
-                'name' => \__('Access Control Rule: User State', 'graphql-api'),
-                'description' => \__('Allow or reject access to the fields and directives based on the user being logged-in or not. It depends on module "Access Control"', 'graphql-api'),
-            ],
-            [
-                'id' => 'access-control-rule-user-roles',
-                'enabled' => true,
-                'has-settings' => false,
-                'name' => \__('Access Control Rule: User Roles', 'graphql-api'),
-                'description' => \__('Allow or reject access to the fields and directives based on the user having a certain role. It depends on module "Access Control"', 'graphql-api'),
-            ],
-            [
-                'id' => 'access-control-rule-user-capabilities',
-                'enabled' => true,
-                'has-settings' => true,
-                'name' => \__('Access Control Rule: User Capabilities', 'graphql-api'),
-                'description' => \__('Allow or reject access to the fields and directives based on the user having a certain capability. It depends on module "Access Control"', 'graphql-api'),
-            ],
-            [
-                'id' => 'cache-control',
-                'enabled' => true,
-                'has-settings' => false,
-                'name' => \__('Cache Control', 'graphql-api'),
-                'description' => \__('Provide HTTP Caching for Persisted Queries: Cache the response by setting the Cache-Control max-age value, calculated from all fields involved in the query. It depends on module "Persisted Queries"', 'graphql-api'),
-            ],
-            [
-                'id' => 'field-deprecation',
-                'enabled' => true,
-                'has-settings' => true,
-                'name' => \__('Field Deprecation', 'graphql-api'),
-                'description' => \__('User interface to deprecate fields', 'graphql-api'),
-            ],
-            [
-                'id' => 'graphiql-explorer',
-                'enabled' => true,
-                'has-settings' => false,
-                'name' => \__('GraphiQL Explorer', 'graphql-api'),
-                'description' => \__('Attach the Explorer widget to the GraphiQL client, to create queries by point-and-clicking on the fields', 'graphql-api'),
-            ],
-            // [
-            //     'id' => 'welcome-guides',
-            //     'enabled' => true,
-            //     'has-settings' => true,
-            //     'name' => \__('Welcome Guides', 'graphql-api'),
-            //     'description' => \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities', 'graphql-api'),
-            // ],
-            [
-                'id' => 'directive-set-convert-lower-uppercase',
-                'enabled' => true,
-                'has-settings' => true,
-                'name' => \__('Directive Set: Convert Lower/Uppercase', 'graphql-api'),
-                'description' => \__('Set of directives to manipulate strings: <code>@upperCase</code>, <code>@lowerCase</code> and <code>@titleCase</code>', 'graphql-api'),
-            ],
-            [
-                'id' => 'schema-post-type',
-                'enabled' => true,
-                'has-settings' => true,
-                'name' => \__('Schema Post Type', 'graphql-api'),
-                'description' => \__('Enable querying for posts in the schema', 'graphql-api'),
-            ],
-            [
-                'id' => 'schema-comment-type',
-                'enabled' => true,
-                'has-settings' => true,
-                'name' => \__('Schema Comment Type', 'graphql-api'),
-                'description' => \__('Enable querying for comments in the schema. It depends on module "Schema Post Type"', 'graphql-api'),
-            ],
-            [
-                'id' => 'schema-user-type',
-                'enabled' => true,
-                'has-settings' => true,
-                'name' => \__('Schema User Type', 'graphql-api'),
-                'description' => \__('Enable querying for users in the schema', 'graphql-api'),
-            ],
-            [
-                'id' => 'schema-page-type',
-                'enabled' => true,
-                'has-settings' => false,
-                'name' => \__('Schema Page Type', 'graphql-api'),
-                'description' => \__('Enable querying for pages in the schema', 'graphql-api'),
-            ],
-            [
-                'id' => 'schema-media-type',
-                'enabled' => true,
-                'has-settings' => true,
-                'name' => \__('Schema Media Type', 'graphql-api'),
-                'description' => \__('Enable querying for media items in the schema', 'graphql-api'),
-            ],
-        ];
+        $items = [];
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        $modules = $moduleRegistry->getAllModules();
+        foreach ($modules as $module) {
+            $moduleResolver = $moduleRegistry->getModuleResolver($module);
+            $items[] = [
+                'id' => $moduleRegistry->getModuleID($module),
+                'enabled' => $moduleRegistry->isModuleEnabled($module),
+                'has-settings' => $moduleResolver->hasSettings($module),
+                'name' => $moduleResolver->getName($module),
+                'description' => $moduleResolver->getDescription($module),
+            ];
+        }
+        return $items;
     }
 
     /**

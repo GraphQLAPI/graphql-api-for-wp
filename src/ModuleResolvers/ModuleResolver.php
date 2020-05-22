@@ -19,7 +19,7 @@ class ModuleResolver extends AbstractModuleResolver
     public const CACHE_CONTROL = 'cache-control';
     public const FIELD_DEPRECATION = 'field-deprecation';
     public const GRAPHIQL_EXPLORER = 'graphiql-explorer';
-    public const WELCOME_GUIDES = 'welcome-guides';
+    // public const WELCOME_GUIDES = 'welcome-guides';
     public const DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE = 'directive-set-convert-lower-uppercase';
     public const SCHEMA_POST_TYPE = 'schema-post-type';
     public const SCHEMA_COMMENT_TYPE = 'schema-comment-type';
@@ -30,8 +30,8 @@ class ModuleResolver extends AbstractModuleResolver
     public static function getModulesToResolve(): array
     {
         return [
-            self::SINGLE_ENDPOINT,
             self::PERSISTED_QUERIES,
+            self::SINGLE_ENDPOINT,
             self::CUSTOM_ENDPOINTS,
             self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS,
             self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS,
@@ -43,7 +43,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::CACHE_CONTROL,
             self::FIELD_DEPRECATION,
             self::GRAPHIQL_EXPLORER,
-            self::WELCOME_GUIDES,
+            // self::WELCOME_GUIDES,
             self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE,
             self::SCHEMA_POST_TYPE,
             self::SCHEMA_COMMENT_TYPE,
@@ -89,7 +89,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::CACHE_CONTROL => \__('Cache Control', 'graphql-api'),
             self::FIELD_DEPRECATION => \__('Field Deprecation', 'graphql-api'),
             self::GRAPHIQL_EXPLORER => \__('GraphiQL Explorer', 'graphql-api'),
-            self::WELCOME_GUIDES => \__('Welcome Guides', 'graphql-api'),
+            // self::WELCOME_GUIDES => \__('Welcome Guides', 'graphql-api'),
             self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => \__('Directive Set: Convert Lower/Uppercase', 'graphql-api'),
             self::SCHEMA_POST_TYPE => \__('Schema Post Type', 'graphql-api'),
             self::SCHEMA_COMMENT_TYPE => \__('Schema Comment Type', 'graphql-api'),
@@ -119,7 +119,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::CACHE_CONTROL => \__('Provide HTTP Caching for Persisted Queries: Cache the response by setting the Cache-Control max-age value, calculated from all fields involved in the query. It depends on module "Persisted Queries"', 'graphql-api'),
             self::FIELD_DEPRECATION => \__('User interface to deprecate fields', 'graphql-api'),
             self::GRAPHIQL_EXPLORER => \__('Attach the Explorer widget to the GraphiQL client, to create queries by point-and-clicking on the fields', 'graphql-api'),
-            self::WELCOME_GUIDES => \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities', 'graphql-api'),
+            // self::WELCOME_GUIDES => \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities', 'graphql-api'),
             self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => \__('Set of directives to manipulate strings: <code>@upperCase</code>, <code>@lowerCase</code> and <code>@titleCase</code>', 'graphql-api'),
             self::SCHEMA_POST_TYPE => \__('Enable querying for posts in the schema', 'graphql-api'),
             self::SCHEMA_COMMENT_TYPE => \__('Enable querying for comments in the schema. It depends on module "Schema Post Type"', 'graphql-api'),
