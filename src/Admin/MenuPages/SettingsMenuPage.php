@@ -40,7 +40,15 @@ class SettingsMenuPage extends AbstractMenuPage
 
     public function print(): void
     {
+        /**
+         * Override the box-shadow added to a:focus, when clicking on the tab
+         */
         ?>
+        <style>
+            #graphql-api-settings .nav-tab-active:focus {
+                box-shadow: none;
+            }
+        </style>
         <script type="application/javascript">
             jQuery( document ).ready( function($){
                 $('#graphql-api-settings .tab-content').hide(); // Hide all tabs first
