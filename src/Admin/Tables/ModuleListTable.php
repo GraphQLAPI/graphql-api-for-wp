@@ -125,13 +125,13 @@ class ModuleListTable extends AbstractItemListTable
                 'name' => \__('GraphiQL Explorer', 'graphql-api'),
                 'description' => \__('Attach the Explorer widget to the GraphiQL client, to create queries by point-and-clicking on the fields', 'graphql-api'),
             ],
-            [
-                'id' => 'welcome-guides',
-                'enabled' => true,
-                'has-settings' => true,
-                'name' => \__('Welcome Guides', 'graphql-api'),
-                'description' => \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities', 'graphql-api'),
-            ],
+            // [
+            //     'id' => 'welcome-guides',
+            //     'enabled' => true,
+            //     'has-settings' => true,
+            //     'name' => \__('Welcome Guides', 'graphql-api'),
+            //     'description' => \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities', 'graphql-api'),
+            // ],
             [
                 'id' => 'directive-set-convert-lower-uppercase',
                 'enabled' => true,
