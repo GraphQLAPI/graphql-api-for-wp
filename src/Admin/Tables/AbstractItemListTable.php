@@ -7,7 +7,7 @@ namespace GraphQLAPI\GraphQLAPI\Admin\Tables;
 /**
  * Module Table
  */
-class ModuleTable extends \WP_List_Table
+abstract class AbstractItemListTable extends \WP_List_Table
 {
     protected $itemsPerPageOptionName = '';
     protected $defaultItemsPerPage = 10;

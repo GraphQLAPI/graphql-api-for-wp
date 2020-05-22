@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractTableMenuPage;
-use GraphQLAPI\GraphQLAPI\Admin\Tables\ModuleTable;
+use GraphQLAPI\GraphQLAPI\Admin\Tables\ModuleListTable;
 
 /**
  * Module menu page
@@ -29,9 +29,9 @@ class ModulesMenuPage extends AbstractTableMenuPage
         return self::SCREEN_OPTION_NAME;
     }
 
-    protected function getModuleTableClass(): string
+    protected function getTableClass(): string
     {
-        return ModuleTable::class;
+        return ModuleListTable::class;
     }
 
     protected function hasScreenOptions(): bool

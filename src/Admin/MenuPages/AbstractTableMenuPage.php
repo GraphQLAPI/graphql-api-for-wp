@@ -48,7 +48,7 @@ abstract class AbstractTableMenuPage extends AbstractMenuPage
         return str_replace(' ', '_', strtolower($this->getScreenOptionLabel())) . '_per_page';
     }
 
-    abstract protected function getModuleTableClass(): string;
+    abstract protected function getTableClass(): string;
 
     public function initializeTable(): void
     {
@@ -72,7 +72,7 @@ abstract class AbstractTableMenuPage extends AbstractMenuPage
          * Instantiate the table object
          */
         $instanceManager = InstanceManagerFacade::getInstance();
-        $this->tableObject = $instanceManager->getInstance($this->getModuleTableClass());
+        $this->tableObject = $instanceManager->getInstance($this->getTableClass());
         /**
          * Set properties
          */
