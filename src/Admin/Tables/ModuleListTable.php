@@ -37,18 +37,18 @@ class ModuleListTable extends AbstractItemListTable
      *
      * @return mixed
      */
-    public static function get_customers($per_page = 5, $page_number = 1)
+    public static function getItems($per_page = 5, $page_number = 1)
     {
         $results = [
-            ['id' => 1, 'name' => 'Alfreds Futterkiste ', 'address' => 'Obere Str. 57', 'city' => 'Berlin'],
-            ['id' => 2, 'name' => 'Ana Trujillo ', 'address' => 'Avda. de la Constitución 2222', 'city' => 'México D.F'],
-            ['id' => 3, 'name' => 'Antonio Moreno', 'address' => 'Mataderos 2312', 'city' => 'México D.F'],
-            ['id' => 4, 'name' => 'Thomas Hardy ', 'address' => '120 Hanover Sq.', 'city' => 'London'],
-            ['id' => 5, 'name' => 'Christina Berglund ', 'address' => 'Berguvsvägen 8 ', 'city' => 'Lulea'],
-            ['id' => 9, 'name' => 'Hanna Moos', 'address' => 'Forsterstr. 57', 'city' => 'Mannheim'],
-            ['id' => 10,'name' =>  'Frédérique Citeaux', 'address' => '24, place Kléber', 'city' => 'Strasbourg'],
-            ['id' => 11,'name' =>  'Martín Sommer', 'address' => 'C/ Araquil, 67', 'city' => 'Madrid'],
-            ['id' => 12,'name' =>  'Laurence Lebihans', 'address' => '12, rue des Bouchers', 'city' => 'Marseille'],
+            ['id' => 1, 'name' => 'Alfreds Futterkiste ', 'description' => 'nearly all default'],
+            ['id' => 2, 'name' => 'Ana Trujillo ', 'description' => 'But creating one'],
+            ['id' => 3, 'name' => 'Antonio Moreno', 'description' => 'done it before'],
+            ['id' => 4, 'name' => 'Thomas Hardy ', 'description' => 'WordPress provides functionality'],
+            ['id' => 5, 'name' => 'Christina Berglund ', 'description' => 'The WordPress Admin'],
+            ['id' => 9, 'name' => 'Hanna Moos', 'description' => 'handbook, in'],
+            ['id' => 10,'name' =>  'Frédérique Citeaux', 'description' => 'with common traps'],
+            ['id' => 11,'name' =>  'Martín Sommer', 'description' => 'Presentation Of A'],
+            ['id' => 12,'name' =>  'Laurence Lebihans', 'description' => 'better understand the'],
         ];
         return array_splice(
             $results,
@@ -88,8 +88,7 @@ class ModuleListTable extends AbstractItemListTable
     public function column_default($item, $column_name)
     {
         switch ($column_name) {
-            case 'address':
-            case 'city':
+            case 'description':
                 return $item[$column_name];
         }
         return '';
@@ -139,30 +138,26 @@ class ModuleListTable extends AbstractItemListTable
      */
     public function get_columns()
     {
-        $columns = [
-            'cb'      => '<input type="checkbox" />',
-            'name'    => \__( 'Name', 'sp' ),
-            'address' => \__( 'Address', 'sp' ),
-            'city'    => \__( 'City', 'sp' )
+        return [
+            'cb' => '<input type="checkbox" />',
+            'name' => \__('Name', 'graphql-api'),
+            'description' => \__('Description', 'graphql-api'),
         ];
-
-        return $columns;
     }
 
 
-    /**
-     * Columns to make sortable.
-     *
-     * @return array
-     */
-    public function get_sortable_columns()
-    {
-        $sortable_columns = array(
-            'name' => array('name', true),
-            'city' => array('city', false),
-        );
-        return $sortable_columns;
-    }
+    // /**
+    //  * Columns to make sortable.
+    //  *
+    //  * @return array
+    //  */
+    // public function get_sortable_columns()
+    // {
+    //     $sortable_columns = array(
+    //         'description' => array('description', false),
+    //     );
+    //     return $sortable_columns;
+    // }
 
     /**
      * Returns an associative array containing the bulk action
@@ -171,10 +166,9 @@ class ModuleListTable extends AbstractItemListTable
      */
     public function get_bulk_actions()
     {
-        $actions = [
+        return [
             'bulk-delete' => 'Delete'
         ];
-        return $actions;
     }
 
 
@@ -196,22 +190,26 @@ class ModuleListTable extends AbstractItemListTable
         $total_items  = self::record_count();
 
         $this->set_pagination_args([
-            'total_items' => $total_items, //WE have to calculate the total number of items
-            'per_page'    => $per_page //WE have to determine how many items to show on a page
+            'total_items' => $total_items,
+            'per_page'    => $per_page,
         ]);
 
-        $this->items = self::get_customers($per_page, $current_page);
+        $this->items = self::getItems($per_page, $current_page);
     }
 
+    /**
+     * Process bulk actions
+     *
+     * @return void
+     */
     public function process_bulk_action()
     {
-        //Detect when a bulk action is being triggered...
+        // Detect when a bulk action is being triggered...
         if ('delete' === $this->current_action()) {
             // In our file that handles the request, verify the nonce.
             $nonce = \esc_attr($_REQUEST['_wpnonce']);
-
             if (!\wp_verify_nonce($nonce, 'sp_delete_customer')) {
-                die( 'Go get a life script kiddies' );
+                die(__('This URL is not valid. Please load the page anew, and try again', 'graphql-api'));
             } else {
                 self::delete_customer(absint($_GET['customer']));
 
