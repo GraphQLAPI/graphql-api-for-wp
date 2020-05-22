@@ -34,8 +34,8 @@ class ModulesMenuPage extends AbstractTableMenuPage
         return ModuleListTable::class;
     }
 
-    protected function hasScreenOptions(): bool
-    {
-        return true;
-    }
+    // protected function showScreenOptions(): bool
+    // {
+    //     return true;
+    // }
 }

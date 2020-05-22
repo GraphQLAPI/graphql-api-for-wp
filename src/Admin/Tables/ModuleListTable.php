@@ -284,7 +284,7 @@ class ModuleListTable extends AbstractItemListTable
             /* .wp-list-table .column-cb { width: 5%; } */
             /* .wp-list-table .column-name { width: 20%; } */
             /* .wp-list-table .column-enabled { width: 5%; } */
-            .wp-list-table .column-description { width: 70%;}
+            .wp-list-table .column-description { width: 70%; }
         </style>
         <?php
     }

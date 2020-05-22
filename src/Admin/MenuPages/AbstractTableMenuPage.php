@@ -30,7 +30,7 @@ abstract class AbstractTableMenuPage extends AbstractMenuPage
         <?php
     }
 
-    protected function hasScreenOptions(): bool
+    protected function showScreenOptions(): bool
     {
         return false;
     }
@@ -55,7 +55,7 @@ abstract class AbstractTableMenuPage extends AbstractMenuPage
         /**
          * Screen options
          */
-        if ($this->hasScreenOptions()) {
+        if ($this->showScreenOptions()) {
             /**
              * Set-up the screen options
              */
@@ -84,7 +84,7 @@ abstract class AbstractTableMenuPage extends AbstractMenuPage
     {
         parent::initialize();
 
-        if ($this->hasScreenOptions()) {
+        if ($this->showScreenOptions()) {
             /**
              * Save the screen options
              */
@@ -96,6 +96,11 @@ abstract class AbstractTableMenuPage extends AbstractMenuPage
                 10,
                 3
             );
+        } else {
+            /**
+             * Remove the Screen Options tab
+             */
+            \add_filter('screen_options_show_screen', '__return_false');
         }
 
         /**
