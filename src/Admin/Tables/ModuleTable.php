@@ -4,13 +4,32 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\Tables;
 
-use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
-
 /**
  * Module Table
  */
 class ModuleTable extends \WP_List_Table
 {
+    protected $itemsPerPageOptionName = '';
+    protected $defaultItemsPerPage = 10;
+
+    public function setItemsPerPageOptionName(string $itemsPerPageOptionName): void
+    {
+        $this->itemsPerPageOptionName = $itemsPerPageOptionName;
+    }
+    public function setDefaultItemsPerPage(int $defaultItemsPerPage): void
+    {
+        $this->defaultItemsPerPage = $defaultItemsPerPage;
+    }
+
+    public function getItemsPerPageOptionName(): string
+    {
+        return $this->itemsPerPageOptionName;
+    }
+    public function getDefaultItemsPerPage(): int
+    {
+        return $this->defaultItemsPerPage;
+    }
+
     /** Class constructor */
     public function __construct()
     {
@@ -187,7 +206,10 @@ class ModuleTable extends \WP_List_Table
         /** Process bulk action */
         $this->process_bulk_action();
 
-        $per_page     = $this->get_items_per_page(ModulesMenuPage::SCREEN_OPTION_NAME, 5);
+        $per_page = $this->get_items_per_page(
+            $this->getItemsPerPageOptionName(),
+            $this->getDefaultItemsPerPage()
+        );
         $current_page = $this->get_pagenum();
         $total_items  = self::record_count();
 

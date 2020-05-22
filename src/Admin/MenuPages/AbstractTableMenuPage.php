@@ -73,6 +73,11 @@ abstract class AbstractTableMenuPage extends AbstractMenuPage
          */
         $instanceManager = InstanceManagerFacade::getInstance();
         $this->tableObject = $instanceManager->getInstance($this->getModuleTableClass());
+        /**
+         * Set properties
+         */
+        $this->tableObject->setItemsPerPageOptionName($this->getScreenOptionName());
+        $this->tableObject->setDefaultItemsPerPage($this->getScreenOptionDefault());
     }
 
     public function initialize(): void
