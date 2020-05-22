@@ -65,7 +65,6 @@ class ModuleListTable extends AbstractItemListTable
     public function enableModule(string $id): void
     {
         // Do something
-        // echo 'enableModule with id '.$id;
     }
 
     /**
@@ -76,7 +75,6 @@ class ModuleListTable extends AbstractItemListTable
     public function disableModule(string $id): void
     {
         // Do something
-        // echo 'disableModule with id '.$id;
     }
 
     /**
@@ -258,7 +256,11 @@ class ModuleListTable extends AbstractItemListTable
             }
             return;
         }
-        $isSingleAction = 'delete' === $this->current_action() || 'delete' === $this->current_action();
+        $singleActions = [
+            'enable',
+            'disable'
+        ];
+        $isSingleAction = in_array($this->current_action(), $singleActions);
         if ($isSingleAction) {
             // Verify the nonce
             $nonce = \esc_attr($_REQUEST['_wpnonce']);
@@ -266,9 +268,9 @@ class ModuleListTable extends AbstractItemListTable
                 die(__('This URL is not valid. Please load the page anew, and try again', 'graphql-api'));
             }
             // Enable or disable
-            if ('delete' === $this->current_action()) {
+            if ('enable' === $this->current_action()) {
                 self::enableModule($_GET['item']);
-            } elseif ('delete' === $this->current_action()) {
+            } elseif ('disable' === $this->current_action()) {
                 self::disableModule($_GET['item']);
             }
         }
