@@ -32,26 +32,26 @@ class ModuleListTable extends AbstractItemListTable
     public function getAllItems(): array
     {
         return [
-            ['id' => 'Custom-Endpoints', 'enabled' => true, 'name' => 'Custom Endpoints', 'description' => 'So, here I tell you about Custom Endpoints, oh yeah you know'],
-            ['id' => 'Persisted-Queries', 'enabled' => true, 'name' => 'Persisted Queries', 'description' => 'So, here I tell you about Persisted Queries, oh yeah you know'],
-            ['id' => 'Access-Control', 'enabled' => true, 'name' => 'Access Control', 'description' => 'So, here I tell you about Access Control, oh yeah you know'],
-            ['id' => 'Cache-Control-for-Persisted-Queries', 'enabled' => true, 'name' => 'Cache Control for Persisted Queries', 'description' => 'So, here I tell you about Cache Control for Persisted Queries, oh yeah you know'],
-            ['id' => 'Field-Deprecation', 'enabled' => true, 'name' => 'Field Deprecation', 'description' => 'So, here I tell you about Field Deprecation, oh yeah you know'],
-            ['id' => 'GraphiQL-for-custom-endpoint', 'enabled' => true, 'name' => 'GraphiQL for custom endpoint', 'description' => 'So, here I tell you about GraphiQL for custom endpoint, oh yeah you know'],
-            ['id' => 'Interactive-schema-for-custom-endpoint', 'enabled' => true, 'name' => 'Interactive schema for custom endpoint', 'description' => 'So, here I tell you about Interactive schema for custom endpoint, oh yeah you know'],
-            ['id' => 'Access-Control-by-User-State', 'enabled' => true, 'name' => 'Access Control by User State', 'description' => 'So, here I tell you about Access Control by User State, oh yeah you know'],
-            ['id' => 'Access-Control-by-User-Roles', 'enabled' => true, 'name' => 'Access Control by User Roles', 'description' => 'So, here I tell you about Access Control by User Roles, oh yeah you know'],
-            ['id' => 'Access-Control-by-User-Capabilities', 'enabled' => true, 'name' => 'Access Control by User Capabilities', 'description' => 'So, here I tell you about Access Control by User Capabilities, oh yeah you know'],
-            ['id' => 'Access-Control---Remove-Access', 'enabled' => true, 'name' => 'Access Control - Remove Access', 'description' => 'So, here I tell you about Access Control - Remove Access, oh yeah you know'],
-            ['id' => 'Explorer-in-GraphiQL', 'enabled' => true, 'name' => 'Explorer in GraphiQL', 'description' => 'So, here I tell you about Explorer in GraphiQL, oh yeah you know'],
-            ['id' => 'Welcome-Guides', 'enabled' => true, 'name' => 'Welcome Guides', 'description' => 'So, here I tell you about Welcome Guides, oh yeah you know'],
-            ['id' => 'String-manipulation-directives', 'enabled' => true, 'name' => 'String manipulation directives', 'description' => 'So, here I tell you about String manipulation directives, oh yeah you know'],
-            ['id' => 'Schema-Post-Type', 'enabled' => true, 'name' => 'Schema Post Type', 'description' => 'So, here I tell you about Schema Post Type, oh yeah you know'],
-            ['id' => 'Schema-User-Type', 'enabled' => true, 'name' => 'Schema User Type', 'description' => 'So, here I tell you about Schema User Type, oh yeah you know'],
-            ['id' => 'Schema-Comment-Type', 'enabled' => true, 'name' => 'Schema Comment Type', 'description' => 'So, here I tell you about Schema Comment Type, oh yeah you know'],
-            ['id' => 'Schema-Media-Type', 'enabled' => true, 'name' => 'Schema Media Type', 'description' => 'So, here I tell you about Schema Media Type, oh yeah you know'],
-            ['id' => 'Schema-Page-Type', 'enabled' => true, 'name' => 'Schema Page Type', 'description' => 'So, here I tell you about Schema Page Type, oh yeah you know'],
-            ['id' => 'Single-endpoint', 'enabled' => false, 'name' => 'Single endpoint', 'description' => 'So, here I tell you about Single endpoint, oh yeah you know'],
+            ['id' => 'Custom-Endpoints', 'enabled' => true, 'has-settings' => true, 'name' => 'Custom Endpoints', 'description' => 'So, here I tell you about Custom Endpoints, oh yeah you know'],
+            ['id' => 'Persisted-Queries', 'enabled' => true, 'has-settings' => true, 'name' => 'Persisted Queries', 'description' => 'So, here I tell you about Persisted Queries, oh yeah you know'],
+            ['id' => 'Access-Control', 'enabled' => true, 'has-settings' => false, 'name' => 'Access Control', 'description' => 'So, here I tell you about Access Control, oh yeah you know'],
+            ['id' => 'Cache-Control-for-Persisted-Queries', 'enabled' => true, 'has-settings' => false, 'name' => 'Cache Control for Persisted Queries', 'description' => 'So, here I tell you about Cache Control for Persisted Queries, oh yeah you know'],
+            ['id' => 'Field-Deprecation', 'enabled' => true, 'has-settings' => true, 'name' => 'Field Deprecation', 'description' => 'So, here I tell you about Field Deprecation, oh yeah you know'],
+            ['id' => 'GraphiQL-for-custom-endpoint', 'enabled' => true, 'has-settings' => true, 'name' => 'GraphiQL for custom endpoint', 'description' => 'So, here I tell you about GraphiQL for custom endpoint, oh yeah you know'],
+            ['id' => 'Interactive-schema-for-custom-endpoint', 'enabled' => true, 'has-settings' => true, 'name' => 'Interactive schema for custom endpoint', 'description' => 'So, here I tell you about Interactive schema for custom endpoint, oh yeah you know'],
+            ['id' => 'Access-Control-by-User-State', 'enabled' => true, 'has-settings' => false, 'name' => 'Access Control by User State', 'description' => 'So, here I tell you about Access Control by User State, oh yeah you know'],
+            ['id' => 'Access-Control-by-User-Roles', 'enabled' => true, 'has-settings' => false, 'name' => 'Access Control by User Roles', 'description' => 'So, here I tell you about Access Control by User Roles, oh yeah you know'],
+            ['id' => 'Access-Control-by-User-Capabilities', 'enabled' => true, 'has-settings' => true, 'name' => 'Access Control by User Capabilities', 'description' => 'So, here I tell you about Access Control by User Capabilities, oh yeah you know'],
+            ['id' => 'Access-Control---Remove-Access', 'enabled' => true, 'has-settings' => true, 'name' => 'Access Control - Remove Access', 'description' => 'So, here I tell you about Access Control - Remove Access, oh yeah you know'],
+            ['id' => 'Explorer-in-GraphiQL', 'enabled' => true, 'has-settings' => false, 'name' => 'Explorer in GraphiQL', 'description' => 'So, here I tell you about Explorer in GraphiQL, oh yeah you know'],
+            ['id' => 'Welcome-Guides', 'enabled' => true, 'has-settings' => true, 'name' => 'Welcome Guides', 'description' => 'So, here I tell you about Welcome Guides, oh yeah you know'],
+            ['id' => 'String-manipulation-directives', 'enabled' => true, 'has-settings' => true, 'name' => 'String manipulation directives', 'description' => 'So, here I tell you about String manipulation directives, oh yeah you know'],
+            ['id' => 'Schema-Post-Type', 'enabled' => true, 'has-settings' => true, 'name' => 'Schema Post Type', 'description' => 'So, here I tell you about Schema Post Type, oh yeah you know'],
+            ['id' => 'Schema-User-Type', 'enabled' => true, 'has-settings' => true, 'name' => 'Schema User Type', 'description' => 'So, here I tell you about Schema User Type, oh yeah you know'],
+            ['id' => 'Schema-Comment-Type', 'enabled' => true, 'has-settings' => true, 'name' => 'Schema Comment Type', 'description' => 'So, here I tell you about Schema Comment Type, oh yeah you know'],
+            ['id' => 'Schema-Media-Type', 'enabled' => true, 'has-settings' => true, 'name' => 'Schema Media Type', 'description' => 'So, here I tell you about Schema Media Type, oh yeah you know'],
+            ['id' => 'Schema-Page-Type', 'enabled' => true, 'has-settings' => false, 'name' => 'Schema Page Type', 'description' => 'So, here I tell you about Schema Page Type, oh yeah you know'],
+            ['id' => 'Single-endpoint', 'enabled' => false, 'has-settings' => true, 'name' => 'Single endpoint', 'description' => 'So, here I tell you about Single endpoint, oh yeah you know'],
         ];
     }
 
@@ -172,6 +172,20 @@ class ModuleListTable extends AbstractItemListTable
                 \__('Enable', 'graphql-api')
             ),
         ];
+        // Maybe add settings links
+        if ($item['has-settings']) {
+            $actions['settings'] = \sprintf(
+                '<a href="%s">%s</a>',
+                sprintf(
+                    \admin_url(sprintf(
+                        'admin.php?page=%s&tab=%s',
+                        'graphql_api_settings',
+                        $item['id']
+                    ))
+                ),
+                \__('Settings', 'graphql-api')
+            );
+        }
 
         return $title . $this->row_actions($actions);
     }
