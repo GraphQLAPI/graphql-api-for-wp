@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\Tables;
 
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
+
 /**
  * Module Table
  */
@@ -185,7 +187,7 @@ class ModuleTable extends \WP_List_Table
         /** Process bulk action */
         $this->process_bulk_action();
 
-        $per_page     = $this->get_items_per_page('customers_per_page', 5);
+        $per_page     = $this->get_items_per_page(ModulesMenuPage::SCREEN_OPTION_NAME, 5);
         $current_page = $this->get_pagenum();
         $total_items  = self::record_count();
 
