@@ -68,17 +68,22 @@ class ModulesMenuPage extends AbstractMenuPage
             3
         );
 
-        $hook = 'graphql-api_page_graphql_api_modules';
+        /**
+         * Priority 30: execute after `addMenuPagesBottom`, so by then we have the hookName
+         */
         \add_action(
-            "load-$hook",
-            [$this, 'screenOption']
+            'admin_menu',
+            function () {
+                // $this->screenOption();
+                /**
+                 * Get the hookname from when the page was registered
+                 */
+                \add_action(
+                    'load-' . $this->getHookName(),
+                    [$this, 'screenOption']
+                );
+            },
+            30
         );
-        // $this->tableObject->initialize();
-
-        // \add_action( "load-$hook", [ $this, 'screenOption' ] );
-
-        \add_action('admin_menu', function () {
-            $this->screenOption();
-        });
     }
 }
