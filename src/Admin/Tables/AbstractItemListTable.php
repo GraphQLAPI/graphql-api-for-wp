@@ -30,13 +30,27 @@ abstract class AbstractItemListTable extends \WP_List_Table
         return $this->defaultItemsPerPage;
     }
 
+    /**
+     * Singular name of the listed records
+     *
+     * @return string
+     */
+    abstract public function getItemSingularName(): string;
+
+    /**
+     * Plural name of the listed records
+     *
+     * @return string
+     */
+    abstract public function getItemPluralName(): string;
+
     /** Class constructor */
     public function __construct()
     {
         parent::__construct([
-            'singular' => \__( 'Customer', 'sp' ), //singular name of the listed records
-            'plural'   => \__( 'Customers', 'sp' ), //plural name of the listed records
-            'ajax'     => false //does this table support ajax?
+            'singular' => $this->getItemSingularName(),
+            'plural' => $this->getItemPluralName(),
+            'ajax' => false,
         ]);
     }
 
