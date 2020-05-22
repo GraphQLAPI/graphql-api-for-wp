@@ -240,7 +240,11 @@ class ModuleListTable extends AbstractItemListTable
             case 'description':
                 return $item[$column_name];
             case 'enabled':
-                return $item[$column_name] ? '✅' : '❌';
+                return \sprintf(
+                    '<span role="img" aria-label="%s">%s</span>',
+                    $item[$column_name] ? \__('Yes', 'graphql-api') : \__('No', 'graphql-api'),
+                    $item[$column_name] ? '✅' : '❌'
+                );
         }
         return '';
     }
