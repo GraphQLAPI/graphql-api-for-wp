@@ -173,7 +173,7 @@ class ModuleListTable extends AbstractItemListTable
             ),
         ];
         // Maybe add settings links
-        if ($item['has-settings']) {
+        if ($item['enabled'] && $item['has-settings']) {
             $actions['settings'] = \sprintf(
                 '<a href="%s">%s</a>',
                 sprintf(
