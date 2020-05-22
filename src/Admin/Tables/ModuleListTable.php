@@ -30,7 +30,7 @@ class ModuleListTable extends AbstractItemListTable
     }
 
     /**
-     * Retrieve customers data from the database
+     * List of item data
      *
      * @param int $per_page
      * @param int $page_number
@@ -40,15 +40,15 @@ class ModuleListTable extends AbstractItemListTable
     public static function getItems($per_page = 5, $page_number = 1)
     {
         $results = [
-            ['id' => 1, 'name' => 'Alfreds Futterkiste ', 'description' => 'nearly all default'],
-            ['id' => 2, 'name' => 'Ana Trujillo ', 'description' => 'But creating one'],
-            ['id' => 3, 'name' => 'Antonio Moreno', 'description' => 'done it before'],
-            ['id' => 4, 'name' => 'Thomas Hardy ', 'description' => 'WordPress provides functionality'],
-            ['id' => 5, 'name' => 'Christina Berglund ', 'description' => 'The WordPress Admin'],
-            ['id' => 9, 'name' => 'Hanna Moos', 'description' => 'handbook, in'],
-            ['id' => 10,'name' =>  'Frédérique Citeaux', 'description' => 'with common traps'],
-            ['id' => 11,'name' =>  'Martín Sommer', 'description' => 'Presentation Of A'],
-            ['id' => 12,'name' =>  'Laurence Lebihans', 'description' => 'better understand the'],
+            ['ID' => 'a1', 'name' => 'Alfreds Futterkiste ', 'description' => 'nearly all default'],
+            ['ID' => 'a2', 'name' => 'Ana Trujillo ', 'description' => 'But creating one'],
+            ['ID' => 'a3', 'name' => 'Antonio Moreno', 'description' => 'done it before'],
+            ['ID' => 'a4', 'name' => 'Thomas Hardy ', 'description' => 'WordPress provides functionality'],
+            ['ID' => 'a5', 'name' => 'Christina Berglund ', 'description' => 'The WordPress Admin'],
+            ['ID' => 'a9', 'name' => 'Hanna Moos', 'description' => 'handbook, in'],
+            ['ID' => 'a10','name' =>  'Frédérique Citeaux', 'description' => 'with common traps'],
+            ['ID' => 'a11','name' =>  'Martín Sommer', 'description' => 'Presentation Of A'],
+            ['ID' => 'a12','name' =>  'Laurence Lebihans', 'description' => 'better understand the'],
         ];
         return array_splice(
             $results,
@@ -58,13 +58,25 @@ class ModuleListTable extends AbstractItemListTable
     }
 
     /**
-     * Delete a customer record.
+     * Enable a module
      *
-     * @param int $id customer ID
+     * @param int $id module ID
      */
-    public static function delete_customer($id)
+    public function enableModule(string $id): void
     {
         // Do something
+        // echo 'enableModule with id '.$id;
+    }
+
+    /**
+     * Disable a module
+     *
+     * @param int $id module ID
+     */
+    public function disableModule(string $id): void
+    {
+        // Do something
+        // echo 'disableModule with id '.$id;
     }
 
     /**
@@ -119,12 +131,18 @@ class ModuleListTable extends AbstractItemListTable
      */
     public function column_name($item)
     {
-        $delete_nonce = \wp_create_nonce( 'sp_delete_customer' );
+        $delete_nonce = \wp_create_nonce( 'graphql_api_enable_or_disable_module' );
 
         $title = '<strong>' . $item['name'] . '</strong>';
 
         $actions = [
-            'delete' => \sprintf( '<a href="?page=%s&action=%s&customer=%s&_wpnonce=%s">Delete</a>', esc_attr( $_REQUEST['page'] ), 'delete', absint( $item['ID'] ), $delete_nonce )
+            'delete' => \sprintf(
+                '<a href="?page=%s&action=%s&item=%s&_wpnonce=%s">Delete</a>',
+                esc_attr($_REQUEST['page']),
+                'delete',
+                $item['ID'],
+                $delete_nonce
+            ),
         ];
 
         return $title . $this->row_actions($actions);
@@ -180,7 +198,7 @@ class ModuleListTable extends AbstractItemListTable
         $this->_column_headers = $this->get_column_info();
 
         /** Process bulk action */
-        $this->process_bulk_action();
+        $this->process_action();
 
         $per_page = $this->get_items_per_page(
             $this->getItemsPerPageOptionName(),
@@ -198,38 +216,41 @@ class ModuleListTable extends AbstractItemListTable
     }
 
     /**
-     * Process bulk actions
+     * Process actions
      *
      * @return void
      */
-    public function process_bulk_action()
+    public function process_action()
     {
         // Detect when a bulk action is being triggered...
-        if ('delete' === $this->current_action()) {
-            // In our file that handles the request, verify the nonce.
-            $nonce = \esc_attr($_REQUEST['_wpnonce']);
-            if (!\wp_verify_nonce($nonce, 'sp_delete_customer')) {
-                die(__('This URL is not valid. Please load the page anew, and try again', 'graphql-api'));
-            } else {
-                self::delete_customer(absint($_GET['customer']));
-
-                // esc_url_raw() is used to prevent converting ampersand in url to "#038;"
-                // add_query_arg() return the current url
-                \wp_redirect(\esc_url_raw(\add_query_arg()));
-                exit;
-            }
-        }
-
-        // If the delete bulk action is triggered
-        if (
+        $isSingleAction = 'delete' === $this->current_action() || 'delete' === $this->current_action();
+        $isBulkAction =
             (isset($_POST['action']) && $_POST['action'] == 'bulk-delete') ||
-            (isset($_POST['action2']) && $_POST['action2'] == 'bulk-delete')
-        ) {
-            $delete_ids = \esc_sql($_POST['bulk-delete']);
+            (isset($_POST['action2']) && $_POST['action2'] == 'bulk-delete');
+        if ($isSingleAction || $isBulkAction) {
+            if ($isSingleAction) {
+                // Verify the nonce
+                $nonce = \esc_attr($_REQUEST['_wpnonce']);
+                if (!\wp_verify_nonce($nonce, 'graphql_api_enable_or_disable_module')) {
+                    die(__('This URL is not valid. Please load the page anew, and try again', 'graphql-api'));
+                }
+                if ('delete' === $this->current_action()) {
+                    self::enableModule($_GET['item']);
+                } else {
+                    self::disableModule($_GET['item']);
+                }
+            } elseif ($isBulkAction) {
+                $itemIDs = \esc_sql($_POST['bulk-delete']);
 
-            // loop over the array of record IDs and delete them
-            foreach ($delete_ids as $id) {
-                self::delete_customer($id);
+                if (true) {
+                    foreach ($itemIDs as $id) {
+                        self::enableModule($id);
+                    }
+                } else {
+                    foreach ($itemIDs as $id) {
+                        self::disableModule($id);
+                    }
+                }
             }
 
             // esc_url_raw() is used to prevent converting ampersand in url to "#038;"
