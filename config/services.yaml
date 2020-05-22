@@ -43,3 +43,11 @@ services:
     GraphQLAPI\GraphQLAPI\FieldResolvers\:
         resource: '../src/FieldResolvers/*'
         public: true
+
+    GraphQLAPI\GraphQLAPI\ModuleResolvers\:
+        resource: '../src/ModuleResolvers/*'
+        public: true
+
+    module_registry:
+        class: \GraphQLAPI\GraphQLAPI\Registries\ModuleRegistry
+        public: true

@@ -8,7 +8,7 @@ use PoP\ComponentModel\Environment;
 use PoP\Root\Component\AbstractComponent;
 use PoP\Root\Component\YAMLServicesTrait;
 use PoP\ComponentModel\ComponentConfiguration;
-use PoP\ComponentModel\Container\ContainerBuilderUtils;
+use GraphQLAPI\GraphQLAPI\Container\ContainerBuilderUtils;
 use GraphQLAPI\GraphQLAPI\Config\ServiceConfiguration;
 use PoP\ComponentModel\Facades\Engine\DataloadingEngineFacade;
 use PoP\CacheControl\DirectiveResolvers\CacheControlDirectiveResolver;
@@ -87,6 +87,7 @@ class Component extends AbstractComponent
         // Initialize classes
         ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Hooks');
         ContainerBuilderUtils::attachFieldResolversFromNamespace(__NAMESPACE__ . '\\FieldResolvers', false);
+        ContainerBuilderUtils::registerModuleResolversFromNamespace(__NAMESPACE__ . '\\ModuleResolvers');
     }
 
     /**

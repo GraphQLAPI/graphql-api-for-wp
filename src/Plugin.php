@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI;
 
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLEndpointPostType;
@@ -23,6 +25,7 @@ class Plugin
     public function initialize(): void
     {
         $instanceManager = InstanceManagerFacade::getInstance();
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
         /**
          * Initialize classes for the admin panel
          */
@@ -51,16 +54,19 @@ class Plugin
         /**
          * Initialize Post Types manually to control in what order they are added to the menu
          */
-        $postTypeServiceClasses = [
-            GraphQLEndpointPostType::class,
-            GraphQLPersistedQueryPostType::class,
-            GraphQLSchemaConfigurationPostType::class,
-            GraphQLAccessControlListPostType::class,
-            GraphQLCacheControlListPostType::class,
-            GraphQLFieldDeprecationListPostType::class,
+        $postTypeServiceClassModules = [
+            GraphQLEndpointPostType::class => ModuleResolver::CUSTOM_ENDPOINTS,
+            GraphQLPersistedQueryPostType::class => ModuleResolver::PERSISTED_QUERIES,
+            GraphQLSchemaConfigurationPostType::class => ModuleResolver::SCHEMA_CONFIGURATION,
+            GraphQLAccessControlListPostType::class => ModuleResolver::ACCESS_CONTROL,
+            GraphQLCacheControlListPostType::class => ModuleResolver::CACHE_CONTROL,
+            GraphQLFieldDeprecationListPostType::class => ModuleResolver::FIELD_DEPRECATION,
         ];
-        foreach ($postTypeServiceClasses as $serviceClass) {
-            $instanceManager->getInstance($serviceClass)->initialize();
+        foreach ($postTypeServiceClassModules as $serviceClass => $module) {
+            // Check that the corresponding module is enabled
+            if ($moduleRegistry->isModuleEnabled($module)) {
+                $instanceManager->getInstance($serviceClass)->initialize();
+            }
         }
         /**
          * Editor Scripts
