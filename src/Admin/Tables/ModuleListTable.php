@@ -40,15 +40,15 @@ class ModuleListTable extends AbstractItemListTable
     public static function getItems($per_page = 5, $page_number = 1)
     {
         $results = [
-            ['id' => 'a1', 'name' => 'Alfreds Futterkiste ', 'description' => 'nearly all default'],
-            ['id' => 'a2', 'name' => 'Ana Trujillo ', 'description' => 'But creating one'],
-            ['id' => 'a3', 'name' => 'Antonio Moreno', 'description' => 'done it before'],
-            ['id' => 'a4', 'name' => 'Thomas Hardy ', 'description' => 'WordPress provides functionality'],
-            ['id' => 'a5', 'name' => 'Christina Berglund ', 'description' => 'The WordPress Admin'],
-            ['id' => 'a9', 'name' => 'Hanna Moos', 'description' => 'handbook, in'],
-            ['id' => 'a10','name' =>  'Frédérique Citeaux', 'description' => 'with common traps'],
-            ['id' => 'a11','name' =>  'Martín Sommer', 'description' => 'Presentation Of A'],
-            ['id' => 'a12','name' =>  'Laurence Lebihans', 'description' => 'better understand the'],
+            ['id' => 'a1', 'enabled' => true, 'name' => 'Alfreds Futterkiste ', 'description' => 'nearly all default'],
+            ['id' => 'a2', 'enabled' => false, 'name' => 'Ana Trujillo ', 'description' => 'But creating one'],
+            ['id' => 'a3', 'enabled' => true, 'name' => 'Antonio Moreno', 'description' => 'done it before'],
+            ['id' => 'a4', 'enabled' => true, 'name' => 'Thomas Hardy ', 'description' => 'WordPress provides functionality'],
+            ['id' => 'a5', 'enabled' => false, 'name' => 'Christina Berglund ', 'description' => 'The WordPress Admin'],
+            ['id' => 'a9', 'enabled' => true, 'name' => 'Hanna Moos', 'description' => 'handbook, in'],
+            ['id' => 'a10','enabled' => true, 'name' =>  'Frédérique Citeaux', 'description' => 'with common traps'],
+            ['id' => 'a11','enabled' => false, 'name' =>  'Martín Sommer', 'description' => 'Presentation Of A'],
+            ['id' => 'a12','enabled' => true, 'name' =>  'Laurence Lebihans', 'description' => 'better understand the'],
         ];
         return array_splice(
             $results,
@@ -135,15 +135,8 @@ class ModuleListTable extends AbstractItemListTable
         $title = '<strong>' . $item['name'] . '</strong>';
         $linkPlaceholder = '<a href="?page=%s&action=%s&item=%s&_wpnonce=%s">%s</a>';
         $page = esc_attr($_REQUEST['page']);
-        $actions = [
-            'enable' => \sprintf(
-                $linkPlaceholder,
-                $page,
-                'enable',
-                $item['id'],
-                $nonce,
-                \__('Enable', 'graphql-api')
-            ),
+        // If it is enabled, offer to disable it, or the other way around
+        $actions = $item['enabled'] ? [
             'disable' => \sprintf(
                 $linkPlaceholder,
                 $page,
@@ -151,6 +144,15 @@ class ModuleListTable extends AbstractItemListTable
                 $item['id'],
                 $nonce,
                 \__('Disable', 'graphql-api')
+            ),
+        ] : [
+            'enable' => \sprintf(
+                $linkPlaceholder,
+                $page,
+                'enable',
+                $item['id'],
+                $nonce,
+                \__('Enable', 'graphql-api')
             ),
         ];
 
