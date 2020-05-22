@@ -6,7 +6,6 @@ namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
 use GraphQLAPI\GraphQLAPI\Settings\Settings;
-use PoP\API\Schema\QueryInputs;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 
 /**

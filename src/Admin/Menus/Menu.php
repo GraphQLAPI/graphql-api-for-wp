@@ -7,6 +7,7 @@ namespace GraphQLAPI\GraphQLAPI\Admin\Menus;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphiQLMenuPage;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphQLVoyagerMenuPage;
 
@@ -27,6 +28,7 @@ class Menu extends AbstractMenu
         return [
             GraphiQLMenuPage::class,
             GraphQLVoyagerMenuPage::class,
+            ModulesMenuPage::class,
             SettingsMenuPage::class,
         ];
     }
@@ -73,6 +75,16 @@ class Menu extends AbstractMenu
         parent::addMenuPagesBottom();
 
         $instanceManager = InstanceManagerFacade::getInstance();
+        $modulesMenuPage = $instanceManager->getInstance(ModulesMenuPage::class);
+        \add_submenu_page(
+            self::NAME,
+            __('Modules', 'graphql-api'),
+            __('Modules', 'graphql-api'),
+            'manage_options',
+            'graphql_api_modules',
+            [$modulesMenuPage, 'print']
+        );
+
         $settingsMenuPage = $instanceManager->getInstance(SettingsMenuPage::class);
         \add_submenu_page(
             self::NAME,
