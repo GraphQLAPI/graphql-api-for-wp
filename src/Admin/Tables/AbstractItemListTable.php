@@ -52,7 +52,18 @@ abstract class AbstractItemListTable extends \WP_List_Table
             'plural' => $this->getItemPluralName(),
             'ajax' => false,
         ]);
+
+        add_action('admin_head', [$this, 'printStyles']);
     }
+
+    /**
+     * Print custom styles, such as the width of the columns
+     */
+    public function printStyles(): void
+    {
+        // Do nothing
+    }
+
 
     /**
      * Text displayed when there are no items

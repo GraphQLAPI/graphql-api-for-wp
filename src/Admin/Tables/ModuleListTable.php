@@ -48,7 +48,7 @@ class ModuleListTable extends AbstractItemListTable
             ['id' => 'a9', 'enabled' => true, 'name' => 'Hanna Moos', 'description' => 'handbook, in'],
             ['id' => 'a10','enabled' => true, 'name' =>  'Frédérique Citeaux', 'description' => 'with common traps'],
             ['id' => 'a11','enabled' => false, 'name' =>  'Martín Sommer', 'description' => 'Presentation Of A'],
-            ['id' => 'a12','enabled' => true, 'name' =>  'Laurence Lebihans', 'description' => 'better understand the'],
+            ['id' => 'a12','enabled' => true, 'name' =>  'Laurence Lebihans', 'description' => 'better understand the better understand the better understand the better understand the better understand the better understand the'],
         ];
         return array_splice(
             $results,
@@ -272,5 +272,20 @@ class ModuleListTable extends AbstractItemListTable
                 self::disableModule($_GET['item']);
             }
         }
+    }
+
+    /**
+     * Customize the width of the columns
+     */
+    public function printStyles(): void
+    {
+        ?>
+        <style type="text/css">
+            /* .wp-list-table .column-cb { width: 5%; } */
+            .wp-list-table .column-name { width: 20%; }
+            .wp-list-table .column-enabled { width: 5%; }
+            .wp-list-table .column-description { width: 70%;}
+        </style>
+        <?php
     }
 }
