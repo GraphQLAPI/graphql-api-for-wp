@@ -102,6 +102,8 @@ class ModuleListTable extends AbstractItemListTable
         switch ($column_name) {
             case 'description':
                 return $item[$column_name];
+            case 'enabled':
+                return $item[$column_name] ? '✅' : '❌';
         }
         return '';
     }
@@ -170,6 +172,7 @@ class ModuleListTable extends AbstractItemListTable
         return [
             'cb' => '<input type="checkbox" />',
             'name' => \__('Name', 'graphql-api'),
+            'enabled' => \__('Enabled', 'graphql-api'),
             'description' => \__('Description', 'graphql-api'),
         ];
     }
