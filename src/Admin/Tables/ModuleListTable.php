@@ -222,26 +222,19 @@ class ModuleListTable extends AbstractItemListTable
      */
     public function process_action()
     {
-        // Detect when a bulk action is being triggered...
-        $isSingleAction = 'delete' === $this->current_action() || 'delete' === $this->current_action();
         $isBulkAction =
             (isset($_POST['action']) && $_POST['action'] == 'bulk-delete') ||
             (isset($_POST['action2']) && $_POST['action2'] == 'bulk-delete');
-        if ($isSingleAction || $isBulkAction) {
-            if ($isSingleAction) {
-                // Verify the nonce
-                $nonce = \esc_attr($_REQUEST['_wpnonce']);
-                if (!\wp_verify_nonce($nonce, 'graphql_api_enable_or_disable_module')) {
-                    die(__('This URL is not valid. Please load the page anew, and try again', 'graphql-api'));
-                }
-                if ('delete' === $this->current_action()) {
-                    self::enableModule($_GET['item']);
-                } else {
-                    self::disableModule($_GET['item']);
-                }
-            } elseif ($isBulkAction) {
+        $isSingleAction = 'delete' === $this->current_action() || 'delete' === $this->current_action();
+        if ($isBulkAction || $isSingleAction) {
+            /**
+             * The Bulk takes precedence, because it's executed as a POST on the current URL
+             * Then, the URL can contain an ?action=... which was just executed,
+             * and we don't want to execute it again
+             */
+            if ($isBulkAction) {
                 $itemIDs = \esc_sql($_POST['bulk-delete']);
-
+                // Enable or disable
                 if (true) {
                     foreach ($itemIDs as $id) {
                         self::enableModule($id);
@@ -250,6 +243,18 @@ class ModuleListTable extends AbstractItemListTable
                     foreach ($itemIDs as $id) {
                         self::disableModule($id);
                     }
+                }
+            } elseif ($isSingleAction) {
+                // Verify the nonce
+                $nonce = \esc_attr($_REQUEST['_wpnonce']);
+                if (!\wp_verify_nonce($nonce, 'graphql_api_enable_or_disable_module')) {
+                    die(__('This URL is not valid. Please load the page anew, and try again', 'graphql-api'));
+                }
+                // Enable or disable
+                if ('delete' === $this->current_action()) {
+                    self::enableModule($_GET['item']);
+                } elseif ('delete' === $this->current_action()) {
+                    self::disableModule($_GET['item']);
                 }
             }
         }
