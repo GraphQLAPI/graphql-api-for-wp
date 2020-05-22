@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 
-use GraphQLAPI\GraphQLAPI\Admin\Tables\ModuleTable;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
@@ -49,6 +48,8 @@ abstract class AbstractTableMenuPage extends AbstractMenuPage
         return str_replace(' ', '_', strtolower($this->getScreenOptionLabel())) . '_per_page';
     }
 
+    abstract protected function getModuleTableClass(): string;
+
     public function initializeTable(): void
     {
         /**
@@ -71,7 +72,7 @@ abstract class AbstractTableMenuPage extends AbstractMenuPage
          * Instantiate the table object
          */
         $instanceManager = InstanceManagerFacade::getInstance();
-        $this->tableObject = $instanceManager->getInstance(ModuleTable::class);
+        $this->tableObject = $instanceManager->getInstance($this->getModuleTableClass());
     }
 
     public function initialize(): void
