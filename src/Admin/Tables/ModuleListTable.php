@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\Tables;
 
+use GraphQLAPI\GraphQLAPI\Admin\TableActions\ModuleListTableAction;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 /**
  * Module Table
@@ -262,9 +264,10 @@ class ModuleListTable extends AbstractItemListTable
     {
         $this->_column_headers = $this->get_column_info();
 
-        // /** Process bulk or single action */
-        // $this->maybeProcessAction();
-        // (new ModuleListTableAction())->maybeProcessAction();
+        /** Process bulk or single action */
+        $instanceManager = InstanceManagerFacade::getInstance();
+        $tableAction = $instanceManager->getInstance(ModuleListTableAction::class);
+        $tableAction->maybeProcessAction();
 
         $per_page = $this->get_items_per_page(
             $this->getItemsPerPageOptionName(),
