@@ -38,9 +38,11 @@ class ModuleListTable extends AbstractItemListTable
         $modules = $moduleRegistry->getAllModules();
         foreach ($modules as $module) {
             $moduleResolver = $moduleRegistry->getModuleResolver($module);
+            $isEnabled = $moduleRegistry->isModuleEnabled($module);
             $items[] = [
                 'id' => $moduleRegistry->getModuleID($module),
-                'enabled' => $moduleRegistry->isModuleEnabled($module),
+                'is-enabled' => $isEnabled,
+                'can-be-enabled' => !$isEnabled && $moduleRegistry->canModuleBeEnabled($module),
                 'has-settings' => $moduleResolver->hasSettings($module),
                 'name' => $moduleResolver->getName($module),
                 'description' => $moduleResolver->getDescription($module),
@@ -114,8 +116,8 @@ class ModuleListTable extends AbstractItemListTable
             case 'enabled':
                 return \sprintf(
                     '<span role="img" aria-label="%s">%s</span>',
-                    $item[$column_name] ? \__('Yes', 'graphql-api') : \__('No', 'graphql-api'),
-                    $item[$column_name] ? '✅' : '❌'
+                    $item['is-enabled'] ? \__('Yes', 'graphql-api') : \__('No', 'graphql-api'),
+                    $item['is-enabled'] ? '✅' : '❌'
                 );
         }
         return '';
@@ -150,41 +152,47 @@ class ModuleListTable extends AbstractItemListTable
         $title = '<strong>' . $item['name'] . '</strong>';
         $linkPlaceholder = '<a href="?page=%s&action=%s&item=%s&_wpnonce=%s">%s</a>';
         $page = esc_attr($_REQUEST['page']);
-        // If it is enabled, offer to disable it, or the other way around
-        $actions = $item['enabled'] ? [
-            'disable' => \sprintf(
+        $actions = [];
+        if ($item['is-enabled']) {
+            // If it is enabled, offer to disable it
+            $actions['disable'] = \sprintf(
                 $linkPlaceholder,
                 $page,
                 'disable',
                 $item['id'],
                 $nonce,
                 \__('Disable', 'graphql-api')
-            ),
-        ] : [
-            'enable' => \sprintf(
+            );
+
+            // Maybe add settings links
+            if ($item['has-settings']) {
+                $actions['settings'] = \sprintf(
+                    '<a href="%s">%s</a>',
+                    sprintf(
+                        \admin_url(sprintf(
+                            'admin.php?page=%s&tab=%s',
+                            'graphql_api_settings',
+                            $item['id']
+                        ))
+                    ),
+                    \__('Settings', 'graphql-api')
+                );
+            }
+        } elseif ($item['can-be-enabled']) {
+            // If not enabled and can be enabled, offer to do it
+            $actions['enable'] = \sprintf(
                 $linkPlaceholder,
                 $page,
                 'enable',
                 $item['id'],
                 $nonce,
                 \__('Enable', 'graphql-api')
-            ),
-        ];
-        // Maybe add settings links
-        if ($item['enabled'] && $item['has-settings']) {
-            $actions['settings'] = \sprintf(
-                '<a href="%s">%s</a>',
-                sprintf(
-                    \admin_url(sprintf(
-                        'admin.php?page=%s&tab=%s',
-                        'graphql_api_settings',
-                        $item['id']
-                    ))
-                ),
-                \__('Settings', 'graphql-api')
             );
+        } else {
+            // Commented because, without a link, color contrast is not good: gray font color over gray background
+            // // Not enabled and can't be enabled, mention requirements not met
+            // $actions['can-not-enable'] = \__('Requirements not met, or dependencies not enabled', 'graphql-api');
         }
-
         return $title . $this->row_actions($actions);
     }
 

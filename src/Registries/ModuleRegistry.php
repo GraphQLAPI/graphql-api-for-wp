@@ -60,6 +60,31 @@ class ModuleRegistry implements ModuleRegistryInterface
             return false;
         }
         // Check that all depended-upon modules are enabled
+        if (!$this->areDependedModulesEnabled($module)) {
+            return false;
+        }
+        $moduleID = $this->getModuleID($module);
+        // Check if the value has been saved on the DB
+        if (false) {
+            return false;
+        }
+        // Get the default value from the resolver
+        return $moduleResolver->isEnabledByDefault($module);
+    }
+
+    /**
+     * Indicate if a module's depended-upon modules are all enabled
+     *
+     * @param string $module
+     * @return boolean
+     */
+    protected function areDependedModulesEnabled(string $module): bool
+    {
+        $moduleResolver = $this->getModuleResolver($module);
+        if (is_null($moduleResolver)) {
+            return false;
+        }
+        // Check that all depended-upon modules are enabled
         $dependedModuleLists = $moduleResolver->getDependedModuleLists($module);
         /**
          * This is a list of lists of modules, as to model both OR and AND conditions
@@ -76,19 +101,40 @@ class ModuleRegistry implements ModuleRegistryInterface
                 continue;
             }
             $dependedModuleListEnabled = array_map(
-                [$this, 'isModuleEnabled'],
+                function ($dependedModule) {
+                    return $this->isModuleEnabled($dependedModule);
+                },
                 $dependedModuleList
             );
             if (!in_array(true, $dependedModuleListEnabled)) {
                 return false;
             }
         }
-        $moduleID = $this->getModuleID($module);
-        // Check if the value has been saved on the DB
-        if (false) {
+        return true;
+    }
+
+    /**
+     * If a module was disabled by the user, then the user can enable it.
+     * If it is disabled because its requirements are not satisfied,
+     * or its dependencies themselves disabled, then it cannot be enabled by the user.
+     *
+     * @param string $module
+     * @return boolean
+     */
+    public function canModuleBeEnabled(string $module): bool
+    {
+        $moduleResolver = $this->getModuleResolver($module);
+        if (is_null($moduleResolver)) {
             return false;
         }
-        // Get the default value from the resolver
-        return $moduleResolver->isEnabledByDefault($module);
+        // Check that all requirements are satisfied
+        if (!$moduleResolver->areRequirementsSatisfied($module)) {
+            return false;
+        }
+        // Check that all depended-upon modules are enabled
+        if (!$this->areDependedModulesEnabled($module)) {
+            return false;
+        }
+        return true;
     }
 }

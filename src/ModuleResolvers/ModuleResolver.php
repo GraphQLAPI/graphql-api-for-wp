@@ -282,7 +282,11 @@ class ModuleResolver extends AbstractModuleResolver
             self::CACHE_CONTROL => \__('Provide HTTP Caching for Persisted Queries: Cache the response by setting the Cache-Control max-age value, calculated from all fields involved in the query. It depends on module "Persisted Queries"', 'graphql-api'),
             self::FIELD_DEPRECATION => \__('User interface to deprecate fields', 'graphql-api'),
             self::GRAPHIQL_EXPLORER => \__('Attach the Explorer widget to the GraphiQL client, to create queries by point-and-clicking on the fields', 'graphql-api'),
-            self::WELCOME_GUIDES => \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities', 'graphql-api'),
+            self::WELCOME_GUIDES => sprintf(
+                \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities. It requires WordPress version \'%s\' or above, or Gutenberg version \'%s\' or above', 'graphql-api'),
+                '5.4',
+                '6.1'
+            ),
             self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => \__('Set of directives to manipulate strings: <code>@upperCase</code>, <code>@lowerCase</code> and <code>@titleCase</code>', 'graphql-api'),
             self::SCHEMA_POST_TYPE => \__('Enable querying for posts in the schema', 'graphql-api'),
             self::SCHEMA_COMMENT_TYPE => \__('Enable querying for comments in the schema. It depends on module "Schema Post Type"', 'graphql-api'),
