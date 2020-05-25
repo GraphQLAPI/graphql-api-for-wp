@@ -75,9 +75,9 @@ class ModuleListTable extends AbstractItemListTable
      *
      * @param int $id module ID
      */
-    public function enableModules(array $ids): void
+    public function enableModules(array $moduleIDs): void
     {
-        $this->storeModules($ids, true);
+        $this->storeModules($moduleIDs, true);
     }
 
     /**
@@ -85,9 +85,9 @@ class ModuleListTable extends AbstractItemListTable
      *
      * @param int $id module ID
      */
-    public function disableModules(array $ids): void
+    public function disableModules(array $moduleIDs): void
     {
-        $this->storeModules($ids, false);
+        $this->storeModules($moduleIDs, false);
     }
 
     /**
@@ -95,15 +95,15 @@ class ModuleListTable extends AbstractItemListTable
      *
      * @param int $id module ID
      */
-    protected function storeModules(array $ids, bool $value): void
+    protected function storeModules(array $moduleIDs, bool $value): void
     {
         // Do something
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
-        $moduleValues = [];
-        foreach ($ids as $module) {
-            $moduleValues[$module] = $value;
+        $moduleIDValues = [];
+        foreach ($moduleIDs as $moduleID) {
+            $moduleIDValues[$moduleID] = $value;
         }
-        $userSettingsManager->setModulesEnabled($moduleValues);
+        $userSettingsManager->setModulesEnabled($moduleIDValues);
     }
 
     /**
@@ -297,12 +297,12 @@ class ModuleListTable extends AbstractItemListTable
          * and we don't want to execute it again
          */
         if ($isBulkAction) {
-            $itemIDs = \esc_sql($_POST['bulk-action-items'] ?? '');
+            $moduleIDs = \esc_sql($_POST['bulk-action-items'] ?? '');
             // Enable or disable
             if ($_POST['action'] == 'bulk-enable' || $_POST['action2'] == 'bulk-enable') {
-                $this->enableModules($itemIDs);
+                $this->enableModules($moduleIDs);
             } elseif ($_POST['action'] == 'bulk-disable' || $_POST['action2'] == 'bulk-disable') {
-                $this->disableModules($itemIDs);
+                $this->disableModules($moduleIDs);
             }
             return;
         }

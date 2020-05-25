@@ -30,21 +30,21 @@ class UserSettingsManager implements UserSettingsManagerInterface
         return $this->getItem(Options::SETTINGS, $item);
     }
 
-    public function hasSetModuleEnabled(string $module): bool
+    public function hasSetModuleEnabled(string $moduleID): bool
     {
-        return $this->hasItem(Options::MODULES, $module);
+        return $this->hasItem(Options::MODULES, $moduleID);
     }
-    public function isModuleEnabled(string $module): bool
+    public function isModuleEnabled(string $moduleID): bool
     {
-        return (bool) $this->getItem(Options::MODULES, $module);
+        return (bool) $this->getItem(Options::MODULES, $moduleID);
     }
-    public function setModuleEnabled(string $module, bool $isEnabled): void
+    public function setModuleEnabled(string $moduleID, bool $isEnabled): void
     {
-        $this->storeItem(Options::MODULES, $module, $isEnabled);
+        $this->storeItem(Options::MODULES, $moduleID, $isEnabled);
     }
-    public function setModulesEnabled(array $moduleValues): void
+    public function setModulesEnabled(array $moduleIDValues): void
     {
-        $this->storeItems(Options::MODULES, $moduleValues);
+        $this->storeItems(Options::MODULES, $moduleIDValues);
     }
 
     /**

@@ -14,8 +14,8 @@ interface UserSettingsManagerInterface
      * @return mixed
      */
     public function getSetting(string $item);
-    public function hasSetModuleEnabled(string $module): bool;
-    public function isModuleEnabled(string $module): bool;
-    public function setModuleEnabled(string $module, bool $isEnabled): void;
-    public function setModulesEnabled(array $moduleValues): void;
+    public function hasSetModuleEnabled(string $moduleID): bool;
+    public function isModuleEnabled(string $moduleID): bool;
+    public function setModuleEnabled(string $moduleID, bool $isEnabled): void;
+    public function setModulesEnabled(array $moduleIDValues): void;
 }
