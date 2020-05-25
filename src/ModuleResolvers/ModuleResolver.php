@@ -83,13 +83,13 @@ class ModuleResolver extends AbstractModuleResolver
             case self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS:
                 return [
                     [
-                        self::PERSISTED_QUERIES,
+                        self::CUSTOM_ENDPOINTS,
                     ],
                 ];
             case self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS:
                 return [
                     [
-                        self::PERSISTED_QUERIES,
+                        self::CUSTOM_ENDPOINTS,
                     ],
                 ];
             case self::SCHEMA_CONFIGURATION:
