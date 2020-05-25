@@ -18,6 +18,13 @@ interface ModuleResolverInterface
      * ]
      */
     public function getDependedModuleLists(string $module): array;
+    /**
+     * Indicates if a module has all requirements satisfied (such as version of WordPress) to be enabled
+     *
+     * @param string $module
+     * @return boolean
+     */
+    public function areRequirementsSatisfied(string $module): bool;
     public function isHidden(string $module): bool;
     public function getID(string $module): string;
     public function getName(string $module): string;

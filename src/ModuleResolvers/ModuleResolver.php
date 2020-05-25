@@ -204,6 +204,23 @@ class ModuleResolver extends AbstractModuleResolver
         return parent::getDependedModuleLists($module);
     }
 
+    public function areRequirementsSatisfied(string $module): bool
+    {
+        switch ($module) {
+            case self::WELCOME_GUIDES:
+                /**
+                 * WordPress 5.4 or above, or Gutenberg 6.1 or above
+                 */
+                return
+                    \is_wp_version_compatible('5.4') ||
+                    (
+                        defined('GUTENBERG_VERSION') &&
+                        \version_compare(constant('GUTENBERG_VERSION'), '6.1', '>=')
+                    );
+        }
+        return parent::areRequirementsSatisfied($module);
+    }
+
     public function isHidden(string $module): bool
     {
         switch ($module) {

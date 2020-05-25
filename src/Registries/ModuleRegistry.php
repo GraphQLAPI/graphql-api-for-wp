@@ -55,6 +55,10 @@ class ModuleRegistry implements ModuleRegistryInterface
         if (is_null($moduleResolver)) {
             return false;
         }
+        // Check that all requirements are satisfied
+        if (!$moduleResolver->areRequirementsSatisfied($module)) {
+            return false;
+        }
         // Check that all depended-upon modules are enabled
         $dependedModuleLists = $moduleResolver->getDependedModuleLists($module);
         /**
