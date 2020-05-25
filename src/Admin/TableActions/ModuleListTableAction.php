@@ -26,6 +26,10 @@ class ModuleListTableAction extends AbstractListTableAction
             $moduleIDValues[$moduleID] = $isEnabled;
         }
         $userSettingsManager->setModulesEnabled($moduleIDValues);
+
+        // If modifying a CPT, must flush the rewrite rules
+        // But do it at the end! Once the new configuration has been applied
+        add_action('shutdown', 'flush_rewrite_rules');
     }
 
     protected function getBulkActions(): array
