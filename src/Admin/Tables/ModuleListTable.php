@@ -12,6 +12,18 @@ use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
  */
 class ModuleListTable extends AbstractItemListTable
 {
+    /** Class constructor */
+    public function __construct()
+    {
+        parent::__construct();
+
+        /**
+         * If executing an operation, print a success message
+         */
+        \add_action('admin_notices', function () {
+            $this->maybeAddAdminNotice();
+        });
+    }
     /**
      * Singular name of the listed records
      *
@@ -82,14 +94,40 @@ class ModuleListTable extends AbstractItemListTable
      * @param boolean $value
      * @return void
      */
-    protected function setModulesEnabledValue(array $moduleIDs, bool $value): void
+    protected function setModulesEnabledValue(array $moduleIDs, bool $isEnabled): void
     {
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
         $moduleIDValues = [];
         foreach ($moduleIDs as $moduleID) {
-            $moduleIDValues[$moduleID] = $value;
+            $moduleIDValues[$moduleID] = $isEnabled;
         }
         $userSettingsManager->setModulesEnabled($moduleIDValues);
+    }
+
+    /**
+     * Show an admin notice with the successful message
+     * Executing this function from within `setModulesEnabledValue` is too late,
+     * since hook "admin_notices" will have been executed by then
+     * Then, deduce if there will be an operation, and always say "successful"
+     *
+     * @return void
+     */
+    public function maybeAddAdminNotice(): void
+    {
+        /**
+         * See if executing any of the actions
+         */
+        $bulkActions = $this->getBulkActions();
+        $isBulkAction = in_array($_POST['action'], $bulkActions) || in_array($_POST['action2'], $bulkActions);
+        $isSingleAction = in_array($this->current_action(), $this->getSingleActions());
+        if ($isBulkAction || $isSingleAction) {
+            _e(sprintf(
+                '<div class="notice notice-success is-dismissible">' .
+                    '<p>%s</p>' .
+                '</div>',
+                __('[GraphQL API] Operation successful', 'graphql-api')
+            ));
+        }
     }
 
     /**
@@ -253,6 +291,19 @@ class ModuleListTable extends AbstractItemListTable
         $this->items = $this->getItems($per_page, $current_page);
     }
 
+    protected function getBulkActions(): array
+    {
+        return array_keys($this->get_bulk_actions());
+    }
+
+    protected function getSingleActions(): array
+    {
+        return [
+            'enable',
+            'disable'
+        ];
+    }
+
     /**
      * Process bulk and single actions
      *
@@ -260,7 +311,7 @@ class ModuleListTable extends AbstractItemListTable
      */
     public function process_action()
     {
-        $bulkActions = array_keys($this->get_bulk_actions());
+        $bulkActions = $this->getBulkActions();
         $isBulkAction = in_array($_POST['action'], $bulkActions) || in_array($_POST['action2'], $bulkActions);
         /**
          * The Bulk takes precedence, because it's executed as a POST on the current URL
@@ -278,11 +329,7 @@ class ModuleListTable extends AbstractItemListTable
             }
             return;
         }
-        $singleActions = [
-            'enable',
-            'disable'
-        ];
-        $isSingleAction = in_array($this->current_action(), $singleActions);
+        $isSingleAction = in_array($this->current_action(), $this->getSingleActions());
         if ($isSingleAction) {
             // Verify the nonce
             $nonce = \esc_attr($_REQUEST['_wpnonce']);
