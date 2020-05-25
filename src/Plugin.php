@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI;
 
+use GraphQLAPI\GraphQLAPI\Admin\TableActions\ModuleListTableAction;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
@@ -30,6 +31,16 @@ class Plugin
          * Initialize classes for the admin panel
          */
         if (\is_admin()) {
+            /**
+             * Execute the ModuleListTable enable/disable modules immediately,
+             * so that CPTs are enabled/disabled
+             */
+            $moduleListTable = $instanceManager->getInstance(ModuleListTableAction::class);
+            $moduleListTable->maybeProcessAction();
+
+            /**
+             * Initialize all the services
+             */
             $menuServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\Admin\\Menus');
             foreach ($menuServiceClasses as $serviceClass) {
                 $instanceManager->getInstance($serviceClass)->initialize();

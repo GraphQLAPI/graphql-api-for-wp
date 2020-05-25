@@ -26,6 +26,13 @@ define('GRAPHQL_BY_POP_VERSION', '0.1');
 // Load Composer’s autoloader
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Plugin instance
+$plugin = new \GraphQLAPI\GraphQLAPI\Plugin();
+
+// Functions to execute when activating/deactivating the plugin
+\register_activation_hook(__FILE__, [$plugin, 'activate']);
+\register_deactivation_hook(__FILE__, [$plugin, 'deactivate']);
+
 // Configure the plugin. This defines hooks to set environment variables, so must be executed
 // before those hooks are triggered for first time (in ComponentConfiguration classes)
 \GraphQLAPI\GraphQLAPI\PluginConfiguration::initialize();
@@ -36,10 +43,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 // Initialize the PoP Engine through the Bootloader
 \PoP\Engine\Bootloader::bootComponents();
 
-// Initialize this plugin
-$plugin = new \GraphQLAPI\GraphQLAPI\Plugin();
-$plugin->initialize();
-
-// Functions to execute when activating/deactivating the plugin
-\register_activation_hook(__FILE__, [$plugin, 'activate']);
-\register_deactivation_hook(__FILE__, [$plugin, 'deactivate']);
+/**
+ * Wait until "plugins_loaded" to initialize the plugin, because:
+ *
+ * - ModuleListTableAction requires `wp_verify_nonce`, loaded in pluggable.php
+ * - Allow other plugins to inject their own functionality
+ */
+add_action('plugins_loaded', function () use ($plugin) {
+    $plugin->initialize();
+});
