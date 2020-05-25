@@ -273,8 +273,8 @@ class ModuleListTable extends AbstractItemListTable
     {
         $this->_column_headers = $this->get_column_info();
 
-        /** Process bulk action */
-        $this->process_action();
+        /** Process bulk or single action */
+        $this->processAction();
 
         $per_page = $this->get_items_per_page(
             $this->getItemsPerPageOptionName(),
@@ -309,7 +309,7 @@ class ModuleListTable extends AbstractItemListTable
      *
      * @return void
      */
-    public function process_action()
+    public function processAction()
     {
         $bulkActions = $this->getBulkActions();
         $isBulkAction = in_array($_POST['action'], $bulkActions) || in_array($_POST['action2'], $bulkActions);
