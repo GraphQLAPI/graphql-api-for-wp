@@ -32,6 +32,11 @@ class ModuleListTable extends AbstractItemListTable
         return \__('Modules', 'graphql-api');
     }
 
+    /**
+     * Return all the items to display on the table
+     *
+     * @return array
+     */
     public function getAllItems(): array
     {
         $items = [];
@@ -71,9 +76,9 @@ class ModuleListTable extends AbstractItemListTable
     }
 
     /**
-     * Enable a module
+     * Enable a list of modules
      *
-     * @param int $id module ID
+     * @param array $moduleIDs
      */
     public function enableModules(array $moduleIDs): void
     {
@@ -81,9 +86,9 @@ class ModuleListTable extends AbstractItemListTable
     }
 
     /**
-     * Disable a module
+     * Disable a list of modules
      *
-     * @param int $id module ID
+     * @param array $moduleIDs
      */
     public function disableModules(array $moduleIDs): void
     {
@@ -91,13 +96,14 @@ class ModuleListTable extends AbstractItemListTable
     }
 
     /**
-     * Enable or Disable a module
+     * Enable or Disable a list of modules
      *
-     * @param int $id module ID
+     * @param array $moduleIDs
+     * @param boolean $value
+     * @return void
      */
     protected function storeModules(array $moduleIDs, bool $value): void
     {
-        // Do something
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
         $moduleIDValues = [];
         foreach ($moduleIDs as $moduleID) {
