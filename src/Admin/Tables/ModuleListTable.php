@@ -76,33 +76,13 @@ class ModuleListTable extends AbstractItemListTable
     }
 
     /**
-     * Enable a list of modules
-     *
-     * @param array $moduleIDs
-     */
-    public function enableModules(array $moduleIDs): void
-    {
-        $this->storeModules($moduleIDs, true);
-    }
-
-    /**
-     * Disable a list of modules
-     *
-     * @param array $moduleIDs
-     */
-    public function disableModules(array $moduleIDs): void
-    {
-        $this->storeModules($moduleIDs, false);
-    }
-
-    /**
      * Enable or Disable a list of modules
      *
      * @param array $moduleIDs
      * @param boolean $value
      * @return void
      */
-    protected function storeModules(array $moduleIDs, bool $value): void
+    protected function setModulesEnabledValue(array $moduleIDs, bool $value): void
     {
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
         $moduleIDValues = [];
@@ -288,12 +268,13 @@ class ModuleListTable extends AbstractItemListTable
          * and we don't want to execute it again
          */
         if ($isBulkAction) {
-            $moduleIDs = \esc_sql($_POST['bulk-action-items'] ?? '');
-            // Enable or disable
-            if ($_POST['action'] == 'bulk-enable' || $_POST['action2'] == 'bulk-enable') {
-                $this->enableModules($moduleIDs);
-            } elseif ($_POST['action'] == 'bulk-disable' || $_POST['action2'] == 'bulk-disable') {
-                $this->disableModules($moduleIDs);
+            if ($moduleIDs = \esc_sql($_POST['bulk-action-items'] ?? '')) {
+                // Enable or disable
+                if ($_POST['action'] == 'bulk-enable' || $_POST['action2'] == 'bulk-enable') {
+                    $this->setModulesEnabledValue($moduleIDs, true);
+                } elseif ($_POST['action'] == 'bulk-disable' || $_POST['action2'] == 'bulk-disable') {
+                    $this->setModulesEnabledValue($moduleIDs, false);
+                }
             }
             return;
         }
@@ -308,11 +289,13 @@ class ModuleListTable extends AbstractItemListTable
             if (!\wp_verify_nonce($nonce, 'graphql_api_enable_or_disable_module')) {
                 die(__('This URL is not valid. Please load the page anew, and try again', 'graphql-api'));
             }
-            // Enable or disable
-            if ('enable' === $this->current_action()) {
-                $this->enableModules([$_GET['item']]);
-            } elseif ('disable' === $this->current_action()) {
-                $this->disableModules([$_GET['item']]);
+            if ($moduleID = $_GET['item']) {
+                // Enable or disable
+                if ('enable' === $this->current_action()) {
+                    $this->setModulesEnabledValue([$moduleID], true);
+                } elseif ('disable' === $this->current_action()) {
+                    $this->setModulesEnabledValue([$moduleID], false);
+                }
             }
         }
     }
