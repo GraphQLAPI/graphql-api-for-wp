@@ -51,3 +51,7 @@ services:
     module_registry:
         class: \GraphQLAPI\GraphQLAPI\Registries\ModuleRegistry
         public: true
+
+    user_settings_manager:
+        class: \GraphQLAPI\GraphQLAPI\Settings\UserSettingsManager
+        public: true

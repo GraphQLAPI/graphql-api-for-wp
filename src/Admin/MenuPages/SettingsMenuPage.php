@@ -4,27 +4,16 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 
-use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
-use GraphQLAPI\GraphQLAPI\Settings\UserSettings;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
+use GraphQLAPI\GraphQLAPI\Settings\UserSettings;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
+use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 
 /**
  * Settings menu page
  */
 class SettingsMenuPage extends AbstractMenuPage
 {
-    /**
-     * Indicate if the option is on. Made static so it can be used without instantiation
-     *
-     * @param string $name
-     * @return boolean
-     */
-    public static function isOptionOn(string $name): bool
-    {
-        $options = \get_option(UserSettings::OPTION_SETTINGS);
-        return !empty($options[$name]);
-    }
-
     /**
      * Get the option value. Made static so it can be used without instantiation
      *
@@ -33,8 +22,19 @@ class SettingsMenuPage extends AbstractMenuPage
      */
     public static function getOptionValue(string $name): ?string
     {
-        $options = \get_option(UserSettings::OPTION_SETTINGS);
-        return $options[$name];
+        $userSettingsManager = UserSettingsManagerFacade::getInstance();
+        return $userSettingsManager->getSettingsItem($name);
+    }
+
+    /**
+     * Indicate if the option is on. Made static so it can be used without instantiation
+     *
+     * @param string $name
+     * @return boolean
+     */
+    public static function isOptionOn(string $name): bool
+    {
+        return !empty(self::getOptionValue($name));
     }
 
     public function print(): void

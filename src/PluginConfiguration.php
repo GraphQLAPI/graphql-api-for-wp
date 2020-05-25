@@ -7,6 +7,7 @@ namespace GraphQLAPI\GraphQLAPI;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Environment;
+use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use GraphQLAPI\GraphQLAPI\Settings\UserSettings;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
@@ -61,16 +62,16 @@ class PluginConfiguration
             ],
         ];
         // For each environment variable, see if its value has been saved in the settings
-        $settings = \get_option(UserSettings::OPTION_SETTINGS);
+        $userSettingsManager = UserSettingsManagerFacade::getInstance();
         foreach ($mappings as $mapping) {
             $hookName = ComponentConfigurationHelpers::getHookName($mapping['class'], $mapping['envVariable']);
             $optionName = $mapping['optionName'];
             $defaultValue = $mapping['defaultValue'];
             \add_filter(
                 $hookName,
-                function () use ($settings, $optionName, $defaultValue) {
-                    if (isset($settings[$optionName])) {
-                        return $settings[$optionName];
+                function () use ($userSettingsManager, $optionName, $defaultValue) {
+                    if ($userSettingsManager->hasSettingsItem($optionName)) {
+                        return $userSettingsManager->getSettingsItem($optionName);
                     }
                     return $defaultValue;
                 },
