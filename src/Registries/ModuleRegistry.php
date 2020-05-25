@@ -63,8 +63,8 @@ class ModuleRegistry implements ModuleRegistryInterface
         $moduleID = $moduleResolver->getID($module);
         // Check if the value has been saved on the DB
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
-        if ($userSettingsManager->hasModuleItem($moduleID)) {
-            return $userSettingsManager->getModuleItem($moduleID);
+        if ($userSettingsManager->hasSetModuleEnabled($moduleID)) {
+            return $userSettingsManager->isModuleEnabled($moduleID);
         }
         // Get the default value from the resolver
         return $moduleResolver->isEnabledByDefault($module);

@@ -103,7 +103,7 @@ class ModuleListTable extends AbstractItemListTable
         foreach ($ids as $module) {
             $moduleValues[$module] = $value;
         }
-        $userSettingsManager->storeModuleItems($moduleValues);
+        $userSettingsManager->setModulesEnabled($moduleValues);
     }
 
     /**

@@ -23,7 +23,7 @@ class SettingsMenuPage extends AbstractMenuPage
     public static function getOptionValue(string $name): ?string
     {
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
-        return $userSettingsManager->getSettingsItem($name);
+        return $userSettingsManager->getSetting($name);
     }
 
     /**
