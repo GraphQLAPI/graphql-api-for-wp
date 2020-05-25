@@ -47,13 +47,3 @@ services:
     GraphQLAPI\GraphQLAPI\ModuleResolvers\:
         resource: '../src/ModuleResolvers/*'
         public: true
-
-    module_registry:
-        class: \GraphQLAPI\GraphQLAPI\Registries\ModuleRegistry
-        public: true
-
-    # Commented because the UserSettingsManager is accessed before components
-    # are initialized, hence it's not used as a service
-    # user_settings_manager:
-    #     class: \GraphQLAPI\GraphQLAPI\Settings\UserSettingsManager
-    #     public: true

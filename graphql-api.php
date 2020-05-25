@@ -33,6 +33,9 @@ $plugin = new \GraphQLAPI\GraphQLAPI\Plugin();
 \register_activation_hook(__FILE__, [$plugin, 'activate']);
 \register_deactivation_hook(__FILE__, [$plugin, 'deactivate']);
 
+// Initialize the plugin's Component and, with it, all dependencies from PoP
+\GraphQLAPI\GraphQLAPI\PluginComponent::initialize();
+
 // Configure the plugin. This defines hooks to set environment variables, so must be executed
 // before those hooks are triggered for first time (in ComponentConfiguration classes)
 \GraphQLAPI\GraphQLAPI\PluginConfiguration::initialize();
