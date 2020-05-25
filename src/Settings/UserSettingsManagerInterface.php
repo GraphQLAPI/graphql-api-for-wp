@@ -6,8 +6,10 @@ namespace GraphQLAPI\GraphQLAPI\Settings;
 
 interface UserSettingsManagerInterface
 {
-    public function hasSettingsItem(string $optionName): bool;
-    public function getSettingsItem(string $optionName);
-    public function hasModuleItem(string $optionName): bool;
-    public function getModuleItem(string $optionName);
+    public function hasSettingsItem(string $item): bool;
+    public function getSettingsItem(string $item);
+    public function hasModuleItem(string $module): bool;
+    public function getModuleItem(string $module);
+    public function storeModuleItem(string $module, $value): void;
+    public function storeModuleItems(array $moduleValues): void;
 }

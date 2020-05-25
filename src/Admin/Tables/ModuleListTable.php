@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\Admin\Tables;
 
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 
 /**
  * Module Table
@@ -74,9 +75,9 @@ class ModuleListTable extends AbstractItemListTable
      *
      * @param int $id module ID
      */
-    public function enableModule(string $id): void
+    public function enableModules(array $ids): void
     {
-        // Do something
+        $this->storeModules($ids, true);
     }
 
     /**
@@ -84,9 +85,25 @@ class ModuleListTable extends AbstractItemListTable
      *
      * @param int $id module ID
      */
-    public function disableModule(string $id): void
+    public function disableModules(array $ids): void
+    {
+        $this->storeModules($ids, false);
+    }
+
+    /**
+     * Enable or Disable a module
+     *
+     * @param int $id module ID
+     */
+    protected function storeModules(array $ids, bool $value): void
     {
         // Do something
+        $userSettingsManager = UserSettingsManagerFacade::getInstance();
+        $moduleValues = [];
+        foreach ($ids as $module) {
+            $moduleValues[$module] = $value;
+        }
+        $userSettingsManager->storeModuleItems($moduleValues);
     }
 
     /**
@@ -283,13 +300,9 @@ class ModuleListTable extends AbstractItemListTable
             $itemIDs = \esc_sql($_POST['bulk-action-items'] ?? '');
             // Enable or disable
             if ($_POST['action'] == 'bulk-enable' || $_POST['action2'] == 'bulk-enable') {
-                foreach ($itemIDs as $id) {
-                    $this->enableModule($id);
-                }
+                $this->enableModules($itemIDs);
             } elseif ($_POST['action'] == 'bulk-disable' || $_POST['action2'] == 'bulk-disable') {
-                foreach ($itemIDs as $id) {
-                    $this->disableModule($id);
-                }
+                $this->disableModules($itemIDs);
             }
             return;
         }
@@ -306,9 +319,9 @@ class ModuleListTable extends AbstractItemListTable
             }
             // Enable or disable
             if ('enable' === $this->current_action()) {
-                $this->enableModule($_GET['item']);
+                $this->enableModules([$_GET['item']]);
             } elseif ('disable' === $this->current_action()) {
-                $this->disableModule($_GET['item']);
+                $this->disableModules([$_GET['item']]);
             }
         }
     }

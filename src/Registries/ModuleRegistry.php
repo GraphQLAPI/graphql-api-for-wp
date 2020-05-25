@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Registries;
 
+use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverInterface;
 
@@ -65,8 +66,9 @@ class ModuleRegistry implements ModuleRegistryInterface
         }
         $moduleID = $this->getModuleID($module);
         // Check if the value has been saved on the DB
-        if (false) {
-            return false;
+        $userSettingsManager = UserSettingsManagerFacade::getInstance();
+        if ($userSettingsManager->hasModuleItem($moduleID)) {
+            return $userSettingsManager->getModuleItem($moduleID);
         }
         // Get the default value from the resolver
         return $moduleResolver->isEnabledByDefault($module);
