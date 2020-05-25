@@ -60,9 +60,145 @@ class ModuleResolver extends AbstractModuleResolver
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {
+            case self::PERSISTED_QUERIES:
+                return [
+                    [
+                        self::MAIN,
+                    ],
+                ];
+            case self::SINGLE_ENDPOINT:
+                return [
+                    [
+                        self::MAIN,
+                    ],
+                ];
+            case self::CUSTOM_ENDPOINTS:
+                return [
+                    [
+                        self::MAIN,
+                    ],
+                ];
+            case self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS:
+                return [
+                    [
+                        self::PERSISTED_QUERIES,
+                    ],
+                ];
+            case self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS:
+                return [
+                    [
+                        self::PERSISTED_QUERIES,
+                    ],
+                ];
             case self::SCHEMA_CONFIGURATION:
                 return [
-                    [self::PERSISTED_QUERIES, self::CUSTOM_ENDPOINTS],
+                    [
+                        self::PERSISTED_QUERIES,
+                        self::CUSTOM_ENDPOINTS,
+                    ],
+                ];
+            case self::ACCESS_CONTROL:
+                return [
+                    [
+                        self::PERSISTED_QUERIES,
+                        self::CUSTOM_ENDPOINTS,
+                    ],
+                ];
+            case self::ACCESS_CONTROL_RULE_DISABLE_ACCESS:
+                return [
+                    [
+                        self::ACCESS_CONTROL,
+                    ],
+                ];
+            case self::ACCESS_CONTROL_RULE_USER_STATE:
+                return [
+                    [
+                        self::ACCESS_CONTROL,
+                    ],
+                ];
+            case self::ACCESS_CONTROL_RULE_USER_ROLES:
+                return [
+                    [
+                        self::ACCESS_CONTROL,
+                    ],
+                ];
+            case self::ACCESS_CONTROL_RULE_USER_CAPABILITIES:
+                return [
+                    [
+                        self::ACCESS_CONTROL,
+                    ],
+                ];
+            case self::CACHE_CONTROL:
+                return [
+                    [
+                        self::PERSISTED_QUERIES,
+                    ],
+                ];
+            case self::FIELD_DEPRECATION:
+                return [
+                    [
+                        self::PERSISTED_QUERIES,
+                        self::CUSTOM_ENDPOINTS,
+                    ],
+                ];
+            case self::GRAPHIQL_EXPLORER:
+                return [
+                    [
+                        self::PERSISTED_QUERIES,
+                    ],
+                ];
+            case self::WELCOME_GUIDES:
+                return [
+                    [
+                        self::PERSISTED_QUERIES,
+                        self::CUSTOM_ENDPOINTS,
+                    ],
+                ];
+            case self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE:
+                return [
+                    [
+                        self::PERSISTED_QUERIES,
+                        self::CUSTOM_ENDPOINTS,
+                        self::SINGLE_ENDPOINT,
+                    ],
+                ];
+            case self::SCHEMA_POST_TYPE:
+                return [
+                    [
+                        self::PERSISTED_QUERIES,
+                        self::CUSTOM_ENDPOINTS,
+                        self::SINGLE_ENDPOINT,
+                    ],
+                ];
+            case self::SCHEMA_COMMENT_TYPE:
+                return [
+                    [
+                        self::SCHEMA_POST_TYPE,
+                    ],
+                ];
+            case self::SCHEMA_USER_TYPE:
+                return [
+                    [
+                        self::PERSISTED_QUERIES,
+                        self::CUSTOM_ENDPOINTS,
+                        self::SINGLE_ENDPOINT,
+                    ],
+                ];
+            case self::SCHEMA_PAGE_TYPE:
+                return [
+                    [
+                        self::PERSISTED_QUERIES,
+                        self::CUSTOM_ENDPOINTS,
+                        self::SINGLE_ENDPOINT,
+                    ],
+                ];
+            case self::SCHEMA_MEDIA_TYPE:
+                return [
+                    [
+                        self::PERSISTED_QUERIES,
+                        self::CUSTOM_ENDPOINTS,
+                        self::SINGLE_ENDPOINT,
+                    ],
                 ];
         }
         return parent::getDependedModuleLists($module);
