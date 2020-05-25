@@ -85,10 +85,13 @@ class Plugin
         }
         /**
          * Editor Scripts
+         * They are all used to show the Welcome Guide
          */
-        $editorScriptServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\EditorScripts');
-        foreach ($editorScriptServiceClasses as $serviceClass) {
-            $instanceManager->getInstance($serviceClass)->initialize();
+        if ($moduleRegistry->isModuleEnabled(ModuleResolver::WELCOME_GUIDES)) {
+            $editorScriptServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\EditorScripts');
+            foreach ($editorScriptServiceClasses as $serviceClass) {
+                $instanceManager->getInstance($serviceClass)->initialize();
+            }
         }
         /**
          * Blocks
