@@ -1,9 +1,9 @@
 services:
     # Commented because it's accessed from PluginConfiguration, executed
     # before components are initialized
-    module_registry:
-        class: \GraphQLAPI\GraphQLAPI\Registries\ModuleRegistry
-        public: true
+    # module_registry:
+    #     class: \GraphQLAPI\GraphQLAPI\Registries\ModuleRegistry
+    #     public: true
 
     # Commented because the UserSettingsManager is accessed before components
     # are initialized, hence it's not used as a service

@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\Config;
 
 use PoP\Engine\TypeResolvers\RootTypeResolver;
-use PoP\Root\Component\PHPServiceConfigurationTrait;
 use GraphQLAPI\GraphQLAPI\Blocks\GraphiQLBlock;
-use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
+use PoP\Root\Component\PHPServiceConfigurationTrait;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use GraphQLAPI\GraphQLAPI\Blocks\Overrides\GraphiQLWithExplorerBlock;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use PoP\UserRolesAccessControl\Services\AccessControlGroups as UserRolesAccessControlGroups;
 
 class ServiceConfiguration
@@ -57,13 +59,16 @@ class ServiceConfiguration
     protected static function configureOverridingBlocks()
     {
         // Maybe use GraphiQL with Explorer
-        if (ComponentConfiguration::useGraphiQLWithExplorer()) {
-            ContainerBuilderUtils::injectValuesIntoService(
-                'instance_manager',
-                'overrideClass',
-                GraphiQLBlock::class,
-                GraphiQLWithExplorerBlock::class
-            );
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if ($moduleRegistry->isModuleEnabled(ModuleResolver::GRAPHIQL_EXPLORER)) {
+            if (ComponentConfiguration::useGraphiQLWithExplorer()) {
+                ContainerBuilderUtils::injectValuesIntoService(
+                    'instance_manager',
+                    'overrideClass',
+                    GraphiQLBlock::class,
+                    GraphiQLWithExplorerBlock::class
+                );
+            }
         }
     }
 }

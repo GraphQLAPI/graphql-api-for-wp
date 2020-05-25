@@ -5,25 +5,20 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\Registries;
 
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
-use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverInterface;
 
 class ModuleRegistry implements ModuleRegistryInterface
 {
-    protected $moduleResolverClasses = [];
-    public function addModuleResolverClass(string $moduleResolverClass): void
+    protected $moduleResolvers = [];
+    public function addModuleResolver(ModuleResolverInterface $moduleResolver): void
     {
-        foreach ($moduleResolverClass::getModulesToResolve() as $module) {
-            $this->moduleResolverClasses[$module] = $moduleResolverClass;
+        foreach ($moduleResolver::getModulesToResolve() as $module) {
+            $this->moduleResolvers[$module] = $moduleResolver;
         }
     }
-    // public function getModuleResolverClasses(): array
-    // {
-    //     return $this->moduleResolverClasses;
-    // }
     public function getAllModules(bool $onlyVisible = true): array
     {
-        $modules = array_keys($this->moduleResolverClasses);
+        $modules = array_keys($this->moduleResolvers);
         if ($onlyVisible) {
             return array_filter(
                 $modules,
@@ -34,17 +29,9 @@ class ModuleRegistry implements ModuleRegistryInterface
         }
         return $modules;
     }
-    public function getModuleResolverClass(string $module): ?string
-    {
-        return $this->moduleResolverClasses[$module];
-    }
     public function getModuleResolver(string $module): ?ModuleResolverInterface
     {
-        if ($moduleResolverClass = $this->getModuleResolverClass($module)) {
-            $instanceManager = InstanceManagerFacade::getInstance();
-            return $instanceManager->getInstance($moduleResolverClass);
-        }
-        return null;
+        return $this->moduleResolvers[$module];
     }
     public function isModuleEnabled(string $module): bool
     {

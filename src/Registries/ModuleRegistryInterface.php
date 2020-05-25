@@ -8,10 +8,8 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverInterface;
 
 interface ModuleRegistryInterface
 {
-    public function addModuleResolverClass(string $moduleResolverClass): void;
-    // public function getModuleResolverClasses(): array;
+    public function addModuleResolver(ModuleResolverInterface $moduleResolver): void;
     public function getAllModules(bool $onlyVisible = true): array;
-    public function getModuleResolverClass(string $module): ?string;
     public function getModuleResolver(string $module): ?ModuleResolverInterface;
     public function isModuleEnabled(string $module): bool;
     /**

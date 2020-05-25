@@ -44,6 +44,6 @@ services:
         resource: '../src/FieldResolvers/*'
         public: true
 
-    GraphQLAPI\GraphQLAPI\ModuleResolvers\:
-        resource: '../src/ModuleResolvers/*'
-        public: true
+    # GraphQLAPI\GraphQLAPI\ModuleResolvers\:
+    #     resource: '../src/ModuleResolvers/*'
+    #     public: true
