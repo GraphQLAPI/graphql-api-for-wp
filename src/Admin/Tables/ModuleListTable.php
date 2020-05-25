@@ -125,7 +125,13 @@ class ModuleListTable extends AbstractItemListTable
                 '<div class="notice notice-success is-dismissible">' .
                     '<p>%s</p>' .
                 '</div>',
-                __('[GraphQL API] Operation successful', 'graphql-api')
+                sprintf(
+                    __('[GraphQL API] Operation successful. You may need to <a href="%s">refresh the page</a> to see the changes.', 'graphql-api'),
+                    \admin_url(sprintf(
+                        'admin.php?page=%s',
+                        'graphql_api_modules'
+                    ))
+                )
             ));
         }
     }
