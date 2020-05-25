@@ -6,28 +6,28 @@ namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
 class ModuleResolver extends AbstractModuleResolver
 {
-    public const MAIN = 'main';
-    public const SINGLE_ENDPOINT = 'single-endpoint';
-    public const PERSISTED_QUERIES = 'persisted-queries';
-    public const CUSTOM_ENDPOINTS = 'custom-endpoints';
-    public const GRAPHIQL_FOR_CUSTOM_ENDPOINTS = 'graphiql-for-custom-endpoints';
-    public const INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS = 'interactive-schema-for-custom-endpoints';
-    public const SCHEMA_CONFIGURATION = 'schema-configuration';
-    public const ACCESS_CONTROL = 'access-control';
-    public const ACCESS_CONTROL_RULE_DISABLE_ACCESS = 'access-control-rule-disable-access';
-    public const ACCESS_CONTROL_RULE_USER_STATE = 'access-control-rule-user-state';
-    public const ACCESS_CONTROL_RULE_USER_ROLES = 'access-control-rule-user-roles';
-    public const ACCESS_CONTROL_RULE_USER_CAPABILITIES = 'access-control-rule-user-capabilities';
-    public const CACHE_CONTROL = 'cache-control';
-    public const FIELD_DEPRECATION = 'field-deprecation';
-    public const GRAPHIQL_EXPLORER = 'graphiql-explorer';
-    public const WELCOME_GUIDES = 'welcome-guides';
-    public const DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE = 'directive-set-convert-lower-uppercase';
-    public const SCHEMA_POST_TYPE = 'schema-post-type';
-    public const SCHEMA_COMMENT_TYPE = 'schema-comment-type';
-    public const SCHEMA_USER_TYPE = 'schema-user-type';
-    public const SCHEMA_PAGE_TYPE = 'schema-page-type';
-    public const SCHEMA_MEDIA_TYPE = 'schema-media-type';
+    public const MAIN = __NAMESPACE__ . '\main';
+    public const SINGLE_ENDPOINT = __NAMESPACE__ . '\single-endpoint';
+    public const PERSISTED_QUERIES = __NAMESPACE__ . '\persisted-queries';
+    public const CUSTOM_ENDPOINTS = __NAMESPACE__ . '\custom-endpoints';
+    public const GRAPHIQL_FOR_CUSTOM_ENDPOINTS = __NAMESPACE__ . '\graphiql-for-custom-endpoints';
+    public const INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS = __NAMESPACE__ . '\interactive-schema-for-custom-endpoints';
+    public const SCHEMA_CONFIGURATION = __NAMESPACE__ . '\schema-configuration';
+    public const ACCESS_CONTROL = __NAMESPACE__ . '\access-control';
+    public const ACCESS_CONTROL_RULE_DISABLE_ACCESS = __NAMESPACE__ . '\access-control-rule-disable-access';
+    public const ACCESS_CONTROL_RULE_USER_STATE = __NAMESPACE__ . '\access-control-rule-user-state';
+    public const ACCESS_CONTROL_RULE_USER_ROLES = __NAMESPACE__ . '\access-control-rule-user-roles';
+    public const ACCESS_CONTROL_RULE_USER_CAPABILITIES = __NAMESPACE__ . '\access-control-rule-user-capabilities';
+    public const CACHE_CONTROL = __NAMESPACE__ . '\cache-control';
+    public const FIELD_DEPRECATION = __NAMESPACE__ . '\field-deprecation';
+    public const GRAPHIQL_EXPLORER = __NAMESPACE__ . '\graphiql-explorer';
+    public const WELCOME_GUIDES = __NAMESPACE__ . '\welcome-guides';
+    public const DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE = __NAMESPACE__ . '\directive-set-convert-lower-uppercase';
+    public const SCHEMA_POST_TYPE = __NAMESPACE__ . '\schema-post-type';
+    public const SCHEMA_COMMENT_TYPE = __NAMESPACE__ . '\schema-comment-type';
+    public const SCHEMA_USER_TYPE = __NAMESPACE__ . '\schema-user-type';
+    public const SCHEMA_PAGE_TYPE = __NAMESPACE__ . '\schema-page-type';
+    public const SCHEMA_MEDIA_TYPE = __NAMESPACE__ . '\schema-media-type';
 
     public static function getModulesToResolve(): array
     {
