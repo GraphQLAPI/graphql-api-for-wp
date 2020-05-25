@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 
 use PoP\Posts\TypeResolvers\PostTypeResolver;
-use GraphQLAPI\GraphQLAPI\Settings\UserSettings;
+use GraphQLAPI\GraphQLAPI\Settings\Options;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 
@@ -302,7 +302,7 @@ class SettingsMenuPage extends AbstractMenuPage
              */
             \register_setting(
                 'graphql-api-settings',
-                UserSettings::OPTION_SETTINGS
+                Options::SETTINGS
             );
         });
     }

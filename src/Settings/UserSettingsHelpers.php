@@ -7,10 +7,8 @@ namespace GraphQLAPI\GraphQLAPI\Settings;
 /**
  * User Settings
  */
-class UserSettings
+class UserSettingsHelpers
 {
-    public const OPTION_SETTINGS = 'graphql-api-settings';
-
     public static function getDefaultSchemaConfiguration(): ?int
     {
         return null;

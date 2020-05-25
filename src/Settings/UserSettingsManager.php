@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Settings;
 
+use GraphQLAPI\GraphQLAPI\Settings\Options;
+
 class UserSettingsManager implements UserSettingsManagerInterface
 {
     /**
@@ -13,31 +15,22 @@ class UserSettingsManager implements UserSettingsManagerInterface
      */
     protected $options = [];
 
-    /**
-     * Option name under which to store the Settings, defined by the user
-     */
-    public const OPTION_SETTINGS = 'graphql-api-settings';
-    /**
-     * Option name under which to store the enabled/disabled Modules
-     */
-    public const OPTION_MODULES = 'graphql-api-modules';
-
     public function hasSettingsItem(string $optionName): bool
     {
-        return $this->hasItem(self::OPTION_SETTINGS, $optionName);
+        return $this->hasItem(Options::SETTINGS, $optionName);
     }
     public function getSettingsItem(string $optionName)
     {
-        return $this->getItem(self::OPTION_SETTINGS, $optionName);
+        return $this->getItem(Options::SETTINGS, $optionName);
     }
 
     public function hasModuleItem(string $optionName): bool
     {
-        return $this->hasItem(self::OPTION_MODULES, $optionName);
+        return $this->hasItem(Options::MODULES, $optionName);
     }
     public function getModuleItem(string $optionName)
     {
-        return $this->getItem(self::OPTION_MODULES, $optionName);
+        return $this->getItem(Options::MODULES, $optionName);
     }
 
     /**
