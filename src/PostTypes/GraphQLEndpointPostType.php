@@ -8,11 +8,13 @@ use PoP\API\Configuration\Request;
 use PoP\ComponentModel\State\ApplicationState;
 use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
-use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
 use GraphQLAPI\GraphQLAPI\Blocks\EndpointOptionsBlock;
-use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigurationBlock;
 use GraphQLAPI\GraphQLAPI\Taxonomies\GraphQLQueryTaxonomy;
+use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
 use GraphQLAPI\GraphQLAPI\PostTypes\AbstractGraphQLQueryExecutionPostType;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
@@ -298,6 +300,12 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
      */
     protected function isGraphiQLEnabled($postOrID): bool
     {
+        // Check if disabled by module
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::GRAPHIQL_FOR_CUSTOM_ENDPOINTS)) {
+            return false;
+        }
+
         // If the endpoint is disabled, then also disable this client
         if (!$this->isEnabled($postOrID)) {
             return false;
@@ -318,6 +326,12 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
      */
     protected function isVoyagerEnabled($postOrID): bool
     {
+        // Check if disabled by module
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS)) {
+            return false;
+        }
+
         // If the endpoint is disabled, then also disable this client
         if (!$this->isEnabled($postOrID)) {
             return false;
@@ -382,7 +396,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
                     ),
                     /* translators: %s: Post title. */
                     \esc_attr(\sprintf(\__('Schema &#8220;%s&#8221;'), $title)),
-                    __('Schema', 'graphql-api')
+                    __('Interactive schema', 'graphql-api')
                 )
             ] : []
         );
