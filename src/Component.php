@@ -41,6 +41,7 @@ class Component extends AbstractComponent
             \PoP\UserMetaWP\Component::class,
             \PoP\UsefulDirectives\Component::class,
             \PoP\FieldDeprecationByDirective\Component::class,
+            \PoP\APIEndpointsForWP\Component::class,
         ];
     }
 
