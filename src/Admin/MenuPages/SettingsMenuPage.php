@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
-use GraphQLAPI\GraphQLAPI\Settings\Settings;
+use GraphQLAPI\GraphQLAPI\Settings\UserSettings;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 
 /**
@@ -21,7 +21,7 @@ class SettingsMenuPage extends AbstractMenuPage
      */
     public static function isOptionOn(string $name): bool
     {
-        $options = \get_option(Settings::OPTIONS_NAME);
+        $options = \get_option(UserSettings::OPTION_SETTINGS);
         return !empty($options[$name]);
     }
 
@@ -33,7 +33,7 @@ class SettingsMenuPage extends AbstractMenuPage
      */
     public static function getOptionValue(string $name): ?string
     {
-        $options = \get_option(Settings::OPTIONS_NAME);
+        $options = \get_option(UserSettings::OPTION_SETTINGS);
         return $options[$name];
     }
 
@@ -302,7 +302,7 @@ class SettingsMenuPage extends AbstractMenuPage
              */
             \register_setting(
                 'graphql-api-settings',
-                Settings::OPTIONS_NAME
+                UserSettings::OPTION_SETTINGS
             );
         });
     }

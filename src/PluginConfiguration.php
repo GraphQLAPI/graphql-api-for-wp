@@ -7,7 +7,7 @@ namespace GraphQLAPI\GraphQLAPI;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Environment;
-use GraphQLAPI\GraphQLAPI\Settings\Settings;
+use GraphQLAPI\GraphQLAPI\Settings\UserSettings;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
 
@@ -61,7 +61,7 @@ class PluginConfiguration
             ],
         ];
         // For each environment variable, see if its value has been saved in the settings
-        $settings = \get_option(Settings::OPTIONS_NAME);
+        $settings = \get_option(UserSettings::OPTION_SETTINGS);
         foreach ($mappings as $mapping) {
             $hookName = ComponentConfigurationHelpers::getHookName($mapping['class'], $mapping['envVariable']);
             $optionName = $mapping['optionName'];

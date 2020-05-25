@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
 use PoP\AccessControl\Schema\SchemaModes;
-use GraphQLAPI\GraphQLAPI\Settings\Settings;
+use GraphQLAPI\GraphQLAPI\Settings\UserSettings;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
@@ -52,7 +52,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         // It is not saved in the DB, because it has been set as the default value in
         // blocks/schema-configuration/src/index.js
         if (is_null($schemaConfigurationBlockDataItem)) {
-            return Settings::getDefaultSchemaConfiguration();
+            return UserSettings::getDefaultSchemaConfiguration();
         }
 
         $schemaConfiguration = $schemaConfigurationBlockDataItem['attrs'][SchemaConfigurationBlock::ATTRIBUTE_NAME_SCHEMA_CONFIGURATION];
@@ -60,7 +60,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         if ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_NONE) {
             return null;
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT) {
-            return Settings::getDefaultSchemaConfiguration();
+            return UserSettings::getDefaultSchemaConfiguration();
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT) {
             // Return the schema configuration from the parent, or null if no parent exists
             $customPost = \get_post($customPostID);

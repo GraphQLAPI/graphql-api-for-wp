@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\Settings;
 
 /**
- * Settings
+ * User Settings
  */
-class Settings
+class UserSettings
 {
-    public const OPTIONS_NAME = 'graphql-api-settings';
+    public const OPTION_SETTINGS = 'graphql-api-settings';
 
     public static function getDefaultSchemaConfiguration(): ?int
     {
