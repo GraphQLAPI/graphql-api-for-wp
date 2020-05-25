@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI;
 
-use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
-use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Environment;
+use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
-use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
+use PoP\APIEndpointsForWP\Environment as APIEndpointsForWPEnvironment;
+use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
+use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
+use PoP\APIEndpointsForWP\ComponentConfiguration as APIEndpointsForWPComponentConfiguration;
 
 class PluginConfiguration
 {
@@ -23,6 +27,7 @@ class PluginConfiguration
         self::setPredefinedEnvVariables();
         self::mapEnvVariablesToWPConfigConstants();
         self::defineEnvironmentConstantsFromSettings();
+        self::defineEnvironmentConstantsFromModules();
     }
 
     /**
@@ -36,6 +41,44 @@ class PluginConfiguration
          * Do not add caching
          */
         $_ENV[\PoP\Engine\Environment::ADD_MANDATORY_CACHE_CONTROL_DIRECTIVE] = "false";
+    }
+
+    /**
+     * Define the values for certain environment constants depending on a module being enabled or not
+     *
+     * @return array
+     */
+    protected static function defineEnvironmentConstantsFromModules(): void
+    {
+        // All the environment variables to override
+        $mappings = [
+            [
+                'module' => ModuleResolver::SINGLE_ENDPOINT,
+                'class' => APIEndpointsForWPComponentConfiguration::class,
+                'envVariable' => APIEndpointsForWPEnvironment::GRAPHQL_API_ENDPOINT,
+                'condition' => false,
+                'value' => '',
+            ],
+        ];
+        // For each environment variable, see if its value has been saved in the settings
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        foreach ($mappings as $mapping) {
+            $hookName = ComponentConfigurationHelpers::getHookName($mapping['class'], $mapping['envVariable']);
+            $module = $mapping['module'];
+            $condition = $mapping['condition'];
+            $valueIfCondition = $mapping['value'];
+            \add_filter(
+                $hookName,
+                function ($value) use ($moduleRegistry, $module, $condition, $valueIfCondition) {
+                    if ($moduleRegistry->isModuleEnabled($module) === $condition) {
+                        return $valueIfCondition;
+                    }
+                    return $value;
+                },
+                PHP_INT_MAX, // Execute last, to override any other filter
+                1
+            );
+        }
     }
 
     /**
