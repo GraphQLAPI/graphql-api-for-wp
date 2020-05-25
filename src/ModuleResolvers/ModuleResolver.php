@@ -6,6 +6,7 @@ namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
 class ModuleResolver extends AbstractModuleResolver
 {
+    public const MAIN = 'main';
     public const SINGLE_ENDPOINT = 'single-endpoint';
     public const PERSISTED_QUERIES = 'persisted-queries';
     public const CUSTOM_ENDPOINTS = 'custom-endpoints';
@@ -13,6 +14,7 @@ class ModuleResolver extends AbstractModuleResolver
     public const INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS = 'interactive-schema-for-custom-endpoints';
     public const SCHEMA_CONFIGURATION = 'schema-configuration';
     public const ACCESS_CONTROL = 'access-control';
+    public const ACCESS_CONTROL_RULE_DISABLE_ACCESS = 'access-control-rule-disable-access';
     public const ACCESS_CONTROL_RULE_USER_STATE = 'access-control-rule-user-state';
     public const ACCESS_CONTROL_RULE_USER_ROLES = 'access-control-rule-user-roles';
     public const ACCESS_CONTROL_RULE_USER_CAPABILITIES = 'access-control-rule-user-capabilities';
@@ -30,6 +32,7 @@ class ModuleResolver extends AbstractModuleResolver
     public static function getModulesToResolve(): array
     {
         return [
+            self::MAIN,
             self::PERSISTED_QUERIES,
             self::SINGLE_ENDPOINT,
             self::CUSTOM_ENDPOINTS,
@@ -37,6 +40,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS,
             self::SCHEMA_CONFIGURATION,
             self::ACCESS_CONTROL,
+            self::ACCESS_CONTROL_RULE_DISABLE_ACCESS,
             self::ACCESS_CONTROL_RULE_USER_STATE,
             self::ACCESS_CONTROL_RULE_USER_ROLES,
             self::ACCESS_CONTROL_RULE_USER_CAPABILITIES,
@@ -67,7 +71,9 @@ class ModuleResolver extends AbstractModuleResolver
     public function isHidden(string $module): bool
     {
         switch ($module) {
+            case self::MAIN:
             case self::SCHEMA_CONFIGURATION:
+            case self::ACCESS_CONTROL_RULE_DISABLE_ACCESS:
                 return true;
         }
         return parent::isHidden($module);
@@ -76,6 +82,7 @@ class ModuleResolver extends AbstractModuleResolver
     public function getName(string $module): string
     {
         $names = [
+            self::MAIN => \__('Main', 'graphql-api'),
             self::SINGLE_ENDPOINT => \__('Single Endpoint', 'graphql-api'),
             self::PERSISTED_QUERIES => \__('Persisted Queries', 'graphql-api'),
             self::CUSTOM_ENDPOINTS => \__('Custom Endpoints', 'graphql-api'),
@@ -83,6 +90,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS => \__('Interactive Schema for Custom Endpoints', 'graphql-api'),
             self::SCHEMA_CONFIGURATION => \__('Schema Configuration', 'graphql-api'),
             self::ACCESS_CONTROL => \__('Access Control', 'graphql-api'),
+            self::ACCESS_CONTROL_RULE_DISABLE_ACCESS => \__('Access Control Rule: Disable Access', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_USER_STATE => \__('Access Control Rule: User State', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_USER_ROLES => \__('Access Control Rule: User Roles', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_USER_CAPABILITIES => \__('Access Control Rule: User Capabilities', 'graphql-api'),
@@ -103,6 +111,7 @@ class ModuleResolver extends AbstractModuleResolver
     public function getDescription(string $module): string
     {
         $descriptions = [
+            self::MAIN => \__('Main functionality module, can\'t be disabled but is required for defining the main settings', 'graphql-api'),
             self::SINGLE_ENDPOINT => \sprintf(
                 \__('Make data queryable through a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
                 '/graphql/'
@@ -113,6 +122,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached an Interactive schema client, to visualize the schema from the custom endpoint after applying all the access control rules. It depends on module "Custom Endpoints"', 'graphql-api'),
             self::SCHEMA_CONFIGURATION => \__('Configure the different elements that modify the behavior of the schema (access control, cache control, etc)', 'graphql-api'),
             self::ACCESS_CONTROL => \__('Set-up rules to define who can access the different fields and directives from a schema', 'graphql-api'),
+            self::ACCESS_CONTROL_RULE_DISABLE_ACCESS => \__('Remove access to the fields and directives. It depends on module "Access Control"', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_USER_STATE => \__('Allow or reject access to the fields and directives based on the user being logged-in or not. It depends on module "Access Control"', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_USER_ROLES => \__('Allow or reject access to the fields and directives based on the user having a certain role. It depends on module "Access Control"', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_USER_CAPABILITIES => \__('Allow or reject access to the fields and directives based on the user having a certain capability. It depends on module "Access Control"', 'graphql-api'),
