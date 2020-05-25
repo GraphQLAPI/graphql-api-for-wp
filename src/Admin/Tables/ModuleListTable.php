@@ -161,7 +161,6 @@ class ModuleListTable extends AbstractItemListTable
         );
     }
 
-
     /**
      * Method for name column
      *
@@ -234,20 +233,6 @@ class ModuleListTable extends AbstractItemListTable
             'description' => \__('Description', 'graphql-api'),
         ];
     }
-
-
-    // /**
-    //  * Columns to make sortable.
-    //  *
-    //  * @return array
-    //  */
-    // public function get_sortable_columns()
-    // {
-    //     $sortable_columns = array(
-    //         'description' => array('description', false),
-    //     );
-    //     return $sortable_columns;
-    // }
 
     /**
      * Returns an associative array containing the bulk action
