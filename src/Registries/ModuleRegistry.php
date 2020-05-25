@@ -46,10 +46,6 @@ class ModuleRegistry implements ModuleRegistryInterface
         }
         return null;
     }
-    public function getModuleID(string $module): string
-    {
-        return $module;
-    }
     public function isModuleEnabled(string $module): bool
     {
         $moduleResolver = $this->getModuleResolver($module);
@@ -64,7 +60,7 @@ class ModuleRegistry implements ModuleRegistryInterface
         if (!$this->areDependedModulesEnabled($module)) {
             return false;
         }
-        $moduleID = $this->getModuleID($module);
+        $moduleID = $moduleResolver->getID($module);
         // Check if the value has been saved on the DB
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
         if ($userSettingsManager->hasModuleItem($moduleID)) {

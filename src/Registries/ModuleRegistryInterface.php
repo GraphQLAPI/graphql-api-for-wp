@@ -13,7 +13,6 @@ interface ModuleRegistryInterface
     public function getAllModules(bool $onlyVisible = true): array;
     public function getModuleResolverClass(string $module): ?string;
     public function getModuleResolver(string $module): ?ModuleResolverInterface;
-    public function getModuleID(string $module): string;
     public function isModuleEnabled(string $module): bool;
     /**
      * If a module was disabled by the user, then the user can enable it.
