@@ -29,7 +29,7 @@ class Component extends AbstractComponent
 
     public static function getDependedComponentClasses(): array
     {
-        return [
+        $componentClasses = [
             \PoP\CommentMetaWP\Component::class,
             \PoP\GraphQL\Component::class,
             \PoP\MediaWP\Component::class,
@@ -41,10 +41,19 @@ class Component extends AbstractComponent
             \PoP\UserRolesWP\Component::class,
             \PoP\UserStateWP\Component::class,
             \PoP\UserMetaWP\Component::class,
-            \PoP\UsefulDirectives\Component::class,
             \PoP\FieldDeprecationByDirective\Component::class,
-            \PoP\APIEndpointsForWP\Component::class,
+            \PoP\BasicDirectives\Component::class, // Needed for if UsefulDirectives is disabled
         ];
+        // Check if enabled by module
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if ($moduleRegistry->isModuleEnabled(ModuleResolver::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE)) {
+            $componentClasses[] = \PoP\UsefulDirectives\Component::class;
+        }
+        if ($moduleRegistry->isModuleEnabled(ModuleResolver::SINGLE_ENDPOINT)) {
+            $componentClasses[] = \PoP\APIEndpointsForWP\Component::class;
+        }
+
+        return $componentClasses;
     }
 
     /**
