@@ -6,9 +6,11 @@ namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
 use PoP\ComponentModel\Misc\GeneralUtils;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
-use PoP\AccessControl\Facades\AccessControlManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractControlBlock;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use PoP\AccessControl\Facades\AccessControlManagerFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AbstractAccessControlRuleBlock;
 
@@ -27,6 +29,12 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
      */
     public function executeSchemaConfiguration(int $aclPostID): void
     {
+        // Only if the module is not disabled
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::ACCESS_CONTROL)) {
+            return;
+        }
+
         $instanceManager = InstanceManagerFacade::getInstance();
         $aclBlockItems = BlockHelpers::getBlocksOfTypeFromCustomPost(
             $aclPostID,

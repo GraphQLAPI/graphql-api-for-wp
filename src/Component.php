@@ -8,8 +8,10 @@ use PoP\ComponentModel\Environment;
 use PoP\Root\Component\AbstractComponent;
 use PoP\Root\Component\YAMLServicesTrait;
 use PoP\ComponentModel\ComponentConfiguration;
-use GraphQLAPI\GraphQLAPI\Container\ContainerBuilderUtils;
 use GraphQLAPI\GraphQLAPI\Config\ServiceConfiguration;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use GraphQLAPI\GraphQLAPI\Container\ContainerBuilderUtils;
 use PoP\ComponentModel\Facades\Engine\DataloadingEngineFacade;
 use PoP\CacheControl\DirectiveResolvers\CacheControlDirectiveResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
@@ -100,12 +102,16 @@ class Component extends AbstractComponent
     {
         parent::boot();
 
-        // Enable the CacheControl, unless previewing the query
-        if (!\is_preview()) {
-            $dataloadingEngine = DataloadingEngineFacade::getInstance();
-            $dataloadingEngine->addMandatoryDirectives([
-                CacheControlDirectiveResolver::getDirectiveName(),
-            ]);
+        // Enable the CacheControl, if the module is not disabled
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if ($moduleRegistry->isModuleEnabled(ModuleResolver::CACHE_CONTROL)) {
+            // Unless previewing the query
+            if (!\is_preview()) {
+                $dataloadingEngine = DataloadingEngineFacade::getInstance();
+                $dataloadingEngine->addMandatoryDirectives([
+                    CacheControlDirectiveResolver::getDirectiveName(),
+                ]);
+            }
         }
 
         // Configure the GraphQL query with Access/Cache Control Lists

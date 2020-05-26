@@ -6,9 +6,11 @@ namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
 use PoP\ComponentModel\Misc\GeneralUtils;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
-use PoP\CacheControl\Facades\CacheControlManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\CacheControlBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractControlBlock;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use PoP\CacheControl\Facades\CacheControlManagerFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigurator
@@ -23,6 +25,12 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
     {
         // Only execute for GET operations
         if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+            return;
+        }
+
+        // Only if the module is not disabled
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::CACHE_CONTROL)) {
             return;
         }
 
