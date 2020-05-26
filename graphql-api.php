@@ -53,14 +53,20 @@ $maybeIgnoreModuleComponentClasses = [
         \PoP\PostMedia\Component::class,
         \PoP\PostMetaWP\Component::class,
         \PoP\PostMeta\Component::class,
+        \PoP\PostsWP\Component::class,
+        \PoP\Posts\Component::class,
     ],
     ModuleResolver::SCHEMA_COMMENT_TYPE => [
         \PoP\CommentMetaWP\Component::class,
         \PoP\CommentMeta\Component::class,
+        \PoP\CommentsWP\Component::class,
+        \PoP\Comments\Component::class,
     ],
     ModuleResolver::SCHEMA_USER_TYPE => [
         \PoP\UserMetaWP\Component::class,
         \PoP\UserMeta\Component::class,
+        \PoP\UsersWP\Component::class,
+        \PoP\Users\Component::class,
     ],
     ModuleResolver::SCHEMA_PAGE_TYPE => [
         \PoP\PagesWP\Component::class,
@@ -75,6 +81,10 @@ $maybeIgnoreModuleComponentClasses = [
     ModuleResolver::SCHEMA_TAXONOMY_TYPE => [
         \PoP\TaxonomiesWP\Component::class,
         \PoP\Taxonomies\Component::class,
+        \PoP\TaxonomyMetaWP\Component::class,
+        \PoP\TaxonomyMeta\Component::class,
+        \PoP\TaxonomyQueryWP\Component::class,
+        \PoP\TaxonomyQuery\Component::class,
     ],
 ];
 $ignoreModuleComponentClasses = array_filter(
