@@ -48,6 +48,11 @@ class FieldDeprecationGraphQLQueryConfigurator extends AbstractGraphQLQueryConfi
                                     // Once getting the entry, we an obtain the type and field,
                                     // and we can modify the deprecated reason in the entry adding this information
                                     $typeResolverClass = $entry[0];
+                                    // If we had a module (eg: "Users") and saved an entry with it,
+                                    // and then disable it, the typeResolveClass will be null
+                                    if (is_null($typeResolverClass)) {
+                                        return null;
+                                    }
                                     $typeResolver = $instanceManager->getInstance($typeResolverClass);
                                     $entry[2] = sprintf(
                                         \__('Field \'%1$s\' from type \'%2$s\' has been deprecated: %3$s'),
