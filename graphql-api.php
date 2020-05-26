@@ -41,11 +41,17 @@ $plugin = new \GraphQLAPI\GraphQLAPI\Plugin();
 \GraphQLAPI\GraphQLAPI\PluginConfiguration::initialize();
 
 // Component classes enabled/disabled by module
-$ignoreComponentClasses = [];
 $moduleRegistry = ModuleRegistryFacade::getInstance();
-if (!$moduleRegistry->isModuleEnabled(ModuleResolver::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE)) {
-    $ignoreComponentClasses[] = \PoP\UsefulDirectives\Component::class;
-}
+$maybeIgnoreComponentClassModules = [
+    \PoP\UsefulDirectives\Component::class => ModuleResolver::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE,
+];
+$ignoreComponentClassModules = array_filter(
+    $maybeIgnoreComponentClassModules,
+    function ($module) use ($moduleRegistry) {
+        return !$moduleRegistry->isModuleEnabled($module);
+    }
+);
+$ignoreComponentClasses = array_keys($ignoreComponentClassModules);
 
 // Initialize the plugin's Component and, with it, all its dependencies from PoP
 \PoP\Engine\ComponentLoader::initializeComponents(
