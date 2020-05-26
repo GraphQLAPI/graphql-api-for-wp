@@ -72,6 +72,10 @@ $maybeIgnoreModuleComponentClasses = [
         \PoP\MediaWP\Component::class,
         \PoP\Media\Component::class,
     ],
+    ModuleResolver::SCHEMA_TAXONOMY_TYPE => [
+        \PoP\TaxonomiesWP\Component::class,
+        \PoP\Taxonomies\Component::class,
+    ],
 ];
 $ignoreModuleComponentClasses = array_filter(
     $maybeIgnoreModuleComponentClasses,

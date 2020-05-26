@@ -30,6 +30,7 @@ class ModuleResolver extends AbstractModuleResolver
     public const SCHEMA_USER_TYPE = Plugin::NAMESPACE . '\schema-user-type';
     public const SCHEMA_PAGE_TYPE = Plugin::NAMESPACE . '\schema-page-type';
     public const SCHEMA_MEDIA_TYPE = Plugin::NAMESPACE . '\schema-media-type';
+    public const SCHEMA_TAXONOMY_TYPE = Plugin::NAMESPACE . '\schema-taxonomy-type';
 
     public static function getModulesToResolve(): array
     {
@@ -56,6 +57,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::SCHEMA_USER_TYPE,
             self::SCHEMA_PAGE_TYPE,
             self::SCHEMA_MEDIA_TYPE,
+            self::SCHEMA_TAXONOMY_TYPE,
         ];
     }
 
@@ -202,6 +204,12 @@ class ModuleResolver extends AbstractModuleResolver
                         self::SINGLE_ENDPOINT,
                     ],
                 ];
+            case self::SCHEMA_TAXONOMY_TYPE:
+                return [
+                    [
+                        self::SCHEMA_POST_TYPE,
+                    ],
+                ];
         }
         return parent::getDependedModuleLists($module);
     }
@@ -259,6 +267,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::SCHEMA_USER_TYPE => \__('Schema User Type', 'graphql-api'),
             self::SCHEMA_PAGE_TYPE => \__('Schema Page Type', 'graphql-api'),
             self::SCHEMA_MEDIA_TYPE => \__('Schema Media Type', 'graphql-api'),
+            self::SCHEMA_TAXONOMY_TYPE => \__('Schema Taxonomy Type', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
     }
@@ -295,6 +304,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::SCHEMA_USER_TYPE => \__('Enable querying for users in the schema', 'graphql-api'),
             self::SCHEMA_PAGE_TYPE => \__('Enable querying for pages in the schema', 'graphql-api'),
             self::SCHEMA_MEDIA_TYPE => \__('Enable querying for media items in the schema', 'graphql-api'),
+            self::SCHEMA_TAXONOMY_TYPE => \__('Enable querying for tags and categories in the schema', 'graphql-api'),
         ];
         return $descriptions[$module] ?? parent::getDescription($module);
     }
