@@ -220,13 +220,25 @@ class ModuleListTable extends AbstractItemListTable
                 \__('Enable', 'graphql-api')
             );
         } else {
-            // Commented because, without a link, color contrast is not good: gray font color over gray background
-            // // Not enabled and can't be enabled, mention requirements not met
-            // $actions['can-not-enable'] = \__('Requirements not met, or dependencies not enabled', 'graphql-api');
+            // Not enabled and can't be enabled, mention requirements not met
+            // Not enabled for "striped" table style because, without a link, color contrast is not good:
+            // gray font color over gray background
+            // if ($this->usePluginTableStyle()) {
+            $actions['disabled'] = \__('Disabled', 'graphql-api');
+            // }
         }
-        return $title . $this->row_actions($actions);
+    return $title . $this->row_actions($actions/*, $this->usePluginTableStyle()*/);
     }
 
+    /**
+     * Indicate if to show the enabled column or not
+     *
+     * @return array
+     */
+    protected function usePluginTableStyle(): bool
+    {
+        return true;
+    }
 
     /**
      *  Associative array of columns
@@ -235,12 +247,20 @@ class ModuleListTable extends AbstractItemListTable
      */
     public function get_columns()
     {
-        return [
-            'cb' => '<input type="checkbox" />',
-            'name' => \__('Name', 'graphql-api'),
-            'enabled' => \__('Enabled', 'graphql-api'),
-            'description' => \__('Description', 'graphql-api'),
-        ];
+        return array_merge(
+            [
+                'cb' => '<input type="checkbox" />',
+                'name' => \__('Module', 'graphql-api'),
+            ],
+            $this->usePluginTableStyle() ?
+                [] :
+                [
+                    'enabled' => \__('Enabled', 'graphql-api'),
+                ],
+            [
+                'description' => \__('Description', 'graphql-api'),
+            ]
+        );
     }
 
     /**
@@ -256,6 +276,52 @@ class ModuleListTable extends AbstractItemListTable
         ];
     }
 
+    /**
+     * Get a list of CSS classes for the WP_List_Table table tag.
+     *
+     * @since 3.1.0
+     *
+     * @return string[] Array of CSS classes for the table tag.
+     */
+    protected function get_table_classes()
+    {
+        // return array_merge(
+        //     parent::get_table_classes(),
+        //     [
+        //         'plugins'
+        //     ]
+        // );
+        if ($this->usePluginTableStyle()) {
+            return array( 'widefat', 'plugins', $this->_args['plural'] );
+        }
+        return array_diff(
+            parent::get_table_classes(),
+            [
+                'fixed'
+            ]
+        );
+    }
+
+    /**
+     * Generates content for a single row of the table
+     *
+     * @since 3.1.0
+     *
+     * @param object $item The current item
+     */
+    public function single_row($item)
+    {
+        if ($this->usePluginTableStyle()) {
+            echo sprintf(
+                '<tr class="%s">',
+                $item['is-enabled'] ? 'active' : 'inactive'
+            );
+            $this->single_row_columns($item);
+            echo '</tr>';
+        } else {
+            parent::single_row($item);
+        }
+    }
 
     /**
      * Handles data query and filter, sorting, and pagination.
@@ -304,11 +370,26 @@ class ModuleListTable extends AbstractItemListTable
     {
         ?>
         <style type="text/css">
-            /* .wp-list-table .column-cb { width: 5%; } */
-            .wp-list-table .column-name { width: 25%; }
-            .wp-list-table .column-enabled { width: 10%; }
-            .wp-list-table .column-description { width: 65%; }
+            .row-actions span.disabled { color: #969696; }
         </style>
         <?php
+        /*
+        if ($this->usePluginTableStyle()) {
+            ?>
+            <style type="text/css">
+                .wp-list-table .column-name { width: 25%; }
+                .wp-list-table .column-description { width: 75%; }
+            </style>
+            <?php
+        } else {
+            ?>
+            <style type="text/css">
+                .wp-list-table .column-name { width: 25%; }
+                .wp-list-table .column-enabled { width: 10%; }
+                .wp-list-table .column-description { width: 65%; }
+            </style>
+            <?php
+        }
+        */
     }
 }
