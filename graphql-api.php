@@ -1,4 +1,7 @@
 <?php
+
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 /*
 Plugin Name: GraphQL API for WordPress
 Plugin URI: https://github.com/leoloso/graphql-api-wp-plugin
@@ -37,11 +40,26 @@ $plugin = new \GraphQLAPI\GraphQLAPI\Plugin();
 // before those hooks are triggered for first time (in ComponentConfiguration classes)
 \GraphQLAPI\GraphQLAPI\PluginConfiguration::initialize();
 
-// Initialize the plugin's Component and, with it, all dependencies from PoP
-\GraphQLAPI\GraphQLAPI\Component::initialize();
+// Component classes enabled/disabled by module
+$ignoreComponentClasses = [];
+$moduleRegistry = ModuleRegistryFacade::getInstance();
+if (!$moduleRegistry->isModuleEnabled(ModuleResolver::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE)) {
+    $ignoreComponentClasses[] = \PoP\UsefulDirectives\Component::class;
+}
+if (!$moduleRegistry->isModuleEnabled(ModuleResolver::SINGLE_ENDPOINT)) {
+    $ignoreComponentClasses[] = \PoP\APIEndpointsForWP\Component::class;
+}
 
-// Initialize the PoP Engine through the Bootloader
-\PoP\Engine\Bootloader::bootComponents();
+// Initialize the plugin's Component and, with it, all its dependencies from PoP
+\PoP\Engine\ComponentLoader::initializeComponents(
+    [
+        \GraphQLAPI\GraphQLAPI\Component::class,
+    ],
+    $ignoreComponentClasses
+);
+
+// Boot all PoP components
+\PoP\Engine\ComponentLoader::bootComponents();
 
 /**
  * Wait until "plugins_loaded" to initialize the plugin, because:
