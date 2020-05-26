@@ -1,7 +1,4 @@
 <?php
-
-use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 /*
 Plugin Name: GraphQL API for WordPress
 Plugin URI: https://github.com/leoloso/graphql-api-wp-plugin
@@ -21,6 +18,11 @@ Domain Path: /languages
 if (!defined('ABSPATH')) {
     exit;
 }
+
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use PoP\ComponentModel\Misc\GeneralUtils;
+use PoP\Engine\ComponentLoader;
 
 define('GRAPHQL_API_DIR', dirname(__FILE__));
 define('GRAPHQL_API_URL', plugin_dir_url(__FILE__));
@@ -42,19 +44,46 @@ $plugin = new \GraphQLAPI\GraphQLAPI\Plugin();
 
 // Component classes enabled/disabled by module
 $moduleRegistry = ModuleRegistryFacade::getInstance();
-$maybeIgnoreComponentClassModules = [
-    \PoP\UsefulDirectives\Component::class => ModuleResolver::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE,
+$maybeIgnoreModuleComponentClasses = [
+    ModuleResolver::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => [
+        \PoP\UsefulDirectives\Component::class,
+    ],
+    ModuleResolver::SCHEMA_POST_TYPE => [
+        \PoP\PostMediaWP\Component::class,
+        \PoP\PostMedia\Component::class,
+        \PoP\PostMetaWP\Component::class,
+        \PoP\PostMeta\Component::class,
+    ],
+    ModuleResolver::SCHEMA_COMMENT_TYPE => [
+        \PoP\CommentMetaWP\Component::class,
+        \PoP\CommentMeta\Component::class,
+    ],
+    ModuleResolver::SCHEMA_USER_TYPE => [
+        \PoP\UserMetaWP\Component::class,
+        \PoP\UserMeta\Component::class,
+    ],
+    ModuleResolver::SCHEMA_PAGE_TYPE => [
+        \PoP\PagesWP\Component::class,
+        \PoP\Pages\Component::class,
+    ],
+    ModuleResolver::SCHEMA_MEDIA_TYPE => [
+        \PoP\PostMediaWP\Component::class,
+        \PoP\PostMedia\Component::class,
+        \PoP\MediaWP\Component::class,
+        \PoP\Media\Component::class,
+    ],
 ];
-$ignoreComponentClassModules = array_filter(
-    $maybeIgnoreComponentClassModules,
+$ignoreModuleComponentClasses = array_filter(
+    $maybeIgnoreModuleComponentClasses,
     function ($module) use ($moduleRegistry) {
         return !$moduleRegistry->isModuleEnabled($module);
-    }
+    },
+    ARRAY_FILTER_USE_KEY
 );
-$ignoreComponentClasses = array_keys($ignoreComponentClassModules);
+$ignoreComponentClasses = GeneralUtils::arrayFlatten(array_values($ignoreModuleComponentClasses));
 
 // Initialize the plugin's Component and, with it, all its dependencies from PoP
-\PoP\Engine\ComponentLoader::initializeComponents(
+ComponentLoader::initializeComponents(
     [
         \GraphQLAPI\GraphQLAPI\Component::class,
     ],
@@ -62,7 +91,7 @@ $ignoreComponentClasses = array_keys($ignoreComponentClassModules);
 );
 
 // Boot all PoP components
-\PoP\Engine\ComponentLoader::bootComponents();
+ComponentLoader::bootComponents();
 
 /**
  * Wait until "plugins_loaded" to initialize the plugin, because:
