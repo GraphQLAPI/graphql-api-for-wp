@@ -44,7 +44,7 @@ $plugin = new \GraphQLAPI\GraphQLAPI\Plugin();
 
 // Component classes enabled/disabled by module
 $moduleRegistry = ModuleRegistryFacade::getInstance();
-$maybeIgnoreModuleComponentClasses = [
+$maybeSkipSchemaModuleComponentClasses = [
     ModuleResolver::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => [
         \PoP\UsefulDirectives\Component::class,
     ],
@@ -67,6 +67,9 @@ $maybeIgnoreModuleComponentClasses = [
         \PoP\UserMeta\Component::class,
         \PoP\UsersWP\Component::class,
         \PoP\Users\Component::class,
+        \PoP\UserRolesWP\Component::class,
+        \PoP\UserRoles\Component::class,
+        \PoP\UserState\Component::class,
     ],
     ModuleResolver::SCHEMA_PAGE_TYPE => [
         \PoP\PagesWP\Component::class,
@@ -87,21 +90,21 @@ $maybeIgnoreModuleComponentClasses = [
         \PoP\TaxonomyQuery\Component::class,
     ],
 ];
-$ignoreModuleComponentClasses = array_filter(
-    $maybeIgnoreModuleComponentClasses,
+$skipSchemaModuleComponentClasses = array_filter(
+    $maybeSkipSchemaModuleComponentClasses,
     function ($module) use ($moduleRegistry) {
         return !$moduleRegistry->isModuleEnabled($module);
     },
     ARRAY_FILTER_USE_KEY
 );
-$ignoreComponentClasses = GeneralUtils::arrayFlatten(array_values($ignoreModuleComponentClasses));
+$skipSchemaComponentClasses = GeneralUtils::arrayFlatten(array_values($skipSchemaModuleComponentClasses));
 
 // Initialize the plugin's Component and, with it, all its dependencies from PoP
 ComponentLoader::initializeComponents(
     [
         \GraphQLAPI\GraphQLAPI\Component::class,
     ],
-    $ignoreComponentClasses
+    $skipSchemaComponentClasses
 );
 
 // Boot all PoP components

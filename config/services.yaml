@@ -40,10 +40,6 @@ services:
         resource: '../src/Hooks/*'
         public: true
 
-    GraphQLAPI\GraphQLAPI\FieldResolvers\:
-        resource: '../src/FieldResolvers/*'
-        public: true
-
     # GraphQLAPI\GraphQLAPI\ModuleResolvers\:
     #     resource: '../src/ModuleResolvers/*'
     #     public: true

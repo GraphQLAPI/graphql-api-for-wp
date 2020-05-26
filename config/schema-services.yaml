@@ -1,0 +1,4 @@
+services:
+    GraphQLAPI\GraphQLAPI\FieldResolvers\:
+        resource: '../src/FieldResolvers/*'
+        public: true
