@@ -269,7 +269,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::MAIN => \__('Main functionality module, can\'t be disabled but is required for defining the main settings', 'graphql-api'),
             self::SINGLE_ENDPOINT => \sprintf(
                 \__('Make data queryable through a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
-                '/graphql/'
+                '/api/graphql/'
             ),
             self::PERSISTED_QUERIES => \__('Expose a predefined response by publishing persisted GraphQL queries, and accessing them under their permalink', 'graphql-api'),
             self::CUSTOM_ENDPOINTS => \__('Make data queryable through custom endpoints, each accepting a different configuration (access control, cache control, etc)', 'graphql-api'),
