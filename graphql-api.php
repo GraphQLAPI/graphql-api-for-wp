@@ -46,9 +46,6 @@ $moduleRegistry = ModuleRegistryFacade::getInstance();
 if (!$moduleRegistry->isModuleEnabled(ModuleResolver::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE)) {
     $ignoreComponentClasses[] = \PoP\UsefulDirectives\Component::class;
 }
-if (!$moduleRegistry->isModuleEnabled(ModuleResolver::SINGLE_ENDPOINT)) {
-    $ignoreComponentClasses[] = \PoP\APIEndpointsForWP\Component::class;
-}
 
 // Initialize the plugin's Component and, with it, all its dependencies from PoP
 \PoP\Engine\ComponentLoader::initializeComponents(
