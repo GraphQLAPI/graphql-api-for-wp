@@ -49,8 +49,24 @@ $componentClassConfiguration = [
     ],
 ];
 
-// Component classes enabled/disabled by module
+// Set configuration values if modules are enabled or disabled
 $moduleRegistry = ModuleRegistryFacade::getInstance();
+$moduleToComponentClassConfigurationMappings = [
+    [
+        'module' => ModuleResolver::SINGLE_ENDPOINT,
+        'condition' => false,
+        'class' => \PoP\APIEndpointsForWP\Component::class,
+        'envVariable' => \PoP\APIEndpointsForWP\Environment::GRAPHQL_API_ENDPOINT,
+        'value' => '',
+    ],
+];
+foreach ($moduleToComponentClassConfigurationMappings as $mapping) {
+    if ($moduleRegistry->isModuleEnabled($mapping['module']) === $mapping['condition']) {
+        $componentClassConfiguration[$mapping['class']][$mapping['envVariable']] = $mapping['value'];
+    }
+}
+
+// Component classes enabled/disabled by module
 $maybeSkipSchemaModuleComponentClasses = [
     ModuleResolver::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => [
         \PoP\UsefulDirectives\Component::class,
