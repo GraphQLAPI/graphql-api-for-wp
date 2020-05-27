@@ -8,7 +8,6 @@ class BlockDevelopmentHotReload
 {
     public function initialize(): void
     {
-        // Initialize the GraphiQL
         \add_action('init', [$this, 'maybeRegisterScript']);
     }
 
