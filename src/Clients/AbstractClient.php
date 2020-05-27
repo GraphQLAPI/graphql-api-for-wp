@@ -104,8 +104,8 @@ abstract class AbstractClient
          * Then add the URL to the plugin to all assets (they are all located under "assets/...")
          */
         $fileContents = \str_replace(
-            '"' . $this->getAssetsDirname . '/',
-            '"' . \trim(\GRAPHQL_API_URL, '/') . $dirPath . '/' . $this->getAssetsDirname . '/',
+            '"' . $this->getAssetsDirname() . '/',
+            '"' . \trim(\GRAPHQL_API_URL, '/') . $dirPath . '/' . $this->getAssetsDirname() . '/',
             $fileContents
         );
 
