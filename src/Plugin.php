@@ -124,13 +124,6 @@ class Plugin
         foreach ($blockCategoryServiceClasses as $serviceClass) {
             $instanceManager->getInstance($serviceClass)->initialize();
         }
-        /**
-         * Clients
-         */
-        $clientServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\Clients');
-        foreach ($clientServiceClasses as $serviceClass) {
-            $instanceManager->getInstance($serviceClass)->initialize();
-        }
     }
 
     /**

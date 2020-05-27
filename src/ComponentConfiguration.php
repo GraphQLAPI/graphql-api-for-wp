@@ -7,7 +7,6 @@ namespace GraphQLAPI\GraphQLAPI;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use PoP\ComponentModel\ComponentConfiguration\EnvironmentValueHelpers;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationTrait;
-use PoP\APIEndpoints\EndpointUtils;
 
 class ComponentConfiguration
 {
@@ -22,8 +21,6 @@ class ComponentConfiguration
     private static $getPersistedQuerySlugBase;
     private static $getSchemaEditorAccessScheme;
     private static $enableLowLevelSchemaEditing;
-    private static $graphiQLClientEndpoint;
-    private static $voyagerClientEndpoint;
 
     /**
      * Print the excerpt as description in the custom post types
@@ -213,52 +210,6 @@ class ComponentConfiguration
         $selfProperty = &self::$enableLowLevelSchemaEditing;
         $defaultValue = false;
         $callback = [EnvironmentValueHelpers::class, 'toBool'];
-
-        // Initialize property from the environment/hook
-        self::maybeInitializeConfigurationValue(
-            $envVariable,
-            $selfProperty,
-            $defaultValue,
-            $callback
-        );
-        return $selfProperty;
-    }
-
-    /**
-     * GraphiQL client endpoint, to be executed against the GraphQL single endpoint
-     *
-     * @return string
-     */
-    public static function getGraphiQLClientEndpoint(): string
-    {
-        // Define properties
-        $envVariable = Environment::GRAPHIQL_CLIENT_ENDPOINT;
-        $selfProperty = &self::$graphiQLClientEndpoint;
-        $defaultValue = '/graphiql/';
-        $callback = [EndpointUtils::class, 'slashURI'];
-
-        // Initialize property from the environment/hook
-        self::maybeInitializeConfigurationValue(
-            $envVariable,
-            $selfProperty,
-            $defaultValue,
-            $callback
-        );
-        return $selfProperty;
-    }
-
-    /**
-     * Voyager client endpoint, to be executed against the GraphQL single endpoint
-     *
-     * @return string
-     */
-    public static function getVoyagerClientEndpoint(): string
-    {
-        // Define properties
-        $envVariable = Environment::VOYAGER_CLIENT_ENDPOINT;
-        $selfProperty = &self::$voyagerClientEndpoint;
-        $defaultValue = '/schema/';
-        $callback = [EndpointUtils::class, 'slashURI'];
 
         // Initialize property from the environment/hook
         self::maybeInitializeConfigurationValue(
