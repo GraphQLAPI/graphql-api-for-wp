@@ -135,7 +135,7 @@ abstract class AbstractClient
      *
      * @return void
      */
-    protected function isClientRequested(): bool
+    protected function isEndpointRequested(): bool
     {
         // Check if the URL ends with either /api/graphql/ or /api/rest/ or /api/
         $uri = EndpointUtils::removeMarkersFromURI($_SERVER['REQUEST_URI']);
@@ -149,10 +149,21 @@ abstract class AbstractClient
      */
     public function parseRequest(): void
     {
-        if ($this->isClientRequested()) {
+        if ($this->isEndpointRequested()) {
             echo $this->getClientHTML();
             die;
         }
+    }
+
+    /**
+     * If use full permalink, the endpoint must be the whole URL.
+     * Otherwise, it can be attached at the end of some other URI (eg: a custom post)
+     *
+     * @return boolean
+     */
+    protected function useFullPermalink(): bool
+    {
+        return false;
     }
 
     /**
@@ -162,7 +173,14 @@ abstract class AbstractClient
      */
     public function addRewriteEndpoints()
     {
-        \add_rewrite_endpoint($this->endpoint, constant('EP_ALL'));
+        /**
+         * The mask indicates where to apply the endpoint rewriting
+         * @see https://codex.wordpress.org/Rewrite_API/add_rewrite_endpoint
+         */
+        $mask = $this->useFullPermalink() ? constant('EP_ROOT') : constant('EP_ALL');
+
+        // The endpoint passed to `add_rewrite_endpoint` cannot have "/" on either end, or it doesn't work
+        \add_rewrite_endpoint(trim($this->endpoint, '/'), $mask);
     }
 
     /**

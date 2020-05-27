@@ -7,6 +7,7 @@ namespace GraphQLAPI\GraphQLAPI;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use PoP\ComponentModel\ComponentConfiguration\EnvironmentValueHelpers;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationTrait;
+use PoP\APIEndpointsForWP\EndpointUtils;
 
 class ComponentConfiguration
 {
@@ -233,13 +234,15 @@ class ComponentConfiguration
         // Define properties
         $envVariable = Environment::GRAPHIQL_CLIENT_ENDPOINT;
         $selfProperty = &self::$graphiQLClientEndpoint;
-        $defaultValue = 'graphiql';
+        $defaultValue = '/graphiql/';
+        $callback = [EndpointUtils::class, 'slashURI'];
 
         // Initialize property from the environment/hook
         self::maybeInitializeConfigurationValue(
             $envVariable,
             $selfProperty,
-            $defaultValue
+            $defaultValue,
+            $callback
         );
         return $selfProperty;
     }
@@ -254,13 +257,15 @@ class ComponentConfiguration
         // Define properties
         $envVariable = Environment::VOYAGER_CLIENT_ENDPOINT;
         $selfProperty = &self::$voyagerClientEndpoint;
-        $defaultValue = 'schema';
+        $defaultValue = '/schema/';
+        $callback = [EndpointUtils::class, 'slashURI'];
 
         // Initialize property from the environment/hook
         self::maybeInitializeConfigurationValue(
             $envVariable,
             $selfProperty,
-            $defaultValue
+            $defaultValue,
+            $callback
         );
         return $selfProperty;
     }
