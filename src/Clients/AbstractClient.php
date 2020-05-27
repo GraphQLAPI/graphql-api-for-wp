@@ -55,12 +55,37 @@ abstract class AbstractClient
         }
     }
 
+    /**
+     * Vendor Dir Path
+     *
+     * @return string
+     */
     abstract protected function getVendorDirPath(): string;
+    /**
+     * JavaScript file name
+     *
+     * @return string
+     */
+    abstract protected function getJSFilename(): string;
+    /**
+     * HTML file name
+     *
+     * @return string
+     */
     protected function getIndexFilename(): string
     {
         return 'index.html';
     }
-    abstract protected function getJSFilename(): string;
+    /**
+     * Assets folder name
+     *
+     * @return string
+     */
+    protected function getAssetsDirname(): string
+    {
+        return 'assets';
+    }
+
     /**
      * HTML to print the client
      *
@@ -70,10 +95,8 @@ abstract class AbstractClient
     {
         // Read from the static HTML files and replace their endpoints
         $dirPath = $this->getVendorDirPath();
-        // Read the file, and return it already
         $file = \GRAPHQL_API_DIR . $dirPath . '/' . $this->getIndexFilename();
         $fileContents = \file_get_contents($file, true);
-        // Modify the script path
         $jsFileName = $this->getJSFilename();
         /**
          * Relative asset paths do not work, since the location of the JS/CSS file is
@@ -81,16 +104,18 @@ abstract class AbstractClient
          * Then add the URL to the plugin to all assets (they are all located under "assets/...")
          */
         $fileContents = \str_replace(
-            '"assets/',
-            '"' . \trim(\GRAPHQL_API_URL, '/') . $dirPath . '/assets/',
+            '"' . $this->getAssetsDirname . '/',
+            '"' . \trim(\GRAPHQL_API_URL, '/') . $dirPath . '/' . $this->getAssetsDirname . '/',
             $fileContents
         );
 
+        // Current domain
         $domain = \getDomain(\fullUrl());
         $endpointURL = $domain . '/api/graphql/';
         if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
             $endpointURL = \add_query_arg(Request::URLPARAM_USE_NAMESPACE, true, $endpointURL);
         }
+        // Modify the endpoint, as a param to the script
         $fileContents = \str_replace(
             '/' . $jsFileName . '?',
             '/' . $jsFileName . '?endpoint=' . urlencode($endpointURL) . '&',
