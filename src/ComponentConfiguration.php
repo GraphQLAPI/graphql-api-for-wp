@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI;
 
-use PoP\ComponentModel\ComponentConfiguration\AbstractComponentConfiguration;
+use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationTrait;
 
-class ComponentConfiguration extends AbstractComponentConfiguration
+class ComponentConfiguration
 {
+    use ComponentConfigurationTrait;
+
     private static $addExcerptAsDescription;
     private static $groupFieldsUnderTypeForPrint;
     private static $getEmptyLabel;
@@ -26,7 +28,7 @@ class ComponentConfiguration extends AbstractComponentConfiguration
         $callback = [Environment::class, 'addExcerptAsDescription'];
 
         // Initialize property from the environment/hook
-        self::maybeInitEnvironmentVariable(
+        self::maybeInitializeConfigurationValue(
             $envVariable,
             $selfProperty,
             $callback
@@ -42,7 +44,7 @@ class ComponentConfiguration extends AbstractComponentConfiguration
         $callback = [Environment::class, 'groupFieldsUnderTypeForPrint'];
 
         // Initialize property from the environment/hook
-        self::maybeInitEnvironmentVariable(
+        self::maybeInitializeConfigurationValue(
             $envVariable,
             $selfProperty,
             $callback
@@ -58,7 +60,7 @@ class ComponentConfiguration extends AbstractComponentConfiguration
         $callback = [Environment::class, 'getEmptyLabel'];
 
         // Initialize property from the environment/hook
-        self::maybeInitEnvironmentVariable(
+        self::maybeInitializeConfigurationValue(
             $envVariable,
             $selfProperty,
             $callback
@@ -74,7 +76,7 @@ class ComponentConfiguration extends AbstractComponentConfiguration
         $callback = [Environment::class, 'getSettingsValueLabel'];
 
         // Initialize property from the environment/hook
-        self::maybeInitEnvironmentVariable(
+        self::maybeInitializeConfigurationValue(
             $envVariable,
             $selfProperty,
             $callback
@@ -90,7 +92,7 @@ class ComponentConfiguration extends AbstractComponentConfiguration
         $callback = [Environment::class, 'useGraphiQLWithExplorer'];
 
         // Initialize property from the environment/hook
-        self::maybeInitEnvironmentVariable(
+        self::maybeInitializeConfigurationValue(
             $envVariable,
             $selfProperty,
             $callback
@@ -106,7 +108,7 @@ class ComponentConfiguration extends AbstractComponentConfiguration
         $callback = [Environment::class, 'getEndpointSlugBase'];
 
         // Initialize property from the environment/hook
-        self::maybeInitEnvironmentVariable(
+        self::maybeInitializeConfigurationValue(
             $envVariable,
             $selfProperty,
             $callback
@@ -122,7 +124,7 @@ class ComponentConfiguration extends AbstractComponentConfiguration
         $callback = [Environment::class, 'getPersistedQuerySlugBase'];
 
         // Initialize property from the environment/hook
-        self::maybeInitEnvironmentVariable(
+        self::maybeInitializeConfigurationValue(
             $envVariable,
             $selfProperty,
             $callback
@@ -138,7 +140,7 @@ class ComponentConfiguration extends AbstractComponentConfiguration
         $callback = [Environment::class, 'getSchemaEditorAccessScheme'];
 
         // Initialize property from the environment/hook
-        self::maybeInitEnvironmentVariable(
+        self::maybeInitializeConfigurationValue(
             $envVariable,
             $selfProperty,
             $callback
@@ -154,7 +156,7 @@ class ComponentConfiguration extends AbstractComponentConfiguration
         $callback = [Environment::class, 'enableLowLevelSchemaEditing'];
 
         // Initialize property from the environment/hook
-        self::maybeInitEnvironmentVariable(
+        self::maybeInitializeConfigurationValue(
             $envVariable,
             $selfProperty,
             $callback
