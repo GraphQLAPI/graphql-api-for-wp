@@ -17,6 +17,11 @@ abstract class AbstractClient
      */
     protected $endpoint;
 
+    /**
+     * Provide the endpoint
+     *
+     * @var string
+     */
     abstract protected function getEndpoint(): string;
 
     /**
@@ -126,16 +131,25 @@ abstract class AbstractClient
     }
 
     /**
-     * Process the request to find out if it is any of the endpoints
+     * Indicate if the endpoint has been requested
+     *
+     * @return void
+     */
+    protected function isClientRequested(): bool
+    {
+        // Check if the URL ends with either /api/graphql/ or /api/rest/ or /api/
+        $uri = EndpointUtils::removeMarkersFromURI($_SERVER['REQUEST_URI']);
+        return EndpointUtils::doesURIEndWith($uri, $this->endpoint);
+    }
+
+    /**
+     * If the endpoint for the client is requested, print the client and exit
      *
      * @return void
      */
     public function parseRequest(): void
     {
-        // Check if the URL ends with either /api/graphql/ or /api/rest/ or /api/
-        $uri = EndpointUtils::removeMarkersFromURI($_SERVER['REQUEST_URI']);
-        if (EndpointUtils::doesURIEndWith($uri, $this->endpoint)) {
-            // Print client and exit
+        if ($this->isClientRequested()) {
             echo $this->getClientHTML();
             die;
         }
