@@ -36,6 +36,10 @@ services:
         resource: '../src/BlockCategories/*'
         public: true
 
+    GraphQLAPI\GraphQLAPI\Clients\:
+        resource: '../src/Clients/*'
+        public: true
+
     GraphQLAPI\GraphQLAPI\Hooks\:
         resource: '../src/Hooks/*'
         public: true

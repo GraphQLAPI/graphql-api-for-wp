@@ -21,6 +21,8 @@ class ComponentConfiguration
     private static $getPersistedQuerySlugBase;
     private static $getSchemaEditorAccessScheme;
     private static $enableLowLevelSchemaEditing;
+    private static $graphiQLClientEndpoint;
+    private static $voyagerClientEndpoint;
 
     /**
      * Print the excerpt as description in the custom post types
@@ -182,7 +184,7 @@ class ComponentConfiguration
      *
      * @return string
      */
-    public static function getSchemaEditorAccessScheme(): ?string
+    public static function getSchemaEditorAccessScheme(): string
     {
         // Define properties
         $envVariable = Environment::SCHEMA_EDITOR_ACCESS_SCHEME;
@@ -217,6 +219,48 @@ class ComponentConfiguration
             $selfProperty,
             $defaultValue,
             $callback
+        );
+        return $selfProperty;
+    }
+
+    /**
+     * GraphiQL client endpoint, to be executed against the GraphQL single endpoint
+     *
+     * @return string
+     */
+    public static function getGraphiQLClientEndpoint(): string
+    {
+        // Define properties
+        $envVariable = Environment::GRAPHIQL_CLIENT_ENDPOINT;
+        $selfProperty = &self::$graphiQLClientEndpoint;
+        $defaultValue = 'graphiql';
+
+        // Initialize property from the environment/hook
+        self::maybeInitializeConfigurationValue(
+            $envVariable,
+            $selfProperty,
+            $defaultValue
+        );
+        return $selfProperty;
+    }
+
+    /**
+     * Voyager client endpoint, to be executed against the GraphQL single endpoint
+     *
+     * @return string
+     */
+    public static function getVoyagerClientEndpoint(): string
+    {
+        // Define properties
+        $envVariable = Environment::VOYAGER_CLIENT_ENDPOINT;
+        $selfProperty = &self::$voyagerClientEndpoint;
+        $defaultValue = 'schema';
+
+        // Initialize property from the environment/hook
+        self::maybeInitializeConfigurationValue(
+            $envVariable,
+            $selfProperty,
+            $defaultValue
         );
         return $selfProperty;
     }

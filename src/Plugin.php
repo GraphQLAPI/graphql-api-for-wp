@@ -19,6 +19,7 @@ use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserRolesB
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserStateBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlDisableAccessBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserCapabilitiesBlock;
+use GraphQLAPI\GraphQLAPI\Clients\GraphiQLClient;
 
 class Plugin
 {
@@ -121,6 +122,13 @@ class Plugin
          */
         $blockCategoryServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\BlockCategories');
         foreach ($blockCategoryServiceClasses as $serviceClass) {
+            $instanceManager->getInstance($serviceClass)->initialize();
+        }
+        /**
+         * Clients
+         */
+        $clientServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\Clients');
+        foreach ($clientServiceClasses as $serviceClass) {
             $instanceManager->getInstance($serviceClass)->initialize();
         }
     }
