@@ -19,9 +19,6 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
-use PoP\ComponentModel\Misc\GeneralUtils;
 use PoP\Engine\ComponentLoader;
 
 define('GRAPHQL_API_DIR', dirname(__FILE__));
@@ -43,84 +40,8 @@ $plugin = new \GraphQLAPI\GraphQLAPI\Plugin();
 \GraphQLAPI\GraphQLAPI\PluginConfiguration::initialize();
 
 // Component configuration
-$componentClassConfiguration = [
-    \PoP\Engine\Component::class => [
-        \PoP\Engine\Environment::ADD_MANDATORY_CACHE_CONTROL_DIRECTIVE => false,
-    ],
-];
-
-// Set configuration values if modules are enabled or disabled
-$moduleRegistry = ModuleRegistryFacade::getInstance();
-$moduleToComponentClassConfigurationMappings = [
-    [
-        'module' => ModuleResolver::SINGLE_ENDPOINT,
-        'condition' => false,
-        'class' => \PoP\APIEndpointsForWP\Component::class,
-        'envVariable' => \PoP\APIEndpointsForWP\Environment::GRAPHQL_API_ENDPOINT,
-        'value' => '',
-    ],
-];
-foreach ($moduleToComponentClassConfigurationMappings as $mapping) {
-    if ($moduleRegistry->isModuleEnabled($mapping['module']) === $mapping['condition']) {
-        $componentClassConfiguration[$mapping['class']][$mapping['envVariable']] = $mapping['value'];
-    }
-}
-
-// Component classes enabled/disabled by module
-$maybeSkipSchemaModuleComponentClasses = [
-    ModuleResolver::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => [
-        \PoP\UsefulDirectives\Component::class,
-    ],
-    ModuleResolver::SCHEMA_POST_TYPE => [
-        \PoP\PostMediaWP\Component::class,
-        \PoP\PostMedia\Component::class,
-        \PoP\PostMetaWP\Component::class,
-        \PoP\PostMeta\Component::class,
-        \PoP\PostsWP\Component::class,
-        \PoP\Posts\Component::class,
-    ],
-    ModuleResolver::SCHEMA_COMMENT_TYPE => [
-        \PoP\CommentMetaWP\Component::class,
-        \PoP\CommentMeta\Component::class,
-        \PoP\CommentsWP\Component::class,
-        \PoP\Comments\Component::class,
-    ],
-    ModuleResolver::SCHEMA_USER_TYPE => [
-        \PoP\UserMetaWP\Component::class,
-        \PoP\UserMeta\Component::class,
-        \PoP\UsersWP\Component::class,
-        \PoP\Users\Component::class,
-        \PoP\UserRolesWP\Component::class,
-        \PoP\UserRoles\Component::class,
-        \PoP\UserState\Component::class,
-    ],
-    ModuleResolver::SCHEMA_PAGE_TYPE => [
-        \PoP\PagesWP\Component::class,
-        \PoP\Pages\Component::class,
-    ],
-    ModuleResolver::SCHEMA_MEDIA_TYPE => [
-        \PoP\PostMediaWP\Component::class,
-        \PoP\PostMedia\Component::class,
-        \PoP\MediaWP\Component::class,
-        \PoP\Media\Component::class,
-    ],
-    ModuleResolver::SCHEMA_TAXONOMY_TYPE => [
-        \PoP\TaxonomiesWP\Component::class,
-        \PoP\Taxonomies\Component::class,
-        \PoP\TaxonomyMetaWP\Component::class,
-        \PoP\TaxonomyMeta\Component::class,
-        \PoP\TaxonomyQueryWP\Component::class,
-        \PoP\TaxonomyQuery\Component::class,
-    ],
-];
-$skipSchemaModuleComponentClasses = array_filter(
-    $maybeSkipSchemaModuleComponentClasses,
-    function ($module) use ($moduleRegistry) {
-        return !$moduleRegistry->isModuleEnabled($module);
-    },
-    ARRAY_FILTER_USE_KEY
-);
-$skipSchemaComponentClasses = GeneralUtils::arrayFlatten(array_values($skipSchemaModuleComponentClasses));
+$componentClassConfiguration = \GraphQLAPI\GraphQLAPI\PluginConfiguration::getComponentClassConfiguration();
+$skipSchemaComponentClasses = \GraphQLAPI\GraphQLAPI\PluginConfiguration::getSkippingSchemaComponentClasses();
 
 // Initialize the plugin's Component and, with it, all its dependencies from PoP
 ComponentLoader::initializeComponents(
