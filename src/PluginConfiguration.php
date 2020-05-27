@@ -24,23 +24,9 @@ class PluginConfiguration
      */
     public static function initialize(): void
     {
-        self::setPredefinedEnvVariables();
         self::mapEnvVariablesToWPConfigConstants();
         self::defineEnvironmentConstantsFromSettings();
         self::defineEnvironmentConstantsFromModules();
-    }
-
-    /**
-     * Define the pre-determined values for certain environment constants
-     *
-     * @return array
-     */
-    protected static function setPredefinedEnvVariables(): void
-    {
-        /**
-         * Do not add caching
-         */
-        $_ENV[\PoP\Engine\Environment::ADD_MANDATORY_CACHE_CONTROL_DIRECTIVE] = "false";
     }
 
     /**

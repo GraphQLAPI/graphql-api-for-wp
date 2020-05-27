@@ -42,6 +42,13 @@ $plugin = new \GraphQLAPI\GraphQLAPI\Plugin();
 // before those hooks are triggered for first time (in ComponentConfiguration classes)
 \GraphQLAPI\GraphQLAPI\PluginConfiguration::initialize();
 
+// Component configuration
+$componentClassConfiguration = [
+    \PoP\Engine\Component::class => [
+        \PoP\Engine\Environment::ADD_MANDATORY_CACHE_CONTROL_DIRECTIVE => false,
+    ],
+];
+
 // Component classes enabled/disabled by module
 $moduleRegistry = ModuleRegistryFacade::getInstance();
 $maybeSkipSchemaModuleComponentClasses = [
@@ -104,6 +111,7 @@ ComponentLoader::initializeComponents(
     [
         \GraphQLAPI\GraphQLAPI\Component::class,
     ],
+    $componentClassConfiguration,
     $skipSchemaComponentClasses
 );
 
