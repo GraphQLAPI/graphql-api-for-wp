@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Clients;
 
-use PoP\APIEndpointsForWP\EndpointUtils;
+use PoP\APIEndpoints\EndpointUtils;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use PoP\API\Configuration\Request;
 

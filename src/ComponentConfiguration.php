@@ -7,7 +7,7 @@ namespace GraphQLAPI\GraphQLAPI;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use PoP\ComponentModel\ComponentConfiguration\EnvironmentValueHelpers;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationTrait;
-use PoP\APIEndpointsForWP\EndpointUtils;
+use PoP\APIEndpoints\EndpointUtils;
 
 class ComponentConfiguration
 {
