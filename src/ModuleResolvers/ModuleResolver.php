@@ -79,9 +79,9 @@ class ModuleResolver extends AbstractModuleResolver
             case self::CUSTOM_ENDPOINTS:
             case self::SCHEMA_CACHE:
                 return [
-                    [
-                        self::MAIN,
-                    ],
+                    // [
+                    //     self::MAIN,
+                    // ],
                 ];
             case self::GRAPHIQL_FOR_SINGLE_ENDPOINT:
             case self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT:
