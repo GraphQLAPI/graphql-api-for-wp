@@ -254,8 +254,8 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
         // Read from the static HTML files and replace their endpoints
         $dirPaths = [
-            RequestParams::VIEW_GRAPHIQL => '/vendor/leoloso/pop-graphiql',
-            RequestParams::VIEW_SCHEMA => '/vendor/leoloso/pop-graphql-voyager',
+            RequestParams::VIEW_GRAPHIQL => '/vendor/getpop/graphql-clients-for-wp/clients/graphiql',
+            RequestParams::VIEW_SCHEMA => '/vendor/getpop/graphql-clients-for-wp/clients/voyager',
         ];
         $dirPath = $dirPaths[$_REQUEST[RequestParams::VIEW]];
         // Read the file, and return it already
