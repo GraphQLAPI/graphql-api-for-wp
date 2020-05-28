@@ -124,25 +124,22 @@ class GraphiQLMenuPage extends AbstractMenuPage
 #   Auto Complete:  Ctrl-Space (or just start typing)
 #
 query {
-  posts(limit:2) {
+  posts(limit:3) {
     id
     title
+    excerpt
+    date(format:"d/m/Y")
+    url
     author {
       id
       name
-      posts(limit:3) {
-        id
-        url
-        title
-        date(format:"d/m/Y")
-        tags {
-          name
-        }
-        featuredimage {
-          id
-          src
-        }
-      }
+      url
+    }
+    tags {
+      name
+    }
+    featuredImage {
+      src
     }
   }
 }
