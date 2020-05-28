@@ -92,7 +92,7 @@ class GraphiQLMenuPage extends AbstractMenuPage
 
     protected function getDefaultQuery(): string
     {
-        return <<<EOT
+        return \__(<<<EOT
 # Welcome to GraphiQL
 #
 # GraphiQL is an in-browser tool for writing, validating, and
@@ -123,6 +123,7 @@ class GraphiQLMenuPage extends AbstractMenuPage
 #
 #   Auto Complete:  Ctrl-Space (or just start typing)
 #
+
 query {
   posts(limit:3) {
     id
@@ -143,6 +144,6 @@ query {
   }
 }
 
-EOT;
+EOT, 'graphql-api');
     }
 }
