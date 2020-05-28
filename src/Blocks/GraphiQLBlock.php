@@ -61,6 +61,9 @@ class GraphiQLBlock extends AbstractBlock
      */
     protected function getDefaultQuery(): string
     {
+        // Temporarily print nothing, until "Ctrl+A" works well:
+        // @see https://github.com/WordPress/gutenberg/issues/22689
+        return '';
         return \__(<<<EOT
 # Welcome to GraphiQL
 #
