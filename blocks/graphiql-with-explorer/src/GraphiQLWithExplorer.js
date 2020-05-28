@@ -34,7 +34,6 @@ function fetcher(params) {
 		});
 }
 
-const DEFAULT_QUERY = window.graphqlApiGraphiql.defaultQuery;
 // const DEFAULT_QUERY = `# Welcome to GraphiQL
 // #
 // # GraphiQL is an in-browser tool for writing, validating, and
@@ -74,7 +73,6 @@ class GraphiQLWithExplorer extends Component {
 		this._graphiql = null;
 		this.state = {
 			schema: null,
-			defaultQuery: DEFAULT_QUERY,
 			explorerIsOpen: true,
 		};
 		this._handleEditQuery = this._handleEditQuery.bind(this);

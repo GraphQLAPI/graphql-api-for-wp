@@ -25,7 +25,6 @@ const EditBlock = ( props ) => {
 		setAttributes( { query: newValue } );
 	const onEditVariables = ( newValue ) =>
 		setAttributes( { variables: newValue } );
-	const defaultQuery = window.graphqlApiGraphiql.defaultQuery;
 	return (
 		<div className={ className }>
 			<GraphiQL
@@ -35,7 +34,6 @@ const EditBlock = ( props ) => {
 				onEditQuery={ onEditQuery }
 				onEditVariables={ onEditVariables }
 				docExplorerOpen={ false }
-				defaultQuery={ defaultQuery }
 			/>
 		</div>
 	);
