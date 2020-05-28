@@ -12,7 +12,9 @@ class ModuleResolver extends AbstractModuleResolver
     public const SINGLE_ENDPOINT = Plugin::NAMESPACE . '\single-endpoint';
     public const PERSISTED_QUERIES = Plugin::NAMESPACE . '\persisted-queries';
     public const CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\custom-endpoints';
+    public const GRAPHIQL_FOR_SINGLE_ENDPOINT = Plugin::NAMESPACE . '\graphiql-for-single-endpoint';
     public const GRAPHIQL_FOR_CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\graphiql-for-custom-endpoints';
+    public const INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT = Plugin::NAMESPACE . '\interactive-schema-for-single-endpoint';
     public const INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\interactive-schema-for-custom-endpoints';
     public const SCHEMA_CONFIGURATION = Plugin::NAMESPACE . '\schema-configuration';
     public const ACCESS_CONTROL = Plugin::NAMESPACE . '\access-control';
@@ -39,7 +41,9 @@ class ModuleResolver extends AbstractModuleResolver
             self::PERSISTED_QUERIES,
             self::SINGLE_ENDPOINT,
             self::CUSTOM_ENDPOINTS,
+            self::GRAPHIQL_FOR_SINGLE_ENDPOINT,
             self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS,
+            self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
             self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS,
             self::SCHEMA_CONFIGURATION,
             self::ACCESS_CONTROL,
@@ -65,29 +69,21 @@ class ModuleResolver extends AbstractModuleResolver
     {
         switch ($module) {
             case self::PERSISTED_QUERIES:
-                return [
-                    [
-                        self::MAIN,
-                    ],
-                ];
             case self::SINGLE_ENDPOINT:
-                return [
-                    [
-                        self::MAIN,
-                    ],
-                ];
             case self::CUSTOM_ENDPOINTS:
                 return [
                     [
                         self::MAIN,
                     ],
                 ];
-            case self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS:
+            case self::GRAPHIQL_FOR_SINGLE_ENDPOINT:
+            case self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT:
                 return [
                     [
-                        self::CUSTOM_ENDPOINTS,
+                        self::SINGLE_ENDPOINT,
                     ],
                 ];
+            case self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS:
             case self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS:
                 return [
                     [
@@ -95,62 +91,8 @@ class ModuleResolver extends AbstractModuleResolver
                     ],
                 ];
             case self::SCHEMA_CONFIGURATION:
-                return [
-                    [
-                        self::PERSISTED_QUERIES,
-                        self::CUSTOM_ENDPOINTS,
-                    ],
-                ];
             case self::ACCESS_CONTROL:
-                return [
-                    [
-                        self::PERSISTED_QUERIES,
-                        self::CUSTOM_ENDPOINTS,
-                    ],
-                ];
-            case self::ACCESS_CONTROL_RULE_DISABLE_ACCESS:
-                return [
-                    [
-                        self::ACCESS_CONTROL,
-                    ],
-                ];
-            case self::ACCESS_CONTROL_RULE_USER_STATE:
-                return [
-                    [
-                        self::ACCESS_CONTROL,
-                    ],
-                ];
-            case self::ACCESS_CONTROL_RULE_USER_ROLES:
-                return [
-                    [
-                        self::ACCESS_CONTROL,
-                    ],
-                ];
-            case self::ACCESS_CONTROL_RULE_USER_CAPABILITIES:
-                return [
-                    [
-                        self::ACCESS_CONTROL,
-                    ],
-                ];
-            case self::CACHE_CONTROL:
-                return [
-                    [
-                        self::PERSISTED_QUERIES,
-                    ],
-                ];
             case self::FIELD_DEPRECATION:
-                return [
-                    [
-                        self::PERSISTED_QUERIES,
-                        self::CUSTOM_ENDPOINTS,
-                    ],
-                ];
-            case self::GRAPHIQL_EXPLORER:
-                return [
-                    [
-                        self::PERSISTED_QUERIES,
-                    ],
-                ];
             case self::WELCOME_GUIDES:
                 return [
                     [
@@ -158,52 +100,35 @@ class ModuleResolver extends AbstractModuleResolver
                         self::CUSTOM_ENDPOINTS,
                     ],
                 ];
+            case self::ACCESS_CONTROL_RULE_DISABLE_ACCESS:
+            case self::ACCESS_CONTROL_RULE_USER_STATE:
+            case self::ACCESS_CONTROL_RULE_USER_ROLES:
+            case self::ACCESS_CONTROL_RULE_USER_CAPABILITIES:
+                return [
+                    [
+                        self::ACCESS_CONTROL,
+                    ],
+                ];
+            case self::CACHE_CONTROL:
+            case self::GRAPHIQL_EXPLORER:
+                return [
+                    [
+                        self::PERSISTED_QUERIES,
+                    ],
+                ];
             case self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE:
-                return [
-                    [
-                        self::PERSISTED_QUERIES,
-                        self::CUSTOM_ENDPOINTS,
-                        self::SINGLE_ENDPOINT,
-                    ],
-                ];
             case self::SCHEMA_POST_TYPE:
-                return [
-                    [
-                        self::PERSISTED_QUERIES,
-                        self::CUSTOM_ENDPOINTS,
-                        self::SINGLE_ENDPOINT,
-                    ],
-                ];
-            case self::SCHEMA_COMMENT_TYPE:
-                return [
-                    [
-                        self::SCHEMA_POST_TYPE,
-                    ],
-                ];
             case self::SCHEMA_USER_TYPE:
-                return [
-                    [
-                        self::PERSISTED_QUERIES,
-                        self::CUSTOM_ENDPOINTS,
-                        self::SINGLE_ENDPOINT,
-                    ],
-                ];
             case self::SCHEMA_PAGE_TYPE:
-                return [
-                    [
-                        self::PERSISTED_QUERIES,
-                        self::CUSTOM_ENDPOINTS,
-                        self::SINGLE_ENDPOINT,
-                    ],
-                ];
             case self::SCHEMA_MEDIA_TYPE:
                 return [
                     [
+                        self::SINGLE_ENDPOINT,
                         self::PERSISTED_QUERIES,
                         self::CUSTOM_ENDPOINTS,
-                        self::SINGLE_ENDPOINT,
                     ],
                 ];
+            case self::SCHEMA_COMMENT_TYPE:
             case self::SCHEMA_TAXONOMY_TYPE:
                 return [
                     [
@@ -249,7 +174,9 @@ class ModuleResolver extends AbstractModuleResolver
             self::SINGLE_ENDPOINT => \__('Single Endpoint', 'graphql-api'),
             self::PERSISTED_QUERIES => \__('Persisted Queries', 'graphql-api'),
             self::CUSTOM_ENDPOINTS => \__('Custom Endpoints', 'graphql-api'),
+            self::GRAPHIQL_FOR_SINGLE_ENDPOINT => \__('GraphiQL for Single Endpoint', 'graphql-api'),
             self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS => \__('GraphiQL for Custom Endpoints', 'graphql-api'),
+            self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => \__('Interactive Schema for Single Endpoint', 'graphql-api'),
             self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS => \__('Interactive Schema for Custom Endpoints', 'graphql-api'),
             self::SCHEMA_CONFIGURATION => \__('Schema Configuration', 'graphql-api'),
             self::ACCESS_CONTROL => \__('Access Control', 'graphql-api'),
@@ -282,8 +209,10 @@ class ModuleResolver extends AbstractModuleResolver
             ),
             self::PERSISTED_QUERIES => \__('Expose a predefined response by publishing persisted GraphQL queries, and accessing them under their permalink', 'graphql-api'),
             self::CUSTOM_ENDPOINTS => \__('Make data queryable through custom endpoints, each accepting a different configuration (access control, cache control, etc)', 'graphql-api'),
+            self::GRAPHIQL_FOR_SINGLE_ENDPOINT => \__('Enable the single endpoint to be attached a GraphiQL client, to execute queries against it. It depends on module "Single Endpoint"', 'graphql-api'),
             self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached a GraphiQL client, to execute queries against them. It depends on module "Custom Endpoints"', 'graphql-api'),
-            self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached an Interactive schema client, to visualize the schema from the custom endpoint after applying all the access control rules. It depends on module "Custom Endpoints"', 'graphql-api'),
+            self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => \__('Enable the single endpoint to be attached an Interactive schema client. It depends on module "Single Endpoint"', 'graphql-api'),
+            self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached an Interactive schema client. It depends on module "Custom Endpoints"', 'graphql-api'),
             self::SCHEMA_CONFIGURATION => \__('Configure the different elements that modify the behavior of the schema (access control, cache control, etc)', 'graphql-api'),
             self::ACCESS_CONTROL => \__('Set-up rules to define who can access the different fields and directives from a schema', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_DISABLE_ACCESS => \__('Remove access to the fields and directives. It depends on module "Access Control"', 'graphql-api'),
