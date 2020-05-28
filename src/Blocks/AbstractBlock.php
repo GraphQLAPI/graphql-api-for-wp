@@ -214,6 +214,16 @@ abstract class AbstractBlock
     }
 
     /**
+     * Dependencies to load before the block
+     *
+     * @return array
+     */
+    protected function getBlockDependencies(): array
+    {
+        return [];
+    }
+
+    /**
      * Registers all block assets so that they can be enqueued through the block editor
      * in the corresponding context.
      *
@@ -260,7 +270,10 @@ abstract class AbstractBlock
         \wp_register_script(
             $scriptRegistrationName,
             $url . $index_js,
-            $script_asset['dependencies'],
+            array_merge(
+                $script_asset['dependencies'],
+                $this->getBlockDependencies()
+            ),
             $script_asset['version']
         );
         $blockConfiguration['editor_script'] = $blockRegistrationName . '-block-editor';
