@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
-use PoP\API\Configuration\Request;
 use PoP\ComponentModel\State\ApplicationState;
 use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointVoyagerClient;
+use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointGraphiQLClient;
 use GraphQLAPI\GraphQLAPI\Blocks\EndpointOptionsBlock;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
@@ -17,7 +18,6 @@ use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
 use GraphQLAPI\GraphQLAPI\PostTypes\AbstractGraphQLQueryExecutionPostType;
-use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 
 class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 {
@@ -236,61 +236,28 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     {
         $vars = ApplicationState::getVars();
         $post = $vars['routing-state']['queried-object'];
-
+        $view = $_REQUEST[RequestParams::VIEW];
         // Read from the configuration if to expose the GraphiQL/Voyager client
-        switch ($_REQUEST[RequestParams::VIEW]) {
-            case RequestParams::VIEW_GRAPHIQL:
-                $exposeClient = $this->isGraphiQLEnabled($post);
-                break;
-            case RequestParams::VIEW_SCHEMA:
-                $exposeClient = $this->isVoyagerEnabled($post);
-                break;
-            default:
-                $exposeClient = false;
+        if (
+            (
+                $view == RequestParams::VIEW_GRAPHIQL
+                && $this->isGraphiQLEnabled($post)
+            )
+            || (
+                $view == RequestParams::VIEW_SCHEMA
+                && $this->isVoyagerEnabled($post)
+            )
+        ) {
+            // Print the HTML directly from the client
+            $clientClasses = [
+                RequestParams::VIEW_GRAPHIQL => CustomEndpointGraphiQLClient::class,
+                RequestParams::VIEW_SCHEMA => CustomEndpointVoyagerClient::class,
+            ];
+            $instanceManager = InstanceManagerFacade::getInstance();
+            $client = $instanceManager->getInstance($clientClasses[$view]);
+            echo $client->getClientHTML();
+            die;
         }
-        if (!$exposeClient) {
-            return;
-        }
-
-        // Read from the static HTML files and replace their endpoints
-        $dirPaths = [
-            RequestParams::VIEW_GRAPHIQL => '/vendor/getpop/graphql-clients-for-wp/clients/graphiql',
-            RequestParams::VIEW_SCHEMA => '/vendor/getpop/graphql-clients-for-wp/clients/voyager',
-        ];
-        $dirPath = $dirPaths[$_REQUEST[RequestParams::VIEW]];
-        // Read the file, and return it already
-        $file = \GRAPHQL_API_DIR . $dirPath . '/index.html';
-        $fileContents = \file_get_contents($file, true);
-        // Modify the script path
-        $jsFileNames = [
-            RequestParams::VIEW_GRAPHIQL => 'graphiql.js',
-            RequestParams::VIEW_SCHEMA => 'voyager.js',
-        ];
-        $jsFileName = $jsFileNames[$_REQUEST[RequestParams::VIEW]];
-        /**
-         * Relative asset paths do not work, since the location of the JS/CSS file is
-         * different than the URL under which the client is accessed.
-         * Then add the URL to the plugin to all assets (they are all located under "assets/...")
-         */
-        $fileContents = \str_replace(
-            '"assets/',
-            '"' . \trim(\GRAPHQL_API_URL, '/') . $dirPath . '/assets/',
-            $fileContents
-        );
-
-        $endpointURL = \remove_query_arg(RequestParams::VIEW, \fullUrl());
-        if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
-            $endpointURL = \add_query_arg(Request::URLPARAM_USE_NAMESPACE, true, $endpointURL);
-        }
-        $fileContents = \str_replace(
-            '/' . $jsFileName . '?',
-            '/' . $jsFileName . '?endpoint=' . urlencode($endpointURL) . '&',
-            $fileContents
-        );
-
-        // Print, and that's it!
-        echo $fileContents;
-        die;
     }
 
     /**
