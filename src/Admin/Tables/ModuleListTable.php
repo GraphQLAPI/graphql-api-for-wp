@@ -270,7 +270,7 @@ class ModuleListTable extends AbstractItemListTable
             $actions['details'] = \sprintf(
                 '<a href="%s">%s</a>',
                 $url,
-                \__('View details', 'graphql-api')
+                \__('View details<span class="dashicons dashicons-external"></span>', 'graphql-api')
             );
         }
         return $title . $this->row_actions($actions/*, $this->usePluginTableStyle()*/);
@@ -419,6 +419,7 @@ class ModuleListTable extends AbstractItemListTable
         <style type="text/css">
             .row-actions span.disabled { color: #969696; }
             .plugins .name { font-weight: normal; }
+            .plugins .dashicons { font-size: 16px; }
         </style>
         <?php
         /*
