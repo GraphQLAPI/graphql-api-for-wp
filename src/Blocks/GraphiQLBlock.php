@@ -76,21 +76,15 @@ class GraphiQLBlock extends AbstractBlock
 #
 # An example GraphQL query might look like:
 #
-#     {
-#       field(arg: "value") {
-#         subField
-#       }
+#   {
+#     field(arg: "value") {
+#       subField
 #     }
+#   }
 #
-# Keyboard shortcuts:
+# Run the query (at any moment):
 #
-#  Prettify Query:  Shift-Ctrl-P (or press the prettify button above)
-#
-#     Merge Query:  Shift-Ctrl-M (or press the merge button above)
-#
-#       Run Query:  Ctrl-Enter (or press the play button above)
-#
-#   Auto Complete:  Ctrl-Space (or just start typing)
+#   Ctrl-Enter (or press the play button above)
 #
 
 EOT, 'graphql-api');
