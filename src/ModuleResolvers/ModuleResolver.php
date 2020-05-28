@@ -17,6 +17,9 @@ class ModuleResolver extends AbstractModuleResolver
     public const INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT = Plugin::NAMESPACE . '\interactive-schema-for-single-endpoint';
     public const INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\interactive-schema-for-custom-endpoints';
     public const SCHEMA_CONFIGURATION = Plugin::NAMESPACE . '\schema-configuration';
+    public const SCHEMA_NAMESPACING = Plugin::NAMESPACE . '\schema-namespacing';
+    public const PUBLIC_PRIVATE_SCHEMA = Plugin::NAMESPACE . '\public-private-schema';
+    public const SCHEMA_CACHE = Plugin::NAMESPACE . '\schema-cache';
     public const ACCESS_CONTROL = Plugin::NAMESPACE . '\access-control';
     public const ACCESS_CONTROL_RULE_DISABLE_ACCESS = Plugin::NAMESPACE . '\access-control-rule-disable-access';
     public const ACCESS_CONTROL_RULE_USER_STATE = Plugin::NAMESPACE . '\access-control-rule-user-state';
@@ -46,6 +49,8 @@ class ModuleResolver extends AbstractModuleResolver
             self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS,
             self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS,
             self::SCHEMA_CONFIGURATION,
+            self::SCHEMA_NAMESPACING,
+            self::PUBLIC_PRIVATE_SCHEMA,
             self::ACCESS_CONTROL,
             self::ACCESS_CONTROL_RULE_DISABLE_ACCESS,
             self::ACCESS_CONTROL_RULE_USER_STATE,
@@ -53,6 +58,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::ACCESS_CONTROL_RULE_USER_CAPABILITIES,
             self::CACHE_CONTROL,
             self::FIELD_DEPRECATION,
+            self::SCHEMA_CACHE,
             self::GRAPHIQL_EXPLORER,
             self::WELCOME_GUIDES,
             self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE,
@@ -71,6 +77,7 @@ class ModuleResolver extends AbstractModuleResolver
             case self::PERSISTED_QUERIES:
             case self::SINGLE_ENDPOINT:
             case self::CUSTOM_ENDPOINTS:
+            case self::SCHEMA_CACHE:
                 return [
                     [
                         self::MAIN,
@@ -98,6 +105,8 @@ class ModuleResolver extends AbstractModuleResolver
                         self::CUSTOM_ENDPOINTS,
                     ],
                 ];
+            case self::SCHEMA_NAMESPACING:
+            case self::PUBLIC_PRIVATE_SCHEMA:
             case self::ACCESS_CONTROL:
             case self::FIELD_DEPRECATION:
                 return [
@@ -190,6 +199,9 @@ class ModuleResolver extends AbstractModuleResolver
             self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => \__('Interactive Schema for Single Endpoint', 'graphql-api'),
             self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS => \__('Interactive Schema for Custom Endpoints', 'graphql-api'),
             self::SCHEMA_CONFIGURATION => \__('Schema Configuration', 'graphql-api'),
+            self::SCHEMA_NAMESPACING => \__('Schema Namespacing', 'graphql-api'),
+            self::PUBLIC_PRIVATE_SCHEMA => \__('Public/Private Schema', 'graphql-api'),
+            self::SCHEMA_CACHE => \__('Schema Cache', 'graphql-api'),
             self::ACCESS_CONTROL => \__('Access Control', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_DISABLE_ACCESS => \__('Access Control Rule: Disable Access', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_USER_STATE => \__('Access Control Rule: User State', 'graphql-api'),
@@ -225,6 +237,9 @@ class ModuleResolver extends AbstractModuleResolver
             self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => \__('Expose a public Interactive Schema client, to visualize the schema accessible through the single endpoint. It depends on module "Single Endpoint"', 'graphql-api'),
             self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached an Interactive schema client. It depends on module "Custom Endpoints"', 'graphql-api'),
             self::SCHEMA_CONFIGURATION => \__('Configure the behavior of the schema (access control, cache control, etc) for Custom Endpoints and Persisted Queries. It depends on either "Custom Endpoints" or "Persisted Queries" modules being enabled', 'graphql-api'),
+            self::SCHEMA_NAMESPACING => \__('Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions', 'graphql-api'),
+            self::PUBLIC_PRIVATE_SCHEMA => \__('Decide to expose the availability of a field to everyone (public) or to selected users only (private)', 'graphql-api'),
+            self::SCHEMA_CACHE => \__('Cache the schema to avoid generating it on runtime, and speed-up the server\'s response', 'graphql-api'),
             self::ACCESS_CONTROL => \__('Set-up rules to define who can access the different fields and directives from a schema', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_DISABLE_ACCESS => \__('Remove access to the fields and directives. It depends on module "Access Control"', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_USER_STATE => \__('Allow or reject access to the fields and directives based on the user being logged-in or not. It depends on module "Access Control"', 'graphql-api'),
