@@ -91,13 +91,27 @@ class ModuleResolver extends AbstractModuleResolver
                     ],
                 ];
             case self::SCHEMA_CONFIGURATION:
-            case self::ACCESS_CONTROL:
-            case self::FIELD_DEPRECATION:
             case self::WELCOME_GUIDES:
                 return [
                     [
                         self::PERSISTED_QUERIES,
                         self::CUSTOM_ENDPOINTS,
+                    ],
+                ];
+            case self::ACCESS_CONTROL:
+            case self::FIELD_DEPRECATION:
+                return [
+                    [
+                        self::SCHEMA_CONFIGURATION,
+                    ],
+                ];
+            case self::CACHE_CONTROL:
+                return [
+                    [
+                        self::SCHEMA_CONFIGURATION,
+                    ],
+                    [
+                        self::PERSISTED_QUERIES,
                     ],
                 ];
             case self::ACCESS_CONTROL_RULE_DISABLE_ACCESS:
@@ -109,7 +123,6 @@ class ModuleResolver extends AbstractModuleResolver
                         self::ACCESS_CONTROL,
                     ],
                 ];
-            case self::CACHE_CONTROL:
             case self::GRAPHIQL_EXPLORER:
                 return [
                     [
@@ -160,8 +173,6 @@ class ModuleResolver extends AbstractModuleResolver
     {
         switch ($module) {
             case self::MAIN:
-            case self::SCHEMA_CONFIGURATION:
-            case self::ACCESS_CONTROL_RULE_DISABLE_ACCESS:
                 return true;
         }
         return parent::isHidden($module);
@@ -213,7 +224,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached a GraphiQL client, to execute queries against them. It depends on module "Custom Endpoints"', 'graphql-api'),
             self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => \__('Expose a public Interactive Schema client, to visualize the schema accessible through the single endpoint. It depends on module "Single Endpoint"', 'graphql-api'),
             self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached an Interactive schema client. It depends on module "Custom Endpoints"', 'graphql-api'),
-            self::SCHEMA_CONFIGURATION => \__('Configure the different elements that modify the behavior of the schema (access control, cache control, etc)', 'graphql-api'),
+            self::SCHEMA_CONFIGURATION => \__('Configure the behavior of the schema (access control, cache control, etc) for Custom Endpoints and Persisted Queries. It depends on either "Custom Endpoints" or "Persisted Queries" modules being enabled', 'graphql-api'),
             self::ACCESS_CONTROL => \__('Set-up rules to define who can access the different fields and directives from a schema', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_DISABLE_ACCESS => \__('Remove access to the fields and directives. It depends on module "Access Control"', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_USER_STATE => \__('Allow or reject access to the fields and directives based on the user being logged-in or not. It depends on module "Access Control"', 'graphql-api'),
