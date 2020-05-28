@@ -19,7 +19,12 @@ class GraphiQLMenuPage extends AbstractMenuPage
     public function print(): void
     {
         ?>
-        <div id="graphiql" class="graphiql-client"><?php echo __('Loading...', 'graphql-api') ?></div>
+        <div id="graphiql" class="graphiql-client">
+            <p>
+                <?php echo __('Loading...', 'graphql-api') ?>
+                <!--span class="spinner is-active" style="float: none;"></span-->
+            </p>
+        </div>
         <?php
     }
 
