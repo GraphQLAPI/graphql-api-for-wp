@@ -38,12 +38,12 @@ class ModuleResolver extends AbstractModuleResolver
     {
         return [
             self::MAIN,
-            self::PERSISTED_QUERIES,
             self::SINGLE_ENDPOINT,
-            self::CUSTOM_ENDPOINTS,
             self::GRAPHIQL_FOR_SINGLE_ENDPOINT,
-            self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS,
             self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
+            self::PERSISTED_QUERIES,
+            self::CUSTOM_ENDPOINTS,
+            self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS,
             self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS,
             self::SCHEMA_CONFIGURATION,
             self::ACCESS_CONTROL,

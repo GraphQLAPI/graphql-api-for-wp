@@ -164,6 +164,20 @@ class PluginConfiguration
                 'envVariable' => \PoP\APIEndpointsForWP\Environment::GRAPHQL_API_ENDPOINT,
                 'value' => '',
             ],
+            [
+                'module' => ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
+                'condition' => false,
+                'class' => \PoP\GraphQLClientsForWP\Component::class,
+                'envVariable' => \PoP\GraphQLClientsForWP\Environment::GRAPHIQL_CLIENT_ENDPOINT,
+                'value' => '',
+            ],
+            [
+                'module' => ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
+                'condition' => false,
+                'class' => \PoP\GraphQLClientsForWP\Component::class,
+                'envVariable' => \PoP\GraphQLClientsForWP\Environment::VOYAGER_CLIENT_ENDPOINT,
+                'value' => '',
+            ],
         ];
         foreach ($moduleToComponentClassConfigurationMappings as $mapping) {
             if ($moduleRegistry->isModuleEnabled($mapping['module']) === $mapping['condition']) {
