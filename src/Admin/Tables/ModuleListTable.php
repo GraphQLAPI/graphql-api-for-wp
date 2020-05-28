@@ -6,7 +6,6 @@ namespace GraphQLAPI\GraphQLAPI\Admin\Tables;
 
 use GraphQLAPI\GraphQLAPI\Admin\TableActions\ModuleListTableAction;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 /**
@@ -66,6 +65,7 @@ class ModuleListTable extends AbstractItemListTable
                 'has-settings' => $moduleResolver->hasSettings($module),
                 'name' => $moduleResolver->getName($module),
                 'description' => $moduleResolver->getDescription($module),
+                'depends-on' => $moduleResolver->getDependedModuleLists($module),
             ];
         }
         return $items;
@@ -145,6 +145,46 @@ class ModuleListTable extends AbstractItemListTable
         switch ($column_name) {
             case 'description':
                 return $item[$column_name];
+            case 'depends-on':
+                // Generate a <ul> list with AND <li> lists of dependencies
+                // Each <li> is a list of OR dependencies
+                // It's formatted like this: dep1, dep2, ..., dep5 or dep6
+                $items = [];
+                $moduleRegistry = ModuleRegistryFacade::getInstance();
+                $dependedModuleLists = $item[$column_name];
+                /**
+                 * This is a list of lists of modules, as to model both OR and AND conditions
+                 */
+                foreach ($dependedModuleLists as $dependedModuleList) {
+                    if (!$dependedModuleList) {
+                        continue;
+                    }
+                    $dependedModuleListNames = array_map(
+                        function ($dependedModule) use ($moduleRegistry) {
+                            $moduleResolver = $moduleRegistry->getModuleResolver($dependedModule);
+                            return $moduleResolver->getName($dependedModule);
+                        },
+                        $dependedModuleList
+                    );
+                    if (count($dependedModuleListNames) >= 2) {
+                        $lastElem = array_pop($dependedModuleListNames);
+                        $commaElems = implode(
+                            \__(', '),
+                            $dependedModuleListNames
+                        );
+                        $items[] = sprintf(
+                            \__('%s or %s', 'graphql-api'),
+                            $commaElems,
+                            $lastElem
+                        );
+                    } else {
+                        $items[] = $dependedModuleListNames[0];
+                    }
+                }
+                return sprintf(
+                    '<ul>%s</ul>',
+                    '<li>' . implode('</li><li>', $items) . '</li>'
+                );
             case 'enabled':
                 return \sprintf(
                     '<span role="img" aria-label="%s">%s</span>',
@@ -259,6 +299,7 @@ class ModuleListTable extends AbstractItemListTable
                 ],
             [
                 'description' => \__('Description', 'graphql-api'),
+                'depends-on' => \__('Depends on', 'graphql-api'),
             ]
         );
     }
