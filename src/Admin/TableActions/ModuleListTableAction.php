@@ -50,7 +50,14 @@ class ModuleListTableAction extends AbstractListTableAction
             // Verify the nonce
             $nonce = \esc_attr($_REQUEST['_wpnonce']);
             if (!\wp_verify_nonce($nonce, 'graphql_api_enable_or_disable_module')) {
-                \wp_die(__('This URL is not valid. Please load the page anew, and try again', 'graphql-api'));
+                $noParamsCurrentURL = \admin_url(sprintf(
+                    'admin.php?page=%s',
+                    $_GET['page']
+                ));
+                \wp_die(sprintf(
+                    __('This URL is not valid. Please <a href="%s">click here to reload the page</a>, and try again', 'graphql-api'),
+                    $noParamsCurrentURL
+                ));
             }
             if ($moduleID = $_GET['item']) {
                 // Enable or disable
