@@ -146,9 +146,9 @@ class ModuleListTable extends AbstractItemListTable
             case 'description':
                 return $item[$column_name];
             case 'depends-on':
-                // Generate a <ul> list with AND <li> lists of dependencies
-                // Each <li> is a list of OR dependencies
-                // It's formatted like this: dep1, dep2, ..., dep5 or dep6
+                // Output the list with AND lists of dependencies
+                // Each list is an OR list of depended modules
+                // It's formatted like this: module1, module2, ..., module5 or module6
                 $items = [];
                 $moduleRegistry = ModuleRegistryFacade::getInstance();
                 $dependedModuleLists = $item[$column_name];
@@ -162,14 +162,14 @@ class ModuleListTable extends AbstractItemListTable
                     $dependedModuleListNames = array_map(
                         function ($dependedModule) use ($moduleRegistry) {
                             $moduleResolver = $moduleRegistry->getModuleResolver($dependedModule);
-                            return $moduleResolver->getName($dependedModule);
+                            return '▹ ' . $moduleResolver->getName($dependedModule);
                         },
                         $dependedModuleList
                     );
                     if (count($dependedModuleListNames) >= 2) {
                         $lastElem = array_pop($dependedModuleListNames);
                         $commaElems = implode(
-                            \__(', '),
+                            \__(', ', 'graphql-api'),
                             $dependedModuleListNames
                         );
                         $items[] = sprintf(
@@ -181,10 +181,7 @@ class ModuleListTable extends AbstractItemListTable
                         $items[] = $dependedModuleListNames[0];
                     }
                 }
-                return sprintf(
-                    '<ul>%s</ul>',
-                    '<li>' . implode('</li><li>', $items) . '</li>'
-                );
+                return implode('<br/>', $items);
             case 'enabled':
                 return \sprintf(
                     '<span role="img" aria-label="%s">%s</span>',
