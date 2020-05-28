@@ -66,6 +66,7 @@ class ModuleListTable extends AbstractItemListTable
                 'name' => $moduleResolver->getName($module),
                 'description' => $moduleResolver->getDescription($module),
                 'depends-on' => $moduleResolver->getDependedModuleLists($module),
+                'url' => $moduleResolver->getURL($module),
             ];
         }
         return $items;
@@ -264,7 +265,15 @@ class ModuleListTable extends AbstractItemListTable
             $actions['disabled'] = \__('Disabled', 'graphql-api');
             // }
         }
-    return $title . $this->row_actions($actions/*, $this->usePluginTableStyle()*/);
+        // Add a link to the website, to read the component's documentation
+        if ($url = $item['url']) {
+            $actions['details'] = \sprintf(
+                '<a href="%s">%s</a>',
+                $url,
+                \__('View details', 'graphql-api')
+            );
+        }
+        return $title . $this->row_actions($actions/*, $this->usePluginTableStyle()*/);
     }
 
     /**
@@ -409,6 +418,7 @@ class ModuleListTable extends AbstractItemListTable
         ?>
         <style type="text/css">
             .row-actions span.disabled { color: #969696; }
+            .plugins .name { font-weight: normal; }
         </style>
         <?php
         /*

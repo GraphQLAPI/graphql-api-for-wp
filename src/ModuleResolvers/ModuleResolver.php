@@ -249,7 +249,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::FIELD_DEPRECATION => \__('Deprecate fields, and explain how to replace them, through a user interface', 'graphql-api'),
             self::GRAPHIQL_EXPLORER => \__('Attach the Explorer widget to the GraphiQL client, to create queries by point-and-clicking on the fields', 'graphql-api'),
             self::WELCOME_GUIDES => sprintf(
-                \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities. Only available for WordPress version \'%s\' or above, or Gutenberg version \'%s\' or above', 'graphql-api'),
+                \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities. <em>It requires WordPress version \'%s\' or above, or Gutenberg version \'%s\' or above</em>', 'graphql-api'),
                 '5.4',
                 '6.1'
             ),

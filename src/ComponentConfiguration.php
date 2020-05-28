@@ -12,6 +12,7 @@ class ComponentConfiguration
 {
     use ComponentConfigurationTrait;
 
+    private static $getModuleURLBase;
     private static $addExcerptAsDescription;
     private static $groupFieldsUnderTypeForPrint;
     private static $getEmptyLabel;
@@ -21,6 +22,27 @@ class ComponentConfiguration
     private static $getPersistedQuerySlugBase;
     private static $getSchemaEditorAccessScheme;
     private static $enableLowLevelSchemaEditing;
+
+    /**
+     * URL base for the module, pointing to graphql-api.com
+     *
+     * @return string
+     */
+    public static function getModuleURLBase(): string
+    {
+        // Define properties
+        $envVariable = Environment::MODULE_URL_BASE;
+        $selfProperty = &self::$getModuleURLBase;
+        $defaultValue = 'https://graphql-api.com/modules/';
+
+        // Initialize property from the environment/hook
+        self::maybeInitializeConfigurationValue(
+            $envVariable,
+            $selfProperty,
+            $defaultValue
+        );
+        return $selfProperty;
+    }
 
     /**
      * Print the excerpt as description in the custom post types

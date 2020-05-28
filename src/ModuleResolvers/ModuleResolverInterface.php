@@ -31,4 +31,5 @@ interface ModuleResolverInterface
     public function getDescription(string $module): string;
     public function hasSettings(string $module): bool;
     public function isEnabledByDefault(string $module): bool;
+    public function getURL(string $module): ?string;
 }
