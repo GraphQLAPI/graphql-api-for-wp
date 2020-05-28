@@ -56,11 +56,11 @@ class ModuleResolver extends AbstractModuleResolver
             self::GRAPHIQL_EXPLORER,
             self::WELCOME_GUIDES,
             self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE,
-            self::SCHEMA_POST_TYPE,
-            self::SCHEMA_COMMENT_TYPE,
             self::SCHEMA_USER_TYPE,
             self::SCHEMA_PAGE_TYPE,
             self::SCHEMA_MEDIA_TYPE,
+            self::SCHEMA_POST_TYPE,
+            self::SCHEMA_COMMENT_TYPE,
             self::SCHEMA_TAXONOMY_TYPE,
         ];
     }
@@ -209,9 +209,9 @@ class ModuleResolver extends AbstractModuleResolver
             ),
             self::PERSISTED_QUERIES => \__('Expose a predefined response by publishing persisted GraphQL queries, and accessing them under their permalink', 'graphql-api'),
             self::CUSTOM_ENDPOINTS => \__('Make data queryable through custom endpoints, each accepting a different configuration (access control, cache control, etc)', 'graphql-api'),
-            self::GRAPHIQL_FOR_SINGLE_ENDPOINT => \__('Enable the single endpoint to be attached a GraphiQL client, to execute queries against it. It depends on module "Single Endpoint"', 'graphql-api'),
+            self::GRAPHIQL_FOR_SINGLE_ENDPOINT => \__('Expose a public GraphiQL client to execute queries against the single endpoint. It depends on module "Single Endpoint"', 'graphql-api'),
             self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached a GraphiQL client, to execute queries against them. It depends on module "Custom Endpoints"', 'graphql-api'),
-            self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => \__('Enable the single endpoint to be attached an Interactive schema client. It depends on module "Single Endpoint"', 'graphql-api'),
+            self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => \__('Expose a public Interactive Schema client, to visualize the schema accessible through the single endpoint. It depends on module "Single Endpoint"', 'graphql-api'),
             self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached an Interactive schema client. It depends on module "Custom Endpoints"', 'graphql-api'),
             self::SCHEMA_CONFIGURATION => \__('Configure the different elements that modify the behavior of the schema (access control, cache control, etc)', 'graphql-api'),
             self::ACCESS_CONTROL => \__('Set-up rules to define who can access the different fields and directives from a schema', 'graphql-api'),
@@ -219,8 +219,8 @@ class ModuleResolver extends AbstractModuleResolver
             self::ACCESS_CONTROL_RULE_USER_STATE => \__('Allow or reject access to the fields and directives based on the user being logged-in or not. It depends on module "Access Control"', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_USER_ROLES => \__('Allow or reject access to the fields and directives based on the user having a certain role. It depends on module "Access Control"', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_USER_CAPABILITIES => \__('Allow or reject access to the fields and directives based on the user having a certain capability. It depends on module "Access Control"', 'graphql-api'),
-            self::CACHE_CONTROL => \__('Provide HTTP Caching for Persisted Queries: Cache the response by setting the Cache-Control max-age value, calculated from all fields involved in the query. It depends on module "Persisted Queries"', 'graphql-api'),
-            self::FIELD_DEPRECATION => \__('User interface to deprecate fields', 'graphql-api'),
+            self::CACHE_CONTROL => \__('Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query. It depends on module "Persisted Queries"', 'graphql-api'),
+            self::FIELD_DEPRECATION => \__('Deprecate fields, and explain how to replace them, through a user interface', 'graphql-api'),
             self::GRAPHIQL_EXPLORER => \__('Attach the Explorer widget to the GraphiQL client, to create queries by point-and-clicking on the fields', 'graphql-api'),
             self::WELCOME_GUIDES => sprintf(
                 \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities. It requires WordPress version \'%s\' or above, or Gutenberg version \'%s\' or above', 'graphql-api'),
@@ -229,11 +229,11 @@ class ModuleResolver extends AbstractModuleResolver
             ),
             self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => \__('Set of directives to manipulate strings: <code>@upperCase</code>, <code>@lowerCase</code> and <code>@titleCase</code>', 'graphql-api'),
             self::SCHEMA_POST_TYPE => \__('Enable querying for posts in the schema', 'graphql-api'),
-            self::SCHEMA_COMMENT_TYPE => \__('Enable querying for comments in the schema. It depends on module "Schema Post Type"', 'graphql-api'),
             self::SCHEMA_USER_TYPE => \__('Enable querying for users in the schema', 'graphql-api'),
             self::SCHEMA_PAGE_TYPE => \__('Enable querying for pages in the schema', 'graphql-api'),
             self::SCHEMA_MEDIA_TYPE => \__('Enable querying for media items in the schema', 'graphql-api'),
-            self::SCHEMA_TAXONOMY_TYPE => \__('Enable querying for tags and categories in the schema', 'graphql-api'),
+            self::SCHEMA_COMMENT_TYPE => \__('Enable querying for comments in the schema. It depends on module "Schema Post Type"', 'graphql-api'),
+            self::SCHEMA_TAXONOMY_TYPE => \__('Enable querying for tags and categories in the schema. It depends on module "Schema Post Type', 'graphql-api'),
         ];
         return $descriptions[$module] ?? parent::getDescription($module);
     }
