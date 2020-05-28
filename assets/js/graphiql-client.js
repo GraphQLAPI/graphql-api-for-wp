@@ -25,10 +25,12 @@ function graphQLFetcher(graphQLParams) {
 }
 
 var defaultQuery = (window.graphQLByPoPGraphiQLSettings && window.graphQLByPoPGraphiQLSettings.defaultQuery) ? window.graphQLByPoPGraphiQLSettings.defaultQuery : null;
+var response = (window.graphQLByPoPGraphiQLSettings && window.graphQLByPoPGraphiQLSettings.response) ? window.graphQLByPoPGraphiQLSettings.response : null;
 ReactDOM.render(
   React.createElement(GraphiQL, {
     fetcher: graphQLFetcher,
-    defaultQuery: defaultQuery
+    defaultQuery: defaultQuery,
+    response: response
   }),
   document.getElementById('graphiql')
 );

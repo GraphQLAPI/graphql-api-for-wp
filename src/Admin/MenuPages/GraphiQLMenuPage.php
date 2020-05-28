@@ -74,8 +74,14 @@ class GraphiQLMenuPage extends AbstractMenuPage
                 'nonce' => \wp_create_nonce('wp_rest'),
                 'endpoint' => EndpointHelpers::getAdminGraphQLEndpoint(),
                 'defaultQuery' => $this->getDefaultQuery(),
+                'response' => $this->getResponse(),
             )
         );
+    }
+
+    protected function getResponse(): string
+    {
+        return \__('Click the "Execute Query" button, or press Ctrl+Enter (Command+Enter in Mac)', 'graphql-api');
     }
 
     protected function getDefaultQuery(): string
