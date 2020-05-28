@@ -127,7 +127,6 @@ query {
   posts(limit:3) {
     id
     title
-    excerpt
     date(format:"d/m/Y")
     url
     author {
