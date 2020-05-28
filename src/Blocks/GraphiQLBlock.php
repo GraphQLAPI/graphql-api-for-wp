@@ -55,6 +55,21 @@ class GraphiQLBlock extends AbstractBlock
     }
 
     /**
+     * Dependencies to load before the script
+     *
+     * @return array
+     */
+    protected function getBlockDependencies(): array
+    {
+        return array_merge(
+            parent::getBlockDependencies(),
+            [
+                'wp-block-editor',
+            ]
+        );
+    }
+
+    /**
      * GraphiQL default query
      *
      * @return string

@@ -1,7 +1,15 @@
+/**
+ * GraphiQl dependencies
+ */
 import GraphiQL from 'graphiql';
 import fetch from 'isomorphic-fetch';
 import 'graphiql/graphiql.css';
+
+/**
+ * Internal dependencies
+ */
 import './style.scss';
+import KeyboardShortcuts from './keyboard-shortcuts';
 
 const graphQLFetcher = ( graphQLParams ) => {
 	return fetch( window.graphqlApiGraphiql.endpoint, {
@@ -26,16 +34,19 @@ const EditBlock = ( props ) => {
 	const onEditVariables = ( newValue ) =>
 		setAttributes( { variables: newValue } );
 	return (
-		<div className={ className }>
-			<GraphiQL
-				fetcher={ graphQLFetcher }
-				query={ query }
-				variables={ variables }
-				onEditQuery={ onEditQuery }
-				onEditVariables={ onEditVariables }
-				docExplorerOpen={ false }
-			/>
-		</div>
+		<>
+			<KeyboardShortcuts.Unregister />
+			<div className={ className }>
+				<GraphiQL
+					fetcher={ graphQLFetcher }
+					query={ query }
+					variables={ variables }
+					onEditQuery={ onEditQuery }
+					onEditVariables={ onEditVariables }
+					docExplorerOpen={ false }
+				/>
+			</div>
+		</>
 	);
 }
 
