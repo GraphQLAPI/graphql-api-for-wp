@@ -86,7 +86,8 @@ class GraphiQLMenuPage extends AbstractMenuPage
 
     protected function getResponse(): string
     {
-        return \__('Click the "Execute Query" button, or press Ctrl+Enter (Command+Enter in Mac)', 'graphql-api');
+        return '';
+        // return \__('Click the "Execute Query" button, or press Ctrl+Enter (Command+Enter in Mac)', 'graphql-api');
     }
 
     protected function getDefaultQuery(): string
