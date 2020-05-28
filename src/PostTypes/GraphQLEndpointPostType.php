@@ -83,7 +83,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
         return array_merge(
             parent::getPostTypeLabels($name_uc, $names_uc, $names_lc),
             array(
-                'all_items' => \__('Endpoints', 'graphql-api'),
+                'all_items' => \__('Custom Endpoints', 'graphql-api'),
             )
         );
     }
