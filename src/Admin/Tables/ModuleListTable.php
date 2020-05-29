@@ -148,8 +148,30 @@ class ModuleListTable extends AbstractItemListTable
     public function column_default($item, $column_name)
     {
         switch ($column_name) {
-            case 'description':
-                return $item[$column_name];
+            case 'desc':
+                $actions = [];
+                // If it has, add a link to the documentation
+                if ($item['has-docs']) {
+                    $url = \admin_url(sprintf(
+                        'admin.php?page=%s&%s=%s&%s=%s&TB_iframe=true&width=772&height=398',
+                        'graphql_api_modules',
+                        RequestParams::TAB,
+                        RequestParams::TAB_DOCS,
+                        RequestParams::MODULE,
+                        urlencode($item['module'])
+                    ));
+                    $actions['docs'] = \sprintf(
+                        '<a href="%s" class="%s">%s</a>',
+                        $url,
+                        'thickbox open-plugin-details-modal',
+                        \__('View details', 'graphql-api')
+                    );
+                }
+                return sprintf(
+                    '<div class="plugin-description"><p>%s</p></div><div class="second">%s</div>',
+                    $item['description'],
+                    $this->row_actions($actions, true)
+                );
             case 'depends-on':
                 // Output the list with AND lists of dependencies
                 // Each list is an OR list of depended modules
@@ -269,23 +291,6 @@ class ModuleListTable extends AbstractItemListTable
             $actions['disabled'] = \__('Disabled', 'graphql-api');
             // }
         }
-        // If it has, add a link to the documentation
-        if ($item['has-docs']) {
-            $url = \admin_url(sprintf(
-                'admin.php?page=%s&%s=%s&%s=%s&TB_iframe=true&width=772&height=398',
-                'graphql_api_modules',
-                RequestParams::TAB,
-                RequestParams::TAB_DOCS,
-                RequestParams::MODULE,
-                urlencode($item['module'])
-            ));
-            $actions['docs'] = \sprintf(
-                '<a href="%s" class="%s">%s</a>',
-                $url,
-                'thickbox open-plugin-details-modal',
-                \__('View details', 'graphql-api')
-            );
-        }
         return $title . $this->row_actions($actions/*, $this->usePluginTableStyle()*/);
     }
 
@@ -317,7 +322,7 @@ class ModuleListTable extends AbstractItemListTable
                     'enabled' => \__('Enabled', 'graphql-api'),
                 ],
             [
-                'description' => \__('Description', 'graphql-api'),
+                'desc' => \__('Description', 'graphql-api'),
                 'depends-on' => \__('Depends on', 'graphql-api'),
             ]
         );
