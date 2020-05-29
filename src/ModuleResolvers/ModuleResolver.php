@@ -5,6 +5,15 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
 use GraphQLAPI\GraphQLAPI\Plugin;
+use PoP\Pages\TypeResolvers\PageTypeResolver;
+use PoP\Posts\TypeResolvers\PostTypeResolver;
+use PoP\Users\TypeResolvers\UserTypeResolver;
+use PoP\Media\TypeResolvers\MediaTypeResolver;
+use PoP\Taxonomies\TypeResolvers\TagTypeResolver;
+use PoP\Comments\TypeResolvers\CommentTypeResolver;
+use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
+use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
+use PoP\UsefulDirectives\DirectiveResolvers\UpperCaseStringDirectiveResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\HasMarkdownDocumentationModuleResolverTrait;
 
 class ModuleResolver extends AbstractModuleResolver
@@ -230,18 +239,24 @@ class ModuleResolver extends AbstractModuleResolver
         $descriptions = [
             self::MAIN => \__('Main functionality module, can\'t be disabled but is required for defining the main settings', 'graphql-api'),
             self::SINGLE_ENDPOINT => \sprintf(
-                \__('Make data queryable through a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
+                \__('Expose a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
                 '/api/graphql/'
             ),
-            self::PERSISTED_QUERIES => \__('Expose a predefined response by publishing persisted GraphQL queries, and accessing them under their permalink', 'graphql-api'),
-            self::CUSTOM_ENDPOINTS => \__('Make data queryable through custom endpoints, each accepting a different configuration (access control, cache control, etc)', 'graphql-api'),
-            self::GRAPHIQL_FOR_SINGLE_ENDPOINT => \__('Expose a public GraphiQL client to execute queries against the single endpoint', 'graphql-api'),
-            self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached a GraphiQL client, to execute queries against them', 'graphql-api'),
-            self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => \__('Expose a public Interactive Schema client, to visualize the schema accessible through the single endpoint', 'graphql-api'),
-            self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached an Interactive schema client', 'graphql-api'),
-            self::SCHEMA_CONFIGURATION => \__('Configure the behavior of the schema (access control, cache control, etc) for Custom Endpoints and Persisted Queries', 'graphql-api'),
+            self::PERSISTED_QUERIES => \__('Expose predefined responses through a custom URL, akin to using GraphQL queries to publish REST endpoints', 'graphql-api'),
+            self::CUSTOM_ENDPOINTS => \__('Expose different subsets of the schema for different targets, such as users (clients, employees, etc), applications (website, mobile app, etc), context (weekday, weekend, etc), and others', 'graphql-api'),
+            self::GRAPHIQL_FOR_SINGLE_ENDPOINT => \sprintf(
+                \__('Make a public GraphiQL client available under <code>%s</code>, to execute queries against the single endpoint', 'graphql-api'),
+                '/graphiql/',
+            ),
+            self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached their own GraphiQL client, to execute queries against them', 'graphql-api'),
+            self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => \sprintf(
+                \__('Make a public Interactive Schema client available under <code>%s</code>, to visualize the schema accessible through the single endpoint', 'graphql-api'),
+                '/schema/',
+            ),
+            self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached their own Interactive schema client, to visualize the custom schema subset', 'graphql-api'),
+            self::SCHEMA_CONFIGURATION => \__('Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema', 'graphql-api'),
             self::SCHEMA_NAMESPACING => \__('Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions', 'graphql-api'),
-            self::PUBLIC_PRIVATE_SCHEMA => \__('Decide to expose the availability of a field to everyone (public) or to selected users only (private)', 'graphql-api'),
+            self::PUBLIC_PRIVATE_SCHEMA => \__('Enable to communicate the existence of some field from the schema to certain users only (private mode) or to everyone (public mode). If disabled, fields are always available to everyone (public mode)', 'graphql-api'),
             self::SCHEMA_CACHE => \__('Cache the schema to avoid generating it on runtime, and speed-up the server\'s response', 'graphql-api'),
             self::ACCESS_CONTROL => \__('Set-up rules to define who can access the different fields and directives from a schema', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_DISABLE_ACCESS => \__('Remove access to the fields and directives', 'graphql-api'),
@@ -250,19 +265,42 @@ class ModuleResolver extends AbstractModuleResolver
             self::ACCESS_CONTROL_RULE_USER_CAPABILITIES => \__('Allow or reject access to the fields and directives based on the user having a certain capability', 'graphql-api'),
             self::CACHE_CONTROL => \__('Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query', 'graphql-api'),
             self::FIELD_DEPRECATION => \__('Deprecate fields, and explain how to replace them, through a user interface', 'graphql-api'),
-            self::GRAPHIQL_EXPLORER => \__('Attach the Explorer widget to the GraphiQL client, to create queries by point-and-clicking on the fields', 'graphql-api'),
+            self::GRAPHIQL_EXPLORER => \__('Add the Explorer widget to the GraphiQL client when creating Persisted Queries, to simplify coding the query (by point-and-clicking on the fields)', 'graphql-api'),
             self::WELCOME_GUIDES => sprintf(
                 \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities. <em>It requires WordPress version \'%s\' or above, or Gutenberg version \'%s\' or above</em>', 'graphql-api'),
                 '5.4',
                 '6.1'
             ),
-            self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => \__('Set of directives to manipulate strings: <code>@upperCase</code>, <code>@lowerCase</code> and <code>@titleCase</code>', 'graphql-api'),
-            self::SCHEMA_POST_TYPE => \__('Enable querying for posts in the schema', 'graphql-api'),
-            self::SCHEMA_USER_TYPE => \__('Enable querying for users in the schema', 'graphql-api'),
-            self::SCHEMA_PAGE_TYPE => \__('Enable querying for pages in the schema', 'graphql-api'),
-            self::SCHEMA_MEDIA_TYPE => \__('Enable querying for media items in the schema', 'graphql-api'),
-            self::SCHEMA_COMMENT_TYPE => \__('Enable querying for comments in the schema', 'graphql-api'),
-            self::SCHEMA_TAXONOMY_TYPE => \__('Enable querying for tags and categories in the schema', 'graphql-api'),
+            self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => sprintf(
+                \__('Set of directives to manipulate strings: <code>@%s</code>, <code>@%s</code> and <code>@%s</code>', 'graphql-api'),
+                UpperCaseStringDirectiveResolver::getDirectiveName(),
+                LowerCaseStringDirectiveResolver::getDirectiveName(),
+                TitleCaseStringDirectiveResolver::getDirectiveName()
+            ),
+            self::SCHEMA_POST_TYPE => sprintf(
+                \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                PostTypeResolver::NAME,
+            ),
+            self::SCHEMA_USER_TYPE => sprintf(
+                \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                UserTypeResolver::NAME,
+            ),
+            self::SCHEMA_PAGE_TYPE => sprintf(
+                \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                PageTypeResolver::NAME,
+            ),
+            self::SCHEMA_MEDIA_TYPE => sprintf(
+                \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                MediaTypeResolver::NAME,
+            ),
+            self::SCHEMA_COMMENT_TYPE => sprintf(
+                \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                CommentTypeResolver::NAME,
+            ),
+            self::SCHEMA_TAXONOMY_TYPE => sprintf(
+                \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                TagTypeResolver::NAME,
+            ),
         ];
         return $descriptions[$module] ?? parent::getDescription($module);
     }
