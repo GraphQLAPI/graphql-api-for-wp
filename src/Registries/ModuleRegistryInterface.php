@@ -21,4 +21,18 @@ interface ModuleRegistryInterface
      * @return boolean
      */
     public function canModuleBeEnabled(string $module): bool;
+    /**
+     * Used to indicate that the dependency on the module is on its being disabled, not enabled
+     *
+     * @param string $dependedModule
+     * @return string
+     */
+    public function getInverseDependency(string $dependedModule): string;
+    /**
+     * Indicate if the dependency is on its being disabled, not enabled
+     *
+     * @param string $dependedModule
+     * @return string
+     */
+    public function isInverseDependency(string $dependedModule): bool;
 }

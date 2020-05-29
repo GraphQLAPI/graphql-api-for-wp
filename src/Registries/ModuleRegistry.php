@@ -87,6 +87,13 @@ class ModuleRegistry implements ModuleRegistryInterface
             }
             $dependedModuleListEnabled = array_map(
                 function ($dependedModule) {
+                    // Check if it has the "inverse" token at the beginning,
+                    // then it depends on the module being disabled, not enabled
+                    if (substr($dependedModule, 0, strlen(ModuleRegistryTokens::INVERSE_DEPENDENCY)) == ModuleRegistryTokens::INVERSE_DEPENDENCY) {
+                        // The module is everything after the token
+                        $dependedModule = substr($dependedModule, strlen(ModuleRegistryTokens::INVERSE_DEPENDENCY));
+                        return !$this->isModuleEnabled($dependedModule);
+                    }
                     return $this->isModuleEnabled($dependedModule);
                 },
                 $dependedModuleList
@@ -121,5 +128,33 @@ class ModuleRegistry implements ModuleRegistryInterface
             return false;
         }
         return true;
+    }
+
+    /**
+     * Used to indicate that the dependency on the module is on its being disabled, not enabled
+     *
+     * @param string $dependedModule
+     * @return string
+     */
+    public function getInverseDependency(string $dependedModule): string
+    {
+        // Check if it already has the "inverse" token at the beginning,
+        // then take it back to normal
+        if ($this->isInverseDependency($dependedModule)) {
+            // The module is everything after the token "!"
+            return substr($dependedModule, strlen(ModuleRegistryTokens::INVERSE_DEPENDENCY));
+        }
+        // Add "!" before the module
+        return ModuleRegistryTokens::INVERSE_DEPENDENCY . $dependedModule;
+    }
+    /**
+     * Indicate if the dependency is on its being disabled, not enabled
+     *
+     * @param string $dependedModule
+     * @return string
+     */
+    public function isInverseDependency(string $dependedModule): bool
+    {
+        return substr($dependedModule, 0, strlen(ModuleRegistryTokens::INVERSE_DEPENDENCY)) == ModuleRegistryTokens::INVERSE_DEPENDENCY;
     }
 }

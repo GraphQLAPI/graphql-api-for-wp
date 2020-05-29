@@ -11,6 +11,7 @@ use PoP\Users\TypeResolvers\UserTypeResolver;
 use PoP\Media\TypeResolvers\MediaTypeResolver;
 use PoP\Taxonomies\TypeResolvers\TagTypeResolver;
 use PoP\Comments\TypeResolvers\CommentTypeResolver;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\UpperCaseStringDirectiveResolver;
@@ -89,7 +90,6 @@ class ModuleResolver extends AbstractModuleResolver
             case self::PERSISTED_QUERIES:
             case self::SINGLE_ENDPOINT:
             case self::CUSTOM_ENDPOINTS:
-            case self::SCHEMA_CACHE:
                 return [
                     // [
                     //     self::MAIN,
@@ -124,6 +124,13 @@ class ModuleResolver extends AbstractModuleResolver
                 return [
                     [
                         self::SCHEMA_CONFIGURATION,
+                    ],
+                ];
+            case self::SCHEMA_CACHE:
+                $moduleRegistry = ModuleRegistryFacade::getInstance();
+                return [
+                    [
+                        $moduleRegistry->getInverseDependency(self::PUBLIC_PRIVATE_SCHEMA),
                     ],
                 ];
             case self::CACHE_CONTROL:

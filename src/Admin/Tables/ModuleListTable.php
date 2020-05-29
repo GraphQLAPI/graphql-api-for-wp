@@ -191,8 +191,21 @@ class ModuleListTable extends AbstractItemListTable
                     }
                     $dependedModuleListNames = array_map(
                         function ($dependedModule) use ($moduleRegistry) {
+                            $after = '';
+                            // Check if it has the "inverse" token at the beginning,
+                            // then it depends on the module being disabled, not enabled
+                            if ($moduleRegistry->isInverseDependency($dependedModule)) {
+                                // Revert to the normal module
+                                $dependedModule = $moduleRegistry->getInverseDependency($dependedModule);
+                                $after = \__('(disabled)</em>', 'graphql-api');
+                            }
                             $moduleResolver = $moduleRegistry->getModuleResolver($dependedModule);
-                            return '▹ ' . $moduleResolver->getName($dependedModule);
+                            return sprintf(
+                                '%1$s %2$s %3$s',
+                                '▹',
+                                $moduleResolver->getName($dependedModule),
+                                $after
+                            );
                         },
                         $dependedModuleList
                     );
