@@ -106,7 +106,7 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
      */
     public function hasDocumentation(string $module): bool
     {
-        return !empty($this->hasDocumentation($module));
+        return !empty($this->getDocumentation($module));
     }
 
     /**
