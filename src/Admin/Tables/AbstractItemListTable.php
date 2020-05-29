@@ -67,23 +67,25 @@ abstract class AbstractItemListTable extends \WP_List_Table
          */
         ?>
         <style type="text/css">
-            .wp-list-table tr:not(.inline-edit-row):not(.no-items) td:not(.column-primary)::before {
-                /**
-                 * Do not have the title be placed on top of the content
-                 */
-                position: static;
-            }
+            @media screen and (max-width: 782px) {
+                .wp-list-table tr:not(.inline-edit-row):not(.no-items) td:not(.column-primary)::before {
+                    /**
+                    * Do not have the title be placed on top of the content
+                    */
+                    position: static;
+                }
 
-            /* Make row actions more easy to select on mobile */
-            body:not(.plugins-php) .row-actions {
-                /**
-                 * Override grid
-                 */
-                display: block;
-                /**
-                 * Show always
-                 */
-                position: static;
+                /* Make row actions more easy to select on mobile */
+                body:not(.plugins-php) .row-actions {
+                    /**
+                    * Override grid
+                    */
+                    display: block;
+                    /**
+                    * Show always
+                    */
+                    position: static;
+                }
             }
         </style>
         <?php
