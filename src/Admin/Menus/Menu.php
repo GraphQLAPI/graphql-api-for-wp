@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\Admin\Menus;
 
 use GraphQLAPI\GraphQLAPI\General\RequestParams;
+use GraphQLAPI\GraphQLAPI\Admin\Menus\AbstractMenu;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphiQLMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
@@ -105,16 +108,24 @@ class Menu extends AbstractMenu
         );
         $settingsMenuPage->setHookName($hookName);
 
-        // \add_submenu_page(
-        //     self::NAME,
-        //     __('Module docs', 'graphql-api'),
-        //     __('Module docs', 'graphql-api'),
-        //     'read',
-        //     'graphql-api-wp-plugin/details.php',
-        //     // '',
-        //     // plugins_url( 'myplugin/images/icon.png' ),
-        //     // 6
-        // );
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if ($moduleRegistry->isModuleEnabled(ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT)) {
+            global $submenu;
+            $submenu[self::NAME][] = [
+                __('GraphiQL (public client)', 'graphql-api'),
+                'read',
+                home_url('/graphiql/'),
+            ];
+        }
+
+        if ($moduleRegistry->isModuleEnabled(ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT)) {
+            global $submenu;
+            $submenu[self::NAME][] = [
+                __('Interactive Schema (public client)', 'graphql-api'),
+                'read',
+                home_url('/schema/'),
+            ];
+        }
 
         // $schemaEditorAccessCapability = UserAuthorization::getSchemaEditorAccessCapability();
         // if (\current_user_can($schemaEditorAccessCapability)) {
