@@ -69,7 +69,7 @@ class ModuleListTable extends AbstractItemListTable
                 'depends-on' => $moduleResolver->getDependedModuleLists($module),
                 'url' => $moduleResolver->getURL($module),
                 'slug' => $moduleResolver->getSlug($module),
-                'docs' => $moduleResolver->getDocumentation($module),
+                'has-docs' => $moduleResolver->hasDocumentation($module),
             ];
         }
         return $items;
@@ -269,7 +269,7 @@ class ModuleListTable extends AbstractItemListTable
             // }
         }
         // If it has, add a link to the documentation
-        if ($item['docs']) {
+        if ($item['has-docs']) {
             $url = \admin_url(sprintf(
                 'admin.php?page=%s&tab=%s&module=%s&TB_iframe=true&width=772&height=398',
                 'graphql_api_modules',

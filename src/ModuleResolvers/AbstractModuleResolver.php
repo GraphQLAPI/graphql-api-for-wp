@@ -99,6 +99,17 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
     }
 
     /**
+     * Does the module have HTML Documentation?
+     *
+     * @param string $module
+     * @return bool
+     */
+    public function hasDocumentation(string $module): bool
+    {
+        return !empty($this->hasDocumentation($module));
+    }
+
+    /**
      * HTML Documentation for the module
      *
      * @param string $module
