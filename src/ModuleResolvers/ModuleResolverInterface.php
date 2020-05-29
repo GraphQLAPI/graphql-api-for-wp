@@ -32,4 +32,19 @@ interface ModuleResolverInterface
     public function hasSettings(string $module): bool;
     public function isEnabledByDefault(string $module): bool;
     public function getURL(string $module): ?string;
+    public function getSlug(string $module): string;
+    /**
+     * Does the module have HTML Documentation?
+     *
+     * @param string $module
+     * @return bool
+     */
+    public function hasDocumentation(string $module): bool;
+    /**
+     * HTML Documentation for the module
+     *
+     * @param string $module
+     * @return string|null
+     */
+    public function getDocumentation(string $module): ?string;
 }

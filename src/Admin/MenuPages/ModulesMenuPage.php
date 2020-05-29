@@ -38,4 +38,21 @@ class ModulesMenuPage extends AbstractTableMenuPage
     // {
     //     return true;
     // }
+
+    /**
+     * Enqueue the required assets and initialize the localized scripts
+     *
+     * @return void
+     */
+    protected function enqueueAssets(): void
+    {
+        parent::enqueueAssets();
+
+        \wp_enqueue_style(
+            'thickbox'
+        );
+        \wp_enqueue_script(
+            'plugin-install'
+        );
+    }
 }

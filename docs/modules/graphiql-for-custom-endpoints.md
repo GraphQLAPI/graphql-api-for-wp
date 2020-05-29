@@ -1,0 +1,1 @@
+# GraphiQL for Custom Endpoints
