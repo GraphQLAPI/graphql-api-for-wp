@@ -61,7 +61,32 @@ abstract class AbstractItemListTable extends \WP_List_Table
      */
     public function printStyles(): void
     {
-        // Do nothing
+        /**
+         * Viewing a table with less than 782px looks really bad, it's buggy.
+         * Fix the styles
+         */
+        ?>
+        <style type="text/css">
+            .wp-list-table tr:not(.inline-edit-row):not(.no-items) td:not(.column-primary)::before {
+                /**
+                 * Do not have the title be placed on top of the content
+                 */
+                position: static;
+            }
+
+            /* Make row actions more easy to select on mobile */
+            body:not(.plugins-php) .row-actions {
+                /**
+                 * Override grid
+                 */
+                display: block;
+                /**
+                 * Show always
+                 */
+                position: static;
+            }
+        </style>
+        <?php
     }
 
 

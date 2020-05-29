@@ -428,6 +428,7 @@ class ModuleListTable extends AbstractItemListTable
      */
     public function printStyles(): void
     {
+        parent::printStyles();
         ?>
         <style type="text/css">
             .row-actions span.disabled { color: #969696; }
