@@ -280,7 +280,7 @@ class ModuleListTable extends AbstractItemListTable
                 '<a href="%s" class="%s">%s</a>',
                 $url,
                 'thickbox open-plugin-details-modal',
-                \__('Learn more', 'graphql-api')
+                \__('View details', 'graphql-api')
             );
         }
         return $title . $this->row_actions($actions/*, $this->usePluginTableStyle()*/);
