@@ -117,7 +117,6 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
      */
     public function getDocumentation(string $module): ?string
     {
-        return '<p>My module is:' . $module . '</p>';
-        // return null;
+        return null;
     }
 }

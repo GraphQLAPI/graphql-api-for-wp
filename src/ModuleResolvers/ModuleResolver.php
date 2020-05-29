@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
 use GraphQLAPI\GraphQLAPI\Plugin;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\HasMarkdownDocumentationModuleResolverTrait;
 
 class ModuleResolver extends AbstractModuleResolver
 {
+    use HasMarkdownDocumentationModuleResolverTrait;
+
     public const MAIN = Plugin::NAMESPACE . '\main';
     public const SINGLE_ENDPOINT = Plugin::NAMESPACE . '\single-endpoint';
     public const PERSISTED_QUERIES = Plugin::NAMESPACE . '\persisted-queries';
@@ -271,5 +274,10 @@ class ModuleResolver extends AbstractModuleResolver
                 return false;
         }
         return parent::isEnabledByDefault($module);
+    }
+
+    function getMarkdownFileDir(string $module): string
+    {
+        return constant('GRAPHQL_API_DIR') . '/docs/modules';
     }
 }

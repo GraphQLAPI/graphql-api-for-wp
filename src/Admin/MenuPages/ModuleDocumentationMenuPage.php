@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
 
 /**
@@ -19,6 +20,23 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
         $vars = [];
         parse_str($_SERVER['REQUEST_URI'], $vars);
         $module = urldecode($vars['module']);
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        $moduleResolver = $moduleRegistry->getModuleResolver($module);
+        if (is_null($moduleResolver)) {
+            _e(sprintf(\__(
+                'Ops, module \'%s\' does not exist', 'graphql-api',
+                $module
+            )));
+            return;
+        }
+        if (!$moduleResolver->hasDocumentation($module)) {
+            _e(sprintf(\__(
+                'Ops, module \'%s\' has no documentation', 'graphql-api',
+                $moduleResolver->getName($module)
+            )));
+            return;
+        }
+        $documentation = $moduleResolver->getDocumentation($module);
         /**
          * Hide the menus
          */
@@ -36,8 +54,7 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
             id="graphql-api-module-docs"
             class="wrap"
         >
-            <h1><?php \_e('GraphQL API — Module Documentation', 'graphql-api'); ?></h1>
-            <p><?php echo $module ?></p>
+            <?php echo $documentation ?>
         </div>
         <?php
     }
