@@ -179,6 +179,9 @@ class ModuleListTable extends AbstractItemListTable
                 $items = [];
                 $moduleRegistry = ModuleRegistryFacade::getInstance();
                 $dependedModuleLists = $item[$column_name];
+                if (!$dependedModuleLists) {
+                    return \__('-', 'graphql-api');
+                }
                 /**
                  * This is a list of lists of modules, as to model both OR and AND conditions
                  */
