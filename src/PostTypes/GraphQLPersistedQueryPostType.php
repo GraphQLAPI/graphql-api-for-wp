@@ -90,7 +90,7 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
         return array_merge(
             parent::getPostTypeLabels($name_uc, $names_uc, $names_lc),
             array(
-                'all_items' => \__('Persisted queries', 'graphql-api'),
+                'all_items' => \__('Persisted Queries', 'graphql-api'),
             )
         );
     }

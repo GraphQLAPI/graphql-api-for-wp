@@ -66,8 +66,8 @@ class Menu extends AbstractMenu
         $graphQLVoyagerMenuPage = $instanceManager->getInstance(GraphQLVoyagerMenuPage::class);
         $hookName = \add_submenu_page(
             self::NAME,
-            __('Interactive schema', 'graphql-api'),
-            __('Interactive schema', 'graphql-api'),
+            __('Interactive Schema', 'graphql-api'),
+            __('Interactive Schema', 'graphql-api'),
             $schemaEditorAccessCapability,
             'graphql_api_voyager',
             [$graphQLVoyagerMenuPage, 'print']
