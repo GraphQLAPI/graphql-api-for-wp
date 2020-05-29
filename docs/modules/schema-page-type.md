@@ -1,0 +1,1 @@
+# Schema Page Type
