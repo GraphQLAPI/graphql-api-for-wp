@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\Menus;
 
+use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
-use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphiQLMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
-use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModuleDocumentationMenuPage;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphiQLMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphQLVoyagerMenuPage;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModuleDocumentationMenuPage;
 
 /**
  * Admin menu class
@@ -79,7 +80,7 @@ class Menu extends AbstractMenu
         parent::addMenuPagesBottom();
 
         $instanceManager = InstanceManagerFacade::getInstance();
-        $menuPageClass = ($_GET['tab'] == 'docs') ?
+        $menuPageClass = ($_GET[RequestParams::TAB] == RequestParams::TAB_DOCS) ?
             ModuleDocumentationMenuPage::class :
             ModulesMenuPage::class;
         $modulesMenuPage = $instanceManager->getInstance($menuPageClass);

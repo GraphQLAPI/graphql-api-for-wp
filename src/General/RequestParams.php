@@ -12,4 +12,7 @@ class RequestParams
     public const VIEW_SCHEMA = 'schema';
     public const ACTION = 'action';
     public const ACTION_EXECUTE_QUERY = 'execute_query';
+    public const TAB = 'tab';
+    public const TAB_DOCS = 'docs';
+    public const MODULE = 'module';
 }

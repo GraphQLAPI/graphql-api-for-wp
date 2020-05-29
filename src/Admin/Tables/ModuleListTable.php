@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\Tables;
 
-use GraphQLAPI\GraphQLAPI\Admin\TableActions\ModuleListTableAction;
+use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use GraphQLAPI\GraphQLAPI\Admin\TableActions\ModuleListTableAction;
 
 /**
  * Module Table
@@ -271,9 +272,11 @@ class ModuleListTable extends AbstractItemListTable
         // If it has, add a link to the documentation
         if ($item['has-docs']) {
             $url = \admin_url(sprintf(
-                'admin.php?page=%s&tab=%s&module=%s&TB_iframe=true&width=772&height=398',
+                'admin.php?page=%s&%s=%s&%s=%s&TB_iframe=true&width=772&height=398',
                 'graphql_api_modules',
-                'docs',
+                RequestParams::TAB,
+                RequestParams::TAB_DOCS,
+                RequestParams::MODULE,
                 urlencode($item['module'])
             ));
             $actions['docs'] = \sprintf(
