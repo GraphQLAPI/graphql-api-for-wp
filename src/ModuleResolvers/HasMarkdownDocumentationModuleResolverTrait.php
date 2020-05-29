@@ -40,6 +40,17 @@ trait HasMarkdownDocumentationModuleResolverTrait
     }
 
     /**
+     * Path URL to append to the local images referenced in the markdown file
+     *
+     * @param string $module
+     * @return string|null
+     */
+    protected function getImagePathURL(string $module): ?string
+    {
+        return null;
+    }
+
+    /**
      * HTML Documentation for the module
      *
      * @param string $module
@@ -50,8 +61,43 @@ trait HasMarkdownDocumentationModuleResolverTrait
         if ($markdownFilename = $this->getMarkdownFilename($module)) {
             $markdownFile = \trailingslashit($this->getMarkdownFileDir($module)) . $markdownFilename;
             $markdownContents = file_get_contents($markdownFile);
-            return (new Parsedown())->text($markdownContents);
+            $htmlContents = (new Parsedown())->text($markdownContents);
+            // Add the path to the images
+            if ($imagePathURL = $this->getImagePathURL($module)) {
+                $htmlContents = $this->appendPathURLToImages($imagePathURL, $htmlContents);
+            }
+            return $htmlContents;
         }
         return null;
+    }
+
+    /**
+     * Convert relative paths to absolute paths for image URLs
+     *
+     * @param string $imagePathURL
+     * @param string $htmlContents
+     * @return string
+     */
+    protected function appendPathURLToImages(string $imagePathURL, string $htmlContents): string
+    {
+        return preg_replace_callback(
+            '/<img.*src="(.*?)".*?>/',
+            function ($matches) use ($imagePathURL) {
+                // If the image has an absolute route, then no need
+                if (
+                    substr($matches[1], 0, strlen('http://')) == 'http://'
+                    || substr($matches[1], 0, strlen('https://')) == 'https://'
+                ) {
+                    return $matches[0];
+                }
+                $imageURL = \trailingslashit($imagePathURL) . $matches[1];
+                return str_replace(
+                    "src=\"{$matches[1]}\"",
+                    "src=\"{$imageURL}\"",
+                    $matches[0]
+                );
+            },
+            $htmlContents
+        );
     }
 }

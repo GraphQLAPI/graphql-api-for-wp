@@ -280,4 +280,15 @@ class ModuleResolver extends AbstractModuleResolver
     {
         return constant('GRAPHQL_API_DIR') . '/docs/modules';
     }
+
+    /**
+     * Path URL to append to the local images referenced in the markdown file
+     *
+     * @param string $module
+     * @return string|null
+     */
+    protected function getImagePathURL(string $module): ?string
+    {
+        return constant('GRAPHQL_API_URL') . 'docs/modules';
+    }
 }
