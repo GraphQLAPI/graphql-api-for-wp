@@ -73,14 +73,13 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
     }
 
     /**
-     * By default, the slug is the module's name
+     * By default, the slug is the module's name, without the owner/package
      *
      * @param string $module
      * @return string
      */
-    protected function getSlug(string $module): string
+    public function getSlug(string $module): string
     {
-        // The module's name without the owner/package
         $pos = strrpos($module, '\\');
         if ($pos !== false) {
             return substr($module, $pos + strlen('\\'));
@@ -97,5 +96,17 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
     protected function getURLBase(string $module): string
     {
         return ComponentConfiguration::getModuleURLBase();
+    }
+
+    /**
+     * HTML Documentation for the module
+     *
+     * @param string $module
+     * @return string|null
+     */
+    public function getDocumentation(string $module): ?string
+    {
+        return '<p>My module is:' . $module . '</p>';
+        // return null;
     }
 }

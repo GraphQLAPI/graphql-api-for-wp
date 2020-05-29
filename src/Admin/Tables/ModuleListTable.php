@@ -59,6 +59,7 @@ class ModuleListTable extends AbstractItemListTable
             $moduleResolver = $moduleRegistry->getModuleResolver($module);
             $isEnabled = $moduleRegistry->isModuleEnabled($module);
             $items[] = [
+                'module' => $module,
                 'id' => $moduleResolver->getID($module),
                 'is-enabled' => $isEnabled,
                 'can-be-enabled' => !$isEnabled && $moduleRegistry->canModuleBeEnabled($module),
@@ -67,6 +68,8 @@ class ModuleListTable extends AbstractItemListTable
                 'description' => $moduleResolver->getDescription($module),
                 'depends-on' => $moduleResolver->getDependedModuleLists($module),
                 'url' => $moduleResolver->getURL($module),
+                'slug' => $moduleResolver->getSlug($module),
+                'docs' => $moduleResolver->getDocumentation($module),
             ];
         }
         return $items;
@@ -265,12 +268,19 @@ class ModuleListTable extends AbstractItemListTable
             $actions['disabled'] = \__('Disabled', 'graphql-api');
             // }
         }
-        // Add a link to the website, to read the component's documentation
-        if ($url = $item['url']) {
-            $actions['details'] = \sprintf(
-                '<a href="%s">%s</a>',
+        // If it has, add a link to the documentation
+        if ($item['docs']) {
+            $url = \admin_url(sprintf(
+                'admin.php?page=%s&tab=%s&module=%s&TB_iframe=true&width=772&height=398',
+                'graphql_api_modules',
+                'docs',
+                urlencode($item['module'])
+            ));
+            $actions['docs'] = \sprintf(
+                '<a href="%s" class="%s">%s</a>',
                 $url,
-                \__('View details<span class="dashicons dashicons-external"></span>', 'graphql-api')
+                'thickbox open-plugin-details-modal',
+                \__('Learn more', 'graphql-api')
             );
         }
         return $title . $this->row_actions($actions/*, $this->usePluginTableStyle()*/);

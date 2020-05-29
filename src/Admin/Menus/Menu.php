@@ -8,6 +8,7 @@ use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphiQLMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModuleDocumentationMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphQLVoyagerMenuPage;
 
@@ -29,6 +30,7 @@ class Menu extends AbstractMenu
             GraphiQLMenuPage::class,
             GraphQLVoyagerMenuPage::class,
             ModulesMenuPage::class,
+            ModuleDocumentationMenuPage::class,
             SettingsMenuPage::class,
         ];
     }
@@ -77,7 +79,10 @@ class Menu extends AbstractMenu
         parent::addMenuPagesBottom();
 
         $instanceManager = InstanceManagerFacade::getInstance();
-        $modulesMenuPage = $instanceManager->getInstance(ModulesMenuPage::class);
+        $menuPageClass = ($_GET['tab'] == 'docs') ?
+            ModuleDocumentationMenuPage::class :
+            ModulesMenuPage::class;
+        $modulesMenuPage = $instanceManager->getInstance($menuPageClass);
         $hookName = \add_submenu_page(
             self::NAME,
             __('Modules', 'graphql-api'),
@@ -98,6 +103,17 @@ class Menu extends AbstractMenu
             [$settingsMenuPage, 'print']
         );
         $settingsMenuPage->setHookName($hookName);
+
+        // \add_submenu_page(
+        //     self::NAME,
+        //     __('Module docs', 'graphql-api'),
+        //     __('Module docs', 'graphql-api'),
+        //     'read',
+        //     'graphql-api-wp-plugin/details.php',
+        //     // '',
+        //     // plugins_url( 'myplugin/images/icon.png' ),
+        //     // 6
+        // );
 
         // $schemaEditorAccessCapability = UserAuthorization::getSchemaEditorAccessCapability();
         // if (\current_user_can($schemaEditorAccessCapability)) {
