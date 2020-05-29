@@ -172,7 +172,7 @@ class PluginConfiguration
                 'value' => '',
             ],
             [
-                'module' => ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
+                'module' => ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
                 'condition' => false,
                 'class' => \PoP\GraphQLClientsForWP\Component::class,
                 'envVariable' => \PoP\GraphQLClientsForWP\Environment::VOYAGER_CLIENT_ENDPOINT,
