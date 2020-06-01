@@ -11,7 +11,6 @@ use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigCacheControlListBlock;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\CacheControlGraphQLQueryConfigurator;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AbstractQueryExecutionSchemaConfigurator;
-use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 
 class PersistedQuerySchemaConfigurator extends AbstractQueryExecutionSchemaConfigurator
 {
