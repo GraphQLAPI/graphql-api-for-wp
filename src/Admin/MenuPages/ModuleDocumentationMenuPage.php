@@ -39,7 +39,8 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
         }
         $documentation = $moduleResolver->getDocumentation($module);
         /**
-         * Hide the menus
+         * 1. Hide the menus
+         * 2. Make images fit within the iframe
          */
         ?>
         <style>
@@ -49,6 +50,11 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
             }
             html.wp-toolbar {
                 padding-top: 0;
+            }
+            #graphql-api-module-docs img {
+                max-width: 100%;
+                width: auto;
+                height: auto;
             }
         </style>
         <div
