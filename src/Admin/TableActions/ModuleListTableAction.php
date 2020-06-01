@@ -11,6 +11,10 @@ use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
  */
 class ModuleListTableAction extends AbstractListTableAction
 {
+    public const ACTION_ENABLE = 'enable';
+    public const ACTION_DISABLE = 'disable';
+    public const INPUT_BULK_ACTION_IDS = 'bulk-action-items';
+
     private $processed = false;
     private $mutatedModuleIDs = [];
     private $mutatedEnabled = false;
@@ -59,9 +63,9 @@ class ModuleListTableAction extends AbstractListTableAction
              * Executed at the end (in ModuleListTable.php, `prepare_items`): Add a generic message
              */
             // See if executing any of the actions
-            $bulkActions = $this->getBulkActions();
-            $isBulkAction = in_array($_POST['action'], $bulkActions) || in_array($_POST['action2'], $bulkActions);
-            $isSingleAction = in_array($this->currentAction(), $this->getSingleActions());
+            $actions = $this->getActions();
+            $isBulkAction = in_array($_POST['action'], $actions) || in_array($_POST['action2'], $actions);
+            $isSingleAction = in_array($this->currentAction(), $actions);
             if ($isBulkAction || $isSingleAction) {
                 $message = \__('Operation successful', 'graphql-api');
             }
@@ -90,25 +94,25 @@ class ModuleListTableAction extends AbstractListTableAction
         }
         $this->processed = true;
 
-        $bulkActions = $this->getBulkActions();
-        $isBulkAction = in_array($_POST['action'], $bulkActions) || in_array($_POST['action2'], $bulkActions);
+        $actions = $this->getActions();
+        $isBulkAction = in_array($_POST['action'], $actions) || in_array($_POST['action2'], $actions);
         /**
          * The Bulk takes precedence, because it's executed as a POST on the current URL
          * Then, the URL can contain an ?action=... which was just executed,
          * and we don't want to execute it again
          */
         if ($isBulkAction) {
-            if ($moduleIDs = \esc_sql($_POST['bulk-action-items'] ?? '')) {
+            if ($moduleIDs = \esc_sql($_POST[self::INPUT_BULK_ACTION_IDS] ?? '')) {
                 // Enable or disable
-                if ($_POST['action'] == 'bulk-enable' || $_POST['action2'] == 'bulk-enable') {
+                if ($_POST['action'] == self::ACTION_ENABLE || $_POST['action2'] == self::ACTION_ENABLE) {
                     $this->setModulesEnabledValue($moduleIDs, true);
-                } elseif ($_POST['action'] == 'bulk-disable' || $_POST['action2'] == 'bulk-disable') {
+                } elseif ($_POST['action'] == self::ACTION_DISABLE || $_POST['action2'] == self::ACTION_DISABLE) {
                     $this->setModulesEnabledValue($moduleIDs, false);
                 }
             }
             return;
         }
-        $isSingleAction = in_array($this->currentAction(), $this->getSingleActions());
+        $isSingleAction = in_array($this->currentAction(), $actions);
         if ($isSingleAction) {
             // Verify the nonce
             $nonce = \esc_attr($_REQUEST['_wpnonce']);
@@ -124,9 +128,9 @@ class ModuleListTableAction extends AbstractListTableAction
             }
             if ($moduleID = $_GET['item']) {
                 // Enable or disable
-                if ('enable' === $this->currentAction()) {
+                if (self::ACTION_ENABLE === $this->currentAction()) {
                     $this->setModulesEnabledValue([$moduleID], true);
-                } elseif ('disable' === $this->currentAction()) {
+                } elseif (self::ACTION_DISABLE === $this->currentAction()) {
                     $this->setModulesEnabledValue([$moduleID], false);
                 }
             }
@@ -158,19 +162,11 @@ class ModuleListTableAction extends AbstractListTableAction
         \add_action('shutdown', 'flush_rewrite_rules');
     }
 
-    protected function getBulkActions(): array
+    public function getActions(): array
     {
         return [
-            'bulk-enable',
-            'bulk-disable'
-        ];
-    }
-
-    protected function getSingleActions(): array
-    {
-        return [
-            'enable',
-            'disable'
+            self::ACTION_ENABLE,
+            self::ACTION_DISABLE,
         ];
     }
 }

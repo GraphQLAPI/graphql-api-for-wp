@@ -201,7 +201,8 @@ class ModuleListTable extends AbstractItemListTable
     public function column_cb($item)
     {
         return sprintf(
-            '<input type="checkbox" name="bulk-action-items[]" value="%s" />',
+            '<input type="checkbox" name="%s[]" value="%s" />',
+            ModuleListTableAction::INPUT_BULK_ACTION_IDS,
             $item['id']
         );
     }
@@ -225,7 +226,7 @@ class ModuleListTable extends AbstractItemListTable
             $actions['disable'] = \sprintf(
                 $linkPlaceholder,
                 $page,
-                'disable',
+                ModuleListTableAction::ACTION_DISABLE,
                 $item['id'],
                 $nonce,
                 \__('Disable', 'graphql-api')
@@ -250,7 +251,7 @@ class ModuleListTable extends AbstractItemListTable
             $actions['enable'] = \sprintf(
                 $linkPlaceholder,
                 $page,
-                'enable',
+                ModuleListTableAction::ACTION_ENABLE,
                 $item['id'],
                 $nonce,
                 \__('Enable', 'graphql-api')
@@ -308,8 +309,8 @@ class ModuleListTable extends AbstractItemListTable
     public function get_bulk_actions()
     {
         return [
-            'bulk-enable' => \__('Enable', 'graphql-api'),
-            'bulk-disable' => \__('Disable', 'graphql-api'),
+            ModuleListTableAction::ACTION_ENABLE => \__('Enable', 'graphql-api'),
+            ModuleListTableAction::ACTION_DISABLE => \__('Disable', 'graphql-api'),
         ];
     }
 
@@ -385,19 +386,6 @@ class ModuleListTable extends AbstractItemListTable
         ]);
 
         $this->items = $this->getItems($per_page, $current_page);
-    }
-
-    protected function getBulkActions(): array
-    {
-        return array_keys($this->get_bulk_actions());
-    }
-
-    protected function getSingleActions(): array
-    {
-        return [
-            'enable',
-            'disable'
-        ];
     }
 
     /**
