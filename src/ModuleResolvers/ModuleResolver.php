@@ -323,6 +323,9 @@ class ModuleResolver extends AbstractModuleResolver
         switch ($module) {
             case self::SINGLE_ENDPOINT:
             case self::LOW_LEVEL_QUERY_EDITING:
+            case self::SCHEMA_CACHE:
+            case self::SCHEMA_NAMESPACING:
+            case self::FIELD_DEPRECATION:
                 return false;
         }
         return parent::isEnabledByDefault($module);
