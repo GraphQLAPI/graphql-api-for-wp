@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Card, CardHeader, CardBody, RadioControl } from '@wordpress/components';
+import { Card, CardHeader, CardBody, RadioControl, Notice } from '@wordpress/components';
 
 /**
  * Internal dependencies
@@ -20,7 +20,16 @@ import {
 } from './namespacing-values';
 
 const SchemaConfigOptionsCard = ( props ) => {
-	const { isSelected, className, setAttributes, attributes: { useNamespacing } } = props;
+	const {
+		isSelected,
+		className,
+		setAttributes,
+		attributes: {
+			useNamespacing,
+		},
+		isPublicPrivateSchemaEnabled = true,
+		isSchemaNamespacingEnabled = true,
+	} = props;
 	const componentClassName = `${ className } ${ getEditableOnFocusComponentClass(isSelected) }`;
 	const options = [
 		{
@@ -49,53 +58,64 @@ const SchemaConfigOptionsCard = ( props ) => {
 					/ >
 				</CardHeader>
 				<CardBody>
-					<div className={ `${ className }__schema_mode` }>
-						<em>{ __('Public/Private Schema:', 'graphql-api') }</em>
-						<LinkableInfoTooltip
-							{ ...props }
-							text={ __('Public: field/directives are always visible. Private: field/directives are hidden unless rules are satisfied.', 'graphql-api') }
-							href="https://graphql-api.com/documentation/#schema-mode"
-						/ >
-						<SchemaModeControl
-							{ ...props }
-							attributeName="defaultSchemaMode"
-						/>
-					</div>
-					<hr />
-					<div className={ `${ className }__namespacing` }>
-						<em>{ __('Namespace Types and Interfaces?', 'graphql-api') }</em>
-						<LinkableInfoTooltip
-							{ ...props }
-							text={ __('Prepend types and interfaces using the PHP package\'s owner and name', 'graphql-api') }
-							href="https://graphql-api.com/documentation/#namespacing"
-						/ >
-						{ !isSelected && (
-							<>
-								<br />
-								{ ( useNamespacing == ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT || !optionValues.includes(useNamespacing) ) &&
-									<span>⭕️ { __('Default', 'graphql-api') }</span>
-								}
-								{ useNamespacing == ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED &&
-									<span>✅ { __('Use namespacing', 'graphql-api') }</span>
-								}
-								{ useNamespacing == ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED &&
-									<span>❌ { __('Do not use namespacing', 'graphql-api') }</span>
-								}
-							</>
-						) }
-						{ isSelected &&
-							<RadioControl
+					{ ! isPublicPrivateSchemaEnabled && ! isSchemaNamespacingEnabled && (
+						<Notice status="warning" isDismissible={ false }>
+							{ __('All options for the Schema Configuration are disabled', 'graphql-api') }
+						</Notice>
+					) }
+					{ isPublicPrivateSchemaEnabled && (
+						<div className={ `${ className }__schema_mode` }>
+							<em>{ __('Public/Private Schema:', 'graphql-api') }</em>
+							<LinkableInfoTooltip
 								{ ...props }
-								options={ options }
-								selected={ useNamespacing }
-								onChange={ newValue => (
-									setAttributes( {
-										useNamespacing: newValue
-									} )
-								)}
+								text={ __('Public: field/directives are always visible. Private: field/directives are hidden unless rules are satisfied.', 'graphql-api') }
+								href="https://graphql-api.com/documentation/#schema-mode"
+							/ >
+							<SchemaModeControl
+								{ ...props }
+								attributeName="defaultSchemaMode"
 							/>
-						}
-					</div>
+						</div>
+					) }
+					{ isPublicPrivateSchemaEnabled && isSchemaNamespacingEnabled && (
+						<hr />
+					) }
+					{ isSchemaNamespacingEnabled && (
+						<div className={ `${ className }__namespacing` }>
+							<em>{ __('Namespace Types and Interfaces?', 'graphql-api') }</em>
+							<LinkableInfoTooltip
+								{ ...props }
+								text={ __('Prepend types and interfaces using the PHP package\'s owner and name', 'graphql-api') }
+								href="https://graphql-api.com/documentation/#namespacing"
+							/ >
+							{ !isSelected && (
+								<>
+									<br />
+									{ ( useNamespacing == ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT || !optionValues.includes(useNamespacing) ) &&
+										<span>⭕️ { __('Default', 'graphql-api') }</span>
+									}
+									{ useNamespacing == ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED &&
+										<span>✅ { __('Use namespacing', 'graphql-api') }</span>
+									}
+									{ useNamespacing == ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED &&
+										<span>❌ { __('Do not use namespacing', 'graphql-api') }</span>
+									}
+								</>
+							) }
+							{ isSelected &&
+								<RadioControl
+									{ ...props }
+									options={ options }
+									selected={ useNamespacing }
+									onChange={ newValue => (
+										setAttributes( {
+											useNamespacing: newValue
+										} )
+									)}
+								/>
+							}
+						</div>
+					) }
 				</CardBody>
 			</Card>
 		</div>

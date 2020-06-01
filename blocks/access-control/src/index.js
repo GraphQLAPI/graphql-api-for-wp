@@ -140,7 +140,7 @@ registerBlockType( ACCESS_CONTROL_BLOCK_NAME, {
 			<div class={ className }>
 				{ doesAccessControlBlockNotHaveRuleBlocks() &&
 					<Notice status="warning" isDismissible={ false }>
-						{ __('Please notice: All Access Control Rule blocks are disabled.', 'graphql-api') }
+						{ __('All Access Control Rule blocks are disabled', 'graphql-api') }
 					</Notice>
 				}
 				<EditBlock
