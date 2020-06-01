@@ -6,7 +6,9 @@ namespace GraphQLAPI\GraphQLAPI\Blocks;
 
 use PoP\AccessControl\Schema\SchemaModes;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\GraphQLByPoPBlockTrait;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
 use GraphQLAPI\GraphQLAPI\BlockCategories\SchemaConfigurationBlockCategory;
@@ -79,6 +81,23 @@ EOT;
             $className . '__title',
             \__('Options', 'graphql-api'),
             $blockContent
+        );
+    }
+
+    /**
+     * Pass localized data to the block
+     *
+     * @return array
+     */
+    protected function getLocalizedData(): array
+    {
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        return array_merge(
+            parent::getLocalizedData(),
+            [
+                'isPublicPrivateSchemaEnabled' => $moduleRegistry->isModuleEnabled(ModuleResolver::PUBLIC_PRIVATE_SCHEMA),
+                'isSchemaNamespacingEnabled' => $moduleRegistry->isModuleEnabled(ModuleResolver::SCHEMA_NAMESPACING),
+            ]
         );
     }
 }

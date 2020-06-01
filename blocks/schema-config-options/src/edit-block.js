@@ -10,11 +10,16 @@
  */
 import SchemaConfigOptionsCard from './schema-config-options-card';
 
+const isPublicPrivateSchemaEnabled = window.graphqlApiSchemaConfigOptions ? window.graphqlApiSchemaConfigOptions.isPublicPrivateSchemaEnabled : true;
+const isSchemaNamespacingEnabled = window.graphqlApiSchemaConfigOptions ? window.graphqlApiSchemaConfigOptions.isSchemaNamespacingEnabled : true;
+
 const EditBlock = ( props ) => {
 	const { className } = props;
 	return (
 		<div class={ className }>
 			<SchemaConfigOptionsCard
+				isPublicPrivateSchemaEnabled={ isPublicPrivateSchemaEnabled }
+				isSchemaNamespacingEnabled={ isSchemaNamespacingEnabled }
 				{ ...props }
 			/>
 		</div>

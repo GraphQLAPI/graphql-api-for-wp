@@ -119,6 +119,12 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
      */
     protected function executeSchemaConfigurationOptionsNamespacing(int $schemaConfigurationID): void
     {
+        // Check if it enabled by module
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::SCHEMA_NAMESPACING)) {
+            return;
+        }
+
         $instanceManager = InstanceManagerFacade::getInstance();
         $schemaConfigOptionsBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $schemaConfigurationID,
@@ -163,6 +169,12 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
      */
     protected function executeSchemaConfigurationOptionsDefaultSchemaMode(int $schemaConfigurationID): void
     {
+        // Check if it enabled by module
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::PUBLIC_PRIVATE_SCHEMA)) {
+            return;
+        }
+
         $instanceManager = InstanceManagerFacade::getInstance();
         $schemaConfigOptionsBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $schemaConfigurationID,

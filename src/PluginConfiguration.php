@@ -130,6 +130,7 @@ class PluginConfiguration
         $componentClassConfiguration = [];
         self::addPredefinedComponentClassConfiguration($componentClassConfiguration);
         self::addBasedOnModuleComponentClassConfiguration($componentClassConfiguration);
+        self::addSameAsModuleComponentClassConfiguration($componentClassConfiguration);
         return $componentClassConfiguration;
     }
 
@@ -146,6 +147,26 @@ class PluginConfiguration
         $componentClassConfiguration[\PoP\GraphQLClientsForWP\Component::class] = [
             \PoP\GraphQLClientsForWP\Environment::GRAPHQL_CLIENTS_COMPONENT_URL => \GRAPHQL_API_URL . 'vendor/getpop/graphql-clients-for-wp',
         ];
+    }
+
+    /**
+     * Add configuration values if modules are enabled or disabled
+     *
+     * @return void
+     */
+    protected static function addSameAsModuleComponentClassConfiguration(array &$componentClassConfiguration): void
+    {
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        $moduleToComponentClassConfigurationMappings = [
+            [
+                'module' => ModuleResolver::PUBLIC_PRIVATE_SCHEMA,
+                'class' => \PoP\AccessControl\Component::class,
+                'envVariable' => \PoP\AccessControl\Environment::ENABLE_INDIVIDUAL_CONTROL_FOR_PUBLIC_PRIVATE_SCHEMA_MODE,
+            ],
+        ];
+        foreach ($moduleToComponentClassConfigurationMappings as $mapping) {
+            $componentClassConfiguration[$mapping['class']][$mapping['envVariable']] = $moduleRegistry->isModuleEnabled($mapping['module']);
+        }
     }
 
     /**
