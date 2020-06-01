@@ -14,18 +14,6 @@ use GraphQLAPI\GraphQLAPI\Admin\TableActions\ModuleListTableAction;
  */
 class ModuleListTable extends AbstractItemListTable
 {
-    /** Class constructor */
-    public function __construct()
-    {
-        parent::__construct();
-
-        /**
-         * If executing an operation, print a success message
-         */
-        \add_action('admin_notices', function () {
-            $this->maybeAddAdminNotice();
-        });
-    }
     /**
      * Singular name of the listed records
      *
@@ -92,38 +80,6 @@ class ModuleListTable extends AbstractItemListTable
             ($page_number - 1) * $per_page,
             $per_page
         );
-    }
-
-    /**
-     * Show an admin notice with the successful message
-     * Executing this function from within `setModulesEnabledValue` is too late,
-     * since hook "admin_notices" will have been executed by then
-     * Then, deduce if there will be an operation, and always say "successful"
-     *
-     * @return void
-     */
-    public function maybeAddAdminNotice(): void
-    {
-        /**
-         * See if executing any of the actions
-         */
-        $bulkActions = $this->getBulkActions();
-        $isBulkAction = in_array($_POST['action'], $bulkActions) || in_array($_POST['action2'], $bulkActions);
-        $isSingleAction = in_array($this->current_action(), $this->getSingleActions());
-        if ($isBulkAction || $isSingleAction) {
-            _e(sprintf(
-                '<div class="notice notice-success is-dismissible">' .
-                    '<p>%s</p>' .
-                '</div>',
-                sprintf(
-                    __('[GraphQL API] Operation successful. You may need to <a href="%s">refresh the page</a> to see the changes.', 'graphql-api'),
-                    \admin_url(sprintf(
-                        'admin.php?page=%s',
-                        'graphql_api_modules'
-                    ))
-                )
-            ));
-        }
     }
 
     /**

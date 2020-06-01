@@ -12,6 +12,72 @@ use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 class ModuleListTableAction extends AbstractListTableAction
 {
     private $processed = false;
+    private $mutatedModuleIDs = [];
+    private $mutatedEnabled = false;
+
+    /** Class constructor */
+    public function __construct()
+    {
+        /**
+         * If executing an operation, print a success message
+         */
+        \add_action('admin_notices', function () {
+            $this->maybeAddAdminNotice();
+        });
+    }
+
+    /**
+     * Show an admin notice with the successful message
+     * Executing this function from within `setModulesEnabledValue` is too late,
+     * since hook "admin_notices" will have been executed by then
+     * Then, deduce if there will be an operation, and always say "successful"
+     *
+     * @return void
+     */
+    public function maybeAddAdminNotice(): void
+    {
+        $placeholder =
+            '<div class="notice notice-success is-dismissible">' .
+                '<p>%s</p>' .
+            '</div>';
+        // If processes, `maybeProcessAction` has already been executed,
+        // so we have the results to show in the admin notice
+        if ($this->processed) {
+            /**
+             * Executing at the beginning (in Plugin.php): Add a precise message
+             */
+            if ($this->mutatedModuleIDs) {
+                $message = '';
+                if (count($this->mutatedModuleIDs) == 1 && $this->mutatedEnabled) {
+                    $message = \__('Module enabled successfully', 'graphql-api');
+                } elseif (count($this->mutatedModuleIDs) > 1 && $this->mutatedEnabled) {
+                    $message = \__('Modules enabled successfully', 'graphql-api');
+                } elseif (count($this->mutatedModuleIDs) == 1 && !$this->mutatedEnabled) {
+                    $message = \__('Module disabled successfully', 'graphql-api');
+                } elseif (count($this->mutatedModuleIDs) > 1 && !$this->mutatedEnabled) {
+                    $message = \__('Modules disabled successfully', 'graphql-api');
+                }
+                _e(sprintf(
+                    $placeholder,
+                    $message
+                ));
+            }
+        } else {
+            /**
+             * Executed at the end (in ModuleListTable.php, `prepare_items`): Add a generic message
+             */
+            // See if executing any of the actions
+            $bulkActions = $this->getBulkActions();
+            $isBulkAction = in_array($_POST['action'], $bulkActions) || in_array($_POST['action2'], $bulkActions);
+            $isSingleAction = in_array($this->currentAction(), $this->getSingleActions());
+            if ($isBulkAction || $isSingleAction) {
+                _e(sprintf(
+                    $placeholder,
+                    \__('Operation successful', 'graphql-api')
+                ));
+            }
+        }
+    }
 
     /**
      * Process bulk and single actions.
@@ -85,6 +151,10 @@ class ModuleListTableAction extends AbstractListTableAction
             $moduleIDValues[$moduleID] = $isEnabled;
         }
         $userSettingsManager->setModulesEnabled($moduleIDValues);
+
+        // Flags to indicate that data was mutated, which and how
+        $this->mutatedModuleIDs = $moduleIDs;
+        $this->mutatedEnabled = $isEnabled;
 
         // If modifying a CPT, must flush the rewrite rules
         // But do it at the end! Once the new configuration has been applied
