@@ -8,7 +8,7 @@ import {
 import { SchemaMode } from '../../../packages/components/src';
 
 const AccessControl = ( props ) => {
-	const { className, enableIndividualControlForSchemaMode } = props;
+	const { className, isIndividualControlForSchemaModeEnabled } = props;
 	/**
 	 * Only allow blocks under the "Access Control" category, except for this self block
 	 */
@@ -20,7 +20,7 @@ const AccessControl = ( props ) => {
 	 */
 	return (
 		<>
-			{ enableIndividualControlForSchemaMode &&
+			{ isIndividualControlForSchemaModeEnabled &&
 				<div className={ className+'__schema_mode' }>
 					<SchemaMode
 						{ ...props }

@@ -135,7 +135,7 @@ registerBlockType( ACCESS_CONTROL_BLOCK_NAME, {
 		 * Pass as prop option "individual schema mode", to let components know if to
 		 * add the <SchemaMode /> or not, and corresponding titles
 		 */
-		const enableIndividualControlForSchemaMode = window.graphqlApiAccessControl ? window.graphqlApiAccessControl.enableIndividualControlForSchemaMode : false;
+		const isIndividualControlForSchemaModeEnabled = window.graphqlApiAccessControl ? window.graphqlApiAccessControl.isIndividualControlForSchemaModeEnabled : false;
 		return (
 			<div class={ className }>
 				{ doesAccessControlBlockNotHaveRuleBlocks() &&
@@ -145,9 +145,9 @@ registerBlockType( ACCESS_CONTROL_BLOCK_NAME, {
 				}
 				<EditBlock
 					selectLabel={ __('Define access for:', 'graphql-api') }
-					configurationLabel={ enableIndividualControlForSchemaMode ? __('Access Control Rules:', 'graphql-api') : __('Who can access:', 'graphql-api') }
+					configurationLabel={ isIndividualControlForSchemaModeEnabled ? __('Access Control Rules:', 'graphql-api') : __('Who can access:', 'graphql-api') }
 					componentClassName={ getEditableOnFocusComponentClass(isSelected) }
-					enableIndividualControlForSchemaMode={ enableIndividualControlForSchemaMode }
+					isIndividualControlForSchemaModeEnabled={ isIndividualControlForSchemaModeEnabled }
 					{ ...props }
 				/>
 			</div>

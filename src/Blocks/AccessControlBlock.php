@@ -62,7 +62,7 @@ class AccessControlBlock extends AbstractControlBlock
     protected function getLocalizedData(): array
     {
         return [
-            'enableIndividualControlForSchemaMode' => ComponentConfiguration::enableIndividualControlForPublicPrivateSchemaMode(),
+            'isIndividualControlForSchemaModeEnabled' => ComponentConfiguration::enableIndividualControlForPublicPrivateSchemaMode(),
         ];
     }
 
