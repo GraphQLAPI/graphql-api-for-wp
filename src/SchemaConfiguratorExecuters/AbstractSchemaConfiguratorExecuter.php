@@ -17,8 +17,15 @@ abstract class AbstractSchemaConfiguratorExecuter
     public function init(): void
     {
         if (\is_singular($this->getPostType())) {
-            $vars = ApplicationState::getVars();
-            $postID = $vars['routing-state']['queried-object-id'];
+            // Watch out! If accessing $vars it triggers setting ComponentConfiguration vars,
+            // but we have not set the hooks yet!
+            // For instance for `namespaceTypesAndInterfaces()`,
+            // to be set in `executeSchemaConfigurationOptionsNamespacing()`
+            // Hence, code below was commented, and access the $post from the global variable
+            // $vars = ApplicationState::getVars();
+            // $postID = $vars['routing-state']['queried-object-id'];
+            global $post;
+            $postID = $post->ID;
             $schemaConfigurator = $this->getSchemaConfigurator();
             $schemaConfigurator->executeSchemaConfiguration($postID);
         }
