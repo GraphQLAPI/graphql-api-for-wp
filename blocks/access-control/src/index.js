@@ -20,8 +20,13 @@ import { InnerBlocks } from '@wordpress/block-editor';
 /**
  * Application imports
  */
+import { Notice } from '@wordpress/components';
 import EditBlock from './edit-block.js';
-import BLOCK_NAME from './block-name.js';
+import {
+	ACCESS_CONTROL_BLOCK_NAME,
+	ACCESS_CONTROL_BLOCK_CATEGORY,
+} from './block-settings.js';
+import { doesAccessControlBlockNotHaveRuleBlocks } from './block-helpers';
 import { DEFAULT_SCHEMA_MODE } from '../../../packages/components/src';
 import { getEditableOnFocusComponentClass } from '../../../packages/components/src';
 import './style.scss';
@@ -32,7 +37,7 @@ import '../../../packages/components/src/components/base-styles/editable-on-focu
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( BLOCK_NAME, {
+registerBlockType( ACCESS_CONTROL_BLOCK_NAME, {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
@@ -52,7 +57,7 @@ registerBlockType( BLOCK_NAME, {
 	 * Blocks are grouped into categories to help users browse and discover them.
 	 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
 	 */
-	category: 'graphql-api-access-control',
+	category: ACCESS_CONTROL_BLOCK_CATEGORY,
 
 	/**
 	 * An icon property should be specified to make it easier to identify a block.
@@ -133,6 +138,11 @@ registerBlockType( BLOCK_NAME, {
 		const enableIndividualControlForSchemaMode = window.graphqlApiAccessControl ? window.graphqlApiAccessControl.enableIndividualControlForSchemaMode : false;
 		return (
 			<div class={ className }>
+				{ doesAccessControlBlockNotHaveRuleBlocks() &&
+					<Notice status="warning" isDismissible={ false }>
+						{ __('Please notice: All Access Control Rule blocks are disabled.', 'graphql-api') }
+					</Notice>
+				}
 				<EditBlock
 					selectLabel={ __('Define access for:', 'graphql-api') }
 					configurationLabel={ enableIndividualControlForSchemaMode ? __('Access Control Rules:', 'graphql-api') : __('Who can access:', 'graphql-api') }
@@ -158,3 +168,5 @@ registerBlockType( BLOCK_NAME, {
 		);
 	},
 } );
+
+export { ACCESS_CONTROL_BLOCK_NAME, ACCESS_CONTROL_BLOCK_CATEGORY };
