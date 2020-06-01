@@ -62,11 +62,13 @@ class GraphQLQueryPostTypeHelpers
              * }
              * Then doing `json_decode` will return NULL
              */
-            $postGraphQLVariables = json_decode($postGraphQLVariables, true) ?? [];
-            $graphQLVariables = array_merge(
-                $postGraphQLVariables,
-                $graphQLVariables
-            );
+            if ($postGraphQLVariables) {
+                $postGraphQLVariables = json_decode($postGraphQLVariables, true) ?? [];
+                $graphQLVariables = array_merge(
+                    $postGraphQLVariables,
+                    $graphQLVariables
+                );
+            }
 
             // Keep iterating with this posts' ancestors
             if ($inheritQuery) {
