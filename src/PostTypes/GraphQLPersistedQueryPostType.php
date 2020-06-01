@@ -9,7 +9,6 @@ use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\General\BlockContentHelpers;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigurationBlock;
 use GraphQLAPI\GraphQLAPI\Taxonomies\GraphQLQueryTaxonomy;
 use GraphQLAPI\GraphQLAPI\Blocks\PersistedQueryOptionsBlock;
 use GraphQLAPI\GraphQLAPI\General\GraphQLQueryPostTypeHelpers;
@@ -144,15 +143,18 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
      */
     protected function getGutenbergTemplate(): array
     {
+        $template = parent::getGutenbergTemplate();
+
         $instanceManager = InstanceManagerFacade::getInstance();
         $graphiQLBlock = $instanceManager->getInstance(GraphiQLBlock::class);
-        $schemaConfigurationBlock = $instanceManager->getInstance(SchemaConfigurationBlock::class);
+        $template[] = [$graphiQLBlock->getBlockFullName()];
+
+        // If enabled by module, add the Schema Configuration block to the locked Gutenberg template
+        $this->maybeAddSchemaConfigurationBlock($template);
+
         $persistedQueryOptionsBlock = $instanceManager->getInstance(PersistedQueryOptionsBlock::class);
-        return [
-            [$graphiQLBlock->getBlockFullName()],
-            [$schemaConfigurationBlock->getBlockFullName()],
-            [$persistedQueryOptionsBlock->getBlockFullName()],
-        ];
+        $template[] = [$persistedQueryOptionsBlock->getBlockFullName()];
+        return $template;
     }
 
     /**

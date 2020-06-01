@@ -32,6 +32,12 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
      */
     public function executeSchemaConfiguration(int $customPostID): void
     {
+        // Check if it enabled by module
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::SCHEMA_CONFIGURATION)) {
+            return;
+        }
+
         if ($schemaConfigurationID = $this->getSchemaConfigurationID($customPostID)) {
             // Get that Schema Configuration, and load its settings
             $this->executeSchemaConfigurationItems($schemaConfigurationID);

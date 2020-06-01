@@ -8,6 +8,10 @@ use PoP\ComponentModel\State\ApplicationState;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\PostTypes\AbstractPostType;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigurationBlock;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\EndpointResolvers\EndpointResolverTrait;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
 
@@ -251,6 +255,21 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
         $vars = &$vars_in_array[0];
         if (\is_singular($this->getPostType()) && $this->isEnabled($vars['routing-state']['queried-object-id'])) {
             $this->upstreamAddGraphQLVars($vars_in_array);
+        }
+    }
+
+    /**
+     * If enabled by module, add the Schema Configuration block to the locked Gutenberg template
+     *
+     * @return array
+     */
+    protected function maybeAddSchemaConfigurationBlock(array &$template): void
+    {
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if ($moduleRegistry->isModuleEnabled(ModuleResolver::SCHEMA_CONFIGURATION)) {
+            $instanceManager = InstanceManagerFacade::getInstance();
+            $schemaConfigurationBlock = $instanceManager->getInstance(SchemaConfigurationBlock::class);
+            $template[] = [$schemaConfigurationBlock->getBlockFullName()];
         }
     }
 }

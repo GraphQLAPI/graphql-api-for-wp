@@ -12,7 +12,6 @@ use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointGraphiQLClient;
 use GraphQLAPI\GraphQLAPI\Blocks\EndpointOptionsBlock;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
-use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigurationBlock;
 use GraphQLAPI\GraphQLAPI\Taxonomies\GraphQLQueryTaxonomy;
 use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
@@ -127,16 +126,15 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
      */
     protected function getGutenbergTemplate(): array
     {
+        $template = parent::getGutenbergTemplate();
+
+        // If enabled by module, add the Schema Configuration block to the locked Gutenberg template
+        $this->maybeAddSchemaConfigurationBlock($template);
+
         $instanceManager = InstanceManagerFacade::getInstance();
-        $schemaConfigurationBlock = $instanceManager->getInstance(SchemaConfigurationBlock::class);
         $endpointOptionsBlock = $instanceManager->getInstance(EndpointOptionsBlock::class);
-        return array_merge(
-            parent::getGutenbergTemplate(),
-            [
-                [$schemaConfigurationBlock->getBlockFullName()],
-                [$endpointOptionsBlock->getBlockFullName()],
-            ]
-        );
+        $template[] = [$endpointOptionsBlock->getBlockFullName()];
+        return $template;
     }
 
     /**
