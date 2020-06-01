@@ -205,6 +205,7 @@ class ModuleResolver extends AbstractModuleResolver
     {
         switch ($module) {
             case self::MAIN:
+            case self::SCHEMA_CACHE:
                 return true;
         }
         return parent::isHidden($module);
