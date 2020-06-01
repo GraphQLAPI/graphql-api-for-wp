@@ -36,18 +36,14 @@ class ModuleListTableAction extends AbstractListTableAction
      */
     public function maybeAddAdminNotice(): void
     {
-        $placeholder =
-            '<div class="notice notice-success is-dismissible">' .
-                '<p>%s</p>' .
-            '</div>';
         // If processes, `maybeProcessAction` has already been executed,
         // so we have the results to show in the admin notice
+        $message = '';
         if ($this->processed) {
             /**
              * Executing at the beginning (in Plugin.php): Add a precise message
              */
             if ($this->mutatedModuleIDs) {
-                $message = '';
                 if (count($this->mutatedModuleIDs) == 1 && $this->mutatedEnabled) {
                     $message = \__('Module enabled successfully', 'graphql-api');
                 } elseif (count($this->mutatedModuleIDs) > 1 && $this->mutatedEnabled) {
@@ -57,10 +53,6 @@ class ModuleListTableAction extends AbstractListTableAction
                 } elseif (count($this->mutatedModuleIDs) > 1 && !$this->mutatedEnabled) {
                     $message = \__('Modules disabled successfully', 'graphql-api');
                 }
-                _e(sprintf(
-                    $placeholder,
-                    $message
-                ));
             }
         } else {
             /**
@@ -71,11 +63,16 @@ class ModuleListTableAction extends AbstractListTableAction
             $isBulkAction = in_array($_POST['action'], $bulkActions) || in_array($_POST['action2'], $bulkActions);
             $isSingleAction = in_array($this->currentAction(), $this->getSingleActions());
             if ($isBulkAction || $isSingleAction) {
-                _e(sprintf(
-                    $placeholder,
-                    \__('Operation successful', 'graphql-api')
-                ));
+                $message = \__('Operation successful', 'graphql-api');
             }
+        }
+        if ($message) {
+            _e(sprintf(
+                '<div class="notice notice-success is-dismissible">' .
+                    '<p>%s</p>' .
+                '</div>',
+                $message
+            ));
         }
     }
 
