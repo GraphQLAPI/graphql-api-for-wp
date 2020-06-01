@@ -37,6 +37,7 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
             ));
             return;
         }
+        $title = $moduleResolver->getName($module);
         $documentation = $moduleResolver->getDocumentation($module);
         /**
          * 1. Hide the menus
@@ -61,6 +62,7 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
             id="graphql-api-module-docs"
             class="wrap"
         >
+            <h1><?php echo $title ?></h1>
             <?php echo $documentation ?>
         </div>
         <?php
