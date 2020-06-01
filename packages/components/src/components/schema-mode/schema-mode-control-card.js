@@ -19,7 +19,7 @@ const SchemaModeControlCard = ( props ) => {
 		<div className={ componentClassName }>
 			<Card { ...props }>
 				<CardHeader isShady>
-					{ __('Schema mode', 'graphql-api') }
+					{ __('Public/Private Schema', 'graphql-api') }
 					<LinkableInfoTooltip
 						{ ...props }
 						text={ __('Default: use mode saved in settings. Public: field/directives are always visible. Private: field/directives are hidden unless rules are satisfied.', 'graphql-api') }

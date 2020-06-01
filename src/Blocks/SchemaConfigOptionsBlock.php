@@ -53,7 +53,7 @@ class SchemaConfigOptionsBlock extends AbstractOptionsBlock
         ];
         $blockContent = sprintf(
             $blockContentPlaceholder,
-            \__('Default Schema Mode for the Access Control Lists:', 'graphql-api'),
+            \__('Public/Private Schema:', 'graphql-api'),
             $schemaModeLabels[$attributes[self::ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE]] ?? ComponentConfiguration::getSettingsValueLabel()
         );
 

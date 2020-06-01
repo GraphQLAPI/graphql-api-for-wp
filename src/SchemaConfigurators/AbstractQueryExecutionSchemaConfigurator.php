@@ -150,7 +150,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     }
 
     /**
-     * Apply the Default Schema Mode settings
+     * Apply the default Schema mode settings
      *
      * @param integer $schemaConfigurationID
      * @return void

@@ -88,7 +88,7 @@ EOT;
             ];
             $maybeSchemaModeContent = sprintf(
                 $blockContentPlaceholder,
-                \__('Schema mode:', 'graphql-api'),
+                \__('Public/Private Schema:', 'graphql-api'),
                 $attributes[self::ATTRIBUTE_NAME_SCHEMA_MODE] ?
                     $schemaModeLabels[$attributes[self::ATTRIBUTE_NAME_SCHEMA_MODE]]
                     : \__('Default', 'graphql-api'),
