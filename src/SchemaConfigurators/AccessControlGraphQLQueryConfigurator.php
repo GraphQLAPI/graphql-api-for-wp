@@ -18,10 +18,58 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
 {
     public const HOOK_ACL_RULE_BLOCK_CLASS_MODULES = __CLASS__ . ':acl-url-block-class:modules';
 
+    protected $aclRuleBlockNameModules;
+
     // protected function doInit(): void
     // {
     //     $this->setAccessControlList();
     // }
+
+    /**
+     * Obtain the modules enabling/disabling each ACL rule block, through a hook
+     *
+     * @return array
+     */
+    protected function getACLRuleBlockNameClasses(): array
+    {
+        // Pairings of blockClass => module
+        return \apply_filters(
+            self::HOOK_ACL_RULE_BLOCK_CLASS_MODULES,
+            []
+        );
+    }
+
+    /**
+     * Obtain the modules enabling/disabling each ACL rule block, through a hook
+     *
+     * @return array
+     */
+    protected function getACLRuleBlockNameModules(): array
+    {
+        // Lazy load
+        if (is_null($this->aclRuleBlockNameModules)) {
+            // Obtain the block names from the block classes
+            $instanceManager = InstanceManagerFacade::getInstance();
+            $aclRuleBlockClassModules = $this->getACLRuleBlockNameClasses();
+            $this->aclRuleBlockNameModules = [];
+            foreach ($aclRuleBlockClassModules as $blockClass => $module) {
+                $block = $instanceManager->getInstance($blockClass);
+                $this->aclRuleBlockNameModules[$block->getBlockFullName()] = $module;
+            }
+        }
+        return $this->aclRuleBlockNameModules;
+    }
+
+    /**
+     * Obtain the module enabling/disabling a certain ACL rule block
+     *
+     * @return array
+     */
+    protected function getACLRuleBlockModule(string $blockName): ?string
+    {
+        $aclRuleBlockNameModules = $this->getACLRuleBlockNameModules();
+        return $aclRuleBlockNameModules[$blockName];
+    }
 
     /**
      * Extract the access control items defined in the CPT,
@@ -43,17 +91,6 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
             $instanceManager->getInstance(AccessControlBlock::class)
         );
         $accessControlManager = AccessControlManagerFacade::getInstance();
-        // Obtain the modules enabling/disabling each ACL rule block through a hook
-        $aclRuleBlockClassModules = \apply_filters(
-            self::HOOK_ACL_RULE_BLOCK_CLASS_MODULES,
-            []
-        );
-        // Obtain the block names from the block classes
-        $aclRuleBlockNameModules = [];
-        foreach ($aclRuleBlockClassModules as $blockClass => $module) {
-            $block = $instanceManager->getInstance($blockClass);
-            $aclRuleBlockNameModules[$block->getBlockFullName()] = $module;
-        }
         // The "Access Control" type contains the fields/directives
         foreach ($aclBlockItems as $aclBlockItem) {
             // The rule to apply is contained inside the nested blocks
@@ -62,10 +99,9 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
                 if (
                     $aclBlockItemNestedBlocks = array_filter(
                         $aclBlockItemNestedBlocks,
-                        function ($block) use ($aclRuleBlockNameModules, $moduleRegistry) {
-                            $blockName = $block['blockName'];
-                            // Check if it has a corresponding module
-                            if ($module = $aclRuleBlockNameModules[$blockName]) {
+                        function ($block) use ($moduleRegistry) {
+                            // If it has a corresponding module, check if it is enabled
+                            if ($module = $this->getACLRuleBlockModule($block['blockName'])) {
                                 return $moduleRegistry->isModuleEnabled($module);
                             }
                             // Otherwise it's always enabled
