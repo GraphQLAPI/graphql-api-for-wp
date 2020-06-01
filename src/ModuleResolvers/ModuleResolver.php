@@ -342,7 +342,21 @@ class ModuleResolver extends AbstractModuleResolver
      */
     public function getDefaultMarkdownFileDir(string $module): string
     {
-        return $this->getMarkdownFileDir($module, 'en');
+        return $this->getMarkdownFileDir(
+            $module,
+            $this->getDefaultDocumentationLanguage()
+        );
+    }
+
+    /**
+     * Default language for documentation: English
+     *
+     * @param string $module
+     * @return string
+     */
+    public function getDefaultDocumentationLanguage(): string
+    {
+        return 'en';
     }
 
     /**
@@ -365,6 +379,7 @@ class ModuleResolver extends AbstractModuleResolver
      */
     protected function getDefaultMarkdownFileURL(string $module): string
     {
-        return constant('GRAPHQL_API_URL') . 'docs/en/modules';
+        $lang = $this->getDefaultDocumentationLanguage();
+        return constant('GRAPHQL_API_URL') . "docs/${lang}/modules";
     }
 }
