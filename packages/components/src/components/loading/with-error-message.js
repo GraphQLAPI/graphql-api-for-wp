@@ -1,4 +1,9 @@
 /**
+ * WordPress imports
+ */
+import { Notice } from '@wordpress/components';
+
+/**
  * Internal dependencies
  */
 import { createHigherOrderComponent } from '@wordpress/compose';
@@ -11,7 +16,9 @@ const withErrorMessage = () => createHigherOrderComponent(
 		const { hasRetrievedItems, errorMessage } = props;
 		if (hasRetrievedItems && errorMessage) {
 			return <div className="multi-select-control__error_message">
-				{ errorMessage }
+				<Notice status="error" isDismissible={ false }>
+					{ errorMessage }
+				</Notice>
 			</div>
 		}
 
