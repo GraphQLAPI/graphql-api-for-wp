@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Clients;
 
-use PoP\API\Configuration\Request;
-use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\General\RequestParams;
+use PoP\API\Configuration\Request as APIRequest;
+use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 
 trait CustomEndpointClientTrait
 {
@@ -19,7 +19,7 @@ trait CustomEndpointClientTrait
     {
         $endpointURL = \remove_query_arg(RequestParams::VIEW, \fullUrl());
         if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
-            $endpointURL = \add_query_arg(Request::URLPARAM_USE_NAMESPACE, true, $endpointURL);
+            $endpointURL = \add_query_arg(APIRequest::URLPARAM_USE_NAMESPACE, true, $endpointURL);
         }
         return $endpointURL;
     }
