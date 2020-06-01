@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 
-use GraphQLAPI\GraphQLAPI\Admin\Menus\Menu;
 use GraphQLAPI\GraphQLAPI\General\EndpointHelpers;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\EnqueueReactMenuPageTrait;
@@ -15,6 +14,7 @@ use GraphQLAPI\GraphQLAPI\Admin\MenuPages\EnqueueReactMenuPageTrait;
 class GraphiQLMenuPage extends AbstractMenuPage
 {
     use EnqueueReactMenuPageTrait;
+    use GraphQLAPIMenuPageTrait;
 
     public function print(): void
     {
@@ -28,9 +28,21 @@ class GraphiQLMenuPage extends AbstractMenuPage
         <?php
     }
 
-    protected function getScreenID(): ?string
+    /**
+     * Override, because this is the default page, so it is invoked
+     * with the menu slug wp-admin/admin.php?page=graphql_api,
+     * and not the menu page slug wp-admin/admin.php?page=graphql_api_graphiql
+     *
+     * @return string
+     */
+    public function getScreenID(): string
     {
-        return Menu::getName();
+        return $this->getMenuName();
+    }
+
+    public function getMenuPageSlug(): string
+    {
+        return 'graphiql';
     }
 
     /**

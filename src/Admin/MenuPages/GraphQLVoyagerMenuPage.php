@@ -14,6 +14,7 @@ use GraphQLAPI\GraphQLAPI\General\EndpointHelpers;
 class GraphQLVoyagerMenuPage extends AbstractMenuPage
 {
     use EnqueueReactMenuPageTrait;
+    use GraphQLAPIMenuPageTrait;
 
     public function print(): void
     {
@@ -22,9 +23,9 @@ class GraphQLVoyagerMenuPage extends AbstractMenuPage
         <?php
     }
 
-    protected function getScreenID(): ?string
+    public function getMenuPageSlug(): string
     {
-        return 'graphql_api_voyager';
+        return 'voyager';
     }
 
     /**

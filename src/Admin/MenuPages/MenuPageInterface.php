@@ -15,4 +15,5 @@ interface MenuPageInterface
      * @return void
      */
     public function print(): void;
+    public function getScreenID(): string;
 }

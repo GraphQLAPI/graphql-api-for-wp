@@ -4,15 +4,25 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 
+use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
-use GraphQLAPI\GraphQLAPI\General\RequestParams;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 /**
  * Module Documentation menu page
  */
 class ModuleDocumentationMenuPage extends AbstractMenuPage
 {
+    use GraphQLAPIMenuPageTrait;
+
+    public function getMenuPageSlug(): string
+    {
+        $instanceManager = InstanceManagerFacade::getInstance();
+        $modulesMenuPage = $instanceManager->getInstance(ModulesMenuPage::class);
+        return $modulesMenuPage->getMenuPageSlug();
+    }
+
     public function print(): void
     {
         // This is crazy: passing ?module=Foo\Bar\module,

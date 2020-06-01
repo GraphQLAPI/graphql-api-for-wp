@@ -72,7 +72,7 @@ class Menu extends AbstractMenu
             __('Interactive Schema', 'graphql-api'),
             __('Interactive Schema', 'graphql-api'),
             $schemaEditorAccessCapability,
-            'graphql_api_voyager',
+            $graphQLVoyagerMenuPage->getScreenID(),
             [$graphQLVoyagerMenuPage, 'print']
         );
         $graphQLVoyagerMenuPage->setHookName($hookName);
@@ -92,7 +92,7 @@ class Menu extends AbstractMenu
             __('Modules', 'graphql-api'),
             __('Modules', 'graphql-api'),
             'manage_options',
-            'graphql_api_modules',
+            $modulesMenuPage->getScreenId(),
             [$modulesMenuPage, 'print']
         );
         $modulesMenuPage->setHookName($hookName);
@@ -103,7 +103,7 @@ class Menu extends AbstractMenu
             __('Settings', 'graphql-api'),
             __('Settings', 'graphql-api'),
             'manage_options',
-            'graphql_api_settings',
+            $settingsMenuPage->getScreenID(),
             [$settingsMenuPage, 'print']
         );
         $settingsMenuPage->setHookName($hookName);

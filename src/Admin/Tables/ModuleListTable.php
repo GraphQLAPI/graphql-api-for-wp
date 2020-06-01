@@ -6,6 +6,8 @@ namespace GraphQLAPI\GraphQLAPI\Admin\Tables;
 
 use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Admin\TableActions\ModuleListTableAction;
 
@@ -107,10 +109,12 @@ class ModuleListTable extends AbstractItemListTable
             case 'desc':
                 $actions = [];
                 // If it has, add a link to the documentation
+                $instanceManager = InstanceManagerFacade::getInstance();
+                $modulesMenuPage = $instanceManager->getInstance(ModulesMenuPage::class);
                 if ($item['has-docs']) {
                     $url = \admin_url(sprintf(
                         'admin.php?page=%s&%s=%s&%s=%s&TB_iframe=true&width=772&height=398',
-                        'graphql_api_modules',
+                        $modulesMenuPage->getScreenID(),
                         RequestParams::TAB,
                         RequestParams::TAB_DOCS,
                         RequestParams::MODULE,
@@ -234,12 +238,14 @@ class ModuleListTable extends AbstractItemListTable
 
             // Maybe add settings links
             if ($item['has-settings']) {
+                $instanceManager = InstanceManagerFacade::getInstance();
+                $settingsMenuPage = $instanceManager->getInstance(SettingsMenuPage::class);
                 $actions['settings'] = \sprintf(
                     '<a href="%s">%s</a>',
                     sprintf(
                         \admin_url(sprintf(
                             'admin.php?page=%s&tab=%s',
-                            'graphql_api_settings',
+                            $settingsMenuPage->getScreenID(),
                             $item['id']
                         ))
                     ),

@@ -12,7 +12,14 @@ use GraphQLAPI\GraphQLAPI\Admin\Tables\ModuleListTable;
  */
 class ModulesMenuPage extends AbstractTableMenuPage
 {
+    use GraphQLAPIMenuPageTrait;
+
     public const SCREEN_OPTION_NAME = 'graphql_api_modules_per_page';
+
+    public function getMenuPageSlug(): string
+    {
+        return 'modules';
+    }
 
     protected function getHeader(): string
     {
@@ -48,6 +55,9 @@ class ModulesMenuPage extends AbstractTableMenuPage
     {
         parent::enqueueAssets();
 
+        /**
+         * Hack to open the modal thickbox iframe with the documentation
+         */
         \wp_enqueue_style(
             'thickbox'
         );

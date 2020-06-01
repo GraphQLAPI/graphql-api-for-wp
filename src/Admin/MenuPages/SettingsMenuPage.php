@@ -14,6 +14,13 @@ use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
  */
 class SettingsMenuPage extends AbstractMenuPage
 {
+    use GraphQLAPIMenuPageTrait;
+
+    public function getMenuPageSlug(): string
+    {
+        return 'settings';
+    }
+
     /**
      * Get the option value. Made static so it can be used without instantiation
      *
@@ -351,10 +358,7 @@ class SettingsMenuPage extends AbstractMenuPage
     {
         ?>
         <p>
-            <?php /*echo sprintf(
-                \__('Please refer to the <a href="%s">documentation page</a> for detailed information on all features.', 'graphql-api'),
-                menu_page_url('graphql_api_documentation', false)
-            );*/echo sprintf(
+            <?php echo sprintf(
             \__('Please refer to the <a href="%s">documentation</a> for detailed information on all features.', 'graphql-api'),
             'https://graphql.getpop.org/wp/documentation/'
             );?>
