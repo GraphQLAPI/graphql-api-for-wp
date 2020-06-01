@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\General;
 
 use GraphQLAPI\GraphQLAPI\Admin\Menus\Menu;
-use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use PoP\API\Configuration\Request as APIRequest;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\GraphQL\Configuration\Request as GraphQLRequest;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 
 class EndpointHelpers
 {
@@ -36,7 +37,8 @@ class EndpointHelpers
             RequestParams::ACTION_EXECUTE_QUERY
         ));
         // Add /?edit_schema=1 so the query-type directives are also visible
-        if (ComponentConfiguration::enableLowLevelSchemaEditing()) {
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if ($moduleRegistry->isModuleEnabled(ModuleResolver::LOW_LEVEL_QUERY_EDITING)) {
             $endpoint = \add_query_arg(GraphQLRequest::URLPARAM_EDIT_SCHEMA, true, $endpoint);
         }
         // If namespaced, add /?use_namespace=1 to the endpoint

@@ -41,6 +41,7 @@ class ModuleResolver extends AbstractModuleResolver
     public const ACCESS_CONTROL_RULE_USER_CAPABILITIES = Plugin::NAMESPACE . '\access-control-rule-user-capabilities';
     public const CACHE_CONTROL = Plugin::NAMESPACE . '\cache-control';
     public const FIELD_DEPRECATION = Plugin::NAMESPACE . '\field-deprecation';
+    public const LOW_LEVEL_QUERY_EDITING = Plugin::NAMESPACE . '\low-level-query-editing';
     public const GRAPHIQL_EXPLORER = Plugin::NAMESPACE . '\graphiql-explorer';
     public const WELCOME_GUIDES = Plugin::NAMESPACE . '\welcome-guides';
     public const DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE = Plugin::NAMESPACE . '\directive-set-convert-lower-uppercase';
@@ -72,6 +73,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::ACCESS_CONTROL_RULE_USER_CAPABILITIES,
             self::CACHE_CONTROL,
             self::FIELD_DEPRECATION,
+            self::LOW_LEVEL_QUERY_EDITING,
             self::SCHEMA_CACHE,
             self::GRAPHIQL_EXPLORER,
             self::WELCOME_GUIDES,
@@ -91,6 +93,7 @@ class ModuleResolver extends AbstractModuleResolver
             case self::PERSISTED_QUERIES:
             case self::SINGLE_ENDPOINT:
             case self::CUSTOM_ENDPOINTS:
+            case self::LOW_LEVEL_QUERY_EDITING:
                 return [
                     // [
                     //     self::MAIN,
@@ -229,6 +232,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::ACCESS_CONTROL_RULE_USER_CAPABILITIES => \__('Access Control Rule: User Capabilities', 'graphql-api'),
             self::CACHE_CONTROL => \__('Cache Control', 'graphql-api'),
             self::FIELD_DEPRECATION => \__('Field Deprecation', 'graphql-api'),
+            self::LOW_LEVEL_QUERY_EDITING => \__('Low-Level Query Editing', 'graphql-api'),
             self::GRAPHIQL_EXPLORER => \__('GraphiQL Explorer', 'graphql-api'),
             self::WELCOME_GUIDES => \__('Welcome Guides', 'graphql-api'),
             self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => \__('Directive Set: Convert Lower/Uppercase', 'graphql-api'),
@@ -273,6 +277,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::ACCESS_CONTROL_RULE_USER_CAPABILITIES => \__('Allow or reject access to the fields and directives based on the user having a certain capability', 'graphql-api'),
             self::CACHE_CONTROL => \__('Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query', 'graphql-api'),
             self::FIELD_DEPRECATION => \__('Deprecate fields, and explain how to replace them, through a user interface', 'graphql-api'),
+            self::LOW_LEVEL_QUERY_EDITING => \__('Have access to schema-configuration low-level directives when editing GraphQL queries in the admin', 'graphql-api'),
             self::GRAPHIQL_EXPLORER => \__('Add the Explorer widget to the GraphiQL client when creating Persisted Queries, to simplify coding the query (by point-and-clicking on the fields)', 'graphql-api'),
             self::WELCOME_GUIDES => sprintf(
                 \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities. <em>It requires WordPress version \'%s\' or above, or Gutenberg version \'%s\' or above</em>', 'graphql-api'),
@@ -317,6 +322,7 @@ class ModuleResolver extends AbstractModuleResolver
     {
         switch ($module) {
             case self::SINGLE_ENDPOINT:
+            case self::LOW_LEVEL_QUERY_EDITING:
                 return false;
         }
         return parent::isEnabledByDefault($module);

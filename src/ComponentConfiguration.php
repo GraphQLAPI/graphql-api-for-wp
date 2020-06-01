@@ -21,7 +21,7 @@ class ComponentConfiguration
     private static $getEndpointSlugBase;
     private static $getPersistedQuerySlugBase;
     private static $getSchemaEditorAccessScheme;
-    private static $enableLowLevelSchemaEditing;
+    // private static $enableLowLevelSchemaEditing;
 
     /**
      * URL base for the module, pointing to graphql-api.com
@@ -220,26 +220,26 @@ class ComponentConfiguration
         return $selfProperty;
     }
 
-    /**
-     * If `true`, it makes Schema-type directives available in the GraphiQL editor
-     *
-     * @return boolean
-     */
-    public static function enableLowLevelSchemaEditing(): bool
-    {
-        // Define properties
-        $envVariable = Environment::ENABLE_LOW_LEVEL_SCHEMA_EDITING;
-        $selfProperty = &self::$enableLowLevelSchemaEditing;
-        $defaultValue = false;
-        $callback = [EnvironmentValueHelpers::class, 'toBool'];
+    // /**
+    //  * If `true`, it makes Schema-type directives available in the GraphiQL editor
+    //  *
+    //  * @return boolean
+    //  */
+    // public static function enableLowLevelSchemaEditing(): bool
+    // {
+    //     // Define properties
+    //     $envVariable = Environment::ENABLE_LOW_LEVEL_QUERY_EDITING;
+    //     $selfProperty = &self::$enableLowLevelSchemaEditing;
+    //     $defaultValue = false;
+    //     $callback = [EnvironmentValueHelpers::class, 'toBool'];
 
-        // Initialize property from the environment/hook
-        self::maybeInitializeConfigurationValue(
-            $envVariable,
-            $selfProperty,
-            $defaultValue,
-            $callback
-        );
-        return $selfProperty;
-    }
+    //     // Initialize property from the environment/hook
+    //     self::maybeInitializeConfigurationValue(
+    //         $envVariable,
+    //         $selfProperty,
+    //         $defaultValue,
+    //         $callback
+    //     );
+    //     return $selfProperty;
+    // }
 }
