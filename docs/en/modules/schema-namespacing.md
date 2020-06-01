@@ -8,11 +8,11 @@ Namespacing the schema avoids naming conflicts, which happens when different own
 
 While the schema normally looks like this:
 
-![Interactive schema](../../images/normal-interactive-schema.jpg)
+<a href="../../images/normal-interactive-schema.jpg" target="_blank">![Interactive schema](../../images/normal-interactive-schema.jpg)</a>
 
 ...its namespaced version looks like this:
 
-![Namespaced interactive schema](../../images/namespaced-interactive-schema.jpg)
+<a href="../../images/namespaced-interactive-schema.jpg" target="_blank">![Namespaced interactive schema](../../images/namespaced-interactive-schema.jpg)</a>
 
 In the namespaced schema, type `Post` becomes `PoP_ComponentModel_Post` and interface `ContentEntity` becomes `PoP_ComponentModel_ContentEntity` (following that the PHP package where this functionality was implemented has owner `"PoP"` and name `"ComponentModel"`).
 

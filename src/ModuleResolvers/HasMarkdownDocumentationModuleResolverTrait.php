@@ -74,9 +74,10 @@ trait HasMarkdownDocumentationModuleResolverTrait
             }
             $markdownContents = file_get_contents($markdownFile);
             $htmlContents = (new Parsedown())->text($markdownContents);
-            // Add the path to the images
+            // Add the path to the images and anchors
             $defaultModulePathURL = $this->getDefaultMarkdownFileURL($module);
             $htmlContents = $this->appendPathURLToImages($defaultModulePathURL, $htmlContents);
+            $htmlContents = $this->appendPathURLToAnchors($defaultModulePathURL, $htmlContents);
             return $htmlContents;
         }
         return null;
@@ -85,26 +86,62 @@ trait HasMarkdownDocumentationModuleResolverTrait
     /**
      * Convert relative paths to absolute paths for image URLs
      *
-     * @param string $imagePathURL
+     * @param string $pathURL
      * @param string $htmlContents
      * @return string
      */
-    protected function appendPathURLToImages(string $imagePathURL, string $htmlContents): string
+    protected function appendPathURLToImages(string $pathURL, string $htmlContents): string
     {
+        return $this->appendPathURLToElement('img', 'src', $pathURL, $htmlContents);
+    }
+
+    /**
+     * Convert relative paths to absolute paths for image URLs
+     *
+     * @param string $pathURL
+     * @param string $htmlContents
+     * @return string
+     */
+    protected function appendPathURLToAnchors(string $pathURL, string $htmlContents): string
+    {
+        return $this->appendPathURLToElement('a', 'href', $pathURL, $htmlContents);
+    }
+
+    /**
+     * Convert relative paths to absolute paths for elements
+     *
+     * @param string $tag
+     * @param string $attr
+     * @param string $pathURL
+     * @param string $htmlContents
+     * @return string
+     */
+    protected function appendPathURLToElement(string $tag, string $attr, string $pathURL, string $htmlContents): string
+    {
+        /**
+         * $regex will become:
+         * - /<img.*src="(.*?)".*?>/
+         * - /<a.*href="(.*?)".*?>/
+         */
+        $regex = sprintf(
+            '/<%s.*%s="(.*?)".*?>/',
+            $tag,
+            $attr
+        );
         return preg_replace_callback(
-            '/<img.*src="(.*?)".*?>/',
-            function ($matches) use ($imagePathURL) {
-                // If the image has an absolute route, then no need
+            $regex,
+            function ($matches) use ($pathURL) {
+                // If the element has an absolute route, then no need
                 if (
                     substr($matches[1], 0, strlen('http://')) == 'http://'
                     || substr($matches[1], 0, strlen('https://')) == 'https://'
                 ) {
                     return $matches[0];
                 }
-                $imageURL = \trailingslashit($imagePathURL) . $matches[1];
+                $elementURL = \trailingslashit($pathURL) . $matches[1];
                 return str_replace(
-                    "src=\"{$matches[1]}\"",
-                    "src=\"{$imageURL}\"",
+                    "{$attr}=\"{$matches[1]}\"",
+                    "{$attr}=\"{$elementURL}\"",
                     $matches[0]
                 );
             },
