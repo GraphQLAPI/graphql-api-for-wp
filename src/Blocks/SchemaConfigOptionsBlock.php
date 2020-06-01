@@ -49,25 +49,40 @@ class SchemaConfigOptionsBlock extends AbstractOptionsBlock
         $className = $this->getBlockClassName() . '-front';
 
         $blockContentPlaceholder = '<p><strong>%s</strong> %s</p>';
-        $schemaModeLabels = [
-            SchemaModes::PUBLIC_SCHEMA_MODE => \__('Public', 'graphql-api'),
-            SchemaModes::PRIVATE_SCHEMA_MODE => \__('Private', 'graphql-api'),
-        ];
-        $blockContent = sprintf(
-            $blockContentPlaceholder,
-            \__('Public/Private Schema:', 'graphql-api'),
-            $schemaModeLabels[$attributes[self::ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE]] ?? ComponentConfiguration::getSettingsValueLabel()
-        );
+        $blockContent = '';
 
-        $useNamespacingLabels = [
-            self::ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED => \__('✅ Yes', 'graphql-api'),
-            self::ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED => \__('❌ No', 'graphql-api'),
-        ];
-        $blockContent .= sprintf(
-            $blockContentPlaceholder,
-            \__('Use namespacing?', 'graphql-api'),
-            $useNamespacingLabels[$attributes[self::ATTRIBUTE_NAME_USE_NAMESPACING]] ?? ComponentConfiguration::getSettingsValueLabel()
-        );
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if ($moduleRegistry->isModuleEnabled(ModuleResolver::PUBLIC_PRIVATE_SCHEMA)) {
+            $schemaModeLabels = [
+                SchemaModes::PUBLIC_SCHEMA_MODE => \__('Public', 'graphql-api'),
+                SchemaModes::PRIVATE_SCHEMA_MODE => \__('Private', 'graphql-api'),
+            ];
+            $blockContent .= sprintf(
+                $blockContentPlaceholder,
+                \__('Public/Private Schema:', 'graphql-api'),
+                $schemaModeLabels[$attributes[self::ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE]] ?? ComponentConfiguration::getSettingsValueLabel()
+            );
+        }
+
+        if ($moduleRegistry->isModuleEnabled(ModuleResolver::SCHEMA_NAMESPACING)) {
+            $useNamespacingLabels = [
+                self::ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED => \__('✅ Yes', 'graphql-api'),
+                self::ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED => \__('❌ No', 'graphql-api'),
+            ];
+            $blockContent .= sprintf(
+                $blockContentPlaceholder,
+                \__('Use namespacing?', 'graphql-api'),
+                $useNamespacingLabels[$attributes[self::ATTRIBUTE_NAME_USE_NAMESPACING]] ?? ComponentConfiguration::getSettingsValueLabel()
+            );
+        }
+
+        // If all modules are disabled and there are not options...
+        if ($blockContent == '') {
+            $blockContent = sprintf(
+                '<p>%s</p>',
+                \__('(Nothing here: All Schema Configuration options are disabled)', 'graphql-api')
+            );
+        }
 
         $blockContentPlaceholder = <<<EOT
         <div class="%s">
