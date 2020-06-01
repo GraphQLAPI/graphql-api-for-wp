@@ -5,19 +5,21 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
 use PoP\AccessControl\Schema\SchemaModes;
-use GraphQLAPI\GraphQLAPI\Settings\UserSettingsHelpers;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\Settings\UserSettingsHelpers;
+use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigurationBlock;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
-use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock;
-use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigurationBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigAccessControlListBlock;
-use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigFieldDeprecationListBlock;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
+use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AccessControlGraphQLQueryConfigurator;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
-use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AccessControlGraphQLQueryConfigurator;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\FieldDeprecationGraphQLQueryConfigurator;
 
 abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfiguratorInterface
@@ -200,6 +202,11 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
      */
     protected function executeSchemaConfigurationAccessControlLists(int $schemaConfigurationID): void
     {
+        // Check it is enabled by module
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::ACCESS_CONTROL)) {
+            return;
+        }
         $instanceManager = InstanceManagerFacade::getInstance();
         $schemaConfigACLBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $schemaConfigurationID,
@@ -224,6 +231,11 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
      */
     protected function executeSchemaConfigurationFieldDeprecationLists(int $schemaConfigurationID): void
     {
+        // Check it is enabled by module
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::FIELD_DEPRECATION)) {
+            return;
+        }
         $instanceManager = InstanceManagerFacade::getInstance();
         $schemaConfigFDLBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $schemaConfigurationID,

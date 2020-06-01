@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigCacheControlListBlock;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\CacheControlGraphQLQueryConfigurator;
+use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AbstractQueryExecutionSchemaConfigurator;
+use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 
 class PersistedQuerySchemaConfigurator extends AbstractQueryExecutionSchemaConfigurator
 {
@@ -24,10 +28,8 @@ class PersistedQuerySchemaConfigurator extends AbstractQueryExecutionSchemaConfi
     {
         parent::executeSchemaConfigurationItems($schemaConfigurationID);
 
-        // Also execute the Cache Control, unless previewing the query
-        if (!\is_preview()) {
-            $this->executeSchemaConfigurationCacheControlLists($schemaConfigurationID);
-        }
+        // Also execute the Cache Control
+        $this->executeSchemaConfigurationCacheControlLists($schemaConfigurationID);
     }
 
     /**
@@ -39,6 +41,15 @@ class PersistedQuerySchemaConfigurator extends AbstractQueryExecutionSchemaConfi
      */
     protected function executeSchemaConfigurationCacheControlLists(int $schemaConfigurationID): void
     {
+        // Do not execute Cache Control when previewing the query
+        if (\is_preview()) {
+            return;
+        }
+        // Check it is enabled by module
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::CACHE_CONTROL)) {
+            return;
+        }
         $instanceManager = InstanceManagerFacade::getInstance();
         $schemaConfigCCLBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $schemaConfigurationID,
