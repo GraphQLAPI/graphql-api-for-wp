@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\EditorScripts;
 
+use GraphQLAPI\GraphQLAPI\General\LocaleUtils;
 use GraphQLAPI\GraphQLAPI\General\DocumentationConstants;
 
 /**
@@ -25,7 +26,7 @@ trait HasDocumentationScriptTrait
         $data = [];
         // Add the locale language?
         if ($this->addLocalLanguage()) {
-            $data[DocumentationConstants::LOCALE_LANG] = $this->getLocaleLanguage();
+            $data[DocumentationConstants::LOCALE_LANG] = LocaleUtils::getLocaleLanguage();
         }
         // Add the default language?
         if ($defaultLang = $this->getDefaultLanguage()) {
@@ -42,17 +43,6 @@ trait HasDocumentationScriptTrait
     protected function addLocalLanguage(): bool
     {
         return false;
-    }
-    /**
-     * Pass localized data to the block
-     *
-     * @return array
-     */
-    protected function getLocaleLanguage(): string
-    {
-        // locale has shape "en_US". Retrieve the language code only: "en"
-        $localeParts = explode('_', \get_locale());
-        return $localeParts[0];
     }
     /**
      * Default language for the script/component's documentation
@@ -99,7 +89,7 @@ trait HasDocumentationScriptTrait
             \wp_enqueue_script($scriptName . '-' . $defaultLang);
         }
         if ($this->addLocalLanguage()) {
-            $localeLang = $this->getLocaleLanguage();
+            $localeLang = LocaleUtils::getLocaleLanguage();
             // Check the current locale has been translated, otherwise if will try to load an unexisting file
             // If the locale lang is the same as the default lang, the file has already been loaded
             if ($localeLang != $defaultLang && in_array($localeLang, $this->getDocLanguages())) {

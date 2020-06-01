@@ -21,12 +21,20 @@ trait HasMarkdownDocumentationModuleResolverTrait
     }
 
     /**
-     * Where the markdown file is stored
+     * Where the markdown file localized to the user's language is stored
      *
      * @param string $module
      * @return string
      */
-    abstract function getMarkdownFileDir(string $module): string;
+    abstract public function getLocalizedMarkdownFileDir(string $module): string;
+
+    /**
+     * Where the default markdown file (for if the localized language is not available) is stored
+     *
+     * @param string $module
+     * @return string
+     */
+    abstract public function getDefaultMarkdownFileDir(string $module): string;
 
     /**
      * Does the module have HTML Documentation?
@@ -45,10 +53,7 @@ trait HasMarkdownDocumentationModuleResolverTrait
      * @param string $module
      * @return string|null
      */
-    protected function getImagePathURL(string $module): ?string
-    {
-        return null;
-    }
+    abstract protected function getDefaultMarkdownFileURL(string $module): string;
 
     /**
      * HTML Documentation for the module
@@ -59,13 +64,19 @@ trait HasMarkdownDocumentationModuleResolverTrait
     public function getDocumentation(string $module): ?string
     {
         if ($markdownFilename = $this->getMarkdownFilename($module)) {
-            $markdownFile = \trailingslashit($this->getMarkdownFileDir($module)) . $markdownFilename;
+            $localizedMarkdownFile = \trailingslashit($this->getLocalizedMarkdownFileDir($module)) . $markdownFilename;
+            if (file_exists($localizedMarkdownFile)) {
+                // First check if the localized version exists
+                $markdownFile = $localizedMarkdownFile;
+            } else {
+                // Otherwise, use the default language version
+                $markdownFile = \trailingslashit($this->getDefaultMarkdownFileDir($module)) . $markdownFilename;
+            }
             $markdownContents = file_get_contents($markdownFile);
             $htmlContents = (new Parsedown())->text($markdownContents);
             // Add the path to the images
-            if ($imagePathURL = $this->getImagePathURL($module)) {
-                $htmlContents = $this->appendPathURLToImages($imagePathURL, $htmlContents);
-            }
+            $defaultModulePathURL = $this->getDefaultMarkdownFileURL($module);
+            $htmlContents = $this->appendPathURLToImages($defaultModulePathURL, $htmlContents);
             return $htmlContents;
         }
         return null;
