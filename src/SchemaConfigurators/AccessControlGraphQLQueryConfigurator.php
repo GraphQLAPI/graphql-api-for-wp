@@ -13,10 +13,6 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use PoP\AccessControl\Facades\AccessControlManagerFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AbstractAccessControlRuleBlock;
-use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlDisableAccessBlock;
-use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserCapabilitiesBlock;
-use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserRolesBlock;
-use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserStateBlock;
 
 class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGraphQLQueryConfigurator
 {
@@ -47,16 +43,10 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
             $instanceManager->getInstance(AccessControlBlock::class)
         );
         $accessControlManager = AccessControlManagerFacade::getInstance();
-        // Obtain the modules enabling/disabling each ACL rule block,
-        // and add a hook for plugins to add their own rules
+        // Obtain the modules enabling/disabling each ACL rule block through a hook
         $aclRuleBlockClassModules = \apply_filters(
             self::HOOK_ACL_RULE_BLOCK_CLASS_MODULES,
-            [
-                AccessControlDisableAccessBlock::class => ModuleResolver::ACCESS_CONTROL_RULE_DISABLE_ACCESS,
-                AccessControlUserStateBlock::class => ModuleResolver::ACCESS_CONTROL_RULE_USER_STATE,
-                AccessControlUserRolesBlock::class => ModuleResolver::ACCESS_CONTROL_RULE_USER_ROLES,
-                AccessControlUserCapabilitiesBlock::class => ModuleResolver::ACCESS_CONTROL_RULE_USER_CAPABILITIES,
-            ]
+            []
         );
         // Obtain the block names from the block classes
         $aclRuleBlockNameModules = [];
