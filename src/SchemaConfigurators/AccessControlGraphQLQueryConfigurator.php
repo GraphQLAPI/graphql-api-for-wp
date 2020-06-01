@@ -13,9 +13,15 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use PoP\AccessControl\Facades\AccessControlManagerFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AbstractAccessControlRuleBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlDisableAccessBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserCapabilitiesBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserRolesBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserStateBlock;
 
 class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGraphQLQueryConfigurator
 {
+    public const HOOK_ACL_RULE_BLOCK_CLASS_MODULES = __CLASS__ . ':acl-url-block-class:modules';
+
     // protected function doInit(): void
     // {
     //     $this->setAccessControlList();
@@ -41,64 +47,97 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
             $instanceManager->getInstance(AccessControlBlock::class)
         );
         $accessControlManager = AccessControlManagerFacade::getInstance();
+        // Obtain the modules enabling/disabling each ACL rule block,
+        // and add a hook for plugins to add their own rules
+        $aclRuleBlockClassModules = \apply_filters(
+            self::HOOK_ACL_RULE_BLOCK_CLASS_MODULES,
+            [
+                AccessControlDisableAccessBlock::class => ModuleResolver::ACCESS_CONTROL_RULE_DISABLE_ACCESS,
+                AccessControlUserStateBlock::class => ModuleResolver::ACCESS_CONTROL_RULE_USER_STATE,
+                AccessControlUserRolesBlock::class => ModuleResolver::ACCESS_CONTROL_RULE_USER_ROLES,
+                AccessControlUserCapabilitiesBlock::class => ModuleResolver::ACCESS_CONTROL_RULE_USER_CAPABILITIES,
+            ]
+        );
+        // Obtain the block names from the block classes
+        $aclRuleBlockNameModules = [];
+        foreach ($aclRuleBlockClassModules as $blockClass => $module) {
+            $block = $instanceManager->getInstance($blockClass);
+            $aclRuleBlockNameModules[$block->getBlockFullName()] = $module;
+        }
         // The "Access Control" type contains the fields/directives
         foreach ($aclBlockItems as $aclBlockItem) {
             // The rule to apply is contained inside the nested blocks
             if ($aclBlockItemNestedBlocks = $aclBlockItem['innerBlocks']) {
-                $aclBlockItemTypeFields = $aclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS] ?? [];
-                $aclBlockItemDirectives = $aclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_DIRECTIVES] ?? [];
-
-                // The value can be NULL, then it's the default mode
-                // In that case do nothing, since the default mode is already injected into GraphQL by PoP
-                $schemaMode = $aclBlockItem['attrs'][AccessControlBlock::ATTRIBUTE_NAME_SCHEMA_MODE];
-
-                // Iterate all the nested blocks
-                foreach ($aclBlockItemNestedBlocks as $aclBlockItemNestedBlock) {
-                    if ($accessControlGroup = $aclBlockItemNestedBlock['attrs'][AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_ACCESS_CONTROL_GROUP]) {
-                        // The value can be NULL, it depends on the actual nestedBlock
-                        // (eg: Disable access doesn't have any, while Disable by role has the list of roles)
-                        $value = $aclBlockItemNestedBlock['attrs'][AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_VALUE];
-
-                        // Extract the saved fields
-                        if (
-                            $entriesForFields = array_filter(
-                                array_map(
-                                    function ($selectedField) use ($value, $schemaMode) {
-                                        return $this->getIndividualControlEntryFromField(
-                                            $selectedField,
-                                            $value,
-                                            $schemaMode
-                                        );
-                                    },
-                                    $aclBlockItemTypeFields
-                                )
-                            )
-                        ) {
-                            $accessControlManager->addEntriesForFields(
-                                $accessControlGroup,
-                                $entriesForFields
-                            );
+                // Filter out the rules not enabled by module
+                if (
+                    $aclBlockItemNestedBlocks = array_filter(
+                        $aclBlockItemNestedBlocks,
+                        function ($block) use ($aclRuleBlockNameModules, $moduleRegistry) {
+                            $blockName = $block['blockName'];
+                            // Check if it has a corresponding module
+                            if ($module = $aclRuleBlockNameModules[$blockName]) {
+                                return $moduleRegistry->isModuleEnabled($module);
+                            }
+                            // Otherwise it's always enabled
+                            return true;
                         }
+                    )
+                ) {
+                    $aclBlockItemTypeFields = $aclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS] ?? [];
+                    $aclBlockItemDirectives = $aclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_DIRECTIVES] ?? [];
 
-                        // Extract the saved directives
-                        if (
-                            $entriesForDirectives = GeneralUtils::arrayFlatten(array_filter(
-                                array_map(
-                                    function ($selectedDirective) use ($value, $schemaMode) {
-                                        return $this->getIndividualControlEntriesFromDirective(
-                                            $selectedDirective,
-                                            $value,
-                                            $schemaMode
-                                        );
-                                    },
-                                    $aclBlockItemDirectives
+                    // The value can be NULL, then it's the default mode
+                    // In that case do nothing, since the default mode is already injected into GraphQL by PoP
+                    $schemaMode = $aclBlockItem['attrs'][AccessControlBlock::ATTRIBUTE_NAME_SCHEMA_MODE];
+
+                    // Iterate all the nested blocks
+                    foreach ($aclBlockItemNestedBlocks as $aclBlockItemNestedBlock) {
+                        if ($accessControlGroup = $aclBlockItemNestedBlock['attrs'][AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_ACCESS_CONTROL_GROUP]) {
+                            // The value can be NULL, it depends on the actual nestedBlock
+                            // (eg: Disable access doesn't have any, while Disable by role has the list of roles)
+                            $value = $aclBlockItemNestedBlock['attrs'][AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_VALUE];
+
+                            // Extract the saved fields
+                            if (
+                                $entriesForFields = array_filter(
+                                    array_map(
+                                        function ($selectedField) use ($value, $schemaMode) {
+                                            return $this->getIndividualControlEntryFromField(
+                                                $selectedField,
+                                                $value,
+                                                $schemaMode
+                                            );
+                                        },
+                                        $aclBlockItemTypeFields
+                                    )
                                 )
-                            ))
-                        ) {
-                            $accessControlManager->addEntriesForDirectives(
-                                $accessControlGroup,
-                                $entriesForDirectives
-                            );
+                            ) {
+                                $accessControlManager->addEntriesForFields(
+                                    $accessControlGroup,
+                                    $entriesForFields
+                                );
+                            }
+
+                            // Extract the saved directives
+                            if (
+                                $entriesForDirectives = GeneralUtils::arrayFlatten(array_filter(
+                                    array_map(
+                                        function ($selectedDirective) use ($value, $schemaMode) {
+                                            return $this->getIndividualControlEntriesFromDirective(
+                                                $selectedDirective,
+                                                $value,
+                                                $schemaMode
+                                            );
+                                        },
+                                        $aclBlockItemDirectives
+                                    )
+                                ))
+                            ) {
+                                $accessControlManager->addEntriesForDirectives(
+                                    $accessControlGroup,
+                                    $entriesForDirectives
+                                );
+                            }
                         }
                     }
                 }
