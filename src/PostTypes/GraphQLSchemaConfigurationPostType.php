@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
 use GraphQLAPI\GraphQLAPI\PostTypes\AbstractPostType;
-use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigCacheControlListBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigAccessControlListBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigFieldDeprecationListBlock;
@@ -67,16 +69,24 @@ class GraphQLSchemaConfigurationPostType extends AbstractPostType
     protected function getGutenbergTemplate(): array
     {
         $instanceManager = InstanceManagerFacade::getInstance();
-        $schemaConfigAccessControlListBlock = $instanceManager->getInstance(SchemaConfigAccessControlListBlock::class);
-        $schemaConfigCacheControlListBlock = $instanceManager->getInstance(SchemaConfigCacheControlListBlock::class);
-        $schemaConfigFieldDeprecationListBlock = $instanceManager->getInstance(SchemaConfigFieldDeprecationListBlock::class);
-        $schemaConfigOptionsBlock = $instanceManager->getInstance(SchemaConfigOptionsBlock::class);
-        return [
-            [$schemaConfigAccessControlListBlock->getBlockFullName()],
-            [$schemaConfigCacheControlListBlock->getBlockFullName()],
-            [$schemaConfigFieldDeprecationListBlock->getBlockFullName()],
-            [$schemaConfigOptionsBlock->getBlockFullName()],
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        $template = [];
+        // Add blocks depending on being enabled by module
+        $blockClassModules = [
+            SchemaConfigAccessControlListBlock::class => ModuleResolver::ACCESS_CONTROL,
+            SchemaConfigCacheControlListBlock::class => ModuleResolver::CACHE_CONTROL,
+            SchemaConfigFieldDeprecationListBlock::class => ModuleResolver::FIELD_DEPRECATION,
         ];
+        foreach ($blockClassModules as $blockClass => $module) {
+            if ($moduleRegistry->isModuleEnabled($module)) {
+                $block = $instanceManager->getInstance($blockClass);
+                $template[] = [$block->getBlockFullName()];
+            }
+        }
+        // Add the Configuration block always
+        $schemaConfigOptionsBlock = $instanceManager->getInstance(SchemaConfigOptionsBlock::class);
+        $template[] = [$schemaConfigOptionsBlock->getBlockFullName()];
+        return $template;
     }
 
     /**
