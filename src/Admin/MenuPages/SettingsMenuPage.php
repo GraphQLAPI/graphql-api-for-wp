@@ -106,7 +106,7 @@ class SettingsMenuPage extends AbstractMenuPage
         // If passing a tab, focus on that one, if the module exists
         if ($tab = $_GET[RequestParams::TAB]) {
             $moduleIDs = array_map(
-                function($item) {
+                function ($item) {
                     return $item['id'];
                 },
                 $items
