@@ -7,15 +7,16 @@ namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 use PoP\AccessControl\Schema\SchemaModes;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\Settings\UserSettingsHelpers;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigurationBlock;
+use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigAccessControlListBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigFieldDeprecationListBlock;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleSettings\ModuleSettings;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AccessControlGraphQLQueryConfigurator;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
@@ -60,7 +61,8 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         // It is not saved in the DB, because it has been set as the default value in
         // blocks/schema-configuration/src/index.js
         if (is_null($schemaConfigurationBlockDataItem)) {
-            return UserSettingsHelpers::getDefaultSchemaConfiguration();
+            $userSettingsManager = UserSettingsManagerFacade::getInstance();
+            return $userSettingsManager->getSetting(ModuleSettings::SCHEMA_CONFIGURATION_DEFAULT_SCHEMA_CONFIGURATION);
         }
 
         $schemaConfiguration = $schemaConfigurationBlockDataItem['attrs'][SchemaConfigurationBlock::ATTRIBUTE_NAME_SCHEMA_CONFIGURATION];
@@ -68,7 +70,8 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         if ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_NONE) {
             return null;
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT) {
-            return UserSettingsHelpers::getDefaultSchemaConfiguration();
+            $userSettingsManager = UserSettingsManagerFacade::getInstance();
+            return $userSettingsManager->getSetting(ModuleSettings::SCHEMA_CONFIGURATION_DEFAULT_SCHEMA_CONFIGURATION);
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT) {
             // Return the schema configuration from the parent, or null if no parent exists
             $customPost = \get_post($customPostID);
