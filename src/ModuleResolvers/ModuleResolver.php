@@ -61,8 +61,6 @@ class ModuleResolver extends AbstractModuleResolver
     public const SCHEMA_MEDIA_TYPE = Plugin::NAMESPACE . '\schema-media-type';
     public const SCHEMA_TAXONOMY_TYPE = Plugin::NAMESPACE . '\schema-taxonomy-type';
 
-
-
     public static function getModulesToResolve(): array
     {
         return [
@@ -352,6 +350,7 @@ class ModuleResolver extends AbstractModuleResolver
         if ($module == self::SINGLE_ENDPOINT) {
             $moduleSettings = [
                 Tokens::NAME => ModuleSettings::SINGLE_ENDPOINT_SLUG,
+                Tokens::TITLE => \__('Endpoint slug', 'graphql-api'),
                 Tokens::DESCRIPTION => \__('URL slug to expose the single GraphQL endpoint', 'graphql-api'),
                 Tokens::DEFAULT_VALUE => '/graphql/',
                 Tokens::TYPE => Tokens::TYPE_STRING,
@@ -359,6 +358,7 @@ class ModuleResolver extends AbstractModuleResolver
         } elseif ($module == self::GRAPHIQL_FOR_SINGLE_ENDPOINT) {
             $moduleSettings = [
                 Tokens::NAME => ModuleSettings::GRAPHIQL_FOR_SINGLE_ENDPOINT_SLUG,
+                Tokens::TITLE => \__('Client slug', 'graphql-api'),
                 Tokens::DESCRIPTION => \__('URL slug to access the public GraphiQL client', 'graphql-api'),
                 Tokens::DEFAULT_VALUE => '/graphiql/',
                 Tokens::TYPE => Tokens::TYPE_STRING,
@@ -366,6 +366,7 @@ class ModuleResolver extends AbstractModuleResolver
         } elseif ($module == self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT) {
             $moduleSettings = [
                 Tokens::NAME => ModuleSettings::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT_SLUG,
+                Tokens::TITLE => \__('Client slug', 'graphql-api'),
                 Tokens::DESCRIPTION => \__('URL slug to access the public Interactive Schema client', 'graphql-api'),
                 Tokens::DEFAULT_VALUE => '/schema/',
                 Tokens::TYPE => Tokens::TYPE_STRING,
@@ -384,6 +385,7 @@ class ModuleResolver extends AbstractModuleResolver
             }
             $moduleSettings = [
                 Tokens::NAME => ModuleSettings::SCHEMA_CONFIGURATION_DEFAULT_SCHEMA_CONFIGURATION,
+                Tokens::TITLE => \__('Default Schema Configuration', 'graphql-api'),
                 Tokens::DESCRIPTION => sprintf(
                     \__('Schema Configuration to use when option <code>"Default"</code> is selected (in %s)', 'graphql-api'),
                     implode(
@@ -404,13 +406,15 @@ class ModuleResolver extends AbstractModuleResolver
         } elseif ($module == self::SCHEMA_NAMESPACING) {
             $moduleSettings = [
                 Tokens::NAME => ModuleSettings::SCHEMA_NAMESPACING_USE_NAMESPACING,
-                Tokens::DESCRIPTION => \__('Namespace types and interfaces?', 'graphql-api'),
+                Tokens::TITLE => \__('Use namespacing?', 'graphql-api'),
+                Tokens::DESCRIPTION => \__('Automatically namespace types and interfaces in the schema', 'graphql-api'),
                 Tokens::DEFAULT_VALUE => false,
                 Tokens::TYPE => Tokens::TYPE_BOOL,
             ];
         } elseif ($module == self::PUBLIC_PRIVATE_SCHEMA) {
             $moduleSettings = [
                 Tokens::NAME => ModuleSettings::PUBLIC_PRIVATE_SCHEMA_DEFAULT_MODE,
+                Tokens::TITLE => \__('Default visibility', 'graphql-api'),
                 Tokens::DESCRIPTION => sprintf(
                     \__('Schema visibility to use when option <code>"%s"</code> is selected (in ▹ Schema Configuration)', 'graphql-api'),
                     ComponentConfiguration::getSettingsValueLabel()
@@ -425,6 +429,7 @@ class ModuleResolver extends AbstractModuleResolver
         } elseif ($module == self::CACHE_CONTROL) {
             $moduleSettings = [
                 Tokens::NAME => ModuleSettings::CACHE_CONTROL_DEFAULT_MAX_AGE,
+                Tokens::TITLE => \__('Default max-age', 'graphql-api'),
                 Tokens::DESCRIPTION => \__('Default max-age value (in seconds) for the Cache-Control header, for all fields and directives in the schema', 'graphql-api'),
                 Tokens::DEFAULT_VALUE => 60,
                 Tokens::TYPE => Tokens::TYPE_INT,
