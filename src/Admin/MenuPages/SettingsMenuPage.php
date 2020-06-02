@@ -31,7 +31,7 @@ class SettingsMenuPage extends AbstractMenuPage
      * @param string $name
      * @return boolean
      */
-    public static function getOptionValue(string $name, $defaultValue)
+    public function getOptionValue(string $name, $defaultValue)
     {
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
         return $userSettingsManager->getSetting($name, $defaultValue);
@@ -43,9 +43,9 @@ class SettingsMenuPage extends AbstractMenuPage
     //  * @param string $name
     //  * @return boolean
     //  */
-    // public static function isOptionOn(string $name, $defaultValue): bool
+    // public function isOptionOn(string $name, $defaultValue): bool
     // {
-    //     $value = self::getOptionValue($name, $defaultValue);
+    //     $value = $this->getOptionValue($name, $defaultValue);
     //     return $value === true || !empty($value);
     // }
 
@@ -278,7 +278,7 @@ class SettingsMenuPage extends AbstractMenuPage
     protected function printCheckboxField(array $itemSetting): void
     {
         $name = $itemSetting[Tokens::NAME];
-        $value = self::getOptionValue($name, $itemSetting[Tokens::DEFAULT_VALUE]);
+        $value = $this->getOptionValue($name, $itemSetting[Tokens::DEFAULT_VALUE]);
         ?>
             <label for="<?php echo $name; ?>">
                 <input type="checkbox" name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="1" <?php checked(1, $value); ?> />
@@ -296,7 +296,7 @@ class SettingsMenuPage extends AbstractMenuPage
     protected function printInputField(array $itemSetting): void
     {
         $name = $itemSetting[Tokens::NAME];
-        $value = self::getOptionValue($name, $itemSetting[Tokens::DEFAULT_VALUE]);
+        $value = $this->getOptionValue($name, $itemSetting[Tokens::DEFAULT_VALUE]);
         $label = $itemSetting[Tokens::DESCRIPTION] ? '<br/>' . $itemSetting[Tokens::DESCRIPTION] : '';
         ?>
             <label for="<?php echo $name; ?>">
@@ -315,7 +315,7 @@ class SettingsMenuPage extends AbstractMenuPage
     protected function printSelectField(array $itemSetting): void
     {
         $name = $itemSetting[Tokens::NAME];
-        $value = self::getOptionValue($name, $itemSetting[Tokens::DEFAULT_VALUE]);
+        $value = $this->getOptionValue($name, $itemSetting[Tokens::DEFAULT_VALUE]);
         $label = $itemSetting[Tokens::DESCRIPTION] ? '<br/>' . $itemSetting[Tokens::DESCRIPTION] : '';
         $maybeMultiple = $itemSetting[Tokens::IS_MULTIPLE] ? 'multiple' : '';
         $possibleValues = $itemSetting[Tokens::POSSIBLE_VALUES];
