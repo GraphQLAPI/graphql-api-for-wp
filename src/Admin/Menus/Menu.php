@@ -8,10 +8,12 @@ use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\Admin\Menus\AbstractMenu;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\ModuleSettings\ModuleSettings;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphiQLMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
+use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphQLVoyagerMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModuleDocumentationMenuPage;
@@ -83,6 +85,7 @@ class Menu extends AbstractMenu
         parent::addMenuPagesBottom();
 
         $instanceManager = InstanceManagerFacade::getInstance();
+        $userSettingsManager = UserSettingsManagerFacade::getInstance();
         $menuPageClass = ($_GET[RequestParams::TAB] == RequestParams::TAB_DOCS) ?
             ModuleDocumentationMenuPage::class :
             ModulesMenuPage::class;
@@ -111,19 +114,21 @@ class Menu extends AbstractMenu
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         if ($moduleRegistry->isModuleEnabled(ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT)) {
             global $submenu;
+            $clientPath = $userSettingsManager->getSetting(ModuleSettings::GRAPHIQL_FOR_SINGLE_ENDPOINT_SLUG);
             $submenu[self::NAME][] = [
                 __('GraphiQL (public client)', 'graphql-api'),
                 'read',
-                home_url('/graphiql/'),
+                home_url($clientPath),
             ];
         }
 
         if ($moduleRegistry->isModuleEnabled(ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT)) {
             global $submenu;
+            $clientPath = $userSettingsManager->getSetting(ModuleSettings::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT_SLUG);
             $submenu[self::NAME][] = [
                 __('Interactive Schema (public client)', 'graphql-api'),
                 'read',
-                home_url('/schema/'),
+                home_url($clientPath),
             ];
         }
 

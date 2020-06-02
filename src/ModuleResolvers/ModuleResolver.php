@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
-use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Plugin;
 use PoP\AccessControl\Schema\SchemaModes;
 use PoP\Pages\TypeResolvers\PageTypeResolver;
@@ -13,15 +12,17 @@ use PoP\Users\TypeResolvers\UserTypeResolver;
 use GraphQLAPI\GraphQLAPI\General\LocaleUtils;
 use PoP\Media\TypeResolvers\MediaTypeResolver;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Tokens;
+use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use PoP\Taxonomies\TypeResolvers\TagTypeResolver;
 use PoP\Comments\TypeResolvers\CommentTypeResolver;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\ModuleSettings;
+use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\UpperCaseStringDirectiveResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\HasMarkdownDocumentationModuleResolverTrait;
-use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 
 class ModuleResolver extends AbstractModuleResolver
 {
@@ -254,22 +255,23 @@ class ModuleResolver extends AbstractModuleResolver
 
     public function getDescription(string $module): string
     {
+        $userSettingsManager = UserSettingsManagerFacade::getInstance();
         $descriptions = [
             // self::MAIN => \__('Main functionality module, can\'t be disabled but is required for defining the main settings', 'graphql-api'),
             self::SINGLE_ENDPOINT => \sprintf(
                 \__('Expose a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
-                '/api/graphql/'
+                $userSettingsManager->getSetting(ModuleSettings::SINGLE_ENDPOINT_SLUG)
             ),
             self::PERSISTED_QUERIES => \__('Expose predefined responses through a custom URL, akin to using GraphQL queries to publish REST endpoints', 'graphql-api'),
             self::CUSTOM_ENDPOINTS => \__('Expose different subsets of the schema for different targets, such as users (clients, employees, etc), applications (website, mobile app, etc), context (weekday, weekend, etc), and others', 'graphql-api'),
             self::GRAPHIQL_FOR_SINGLE_ENDPOINT => \sprintf(
                 \__('Make a public GraphiQL client available under <code>%s</code>, to execute queries against the single endpoint', 'graphql-api'),
-                '/graphiql/',
+                $userSettingsManager->getSetting(ModuleSettings::GRAPHIQL_FOR_SINGLE_ENDPOINT_SLUG),
             ),
             self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached their own GraphiQL client, to execute queries against them', 'graphql-api'),
             self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => \sprintf(
                 \__('Make a public Interactive Schema client available under <code>%s</code>, to visualize the schema accessible through the single endpoint', 'graphql-api'),
-                '/schema/',
+                $userSettingsManager->getSetting(ModuleSettings::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT_SLUG),
             ),
             self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached their own Interactive schema client, to visualize the custom schema subset', 'graphql-api'),
             self::SCHEMA_CONFIGURATION => \__('Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema', 'graphql-api'),
