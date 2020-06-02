@@ -33,13 +33,14 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
         //     $moduleID
         // ));
         /**
-         * Replace all the "\" from the namespace with "."
+         * Replace all the "\" from the namespace with "_"
          * Otherwise there is problem when encoding/decoding,
-         * since "\" is encoded as "\\"
+         * since "\" is encoded as "\\".
+         * Do not use "." because it can't be used as an HTML ID
          */
         return str_replace(
             '\\', //['\\', '/', ' '],
-            '.',
+            '_',
             $moduleID
         );
     }

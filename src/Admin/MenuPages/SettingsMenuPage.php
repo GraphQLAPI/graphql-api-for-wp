@@ -61,8 +61,7 @@ class SettingsMenuPage extends AbstractMenuPage
             $moduleResolver = $moduleRegistry->getModuleResolver($module);
             $items[] = [
                 'module' => $module,
-                // Replace "." with "-" since dots are not allowed as HTML IDs
-                'id' => str_replace('.', '-', $moduleResolver->getID($module)),
+                'id' => $moduleResolver->getID($module),
                 'name' => $moduleResolver->getName($module),
                 'settings' => $moduleResolver->getSettings($module),
             ];
