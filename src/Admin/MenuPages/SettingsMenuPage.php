@@ -198,6 +198,30 @@ class SettingsMenuPage extends AbstractMenuPage
     {
         parent::initialize();
 
+        /**
+         * Before saving the settings in the DB,
+         * transform the values from string to bool/int
+         */
+        $option = self::SETTINGS_FIELD;
+        \add_filter(
+            "pre_update_option_{$option}",
+            function ($value) {
+                $items = $this->getAllItems();
+                foreach ($items as $item) {
+                    foreach ($item['settings'] as $itemSetting) {
+                        $type = $itemSetting[Tokens::TYPE];
+                        $name = $itemSetting[Tokens::NAME];
+                        if ($type == Tokens::TYPE_BOOL) {
+                            $value[$name] = !empty($value[$name]);
+                        } elseif ($type == Tokens::TYPE_INT) {
+                            $value[$name] = (int) $value[$name];
+                        }
+                    }
+                }
+                return $value;
+            }
+        );
+
         \add_action('admin_init', function () {
 
             $items = $this->getAllItems();
