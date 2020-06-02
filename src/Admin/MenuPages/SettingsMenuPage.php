@@ -26,6 +26,100 @@ class SettingsMenuPage extends AbstractMenuPage
     }
 
     /**
+     * Initialize the class instance
+     *
+     * @return void
+     */
+    public function initialize(): void
+    {
+        parent::initialize();
+
+        /**
+         * Before saving the settings in the DB,
+         * transform the values from string to bool/int
+         */
+        $option = self::SETTINGS_FIELD;
+        \add_filter(
+            "pre_update_option_{$option}",
+            function ($value) {
+                $items = $this->getAllItems();
+                foreach ($items as $item) {
+                    foreach ($item['settings'] as $itemSetting) {
+                        $type = $itemSetting[Tokens::TYPE];
+                        $name = $itemSetting[Tokens::NAME];
+                        if ($type == Tokens::TYPE_BOOL) {
+                            $value[$name] = !empty($value[$name]);
+                        } elseif ($type == Tokens::TYPE_INT) {
+                            $value[$name] = (int) $value[$name];
+                        }
+                    }
+                }
+                return $value;
+            }
+        );
+
+        /**
+         * After saving the settings in the DB,
+         * Flush the rewrite rules, so different URL slugs take effect
+         */
+        \add_action(
+            "update_option_{$option}",
+            'flush_rewrite_rules'
+        );
+
+        /**
+         * Register the settings
+         */
+        \add_action(
+            'admin_init',
+            function () {
+                $items = $this->getAllItems();
+                foreach ($items as $item) {
+                    $settingsFieldForModule = $this->getSettingsFieldForModule($item['id']);
+                    \add_settings_section(
+                        $settingsFieldForModule,
+                        // The empty string ensures the render function won't output a h2.
+                        '',
+                        null,
+                        self::SETTINGS_FIELD
+                    );
+                    foreach ($item['settings'] as $itemSetting) {
+                        \add_settings_field(
+                            $itemSetting[Tokens::NAME],
+                            $itemSetting[Tokens::TITLE],
+                            function () use ($itemSetting) {
+                                $type = $itemSetting[Tokens::TYPE];
+                                $possibleValues = $itemSetting[Tokens::POSSIBLE_VALUES];
+                                if (!empty($possibleValues)) {
+                                    $this->printSelectField($itemSetting);
+                                } elseif ($type == Tokens::TYPE_BOOL) {
+                                    $this->printCheckboxField($itemSetting);
+                                } else {
+                                    $this->printInputField($itemSetting);
+                                }
+                            },
+                            self::SETTINGS_FIELD,
+                            $settingsFieldForModule,
+                            [
+                                'label' => $itemSetting[Tokens::DESCRIPTION],
+                                'id' => $itemSetting[Tokens::NAME],
+                            ]
+                        );
+                    }
+                }
+
+                /**
+                 * Finally register all the settings
+                 */
+                \register_setting(
+                    self::SETTINGS_FIELD,
+                    Options::SETTINGS
+                );
+            }
+        );
+    }
+
+    /**
      * Get the option value. Made static so it can be used without instantiation
      *
      * @param string $name
@@ -192,81 +286,6 @@ class SettingsMenuPage extends AbstractMenuPage
             </form>
         </div>
         <?php
-    }
-
-    public function initialize(): void
-    {
-        parent::initialize();
-
-        /**
-         * Before saving the settings in the DB,
-         * transform the values from string to bool/int
-         */
-        $option = self::SETTINGS_FIELD;
-        \add_filter(
-            "pre_update_option_{$option}",
-            function ($value) {
-                $items = $this->getAllItems();
-                foreach ($items as $item) {
-                    foreach ($item['settings'] as $itemSetting) {
-                        $type = $itemSetting[Tokens::TYPE];
-                        $name = $itemSetting[Tokens::NAME];
-                        if ($type == Tokens::TYPE_BOOL) {
-                            $value[$name] = !empty($value[$name]);
-                        } elseif ($type == Tokens::TYPE_INT) {
-                            $value[$name] = (int) $value[$name];
-                        }
-                    }
-                }
-                return $value;
-            }
-        );
-
-        \add_action('admin_init', function () {
-
-            $items = $this->getAllItems();
-            foreach ($items as $item) {
-                $settingsFieldForModule = $this->getSettingsFieldForModule($item['id']);
-                \add_settings_section(
-                    $settingsFieldForModule,
-                    // The empty string ensures the render function won't output a h2.
-                    '',
-                    null,
-                    self::SETTINGS_FIELD
-                );
-                foreach ($item['settings'] as $itemSetting) {
-                    \add_settings_field(
-                        $itemSetting[Tokens::NAME],
-                        $itemSetting[Tokens::TITLE],
-                        function () use ($itemSetting) {
-                            $type = $itemSetting[Tokens::TYPE];
-                            $possibleValues = $itemSetting[Tokens::POSSIBLE_VALUES];
-                            if (!empty($possibleValues)) {
-                                $this->printSelectField($itemSetting);
-                            } elseif ($type == Tokens::TYPE_BOOL) {
-                                $this->printCheckboxField($itemSetting);
-                            } else {
-                                $this->printInputField($itemSetting);
-                            }
-                        },
-                        self::SETTINGS_FIELD,
-                        $settingsFieldForModule,
-                        [
-                            'label' => $itemSetting[Tokens::DESCRIPTION],
-                            'id' => $itemSetting[Tokens::NAME],
-                        ]
-                    );
-                }
-            }
-
-            /**
-             * Finally register all the settings
-             */
-            \register_setting(
-                self::SETTINGS_FIELD,
-                Options::SETTINGS
-            );
-        });
     }
 
     /**
