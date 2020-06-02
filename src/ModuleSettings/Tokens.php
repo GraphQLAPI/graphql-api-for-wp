@@ -15,5 +15,5 @@ class Tokens
     public const TYPE_STRING = 'string';
     public const TYPE_BOOL = 'bool';
     public const TYPE_INT = 'int';
-    public const IS_MULTIPLE = 'isMultiple';
+    // public const IS_MULTIPLE = 'isMultiple';
 }

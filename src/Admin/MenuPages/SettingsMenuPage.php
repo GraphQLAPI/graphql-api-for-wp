@@ -336,11 +336,11 @@ class SettingsMenuPage extends AbstractMenuPage
         $name = $itemSetting[Tokens::NAME];
         $value = $this->getOptionValue($name, $itemSetting[Tokens::DEFAULT_VALUE]);
         $label = $itemSetting[Tokens::DESCRIPTION] ? '<br/>' . $itemSetting[Tokens::DESCRIPTION] : '';
-        $maybeMultiple = $itemSetting[Tokens::IS_MULTIPLE] ? 'multiple' : '';
+        // $maybeMultiple = $itemSetting[Tokens::IS_MULTIPLE] ? 'multiple' : '';
         $possibleValues = $itemSetting[Tokens::POSSIBLE_VALUES];
         ?>
             <label for="<?php echo $name; ?>">
-                <select name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" <?php echo $maybeMultiple; ?>>
+                <select name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" <?php /*echo $maybeMultiple;*/ ?>>
                 <?php foreach ($possibleValues as $optionValue => $optionLabel) : ?>
                     <?php $maybeSelected = $optionValue == $value ? 'selected="selected"' : ''; ?>
                     <option value="<?php echo $optionValue ?>" <?php echo $maybeSelected ?>>
