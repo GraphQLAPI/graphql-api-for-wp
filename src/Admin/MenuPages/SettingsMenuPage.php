@@ -94,9 +94,6 @@ class SettingsMenuPage extends AbstractMenuPage
         </style>
         <script type="application/javascript">
             jQuery( document ).ready( function($){
-                // $('#graphql-api-settings .tab-content').hide(); // Hide all tabs first
-                // $('#graphql-api-settings #main').show(); //  Show the default tab
-
                 $('#graphql-api-settings .nav-tab').on('click', function(e){
                     e.preventDefault();
                     tab = $(this).attr('href');
@@ -113,7 +110,6 @@ class SettingsMenuPage extends AbstractMenuPage
         >
             <h1><?php \_e('GraphQL API — Settings', 'graphql-api'); ?></h1>
             <?php \settings_errors(); ?>
-            <?php /*$this->printMainSectionDescription();*/ ?>
 
             <!-- Tabs -->
             <h2 class="nav-tab-wrapper">
@@ -130,8 +126,8 @@ class SettingsMenuPage extends AbstractMenuPage
             </h2>
 
             <form method="post" action="options.php">
+                <!-- Panels -->
                 <?php
-                // Panels
                 \settings_fields(self::SETTINGS_FIELD);
                 foreach ($items as $item) {
                     $displayStyle = $item['id'] == $items[0]['id'] ? 'block' : 'none';
@@ -225,69 +221,6 @@ class SettingsMenuPage extends AbstractMenuPage
                 <input type="text" name="<?php echo 'graphql-api-settings[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="<?php echo $value; ?>" />
                 <?php echo $label; ?>
             </label>
-        <?php
-    }
-
-    /**
-     * Section header
-     */
-    /*
-    function printMainSectionDescription()
-    {
-        ?>
-        <p>
-            <?php echo sprintf(
-            \__('Please refer to the <a href="%s">documentation</a> for detailed information on all features.', 'graphql-api'),
-            'https://graphql.getpop.org/wp/documentation/'
-            );?>
-        </p>
-        <?php
-    }
-    */
-
-    /**
-     * Section header
-     */
-    function printMainHeader(): void
-    {
-        ?>
-        <h2>
-        <?php echo \__('Main settings', 'graphql-api');?>
-        </h2>
-        <?php
-    }
-
-    /**
-     * Section header
-     */
-    function printXTGraphQLEnabledHeader(): void
-    {
-        ?>
-        <h2>
-        <?php echo \__('Settings if Extended GraphQL is enabled', 'graphql-api');?>
-        </h2>
-        <?php
-    }
-
-    /**
-     * Section header
-     */
-    function printGraphQLEnabledHeader1(): void
-    {
-        ?>
-        <h2>
-        <?php echo \__('Settings if GraphQL is enabled', 'graphql-api');?>
-        </h2>
-        <?php
-    }/**
-     * Section header
-     */
-    function printGraphQLEnabledHeader2(): void
-    {
-        ?>
-        <h4><em>
-            <?php echo \__('Public GraphQL clients:', 'graphql-api');?>
-        </em></h4>
         <?php
     }
 }
