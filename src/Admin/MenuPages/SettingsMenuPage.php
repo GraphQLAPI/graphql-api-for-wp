@@ -37,17 +37,17 @@ class SettingsMenuPage extends AbstractMenuPage
         return $userSettingsManager->getSetting($name, $defaultValue);
     }
 
-    /**
-     * Indicate if the option is on. Made static so it can be used without instantiation
-     *
-     * @param string $name
-     * @return boolean
-     */
-    public static function isOptionOn(string $name, $defaultValue): bool
-    {
-        $value = self::getOptionValue($name, $defaultValue);
-        return $value === true || !empty($value);
-    }
+    // /**
+    //  * Indicate if the option is on. Made static so it can be used without instantiation
+    //  *
+    //  * @param string $name
+    //  * @return boolean
+    //  */
+    // public static function isOptionOn(string $name, $defaultValue): bool
+    // {
+    //     $value = self::getOptionValue($name, $defaultValue);
+    //     return $value === true || !empty($value);
+    // }
 
     /**
      * Return all the modules with settings
@@ -278,7 +278,7 @@ class SettingsMenuPage extends AbstractMenuPage
     protected function printCheckboxField(array $itemSetting): void
     {
         $name = $itemSetting[Tokens::NAME];
-        $value = self::isOptionOn($name, $itemSetting[Tokens::DEFAULT_VALUE]);
+        $value = self::getOptionValue($name, $itemSetting[Tokens::DEFAULT_VALUE]);
         ?>
             <label for="<?php echo $name; ?>">
                 <input type="checkbox" name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="1" <?php checked(1, $value); ?> />
