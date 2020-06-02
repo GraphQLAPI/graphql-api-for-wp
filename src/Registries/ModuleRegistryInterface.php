@@ -9,7 +9,11 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverInterface;
 interface ModuleRegistryInterface
 {
     public function addModuleResolver(ModuleResolverInterface $moduleResolver): void;
-    public function getAllModules(bool $onlyVisible = true): array;
+    public function getAllModules(
+        bool $onlyEnabled = false,
+        bool $onlyHasSettings = false,
+        bool $onlyVisible = true
+    ): array;
     public function getModuleResolver(string $module): ?ModuleResolverInterface;
     public function isModuleEnabled(string $module): bool;
     /**

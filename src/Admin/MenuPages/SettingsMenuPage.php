@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 
-use PoP\Posts\TypeResolvers\PostTypeResolver;
 use GraphQLAPI\GraphQLAPI\Settings\Options;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
+use GraphQLAPI\GraphQLAPI\ModuleSettings\Tokens;
 
 /**
  * Settings menu page
@@ -15,6 +16,8 @@ use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 class SettingsMenuPage extends AbstractMenuPage
 {
     use GraphQLAPIMenuPageTrait;
+
+    public const SETTINGS_FIELD = 'graphql-api-settings';
 
     public function getMenuPageSlug(): string
     {
@@ -44,8 +47,42 @@ class SettingsMenuPage extends AbstractMenuPage
         return !empty(self::getOptionValue($name));
     }
 
+    /**
+     * Return all the modules with settings
+     *
+     * @return array
+     */
+    protected function getAllItems(): array
+    {
+        $items = [];
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        $modules = $moduleRegistry->getAllModules(true, true);
+        foreach ($modules as $module) {
+            $moduleResolver = $moduleRegistry->getModuleResolver($module);
+            $items[] = [
+                'module' => $module,
+                // Replace "." with "-" since dots are not allowed as HTML IDs
+                'id' => str_replace('.', '-', $moduleResolver->getID($module)),
+                'name' => $moduleResolver->getName($module),
+                'settings' => $moduleResolver->getSettings($module),
+            ];
+        }
+        return $items;
+    }
+
+    protected function getSettingsFieldForModule(string $moduleID): string
+    {
+        return self::SETTINGS_FIELD . '-' . $moduleID;
+    }
+
     public function print(): void
     {
+        $items = $this->getAllItems();
+        if (!$items) {
+            _e('There are no items to be configured', 'graphql-api');
+            return;
+        }
+
         /**
          * Override the box-shadow added to a:focus, when clicking on the tab
          */
@@ -57,9 +94,8 @@ class SettingsMenuPage extends AbstractMenuPage
         </style>
         <script type="application/javascript">
             jQuery( document ).ready( function($){
-                $('#graphql-api-settings .tab-content').hide(); // Hide all tabs first
-                $('#graphql-api-settings #main').show(); //  Show the default tab
-                // $('#graphql-api-settings a[href="#main"].nav-tab').addClass('nav-tab-active');
+                // $('#graphql-api-settings .tab-content').hide(); // Hide all tabs first
+                // $('#graphql-api-settings #main').show(); //  Show the default tab
 
                 $('#graphql-api-settings .nav-tab').on('click', function(e){
                     e.preventDefault();
@@ -76,48 +112,39 @@ class SettingsMenuPage extends AbstractMenuPage
             class="wrap"
         >
             <h1><?php \_e('GraphQL API — Settings', 'graphql-api'); ?></h1>
-            <?php settings_errors(); ?>
-            <?php $this->printMainSectionDescription(); ?>
+            <?php \settings_errors(); ?>
+            <?php /*$this->printMainSectionDescription();*/ ?>
 
+            <!-- Tabs -->
             <h2 class="nav-tab-wrapper">
-                <a href="#main" class="nav-tab nav-tab-active"><?php echo \__('Main', 'graphql-api'); ?></a>
-                <a href="#graphql" class="nav-tab"><?php echo \__('GraphQL', 'graphql-api'); ?></a>
-                <a href="#extended_graphql" class="nav-tab"><?php echo \__('Extended GraphQL', 'graphql-api'); ?></a>
+            <?php
+            foreach ($items as $item) {
+                printf(
+                    '<a href="#%s" class="nav-tab %s">%s</a>',
+                    $item['id'],
+                    $item['id'] == $items[0]['id'] ? 'nav-tab-active' : '',
+                    $item['name']
+                );
+            }
+            ?>
             </h2>
 
             <form method="post" action="options.php">
-                <?php settings_fields('graphql-api-settings'); ?>
-                <!--?php do_settings_sections('graphql-api-settings'); ?-->
-
-                <?php /* Main Section */ ?>
-                <div id="main" class="tab-content">
-                    <?php $this->printMainHeader(); ?>
-                    <?php echo '<table class="form-table">'; ?>
-                    <?php \do_settings_fields('graphql-api-settings', 'graphql-api-settings-main-section'); ?>
-                    <?php echo '</table>'; ?>
-                </div>
-
-                <?php /* GraphQL */ ?>
-                <div id="graphql" class="tab-content">
-                    <?php $this->printGraphQLEnabledHeader1(); ?>
-                    <?php echo '<table class="form-table">'; ?>
-                    <?php \do_settings_fields('graphql-api-settings', 'graphql-api-settings-graphql-enabled-section-1'); ?>
-                    <?php echo '</table>'; ?>
-                    <?php $this->printGraphQLEnabledHeader2(); ?>
-                    <?php echo '<table class="form-table">'; ?>
-                    <?php \do_settings_fields('graphql-api-settings', 'graphql-api-settings-graphql-enabled-section-2'); ?>
-                    <?php echo '</table>'; ?>
-                </div>
-
-                <?php /* GraphQL Extended Section */ ?>
-                <div id="extended_graphql" class="tab-content">
-                    <?php $this->printXTGraphQLEnabledHeader(); ?>
-                    <?php echo '<table class="form-table">'; ?>
-                    <?php \do_settings_fields('graphql-api-settings', 'graphql-api-settings-extendedgraphql-enabled-section'); ?>
-                    <?php echo '</table>'; ?>
-                </div>
-
-                <?php \submit_button(); ?>
+                <?php
+                // Panels
+                \settings_fields(self::SETTINGS_FIELD);
+                foreach ($items as $item) {
+                    $displayStyle = $item['id'] == $items[0]['id'] ? 'block' : 'none';
+                    ?>
+                    <div id="<?php echo $item['id'] ?>" class="tab-content" style="display: <?php echo $displayStyle ?>;">
+                        <table class="form-table">
+                            <?php \do_settings_fields(self::SETTINGS_FIELD, $this->getSettingsFieldForModule($item['id'])) ?>
+                        </table>
+                    </div>
+                    <?php
+                }
+                \submit_button();
+                ?>
             </form>
         </div>
         <?php
@@ -128,187 +155,37 @@ class SettingsMenuPage extends AbstractMenuPage
         parent::initialize();
 
         \add_action('admin_init', function () {
-            /**
-             * Main section
-             */
-            \add_settings_section(
-                'graphql-api-settings-main-section',
-                // The empty string ensures the render function won't output a h2.
-                '',
-                [$this, 'printMainSectionDescription'],
-                'graphql-api-settings'
-            );
-            \add_settings_field(
-                'graphql-api-graphql-endpoint',
-                \__('GraphQL endpoint', 'graphql-api'),
-                [$this, 'printInputField'],
-                'graphql-api-settings',
-                'graphql-api-settings-main-section',
-                array(
-                    'label' => sprintf(
-                        \__('Make the GraphQL service available under the specified endpoint. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                        'https://graphql.getpop.org/wp/documentation/#graphql-endpoint'
-                    ),
-                    'id'    => 'graphql-api-graphql-endpoint',
-                )
-            );
-            \add_settings_field(
-                'graphql-api-enable-extended-graphql',
-                \__('Enable Extended GraphQL', 'graphql-api'),
-                [$this, 'printCheckboxField'],
-                'graphql-api-settings',
-                'graphql-api-settings-main-section',
-                array(
-                    'label' => sprintf(
-                        \__('Supercharge the GraphQL API with additional features. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                        'https://graphql.getpop.org/wp/documentation/#extended-graphql'
-                    ),
-                    'id'    => 'graphql-api-enable-extended-graphql',
-                )
-            );
-            \add_settings_field(
-                'graphql-api-blockmetadata',
-                \__('Enable querying Gutenberg', 'graphql-api'),
-                [$this, 'printCheckboxField'],
-                'graphql-api-settings',
-                'graphql-api-settings-main-section',
-                array(
-                    'label' => sprintf(
-                        \__('Add a field <code>blockMetadata</code> on type <code>%s</code> to retrieve the meta-data from its Guntenberg blocks. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                        PostTypeResolver::NAME,
-                        'https://graphql.getpop.org/wp/documentation/#gutenberg'
-                    ),
-                    'id'    => 'graphql-api-blockmetadata',
-                )
-            );
 
-            /**
-             * GraphQL section <= valid when GraphQL enabled
-             */
-            \add_settings_section(
-                'graphql-api-settings-graphql-enabled-section-1',
-                // The empty string ensures the render function won't output a h2.
-                '',
-                [$this, 'printGraphQLEnabledHeader1'],
-                'graphql-api-settings'
-            );
-            \add_settings_field(
-                'graphql-api-namespacing',
-                \__('Enable schema namespacing', 'graphql-api'),
-                [$this, 'printCheckboxField'],
-                'graphql-api-settings',
-                'graphql-api-settings-graphql-enabled-section-1',
-                array(
-                    'label' => sprintf(
-                        \__('Automatically namespace types and interfaces as to avoid potential naming clashes. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                        'https://graphql.getpop.org/wp/documentation/#namespacing'
-                    ),
-                    'id'    => 'graphql-api-namespacing',
-                )
-            );
-            \add_settings_section(
-                'graphql-api-settings-graphql-enabled-section-2',
-                // The empty string ensures the render function won't output a h2.
-                '',
-                [$this, 'printGraphQLEnabledHeader2'],
-                'graphql-api-settings'
-            );
-            \add_settings_field(
-                'graphql-api-public-graphiql',
-                \__('GraphiQL client URL path', 'graphql-api'),
-                [$this, 'printInputField'],
-                'graphql-api-settings',
-                'graphql-api-settings-graphql-enabled-section-2',
-                array(
-                    'label' => sprintf(
-                        \__('Make the GraphiQL client publicly available under the specified URL path. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                        'https://graphql.getpop.org/wp/documentation/#graphiql'
-                    ),
-                    'id'    => 'graphql-api-public-graphiql',
-                )
-            );
-            \add_settings_field(
-                'graphql-api-public-voyager',
-                \__('Interactive schema URL path', 'graphql-api'),
-                [$this, 'printInputField'],
-                'graphql-api-settings',
-                'graphql-api-settings-graphql-enabled-section-2',
-                array(
-                    'label' => sprintf(
-                        \__('Make the interactive schema publicly available under the specified URL path. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                        'https://graphql.getpop.org/wp/documentation/#voyager'
-                    ),
-                    'id'    => 'graphql-api-public-voyager',
-                )
-            );
-            \add_settings_field(
-                'graphql-api-clients-restrictaccess',
-                \__('Restrict access by user capability', 'graphql-api'),
-                [$this, 'printCheckboxField'],
-                'graphql-api-settings',
-                'graphql-api-settings-graphql-enabled-section-2',
-                array(
-                    'label' => sprintf(
-                        \__('Allow only logged-in users with capability <code>%s</code> to access the GraphiQL and interactive schema clients. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                        'access_graphql_clients',
-                        'https://graphql.getpop.org/wp/documentation/#restrict-access-to-clients'
-                    ),
-                    'id'    => 'graphql-api-clients-restrictaccess',
-                )
-            );
-
-            /**
-             * Extended GraphQL section <= valid when Extended GraphQL enabled
-             * Header 1
-             */
-            \add_settings_section(
-                'graphql-api-settings-extendedgraphql-enabled-section',
-                // The empty string ensures the render function won't output a h2.
-                '',
-                [$this, 'printXTGraphQLEnabledHeader'],
-                'graphql-api-settings'
-            );
-            \add_settings_field(
-                'graphql-api-extendedgraphql-cachecontrol',
-                \__('Cache-control max-age', 'graphql-api'),
-                [$this, 'printInputField'],
-                'graphql-api-settings',
-                'graphql-api-settings-extendedgraphql-enabled-section',
-                array(
-                    'label' => sprintf(
-                        \__('HTTP Caching: Set the default max-age value in seconds for the Cache-Control header. From this value, the overall max-age from all requested fields will be calculated. Keep empty to disable. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                        'https://graphql.getpop.org/wp/documentation/#cache-control'
-                    ),
-                    'id'    => 'graphql-api-extendedgraphql-cachecontrol',
-                )
-            );
-            \add_settings_field(
-                'graphql-api-extendedgraphql-guzzle',
-                \__('Enable sending requests to external web services', 'graphql-api'),
-                [$this, 'printCheckboxField'],
-                'graphql-api-settings',
-                'graphql-api-settings-extendedgraphql-enabled-section',
-                array(
-                    'label' => sprintf(
-                        \__('Enable fields (%s) to fetch data from external web services. <a href="%s" target="documentation-site">See documentation</a>.', 'graphql-api'),
-                        '<code>' . implode(
-                            '</code>' . __(',') . '<code>',
-                            [
-                                'getJSON',
-                                'getAsyncJSON',
-                            ]
-                        ) . '</code>',
-                        'https://graphql.getpop.org/wp/documentation/#external-services'
-                    ),
-                    'id'    => 'graphql-api-extendedgraphql-guzzle',
-                )
-            );
+            $items = $this->getAllItems();
+            foreach ($items as $item) {
+                $settingsFieldForModule = $this->getSettingsFieldForModule($item['id']);
+                \add_settings_section(
+                    $settingsFieldForModule,
+                    // The empty string ensures the render function won't output a h2.
+                    '',
+                    null,
+                    self::SETTINGS_FIELD
+                );
+                foreach ($item['settings'] as $itemSetting) {
+                    \add_settings_field(
+                        $itemSetting[Tokens::NAME],
+                        $itemSetting[Tokens::TITLE],
+                        [$this, 'printInputField'],
+                        self::SETTINGS_FIELD,
+                        $settingsFieldForModule,
+                        array(
+                            'label' => $itemSetting[Tokens::DESCRIPTION],
+                            'id' => $itemSetting[Tokens::NAME],
+                        )
+                    );
+                }
+            }
 
             /**
              * Finally register all the settings
              */
             \register_setting(
-                'graphql-api-settings',
+                self::SETTINGS_FIELD,
                 Options::SETTINGS
             );
         });
@@ -354,6 +231,7 @@ class SettingsMenuPage extends AbstractMenuPage
     /**
      * Section header
      */
+    /*
     function printMainSectionDescription()
     {
         ?>
@@ -365,6 +243,7 @@ class SettingsMenuPage extends AbstractMenuPage
         </p>
         <?php
     }
+    */
 
     /**
      * Section header

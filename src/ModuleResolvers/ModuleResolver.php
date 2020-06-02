@@ -348,7 +348,7 @@ class ModuleResolver extends AbstractModuleResolver
         $moduleSettings = [];
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if ($module == self::SINGLE_ENDPOINT) {
-            $moduleSettings = [
+            $moduleSettings[] = [
                 Tokens::NAME => ModuleSettings::SINGLE_ENDPOINT_SLUG,
                 Tokens::TITLE => \__('Endpoint slug', 'graphql-api'),
                 Tokens::DESCRIPTION => \__('URL slug to expose the single GraphQL endpoint', 'graphql-api'),
@@ -356,7 +356,7 @@ class ModuleResolver extends AbstractModuleResolver
                 Tokens::TYPE => Tokens::TYPE_STRING,
             ];
         } elseif ($module == self::GRAPHIQL_FOR_SINGLE_ENDPOINT) {
-            $moduleSettings = [
+            $moduleSettings[] = [
                 Tokens::NAME => ModuleSettings::GRAPHIQL_FOR_SINGLE_ENDPOINT_SLUG,
                 Tokens::TITLE => \__('Client slug', 'graphql-api'),
                 Tokens::DESCRIPTION => \__('URL slug to access the public GraphiQL client', 'graphql-api'),
@@ -364,7 +364,7 @@ class ModuleResolver extends AbstractModuleResolver
                 Tokens::TYPE => Tokens::TYPE_STRING,
             ];
         } elseif ($module == self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT) {
-            $moduleSettings = [
+            $moduleSettings[] = [
                 Tokens::NAME => ModuleSettings::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT_SLUG,
                 Tokens::TITLE => \__('Client slug', 'graphql-api'),
                 Tokens::DESCRIPTION => \__('URL slug to access the public Interactive Schema client', 'graphql-api'),
@@ -383,7 +383,7 @@ class ModuleResolver extends AbstractModuleResolver
                     $whereModules[] = '▹ ' . $this->getName($maybeWhereModule);
                 }
             }
-            $moduleSettings = [
+            $moduleSettings[] = [
                 Tokens::NAME => ModuleSettings::SCHEMA_CONFIGURATION_DEFAULT_SCHEMA_CONFIGURATION,
                 Tokens::TITLE => \__('Default Schema Configuration', 'graphql-api'),
                 Tokens::DESCRIPTION => sprintf(
@@ -404,7 +404,7 @@ class ModuleResolver extends AbstractModuleResolver
                 ]),
             ];
         } elseif ($module == self::SCHEMA_NAMESPACING) {
-            $moduleSettings = [
+            $moduleSettings[] = [
                 Tokens::NAME => ModuleSettings::SCHEMA_NAMESPACING_USE_NAMESPACING,
                 Tokens::TITLE => \__('Use namespacing?', 'graphql-api'),
                 Tokens::DESCRIPTION => \__('Automatically namespace types and interfaces in the schema', 'graphql-api'),
@@ -412,11 +412,11 @@ class ModuleResolver extends AbstractModuleResolver
                 Tokens::TYPE => Tokens::TYPE_BOOL,
             ];
         } elseif ($module == self::PUBLIC_PRIVATE_SCHEMA) {
-            $moduleSettings = [
+            $moduleSettings[] = [
                 Tokens::NAME => ModuleSettings::PUBLIC_PRIVATE_SCHEMA_DEFAULT_MODE,
                 Tokens::TITLE => \__('Default visibility', 'graphql-api'),
                 Tokens::DESCRIPTION => sprintf(
-                    \__('Schema visibility to use when option <code>"%s"</code> is selected (in ▹ Schema Configuration)', 'graphql-api'),
+                    \__('Visibility to use for fields and directives in the schema when option <code>"%s"</code> is selected (in ▹ Schema Configuration)', 'graphql-api'),
                     ComponentConfiguration::getSettingsValueLabel()
                 ),
                 Tokens::DEFAULT_VALUE => SchemaModes::PUBLIC_SCHEMA_MODE,
@@ -427,7 +427,7 @@ class ModuleResolver extends AbstractModuleResolver
                 ],
             ];
         } elseif ($module == self::CACHE_CONTROL) {
-            $moduleSettings = [
+            $moduleSettings[] = [
                 Tokens::NAME => ModuleSettings::CACHE_CONTROL_DEFAULT_MAX_AGE,
                 Tokens::TITLE => \__('Default max-age', 'graphql-api'),
                 Tokens::DESCRIPTION => \__('Default max-age value (in seconds) for the Cache-Control header, for all fields and directives in the schema', 'graphql-api'),

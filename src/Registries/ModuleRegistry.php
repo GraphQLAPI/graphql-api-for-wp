@@ -16,11 +16,30 @@ class ModuleRegistry implements ModuleRegistryInterface
             $this->moduleResolvers[$module] = $moduleResolver;
         }
     }
-    public function getAllModules(bool $onlyVisible = true): array
-    {
+    public function getAllModules(
+        bool $onlyEnabled = false,
+        bool $onlyHasSettings = false,
+        bool $onlyVisible = true
+    ): array {
         $modules = array_keys($this->moduleResolvers);
+        if ($onlyEnabled) {
+            $modules = array_filter(
+                $modules,
+                function ($module) {
+                    return $this->isModuleEnabled($module);
+                }
+            );
+        }
+        if ($onlyHasSettings) {
+            $modules = array_filter(
+                $modules,
+                function ($module) {
+                    return $this->getModuleResolver($module)->hasSettings($module);
+                }
+            );
+        }
         if ($onlyVisible) {
-            return array_filter(
+            $modules = array_filter(
                 $modules,
                 function ($module) {
                     return !$this->getModuleResolver($module)->isHidden($module);
