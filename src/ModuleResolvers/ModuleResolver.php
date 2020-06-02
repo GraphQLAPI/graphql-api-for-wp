@@ -22,6 +22,10 @@ class ModuleResolver extends AbstractModuleResolver
 {
     use HasMarkdownDocumentationModuleResolverTrait;
 
+    // use HasMarkdownDocumentationModuleResolverTrait {
+    //     HasMarkdownDocumentationModuleResolverTrait::hasDocumentation as upstreamHasDocumentation;
+    // }
+
     public const MAIN = Plugin::NAMESPACE . '\main';
     public const SINGLE_ENDPOINT = Plugin::NAMESPACE . '\single-endpoint';
     public const PERSISTED_QUERIES = Plugin::NAMESPACE . '\persisted-queries';
@@ -392,4 +396,26 @@ class ModuleResolver extends AbstractModuleResolver
         $lang = $this->getDefaultDocumentationLanguage();
         return constant('GRAPHQL_API_URL') . "docs/${lang}/modules";
     }
+
+    // /**
+    //  * Does the module have HTML Documentation?
+    //  *
+    //  * @param string $module
+    //  * @return bool
+    //  */
+    // public function hasDocumentation(string $module): bool
+    // {
+    //     $skipDocumentationModules = [
+    //         self::SCHEMA_POST_TYPE,
+    //         self::SCHEMA_COMMENT_TYPE,
+    //         self::SCHEMA_USER_TYPE,
+    //         self::SCHEMA_PAGE_TYPE,
+    //         self::SCHEMA_MEDIA_TYPE,
+    //         self::SCHEMA_TAXONOMY_TYPE,
+    //     ];
+    //     if (in_array($module, $skipDocumentationModules)) {
+    //         return false;
+    //     }
+    //     return $this->upstreamHasDocumentation($module);
+    // }
 }
