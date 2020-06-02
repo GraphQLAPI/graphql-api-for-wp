@@ -262,7 +262,10 @@ class ModuleResolver extends AbstractModuleResolver
             case self::SINGLE_ENDPOINT:
                 return \sprintf(
                     \__('Expose a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
-                    $userSettingsManager->getSetting(ModuleSettings::SINGLE_ENDPOINT_SLUG, $this->getSettingsDefaultValue($module))
+                    $userSettingsManager->getSetting(
+                        ModuleSettings::SINGLE_ENDPOINT_SLUG,
+                        $this->getSettingsDefaultValue($module)
+                    )
                 );
             case self::PERSISTED_QUERIES:
                 return \__('Expose predefined responses through a custom URL, akin to using GraphQL queries to publish REST endpoints', 'graphql-api');
@@ -271,14 +274,20 @@ class ModuleResolver extends AbstractModuleResolver
             case self::GRAPHIQL_FOR_SINGLE_ENDPOINT:
                 return \sprintf(
                     \__('Make a public GraphiQL client available under <code>%s</code>, to execute queries against the single endpoint', 'graphql-api'),
-                    $userSettingsManager->getSetting(ModuleSettings::GRAPHIQL_FOR_SINGLE_ENDPOINT_SLUG, $this->getSettingsDefaultValue($module)),
+                    $userSettingsManager->getSetting(
+                        ModuleSettings::GRAPHIQL_FOR_SINGLE_ENDPOINT_SLUG,
+                        $this->getSettingsDefaultValue($module)
+                    )
                 );
             case self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS:
                 return \__('Enable custom endpoints to be attached their own GraphiQL client, to execute queries against them', 'graphql-api');
             case self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT:
                 return \sprintf(
                     \__('Make a public Interactive Schema client available under <code>%s</code>, to visualize the schema accessible through the single endpoint', 'graphql-api'),
-                    $userSettingsManager->getSetting(ModuleSettings::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT_SLUG, $this->getSettingsDefaultValue($module)),
+                    $userSettingsManager->getSetting(
+                        ModuleSettings::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT_SLUG,
+                        $this->getSettingsDefaultValue($module)
+                    )
                 );
             case self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS:
                 return \__('Enable custom endpoints to be attached their own Interactive schema client, to visualize the custom schema subset', 'graphql-api');
