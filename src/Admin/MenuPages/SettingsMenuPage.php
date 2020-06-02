@@ -8,6 +8,7 @@ use GraphQLAPI\GraphQLAPI\Settings\Options;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
+use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Tokens;
 
 /**
@@ -100,6 +101,20 @@ class SettingsMenuPage extends AbstractMenuPage
         }
 
         $printWithTabs = $this->printWithTabs();
+        // By default, focus on the first module
+        $activeModuleID = $items[0]['id'];
+        // If passing a tab, focus on that one, if the module exists
+        if ($tab = $_GET[RequestParams::TAB]) {
+            $moduleIDs = array_map(
+                function($item) {
+                    return $item['id'];
+                },
+                $items
+            );
+            if (in_array($tab, $moduleIDs)) {
+                $activeModuleID = $tab;
+            }
+        }
         ?>
         <?php if ($printWithTabs) : ?>
             <style>
@@ -138,7 +153,7 @@ class SettingsMenuPage extends AbstractMenuPage
                         printf(
                             '<a href="#%s" class="nav-tab %s">%s</a>',
                             $item['id'],
-                            $item['id'] == $items[0]['id'] ? 'nav-tab-active' : '',
+                            $item['id'] == $activeModuleID ? 'nav-tab-active' : '',
                             $item['name']
                         );
                     }
@@ -160,7 +175,7 @@ class SettingsMenuPage extends AbstractMenuPage
                     if ($printWithTabs) {
                         $sectionStyle = sprintf(
                             'display: %s;',
-                            $item['id'] == $items[0]['id'] ? 'block' : 'none'
+                            $item['id'] == $activeModuleID ? 'block' : 'none'
                         );
                     }
                     ?>
