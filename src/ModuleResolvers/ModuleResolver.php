@@ -256,74 +256,103 @@ class ModuleResolver extends AbstractModuleResolver
     public function getDescription(string $module): string
     {
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
-        $descriptions = [
-            // self::MAIN => \__('Main functionality module, can\'t be disabled but is required for defining the main settings', 'graphql-api'),
-            self::SINGLE_ENDPOINT => \sprintf(
-                \__('Expose a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
-                $userSettingsManager->getSetting(ModuleSettings::SINGLE_ENDPOINT_SLUG)
-            ),
-            self::PERSISTED_QUERIES => \__('Expose predefined responses through a custom URL, akin to using GraphQL queries to publish REST endpoints', 'graphql-api'),
-            self::CUSTOM_ENDPOINTS => \__('Expose different subsets of the schema for different targets, such as users (clients, employees, etc), applications (website, mobile app, etc), context (weekday, weekend, etc), and others', 'graphql-api'),
-            self::GRAPHIQL_FOR_SINGLE_ENDPOINT => \sprintf(
-                \__('Make a public GraphiQL client available under <code>%s</code>, to execute queries against the single endpoint', 'graphql-api'),
-                $userSettingsManager->getSetting(ModuleSettings::GRAPHIQL_FOR_SINGLE_ENDPOINT_SLUG),
-            ),
-            self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached their own GraphiQL client, to execute queries against them', 'graphql-api'),
-            self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => \sprintf(
-                \__('Make a public Interactive Schema client available under <code>%s</code>, to visualize the schema accessible through the single endpoint', 'graphql-api'),
-                $userSettingsManager->getSetting(ModuleSettings::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT_SLUG),
-            ),
-            self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS => \__('Enable custom endpoints to be attached their own Interactive schema client, to visualize the custom schema subset', 'graphql-api'),
-            self::SCHEMA_CONFIGURATION => \__('Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema', 'graphql-api'),
-            self::SCHEMA_NAMESPACING => \__('Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions', 'graphql-api'),
-            self::PUBLIC_PRIVATE_SCHEMA => \__('Enable to communicate the existence of some field from the schema to certain users only (private mode) or to everyone (public mode). If disabled, fields are always available to everyone (public mode)', 'graphql-api'),
-            self::SCHEMA_CACHE => \__('Cache the schema to avoid generating it on runtime, and speed-up the server\'s response', 'graphql-api'),
-            self::ACCESS_CONTROL => \__('Set-up rules to define who can access the different fields and directives from a schema', 'graphql-api'),
-            self::ACCESS_CONTROL_RULE_DISABLE_ACCESS => \__('Remove access to the fields and directives', 'graphql-api'),
-            self::ACCESS_CONTROL_RULE_USER_STATE => \__('Allow or reject access to the fields and directives based on the user being logged-in or not', 'graphql-api'),
-            self::ACCESS_CONTROL_RULE_USER_ROLES => \__('Allow or reject access to the fields and directives based on the user having a certain role', 'graphql-api'),
-            self::ACCESS_CONTROL_RULE_USER_CAPABILITIES => \__('Allow or reject access to the fields and directives based on the user having a certain capability', 'graphql-api'),
-            self::CACHE_CONTROL => \__('Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query', 'graphql-api'),
-            self::FIELD_DEPRECATION => \__('Deprecate fields, and explain how to replace them, through a user interface', 'graphql-api'),
-            self::LOW_LEVEL_QUERY_EDITING => \__('Have access to schema-configuration low-level directives when editing GraphQL queries in the admin', 'graphql-api'),
-            self::GRAPHIQL_EXPLORER => \__('Add the Explorer widget to the GraphiQL client when creating Persisted Queries, to simplify coding the query (by point-and-clicking on the fields)', 'graphql-api'),
-            self::WELCOME_GUIDES => sprintf(
-                \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities. <em>It requires WordPress version \'%s\' or above, or Gutenberg version \'%s\' or above</em>', 'graphql-api'),
-                '5.4',
-                '6.1'
-            ),
-            self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => sprintf(
-                \__('Set of directives to manipulate strings: <code>@%s</code>, <code>@%s</code> and <code>@%s</code>', 'graphql-api'),
-                UpperCaseStringDirectiveResolver::getDirectiveName(),
-                LowerCaseStringDirectiveResolver::getDirectiveName(),
-                TitleCaseStringDirectiveResolver::getDirectiveName()
-            ),
-            self::SCHEMA_POST_TYPE => sprintf(
-                \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
-                PostTypeResolver::NAME,
-            ),
-            self::SCHEMA_USER_TYPE => sprintf(
-                \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
-                UserTypeResolver::NAME,
-            ),
-            self::SCHEMA_PAGE_TYPE => sprintf(
-                \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
-                PageTypeResolver::NAME,
-            ),
-            self::SCHEMA_MEDIA_TYPE => sprintf(
-                \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
-                MediaTypeResolver::NAME,
-            ),
-            self::SCHEMA_COMMENT_TYPE => sprintf(
-                \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
-                CommentTypeResolver::NAME,
-            ),
-            self::SCHEMA_TAXONOMY_TYPE => sprintf(
-                \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
-                TagTypeResolver::NAME,
-            ),
-        ];
-        return $descriptions[$module] ?? parent::getDescription($module);
+        switch ($module) {
+            // case self::MAIN:
+            //      return \__('Main functionality module, can\'t be disabled but is required for defining the main settings', 'graphql-api');
+            case self::SINGLE_ENDPOINT:
+                return \sprintf(
+                    \__('Expose a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
+                    $userSettingsManager->getSetting(ModuleSettings::SINGLE_ENDPOINT_SLUG, $this->getSettingsDefaultValue($module))
+                );
+            case self::PERSISTED_QUERIES:
+                return \__('Expose predefined responses through a custom URL, akin to using GraphQL queries to publish REST endpoints', 'graphql-api');
+            case self::CUSTOM_ENDPOINTS:
+                return \__('Expose different subsets of the schema for different targets, such as users (clients, employees, etc), applications (website, mobile app, etc), context (weekday, weekend, etc), and others', 'graphql-api');
+            case self::GRAPHIQL_FOR_SINGLE_ENDPOINT:
+                return \sprintf(
+                    \__('Make a public GraphiQL client available under <code>%s</code>, to execute queries against the single endpoint', 'graphql-api'),
+                    $userSettingsManager->getSetting(ModuleSettings::GRAPHIQL_FOR_SINGLE_ENDPOINT_SLUG, $this->getSettingsDefaultValue($module)),
+                );
+            case self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS:
+                return \__('Enable custom endpoints to be attached their own GraphiQL client, to execute queries against them', 'graphql-api');
+            case self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT:
+                return \sprintf(
+                    \__('Make a public Interactive Schema client available under <code>%s</code>, to visualize the schema accessible through the single endpoint', 'graphql-api'),
+                    $userSettingsManager->getSetting(ModuleSettings::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT_SLUG, $this->getSettingsDefaultValue($module)),
+                );
+            case self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS:
+                return \__('Enable custom endpoints to be attached their own Interactive schema client, to visualize the custom schema subset', 'graphql-api');
+            case self::SCHEMA_CONFIGURATION:
+                return \__('Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema', 'graphql-api');
+            case self::SCHEMA_NAMESPACING:
+                return \__('Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions', 'graphql-api');
+            case self::PUBLIC_PRIVATE_SCHEMA:
+                return \__('Enable to communicate the existence of some field from the schema to certain users only (private mode) or to everyone (public mode). If disabled, fields are always available to everyone (public mode)', 'graphql-api');
+            case self::SCHEMA_CACHE:
+                return \__('Cache the schema to avoid generating it on runtime, and speed-up the server\'s response', 'graphql-api');
+            case self::ACCESS_CONTROL:
+                return \__('Set-up rules to define who can access the different fields and directives from a schema', 'graphql-api');
+            case self::ACCESS_CONTROL_RULE_DISABLE_ACCESS:
+                return \__('Remove access to the fields and directives', 'graphql-api');
+            case self::ACCESS_CONTROL_RULE_USER_STATE:
+                return \__('Allow or reject access to the fields and directives based on the user being logged-in or not', 'graphql-api');
+            case self::ACCESS_CONTROL_RULE_USER_ROLES:
+                return \__('Allow or reject access to the fields and directives based on the user having a certain role', 'graphql-api');
+            case self::ACCESS_CONTROL_RULE_USER_CAPABILITIES:
+                return \__('Allow or reject access to the fields and directives based on the user having a certain capability', 'graphql-api');
+            case self::CACHE_CONTROL:
+                return \__('Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query', 'graphql-api');
+            case self::FIELD_DEPRECATION:
+                return \__('Deprecate fields, and explain how to replace them, through a user interface', 'graphql-api');
+            case self::LOW_LEVEL_QUERY_EDITING:
+                return \__('Have access to schema-configuration low-level directives when editing GraphQL queries in the admin', 'graphql-api');
+            case self::GRAPHIQL_EXPLORER:
+                return \__('Add the Explorer widget to the GraphiQL client when creating Persisted Queries, to simplify coding the query (by point-and-clicking on the fields)', 'graphql-api');
+            case self::WELCOME_GUIDES:
+                return sprintf(
+                    \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities. <em>It requires WordPress version \'%s\' or above, or Gutenberg version \'%s\' or above</em>', 'graphql-api'),
+                    '5.4',
+                    '6.1'
+                );
+            case self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE:
+                return sprintf(
+                    \__('Set of directives to manipulate strings: <code>@%s</code>, <code>@%s</code> and <code>@%s</code>', 'graphql-api'),
+                    UpperCaseStringDirectiveResolver::getDirectiveName(),
+                    LowerCaseStringDirectiveResolver::getDirectiveName(),
+                    TitleCaseStringDirectiveResolver::getDirectiveName()
+                );
+            case self::SCHEMA_POST_TYPE:
+                return sprintf(
+                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                    PostTypeResolver::NAME,
+                );
+            case self::SCHEMA_USER_TYPE:
+                return sprintf(
+                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                    UserTypeResolver::NAME,
+                );
+            case self::SCHEMA_PAGE_TYPE:
+                return sprintf(
+                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                    PageTypeResolver::NAME,
+                );
+            case self::SCHEMA_MEDIA_TYPE:
+                return sprintf(
+                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                    MediaTypeResolver::NAME,
+                );
+            case self::SCHEMA_COMMENT_TYPE:
+                return sprintf(
+                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                    CommentTypeResolver::NAME,
+                );
+            case self::SCHEMA_TAXONOMY_TYPE:
+                return sprintf(
+                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                    TagTypeResolver::NAME,
+                );
+        }
+        return parent::getDescription($module);
     }
 
     public function isEnabledByDefault(string $module): bool
@@ -337,6 +366,22 @@ class ModuleResolver extends AbstractModuleResolver
                 return false;
         }
         return parent::isEnabledByDefault($module);
+    }
+
+    /**
+     * Default value for the module
+     *
+     * @param string $module
+     * @return void
+     */
+    protected function getSettingsDefaultValue(string $module)
+    {
+        $defaultValues = [
+            self::SINGLE_ENDPOINT => '/graphql/',
+            self::GRAPHIQL_FOR_SINGLE_ENDPOINT => '/graphiql/',
+            self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => '/schema/',
+        ];
+        return $defaultValues[$module];
     }
 
     /**
@@ -354,7 +399,7 @@ class ModuleResolver extends AbstractModuleResolver
                 Tokens::NAME => ModuleSettings::SINGLE_ENDPOINT_SLUG,
                 Tokens::TITLE => \__('Endpoint slug', 'graphql-api'),
                 Tokens::DESCRIPTION => \__('URL slug to expose the single GraphQL endpoint', 'graphql-api'),
-                Tokens::DEFAULT_VALUE => '/graphql/',
+                Tokens::DEFAULT_VALUE => $this->getSettingsDefaultValue($module),
                 Tokens::TYPE => Tokens::TYPE_STRING,
             ];
         } elseif ($module == self::GRAPHIQL_FOR_SINGLE_ENDPOINT) {
@@ -362,7 +407,7 @@ class ModuleResolver extends AbstractModuleResolver
                 Tokens::NAME => ModuleSettings::GRAPHIQL_FOR_SINGLE_ENDPOINT_SLUG,
                 Tokens::TITLE => \__('Client slug', 'graphql-api'),
                 Tokens::DESCRIPTION => \__('URL slug to access the public GraphiQL client', 'graphql-api'),
-                Tokens::DEFAULT_VALUE => '/graphiql/',
+                Tokens::DEFAULT_VALUE => $this->getSettingsDefaultValue($module),
                 Tokens::TYPE => Tokens::TYPE_STRING,
             ];
         } elseif ($module == self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT) {
@@ -370,7 +415,7 @@ class ModuleResolver extends AbstractModuleResolver
                 Tokens::NAME => ModuleSettings::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT_SLUG,
                 Tokens::TITLE => \__('Client slug', 'graphql-api'),
                 Tokens::DESCRIPTION => \__('URL slug to access the public Interactive Schema client', 'graphql-api'),
-                Tokens::DEFAULT_VALUE => '/schema/',
+                Tokens::DEFAULT_VALUE => $this->getSettingsDefaultValue($module),
                 Tokens::TYPE => Tokens::TYPE_STRING,
             ];
         } elseif ($module == self::SCHEMA_CONFIGURATION) {
