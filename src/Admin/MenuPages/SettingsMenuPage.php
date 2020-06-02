@@ -75,6 +75,22 @@ class SettingsMenuPage extends AbstractMenuPage
         return self::SETTINGS_FIELD . '-' . $moduleID;
     }
 
+    /**
+     * If `true`, print the sections using tabs
+     * If `false`, print the sections one below the other
+     *
+     * @return boolean
+     */
+    protected function printWithTabs(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Print the settings form
+     *
+     * @return void
+     */
     public function print(): void
     {
         $items = $this->getAllItems();
@@ -83,27 +99,30 @@ class SettingsMenuPage extends AbstractMenuPage
             return;
         }
 
-        /**
-         * Override the box-shadow added to a:focus, when clicking on the tab
-         */
+        $printWithTabs = $this->printWithTabs();
         ?>
-        <style>
-            #graphql-api-settings .nav-tab-active:focus {
-                box-shadow: none;
-            }
-        </style>
-        <script type="application/javascript">
-            jQuery( document ).ready( function($){
-                $('#graphql-api-settings .nav-tab').on('click', function(e){
-                    e.preventDefault();
-                    tab = $(this).attr('href');
-                    $('#graphql-api-settings .tab-content').hide();
-                    $(tab).show();
-                    $('#graphql-api-settings .nav-tab').removeClass('nav-tab-active');
-                    $('#graphql-api-settings a[href="'+tab+'"].nav-tab').addClass('nav-tab-active');
+        <?php if ($printWithTabs) : ?>
+            <style>
+                /**
+                * Override the box-shadow added to a:focus, when clicking on the tab
+                */
+                #graphql-api-settings .nav-tab-active:focus {
+                    box-shadow: none;
+                }
+            </style>
+            <script type="application/javascript">
+                jQuery( document ).ready( function($){
+                    $('#graphql-api-settings .nav-tab').on('click', function(e){
+                        e.preventDefault();
+                        tab = $(this).attr('href');
+                        $('#graphql-api-settings .tab-content').hide();
+                        $(tab).show();
+                        $('#graphql-api-settings .nav-tab').removeClass('nav-tab-active');
+                        $('#graphql-api-settings a[href="'+tab+'"].nav-tab').addClass('nav-tab-active');
+                    });
                 });
-            });
-        </script>
+            </script>
+        <?php endif; ?>
         <div
             id="graphql-api-settings"
             class="wrap"
@@ -111,28 +130,42 @@ class SettingsMenuPage extends AbstractMenuPage
             <h1><?php \_e('GraphQL API — Settings', 'graphql-api'); ?></h1>
             <?php \settings_errors(); ?>
 
-            <!-- Tabs -->
-            <h2 class="nav-tab-wrapper">
-            <?php
-            foreach ($items as $item) {
-                printf(
-                    '<a href="#%s" class="nav-tab %s">%s</a>',
-                    $item['id'],
-                    $item['id'] == $items[0]['id'] ? 'nav-tab-active' : '',
-                    $item['name']
-                );
-            }
-            ?>
-            </h2>
+            <?php if ($printWithTabs) : ?>
+                <!-- Tabs -->
+                <h2 class="nav-tab-wrapper">
+                    <?php
+                    foreach ($items as $item) {
+                        printf(
+                            '<a href="#%s" class="nav-tab %s">%s</a>',
+                            $item['id'],
+                            $item['id'] == $items[0]['id'] ? 'nav-tab-active' : '',
+                            $item['name']
+                        );
+                    }
+                    ?>
+                </h2>
+            <?php endif; ?>
 
             <form method="post" action="options.php">
                 <!-- Panels -->
                 <?php
+                $sectionClass = $printWithTabs ? 'tab-content' : '';
                 \settings_fields(self::SETTINGS_FIELD);
                 foreach ($items as $item) {
-                    $displayStyle = $item['id'] == $items[0]['id'] ? 'block' : 'none';
+                    $sectionStyle = '';
+                    $maybeTitle = $printWithTabs ? '' : sprintf(
+                        '<hr/><h3>%s</h3>',
+                        $item['name']
+                    );
+                    if ($printWithTabs) {
+                        $sectionStyle = sprintf(
+                            'display: %s;',
+                            $item['id'] == $items[0]['id'] ? 'block' : 'none'
+                        );
+                    }
                     ?>
-                    <div id="<?php echo $item['id'] ?>" class="tab-content" style="display: <?php echo $displayStyle ?>;">
+                    <div id="<?php echo $item['id'] ?>" class="<?php echo $sectionClass ?>" style="<?php echo $sectionStyle ?>">
+                        <?php echo $maybeTitle ?>
                         <table class="form-table">
                             <?php \do_settings_fields(self::SETTINGS_FIELD, $this->getSettingsFieldForModule($item['id'])) ?>
                         </table>
