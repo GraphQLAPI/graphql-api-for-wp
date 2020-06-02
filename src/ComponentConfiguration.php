@@ -121,7 +121,8 @@ class ComponentConfiguration
         // Define properties
         $envVariable = Environment::SETTINGS_VALUE_LABEL;
         $selfProperty = &self::$getSettingsValueLabel;
-        $defaultValue = \__('As defined in the General Settings', 'graphql-api');
+        // $defaultValue = \__('As defined in the General Settings', 'graphql-api');
+        $defaultValue = \__('Default', 'graphql-api');
 
         // Initialize property from the environment/hook
         self::maybeInitializeConfigurationValue(
