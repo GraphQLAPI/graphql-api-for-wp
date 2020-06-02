@@ -25,9 +25,9 @@ class UserSettingsManager implements UserSettingsManagerInterface
      * @param string $item
      * @return mixed
      */
-    public function getSetting(string $item)
+    public function getSetting(string $item, $defaultValue = null)
     {
-        return $this->getItem(Options::SETTINGS, $item);
+        return $this->getItem(Options::SETTINGS, $item) ?? $defaultValue;
     }
 
     public function hasSetModuleEnabled(string $moduleID): bool

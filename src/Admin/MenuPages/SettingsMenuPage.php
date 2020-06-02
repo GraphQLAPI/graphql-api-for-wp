@@ -30,10 +30,10 @@ class SettingsMenuPage extends AbstractMenuPage
      * @param string $name
      * @return boolean
      */
-    public static function getOptionValue(string $name): ?string
+    public static function getOptionValue(string $name, $defaultValue)
     {
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
-        return $userSettingsManager->getSetting($name);
+        return $userSettingsManager->getSetting($name, $defaultValue);
     }
 
     /**
@@ -42,9 +42,10 @@ class SettingsMenuPage extends AbstractMenuPage
      * @param string $name
      * @return boolean
      */
-    public static function isOptionOn(string $name): bool
+    public static function isOptionOn(string $name, $defaultValue): bool
     {
-        return !empty(self::getOptionValue($name));
+        $value = self::getOptionValue($name, $defaultValue);
+        return $value === true || !empty($value);
     }
 
     /**
@@ -165,13 +166,23 @@ class SettingsMenuPage extends AbstractMenuPage
                     \add_settings_field(
                         $itemSetting[Tokens::NAME],
                         $itemSetting[Tokens::TITLE],
-                        [$this, 'printInputField'],
+                        function () use ($itemSetting) {
+                            $type = $itemSetting[Tokens::TYPE];
+                            $possibleValues = $itemSetting[Tokens::POSSIBLE_VALUES];
+                            if (!empty($possibleValues)) {
+                                $this->printSelectField($itemSetting);
+                            } elseif ($type == Tokens::TYPE_BOOL) {
+                                $this->printCheckboxField($itemSetting);
+                            } else {
+                                $this->printInputField($itemSetting);
+                            }
+                        },
                         self::SETTINGS_FIELD,
                         $settingsFieldForModule,
-                        array(
+                        [
                             'label' => $itemSetting[Tokens::DESCRIPTION],
                             'id' => $itemSetting[Tokens::NAME],
-                        )
+                        ]
                     );
                 }
             }
@@ -189,35 +200,63 @@ class SettingsMenuPage extends AbstractMenuPage
     /**
      * Display a checkbox field.
      *
-     * @param array $args
+     * @param array $itemSetting
      * @return void
      */
-    function printCheckboxField(array $args): void
+    protected function printCheckboxField(array $itemSetting): void
     {
-        $name = $args['id'];
-        $value = self::isOptionOn($name);
+        $name = $itemSetting[Tokens::NAME];
+        $value = self::isOptionOn($name, $itemSetting[Tokens::DEFAULT_VALUE]);
         ?>
-            <label for="<?php echo $args['id']; ?>">
-                <input type="checkbox" name="<?php echo 'graphql-api-settings[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="1" <?php checked(1, $value); ?> />
-                <?php echo $args['label']; ?>
+            <label for="<?php echo $name; ?>">
+                <input type="checkbox" name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="1" <?php checked(1, $value); ?> />
+                <?php echo $itemSetting[Tokens::DESCRIPTION]; ?>
             </label>
         <?php
     }
 
     /**
-     * Display a checkbox field.
+     * Display an input field.
      *
-     * @param array $args
+     * @param array $itemSetting
      * @return void
      */
-    function printInputField(array $args): void
+    protected function printInputField(array $itemSetting): void
     {
-        $name = $args['id'];
-        $value = self::getOptionValue($name) ?? '';
-        $label = $args['label'] ? '<br/>' . $args['label'] : '';
+        $name = $itemSetting[Tokens::NAME];
+        $value = self::getOptionValue($name, $itemSetting[Tokens::DEFAULT_VALUE]);
+        $label = $itemSetting[Tokens::DESCRIPTION] ? '<br/>' . $itemSetting[Tokens::DESCRIPTION] : '';
         ?>
-            <label for="<?php echo $args['id']; ?>">
-                <input type="text" name="<?php echo 'graphql-api-settings[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="<?php echo $value; ?>" />
+            <label for="<?php echo $name; ?>">
+                <input type="text" name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="<?php echo $value; ?>" />
+                <?php echo $label; ?>
+            </label>
+        <?php
+    }
+
+    /**
+     * Display a select field.
+     *
+     * @param array $itemSetting
+     * @return void
+     */
+    protected function printSelectField(array $itemSetting): void
+    {
+        $name = $itemSetting[Tokens::NAME];
+        $value = self::getOptionValue($name, $itemSetting[Tokens::DEFAULT_VALUE]);
+        $label = $itemSetting[Tokens::DESCRIPTION] ? '<br/>' . $itemSetting[Tokens::DESCRIPTION] : '';
+        $maybeMultiple = $itemSetting[Tokens::IS_MULTIPLE] ? 'multiple' : '';
+        $possibleValues = $itemSetting[Tokens::POSSIBLE_VALUES];
+        ?>
+            <label for="<?php echo $name; ?>">
+                <select name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" <?php echo $maybeMultiple; ?>>
+                <?php foreach ($possibleValues as $optionValue => $optionLabel) : ?>
+                    <?php $maybeSelected = $optionValue == $value ? 'selected="selected"' : ''; ?>
+                    <option value="<?php echo $optionValue ?>" <?php echo $maybeSelected ?>>
+                        <?php echo $optionLabel ?>
+                    </option>
+                <?php endforeach ?>
+                </select>
                 <?php echo $label; ?>
             </label>
         <?php

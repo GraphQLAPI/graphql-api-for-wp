@@ -383,6 +383,22 @@ class ModuleResolver extends AbstractModuleResolver
                     $whereModules[] = '▹ ' . $this->getName($maybeWhereModule);
                 }
             }
+            // Build all the possible values by fetching all the Schema Configuration posts
+            $noValueID = 0;
+            $possibleValues = [
+                $noValueID => \__('None', 'graphql-api'),
+            ];
+            if (
+                $customPosts = \get_posts([
+                    'posts_per_page' => -1,
+                    'post_type' => GraphQLSchemaConfigurationPostType::POST_TYPE,
+                    'post_status' => 'publish',
+                ])
+            ) {
+                foreach ($customPosts as $customPost) {
+                    $possibleValues[$customPost->ID] = $customPost->post_title;
+                }
+            }
             $moduleSettings[] = [
                 Tokens::NAME => ModuleSettings::SCHEMA_CONFIGURATION_DEFAULT_SCHEMA_CONFIGURATION,
                 Tokens::TITLE => \__('Default Schema Configuration', 'graphql-api'),
@@ -393,15 +409,10 @@ class ModuleResolver extends AbstractModuleResolver
                         $whereModules
                     )
                 ),
-                Tokens::DEFAULT_VALUE => null,
+                Tokens::DEFAULT_VALUE => $noValueID,
                 Tokens::TYPE => Tokens::TYPE_INT,
                 // Fetch all Schema Configurations from the DB
-                Tokens::POSSIBLE_VALUES => \get_posts([
-                    'fields' => 'ids',
-                    'posts_per_page' => -1,
-                    'post_type' => GraphQLSchemaConfigurationPostType::POST_TYPE,
-                    'post_status' => 'publish',
-                ]),
+                Tokens::POSSIBLE_VALUES => $possibleValues,
             ];
         } elseif ($module == self::SCHEMA_NAMESPACING) {
             $moduleSettings[] = [
@@ -422,8 +433,8 @@ class ModuleResolver extends AbstractModuleResolver
                 Tokens::DEFAULT_VALUE => SchemaModes::PUBLIC_SCHEMA_MODE,
                 Tokens::TYPE => Tokens::TYPE_STRING,
                 Tokens::POSSIBLE_VALUES => [
-                    SchemaModes::PUBLIC_SCHEMA_MODE,
-                    SchemaModes::PRIVATE_SCHEMA_MODE,
+                    SchemaModes::PUBLIC_SCHEMA_MODE => \__('Public', 'graphql-api'),
+                    SchemaModes::PRIVATE_SCHEMA_MODE => \__('Private', 'graphql-api'),
                 ],
             ];
         } elseif ($module == self::CACHE_CONTROL) {
