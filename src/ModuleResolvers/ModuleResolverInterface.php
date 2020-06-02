@@ -30,6 +30,17 @@ interface ModuleResolverInterface
     public function getName(string $module): string;
     public function getDescription(string $module): string;
     public function hasSettings(string $module): bool;
+    /**
+     * Array with the inputs to show as settings for the module:
+     * - name
+     * - type (string, bool, int)
+     * - possible values
+     * - is multiple
+     *
+     * @param string $module
+     * @return array
+     */
+    public function getSettings(string $module): array;
     public function isEnabledByDefault(string $module): bool;
     public function getURL(string $module): ?string;
     public function getSlug(string $module): string;

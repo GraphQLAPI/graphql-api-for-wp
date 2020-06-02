@@ -51,7 +51,19 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
 
     public function hasSettings(string $module): bool
     {
-        return false;
+        return !empty($this->getSettings($module));
+    }
+
+    /**
+     * Array with key as the name of the setting, and value as its definition:
+     * type (input, checkbox, select), enum values (if it is a select)
+     *
+     * @param string $module
+     * @return array
+     */
+    public function getSettings(string $module): array
+    {
+        return [];
     }
 
     public function isEnabledByDefault(string $module): bool

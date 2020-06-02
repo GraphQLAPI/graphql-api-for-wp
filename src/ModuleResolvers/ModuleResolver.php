@@ -4,19 +4,24 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
+use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Plugin;
+use PoP\AccessControl\Schema\SchemaModes;
 use PoP\Pages\TypeResolvers\PageTypeResolver;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\Users\TypeResolvers\UserTypeResolver;
 use GraphQLAPI\GraphQLAPI\General\LocaleUtils;
 use PoP\Media\TypeResolvers\MediaTypeResolver;
+use GraphQLAPI\GraphQLAPI\ModuleSettings\Tokens;
 use PoP\Taxonomies\TypeResolvers\TagTypeResolver;
 use PoP\Comments\TypeResolvers\CommentTypeResolver;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\ModuleSettings\ModuleSettings;
 use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\UpperCaseStringDirectiveResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\HasMarkdownDocumentationModuleResolverTrait;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 
 class ModuleResolver extends AbstractModuleResolver
 {
@@ -55,6 +60,8 @@ class ModuleResolver extends AbstractModuleResolver
     public const SCHEMA_PAGE_TYPE = Plugin::NAMESPACE . '\schema-page-type';
     public const SCHEMA_MEDIA_TYPE = Plugin::NAMESPACE . '\schema-media-type';
     public const SCHEMA_TAXONOMY_TYPE = Plugin::NAMESPACE . '\schema-taxonomy-type';
+
+
 
     public static function getModulesToResolve(): array
     {
@@ -334,6 +341,103 @@ class ModuleResolver extends AbstractModuleResolver
                 return false;
         }
         return parent::isEnabledByDefault($module);
+    }
+
+    /**
+     * Array with the inputs to show as settings for the module
+     *
+     * @param string $module
+     * @return array
+     */
+    public function getSettings(string $module): array
+    {
+        $moduleSettings = [];
+        // Do the if one by one, so that the SELECT do not get evaluated unless needed
+        if ($module == self::SINGLE_ENDPOINT) {
+            $moduleSettings = [
+                Tokens::NAME => ModuleSettings::SINGLE_ENDPOINT_SLUG,
+                Tokens::DESCRIPTION => \__('URL slug to expose the single GraphQL endpoint', 'graphql-api'),
+                Tokens::DEFAULT_VALUE => '/graphql/',
+                Tokens::TYPE => Tokens::TYPE_STRING,
+            ];
+        } elseif ($module == self::GRAPHIQL_FOR_SINGLE_ENDPOINT) {
+            $moduleSettings = [
+                Tokens::NAME => ModuleSettings::GRAPHIQL_FOR_SINGLE_ENDPOINT_SLUG,
+                Tokens::DESCRIPTION => \__('URL slug to access the public GraphiQL client', 'graphql-api'),
+                Tokens::DEFAULT_VALUE => '/graphiql/',
+                Tokens::TYPE => Tokens::TYPE_STRING,
+            ];
+        } elseif ($module == self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT) {
+            $moduleSettings = [
+                Tokens::NAME => ModuleSettings::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT_SLUG,
+                Tokens::DESCRIPTION => \__('URL slug to access the public Interactive Schema client', 'graphql-api'),
+                Tokens::DEFAULT_VALUE => '/schema/',
+                Tokens::TYPE => Tokens::TYPE_STRING,
+            ];
+        } elseif ($module == self::SCHEMA_CONFIGURATION) {
+            $moduleRegistry = ModuleRegistryFacade::getInstance();
+            $whereModules = [];
+            $maybeWhereModules = [
+                self::CUSTOM_ENDPOINTS,
+                self::PERSISTED_QUERIES,
+            ];
+            foreach ($maybeWhereModules as $maybeWhereModule) {
+                if ($moduleRegistry->isModuleEnabled($maybeWhereModule)) {
+                    $whereModules[] = '▹ ' . $this->getName($maybeWhereModule);
+                }
+            }
+            $moduleSettings = [
+                Tokens::NAME => ModuleSettings::SCHEMA_CONFIGURATION_DEFAULT_SCHEMA_CONFIGURATION,
+                Tokens::DESCRIPTION => sprintf(
+                    \__('Schema Configuration to use when option <code>"Default"</code> is selected (in %s)', 'graphql-api'),
+                    implode(
+                        \__(', ', 'graphql-api'),
+                        $whereModules
+                    )
+                ),
+                Tokens::DEFAULT_VALUE => null,
+                Tokens::TYPE => Tokens::TYPE_INT,
+                // Fetch all Schema Configurations from the DB
+                Tokens::POSSIBLE_VALUES => \get_posts([
+                    'fields' => 'ids',
+                    'posts_per_page' => -1,
+                    'post_type' => GraphQLSchemaConfigurationPostType::POST_TYPE,
+                    'post_status' => 'publish',
+                ]),
+            ];
+        } elseif ($module == self::SCHEMA_NAMESPACING) {
+            $moduleSettings = [
+                Tokens::NAME => ModuleSettings::SCHEMA_NAMESPACING_USE_NAMESPACING,
+                Tokens::DESCRIPTION => \__('Namespace types and interfaces?', 'graphql-api'),
+                Tokens::DEFAULT_VALUE => false,
+                Tokens::TYPE => Tokens::TYPE_BOOL,
+            ];
+        } elseif ($module == self::PUBLIC_PRIVATE_SCHEMA) {
+            $moduleSettings = [
+                Tokens::NAME => ModuleSettings::PUBLIC_PRIVATE_SCHEMA_DEFAULT_MODE,
+                Tokens::DESCRIPTION => sprintf(
+                    \__('Schema visibility to use when option <code>"%s"</code> is selected (in ▹ Schema Configuration)', 'graphql-api'),
+                    ComponentConfiguration::getSettingsValueLabel()
+                ),
+                Tokens::DEFAULT_VALUE => SchemaModes::PUBLIC_SCHEMA_MODE,
+                Tokens::TYPE => Tokens::TYPE_STRING,
+                Tokens::POSSIBLE_VALUES => [
+                    SchemaModes::PUBLIC_SCHEMA_MODE,
+                    SchemaModes::PRIVATE_SCHEMA_MODE,
+                ],
+            ];
+        } elseif ($module == self::CACHE_CONTROL) {
+            $moduleSettings = [
+                Tokens::NAME => ModuleSettings::CACHE_CONTROL_DEFAULT_MAX_AGE,
+                Tokens::DESCRIPTION => \__('Default max-age value (in seconds) for the Cache-Control header, for all fields and directives in the schema', 'graphql-api'),
+                Tokens::DEFAULT_VALUE => 60,
+                Tokens::TYPE => Tokens::TYPE_INT,
+            ];
+        }
+        return array_merge(
+            parent::getSettings($module),
+            $moduleSettings
+        );
     }
 
     /**
