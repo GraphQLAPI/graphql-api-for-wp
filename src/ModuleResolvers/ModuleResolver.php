@@ -31,7 +31,7 @@ class ModuleResolver extends AbstractModuleResolver
     //     HasMarkdownDocumentationModuleResolverTrait::hasDocumentation as upstreamHasDocumentation;
     // }
 
-    public const MAIN = Plugin::NAMESPACE . '\main';
+    // public const MAIN = Plugin::NAMESPACE . '\main';
     public const SINGLE_ENDPOINT = Plugin::NAMESPACE . '\single-endpoint';
     public const PERSISTED_QUERIES = Plugin::NAMESPACE . '\persisted-queries';
     public const CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\custom-endpoints';
@@ -66,7 +66,7 @@ class ModuleResolver extends AbstractModuleResolver
     public static function getModulesToResolve(): array
     {
         return [
-            self::MAIN,
+            // self::MAIN,
             self::SINGLE_ENDPOINT,
             self::GRAPHIQL_FOR_SINGLE_ENDPOINT,
             self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
@@ -105,11 +105,7 @@ class ModuleResolver extends AbstractModuleResolver
             case self::SINGLE_ENDPOINT:
             case self::CUSTOM_ENDPOINTS:
             case self::LOW_LEVEL_QUERY_EDITING:
-                return [
-                    // [
-                    //     self::MAIN,
-                    // ],
-                ];
+                return [];
             case self::GRAPHIQL_FOR_SINGLE_ENDPOINT:
             case self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT:
                 return [
@@ -215,7 +211,7 @@ class ModuleResolver extends AbstractModuleResolver
     public function isHidden(string $module): bool
     {
         switch ($module) {
-            case self::MAIN:
+            // case self::MAIN:
             case self::SCHEMA_CACHE:
                 return true;
         }
@@ -225,7 +221,7 @@ class ModuleResolver extends AbstractModuleResolver
     public function getName(string $module): string
     {
         $names = [
-            self::MAIN => \__('Main', 'graphql-api'),
+            // self::MAIN => \__('Main', 'graphql-api'),
             self::SINGLE_ENDPOINT => \__('Single Endpoint', 'graphql-api'),
             self::PERSISTED_QUERIES => \__('Persisted Queries', 'graphql-api'),
             self::CUSTOM_ENDPOINTS => \__('Custom Endpoints', 'graphql-api'),
@@ -261,7 +257,7 @@ class ModuleResolver extends AbstractModuleResolver
     public function getDescription(string $module): string
     {
         $descriptions = [
-            self::MAIN => \__('Main functionality module, can\'t be disabled but is required for defining the main settings', 'graphql-api'),
+            // self::MAIN => \__('Main functionality module, can\'t be disabled but is required for defining the main settings', 'graphql-api'),
             self::SINGLE_ENDPOINT => \sprintf(
                 \__('Expose a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
                 '/api/graphql/'
