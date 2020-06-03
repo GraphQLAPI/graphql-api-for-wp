@@ -136,30 +136,6 @@ class SettingsMenuPage extends AbstractMenuPage
     }
 
     /**
-     * Get the option value. Made static so it can be used without instantiation
-     *
-     * @param string $name
-     * @return boolean
-     */
-    public function getOptionValue(string $module, string $option)
-    {
-        $userSettingsManager = UserSettingsManagerFacade::getInstance();
-        return $userSettingsManager->getSetting($module, $option);
-    }
-
-    // /**
-    //  * Indicate if the option is on. Made static so it can be used without instantiation
-    //  *
-    //  * @param string $name
-    //  * @return boolean
-    //  */
-    // public function isOptionOn(string $name, $defaultValue): bool
-    // {
-    //     $value = $this->getOptionValue($name, $defaultValue);
-    //     return $value === true || !empty($value);
-    // }
-
-    /**
      * Return all the modules with settings
      *
      * @return array
@@ -302,6 +278,18 @@ class SettingsMenuPage extends AbstractMenuPage
             </form>
         </div>
         <?php
+    }
+
+    /**
+     * Get the option value
+     *
+     * @param string $name
+     * @return boolean
+     */
+    protected function getOptionValue(string $module, string $option)
+    {
+        $userSettingsManager = UserSettingsManagerFacade::getInstance();
+        return $userSettingsManager->getSetting($module, $option);
     }
 
     /**
