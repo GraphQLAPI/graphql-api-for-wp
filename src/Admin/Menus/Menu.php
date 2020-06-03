@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\Menus;
 
-use PoP\APIEndpoints\EndpointUtils;
 use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\Admin\Menus\AbstractMenu;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
@@ -13,10 +12,10 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphiQLMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
-use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphQLVoyagerMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModuleDocumentationMenuPage;
+use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 
 /**
  * Admin menu class
@@ -85,7 +84,6 @@ class Menu extends AbstractMenu
         parent::addMenuPagesBottom();
 
         $instanceManager = InstanceManagerFacade::getInstance();
-        $userSettingsManager = UserSettingsManagerFacade::getInstance();
         $menuPageClass = ($_GET[RequestParams::TAB] == RequestParams::TAB_DOCS) ?
             ModuleDocumentationMenuPage::class :
             ModulesMenuPage::class;
@@ -114,27 +112,21 @@ class Menu extends AbstractMenu
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         if ($moduleRegistry->isModuleEnabled(ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT)) {
             global $submenu;
-            $clientPath = $userSettingsManager->getSetting(
-                ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
-                ModuleResolver::OPTION_SLUG
-            );
+            $clientPath = GraphQLClientsForWPComponentConfiguration::getGraphiQLClientEndpoint();
             $submenu[self::NAME][] = [
                 __('GraphiQL (public client)', 'graphql-api'),
                 'read',
-                home_url(EndpointUtils::slashURI($clientPath)),
+                home_url($clientPath),
             ];
         }
 
         if ($moduleRegistry->isModuleEnabled(ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT)) {
             global $submenu;
-            $clientPath = $userSettingsManager->getSetting(
-                ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
-                ModuleResolver::OPTION_SLUG
-            );
+            $clientPath = GraphQLClientsForWPComponentConfiguration::getVoyagerClientEndpoint();
             $submenu[self::NAME][] = [
                 __('Interactive Schema (public client)', 'graphql-api'),
                 'read',
-                home_url(EndpointUtils::slashURI($clientPath)),
+                home_url($clientPath),
             ];
         }
 
