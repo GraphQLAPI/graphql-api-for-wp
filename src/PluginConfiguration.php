@@ -4,24 +4,28 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI;
 
+use PoP\APIEndpoints\EndpointUtils;
 use GraphQLAPI\GraphQLAPI\Environment;
+use PoP\AccessControl\Schema\SchemaModes;
+use PoP\ComponentModel\Misc\GeneralUtils;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
-use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
+use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
-use PoP\ComponentModel\Misc\GeneralUtils;
-use PoP\AccessControl\Environment as AccessControlEnvironment;
-use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
-use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
-use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
-use PoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
-use PoP\APIEndpointsForWP\ComponentConfiguration as APIEndpointsForWPComponentConfiguration;
-use PoP\APIEndpointsForWP\Environment as APIEndpointsForWPEnvironment;
-use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
-use PoP\ComponentModel\Environment as ComponentModelEnvironment;
-use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
+use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use PoP\CacheControl\Environment as CacheControlEnvironment;
-use PoP\AccessControl\Schema\SchemaModes;
+use PoP\AccessControl\Environment as AccessControlEnvironment;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use PoP\ComponentModel\Environment as ComponentModelEnvironment;
+use PoP\APIEndpointsForWP\Environment as APIEndpointsForWPEnvironment;
+use PoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
+use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
+use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
+use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
+use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
+use PoP\APIEndpointsForWP\ComponentConfiguration as APIEndpointsForWPComponentConfiguration;
+use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 
 /**
  * Sets the configuration in all the PoP components.
@@ -39,6 +43,8 @@ use PoP\AccessControl\Schema\SchemaModes;
  */
 class PluginConfiguration
 {
+    protected static $normalizedOptionValuesCache;
+
     /**
      * Initialize all configuration
      *
@@ -48,6 +54,66 @@ class PluginConfiguration
     {
         self::mapEnvVariablesToWPConfigConstants();
         self::defineEnvironmentConstantsFromSettings();
+    }
+
+    /**
+     * Get the values from the form submitted to options.php, and normalize them
+     *
+     * @return array
+     */
+    protected static function getNormalizedOptionValues(): array
+    {
+        if (is_null(self::$normalizedOptionValuesCache)) {
+            $instanceManager = InstanceManagerFacade::getInstance();
+            $settingsMenuPage = $instanceManager->getInstance(SettingsMenuPage::class);
+            // Obtain the values from the POST and normalize them
+            $value = $_POST[SettingsMenuPage::SETTINGS_FIELD];
+            self::$normalizedOptionValuesCache = $settingsMenuPage->normalizeSettings($value);
+        }
+        return self::$normalizedOptionValuesCache;
+    }
+
+    /**
+     * If we are in options.php, already set the new slugs in the hook,
+     * so that the EndpointHandler's `addRewriteEndpoints` (executed on `init`)
+     * adds the rewrite with the new slug, which will be persisted on
+     * flushing the rewrite rules
+     *
+     * @return mixed
+     */
+    protected static function maybeOverrideValueFromForm($value, string $module, string $option)
+    {
+        global $pagenow;
+        if ($pagenow == 'options.php') {
+            $value = self::getNormalizedOptionValues();
+            // Return the specific value to this module/option
+            $moduleRegistry = ModuleRegistryFacade::getInstance();
+            $moduleResolver = $moduleRegistry->getModuleResolver($module);
+            $optionName = $moduleResolver->getSettingOptionName($module, $option);
+            return $value[$optionName];
+        }
+        return $value;
+    }
+
+    /**
+     * Process the "URL path" option values
+     *
+     * @param string $value
+     * @param string $module
+     * @param string $option
+     * @return string
+     */
+    protected static function getURLPathSettingValue(
+        string $value,
+        string $module,
+        string $option
+    ): string {
+        // Make sure the path has a "/" on both ends
+        $value = EndpointUtils::slashURI($value);
+
+        // If we are on options.php, use the value submitted to the form,
+        // so it's updated before doing `add_rewrite_endpoint` and `flush_rewrite_rules`
+        return self::maybeOverrideValueFromForm($value, $module, $option);
     }
 
     /**
@@ -65,6 +131,13 @@ class PluginConfiguration
                 'envVariable' => APIEndpointsForWPEnvironment::GRAPHQL_API_ENDPOINT,
                 'module' => ModuleResolver::SINGLE_ENDPOINT,
                 'option' => ModuleResolver::OPTION_SLUG,
+                'callback' => function ($value) {
+                    return self::getURLPathSettingValue(
+                        $value,
+                        ModuleResolver::SINGLE_ENDPOINT,
+                        ModuleResolver::OPTION_SLUG
+                    );
+                },
             ],
             // GraphiQL client slug
             [
@@ -72,6 +145,13 @@ class PluginConfiguration
                 'envVariable' => GraphQLClientsForWPEnvironment::GRAPHIQL_CLIENT_ENDPOINT,
                 'module' => ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
                 'option' => ModuleResolver::OPTION_SLUG,
+                'callback' => function ($value) {
+                    return self::getURLPathSettingValue(
+                        $value,
+                        ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
+                        ModuleResolver::OPTION_SLUG
+                    );
+                },
             ],
             // Voyager client slug
             [
@@ -79,6 +159,13 @@ class PluginConfiguration
                 'envVariable' => GraphQLClientsForWPEnvironment::VOYAGER_CLIENT_ENDPOINT,
                 'module' => ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
                 'option' => ModuleResolver::OPTION_SLUG,
+                'callback' => function ($value) {
+                    return self::getURLPathSettingValue(
+                        $value,
+                        ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
+                        ModuleResolver::OPTION_SLUG
+                    );
+                },
             ],
             // Use private schema mode?
             [

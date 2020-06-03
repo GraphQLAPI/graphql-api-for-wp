@@ -44,33 +44,7 @@ class SettingsMenuPage extends AbstractMenuPage
         $option = self::SETTINGS_FIELD;
         \add_filter(
             "pre_update_option_{$option}",
-            function ($value) {
-                $moduleRegistry = ModuleRegistryFacade::getInstance();
-                $items = $this->getAllItems();
-                foreach ($items as $item) {
-                    $module = $item['module'];
-                    $moduleResolver = $moduleRegistry->getModuleResolver($module);
-                    foreach ($item['settings'] as $itemSetting) {
-                        $type = $itemSetting[Properties::TYPE];
-                        $name = $itemSetting[Properties::NAME];
-                        /**
-                         * If the input is empty, replace with the default
-                         * It can't be empty, because that could be equivalent to disabling the module,
-                         * which is done from the Modules page, not from Settings
-                         * Ignore for bool since empty means `false` (tackled below)
-                         */
-                        if (empty($value[$name]) && $type != Properties::TYPE_BOOL) {
-                            $option = $itemSetting[Properties::INPUT];
-                            $value[$name] = $moduleResolver->getSettingsDefaultValue($module, $option);
-                        } elseif ($type == Properties::TYPE_BOOL) {
-                            $value[$name] = !empty($value[$name]);
-                        } elseif ($type == Properties::TYPE_INT) {
-                            $value[$name] = (int) $value[$name];
-                        }
-                    }
-                }
-                return $value;
-            }
+            [$this, 'normalizeSettings']
         );
 
         /**
@@ -133,6 +107,44 @@ class SettingsMenuPage extends AbstractMenuPage
                 );
             }
         );
+    }
+
+    /**
+     * Normalize the form values:
+     *
+     * - If the input is empty, replace with the default
+     * - Convert from string to int/bool
+     *
+     * @param array $value
+     * @return array
+     */
+    public function normalizeSettings(array $value): array
+    {
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        $items = $this->getAllItems();
+        foreach ($items as $item) {
+            $module = $item['module'];
+            $moduleResolver = $moduleRegistry->getModuleResolver($module);
+            foreach ($item['settings'] as $itemSetting) {
+                $type = $itemSetting[Properties::TYPE];
+                $name = $itemSetting[Properties::NAME];
+                /**
+                 * If the input is empty, replace with the default
+                 * It can't be empty, because that could be equivalent to disabling the module,
+                 * which is done from the Modules page, not from Settings
+                 * Ignore for bool since empty means `false` (tackled below)
+                 */
+                if (empty($value[$name]) && $type != Properties::TYPE_BOOL) {
+                    $option = $itemSetting[Properties::INPUT];
+                    $value[$name] = $moduleResolver->getSettingsDefaultValue($module, $option);
+                } elseif ($type == Properties::TYPE_BOOL) {
+                    $value[$name] = !empty($value[$name]);
+                } elseif ($type == Properties::TYPE_INT) {
+                    $value[$name] = (int) $value[$name];
+                }
+            }
+        }
+        return $value;
     }
 
     /**
