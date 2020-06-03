@@ -36,18 +36,33 @@ class SettingsMenuPage extends AbstractMenuPage
 
         /**
          * Before saving the settings in the DB,
-         * transform the values from string to bool/int
+         * transform the values:
+         *
+         * - from string to bool/int
+         * - default value if input is empty
          */
         $option = self::SETTINGS_FIELD;
         \add_filter(
             "pre_update_option_{$option}",
             function ($value) {
+                $moduleRegistry = ModuleRegistryFacade::getInstance();
                 $items = $this->getAllItems();
                 foreach ($items as $item) {
+                    $module = $item['module'];
+                    $moduleResolver = $moduleRegistry->getModuleResolver($module);
                     foreach ($item['settings'] as $itemSetting) {
                         $type = $itemSetting[Properties::TYPE];
                         $name = $itemSetting[Properties::NAME];
-                        if ($type == Properties::TYPE_BOOL) {
+                        /**
+                         * If the input is empty, replace with the default
+                         * It can't be empty, because that could be equivalent to disabling the module,
+                         * which is done from the Modules page, not from Settings
+                         * Ignore for bool since empty means `false` (tackled below)
+                         */
+                        if (empty($value[$name]) && $type != Properties::TYPE_BOOL) {
+                            $option = $itemSetting[Properties::INPUT];
+                            $value[$name] = $moduleResolver->getSettingsDefaultValue($module, $option);
+                        } elseif ($type == Properties::TYPE_BOOL) {
                             $value[$name] = !empty($value[$name]);
                         } elseif ($type == Properties::TYPE_INT) {
                             $value[$name] = (int) $value[$name];
