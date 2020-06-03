@@ -13,6 +13,10 @@ use PoP\ComponentModel\Misc\GeneralUtils;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
+use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
+use PoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
+use PoP\APIEndpointsForWP\ComponentConfiguration as APIEndpointsForWPComponentConfiguration;
+use PoP\APIEndpointsForWP\Environment as APIEndpointsForWPEnvironment;
 use PoP\AccessControl\Schema\SchemaModes;
 
 class PluginConfiguration
@@ -52,6 +56,24 @@ class PluginConfiguration
                 'envVariable' => AccessControlEnvironment::ENABLE_INDIVIDUAL_CONTROL_FOR_PUBLIC_PRIVATE_SCHEMA_MODE,
                 'module' => ModuleResolver::PUBLIC_PRIVATE_SCHEMA,
                 'option' => ModuleResolver::OPTION_ENABLE_GRANULAR,
+            ],
+            [
+                'class' => APIEndpointsForWPComponentConfiguration::class,
+                'envVariable' => APIEndpointsForWPEnvironment::GRAPHQL_API_ENDPOINT,
+                'module' => ModuleResolver::SINGLE_ENDPOINT,
+                'option' => ModuleResolver::OPTION_SLUG,
+            ],
+            [
+                'class' => GraphQLClientsForWPComponentConfiguration::class,
+                'envVariable' => GraphQLClientsForWPEnvironment::GRAPHIQL_CLIENT_ENDPOINT,
+                'module' => ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
+                'option' => ModuleResolver::OPTION_SLUG,
+            ],
+            [
+                'class' => GraphQLClientsForWPComponentConfiguration::class,
+                'envVariable' => GraphQLClientsForWPEnvironment::VOYAGER_CLIENT_ENDPOINT,
+                'module' => ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
+                'option' => ModuleResolver::OPTION_SLUG,
             ],
         ];
         // For each environment variable, see if its value has been saved in the settings
