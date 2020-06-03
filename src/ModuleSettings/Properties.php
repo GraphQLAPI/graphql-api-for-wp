@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\ModuleSettings;
 
-class Tokens
+class Properties
 {
     public const NAME = 'name';
     public const INPUT = 'input';

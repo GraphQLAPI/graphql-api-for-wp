@@ -9,7 +9,7 @@ use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use GraphQLAPI\GraphQLAPI\General\RequestParams;
-use GraphQLAPI\GraphQLAPI\ModuleSettings\Tokens;
+use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 
 /**
  * Settings menu page
@@ -45,11 +45,11 @@ class SettingsMenuPage extends AbstractMenuPage
                 $items = $this->getAllItems();
                 foreach ($items as $item) {
                     foreach ($item['settings'] as $itemSetting) {
-                        $type = $itemSetting[Tokens::TYPE];
-                        $name = $itemSetting[Tokens::NAME];
-                        if ($type == Tokens::TYPE_BOOL) {
+                        $type = $itemSetting[Properties::TYPE];
+                        $name = $itemSetting[Properties::NAME];
+                        if ($type == Properties::TYPE_BOOL) {
                             $value[$name] = !empty($value[$name]);
-                        } elseif ($type == Tokens::TYPE_INT) {
+                        } elseif ($type == Properties::TYPE_INT) {
                             $value[$name] = (int) $value[$name];
                         }
                     }
@@ -86,14 +86,14 @@ class SettingsMenuPage extends AbstractMenuPage
                     );
                     foreach ($item['settings'] as $itemSetting) {
                         \add_settings_field(
-                            $itemSetting[Tokens::NAME],
-                            $itemSetting[Tokens::TITLE],
+                            $itemSetting[Properties::NAME],
+                            $itemSetting[Properties::TITLE],
                             function () use ($module, $itemSetting) {
-                                $type = $itemSetting[Tokens::TYPE];
-                                $possibleValues = $itemSetting[Tokens::POSSIBLE_VALUES];
+                                $type = $itemSetting[Properties::TYPE];
+                                $possibleValues = $itemSetting[Properties::POSSIBLE_VALUES];
                                 if (!empty($possibleValues)) {
                                     $this->printSelectField($module, $itemSetting);
-                                } elseif ($type == Tokens::TYPE_BOOL) {
+                                } elseif ($type == Properties::TYPE_BOOL) {
                                     $this->printCheckboxField($module, $itemSetting);
                                 } else {
                                     $this->printInputField($module, $itemSetting);
@@ -102,8 +102,8 @@ class SettingsMenuPage extends AbstractMenuPage
                             self::SETTINGS_FIELD,
                             $settingsFieldForModule,
                             [
-                                'label' => $itemSetting[Tokens::DESCRIPTION],
-                                'id' => $itemSetting[Tokens::NAME],
+                                'label' => $itemSetting[Properties::DESCRIPTION],
+                                'id' => $itemSetting[Properties::NAME],
                             ]
                         );
                     }
@@ -297,13 +297,13 @@ class SettingsMenuPage extends AbstractMenuPage
      */
     protected function printCheckboxField(string $module, array $itemSetting): void
     {
-        $name = $itemSetting[Tokens::NAME];
-        $input = $itemSetting[Tokens::INPUT];
+        $name = $itemSetting[Properties::NAME];
+        $input = $itemSetting[Properties::INPUT];
         $value = $this->getOptionValue($module, $input);
         ?>
             <label for="<?php echo $name; ?>">
                 <input type="checkbox" name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="1" <?php checked(1, $value); ?> />
-                <?php echo $itemSetting[Tokens::DESCRIPTION]; ?>
+                <?php echo $itemSetting[Properties::DESCRIPTION]; ?>
             </label>
         <?php
     }
@@ -316,10 +316,10 @@ class SettingsMenuPage extends AbstractMenuPage
      */
     protected function printInputField(string $module, array $itemSetting): void
     {
-        $name = $itemSetting[Tokens::NAME];
-        $input = $itemSetting[Tokens::INPUT];
+        $name = $itemSetting[Properties::NAME];
+        $input = $itemSetting[Properties::INPUT];
         $value = $this->getOptionValue($module, $input);
-        $label = $itemSetting[Tokens::DESCRIPTION] ? '<br/>' . $itemSetting[Tokens::DESCRIPTION] : '';
+        $label = $itemSetting[Properties::DESCRIPTION] ? '<br/>' . $itemSetting[Properties::DESCRIPTION] : '';
         ?>
             <label for="<?php echo $name; ?>">
                 <input type="text" name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="<?php echo $value; ?>" />
@@ -336,12 +336,12 @@ class SettingsMenuPage extends AbstractMenuPage
      */
     protected function printSelectField(string $module, array $itemSetting): void
     {
-        $name = $itemSetting[Tokens::NAME];
-        $input = $itemSetting[Tokens::INPUT];
+        $name = $itemSetting[Properties::NAME];
+        $input = $itemSetting[Properties::INPUT];
         $value = $this->getOptionValue($module, $input);
-        $label = $itemSetting[Tokens::DESCRIPTION] ? '<br/>' . $itemSetting[Tokens::DESCRIPTION] : '';
-        // $maybeMultiple = $itemSetting[Tokens::IS_MULTIPLE] ? 'multiple' : '';
-        $possibleValues = $itemSetting[Tokens::POSSIBLE_VALUES];
+        $label = $itemSetting[Properties::DESCRIPTION] ? '<br/>' . $itemSetting[Properties::DESCRIPTION] : '';
+        // $maybeMultiple = $itemSetting[Properties::IS_MULTIPLE] ? 'multiple' : '';
+        $possibleValues = $itemSetting[Properties::POSSIBLE_VALUES];
         ?>
             <label for="<?php echo $name; ?>">
                 <select name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" <?php /*echo $maybeMultiple;*/ ?>>
