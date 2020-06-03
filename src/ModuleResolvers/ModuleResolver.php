@@ -585,7 +585,7 @@ class ModuleResolver extends AbstractModuleResolver
                     $option,
                 ),
                 Properties::TITLE => \__('Enable granular control?', 'graphql-api'),
-                Properties::DESCRIPTION => \__('Enable to select the visibility on a field/directive-basis when editing the Access Control List', 'graphql-api'),
+                Properties::DESCRIPTION => \__('Enable to select the visibility for a set of fields/directives when editing the Access Control List', 'graphql-api'),
                 // Properties::DEFAULT_VALUE => true,
                 Properties::TYPE => Properties::TYPE_BOOL,
             ];
