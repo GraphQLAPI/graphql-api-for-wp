@@ -16,7 +16,6 @@ use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use PoP\Taxonomies\TypeResolvers\TagTypeResolver;
 use PoP\Comments\TypeResolvers\CommentTypeResolver;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleSettings\ModuleSettings;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
@@ -69,6 +68,7 @@ class ModuleResolver extends AbstractModuleResolver
     public const OPTION_SCHEMA_CONFIGURATION_ID = 'schema-configuration-id';
     public const OPTION_USE_NAMESPACING = 'use-namespacing';
     public const OPTION_MODE = 'mode';
+    public const OPTION_ENABLE_GRANULAR = 'granular';
     public const OPTION_MAX_AGE = 'max-age';
 
     /**
@@ -89,12 +89,12 @@ class ModuleResolver extends AbstractModuleResolver
             self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS,
             self::SCHEMA_CONFIGURATION,
             self::SCHEMA_NAMESPACING,
-            self::PUBLIC_PRIVATE_SCHEMA,
             self::ACCESS_CONTROL,
             self::ACCESS_CONTROL_RULE_DISABLE_ACCESS,
             self::ACCESS_CONTROL_RULE_USER_STATE,
             self::ACCESS_CONTROL_RULE_USER_ROLES,
             self::ACCESS_CONTROL_RULE_USER_CAPABILITIES,
+            self::PUBLIC_PRIVATE_SCHEMA,
             self::CACHE_CONTROL,
             self::FIELD_DEPRECATION,
             self::LOW_LEVEL_QUERY_EDITING,
@@ -142,7 +142,6 @@ class ModuleResolver extends AbstractModuleResolver
                     ],
                 ];
             case self::SCHEMA_NAMESPACING:
-            case self::PUBLIC_PRIVATE_SCHEMA:
             case self::ACCESS_CONTROL:
             case self::FIELD_DEPRECATION:
                 return [
@@ -166,6 +165,7 @@ class ModuleResolver extends AbstractModuleResolver
                         self::PERSISTED_QUERIES,
                     ],
                 ];
+            case self::PUBLIC_PRIVATE_SCHEMA:
             case self::ACCESS_CONTROL_RULE_DISABLE_ACCESS:
             case self::ACCESS_CONTROL_RULE_USER_STATE:
             case self::ACCESS_CONTROL_RULE_USER_ROLES:
@@ -418,6 +418,7 @@ class ModuleResolver extends AbstractModuleResolver
             ],
             self::PUBLIC_PRIVATE_SCHEMA => [
                 self::OPTION_MODE => SchemaModes::PUBLIC_SCHEMA_MODE,
+                self::OPTION_ENABLE_GRANULAR => true,
             ],
             self::CACHE_CONTROL => [
                 self::OPTION_MAX_AGE => 60,
@@ -435,6 +436,7 @@ class ModuleResolver extends AbstractModuleResolver
     public function getSettings(string $module): array
     {
         $moduleSettings = parent::getSettings($module);
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if ($module == self::SINGLE_ENDPOINT) {
             $option = self::OPTION_SLUG;
@@ -485,7 +487,6 @@ class ModuleResolver extends AbstractModuleResolver
                 Properties::TYPE => Properties::TYPE_STRING,
             ];
         } elseif ($module == self::SCHEMA_CONFIGURATION) {
-            $moduleRegistry = ModuleRegistryFacade::getInstance();
             $whereModules = [];
             $maybeWhereModules = [
                 self::CUSTOM_ENDPOINTS,
@@ -545,6 +546,14 @@ class ModuleResolver extends AbstractModuleResolver
                 Properties::TYPE => Properties::TYPE_BOOL,
             ];
         } elseif ($module == self::PUBLIC_PRIVATE_SCHEMA) {
+            $whereModules = [];
+            $dependencyModules = [
+                self::SCHEMA_CONFIGURATION,
+                self::ACCESS_CONTROL,
+            ];
+            foreach ($dependencyModules as $dependencyModule) {
+                $whereModules[] = '▹ ' . $this->getName($dependencyModule);
+            }
             $option = self::OPTION_MODE;
             $moduleSettings[] = [
                 Properties::INPUT => $option,
@@ -554,8 +563,12 @@ class ModuleResolver extends AbstractModuleResolver
                 ),
                 Properties::TITLE => \__('Default visibility', 'graphql-api'),
                 Properties::DESCRIPTION => sprintf(
-                    \__('Visibility to use for fields and directives in the schema when option <code>"%s"</code> is selected (in ▹ Schema Configuration)', 'graphql-api'),
-                    ComponentConfiguration::getSettingsValueLabel()
+                    \__('Visibility to use for fields and directives in the schema when option <code>"%s"</code> is selected (in %s)', 'graphql-api'),
+                    ComponentConfiguration::getSettingsValueLabel(),
+                    implode(
+                        \__(', ', 'graphql-api'),
+                        $whereModules
+                    )
                 ),
                 // Properties::DEFAULT_VALUE => SchemaModes::PUBLIC_SCHEMA_MODE,
                 Properties::TYPE => Properties::TYPE_STRING,
@@ -563,6 +576,18 @@ class ModuleResolver extends AbstractModuleResolver
                     SchemaModes::PUBLIC_SCHEMA_MODE => \__('Public', 'graphql-api'),
                     SchemaModes::PRIVATE_SCHEMA_MODE => \__('Private', 'graphql-api'),
                 ],
+            ];
+            $option = self::OPTION_ENABLE_GRANULAR;
+            $moduleSettings[] = [
+                Properties::INPUT => $option,
+                Properties::NAME => $this->getSettingOptionName(
+                    $module,
+                    $option,
+                ),
+                Properties::TITLE => \__('Enable granular control?', 'graphql-api'),
+                Properties::DESCRIPTION => \__('Enable to select the visibility on a field/directive-basis when editing the Access Control List', 'graphql-api'),
+                // Properties::DEFAULT_VALUE => true,
+                Properties::TYPE => Properties::TYPE_BOOL,
             ];
         } elseif ($module == self::CACHE_CONTROL) {
             $option = self::OPTION_MAX_AGE;
