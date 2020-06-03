@@ -137,6 +137,7 @@ class PluginConfiguration
                         ModuleResolver::OPTION_PATH
                     );
                 },
+                'condition' => 'any',
             ],
             // GraphiQL client slug
             [
@@ -151,6 +152,7 @@ class PluginConfiguration
                         ModuleResolver::OPTION_PATH
                     );
                 },
+                'condition' => 'any',
             ],
             // Voyager client slug
             [
@@ -165,6 +167,7 @@ class PluginConfiguration
                         ModuleResolver::OPTION_PATH
                     );
                 },
+                'condition' => 'any',
             ],
             // Use private schema mode?
             [
@@ -204,8 +207,10 @@ class PluginConfiguration
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         foreach ($mappings as $mapping) {
             $module = $mapping['module'];
-            // If the corresponding module is not enabled, then do nothing
-            if (!$moduleRegistry->isModuleEnabled($module)) {
+            $condition = $mapping['condition'] ?? true;
+            // Check if the hook must be executed always (condition => 'any') or with
+            // stated enabled (true) or disabled (false). By default, it's enabled
+            if ($condition != 'any' && $condition != $moduleRegistry->isModuleEnabled($module)) {
                 continue;
             }
             // If the environment value has been defined, or the constant in wp-config.php,
@@ -344,7 +349,7 @@ class PluginConfiguration
     {
         $componentClassConfiguration = [];
         self::addPredefinedComponentClassConfiguration($componentClassConfiguration);
-        self::addBasedOnModuleComponentClassConfiguration($componentClassConfiguration);
+        self::addBasedOnModuleEnabledStateComponentClassConfiguration($componentClassConfiguration);
         return $componentClassConfiguration;
     }
 
@@ -364,42 +369,51 @@ class PluginConfiguration
     }
 
     /**
+     * Return the opposite value
+     *
+     * @param boolean $value
+     * @return boolean
+     */
+    protected static function opposite(bool $value): bool
+    {
+        return !$value;
+    }
+
+    /**
      * Add configuration values if modules are enabled or disabled
      *
      * @return void
      */
-    protected static function addBasedOnModuleComponentClassConfiguration(array &$componentClassConfiguration): void
+    protected static function addBasedOnModuleEnabledStateComponentClassConfiguration(array &$componentClassConfiguration): void
     {
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         $moduleToComponentClassConfigurationMappings = [
             [
                 'module' => ModuleResolver::SINGLE_ENDPOINT,
-                'condition' => false,
                 'class' => \PoP\APIEndpointsForWP\Component::class,
-                'envVariable' => \PoP\APIEndpointsForWP\Environment::GRAPHQL_API_ENDPOINT,
-                'value' => '',
+                'envVariable' => \PoP\APIEndpointsForWP\Environment::DISABLE_GRAPHQL_API_ENDPOINT,
+                'callback' => [self::class, 'opposite'],
             ],
             [
                 'module' => ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
-                'condition' => false,
                 'class' => \PoP\GraphQLClientsForWP\Component::class,
-                'envVariable' => \PoP\GraphQLClientsForWP\Environment::GRAPHIQL_CLIENT_ENDPOINT,
-                'value' => '',
+                'envVariable' => \PoP\GraphQLClientsForWP\Environment::DISABLE_GRAPHIQL_CLIENT_ENDPOINT,
+                'callback' => [self::class, 'opposite'],
             ],
             [
                 'module' => ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
-                'condition' => false,
                 'class' => \PoP\GraphQLClientsForWP\Component::class,
-                'envVariable' => \PoP\GraphQLClientsForWP\Environment::VOYAGER_CLIENT_ENDPOINT,
-                'value' => '',
+                'envVariable' => \PoP\GraphQLClientsForWP\Environment::DISABLE_VOYAGER_CLIENT_ENDPOINT,
+                'callback' => [self::class, 'opposite'],
             ],
         ];
         foreach ($moduleToComponentClassConfigurationMappings as $mapping) {
-            // Copy value if either the condition is not set, or if it equals the enabled/disabled module state
-            $condition = $mapping['condition'];
-            if (is_null($condition) || $moduleRegistry->isModuleEnabled($mapping['module']) === $condition) {
-                $componentClassConfiguration[$mapping['class']][$mapping['envVariable']] = $mapping['value'];
+            // Copy the state (enabled/disabled) to the component
+            $value = $moduleRegistry->isModuleEnabled($mapping['module']);
+            if ($callback = $mapping['callback']) {
+                $value = $callback($value);
             }
+            $componentClassConfiguration[$mapping['class']][$mapping['envVariable']] = $value;
         }
     }
 
