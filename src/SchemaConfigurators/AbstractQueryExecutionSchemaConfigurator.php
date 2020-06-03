@@ -16,7 +16,6 @@ use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigAccessControlListBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigFieldDeprecationListBlock;
-use GraphQLAPI\GraphQLAPI\ModuleSettings\ModuleSettings;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AccessControlGraphQLQueryConfigurator;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
@@ -64,7 +63,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             $userSettingsManager = UserSettingsManagerFacade::getInstance();
             return $userSettingsManager->getSetting(
                 ModuleResolver::SCHEMA_CONFIGURATION,
-                ModuleSettings::SCHEMA_CONFIGURATION_DEFAULT_SCHEMA_CONFIGURATION
+                ModuleResolver::OPTION_SCHEMA_CONFIGURATION_ID
             );
         }
 
@@ -76,7 +75,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             $userSettingsManager = UserSettingsManagerFacade::getInstance();
             return $userSettingsManager->getSetting(
                 ModuleResolver::SCHEMA_CONFIGURATION,
-                ModuleSettings::SCHEMA_CONFIGURATION_DEFAULT_SCHEMA_CONFIGURATION
+                ModuleResolver::OPTION_SCHEMA_CONFIGURATION_ID
             );
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT) {
             // Return the schema configuration from the parent, or null if no parent exists

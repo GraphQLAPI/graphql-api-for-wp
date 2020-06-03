@@ -8,7 +8,6 @@ use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\Admin\Menus\AbstractMenu;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleSettings\ModuleSettings;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphiQLMenuPage;
@@ -116,7 +115,7 @@ class Menu extends AbstractMenu
             global $submenu;
             $clientPath = $userSettingsManager->getSetting(
                 ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
-                ModuleSettings::GRAPHIQL_FOR_SINGLE_ENDPOINT_SLUG
+                ModuleResolver::OPTION_SLUG
             );
             $submenu[self::NAME][] = [
                 __('GraphiQL (public client)', 'graphql-api'),
@@ -129,7 +128,7 @@ class Menu extends AbstractMenu
             global $submenu;
             $clientPath = $userSettingsManager->getSetting(
                 ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
-                ModuleSettings::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT_SLUG
+                ModuleResolver::OPTION_SLUG
             );
             $submenu[self::NAME][] = [
                 __('Interactive Schema (public client)', 'graphql-api'),
