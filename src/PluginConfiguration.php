@@ -56,9 +56,14 @@ class PluginConfiguration
         ];
         // For each environment variable, see if its value has been saved in the settings
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
         foreach ($mappings as $mapping) {
-            $hookName = ComponentConfigurationHelpers::getHookName($mapping['class'], $mapping['envVariable']);
             $module = $mapping['module'];
+            // If the corresponding module is not enabled, then do nothing
+            if (!$moduleRegistry->isModuleEnabled($module)) {
+                continue;
+            }
+            $hookName = ComponentConfigurationHelpers::getHookName($mapping['class'], $mapping['envVariable']);
             $option = $mapping['option'];
             $callback = $mapping['callback'];
             \add_filter(
@@ -69,9 +74,7 @@ class PluginConfiguration
                         return $callback($value);
                     }
                     return $value;
-                },
-                10,
-                3
+                }
             );
         }
     }
