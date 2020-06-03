@@ -16,12 +16,13 @@ use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use PoP\Taxonomies\TypeResolvers\TagTypeResolver;
 use PoP\Comments\TypeResolvers\CommentTypeResolver;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\UpperCaseStringDirectiveResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\HasMarkdownDocumentationModuleResolverTrait;
+use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
+use PoP\APIEndpointsForWP\ComponentConfiguration as APIEndpointsForWPComponentConfiguration;
 
 class ModuleResolver extends AbstractModuleResolver
 {
@@ -269,17 +270,13 @@ class ModuleResolver extends AbstractModuleResolver
 
     public function getDescription(string $module): string
     {
-        $userSettingsManager = UserSettingsManagerFacade::getInstance();
         switch ($module) {
             // case self::MAIN:
             //      return \__('Main functionality module, can\'t be disabled but is required for defining the main settings', 'graphql-api');
             case self::SINGLE_ENDPOINT:
                 return \sprintf(
                     \__('Expose a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
-                    $userSettingsManager->getSetting(
-                        $module,
-                        self::OPTION_SLUG
-                    )
+                    APIEndpointsForWPComponentConfiguration::getGraphQLAPIEndpoint()
                 );
             case self::PERSISTED_QUERIES:
                 return \__('Expose predefined responses through a custom URL, akin to using GraphQL queries to publish REST endpoints', 'graphql-api');
@@ -288,20 +285,14 @@ class ModuleResolver extends AbstractModuleResolver
             case self::GRAPHIQL_FOR_SINGLE_ENDPOINT:
                 return \sprintf(
                     \__('Make a public GraphiQL client available under <code>%s</code>, to execute queries against the single endpoint', 'graphql-api'),
-                    $userSettingsManager->getSetting(
-                        $module,
-                        self::OPTION_SLUG
-                    )
+                    GraphQLClientsForWPComponentConfiguration::getGraphiQLClientEndpoint()
                 );
             case self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS:
                 return \__('Enable custom endpoints to be attached their own GraphiQL client, to execute queries against them', 'graphql-api');
             case self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT:
                 return \sprintf(
                     \__('Make a public Interactive Schema client available under <code>%s</code>, to visualize the schema accessible through the single endpoint', 'graphql-api'),
-                    $userSettingsManager->getSetting(
-                        $module,
-                        self::OPTION_SLUG
-                    )
+                    GraphQLClientsForWPComponentConfiguration::getVoyagerClientEndpoint()
                 );
             case self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS:
                 return \__('Enable custom endpoints to be attached their own Interactive schema client, to visualize the custom schema subset', 'graphql-api');
