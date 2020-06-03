@@ -18,7 +18,7 @@ class ComponentConfiguration
     private static $getEmptyLabel;
     private static $getSettingsValueLabel;
     private static $useGraphiQLWithExplorer;
-    private static $getEndpointSlugBase;
+    private static $getCustomEndpointSlugBase;
     private static $getPersistedQuerySlugBase;
     private static $getSchemaEditorAccessScheme;
 
@@ -160,11 +160,11 @@ class ComponentConfiguration
      *
      * @return string
      */
-    public static function getEndpointSlugBase(): string
+    public static function getCustomEndpointSlugBase(): string
     {
         // Define properties
         $envVariable = Environment::ENDPOINT_SLUG_BASE;
-        $selfProperty = &self::$getEndpointSlugBase;
+        $selfProperty = &self::$getCustomEndpointSlugBase;
         $defaultValue = 'graphql';
 
         // Initialize property from the environment/hook

@@ -42,7 +42,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
      */
     protected function getSlugBase(): ?string
     {
-        return ComponentConfiguration::getEndpointSlugBase();
+        return ComponentConfiguration::getCustomEndpointSlugBase();
     }
 
     /**
