@@ -41,6 +41,28 @@ class PluginConfiguration
     {
         // All the environment variables to override
         $mappings = [
+            // GraphQL single endpoint slug
+            [
+                'class' => APIEndpointsForWPComponentConfiguration::class,
+                'envVariable' => APIEndpointsForWPEnvironment::GRAPHQL_API_ENDPOINT,
+                'module' => ModuleResolver::SINGLE_ENDPOINT,
+                'option' => ModuleResolver::OPTION_SLUG,
+            ],
+            // GraphiQL client slug
+            [
+                'class' => GraphQLClientsForWPComponentConfiguration::class,
+                'envVariable' => GraphQLClientsForWPEnvironment::GRAPHIQL_CLIENT_ENDPOINT,
+                'module' => ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
+                'option' => ModuleResolver::OPTION_SLUG,
+            ],
+            // Voyager client slug
+            [
+                'class' => GraphQLClientsForWPComponentConfiguration::class,
+                'envVariable' => GraphQLClientsForWPEnvironment::VOYAGER_CLIENT_ENDPOINT,
+                'module' => ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
+                'option' => ModuleResolver::OPTION_SLUG,
+            ],
+            // Use private schema mode?
             [
                 'class' => AccessControlComponentConfiguration::class,
                 'envVariable' => AccessControlEnvironment::USE_PRIVATE_SCHEMA_MODE,
@@ -51,29 +73,12 @@ class PluginConfiguration
                     return $value == SchemaModes::PRIVATE_SCHEMA_MODE;
                 },
             ],
+            // Enable individual access control for the schema mode?
             [
                 'class' => AccessControlComponentConfiguration::class,
                 'envVariable' => AccessControlEnvironment::ENABLE_INDIVIDUAL_CONTROL_FOR_PUBLIC_PRIVATE_SCHEMA_MODE,
                 'module' => ModuleResolver::PUBLIC_PRIVATE_SCHEMA,
                 'option' => ModuleResolver::OPTION_ENABLE_GRANULAR,
-            ],
-            [
-                'class' => APIEndpointsForWPComponentConfiguration::class,
-                'envVariable' => APIEndpointsForWPEnvironment::GRAPHQL_API_ENDPOINT,
-                'module' => ModuleResolver::SINGLE_ENDPOINT,
-                'option' => ModuleResolver::OPTION_SLUG,
-            ],
-            [
-                'class' => GraphQLClientsForWPComponentConfiguration::class,
-                'envVariable' => GraphQLClientsForWPEnvironment::GRAPHIQL_CLIENT_ENDPOINT,
-                'module' => ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
-                'option' => ModuleResolver::OPTION_SLUG,
-            ],
-            [
-                'class' => GraphQLClientsForWPComponentConfiguration::class,
-                'envVariable' => GraphQLClientsForWPEnvironment::VOYAGER_CLIENT_ENDPOINT,
-                'module' => ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
-                'option' => ModuleResolver::OPTION_SLUG,
             ],
         ];
         // For each environment variable, see if its value has been saved in the settings
