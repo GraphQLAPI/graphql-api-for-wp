@@ -13,6 +13,7 @@ use PoP\ComponentModel\Misc\GeneralUtils;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
+use PoP\AccessControl\Schema\SchemaModes;
 
 class PluginConfiguration
 {
@@ -39,29 +40,35 @@ class PluginConfiguration
             [
                 'class' => AccessControlComponentConfiguration::class,
                 'envVariable' => AccessControlEnvironment::USE_PRIVATE_SCHEMA_MODE,
-                'optionName' => 'usePrivateSchemaMode',
-                'defaultValue' => false,
+                'module' => ModuleResolver::PUBLIC_PRIVATE_SCHEMA,
+                'option' => ModuleResolver::OPTION_MODE,
+                'callback' => function ($value) {
+                    // It is stored as string "private" in DB, and must be passed as bool `true` to component
+                    return $value == SchemaModes::PRIVATE_SCHEMA_MODE;
+                },
             ],
             [
                 'class' => AccessControlComponentConfiguration::class,
                 'envVariable' => AccessControlEnvironment::ENABLE_INDIVIDUAL_CONTROL_FOR_PUBLIC_PRIVATE_SCHEMA_MODE,
-                'optionName' => 'enableIndividualControlForPublicPrivateSchemaMode',
-                'defaultValue' => true,
+                'module' => ModuleResolver::PUBLIC_PRIVATE_SCHEMA,
+                'option' => ModuleResolver::OPTION_ENABLE_GRANULAR,
             ],
         ];
         // For each environment variable, see if its value has been saved in the settings
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
         foreach ($mappings as $mapping) {
             $hookName = ComponentConfigurationHelpers::getHookName($mapping['class'], $mapping['envVariable']);
-            $optionName = $mapping['optionName'];
-            $defaultValue = $mapping['defaultValue'];
+            $module = $mapping['module'];
+            $option = $mapping['option'];
+            $callback = $mapping['callback'];
             \add_filter(
                 $hookName,
-                function () use ($userSettingsManager, $optionName, $defaultValue) {
-                    if ($userSettingsManager->hasSetting('', $optionName)) {
-                        return $userSettingsManager->getSetting('', $optionName);
+                function () use ($userSettingsManager, $module, $option, $callback) {
+                    $value = $userSettingsManager->getSetting($module, $option);
+                    if ($callback) {
+                        return $callback($value);
                     }
-                    return $defaultValue;
+                    return $value;
                 },
                 10,
                 3
@@ -130,7 +137,6 @@ class PluginConfiguration
         $componentClassConfiguration = [];
         self::addPredefinedComponentClassConfiguration($componentClassConfiguration);
         self::addBasedOnModuleComponentClassConfiguration($componentClassConfiguration);
-        self::addSameAsModuleComponentClassConfiguration($componentClassConfiguration);
         return $componentClassConfiguration;
     }
 
@@ -147,26 +153,6 @@ class PluginConfiguration
         $componentClassConfiguration[\PoP\GraphQLClientsForWP\Component::class] = [
             \PoP\GraphQLClientsForWP\Environment::GRAPHQL_CLIENTS_COMPONENT_URL => \GRAPHQL_API_URL . 'vendor/getpop/graphql-clients-for-wp',
         ];
-    }
-
-    /**
-     * Add configuration values if modules are enabled or disabled
-     *
-     * @return void
-     */
-    protected static function addSameAsModuleComponentClassConfiguration(array &$componentClassConfiguration): void
-    {
-        $moduleRegistry = ModuleRegistryFacade::getInstance();
-        $moduleToComponentClassConfigurationMappings = [
-            [
-                'module' => ModuleResolver::PUBLIC_PRIVATE_SCHEMA,
-                'class' => \PoP\AccessControl\Component::class,
-                'envVariable' => \PoP\AccessControl\Environment::ENABLE_INDIVIDUAL_CONTROL_FOR_PUBLIC_PRIVATE_SCHEMA_MODE,
-            ],
-        ];
-        foreach ($moduleToComponentClassConfigurationMappings as $mapping) {
-            $componentClassConfiguration[$mapping['class']][$mapping['envVariable']] = $moduleRegistry->isModuleEnabled($mapping['module']);
-        }
     }
 
     /**
@@ -201,7 +187,9 @@ class PluginConfiguration
             ],
         ];
         foreach ($moduleToComponentClassConfigurationMappings as $mapping) {
-            if ($moduleRegistry->isModuleEnabled($mapping['module']) === $mapping['condition']) {
+            // Copy value if either the condition is not set, or if it equals the enabled/disabled module state
+            $condition = $mapping['condition'];
+            if (is_null($condition) || $moduleRegistry->isModuleEnabled($mapping['module']) === $condition) {
                 $componentClassConfiguration[$mapping['class']][$mapping['envVariable']] = $mapping['value'];
             }
         }
