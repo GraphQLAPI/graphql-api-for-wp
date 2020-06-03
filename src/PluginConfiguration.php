@@ -17,6 +17,8 @@ use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPCompone
 use PoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
 use PoP\APIEndpointsForWP\ComponentConfiguration as APIEndpointsForWPComponentConfiguration;
 use PoP\APIEndpointsForWP\Environment as APIEndpointsForWPEnvironment;
+use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
+use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use PoP\AccessControl\Schema\SchemaModes;
 
 class PluginConfiguration
@@ -79,6 +81,13 @@ class PluginConfiguration
                 'envVariable' => AccessControlEnvironment::ENABLE_INDIVIDUAL_CONTROL_FOR_PUBLIC_PRIVATE_SCHEMA_MODE,
                 'module' => ModuleResolver::PUBLIC_PRIVATE_SCHEMA,
                 'option' => ModuleResolver::OPTION_ENABLE_GRANULAR,
+            ],
+            // Use namespacing?
+            [
+                'class' => ComponentModelComponentConfiguration::class,
+                'envVariable' => ComponentModelEnvironment::NAMESPACE_TYPES_AND_INTERFACES,
+                'module' => ModuleResolver::SCHEMA_NAMESPACING,
+                'option' => ModuleResolver::OPTION_USE_NAMESPACING,
             ],
         ];
         // For each environment variable, see if its value has been saved in the settings
