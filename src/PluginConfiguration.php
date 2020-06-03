@@ -129,12 +129,12 @@ class PluginConfiguration
                 'class' => APIEndpointsForWPComponentConfiguration::class,
                 'envVariable' => APIEndpointsForWPEnvironment::GRAPHQL_API_ENDPOINT,
                 'module' => ModuleResolver::SINGLE_ENDPOINT,
-                'option' => ModuleResolver::OPTION_SLUG,
+                'option' => ModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
                     return self::getURLPathSettingValue(
                         $value,
                         ModuleResolver::SINGLE_ENDPOINT,
-                        ModuleResolver::OPTION_SLUG
+                        ModuleResolver::OPTION_PATH
                     );
                 },
             ],
@@ -143,12 +143,12 @@ class PluginConfiguration
                 'class' => GraphQLClientsForWPComponentConfiguration::class,
                 'envVariable' => GraphQLClientsForWPEnvironment::GRAPHIQL_CLIENT_ENDPOINT,
                 'module' => ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
-                'option' => ModuleResolver::OPTION_SLUG,
+                'option' => ModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
                     return self::getURLPathSettingValue(
                         $value,
                         ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
-                        ModuleResolver::OPTION_SLUG
+                        ModuleResolver::OPTION_PATH
                     );
                 },
             ],
@@ -157,12 +157,12 @@ class PluginConfiguration
                 'class' => GraphQLClientsForWPComponentConfiguration::class,
                 'envVariable' => GraphQLClientsForWPEnvironment::VOYAGER_CLIENT_ENDPOINT,
                 'module' => ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
-                'option' => ModuleResolver::OPTION_SLUG,
+                'option' => ModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
                     return self::getURLPathSettingValue(
                         $value,
                         ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
-                        ModuleResolver::OPTION_SLUG
+                        ModuleResolver::OPTION_PATH
                     );
                 },
             ],

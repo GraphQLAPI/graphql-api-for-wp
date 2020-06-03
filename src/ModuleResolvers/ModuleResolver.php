@@ -65,7 +65,7 @@ class ModuleResolver extends AbstractModuleResolver
     /**
      * Setting options
      */
-    public const OPTION_SLUG = 'slug';
+    public const OPTION_PATH = 'path';
     public const OPTION_SCHEMA_CONFIGURATION_ID = 'schema-configuration-id';
     public const OPTION_USE_NAMESPACING = 'use-namespacing';
     public const OPTION_MODE = 'mode';
@@ -393,13 +393,13 @@ class ModuleResolver extends AbstractModuleResolver
     {
         $defaultValues = [
             self::SINGLE_ENDPOINT => [
-                self::OPTION_SLUG => '/graphql/',
+                self::OPTION_PATH => '/graphql/',
             ],
             self::GRAPHIQL_FOR_SINGLE_ENDPOINT => [
-                self::OPTION_SLUG => '/graphiql/',
+                self::OPTION_PATH => '/graphiql/',
             ],
             self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => [
-                self::OPTION_SLUG => '/schema/',
+                self::OPTION_PATH => '/schema/',
             ],
             self::SCHEMA_CONFIGURATION => [
                 self::OPTION_SCHEMA_CONFIGURATION_ID => self::OPTION_VALUE_NO_VALUE_ID,
@@ -430,50 +430,50 @@ class ModuleResolver extends AbstractModuleResolver
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if ($module == self::SINGLE_ENDPOINT) {
-            $option = self::OPTION_SLUG;
+            $option = self::OPTION_PATH;
             $moduleSettings[] = [
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
                     $option,
                 ),
-                Properties::TITLE => \__('Endpoint slug', 'graphql-api'),
-                Properties::DESCRIPTION => \__('URL slug to expose the single GraphQL endpoint', 'graphql-api'),
+                Properties::TITLE => \__('Endpoint path', 'graphql-api'),
+                Properties::DESCRIPTION => \__('URL path to expose the single GraphQL endpoint', 'graphql-api'),
                 // Properties::DEFAULT_VALUE => $this->getSettingsDefaultValue(
                 //     $module,
-                //     self::OPTION_SLUG
+                //     self::OPTION_PATH
                 // ),
                 Properties::TYPE => Properties::TYPE_STRING,
             ];
         } elseif ($module == self::GRAPHIQL_FOR_SINGLE_ENDPOINT) {
-            $option = self::OPTION_SLUG;
+            $option = self::OPTION_PATH;
             $moduleSettings[] = [
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
                     $option,
                 ),
-                Properties::TITLE => \__('Client slug', 'graphql-api'),
-                Properties::DESCRIPTION => \__('URL slug to access the public GraphiQL client', 'graphql-api'),
+                Properties::TITLE => \__('Client path', 'graphql-api'),
+                Properties::DESCRIPTION => \__('URL path to access the public GraphiQL client', 'graphql-api'),
                 // Properties::DEFAULT_VALUE => $this->getSettingsDefaultValue(
                 //     $module,
-                //     self::OPTION_SLUG
+                //     self::OPTION_PATH
                 // ),
                 Properties::TYPE => Properties::TYPE_STRING,
             ];
         } elseif ($module == self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT) {
-            $option = self::OPTION_SLUG;
+            $option = self::OPTION_PATH;
             $moduleSettings[] = [
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
                     $option,
                 ),
-                Properties::TITLE => \__('Client slug', 'graphql-api'),
-                Properties::DESCRIPTION => \__('URL slug to access the public Interactive Schema client', 'graphql-api'),
+                Properties::TITLE => \__('Client path', 'graphql-api'),
+                Properties::DESCRIPTION => \__('URL path to access the public Interactive Schema client', 'graphql-api'),
                 // Properties::DEFAULT_VALUE => $this->getSettingsDefaultValue(
                 //     $module,
-                //     self::OPTION_SLUG
+                //     self::OPTION_PATH
                 // ),
                 Properties::TYPE => Properties::TYPE_STRING,
             ];
