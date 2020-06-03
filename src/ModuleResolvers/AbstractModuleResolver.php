@@ -60,7 +60,7 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
     public function getSettingOptionName(string $module, string $option): string
     {
         // Use slug to remove the "\" which can create trouble
-        return $this->getSlug($module) . '-' . $option;
+        return $this->getSlug($module) . '_' . $option;
     }
 
     public function hasSettings(string $module): bool
