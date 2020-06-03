@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\Menus;
 
+use PoP\APIEndpoints\EndpointUtils;
 use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\Admin\Menus\AbstractMenu;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
@@ -120,7 +121,7 @@ class Menu extends AbstractMenu
             $submenu[self::NAME][] = [
                 __('GraphiQL (public client)', 'graphql-api'),
                 'read',
-                home_url($clientPath),
+                home_url(EndpointUtils::slashURI($clientPath)),
             ];
         }
 
@@ -133,7 +134,7 @@ class Menu extends AbstractMenu
             $submenu[self::NAME][] = [
                 __('Interactive Schema (public client)', 'graphql-api'),
                 'read',
-                home_url($clientPath),
+                home_url(EndpointUtils::slashURI($clientPath)),
             ];
         }
 
