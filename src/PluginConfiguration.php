@@ -19,6 +19,8 @@ use PoP\APIEndpointsForWP\ComponentConfiguration as APIEndpointsForWPComponentCo
 use PoP\APIEndpointsForWP\Environment as APIEndpointsForWPEnvironment;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
+use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
+use PoP\CacheControl\Environment as CacheControlEnvironment;
 use PoP\AccessControl\Schema\SchemaModes;
 
 class PluginConfiguration
@@ -88,6 +90,13 @@ class PluginConfiguration
                 'envVariable' => ComponentModelEnvironment::NAMESPACE_TYPES_AND_INTERFACES,
                 'module' => ModuleResolver::SCHEMA_NAMESPACING,
                 'option' => ModuleResolver::OPTION_USE_NAMESPACING,
+            ],
+            // Cache-Control default max-age
+            [
+                'class' => CacheControlComponentConfiguration::class,
+                'envVariable' => CacheControlEnvironment::DEFAULT_CACHE_CONTROL_MAX_AGE,
+                'module' => ModuleResolver::CACHE_CONTROL,
+                'option' => ModuleResolver::OPTION_MAX_AGE,
             ],
         ];
         // For each environment variable, see if its value has been saved in the settings
