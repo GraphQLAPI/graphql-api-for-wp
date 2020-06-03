@@ -437,12 +437,13 @@ class ModuleResolver extends AbstractModuleResolver
         $moduleSettings = parent::getSettings($module);
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if ($module == self::SINGLE_ENDPOINT) {
+            $option = self::OPTION_SLUG;
             $moduleSettings[] = [
+                Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    self::OPTION_SLUG,
+                    $option,
                 ),
-                Properties::INPUT => self::OPTION_SLUG,
                 Properties::TITLE => \__('Endpoint slug', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL slug to expose the single GraphQL endpoint', 'graphql-api'),
                 // Properties::DEFAULT_VALUE => $this->getSettingsDefaultValue(
@@ -452,12 +453,13 @@ class ModuleResolver extends AbstractModuleResolver
                 Properties::TYPE => Properties::TYPE_STRING,
             ];
         } elseif ($module == self::GRAPHIQL_FOR_SINGLE_ENDPOINT) {
+            $option = self::OPTION_SLUG;
             $moduleSettings[] = [
+                Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    self::OPTION_SLUG,
+                    $option,
                 ),
-                Properties::INPUT => self::OPTION_SLUG,
                 Properties::TITLE => \__('Client slug', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL slug to access the public GraphiQL client', 'graphql-api'),
                 // Properties::DEFAULT_VALUE => $this->getSettingsDefaultValue(
@@ -467,12 +469,13 @@ class ModuleResolver extends AbstractModuleResolver
                 Properties::TYPE => Properties::TYPE_STRING,
             ];
         } elseif ($module == self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT) {
+            $option = self::OPTION_SLUG;
             $moduleSettings[] = [
+                Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    self::OPTION_SLUG,
+                    $option,
                 ),
-                Properties::INPUT => self::OPTION_SLUG,
                 Properties::TITLE => \__('Client slug', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL slug to access the public Interactive Schema client', 'graphql-api'),
                 // Properties::DEFAULT_VALUE => $this->getSettingsDefaultValue(
@@ -508,12 +511,13 @@ class ModuleResolver extends AbstractModuleResolver
                     $possibleValues[$customPost->ID] = $customPost->post_title;
                 }
             }
+            $option = self::OPTION_SCHEMA_CONFIGURATION_ID;
             $moduleSettings[] = [
+                Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    self::OPTION_SCHEMA_CONFIGURATION_ID,
+                    $option,
                 ),
-                Properties::INPUT => self::OPTION_SCHEMA_CONFIGURATION_ID,
                 Properties::TITLE => \__('Default Schema Configuration', 'graphql-api'),
                 Properties::DESCRIPTION => sprintf(
                     \__('Schema Configuration to use when option <code>"Default"</code> is selected (in %s)', 'graphql-api'),
@@ -528,24 +532,26 @@ class ModuleResolver extends AbstractModuleResolver
                 Properties::POSSIBLE_VALUES => $possibleValues,
             ];
         } elseif ($module == self::SCHEMA_NAMESPACING) {
+            $option = self::OPTION_USE_NAMESPACING;
             $moduleSettings[] = [
+                Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    self::OPTION_USE_NAMESPACING,
+                    $option,
                 ),
-                Properties::INPUT => self::OPTION_USE_NAMESPACING,
                 Properties::TITLE => \__('Use namespacing?', 'graphql-api'),
                 Properties::DESCRIPTION => \__('Automatically namespace types and interfaces in the schema', 'graphql-api'),
                 // Properties::DEFAULT_VALUE => false,
                 Properties::TYPE => Properties::TYPE_BOOL,
             ];
         } elseif ($module == self::PUBLIC_PRIVATE_SCHEMA) {
+            $option = self::OPTION_MODE;
             $moduleSettings[] = [
+                Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    self::OPTION_MODE,
+                    $option,
                 ),
-                Properties::INPUT => self::OPTION_MODE,
                 Properties::TITLE => \__('Default visibility', 'graphql-api'),
                 Properties::DESCRIPTION => sprintf(
                     \__('Visibility to use for fields and directives in the schema when option <code>"%s"</code> is selected (in ▹ Schema Configuration)', 'graphql-api'),
@@ -559,12 +565,13 @@ class ModuleResolver extends AbstractModuleResolver
                 ],
             ];
         } elseif ($module == self::CACHE_CONTROL) {
+            $option = self::OPTION_MAX_AGE;
             $moduleSettings[] = [
+                Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    self::OPTION_MAX_AGE,
+                    $option,
                 ),
-                Properties::INPUT => self::OPTION_MAX_AGE,
                 Properties::TITLE => \__('Default max-age', 'graphql-api'),
                 Properties::DESCRIPTION => \__('Default max-age value (in seconds) for the Cache-Control header, for all fields and directives in the schema', 'graphql-api'),
                 // Properties::DEFAULT_VALUE => 60,
