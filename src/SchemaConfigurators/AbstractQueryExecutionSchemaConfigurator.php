@@ -45,6 +45,25 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     }
 
     /**
+     * Return the stored Schema Configuration ID
+     *
+     * @return integer|null
+     */
+    protected function getUserSettingSchemaConfigurationID(): ?int
+    {
+        $userSettingsManager = UserSettingsManagerFacade::getInstance();
+        $schemaConfigurationID = $userSettingsManager->getSetting(
+            ModuleResolver::SCHEMA_CONFIGURATION,
+            ModuleResolver::OPTION_SCHEMA_CONFIGURATION_ID
+        );
+        // `null` is stored as OPTION_VALUE_NO_VALUE_ID
+        if ($schemaConfigurationID == ModuleResolver::OPTION_VALUE_NO_VALUE_ID) {
+            return null;
+        }
+        return $schemaConfigurationID;
+    }
+
+    /**
      * Extract the Schema Configuration ID from the block stored in the post
      *
      * @return void
@@ -60,11 +79,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         // It is not saved in the DB, because it has been set as the default value in
         // blocks/schema-configuration/src/index.js
         if (is_null($schemaConfigurationBlockDataItem)) {
-            $userSettingsManager = UserSettingsManagerFacade::getInstance();
-            return $userSettingsManager->getSetting(
-                ModuleResolver::SCHEMA_CONFIGURATION,
-                ModuleResolver::OPTION_SCHEMA_CONFIGURATION_ID
-            );
+            return $this->getUserSettingSchemaConfigurationID();
         }
 
         $schemaConfiguration = $schemaConfigurationBlockDataItem['attrs'][SchemaConfigurationBlock::ATTRIBUTE_NAME_SCHEMA_CONFIGURATION];
@@ -72,11 +87,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         if ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_NONE) {
             return null;
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT) {
-            $userSettingsManager = UserSettingsManagerFacade::getInstance();
-            return $userSettingsManager->getSetting(
-                ModuleResolver::SCHEMA_CONFIGURATION,
-                ModuleResolver::OPTION_SCHEMA_CONFIGURATION_ID
-            );
+            return $this->getUserSettingSchemaConfigurationID();
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT) {
             // Return the schema configuration from the parent, or null if no parent exists
             $customPost = \get_post($customPostID);

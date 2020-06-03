@@ -63,13 +63,18 @@ class ModuleResolver extends AbstractModuleResolver
     public const SCHEMA_TAXONOMY_TYPE = Plugin::NAMESPACE . '\schema-taxonomy-type';
 
     /**
-     * Settings options
+     * Setting options
      */
     public const OPTION_SLUG = 'slug';
     public const OPTION_SCHEMA_CONFIGURATION_ID = 'schema-configuration-id';
     public const OPTION_USE_NAMESPACING = 'use-namespacing';
     public const OPTION_MODE = 'mode';
     public const OPTION_MAX_AGE = 'max-age';
+
+    /**
+     * Setting option values
+     */
+    public const OPTION_VALUE_NO_VALUE_ID = 0;
 
     public static function getModulesToResolve(): array
     {
@@ -395,7 +400,6 @@ class ModuleResolver extends AbstractModuleResolver
      */
     public function getSettingsDefaultValue(string $module, string $option)
     {
-        $noValueID = 0;
         $defaultValues = [
             self::SINGLE_ENDPOINT => [
                 self::OPTION_SLUG => '/graphql/',
@@ -407,7 +411,7 @@ class ModuleResolver extends AbstractModuleResolver
                 self::OPTION_SLUG => '/schema/',
             ],
             self::SCHEMA_CONFIGURATION => [
-                self::OPTION_SCHEMA_CONFIGURATION_ID => $noValueID,
+                self::OPTION_SCHEMA_CONFIGURATION_ID => self::OPTION_VALUE_NO_VALUE_ID,
             ],
             self::SCHEMA_NAMESPACING => [
                 self::OPTION_USE_NAMESPACING => false,
@@ -490,9 +494,8 @@ class ModuleResolver extends AbstractModuleResolver
                 }
             }
             // Build all the possible values by fetching all the Schema Configuration posts
-            $noValueID = 0;
             $possibleValues = [
-                $noValueID => \__('None', 'graphql-api'),
+                self::OPTION_VALUE_NO_VALUE_ID => \__('None', 'graphql-api'),
             ];
             if (
                 $customPosts = \get_posts([
@@ -519,7 +522,7 @@ class ModuleResolver extends AbstractModuleResolver
                         $whereModules
                     )
                 ),
-                // Properties::DEFAULT_VALUE => $noValueID,
+                // Properties::DEFAULT_VALUE => self::OPTION_VALUE_NO_VALUE_ID,
                 Properties::TYPE => Properties::TYPE_INT,
                 // Fetch all Schema Configurations from the DB
                 Properties::POSSIBLE_VALUES => $possibleValues,
