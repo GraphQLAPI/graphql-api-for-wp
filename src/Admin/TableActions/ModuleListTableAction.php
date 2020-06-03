@@ -122,7 +122,7 @@ class ModuleListTableAction extends AbstractListTableAction
                     $_GET['page']
                 ));
                 \wp_die(sprintf(
-                    __('This URL is not valid. Please <a href="%s">click here to reload the page</a>, and try again', 'graphql-api'),
+                    __('This URL is either stale or not valid. Please <a href="%s">click here to reload the page</a>, and try again', 'graphql-api'),
                     $noParamsCurrentURL
                 ));
             }
