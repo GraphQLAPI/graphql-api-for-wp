@@ -114,7 +114,10 @@ class Menu extends AbstractMenu
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         if ($moduleRegistry->isModuleEnabled(ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT)) {
             global $submenu;
-            $clientPath = $userSettingsManager->getSetting(ModuleSettings::GRAPHIQL_FOR_SINGLE_ENDPOINT_SLUG);
+            $clientPath = $userSettingsManager->getSetting(
+                ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
+                ModuleSettings::GRAPHIQL_FOR_SINGLE_ENDPOINT_SLUG
+            );
             $submenu[self::NAME][] = [
                 __('GraphiQL (public client)', 'graphql-api'),
                 'read',
@@ -124,7 +127,10 @@ class Menu extends AbstractMenu
 
         if ($moduleRegistry->isModuleEnabled(ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT)) {
             global $submenu;
-            $clientPath = $userSettingsManager->getSetting(ModuleSettings::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT_SLUG);
+            $clientPath = $userSettingsManager->getSetting(
+                ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
+                ModuleSettings::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT_SLUG
+            );
             $submenu[self::NAME][] = [
                 __('Interactive Schema (public client)', 'graphql-api'),
                 'read',

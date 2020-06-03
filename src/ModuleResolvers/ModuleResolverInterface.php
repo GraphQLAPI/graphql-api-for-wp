@@ -41,6 +41,22 @@ interface ModuleResolverInterface
      * @return array
      */
     public function getSettings(string $module): array;
+    /**
+     * Default value for an option set by the module
+     *
+     * @param string $module
+     * @param string $option
+     * @return mixed Anything the setting might be: an array|string|bool|int|null
+     */
+    public function getSettingOptionName(string $module, string $option): string;
+    /**
+     * Name of the setting item, to store in the DB
+     *
+     * @param string $module
+     * @param string $option
+     * @return mixed
+     */
+    public function getSettingsDefaultValue(string $module, string $option);
     public function isEnabledByDefault(string $module): bool;
     public function getURL(string $module): ?string;
     public function getSlug(string $module): string;

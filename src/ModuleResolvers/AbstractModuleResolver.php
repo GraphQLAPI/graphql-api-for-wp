@@ -50,6 +50,19 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
         return '';
     }
 
+    /**
+     * Name of the setting item, to store in the DB
+     *
+     * @param string $module
+     * @param string $option
+     * @return mixed
+     */
+    public function getSettingOptionName(string $module, string $option): string
+    {
+        // Use slug to remove the "\" which can create trouble
+        return $this->getSlug($module) . '-' . $option;
+    }
+
     public function hasSettings(string $module): bool
     {
         return !empty($this->getSettings($module));
@@ -65,6 +78,18 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
     public function getSettings(string $module): array
     {
         return [];
+    }
+
+    /**
+     * Default value for an option set by the module
+     *
+     * @param string $module
+     * @param string $option
+     * @return mixed Anything the setting might be: an array|string|bool|int|null
+     */
+    public function getSettingsDefaultValue(string $module, string $option)
+    {
+        return null;
     }
 
     public function isEnabledByDefault(string $module): bool

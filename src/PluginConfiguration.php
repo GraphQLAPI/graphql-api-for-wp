@@ -58,8 +58,8 @@ class PluginConfiguration
             \add_filter(
                 $hookName,
                 function () use ($userSettingsManager, $optionName, $defaultValue) {
-                    if ($userSettingsManager->hasSetting($optionName)) {
-                        return $userSettingsManager->getSetting($optionName);
+                    if ($userSettingsManager->hasSetting(null, $optionName)) {
+                        return $userSettingsManager->getSetting(null, $optionName);
                     }
                     return $defaultValue;
                 },

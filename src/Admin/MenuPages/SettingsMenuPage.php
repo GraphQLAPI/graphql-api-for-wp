@@ -76,6 +76,7 @@ class SettingsMenuPage extends AbstractMenuPage
                 $items = $this->getAllItems();
                 foreach ($items as $item) {
                     $settingsFieldForModule = $this->getSettingsFieldForModule($item['id']);
+                    $module = $item['module'];
                     \add_settings_section(
                         $settingsFieldForModule,
                         // The empty string ensures the render function won't output a h2.
@@ -87,15 +88,15 @@ class SettingsMenuPage extends AbstractMenuPage
                         \add_settings_field(
                             $itemSetting[Tokens::NAME],
                             $itemSetting[Tokens::TITLE],
-                            function () use ($itemSetting) {
+                            function () use ($module, $itemSetting) {
                                 $type = $itemSetting[Tokens::TYPE];
                                 $possibleValues = $itemSetting[Tokens::POSSIBLE_VALUES];
                                 if (!empty($possibleValues)) {
-                                    $this->printSelectField($itemSetting);
+                                    $this->printSelectField($module, $itemSetting);
                                 } elseif ($type == Tokens::TYPE_BOOL) {
-                                    $this->printCheckboxField($itemSetting);
+                                    $this->printCheckboxField($module, $itemSetting);
                                 } else {
-                                    $this->printInputField($itemSetting);
+                                    $this->printInputField($module, $itemSetting);
                                 }
                             },
                             self::SETTINGS_FIELD,
@@ -125,10 +126,10 @@ class SettingsMenuPage extends AbstractMenuPage
      * @param string $name
      * @return boolean
      */
-    public function getOptionValue(string $name, $defaultValue)
+    public function getOptionValue(string $module, string $option)
     {
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
-        return $userSettingsManager->getSetting($name, $defaultValue);
+        return $userSettingsManager->getSetting($module, $option);
     }
 
     // /**
@@ -294,10 +295,11 @@ class SettingsMenuPage extends AbstractMenuPage
      * @param array $itemSetting
      * @return void
      */
-    protected function printCheckboxField(array $itemSetting): void
+    protected function printCheckboxField(string $module, array $itemSetting): void
     {
         $name = $itemSetting[Tokens::NAME];
-        $value = $this->getOptionValue($name, $itemSetting[Tokens::DEFAULT_VALUE]);
+        $input = $itemSetting[Tokens::INPUT];
+        $value = $this->getOptionValue($module, $input);
         ?>
             <label for="<?php echo $name; ?>">
                 <input type="checkbox" name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="1" <?php checked(1, $value); ?> />
@@ -312,10 +314,11 @@ class SettingsMenuPage extends AbstractMenuPage
      * @param array $itemSetting
      * @return void
      */
-    protected function printInputField(array $itemSetting): void
+    protected function printInputField(string $module, array $itemSetting): void
     {
         $name = $itemSetting[Tokens::NAME];
-        $value = $this->getOptionValue($name, $itemSetting[Tokens::DEFAULT_VALUE]);
+        $input = $itemSetting[Tokens::INPUT];
+        $value = $this->getOptionValue($module, $input);
         $label = $itemSetting[Tokens::DESCRIPTION] ? '<br/>' . $itemSetting[Tokens::DESCRIPTION] : '';
         ?>
             <label for="<?php echo $name; ?>">
@@ -331,10 +334,11 @@ class SettingsMenuPage extends AbstractMenuPage
      * @param array $itemSetting
      * @return void
      */
-    protected function printSelectField(array $itemSetting): void
+    protected function printSelectField(string $module, array $itemSetting): void
     {
         $name = $itemSetting[Tokens::NAME];
-        $value = $this->getOptionValue($name, $itemSetting[Tokens::DEFAULT_VALUE]);
+        $input = $itemSetting[Tokens::INPUT];
+        $value = $this->getOptionValue($module, $input);
         $label = $itemSetting[Tokens::DESCRIPTION] ? '<br/>' . $itemSetting[Tokens::DESCRIPTION] : '';
         // $maybeMultiple = $itemSetting[Tokens::IS_MULTIPLE] ? 'multiple' : '';
         $possibleValues = $itemSetting[Tokens::POSSIBLE_VALUES];

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Settings;
 
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Settings\Options;
 
 class UserSettingsManager implements UserSettingsManagerInterface
@@ -19,15 +20,26 @@ class UserSettingsManager implements UserSettingsManagerInterface
     {
         return $this->hasItem(Options::SETTINGS, $item);
     }
+
     /**
      * No return type because it could be a bool/int/string
      *
      * @param string $item
      * @return mixed
      */
-    public function getSetting(string $item, $defaultValue = null)
+    public function getSetting(string $module, string $option)
     {
-        return $this->getItem(Options::SETTINGS, $item) ?? $defaultValue;
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        $moduleResolver = $moduleRegistry->getModuleResolver($module);
+
+        // If the item is saved in the DB, retrieve it
+        $item = $moduleResolver->getSettingOptionName($module, $option);
+        if ($this->hasItem(Options::SETTINGS, $item)) {
+            return $this->getItem(Options::SETTINGS, $item);
+        }
+
+        // Otherwise, return the default value
+        return $moduleResolver->getSettingsDefaultValue($module, $option);
     }
 
     public function hasSetModuleEnabled(string $moduleID): bool

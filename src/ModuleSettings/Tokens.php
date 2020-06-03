@@ -7,9 +7,10 @@ namespace GraphQLAPI\GraphQLAPI\ModuleSettings;
 class Tokens
 {
     public const NAME = 'name';
+    public const INPUT = 'input';
     public const TITLE = 'title';
     public const DESCRIPTION = 'description';
-    public const DEFAULT_VALUE = 'defaultValue';
+    // public const DEFAULT_VALUE = 'defaultValue';
     public const POSSIBLE_VALUES = 'possibleValues';
     public const TYPE = 'type';
     public const TYPE_STRING = 'string';

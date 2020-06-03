@@ -62,7 +62,10 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         // blocks/schema-configuration/src/index.js
         if (is_null($schemaConfigurationBlockDataItem)) {
             $userSettingsManager = UserSettingsManagerFacade::getInstance();
-            return $userSettingsManager->getSetting(ModuleSettings::SCHEMA_CONFIGURATION_DEFAULT_SCHEMA_CONFIGURATION);
+            return $userSettingsManager->getSetting(
+                ModuleResolver::SCHEMA_CONFIGURATION,
+                ModuleSettings::SCHEMA_CONFIGURATION_DEFAULT_SCHEMA_CONFIGURATION
+            );
         }
 
         $schemaConfiguration = $schemaConfigurationBlockDataItem['attrs'][SchemaConfigurationBlock::ATTRIBUTE_NAME_SCHEMA_CONFIGURATION];
@@ -71,7 +74,10 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             return null;
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT) {
             $userSettingsManager = UserSettingsManagerFacade::getInstance();
-            return $userSettingsManager->getSetting(ModuleSettings::SCHEMA_CONFIGURATION_DEFAULT_SCHEMA_CONFIGURATION);
+            return $userSettingsManager->getSetting(
+                ModuleResolver::SCHEMA_CONFIGURATION,
+                ModuleSettings::SCHEMA_CONFIGURATION_DEFAULT_SCHEMA_CONFIGURATION
+            );
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT) {
             // Return the schema configuration from the parent, or null if no parent exists
             $customPost = \get_post($customPostID);
