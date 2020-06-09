@@ -67,7 +67,7 @@ class ModuleResolver extends AbstractModuleResolver
     /**
      * Setting options
      */
-    public const OPTION_WRITE_ACCESS_SCHEME = 'write-access-scheme';
+    public const OPTION_EDITING_ACCESS_SCHEME = 'editing-access-scheme';
     public const OPTION_PATH = 'path';
     public const OPTION_SCHEMA_CONFIGURATION_ID = 'schema-configuration-id';
     public const OPTION_USE_NAMESPACING = 'use-namespacing';
@@ -444,7 +444,7 @@ class ModuleResolver extends AbstractModuleResolver
              * If `"post"`, the workflow from creating posts is employed (i.e. Author role can create
              * but not publish the query, Editor role can publish it, etc)
              */
-            $option = self::OPTION_WRITE_ACCESS_SCHEME;
+            $option = self::OPTION_EDITING_ACCESS_SCHEME;
             $moduleSettings[] = [
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
