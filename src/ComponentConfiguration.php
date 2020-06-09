@@ -20,26 +20,26 @@ class ComponentConfiguration
     private static $getPersistedQuerySlugBase;
     private static $getEditingAccessScheme;
 
-    /**
-     * URL base for the module, pointing to graphql-api.com
-     *
-     * @return string
-     */
-    public static function getModuleURLBase(): string
-    {
-        // Define properties
-        $envVariable = Environment::MODULE_URL_BASE;
-        $selfProperty = &self::$getModuleURLBase;
-        $defaultValue = 'https://graphql-api.com/modules/';
+    // /**
+    //  * URL base for the module, pointing to graphql-api.com
+    //  *
+    //  * @return string
+    //  */
+    // public static function getModuleURLBase(): string
+    // {
+    //     // Define properties
+    //     $envVariable = Environment::MODULE_URL_BASE;
+    //     $selfProperty = &self::$getModuleURLBase;
+    //     $defaultValue = 'https://graphql-api.com/modules/';
 
-        // Initialize property from the environment/hook
-        self::maybeInitializeConfigurationValue(
-            $envVariable,
-            $selfProperty,
-            $defaultValue
-        );
-        return $selfProperty;
-    }
+    //     // Initialize property from the environment/hook
+    //     self::maybeInitializeConfigurationValue(
+    //         $envVariable,
+    //         $selfProperty,
+    //         $defaultValue
+    //     );
+    //     return $selfProperty;
+    // }
 
     /**
      * Group the fields under the type when printing it for the user

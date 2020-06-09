@@ -97,18 +97,18 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
         return true;
     }
 
-    /**
-     * By default, point to https://graphql-api.com/modules/{component-slug}
-     *
-     * @param string $module
-     * @return string|null
-     */
-    public function getURL(string $module): ?string
-    {
-        $moduleSlug = $this->getSlug($module);
-        $moduleURLBase = $this->getURLBase($module);
-        return \trailingslashit($moduleURLBase) . $moduleSlug . '/';
-    }
+    // /**
+    //  * By default, point to https://graphql-api.com/modules/{component-slug}
+    //  *
+    //  * @param string $module
+    //  * @return string|null
+    //  */
+    // public function getURL(string $module): ?string
+    // {
+    //     $moduleSlug = $this->getSlug($module);
+    //     $moduleURLBase = $this->getURLBase($module);
+    //     return \trailingslashit($moduleURLBase) . $moduleSlug . '/';
+    // }
 
     /**
      * By default, the slug is the module's name, without the owner/package
@@ -125,16 +125,17 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
         return $module;
     }
 
-    /**
-     * Return the default URL base for the module, defined through configuration
-     *
-     * @param string $module
-     * @return string
-     */
-    protected function getURLBase(string $module): string
-    {
-        return ComponentConfiguration::getModuleURLBase();
-    }
+    // /**
+    //  * Return the default URL base for the module, defined through configuration
+    //  * By default, point to https://graphql-api.com/modules/{component-slug}
+    //  *
+    //  * @param string $module
+    //  * @return string
+    //  */
+    // protected function getURLBase(string $module): string
+    // {
+    //     return ComponentConfiguration::getModuleURLBase();
+    // }
 
     /**
      * Does the module have HTML Documentation?

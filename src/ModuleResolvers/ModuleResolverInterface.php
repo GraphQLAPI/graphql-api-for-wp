@@ -58,7 +58,7 @@ interface ModuleResolverInterface
      */
     public function getSettingsDefaultValue(string $module, string $option);
     public function isEnabledByDefault(string $module): bool;
-    public function getURL(string $module): ?string;
+    // public function getURL(string $module): ?string;
     public function getSlug(string $module): string;
     /**
      * Does the module have HTML Documentation?

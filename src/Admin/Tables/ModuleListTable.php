@@ -58,7 +58,7 @@ class ModuleListTable extends AbstractItemListTable
                 'name' => $moduleResolver->getName($module),
                 'description' => $moduleResolver->getDescription($module),
                 'depends-on' => $moduleResolver->getDependedModuleLists($module),
-                'url' => $moduleResolver->getURL($module),
+                // 'url' => $moduleResolver->getURL($module),
                 'slug' => $moduleResolver->getSlug($module),
                 'has-docs' => $moduleResolver->hasDocumentation($module),
             ];
