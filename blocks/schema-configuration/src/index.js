@@ -87,7 +87,18 @@ registerBlockType( 'graphql-api/schema-configuration', {
 	 *
 	 * @return {WPElement} Element to render.
 	 */
-	edit: EditBlock,
+	edit(props) {
+		const { className } = props;
+		const isAPIHierarchyEnabled = window.graphqlApiSchemaConfiguration != undefined ? window.graphqlApiSchemaConfiguration.isAPIHierarchyEnabled : true;
+		return (
+			<div class={ className }>
+				<EditBlock
+					isAPIHierarchyEnabled={ isAPIHierarchyEnabled }
+					{ ...props }
+				/>
+			</div>
+		)
+	},
 
 	/**
 	 * The save function defines the way in which the different attributes should be combined

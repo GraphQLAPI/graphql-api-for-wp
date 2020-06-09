@@ -16,7 +16,14 @@ import {
 } from './schema-configuration-meta-values'
 
 const SchemaConfigurationSelectCard = ( props ) => {
-	const { queryPostParent, schemaConfigurations, attributes: { schemaConfiguration } } = props;
+	const {
+		isAPIHierarchyEnabled = true,
+		queryPostParent,
+		schemaConfigurations,
+		attributes: {
+			schemaConfiguration
+		}
+	} = props;
 	/**
 	 * React Select expects an object with this format:
 	 * { value: ..., label: ... },
@@ -31,9 +38,11 @@ const SchemaConfigurationSelectCard = ( props ) => {
 		}
 	) );
 	/**
-	 * If this query has a parent, then add option "Inherit from parent"
+	 * If API hierarchy is enabled and this query has a parent,
+	 * then add option "Inherit from parent"
 	 */
-	const metaOptions = ( schemaConfiguration == ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT || queryPostParent ?
+	const enableInheritFromParent = isAPIHierarchyEnabled && ( schemaConfiguration == ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT || queryPostParent )
+	const metaOptions = ( enableInheritFromParent ?
 		[
 			{
 				label: `🛑 ${ __('Inherit from parent', 'graphql-api') }`,
@@ -90,7 +99,7 @@ const SchemaConfigurationSelectCard = ( props ) => {
 			}
 		}
 	}
-		
+
 	/**
 	 * Check if the schema configurations have not been fetched yet,
 	 * or if there are selected items (for which we need the data to know the label),

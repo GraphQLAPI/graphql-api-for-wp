@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Blocks;
 
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\General\BlockRenderingHelpers;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
 use GraphQLAPI\GraphQLAPI\BlockCategories\QueryExecutionBlockCategory;
@@ -38,6 +40,22 @@ class SchemaConfigurationBlock extends AbstractBlock
     protected function isDynamicBlock(): bool
     {
         return true;
+    }
+
+    /**
+     * Pass localized data to the block
+     *
+     * @return array
+     */
+    protected function getLocalizedData(): array
+    {
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        return array_merge(
+            parent::getLocalizedData(),
+            [
+                'isAPIHierarchyEnabled' => $moduleRegistry->isModuleEnabled(ModuleResolver::API_HIERARCHY),
+            ]
+        );
     }
 
     public function renderBlock(array $attributes, string $content): string
