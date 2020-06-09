@@ -7,6 +7,8 @@ namespace GraphQLAPI\GraphQLAPI\PostTypes;
 use GraphQLAPI\GraphQLAPI\Admin\Menus\Menu;
 use PoP\ComponentModel\State\ApplicationState;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 
 abstract class AbstractPostType
@@ -191,6 +193,17 @@ abstract class AbstractPostType
     }
 
     /**
+     * Is the API Hierarchy Module enabled?
+     *
+     * @return bool
+     */
+    protected function isAPIHierarchyModuleEnabled(): bool
+    {
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        return $moduleRegistry->isModuleEnabled(ModuleResolver::API_HIERARCHY);
+    }
+
+    /**
      * Hierarchical
      *
      * @return bool
@@ -247,7 +260,7 @@ abstract class AbstractPostType
                 'label' => $this->getPostTypeName(),
                 'labels' => $this->getPostTypeLabels($name_uc, $names_uc, $names_lc),
                 'capability_type' => $canAccessSchemaEditor ? 'post' : '',
-                'hierarchical' => $this->isHierarchical(),
+                'hierarchical' => $this->isAPIHierarchyModuleEnabled() && $this->isHierarchical(),
                 'exclude_from_search' => true,
                 'show_in_admin_bar' => $this->showInAdminBar(),
                 'show_in_menu' => $canAccessSchemaEditor ? Menu::getName() : false,
@@ -267,7 +280,7 @@ abstract class AbstractPostType
         if ($taxonomies = $this->getTaxonomies()) {
             $postTypeArgs['taxonomies'] = $taxonomies;
         }
-        if ($this->isHierarchical()) {
+        if ($this->isAPIHierarchyModuleEnabled() && $this->isHierarchical()) {
             $postTypeArgs['supports'][] = 'page-attributes';
         }
         if ($this->usePostExcerptAsDescription()) {
