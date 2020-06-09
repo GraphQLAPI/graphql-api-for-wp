@@ -207,7 +207,7 @@ class ComponentConfiguration
     public static function getSchemaEditorAccessScheme(): string
     {
         // Define properties
-        $envVariable = Environment::SCHEMA_EDITOR_ACCESS_SCHEME;
+        $envVariable = Environment::EDITING_ACCESS_SCHEME;
         $selfProperty = &self::$getSchemaEditorAccessScheme;
         $defaultValue = UserAuthorization::ACCESS_SCHEME_ADMIN_ONLY;
 
