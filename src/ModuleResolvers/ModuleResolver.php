@@ -445,7 +445,7 @@ class ModuleResolver extends AbstractModuleResolver
                 self::OPTION_ENABLE_GRANULAR => true,
             ],
             self::CACHE_CONTROL => [
-                self::OPTION_MAX_AGE => 60,
+                self::OPTION_MAX_AGE => 86400, // 1 day
             ],
             self::SCHEMA_POST_TYPE => [
                 self::OPTION_POST_DEFAULT_LIMIT => 10,
