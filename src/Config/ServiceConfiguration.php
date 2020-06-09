@@ -61,14 +61,12 @@ class ServiceConfiguration
         // Maybe use GraphiQL with Explorer
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         if ($moduleRegistry->isModuleEnabled(ModuleResolver::GRAPHIQL_EXPLORER)) {
-            if (ComponentConfiguration::useGraphiQLWithExplorer()) {
-                ContainerBuilderUtils::injectValuesIntoService(
-                    'instance_manager',
-                    'overrideClass',
-                    GraphiQLBlock::class,
-                    GraphiQLWithExplorerBlock::class
-                );
-            }
+            ContainerBuilderUtils::injectValuesIntoService(
+                'instance_manager',
+                'overrideClass',
+                GraphiQLBlock::class,
+                GraphiQLWithExplorerBlock::class
+            );
         }
     }
 }

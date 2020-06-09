@@ -16,7 +16,6 @@ class ComponentConfiguration
     private static $groupFieldsUnderTypeForPrint;
     private static $getEmptyLabel;
     private static $getSettingsValueLabel;
-    private static $useGraphiQLWithExplorer;
     private static $getCustomEndpointSlugBase;
     private static $getPersistedQuerySlugBase;
     private static $getEditingAccessScheme;
@@ -104,29 +103,6 @@ class ComponentConfiguration
             $envVariable,
             $selfProperty,
             $defaultValue
-        );
-        return $selfProperty;
-    }
-
-    /**
-     * Use GraphiQL with the Explorer
-     *
-     * @return boolean
-     */
-    public static function useGraphiQLWithExplorer(): bool
-    {
-        // Define properties
-        $envVariable = Environment::USE_GRAPHIQL_WITH_EXPLORER;
-        $selfProperty = &self::$useGraphiQLWithExplorer;
-        $defaultValue = true;
-        $callback = [EnvironmentValueHelpers::class, 'toBool'];
-
-        // Initialize property from the environment/hook
-        self::maybeInitializeConfigurationValue(
-            $envVariable,
-            $selfProperty,
-            $defaultValue,
-            $callback
         );
         return $selfProperty;
     }
