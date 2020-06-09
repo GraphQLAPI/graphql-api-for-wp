@@ -56,26 +56,32 @@ class Menu extends AbstractMenu
         );
 
         $graphiQLMenuPage = $instanceManager->getInstance(GraphiQLMenuPage::class);
-        $hookName = \add_submenu_page(
-            self::NAME,
-            __('GraphiQL', 'graphql-api'),
-            __('GraphiQL', 'graphql-api'),
-            $schemaEditorAccessCapability,
-            self::NAME,
-            [$graphiQLMenuPage, 'print']
-        );
-        $graphiQLMenuPage->setHookName($hookName);
+        if (
+            $hookName = \add_submenu_page(
+                self::NAME,
+                __('GraphiQL', 'graphql-api'),
+                __('GraphiQL', 'graphql-api'),
+                $schemaEditorAccessCapability,
+                self::NAME,
+                [$graphiQLMenuPage, 'print']
+            )
+        ) {
+            $graphiQLMenuPage->setHookName($hookName);
+        }
 
         $graphQLVoyagerMenuPage = $instanceManager->getInstance(GraphQLVoyagerMenuPage::class);
-        $hookName = \add_submenu_page(
-            self::NAME,
-            __('Interactive Schema', 'graphql-api'),
-            __('Interactive Schema', 'graphql-api'),
-            $schemaEditorAccessCapability,
-            $graphQLVoyagerMenuPage->getScreenID(),
-            [$graphQLVoyagerMenuPage, 'print']
-        );
-        $graphQLVoyagerMenuPage->setHookName($hookName);
+        if (
+            $hookName = \add_submenu_page(
+                self::NAME,
+                __('Interactive Schema', 'graphql-api'),
+                __('Interactive Schema', 'graphql-api'),
+                $schemaEditorAccessCapability,
+                $graphQLVoyagerMenuPage->getScreenID(),
+                [$graphQLVoyagerMenuPage, 'print']
+            )
+        ) {
+            $graphQLVoyagerMenuPage->setHookName($hookName);
+        }
     }
 
     /**
@@ -99,26 +105,32 @@ class Menu extends AbstractMenu
         $instanceManager = InstanceManagerFacade::getInstance();
         $menuPageClass = $this->getModuleMenuPageClass();
         $modulesMenuPage = $instanceManager->getInstance($menuPageClass);
-        $hookName = \add_submenu_page(
-            self::NAME,
-            __('Modules', 'graphql-api'),
-            __('Modules', 'graphql-api'),
-            'manage_options',
-            $modulesMenuPage->getScreenId(),
-            [$modulesMenuPage, 'print']
-        );
-        $modulesMenuPage->setHookName($hookName);
+        if (
+            $hookName = \add_submenu_page(
+                self::NAME,
+                __('Modules', 'graphql-api'),
+                __('Modules', 'graphql-api'),
+                'manage_options',
+                $modulesMenuPage->getScreenId(),
+                [$modulesMenuPage, 'print']
+            )
+        ) {
+            $modulesMenuPage->setHookName($hookName);
+        }
 
         $settingsMenuPage = $instanceManager->getInstance(SettingsMenuPage::class);
-        $hookName = \add_submenu_page(
-            self::NAME,
-            __('Settings', 'graphql-api'),
-            __('Settings', 'graphql-api'),
-            'manage_options',
-            $settingsMenuPage->getScreenID(),
-            [$settingsMenuPage, 'print']
-        );
-        $settingsMenuPage->setHookName($hookName);
+        if (
+            $hookName = \add_submenu_page(
+                self::NAME,
+                __('Settings', 'graphql-api'),
+                __('Settings', 'graphql-api'),
+                'manage_options',
+                $settingsMenuPage->getScreenID(),
+                [$settingsMenuPage, 'print']
+            )
+        ) {
+            $settingsMenuPage->setHookName($hookName);
+        }
 
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         if ($moduleRegistry->isModuleEnabled(ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT)) {
