@@ -400,6 +400,9 @@ class ModuleResolver extends AbstractModuleResolver
     public function getSettingsDefaultValue(string $module, string $option)
     {
         $defaultValues = [
+            self::MAIN => [
+                self::OPTION_EDITING_ACCESS_SCHEME => UserAuthorization::ACCESS_SCHEME_ADMIN_ONLY,
+            ],
             self::SINGLE_ENDPOINT => [
                 self::OPTION_PATH => '/graphql/',
             ],
@@ -456,7 +459,7 @@ class ModuleResolver extends AbstractModuleResolver
                 Properties::TYPE => Properties::TYPE_STRING,
                 Properties::POSSIBLE_VALUES => [
                     UserAuthorization::ACCESS_SCHEME_ADMIN_ONLY => \__('Admin user(s) only', 'graphql-api'),
-                    UserAuthorization::ACCESS_SCHEME_POST => \__('Use same access as for editing posts', 'graphql-api'),
+                    UserAuthorization::ACCESS_SCHEME_POST => \__('Use same access workflow as for editing posts', 'graphql-api'),
                 ],
             ];
         } elseif ($module == self::SINGLE_ENDPOINT) {

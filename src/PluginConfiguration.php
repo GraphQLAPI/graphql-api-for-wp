@@ -124,6 +124,13 @@ class PluginConfiguration
     {
         // All the environment variables to override
         $mappings = [
+            // Editing Access Scheme
+            [
+                'class' => ComponentConfiguration::class,
+                'envVariable' => Environment::EDITING_ACCESS_SCHEME,
+                'module' => ModuleResolver::MAIN,
+                'option' => ModuleResolver::OPTION_EDITING_ACCESS_SCHEME,
+            ],
             // GraphQL single endpoint slug
             [
                 'class' => APIEndpointsForWPComponentConfiguration::class,
