@@ -36,7 +36,7 @@ class UserAuthorization
      */
     public static function getSchemaEditorAccessCapability(): string
     {
-        $accessScheme = ComponentConfiguration::getSchemaEditorAccessScheme();
+        $accessScheme = ComponentConfiguration::getEditingAccessScheme();
         $accessSchemeCapabilities = [
             self::ACCESS_SCHEME_ADMIN_ONLY => 'manage_options',
             self::ACCESS_SCHEME_POST => 'edit_posts',

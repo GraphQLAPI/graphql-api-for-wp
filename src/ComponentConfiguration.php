@@ -20,7 +20,7 @@ class ComponentConfiguration
     private static $useGraphiQLWithExplorer;
     private static $getCustomEndpointSlugBase;
     private static $getPersistedQuerySlugBase;
-    private static $getSchemaEditorAccessScheme;
+    private static $getEditingAccessScheme;
 
     /**
      * URL base for the module, pointing to graphql-api.com
@@ -204,11 +204,11 @@ class ComponentConfiguration
      *
      * @return string
      */
-    public static function getSchemaEditorAccessScheme(): string
+    public static function getEditingAccessScheme(): string
     {
         // Define properties
         $envVariable = Environment::EDITING_ACCESS_SCHEME;
-        $selfProperty = &self::$getSchemaEditorAccessScheme;
+        $selfProperty = &self::$getEditingAccessScheme;
         $defaultValue = UserAuthorization::ACCESS_SCHEME_ADMIN_ONLY;
 
         // Initialize property from the environment/hook
