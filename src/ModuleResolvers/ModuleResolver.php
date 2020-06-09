@@ -51,6 +51,7 @@ class ModuleResolver extends AbstractModuleResolver
     public const ACCESS_CONTROL_RULE_USER_CAPABILITIES = Plugin::NAMESPACE . '\access-control-rule-user-capabilities';
     public const CACHE_CONTROL = Plugin::NAMESPACE . '\cache-control';
     public const FIELD_DEPRECATION = Plugin::NAMESPACE . '\field-deprecation';
+    public const API_HIERARCHY = Plugin::NAMESPACE . '\api-hierarchy';
     public const LOW_LEVEL_QUERY_EDITING = Plugin::NAMESPACE . '\low-level-query-editing';
     public const GRAPHIQL_EXPLORER = Plugin::NAMESPACE . '\graphiql-explorer';
     public const WELCOME_GUIDES = Plugin::NAMESPACE . '\welcome-guides';
@@ -98,6 +99,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::PUBLIC_PRIVATE_SCHEMA,
             self::CACHE_CONTROL,
             self::FIELD_DEPRECATION,
+            self::API_HIERARCHY,
             self::LOW_LEVEL_QUERY_EDITING,
             self::SCHEMA_CACHE,
             self::GRAPHIQL_EXPLORER,
@@ -136,6 +138,7 @@ class ModuleResolver extends AbstractModuleResolver
                 ];
             case self::SCHEMA_CONFIGURATION:
             case self::WELCOME_GUIDES:
+            case self::API_HIERARCHY:
                 return [
                     [
                         self::PERSISTED_QUERIES,
@@ -254,6 +257,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::ACCESS_CONTROL_RULE_USER_CAPABILITIES => \__('Access Control Rule: User Capabilities', 'graphql-api'),
             self::CACHE_CONTROL => \__('Cache Control', 'graphql-api'),
             self::FIELD_DEPRECATION => \__('Field Deprecation', 'graphql-api'),
+            self::API_HIERARCHY => \__('API Hierarchy', 'graphql-api'),
             self::LOW_LEVEL_QUERY_EDITING => \__('Low-Level Query Editing', 'graphql-api'),
             self::GRAPHIQL_EXPLORER => \__('GraphiQL Explorer', 'graphql-api'),
             self::WELCOME_GUIDES => \__('Welcome Guides', 'graphql-api'),
@@ -318,6 +322,8 @@ class ModuleResolver extends AbstractModuleResolver
                 return \__('Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query', 'graphql-api');
             case self::FIELD_DEPRECATION:
                 return \__('Deprecate fields, and explain how to replace them, through a user interface', 'graphql-api');
+            case self::API_HIERARCHY:
+                return \__('Create a hierarchy of API endpoints extending from other endpoints, and inheriting their properties', 'graphql-api');
             case self::LOW_LEVEL_QUERY_EDITING:
                 return \__('Have access to schema-configuration low-level directives when editing GraphQL queries in the admin', 'graphql-api');
             case self::GRAPHIQL_EXPLORER:
