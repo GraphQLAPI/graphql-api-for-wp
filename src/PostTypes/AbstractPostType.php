@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
 use GraphQLAPI\GraphQLAPI\Admin\Menus\Menu;
+use GraphQLAPI\GraphQLAPI\General\CPTUtils;
 use PoP\ComponentModel\State\ApplicationState;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
-use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 
 abstract class AbstractPostType
 {
@@ -104,7 +105,7 @@ abstract class AbstractPostType
         switch ($column) {
             case 'description' :
                 $post = \get_post($post_id);
-                echo strip_tags($post->post_excerpt ?? '');
+                echo CPTUtils::getCustomPostDescription($post);
                 break;
         }
     }
@@ -181,11 +182,11 @@ abstract class AbstractPostType
              */
             $vars = ApplicationState::getVars();
             $post = $vars['routing-state']['queried-object'];
-            if ($excerpt = $post->post_excerpt) {
+            if ($excerpt = CPTUtils::getCustomPostDescription($post)) {
                 $content = \sprintf(
                     \__('<p class="%s"><strong>Description: </strong>%s</p>'),
                     $this->getAlignClass(),
-                    strip_tags($excerpt)
+                    $excerpt
                 ) . $content;
             }
         }

@@ -9,6 +9,7 @@ use GraphQLAPI\GraphQLAPI\General\BlockRenderingHelpers;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
 use GraphQLAPI\GraphQLAPI\BlockCategories\SchemaConfigurationBlockCategory;
+use GraphQLAPI\GraphQLAPI\General\CPTUtils;
 
 abstract class AbstractSchemaConfigPostListBlock extends AbstractBlock
 {
@@ -56,12 +57,13 @@ EOF;
             ]);
             foreach ($postObjects as $postObject) {
                 $foundPostListIDs[] = $postObject->ID;
+                $postDescription = CPTUtils::getCustomPostDescription($postObject);
                 $postContentElems[] = \sprintf(
                     '<code><a href="%s">%s</a></code>%s',
                     \get_permalink($postObject->ID),
                     BlockRenderingHelpers::getCustomPostTitle($postObject),
-                    $postObject->post_excerpt ?
-                        '<br/><small>' . strip_tags($postObject->post_excerpt) . '</small>'
+                    $postDescription ?
+                        '<br/><small>' . $postDescription . '</small>'
                         : ''
                 );
             }

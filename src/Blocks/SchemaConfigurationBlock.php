@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Blocks;
 
+use GraphQLAPI\GraphQLAPI\General\CPTUtils;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\General\BlockRenderingHelpers;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
@@ -79,12 +80,13 @@ EOF;
             $schemaConfigurationContent = \__('Inherit from parent', 'graphql-api');
         } elseif ($schemaConfigurationID > 0) {
             $schemaConfigurationObject = \get_post($schemaConfigurationID);
+            $schemaConfigurationDescription = CPTUtils::getCustomPostDescription($schemaConfigurationObject);
             $schemaConfigurationContent = \sprintf(
                 '<code><a href="%s">%s</a></code>%s',
                 \get_permalink($schemaConfigurationObject->ID),
                 BlockRenderingHelpers::getCustomPostTitle($schemaConfigurationObject),
-                $schemaConfigurationObject->post_excerpt ?
-                    '<br/><small>' . strip_tags($schemaConfigurationObject->post_excerpt) . '</small>'
+                $schemaConfigurationDescription ?
+                    '<br/><small>' . $schemaConfigurationDescription . '</small>'
                     : ''
             );
         }
