@@ -366,6 +366,10 @@ class PluginConfiguration
         $componentClassConfiguration[\PoP\GraphQLClientsForWP\Component::class] = [
             \PoP\GraphQLClientsForWP\Environment::GRAPHQL_CLIENTS_COMPONENT_URL => \GRAPHQL_API_URL . 'vendor/getpop/graphql-clients-for-wp',
         ];
+        // Disable the Native endpoint
+        $componentClassConfiguration[\PoP\APIEndpointsForWP\Component::class] = [
+            \PoP\APIEndpointsForWP\Environment::DISABLE_NATIVE_API_ENDPOINT => true,
+        ];
     }
 
     /**
