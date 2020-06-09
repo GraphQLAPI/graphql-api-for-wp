@@ -169,11 +169,12 @@ abstract class AbstractPostType
      */
     public function maybeAddExcerptAsDescription(string $content): string
     {
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
         /**
          * Check if it is enabled and it is this CPT...
          */
         if (
-            ComponentConfiguration::addExcerptAsDescription()
+            $moduleRegistry->isModuleEnabled(ModuleResolver::EXCERPT_AS_DESCRIPTION)
             && UserAuthorization::canAccessSchemaEditor()
             && \is_singular($this->getPostType())
         ) {

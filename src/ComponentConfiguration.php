@@ -13,7 +13,6 @@ class ComponentConfiguration
     use ComponentConfigurationTrait;
 
     private static $getModuleURLBase;
-    private static $addExcerptAsDescription;
     private static $groupFieldsUnderTypeForPrint;
     private static $getEmptyLabel;
     private static $getSettingsValueLabel;
@@ -39,29 +38,6 @@ class ComponentConfiguration
             $envVariable,
             $selfProperty,
             $defaultValue
-        );
-        return $selfProperty;
-    }
-
-    /**
-     * Print the excerpt as description in the custom post types
-     *
-     * @return boolean
-     */
-    public static function addExcerptAsDescription(): bool
-    {
-        // Define properties
-        $envVariable = Environment::ADD_EXCERPT_AS_DESCRIPTION;
-        $selfProperty = &self::$addExcerptAsDescription;
-        $defaultValue = true;
-        $callback = [EnvironmentValueHelpers::class, 'toBool'];
-
-        // Initialize property from the environment/hook
-        self::maybeInitializeConfigurationValue(
-            $envVariable,
-            $selfProperty,
-            $defaultValue,
-            $callback
         );
         return $selfProperty;
     }
