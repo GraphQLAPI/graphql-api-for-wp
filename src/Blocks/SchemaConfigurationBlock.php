@@ -84,7 +84,7 @@ EOF;
                 \get_permalink($schemaConfigurationObject->ID),
                 BlockRenderingHelpers::getCustomPostTitle($schemaConfigurationObject),
                 $schemaConfigurationObject->post_excerpt ?
-                    '<br/><small>' . $schemaConfigurationObject->post_excerpt . '</small>'
+                    '<br/><small>' . strip_tags($schemaConfigurationObject->post_excerpt) . '</small>'
                     : ''
             );
         }

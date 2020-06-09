@@ -61,7 +61,7 @@ EOF;
                     \get_permalink($postObject->ID),
                     BlockRenderingHelpers::getCustomPostTitle($postObject),
                     $postObject->post_excerpt ?
-                        '<br/><small>' . $postObject->post_excerpt . '</small>'
+                        '<br/><small>' . strip_tags($postObject->post_excerpt) . '</small>'
                         : ''
                 );
             }
