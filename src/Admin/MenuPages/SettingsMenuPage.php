@@ -213,32 +213,14 @@ class SettingsMenuPage extends AbstractMenuPage
                 $activeModuleID = $tab;
             }
         }
+        $class = 'wrap';
+        if ($printWithTabs) {
+            $class .= ' graphql-api-tabpanel';
+        }
         ?>
-        <?php if ($printWithTabs) : ?>
-            <style>
-                /**
-                * Override the box-shadow added to a:focus, when clicking on the tab
-                */
-                #graphql-api-settings .nav-tab-active:focus {
-                    box-shadow: none;
-                }
-            </style>
-            <script type="application/javascript">
-                jQuery( document ).ready( function($){
-                    $('#graphql-api-settings .nav-tab').on('click', function(e){
-                        e.preventDefault();
-                        tab = $(this).attr('href');
-                        $('#graphql-api-settings .tab-content').hide();
-                        $(tab).show();
-                        $('#graphql-api-settings .nav-tab').removeClass('nav-tab-active');
-                        $('#graphql-api-settings a[href="'+tab+'"].nav-tab').addClass('nav-tab-active');
-                    });
-                });
-            </script>
-        <?php endif; ?>
         <div
             id="graphql-api-settings"
-            class="wrap"
+            class="<?php echo $class ?>"
         >
             <h1><?php \_e('GraphQL API — Settings', 'graphql-api'); ?></h1>
             <?php \settings_errors(); ?>
@@ -290,6 +272,32 @@ class SettingsMenuPage extends AbstractMenuPage
             </form>
         </div>
         <?php
+    }
+
+    /**
+     * Enqueue the required assets and initialize the localized scripts
+     *
+     * @return void
+     */
+    protected function enqueueAssets(): void
+    {
+        parent::enqueueAssets();
+
+        if ($this->printWithTabs()) {
+            \wp_enqueue_style(
+                'graphql-api-settings-menu-page',
+                \GRAPHQL_API_URL . 'assets/css/tabpanel.css',
+                array(),
+                \GRAPHQL_BY_POP_VERSION
+            );
+
+            \wp_enqueue_script(
+                'graphql-api-settings-menu-page',
+                \GRAPHQL_API_URL . 'assets/js/tabpanel.js',
+                array('jquery'),
+                \GRAPHQL_BY_POP_VERSION
+            );
+        }
     }
 
     /**

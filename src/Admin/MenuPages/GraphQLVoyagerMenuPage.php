@@ -35,6 +35,8 @@ class GraphQLVoyagerMenuPage extends AbstractMenuPage
      */
     protected function enqueueAssets(): void
     {
+        parent::enqueueAssets();
+
         // CSS
         \wp_enqueue_style(
             'graphql-api-voyager-client',
