@@ -61,9 +61,12 @@ class AccessControlBlock extends AbstractControlBlock
      */
     protected function getLocalizedData(): array
     {
-        return [
-            'isIndividualControlForSchemaModeEnabled' => ComponentConfiguration::enableIndividualControlForPublicPrivateSchemaMode(),
-        ];
+        return array_merge(
+            parent::getLocalizedData(),
+            [
+                'isIndividualControlForSchemaModeEnabled' => ComponentConfiguration::enableIndividualControlForPublicPrivateSchemaMode(),
+            ]
+        );
     }
 
     /**
