@@ -53,44 +53,29 @@ abstract class AbstractItemListTable extends \WP_List_Table
             'ajax' => false,
         ]);
 
-        add_action('admin_head', [$this, 'printStyles']);
+        \add_action(
+            'admin_enqueue_scripts',
+            [$this, 'enqueueAssets']
+        );
     }
 
     /**
-     * Print custom styles, such as the width of the columns
+     * Enqueue the required assets and initialize the localized scripts
+     *
+     * @return void
      */
-    public function printStyles(): void
+    public function enqueueAssets(): void
     {
         /**
-         * Viewing a table with less than 782px looks really bad, it's buggy.
-         * Fix the styles
+         * Fix the issues with the WP List Table
          */
-        ?>
-        <style type="text/css">
-            @media screen and (max-width: 782px) {
-                .wp-list-table tr:not(.inline-edit-row):not(.no-items) td:not(.column-primary)::before {
-                    /**
-                    * Do not have the title be placed on top of the content
-                    */
-                    position: static;
-                }
-
-                /* Make row actions more easy to select on mobile */
-                body:not(.plugins-php) .row-actions {
-                    /**
-                    * Override grid
-                    */
-                    display: block;
-                    /**
-                    * Show always
-                    */
-                    position: static;
-                }
-            }
-        </style>
-        <?php
+        \wp_enqueue_style(
+            'graphql-api-wp-list-table-fix',
+            \GRAPHQL_API_URL . 'assets/css/wp-list-table-fix.css',
+            array(),
+            \GRAPHQL_BY_POP_VERSION
+        );
     }
-
 
     /**
      * Text displayed when there are no items
