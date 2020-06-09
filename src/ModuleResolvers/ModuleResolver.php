@@ -11,18 +11,19 @@ use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\Users\TypeResolvers\UserTypeResolver;
 use GraphQLAPI\GraphQLAPI\General\LocaleUtils;
 use PoP\Media\TypeResolvers\MediaTypeResolver;
-use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use PoP\Taxonomies\TypeResolvers\TagTypeResolver;
 use PoP\Comments\TypeResolvers\CommentTypeResolver;
+use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
+use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\UpperCaseStringDirectiveResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\HasMarkdownDocumentationModuleResolverTrait;
-use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 use PoP\APIEndpointsForWP\ComponentConfiguration as APIEndpointsForWPComponentConfiguration;
+use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 
 class ModuleResolver extends AbstractModuleResolver
 {
@@ -32,7 +33,7 @@ class ModuleResolver extends AbstractModuleResolver
     //     HasMarkdownDocumentationModuleResolverTrait::hasDocumentation as upstreamHasDocumentation;
     // }
 
-    // public const MAIN = Plugin::NAMESPACE . '\main';
+    public const MAIN = Plugin::NAMESPACE . '\main';
     public const SINGLE_ENDPOINT = Plugin::NAMESPACE . '\single-endpoint';
     public const PERSISTED_QUERIES = Plugin::NAMESPACE . '\persisted-queries';
     public const CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\custom-endpoints';
@@ -66,6 +67,7 @@ class ModuleResolver extends AbstractModuleResolver
     /**
      * Setting options
      */
+    public const OPTION_WRITE_ACCESS_SCHEME = 'write-access-scheme';
     public const OPTION_PATH = 'path';
     public const OPTION_SCHEMA_CONFIGURATION_ID = 'schema-configuration-id';
     public const OPTION_USE_NAMESPACING = 'use-namespacing';
@@ -81,7 +83,7 @@ class ModuleResolver extends AbstractModuleResolver
     public static function getModulesToResolve(): array
     {
         return [
-            // self::MAIN,
+            self::MAIN,
             self::SINGLE_ENDPOINT,
             self::GRAPHIQL_FOR_SINGLE_ENDPOINT,
             self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
@@ -228,7 +230,7 @@ class ModuleResolver extends AbstractModuleResolver
     public function isHidden(string $module): bool
     {
         switch ($module) {
-            // case self::MAIN:
+            case self::MAIN:
             case self::SCHEMA_CACHE:
                 return true;
         }
@@ -238,7 +240,7 @@ class ModuleResolver extends AbstractModuleResolver
     public function getName(string $module): string
     {
         $names = [
-            // self::MAIN => \__('Main', 'graphql-api'),
+            self::MAIN => \__('Main', 'graphql-api'),
             self::SINGLE_ENDPOINT => \__('Single Endpoint', 'graphql-api'),
             self::PERSISTED_QUERIES => \__('Persisted Queries', 'graphql-api'),
             self::CUSTOM_ENDPOINTS => \__('Custom Endpoints', 'graphql-api'),
@@ -275,8 +277,8 @@ class ModuleResolver extends AbstractModuleResolver
     public function getDescription(string $module): string
     {
         switch ($module) {
-            // case self::MAIN:
-            //      return \__('Main functionality module, can\'t be disabled but is required for defining the main settings', 'graphql-api');
+            case self::MAIN:
+                return \__('Artificial module for defining the main settings', 'graphql-api');
             case self::SINGLE_ENDPOINT:
                 return \sprintf(
                     \__('Expose a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
@@ -435,7 +437,29 @@ class ModuleResolver extends AbstractModuleResolver
         $moduleSettings = parent::getSettings($module);
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
-        if ($module == self::SINGLE_ENDPOINT) {
+        if ($module == self::MAIN) {
+            /**
+             * Write Access Scheme
+             * If `"admin"`, only the admin can compose a GraphQL query and endpoint
+             * If `"post"`, the workflow from creating posts is employed (i.e. Author role can create
+             * but not publish the query, Editor role can publish it, etc)
+             */
+            $option = self::OPTION_WRITE_ACCESS_SCHEME;
+            $moduleSettings[] = [
+                Properties::INPUT => $option,
+                Properties::NAME => $this->getSettingOptionName(
+                    $module,
+                    $option,
+                ),
+                Properties::TITLE => \__('Editing Access', 'graphql-api'),
+                Properties::DESCRIPTION => \__('Who has editing access for Persisted Queries, Custom Endpoints and related post types', 'graphql-api'),
+                Properties::TYPE => Properties::TYPE_STRING,
+                Properties::POSSIBLE_VALUES => [
+                    UserAuthorization::ACCESS_SCHEME_ADMIN_ONLY => \__('Admin user(s) only', 'graphql-api'),
+                    UserAuthorization::ACCESS_SCHEME_POST => \__('Use same access as for editing posts', 'graphql-api'),
+                ],
+            ];
+        } elseif ($module == self::SINGLE_ENDPOINT) {
             $option = self::OPTION_PATH;
             $moduleSettings[] = [
                 Properties::INPUT => $option,

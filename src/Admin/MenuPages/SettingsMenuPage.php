@@ -156,7 +156,7 @@ class SettingsMenuPage extends AbstractMenuPage
     {
         $items = [];
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        $modules = $moduleRegistry->getAllModules(true, true);
+        $modules = $moduleRegistry->getAllModules(true, true, false);
         foreach ($modules as $module) {
             $moduleResolver = $moduleRegistry->getModuleResolver($module);
             $items[] = [
