@@ -75,6 +75,8 @@ class ModuleResolver extends AbstractModuleResolver
     public const OPTION_MODE = 'mode';
     public const OPTION_ENABLE_GRANULAR = 'granular';
     public const OPTION_MAX_AGE = 'max-age';
+    public const OPTION_DEFAULT_LIMIT = 'default-limit';
+    public const OPTION_MAX_LIMIT = 'max-limit';
 
     /**
      * Setting option values
@@ -437,6 +439,10 @@ class ModuleResolver extends AbstractModuleResolver
             self::CACHE_CONTROL => [
                 self::OPTION_MAX_AGE => 60,
             ],
+            self::SCHEMA_POST_TYPE => [
+                self::OPTION_DEFAULT_LIMIT => 10,
+                self::OPTION_MAX_LIMIT => 100,
+            ],
         ];
         return $defaultValues[$module][$option];
     }
@@ -451,6 +457,11 @@ class ModuleResolver extends AbstractModuleResolver
     {
         $moduleSettings = parent::getSettings($module);
         $moduleRegistry = ModuleRegistryFacade::getInstance();
+        // Common variables to set the limit on the schema types
+        $limitArg = 'limit';
+        $unlimitedValue = -1;
+        $defaultLimitMessagePlaceholder = \__('Number of results from querying field <code>%s</code> when argument <code>%s</code> is not provided. Use <code>%s</code> for unlimited', 'graphql-api');
+        $maxLimitMessagePlaceholder = \__('Maximum number of results from querying field <code>%s</code>. Use <code>%s</code> for unlimited', 'graphql-api');
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if ($module == self::MAIN) {
             /**
@@ -668,6 +679,39 @@ class ModuleResolver extends AbstractModuleResolver
                 Properties::TITLE => \__('Default max-age', 'graphql-api'),
                 Properties::DESCRIPTION => \__('Default max-age value (in seconds) for the Cache-Control header, for all fields and directives in the schema', 'graphql-api'),
                 // Properties::DEFAULT_VALUE => 60,
+                Properties::TYPE => Properties::TYPE_INT,
+            ];
+        } elseif ($module == self::SCHEMA_POST_TYPE) {
+            $field = 'posts';
+            $option = self::OPTION_DEFAULT_LIMIT;
+            $moduleSettings[] = [
+                Properties::INPUT => $option,
+                Properties::NAME => $this->getSettingOptionName(
+                    $module,
+                    $option,
+                ),
+                Properties::TITLE => \__('Default limit', 'graphql-api'),
+                Properties::DESCRIPTION => sprintf(
+                    $defaultLimitMessagePlaceholder,
+                    $field,
+                    $limitArg,
+                    $unlimitedValue
+                ),
+                Properties::TYPE => Properties::TYPE_INT,
+            ];
+            $option = self::OPTION_MAX_LIMIT;
+            $moduleSettings[] = [
+                Properties::INPUT => $option,
+                Properties::NAME => $this->getSettingOptionName(
+                    $module,
+                    $option,
+                ),
+                Properties::TITLE => \__('Max limit', 'graphql-api'),
+                Properties::DESCRIPTION => sprintf(
+                    $maxLimitMessagePlaceholder,
+                    $field,
+                    $unlimitedValue
+                ),
                 Properties::TYPE => Properties::TYPE_INT,
             ];
         }
