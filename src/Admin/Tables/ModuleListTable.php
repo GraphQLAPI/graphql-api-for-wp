@@ -395,18 +395,32 @@ class ModuleListTable extends AbstractItemListTable
     }
 
     /**
+     * Enqueue the required assets
+     *
+     * @return void
+     */
+    public function enqueueAssets(): void
+    {
+        parent::enqueueAssets();
+
+        /**
+         * Fix the issues with the WP List Table
+         */
+        \wp_enqueue_style(
+            'graphql-api-module-list-table',
+            \GRAPHQL_API_URL . 'assets/css/module-list-table.css',
+            array(),
+            \GRAPHQL_BY_POP_VERSION
+        );
+    }
+
+    /**
      * Customize the width of the columns
      */
     public function printStyles(): void
     {
         parent::printStyles();
-        ?>
-        <style type="text/css">
-            .row-actions span.disabled { color: #969696; }
-            .plugins .name { font-weight: normal; }
-            .plugins .dashicons { font-size: 16px; }
-        </style>
-        <?php
+
         /*
         if ($this->usePluginTableStyle()) {
             ?>

@@ -57,10 +57,22 @@ abstract class AbstractItemListTable extends \WP_List_Table
             'admin_enqueue_scripts',
             [$this, 'enqueueAssets']
         );
+        add_action(
+            'admin_head',
+            [$this, 'printStyles']
+        );
     }
 
     /**
-     * Enqueue the required assets and initialize the localized scripts
+     * Print custom styles, such as the width of the columns
+     */
+    public function printStyles(): void
+    {
+        // Do nothing
+    }
+
+    /**
+     * Enqueue the required assets
      *
      * @return void
      */

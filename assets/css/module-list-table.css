@@ -1,0 +1,14 @@
+/**
+ * Improve the styles of the table:
+ * - better contrast for disable items
+ * - actions not in bold
+ */
+.row-actions span.disabled {
+    color: #969696;
+}
+.plugins .name {
+    font-weight: normal;
+}
+/* .plugins .dashicons {
+    font-size: 16px;
+} */
