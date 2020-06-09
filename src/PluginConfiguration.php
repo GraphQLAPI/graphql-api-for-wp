@@ -107,12 +107,33 @@ class PluginConfiguration
         string $module,
         string $option
     ): string {
-        // Make sure the path has a "/" on both ends
-        $value = EndpointUtils::slashURI($value);
-
         // If we are on options.php, use the value submitted to the form,
         // so it's updated before doing `add_rewrite_endpoint` and `flush_rewrite_rules`
-        return self::maybeOverrideValueFromForm($value, $module, $option);
+        $value = self::maybeOverrideValueFromForm($value, $module, $option);
+
+        // Make sure the path has a "/" on both ends
+        return EndpointUtils::slashURI($value);
+    }
+
+    /**
+     * Process the "URL base path" option values
+     *
+     * @param string $value
+     * @param string $module
+     * @param string $option
+     * @return string
+     */
+    protected static function getCPTPermalinkBasePathSettingValue(
+        string $value,
+        string $module,
+        string $option
+    ): string {
+        // If we are on options.php, use the value submitted to the form,
+        // so it's updated before doing `add_rewrite_endpoint` and `flush_rewrite_rules`
+        $value = self::maybeOverrideValueFromForm($value, $module, $option);
+
+        // Make sure the path does not have "/" on either end
+        return trim($value, '/');
     }
 
     /**
@@ -141,6 +162,36 @@ class PluginConfiguration
                     return self::getURLPathSettingValue(
                         $value,
                         ModuleResolver::SINGLE_ENDPOINT,
+                        ModuleResolver::OPTION_PATH
+                    );
+                },
+                'condition' => 'any',
+            ],
+            // Custom Endpoint path
+            [
+                'class' => ComponentConfiguration::class,
+                'envVariable' => Environment::ENDPOINT_SLUG_BASE,
+                'module' => ModuleResolver::CUSTOM_ENDPOINTS,
+                'option' => ModuleResolver::OPTION_PATH,
+                'callback' => function ($value) {
+                    return self::getCPTPermalinkBasePathSettingValue(
+                        $value,
+                        ModuleResolver::CUSTOM_ENDPOINTS,
+                        ModuleResolver::OPTION_PATH
+                    );
+                },
+                'condition' => 'any',
+            ],
+            // Persisted Query path
+            [
+                'class' => ComponentConfiguration::class,
+                'envVariable' => Environment::PERSISTED_QUERY_SLUG_BASE,
+                'module' => ModuleResolver::PERSISTED_QUERIES,
+                'option' => ModuleResolver::OPTION_PATH,
+                'callback' => function ($value) {
+                    return self::getCPTPermalinkBasePathSettingValue(
+                        $value,
+                        ModuleResolver::PERSISTED_QUERIES,
                         ModuleResolver::OPTION_PATH
                     );
                 },

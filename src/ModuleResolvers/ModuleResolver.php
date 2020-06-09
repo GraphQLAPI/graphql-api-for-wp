@@ -418,6 +418,12 @@ class ModuleResolver extends AbstractModuleResolver
             self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => [
                 self::OPTION_PATH => '/schema/',
             ],
+            self::CUSTOM_ENDPOINTS => [
+                self::OPTION_PATH => 'graphql',
+            ],
+            self::PERSISTED_QUERIES => [
+                self::OPTION_PATH => 'graphql-query',
+            ],
             self::SCHEMA_CONFIGURATION => [
                 self::OPTION_SCHEMA_CONFIGURATION_ID => self::OPTION_VALUE_NO_VALUE_ID,
             ],
@@ -510,6 +516,38 @@ class ModuleResolver extends AbstractModuleResolver
                 ),
                 Properties::TITLE => \__('Client path', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL path to access the public Interactive Schema client', 'graphql-api'),
+                // Properties::DEFAULT_VALUE => $this->getSettingsDefaultValue(
+                //     $module,
+                //     self::OPTION_PATH
+                // ),
+                Properties::TYPE => Properties::TYPE_STRING,
+            ];
+        } elseif ($module == self::CUSTOM_ENDPOINTS) {
+            $option = self::OPTION_PATH;
+            $moduleSettings[] = [
+                Properties::INPUT => $option,
+                Properties::NAME => $this->getSettingOptionName(
+                    $module,
+                    $option,
+                ),
+                Properties::TITLE => \__('Base path', 'graphql-api'),
+                Properties::DESCRIPTION => \__('URL base path to expose the Custom Endpoint', 'graphql-api'),
+                // Properties::DEFAULT_VALUE => $this->getSettingsDefaultValue(
+                //     $module,
+                //     self::OPTION_PATH
+                // ),
+                Properties::TYPE => Properties::TYPE_STRING,
+            ];
+        } elseif ($module == self::PERSISTED_QUERIES) {
+            $option = self::OPTION_PATH;
+            $moduleSettings[] = [
+                Properties::INPUT => $option,
+                Properties::NAME => $this->getSettingOptionName(
+                    $module,
+                    $option,
+                ),
+                Properties::TITLE => \__('Base path', 'graphql-api'),
+                Properties::DESCRIPTION => \__('URL base path to expose the Persisted Query', 'graphql-api'),
                 // Properties::DEFAULT_VALUE => $this->getSettingsDefaultValue(
                 //     $module,
                 //     self::OPTION_PATH
