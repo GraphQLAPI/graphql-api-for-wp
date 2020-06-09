@@ -89,6 +89,11 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT) {
             return $this->getUserSettingSchemaConfigurationID();
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT) {
+            // If disabled by module, then return nothing
+            $moduleRegistry = ModuleRegistryFacade::getInstance();
+            if (!$moduleRegistry->isModuleEnabled(ModuleResolver::API_HIERARCHY)) {
+                return null;
+            }
             // Return the schema configuration from the parent, or null if no parent exists
             $customPost = \get_post($customPostID);
             if ($customPost->post_parent) {
