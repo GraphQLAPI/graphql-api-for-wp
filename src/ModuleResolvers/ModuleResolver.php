@@ -75,8 +75,16 @@ class ModuleResolver extends AbstractModuleResolver
     public const OPTION_MODE = 'mode';
     public const OPTION_ENABLE_GRANULAR = 'granular';
     public const OPTION_MAX_AGE = 'max-age';
-    public const OPTION_DEFAULT_LIMIT = 'default-limit';
-    public const OPTION_MAX_LIMIT = 'max-limit';
+    public const OPTION_POST_DEFAULT_LIMIT = 'post-default-limit';
+    public const OPTION_POST_MAX_LIMIT = 'post-max-limit';
+    public const OPTION_CONTENT_DEFAULT_LIMIT = 'content-default-limit';
+    public const OPTION_CONTENT_MAX_LIMIT = 'content-max-limit';
+    public const OPTION_USER_DEFAULT_LIMIT = 'user-default-limit';
+    public const OPTION_USER_MAX_LIMIT = 'user-max-limit';
+    public const OPTION_TAG_DEFAULT_LIMIT = 'tag-default-limit';
+    public const OPTION_TAG_MAX_LIMIT = 'tag-max-limit';
+    public const OPTION_PAGE_DEFAULT_LIMIT = 'page-default-limit';
+    public const OPTION_PAGE_MAX_LIMIT = 'page-max-limit';
 
     /**
      * Setting option values
@@ -440,8 +448,22 @@ class ModuleResolver extends AbstractModuleResolver
                 self::OPTION_MAX_AGE => 60,
             ],
             self::SCHEMA_POST_TYPE => [
-                self::OPTION_DEFAULT_LIMIT => 10,
-                self::OPTION_MAX_LIMIT => 100,
+                self::OPTION_POST_DEFAULT_LIMIT => 10,
+                self::OPTION_POST_MAX_LIMIT => 100,
+                self::OPTION_CONTENT_DEFAULT_LIMIT => 10,
+                self::OPTION_CONTENT_MAX_LIMIT => 100,
+            ],
+            self::SCHEMA_USER_TYPE => [
+                self::OPTION_USER_DEFAULT_LIMIT => 10,
+                self::OPTION_USER_MAX_LIMIT => 100,
+            ],
+            self::SCHEMA_PAGE_TYPE => [
+                self::OPTION_PAGE_DEFAULT_LIMIT => 10,
+                self::OPTION_PAGE_MAX_LIMIT => 100,
+            ],
+            self::SCHEMA_TAXONOMY_TYPE => [
+                self::OPTION_TAG_DEFAULT_LIMIT => 50,
+                self::OPTION_TAG_MAX_LIMIT => 500,
             ],
         ];
         return $defaultValues[$module][$option];
@@ -681,39 +703,70 @@ class ModuleResolver extends AbstractModuleResolver
                 // Properties::DEFAULT_VALUE => 60,
                 Properties::TYPE => Properties::TYPE_INT,
             ];
-        } elseif ($module == self::SCHEMA_POST_TYPE) {
-            $field = 'posts';
-            $option = self::OPTION_DEFAULT_LIMIT;
-            $moduleSettings[] = [
-                Properties::INPUT => $option,
-                Properties::NAME => $this->getSettingOptionName(
-                    $module,
-                    $option,
-                ),
-                Properties::TITLE => \__('Default limit', 'graphql-api'),
-                Properties::DESCRIPTION => sprintf(
-                    $defaultLimitMessagePlaceholder,
-                    $field,
-                    $limitArg,
-                    $unlimitedValue
-                ),
-                Properties::TYPE => Properties::TYPE_INT,
+        } elseif (
+            in_array($module, [
+                self::SCHEMA_POST_TYPE,
+                self::SCHEMA_USER_TYPE,
+                self::SCHEMA_TAXONOMY_TYPE,
+                self::SCHEMA_PAGE_TYPE,
+            ])
+        ) {
+            $moduleFieldOptions = [
+                self::SCHEMA_POST_TYPE => [
+                    'posts' => [self::OPTION_POST_DEFAULT_LIMIT, self::OPTION_POST_MAX_LIMIT],
+                    'content' => [self::OPTION_CONTENT_DEFAULT_LIMIT, self::OPTION_CONTENT_MAX_LIMIT],
+                ],
+                self::SCHEMA_USER_TYPE => [
+                    'users' => [self::OPTION_USER_DEFAULT_LIMIT, self::OPTION_USER_MAX_LIMIT],
+                ],
+                self::SCHEMA_TAXONOMY_TYPE => [
+                    'tags' => [self::OPTION_TAG_DEFAULT_LIMIT, self::OPTION_TAG_MAX_LIMIT],
+                ],
+                self::SCHEMA_PAGE_TYPE => [
+                    'pages' => [self::OPTION_PAGE_DEFAULT_LIMIT, self::OPTION_PAGE_MAX_LIMIT],
+                ],
             ];
-            $option = self::OPTION_MAX_LIMIT;
-            $moduleSettings[] = [
-                Properties::INPUT => $option,
-                Properties::NAME => $this->getSettingOptionName(
-                    $module,
-                    $option,
-                ),
-                Properties::TITLE => \__('Max limit', 'graphql-api'),
-                Properties::DESCRIPTION => sprintf(
-                    $maxLimitMessagePlaceholder,
-                    $field,
-                    $unlimitedValue
-                ),
-                Properties::TYPE => Properties::TYPE_INT,
-            ];
+            foreach ($moduleFieldOptions[$module] as $field => $options) {
+                list(
+                    $defaultLimitOption,
+                    $maxLimitOption,
+                ) = $options;
+                $moduleSettings[] = [
+                    Properties::INPUT => $defaultLimitOption,
+                    Properties::NAME => $this->getSettingOptionName(
+                        $module,
+                        $defaultLimitOption,
+                    ),
+                    Properties::TITLE => sprintf(
+                        \__('Default limit for <code>%s</code>', 'graphql-api'),
+                        $field
+                    ),
+                    Properties::DESCRIPTION => sprintf(
+                        $defaultLimitMessagePlaceholder,
+                        $field,
+                        $limitArg,
+                        $unlimitedValue
+                    ),
+                    Properties::TYPE => Properties::TYPE_INT,
+                ];
+                $moduleSettings[] = [
+                    Properties::INPUT => $maxLimitOption,
+                    Properties::NAME => $this->getSettingOptionName(
+                        $module,
+                        $maxLimitOption,
+                    ),
+                    Properties::TITLE => sprintf(
+                        \__('Max limit for <code>%s</code>', 'graphql-api'),
+                        $field
+                    ),
+                    Properties::DESCRIPTION => sprintf(
+                        $maxLimitMessagePlaceholder,
+                        $field,
+                        $unlimitedValue
+                    ),
+                    Properties::TYPE => Properties::TYPE_INT,
+                ];
+            }
         }
         return $moduleSettings;
     }

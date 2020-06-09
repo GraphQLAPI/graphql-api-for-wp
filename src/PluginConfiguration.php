@@ -25,6 +25,14 @@ use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfigurat
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use PoP\APIEndpointsForWP\ComponentConfiguration as APIEndpointsForWPComponentConfiguration;
 use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
+use PoP\Posts\Environment as PostsEnvironment;
+use PoP\Posts\ComponentConfiguration as PostsComponentConfiguration;
+use PoP\Users\Environment as UsersEnvironment;
+use PoP\Users\ComponentConfiguration as UsersComponentConfiguration;
+use PoP\Taxonomies\Environment as TaxonomiesEnvironment;
+use PoP\Taxonomies\ComponentConfiguration as TaxonomiesComponentConfiguration;
+use PoP\Pages\Environment as PagesEnvironment;
+use PoP\Pages\ComponentConfiguration as PagesComponentConfiguration;
 
 /**
  * Sets the configuration in all the PoP components.
@@ -258,6 +266,58 @@ class PluginConfiguration
                 'envVariable' => CacheControlEnvironment::DEFAULT_CACHE_CONTROL_MAX_AGE,
                 'module' => ModuleResolver::CACHE_CONTROL,
                 'option' => ModuleResolver::OPTION_MAX_AGE,
+            ],
+            // Post default/max limits
+            [
+                'class' => PostsComponentConfiguration::class,
+                'envVariable' => PostsEnvironment::POST_LIST_DEFAULT_LIMIT,
+                'module' => ModuleResolver::SCHEMA_POST_TYPE,
+                'option' => ModuleResolver::OPTION_POST_DEFAULT_LIMIT,
+            ],
+            [
+                'class' => PostsComponentConfiguration::class,
+                'envVariable' => PostsEnvironment::POST_LIST_MAX_LIMIT,
+                'module' => ModuleResolver::SCHEMA_POST_TYPE,
+                'option' => ModuleResolver::OPTION_POST_MAX_LIMIT,
+            ],
+            // User default/max limits
+            [
+                'class' => UsersComponentConfiguration::class,
+                'envVariable' => UsersEnvironment::USER_LIST_DEFAULT_LIMIT,
+                'module' => ModuleResolver::SCHEMA_USER_TYPE,
+                'option' => ModuleResolver::OPTION_USER_DEFAULT_LIMIT,
+            ],
+            [
+                'class' => UsersComponentConfiguration::class,
+                'envVariable' => UsersEnvironment::USER_LIST_MAX_LIMIT,
+                'module' => ModuleResolver::SCHEMA_USER_TYPE,
+                'option' => ModuleResolver::OPTION_USER_MAX_LIMIT,
+            ],
+            // Tag default/max limits
+            [
+                'class' => TaxonomiesComponentConfiguration::class,
+                'envVariable' => TaxonomiesEnvironment::TAG_LIST_DEFAULT_LIMIT,
+                'module' => ModuleResolver::SCHEMA_TAXONOMY_TYPE,
+                'option' => ModuleResolver::OPTION_TAG_DEFAULT_LIMIT,
+            ],
+            [
+                'class' => TaxonomiesComponentConfiguration::class,
+                'envVariable' => TaxonomiesEnvironment::TAG_LIST_MAX_LIMIT,
+                'module' => ModuleResolver::SCHEMA_TAXONOMY_TYPE,
+                'option' => ModuleResolver::OPTION_TAG_MAX_LIMIT,
+            ],
+            // Page default/max limits
+            [
+                'class' => PagesComponentConfiguration::class,
+                'envVariable' => PagesEnvironment::PAGE_LIST_DEFAULT_LIMIT,
+                'module' => ModuleResolver::SCHEMA_PAGE_TYPE,
+                'option' => ModuleResolver::OPTION_PAGE_DEFAULT_LIMIT,
+            ],
+            [
+                'class' => PagesComponentConfiguration::class,
+                'envVariable' => PagesEnvironment::PAGE_LIST_MAX_LIMIT,
+                'module' => ModuleResolver::SCHEMA_PAGE_TYPE,
+                'option' => ModuleResolver::OPTION_PAGE_MAX_LIMIT,
             ],
         ];
         // For each environment variable, see if its value has been saved in the settings
