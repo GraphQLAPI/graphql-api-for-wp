@@ -285,14 +285,14 @@ class SettingsMenuPage extends AbstractMenuPage
 
         if ($this->printWithTabs()) {
             \wp_enqueue_style(
-                'graphql-api-settings-menu-page',
+                'graphql-api-settings-tabpanel',
                 \GRAPHQL_API_URL . 'assets/css/tabpanel.css',
                 array(),
                 \GRAPHQL_BY_POP_VERSION
             );
 
             \wp_enqueue_script(
-                'graphql-api-settings-menu-page',
+                'graphql-api-settings-tabpanel',
                 \GRAPHQL_API_URL . 'assets/js/tabpanel.js',
                 array('jquery'),
                 \GRAPHQL_BY_POP_VERSION

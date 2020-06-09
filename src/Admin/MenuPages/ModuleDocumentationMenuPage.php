@@ -49,32 +49,43 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
         }
         $title = $moduleResolver->getName($module);
         $documentation = $moduleResolver->getDocumentation($module);
-        /**
-         * 1. Hide the menus
-         * 2. Make images fit within the iframe
-         */
         ?>
-        <style>
-            #adminmenumain,
-            #wpadminbar {
-                display: none;
-            }
-            html.wp-toolbar {
-                padding-top: 0;
-            }
-            #graphql-api-module-docs img {
-                max-width: 100%;
-                width: auto;
-                height: auto;
-            }
-        </style>
         <div
             id="graphql-api-module-docs"
-            class="wrap"
+            class="wrap responsive-img-container"
         >
             <h1><?php echo $title ?></h1>
             <?php echo $documentation ?>
         </div>
         <?php
+    }
+
+    /**
+     * Enqueue the required assets and initialize the localized scripts
+     *
+     * @return void
+     */
+    protected function enqueueAssets(): void
+    {
+        parent::enqueueAssets();
+
+        /**
+         * Hide the menus
+         */
+        \wp_enqueue_style(
+            'graphql-api-hide-admin-bar',
+            \GRAPHQL_API_URL . 'assets/css/hide-admin-bar.css',
+            array(),
+            \GRAPHQL_BY_POP_VERSION
+        );
+        /**
+         * Make images fit within the iframe
+         */
+        \wp_enqueue_style(
+            'graphql-api-responsive-images',
+            \GRAPHQL_API_URL . 'assets/css/responsive-images.css',
+            array(),
+            \GRAPHQL_BY_POP_VERSION
+        );
     }
 }

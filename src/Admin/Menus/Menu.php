@@ -34,9 +34,8 @@ class Menu extends AbstractMenu
         return [
             GraphiQLMenuPage::class,
             GraphQLVoyagerMenuPage::class,
-            ModulesMenuPage::class,
-            ModuleDocumentationMenuPage::class,
             SettingsMenuPage::class,
+            $this->getModuleMenuPageClass(),
         ];
     }
 
@@ -79,14 +78,26 @@ class Menu extends AbstractMenu
         $graphQLVoyagerMenuPage->setHookName($hookName);
     }
 
+    /**
+     * Either the Modules menu page, or the Module Documentation menu page,
+     * based on parameter ?tab="docs" or not
+     *
+     * @return string
+     */
+    protected function getModuleMenuPageClass(): string
+    {
+        return
+            ($_GET[RequestParams::TAB] == RequestParams::TAB_DOCS) ?
+            ModuleDocumentationMenuPage::class :
+            ModulesMenuPage::class;
+    }
+
     public function addMenuPagesBottom(): void
     {
         parent::addMenuPagesBottom();
 
         $instanceManager = InstanceManagerFacade::getInstance();
-        $menuPageClass = ($_GET[RequestParams::TAB] == RequestParams::TAB_DOCS) ?
-            ModuleDocumentationMenuPage::class :
-            ModulesMenuPage::class;
+        $menuPageClass = $this->getModuleMenuPageClass();
         $modulesMenuPage = $instanceManager->getInstance($menuPageClass);
         $hookName = \add_submenu_page(
             self::NAME,
