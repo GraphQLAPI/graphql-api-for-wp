@@ -36,7 +36,7 @@ abstract class AbstractPostType
         );
 
         /** Add the excerpt, which is the description of the different CPTs (GraphQL query/ACL/CCL) */
-        if ($this->usePostExcerptAsDescription()) {
+        if ($this->isExcerptAsDescriptionEnabled() && $this->usePostExcerptAsDescription()) {
             // Execute last as to always add the description at the top
             \add_filter(
                 'the_content',
@@ -239,6 +239,17 @@ abstract class AbstractPostType
     }
 
     /**
+     * Is the excerpt used as description for the CPT?
+     *
+     * @return bool
+     */
+    protected function isExcerptAsDescriptionEnabled(): bool
+    {
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        return $moduleRegistry->isModuleEnabled(ModuleResolver::EXCERPT_AS_DESCRIPTION);
+    }
+
+    /**
      * Is the API Hierarchy Module enabled?
      *
      * @return bool
@@ -329,7 +340,7 @@ abstract class AbstractPostType
         if ($this->isAPIHierarchyModuleEnabled() && $this->isHierarchical()) {
             $postTypeArgs['supports'][] = 'page-attributes';
         }
-        if ($this->usePostExcerptAsDescription()) {
+        if ($this->isExcerptAsDescriptionEnabled() && $this->usePostExcerptAsDescription()) {
             $postTypeArgs['supports'][] = 'excerpt';
         }
         if ($template = $this->getGutenbergTemplate()) {
