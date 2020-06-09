@@ -43,6 +43,18 @@ abstract class AbstractPostType
                 [$this, 'maybeAddExcerptAsDescription'],
                 PHP_INT_MAX
             );
+            // Add the custom columns to the post type
+            $postType = $this->getPostType();
+            add_filter(
+                "manage_{$postType}_posts_columns",
+                [$this, 'setTableColumns']
+            );
+            add_action(
+                "manage_{$postType}_posts_custom_column",
+                [$this, 'resolveCustomColumn'],
+                10,
+                2
+            );
         }
 
         /**
@@ -61,6 +73,40 @@ abstract class AbstractPostType
             10,
             2
         );
+    }
+
+    public function setTableColumns(array $columns): array
+    {
+        // Add the description column after the title
+        $titlePos = array_search('title', array_keys($columns));
+        return array_merge(
+            array_slice(
+                $columns,
+                0,
+                $titlePos + 1,
+                true
+            ),
+            [
+                'description' => \__('Description', 'graphql-api' ),
+            ],
+            array_slice(
+                $columns,
+                $titlePos + 1,
+                null,
+                true
+            )
+        );
+    }
+
+    // Add the data to the custom columns for the book post type:
+    public function resolveCustomColumn($column, $post_id): void
+    {
+        switch ($column) {
+            case 'description' :
+                $post = \get_post($post_id);
+                echo strip_tags($post->post_excerpt ?? '');
+                break;
+        }
     }
 
     /**
@@ -139,7 +185,7 @@ abstract class AbstractPostType
                 $content = \sprintf(
                     \__('<p class="%s"><strong>Description: </strong>%s</p>'),
                     $this->getAlignClass(),
-                    $excerpt
+                    strip_tags($excerpt)
                 ) . $content;
             }
         }
