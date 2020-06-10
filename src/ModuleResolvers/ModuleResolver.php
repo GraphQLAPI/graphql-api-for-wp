@@ -17,6 +17,7 @@ use PoP\Comments\TypeResolvers\CommentTypeResolver;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use PoP\Content\TypeResolvers\ContentEntityUnionTypeResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
@@ -64,6 +65,7 @@ class ModuleResolver extends AbstractModuleResolver
     public const SCHEMA_PAGE_TYPE = Plugin::NAMESPACE . '\schema-page-type';
     public const SCHEMA_MEDIA_TYPE = Plugin::NAMESPACE . '\schema-media-type';
     public const SCHEMA_TAXONOMY_TYPE = Plugin::NAMESPACE . '\schema-taxonomy-type';
+    public const SCHEMA_CONTENT_ENTITY_UNION_TYPE = Plugin::NAMESPACE . '\schema-content-entity-union-type';
 
     /**
      * Setting options
@@ -77,8 +79,8 @@ class ModuleResolver extends AbstractModuleResolver
     public const OPTION_MAX_AGE = 'max-age';
     public const OPTION_POST_DEFAULT_LIMIT = 'post-default-limit';
     public const OPTION_POST_MAX_LIMIT = 'post-max-limit';
-    public const OPTION_CONTENT_DEFAULT_LIMIT = 'content-default-limit';
-    public const OPTION_CONTENT_MAX_LIMIT = 'content-max-limit';
+    public const OPTION_CONTENT_ENTITY_DEFAULT_LIMIT = 'content-entity-default-limit';
+    public const OPTION_CONTENT_ENTITY_MAX_LIMIT = 'content-entity-max-limit';
     public const OPTION_USER_DEFAULT_LIMIT = 'user-default-limit';
     public const OPTION_USER_MAX_LIMIT = 'user-max-limit';
     public const OPTION_TAG_DEFAULT_LIMIT = 'tag-default-limit';
@@ -125,6 +127,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::SCHEMA_POST_TYPE,
             self::SCHEMA_COMMENT_TYPE,
             self::SCHEMA_TAXONOMY_TYPE,
+            self::SCHEMA_CONTENT_ENTITY_UNION_TYPE,
         ];
     }
 
@@ -205,6 +208,7 @@ class ModuleResolver extends AbstractModuleResolver
             case self::SCHEMA_USER_TYPE:
             case self::SCHEMA_PAGE_TYPE:
             case self::SCHEMA_MEDIA_TYPE:
+            case self::SCHEMA_CONTENT_ENTITY_UNION_TYPE:
                 return [
                     [
                         self::SINGLE_ENDPOINT,
@@ -284,6 +288,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::SCHEMA_PAGE_TYPE => \__('Schema Page Type', 'graphql-api'),
             self::SCHEMA_MEDIA_TYPE => \__('Schema Media Type', 'graphql-api'),
             self::SCHEMA_TAXONOMY_TYPE => \__('Schema Taxonomy Type', 'graphql-api'),
+            self::SCHEMA_CONTENT_ENTITY_UNION_TYPE => \__('Schema Content Entity Union Type', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
     }
@@ -389,6 +394,11 @@ class ModuleResolver extends AbstractModuleResolver
                     \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
                     TagTypeResolver::NAME,
                 );
+            case self::SCHEMA_CONTENT_ENTITY_UNION_TYPE:
+                return sprintf(
+                    \__('Add the <code>%s</code> union type to the schema', 'graphql-api'),
+                    ContentEntityUnionTypeResolver::NAME,
+                );
         }
         return parent::getDescription($module);
     }
@@ -401,6 +411,7 @@ class ModuleResolver extends AbstractModuleResolver
             case self::SCHEMA_CACHE:
             case self::SCHEMA_NAMESPACING:
             case self::FIELD_DEPRECATION:
+            case self::SCHEMA_CONTENT_ENTITY_UNION_TYPE:
                 return false;
         }
         return parent::isEnabledByDefault($module);
@@ -450,8 +461,6 @@ class ModuleResolver extends AbstractModuleResolver
             self::SCHEMA_POST_TYPE => [
                 self::OPTION_POST_DEFAULT_LIMIT => 10,
                 self::OPTION_POST_MAX_LIMIT => 100,
-                self::OPTION_CONTENT_DEFAULT_LIMIT => 10,
-                self::OPTION_CONTENT_MAX_LIMIT => 100,
             ],
             self::SCHEMA_USER_TYPE => [
                 self::OPTION_USER_DEFAULT_LIMIT => 10,
@@ -464,6 +473,10 @@ class ModuleResolver extends AbstractModuleResolver
             self::SCHEMA_TAXONOMY_TYPE => [
                 self::OPTION_TAG_DEFAULT_LIMIT => 50,
                 self::OPTION_TAG_MAX_LIMIT => 500,
+            ],
+            self::SCHEMA_CONTENT_ENTITY_UNION_TYPE => [
+                self::OPTION_CONTENT_ENTITY_DEFAULT_LIMIT => 10,
+                self::OPTION_CONTENT_ENTITY_MAX_LIMIT => 100,
             ],
         ];
         return $defaultValues[$module][$option];
@@ -709,12 +722,12 @@ class ModuleResolver extends AbstractModuleResolver
                 self::SCHEMA_USER_TYPE,
                 self::SCHEMA_TAXONOMY_TYPE,
                 self::SCHEMA_PAGE_TYPE,
+                self::SCHEMA_CONTENT_ENTITY_UNION_TYPE,
             ])
         ) {
             $moduleFieldOptions = [
                 self::SCHEMA_POST_TYPE => [
                     'posts' => [self::OPTION_POST_DEFAULT_LIMIT, self::OPTION_POST_MAX_LIMIT],
-                    'content' => [self::OPTION_CONTENT_DEFAULT_LIMIT, self::OPTION_CONTENT_MAX_LIMIT],
                 ],
                 self::SCHEMA_USER_TYPE => [
                     'users' => [self::OPTION_USER_DEFAULT_LIMIT, self::OPTION_USER_MAX_LIMIT],
@@ -724,6 +737,9 @@ class ModuleResolver extends AbstractModuleResolver
                 ],
                 self::SCHEMA_PAGE_TYPE => [
                     'pages' => [self::OPTION_PAGE_DEFAULT_LIMIT, self::OPTION_PAGE_MAX_LIMIT],
+                ],
+                self::SCHEMA_CONTENT_ENTITY_UNION_TYPE => [
+                    'contentEntities' => [self::OPTION_CONTENT_ENTITY_DEFAULT_LIMIT, self::OPTION_CONTENT_ENTITY_MAX_LIMIT],
                 ],
             ];
             foreach ($moduleFieldOptions[$module] as $field => $options) {

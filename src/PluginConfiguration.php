@@ -33,6 +33,8 @@ use PoP\Taxonomies\Environment as TaxonomiesEnvironment;
 use PoP\Taxonomies\ComponentConfiguration as TaxonomiesComponentConfiguration;
 use PoP\Pages\Environment as PagesEnvironment;
 use PoP\Pages\ComponentConfiguration as PagesComponentConfiguration;
+use PoP\Content\Environment as ContentEnvironment;
+use PoP\Content\ComponentConfiguration as ContentComponentConfiguration;
 
 /**
  * Sets the configuration in all the PoP components.
@@ -319,6 +321,19 @@ class PluginConfiguration
                 'module' => ModuleResolver::SCHEMA_PAGE_TYPE,
                 'option' => ModuleResolver::OPTION_PAGE_MAX_LIMIT,
             ],
+            // Content entity default/max limits
+            [
+                'class' => ContentComponentConfiguration::class,
+                'envVariable' => ContentEnvironment::CONTENT_ENTITY_LIST_DEFAULT_LIMIT,
+                'module' => ModuleResolver::SCHEMA_CONTENT_ENTITY_UNION_TYPE,
+                'option' => ModuleResolver::OPTION_CONTENT_ENTITY_DEFAULT_LIMIT,
+            ],
+            [
+                'class' => ContentComponentConfiguration::class,
+                'envVariable' => ContentEnvironment::CONTENT_ENTITY_LIST_MAX_LIMIT,
+                'module' => ModuleResolver::SCHEMA_CONTENT_ENTITY_UNION_TYPE,
+                'option' => ModuleResolver::OPTION_CONTENT_ENTITY_MAX_LIMIT,
+            ],
         ];
         // For each environment variable, see if its value has been saved in the settings
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
@@ -593,6 +608,10 @@ class PluginConfiguration
                 \PoP\TaxonomyMeta\Component::class,
                 \PoP\TaxonomyQueryWP\Component::class,
                 \PoP\TaxonomyQuery\Component::class,
+            ],
+            ModuleResolver::SCHEMA_CONTENT_ENTITY_UNION_TYPE => [
+                \PoP\ContentWP\Component::class,
+                \PoP\Content\Component::class,
             ],
         ];
         $skipSchemaModuleComponentClasses = array_filter(
