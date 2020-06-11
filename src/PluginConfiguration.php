@@ -321,18 +321,18 @@ class PluginConfiguration
                 'module' => ModuleResolver::SCHEMA_PAGE_TYPE,
                 'option' => ModuleResolver::OPTION_PAGE_MAX_LIMIT,
             ],
-            // Content entity default/max limits
+            // Custom post default/max limits
             [
                 'class' => ContentComponentConfiguration::class,
-                'envVariable' => ContentEnvironment::CONTENT_ENTITY_LIST_DEFAULT_LIMIT,
-                'module' => ModuleResolver::SCHEMA_CONTENT_ENTITY_UNION_TYPE,
-                'option' => ModuleResolver::OPTION_CONTENT_ENTITY_DEFAULT_LIMIT,
+                'envVariable' => ContentEnvironment::CUSTOM_POST_LIST_DEFAULT_LIMIT,
+                'module' => ModuleResolver::SCHEMA_CUSTOM_POST_UNION_TYPE,
+                'option' => ModuleResolver::OPTION_CUSTOM_POST_DEFAULT_LIMIT,
             ],
             [
                 'class' => ContentComponentConfiguration::class,
-                'envVariable' => ContentEnvironment::CONTENT_ENTITY_LIST_MAX_LIMIT,
-                'module' => ModuleResolver::SCHEMA_CONTENT_ENTITY_UNION_TYPE,
-                'option' => ModuleResolver::OPTION_CONTENT_ENTITY_MAX_LIMIT,
+                'envVariable' => ContentEnvironment::CUSTOM_POST_LIST_MAX_LIMIT,
+                'module' => ModuleResolver::SCHEMA_CUSTOM_POST_UNION_TYPE,
+                'option' => ModuleResolver::OPTION_CUSTOM_POST_MAX_LIMIT,
             ],
         ];
         // For each environment variable, see if its value has been saved in the settings
@@ -609,7 +609,7 @@ class PluginConfiguration
                 \PoP\TaxonomyQueryWP\Component::class,
                 \PoP\TaxonomyQuery\Component::class,
             ],
-            ModuleResolver::SCHEMA_CONTENT_ENTITY_UNION_TYPE => [
+            ModuleResolver::SCHEMA_CUSTOM_POST_UNION_TYPE => [
                 \PoP\ContentWP\Component::class,
                 \PoP\Content\Component::class,
             ],
