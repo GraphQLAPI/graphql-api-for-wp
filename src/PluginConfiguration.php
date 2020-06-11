@@ -33,8 +33,8 @@ use PoP\Taxonomies\Environment as TaxonomiesEnvironment;
 use PoP\Taxonomies\ComponentConfiguration as TaxonomiesComponentConfiguration;
 use PoP\Pages\Environment as PagesEnvironment;
 use PoP\Pages\ComponentConfiguration as PagesComponentConfiguration;
-use PoP\Content\Environment as ContentEnvironment;
-use PoP\Content\ComponentConfiguration as ContentComponentConfiguration;
+use PoP\CustomPosts\Environment as ContentEnvironment;
+use PoP\CustomPosts\ComponentConfiguration as ContentComponentConfiguration;
 
 /**
  * Sets the configuration in all the PoP components.
@@ -610,8 +610,8 @@ class PluginConfiguration
                 \PoP\TaxonomyQuery\Component::class,
             ],
             ModuleResolver::SCHEMA_CUSTOM_POST_UNION_TYPE => [
-                \PoP\ContentWP\Component::class,
-                \PoP\Content\Component::class,
+                \PoP\CustomPostsWP\Component::class,
+                \PoP\CustomPosts\Component::class,
             ],
         ];
         $skipSchemaModuleComponentClasses = array_filter(

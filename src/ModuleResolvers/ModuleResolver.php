@@ -17,7 +17,7 @@ use PoP\Comments\TypeResolvers\CommentTypeResolver;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use PoP\Content\TypeResolvers\CustomPostUnionTypeResolver;
+use PoP\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
