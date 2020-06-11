@@ -12,7 +12,7 @@ While the schema normally looks like this:
 
 <a href="../../images/namespaced-interactive-schema.jpg" target="_blank">![Namespaced interactive schema](../../images/namespaced-interactive-schema.jpg)</a>
 
-In the namespaced schema, type `Post` becomes `PoP_ComponentModel_Post` and interface `ContentEntity` becomes `PoP_ComponentModel_ContentEntity` (following that the PHP package where this functionality was implemented has owner `"PoP"` and name `"ComponentModel"`).
+In the namespaced schema, type `Post` becomes `PoP_ComponentModel_Post` and interface `CustomPost` becomes `PoP_ComponentModel_CustomPost` (following that the PHP package where this functionality was implemented has owner `"PoP"` and name `"ComponentModel"`).
 
 ## When to use
 

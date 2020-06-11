@@ -17,7 +17,7 @@ use PoP\Comments\TypeResolvers\CommentTypeResolver;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use PoP\Content\TypeResolvers\ContentEntityUnionTypeResolver;
+use PoP\Content\TypeResolvers\CustomPostUnionTypeResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
@@ -397,7 +397,7 @@ class ModuleResolver extends AbstractModuleResolver
             case self::SCHEMA_CONTENT_ENTITY_UNION_TYPE:
                 return sprintf(
                     \__('Add the <code>%s</code> union type to the schema', 'graphql-api'),
-                    ContentEntityUnionTypeResolver::NAME,
+                    CustomPostUnionTypeResolver::NAME,
                 );
         }
         return parent::getDescription($module);
