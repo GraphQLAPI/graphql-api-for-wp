@@ -65,7 +65,7 @@ class ModuleResolver extends AbstractModuleResolver
     public const SCHEMA_PAGE_TYPE = Plugin::NAMESPACE . '\schema-page-type';
     public const SCHEMA_MEDIA_TYPE = Plugin::NAMESPACE . '\schema-media-type';
     public const SCHEMA_TAXONOMY_TYPE = Plugin::NAMESPACE . '\schema-taxonomy-type';
-    public const SCHEMA_CUSTOM_POST_UNION_TYPE = Plugin::NAMESPACE . '\schema-custom-post-union-type';
+    public const SCHEMA_CUSTOMPOST_UNION_TYPE = Plugin::NAMESPACE . '\schema-custompost-union-type';
 
     /**
      * Setting options
@@ -79,8 +79,8 @@ class ModuleResolver extends AbstractModuleResolver
     public const OPTION_MAX_AGE = 'max-age';
     public const OPTION_POST_DEFAULT_LIMIT = 'post-default-limit';
     public const OPTION_POST_MAX_LIMIT = 'post-max-limit';
-    public const OPTION_CUSTOM_POST_DEFAULT_LIMIT = 'custom-post-default-limit';
-    public const OPTION_CUSTOM_POST_MAX_LIMIT = 'custom-post-max-limit';
+    public const OPTION_CUSTOMPOST_DEFAULT_LIMIT = 'custompost-default-limit';
+    public const OPTION_CUSTOMPOST_MAX_LIMIT = 'custompost-max-limit';
     public const OPTION_USER_DEFAULT_LIMIT = 'user-default-limit';
     public const OPTION_USER_MAX_LIMIT = 'user-max-limit';
     public const OPTION_TAG_DEFAULT_LIMIT = 'tag-default-limit';
@@ -127,7 +127,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::SCHEMA_POST_TYPE,
             self::SCHEMA_COMMENT_TYPE,
             self::SCHEMA_TAXONOMY_TYPE,
-            self::SCHEMA_CUSTOM_POST_UNION_TYPE,
+            self::SCHEMA_CUSTOMPOST_UNION_TYPE,
         ];
     }
 
@@ -208,7 +208,7 @@ class ModuleResolver extends AbstractModuleResolver
             case self::SCHEMA_USER_TYPE:
             case self::SCHEMA_PAGE_TYPE:
             case self::SCHEMA_MEDIA_TYPE:
-            case self::SCHEMA_CUSTOM_POST_UNION_TYPE:
+            case self::SCHEMA_CUSTOMPOST_UNION_TYPE:
                 return [
                     [
                         self::SINGLE_ENDPOINT,
@@ -288,7 +288,7 @@ class ModuleResolver extends AbstractModuleResolver
             self::SCHEMA_PAGE_TYPE => \__('Schema Page Type', 'graphql-api'),
             self::SCHEMA_MEDIA_TYPE => \__('Schema Media Type', 'graphql-api'),
             self::SCHEMA_TAXONOMY_TYPE => \__('Schema Taxonomy Type', 'graphql-api'),
-            self::SCHEMA_CUSTOM_POST_UNION_TYPE => \__('Schema Custom Post Union Type', 'graphql-api'),
+            self::SCHEMA_CUSTOMPOST_UNION_TYPE => \__('Schema Custom Post Union Type', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
     }
@@ -394,7 +394,7 @@ class ModuleResolver extends AbstractModuleResolver
                     \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
                     TagTypeResolver::NAME,
                 );
-            case self::SCHEMA_CUSTOM_POST_UNION_TYPE:
+            case self::SCHEMA_CUSTOMPOST_UNION_TYPE:
                 return sprintf(
                     \__('Add the <code>%s</code> union type to the schema', 'graphql-api'),
                     CustomPostUnionTypeResolver::NAME,
@@ -411,7 +411,7 @@ class ModuleResolver extends AbstractModuleResolver
             case self::SCHEMA_CACHE:
             case self::SCHEMA_NAMESPACING:
             case self::FIELD_DEPRECATION:
-            case self::SCHEMA_CUSTOM_POST_UNION_TYPE:
+            case self::SCHEMA_CUSTOMPOST_UNION_TYPE:
                 return false;
         }
         return parent::isEnabledByDefault($module);
@@ -474,9 +474,9 @@ class ModuleResolver extends AbstractModuleResolver
                 self::OPTION_TAG_DEFAULT_LIMIT => 50,
                 self::OPTION_TAG_MAX_LIMIT => 500,
             ],
-            self::SCHEMA_CUSTOM_POST_UNION_TYPE => [
-                self::OPTION_CUSTOM_POST_DEFAULT_LIMIT => 10,
-                self::OPTION_CUSTOM_POST_MAX_LIMIT => 100,
+            self::SCHEMA_CUSTOMPOST_UNION_TYPE => [
+                self::OPTION_CUSTOMPOST_DEFAULT_LIMIT => 10,
+                self::OPTION_CUSTOMPOST_MAX_LIMIT => 100,
             ],
         ];
         return $defaultValues[$module][$option];
@@ -722,7 +722,7 @@ class ModuleResolver extends AbstractModuleResolver
                 self::SCHEMA_USER_TYPE,
                 self::SCHEMA_TAXONOMY_TYPE,
                 self::SCHEMA_PAGE_TYPE,
-                self::SCHEMA_CUSTOM_POST_UNION_TYPE,
+                self::SCHEMA_CUSTOMPOST_UNION_TYPE,
             ])
         ) {
             $moduleFieldOptions = [
@@ -738,8 +738,8 @@ class ModuleResolver extends AbstractModuleResolver
                 self::SCHEMA_PAGE_TYPE => [
                     'pages' => [self::OPTION_PAGE_DEFAULT_LIMIT, self::OPTION_PAGE_MAX_LIMIT],
                 ],
-                self::SCHEMA_CUSTOM_POST_UNION_TYPE => [
-                    'customPosts' => [self::OPTION_CUSTOM_POST_DEFAULT_LIMIT, self::OPTION_CUSTOM_POST_MAX_LIMIT],
+                self::SCHEMA_CUSTOMPOST_UNION_TYPE => [
+                    'customPosts' => [self::OPTION_CUSTOMPOST_DEFAULT_LIMIT, self::OPTION_CUSTOMPOST_MAX_LIMIT],
                 ],
             ];
             foreach ($moduleFieldOptions[$module] as $field => $options) {
