@@ -17,14 +17,14 @@ use PoP\CacheControl\Environment as CacheControlEnvironment;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
-use PoP\APIEndpointsForWP\Environment as APIEndpointsForWPEnvironment;
 use PoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
-use PoP\APIEndpointsForWP\ComponentConfiguration as APIEndpointsForWPComponentConfiguration;
 use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
+use PoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
+use PoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
 use PoP\Posts\Environment as PostsEnvironment;
 use PoP\Posts\ComponentConfiguration as PostsComponentConfiguration;
 use PoP\Users\Environment as UsersEnvironment;
@@ -164,8 +164,8 @@ class PluginConfiguration
             ],
             // GraphQL single endpoint slug
             [
-                'class' => APIEndpointsForWPComponentConfiguration::class,
-                'envVariable' => APIEndpointsForWPEnvironment::GRAPHQL_API_ENDPOINT,
+                'class' => GraphQLEndpointForWPComponentConfiguration::class,
+                'envVariable' => GraphQLEndpointForWPEnvironment::GRAPHQL_API_ENDPOINT,
                 'module' => ModuleResolver::SINGLE_ENDPOINT,
                 'option' => ModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
@@ -385,8 +385,8 @@ class PluginConfiguration
                 'envVariable' => Environment::ADD_EXCERPT_AS_DESCRIPTION,
             ],
             [
-                'class' => APIEndpointsForWPComponentConfiguration::class,
-                'envVariable' => APIEndpointsForWPEnvironment::GRAPHQL_API_ENDPOINT,
+                'class' => GraphQLEndpointForWPComponentConfiguration::class,
+                'envVariable' => GraphQLEndpointForWPEnvironment::GRAPHQL_API_ENDPOINT,
             ],
             [
                 'class' => GraphQLClientsForWPComponentConfiguration::class,
@@ -527,8 +527,8 @@ class PluginConfiguration
         $moduleToComponentClassConfigurationMappings = [
             [
                 'module' => ModuleResolver::SINGLE_ENDPOINT,
-                'class' => \PoP\APIEndpointsForWP\Component::class,
-                'envVariable' => \PoP\APIEndpointsForWP\Environment::DISABLE_GRAPHQL_API_ENDPOINT,
+                'class' => \PoP\GraphQLEndpointForWP\Component::class,
+                'envVariable' => \PoP\GraphQLEndpointForWP\Environment::DISABLE_GRAPHQL_API_ENDPOINT,
                 'callback' => [self::class, 'opposite'],
             ],
             [

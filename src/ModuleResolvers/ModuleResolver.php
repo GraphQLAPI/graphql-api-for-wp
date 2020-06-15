@@ -23,7 +23,7 @@ use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\UpperCaseStringDirectiveResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\HasMarkdownDocumentationModuleResolverTrait;
-use PoP\APIEndpointsForWP\ComponentConfiguration as APIEndpointsForWPComponentConfiguration;
+use PoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
 use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 
 class ModuleResolver extends AbstractModuleResolver
@@ -209,18 +209,13 @@ class ModuleResolver extends AbstractModuleResolver
             case self::SCHEMA_PAGE_TYPE:
             case self::SCHEMA_MEDIA_TYPE:
             case self::SCHEMA_CUSTOMPOST_UNION_TYPE:
+            case self::SCHEMA_COMMENT_TYPE:
+            case self::SCHEMA_TAXONOMY_TYPE:
                 return [
                     [
                         self::SINGLE_ENDPOINT,
                         self::PERSISTED_QUERIES,
                         self::CUSTOM_ENDPOINTS,
-                    ],
-                ];
-            case self::SCHEMA_COMMENT_TYPE:
-            case self::SCHEMA_TAXONOMY_TYPE:
-                return [
-                    [
-                        self::SCHEMA_POST_TYPE,
                     ],
                 ];
         }
@@ -301,7 +296,7 @@ class ModuleResolver extends AbstractModuleResolver
             case self::SINGLE_ENDPOINT:
                 return \sprintf(
                     \__('Expose a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
-                    APIEndpointsForWPComponentConfiguration::getGraphQLAPIEndpoint()
+                    GraphQLEndpointForWPComponentConfiguration::getGraphQLAPIEndpoint()
                 );
             case self::PERSISTED_QUERIES:
                 return \__('Expose predefined responses through a custom URL, akin to using GraphQL queries to publish REST endpoints', 'graphql-api');

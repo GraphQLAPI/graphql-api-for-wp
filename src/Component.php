@@ -45,6 +45,7 @@ class Component extends AbstractComponent
             \PoP\BasicDirectives\Component::class, // Needed for if UsefulDirectives is disabled
             \PoP\UsefulDirectives\Component::class,
             \PoP\GraphQLClientsForWP\Component::class,
+            \PoP\GraphQLEndpointForWP\Component::class,
         ];
     }
 
