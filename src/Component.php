@@ -33,6 +33,7 @@ class Component extends AbstractComponent
             \PoP\CommentMetaWP\Component::class,
             \PoP\GraphQL\Component::class,
             \PoP\MediaWP\Component::class,
+            \PoP\PostsWP\Component::class,
             \PoP\PagesWP\Component::class,
             \PoP\CustomPostMediaWP\Component::class,
             \PoP\CustomPostMetaWP\Component::class,
