@@ -609,10 +609,6 @@ class PluginConfiguration
                 \PoP\TaxonomyQueryWP\Component::class,
                 \PoP\TaxonomyQuery\Component::class,
             ],
-            ModuleResolver::SCHEMA_CUSTOMPOST_UNION_TYPE => [
-                \PoP\CustomPostsWP\Component::class,
-                \PoP\CustomPosts\Component::class,
-            ],
         ];
         $skipSchemaModuleComponentClasses = array_filter(
             $maybeSkipSchemaModuleComponentClasses,

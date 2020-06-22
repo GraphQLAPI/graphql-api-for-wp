@@ -406,7 +406,6 @@ class ModuleResolver extends AbstractModuleResolver
             case self::SCHEMA_CACHE:
             case self::SCHEMA_NAMESPACING:
             case self::FIELD_DEPRECATION:
-            case self::SCHEMA_CUSTOMPOST_UNION_TYPE:
                 return false;
         }
         return parent::isEnabledByDefault($module);
