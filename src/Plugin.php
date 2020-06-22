@@ -19,7 +19,6 @@ use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserRolesB
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserStateBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlDisableAccessBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserCapabilitiesBlock;
-use GraphQLAPI\GraphQLAPI\Clients\GraphiQLClient;
 
 class Plugin
 {
@@ -128,7 +127,9 @@ class Plugin
 
     /**
      * Get permalinks to work when activating the plugin
-     * @see https://codex.wordpress.org/Function_Reference/register_post_type#Flushing_Rewrite_on_Activation
+     *
+     * @see    https://codex.wordpress.org/Function_Reference/register_post_type#Flushing_Rewrite_on_Activation
+     * @return void
      */
     public function activate(): void
     {
@@ -150,7 +151,9 @@ class Plugin
 
     /**
      * Remove permalinks when deactivating the plugin
-     * @see https://developer.wordpress.org/plugins/plugin-basics/activation-deactivation-hooks/
+     *
+     * @see    https://developer.wordpress.org/plugins/plugin-basics/activation-deactivation-hooks/
+     * @return void
      */
     public function deactivate(): void
     {
