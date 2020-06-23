@@ -113,7 +113,7 @@ class ModuleListTable extends AbstractItemListTable
                 $modulesMenuPage = $instanceManager->getInstance(ModulesMenuPage::class);
                 if ($item['has-docs']) {
                     $url = \admin_url(sprintf(
-                        'admin.php?page=%s&%s=%s&%s=%s&TB_iframe=true&width=772&height=398',
+                        'admin.php?page=%s&%s=%s&%s=%s&TB_iframe=true&width=600&height=550',
                         $modulesMenuPage->getScreenID(),
                         RequestParams::TAB,
                         RequestParams::TAB_DOCS,
@@ -121,9 +121,10 @@ class ModuleListTable extends AbstractItemListTable
                         urlencode($item['module'])
                     ));
                     $actions['docs'] = \sprintf(
-                        '<a href="%s" class="%s">%s</a>',
-                        $url,
+                        '<a href="%s" class="%s" data-title="%s">%s</a>',
+                        \esc_url($url),
                         'thickbox open-plugin-details-modal',
+                        \esc_attr($item['name']),
                         \__('View details', 'graphql-api')
                     );
                 }
