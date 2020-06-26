@@ -16,6 +16,7 @@ use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLCacheControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLAccessControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
+use PoP\CustomPosts\Types\Status;
 
 class CPTFieldResolver extends AbstractQueryableFieldResolver
 {
@@ -125,7 +126,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
                 $query = [
                     'limit' => -1,
                     'post-status' => [
-                        \POP_POSTSTATUS_PUBLISHED,
+                        Status::PUBLISHED,
                     ],
                 ];
                 return $query;
