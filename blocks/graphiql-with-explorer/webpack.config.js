@@ -1,11 +1,11 @@
 const config = require( '@wordpress/scripts/config/webpack.config' );
 const isProduction = process.env.NODE_ENV === 'production';
 
-// /** Allow to import graphiql/graphiql.css */
-// config.module.rules.push( {
-// 	test: /\.css$/i,
-// 	use: [ 'style-loader', 'css-loader' ],
-// } );
+/** Allow to import graphiql/graphiql.css */
+config.module.rules.push( {
+	test: /\.css$/i,
+	use: [ 'style-loader', 'css-loader' ],
+} );
 
 if ( ! isProduction ) {
 	/**
