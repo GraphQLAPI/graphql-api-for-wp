@@ -1,26 +1,11 @@
 const config = require( '@wordpress/scripts/config/webpack.config' );
 const isProduction = process.env.NODE_ENV === 'production';
 
-/** Allow to import graphiql/graphiql.css */
-config.module.rules.push( {
-	test: /\.css$/i,
-	use: [ 'style-loader', 'css-loader' ],
-} );
-
-/**
- * Add SCSS
- */
-config.module.rules.push( {
-	test: /\.s[ac]ss$/i,
-	use: [
-		// Creates `style` nodes from JS strings
-		'style-loader',
-		// Translates CSS into CommonJS
-		'css-loader',
-		// Compiles Sass to CSS
-		'sass-loader',
-	],
-} );
+// /** Allow to import graphiql/graphiql.css */
+// config.module.rules.push( {
+// 	test: /\.css$/i,
+// 	use: [ 'style-loader', 'css-loader' ],
+// } );
 
 if ( ! isProduction ) {
 	/**
