@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-const { PluginDocumentSettingPanel } = wp.editPost;
+import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
 
 /**
  * Internal dependencies
@@ -31,7 +31,7 @@ const DocumentSettingsPanel = () => (
     >
         <MarkdownGuideButton
             getMarkdownContentCallback={ getMarkdownContentOrUseDefault }
-            contentLabel={ guideName } 
+            contentLabel={ guideName }
             guideName={ guideName }
             pageFilenames={ pageFilenames }
         />

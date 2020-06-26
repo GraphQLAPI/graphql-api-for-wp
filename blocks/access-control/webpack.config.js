@@ -1,21 +1,6 @@
 const config = require( '@wordpress/scripts/config/webpack.config' );
 const isProduction = process.env.NODE_ENV === 'production';
 
-/**
- * Add SCSS
- */
-config.module.rules.push( {
-	test: /\.s[ac]ss$/i,
-	use: [
-		// Creates `style` nodes from JS strings
-		'style-loader',
-		// Translates CSS into CommonJS
-		'css-loader',
-		// Compiles Sass to CSS
-		'sass-loader',
-	],
-} );
-
 if ( ! isProduction ) {
 	/**
 	 * Exclude "node_modules" from "source-map-loader" (problem similar to https://github.com/angular-redux/store/issues/64)

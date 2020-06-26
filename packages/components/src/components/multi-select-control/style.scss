@@ -85,7 +85,7 @@
 .multi-select-control__category-title {
 	position: sticky;
 	top: 0;
-	padding: $panel-padding 0;
+	padding: $grid-unit-20 0;
 	background-color: $white;
 	z-index: z-index(".multi-select-control__category-title");
 

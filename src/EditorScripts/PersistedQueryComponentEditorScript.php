@@ -25,21 +25,6 @@ class PersistedQueryComponentEditorScript extends AbstractEditorScript
     }
 
     /**
-     * Dependencies to load before the script
-     *
-     * @return array
-     */
-    protected function getScriptDependencies(): array
-    {
-        return array_merge(
-            parent::getScriptDependencies(),
-            [
-                'wp-edit-post',
-            ]
-        );
-    }
-
-    /**
      * Add the locale language to the localized data?
      *
      * @return bool

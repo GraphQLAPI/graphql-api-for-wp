@@ -22,21 +22,7 @@ config.resolve.alias['@docs'] = path.resolve(process.cwd(), 'docs/')
 /**
  * Add support for additional file types
  */
-config.module.rules.push( 
-	/**
-	 * SCSS
-	 */
-	{
-		test: /\.s[ac]ss$/i,
-		use: [
-			// Creates `style` nodes from JS strings
-			'style-loader',
-			// Translates CSS into CommonJS
-			'css-loader',
-			// Compiles Sass to CSS
-			'sass-loader',
-		],
-	},
+config.module.rules.push(
 	/**
 	 * Markdown
 	 */
