@@ -8,7 +8,7 @@
 /**
  * Application imports
  */
-import { FieldDeprecationListEditableOnFocusMultiSelectControl } from '../../../packages/components/src';
+import { FieldDeprecationListEditableOnFocusMultiSelectControl } from '@graphqlapi/components';
 
 const EditBlock = ( props ) => {
 	const { className } = props;

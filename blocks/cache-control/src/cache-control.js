@@ -8,7 +8,7 @@ import { getMarkdownContentOrUseDefault } from './markdown-loader';
 /**
  * Internal dependencies
  */
-import { MarkdownInfoModalButton, getEditableOnFocusComponentClass } from '../../../packages/components/src';
+import { MarkdownInfoModalButton, getEditableOnFocusComponentClass } from '@graphqlapi/components';
 
 const CacheControl = ( props ) => {
 	const { className, setAttributes, isSelected, attributes: { cacheControlMaxAge } } = props;

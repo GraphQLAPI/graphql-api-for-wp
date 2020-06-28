@@ -12,7 +12,7 @@ import {
 	withCard,
 	withEditableOnFocus,
 	LinkableInfoTooltip,
-} from '../../../packages/components/src';
+} from '@graphqlapi/components';
 
 const EndpointOptions = ( props ) => {
 	const {

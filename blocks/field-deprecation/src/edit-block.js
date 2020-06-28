@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { compose, withState } from '@wordpress/compose';
 import FieldDeprecation from './field-deprecation';
-import { withFieldDirectiveMultiSelectControl } from '../../../packages/components/src';
+import { withFieldDirectiveMultiSelectControl } from '@graphqlapi/components';
 
 export default compose( [
 	withState( {

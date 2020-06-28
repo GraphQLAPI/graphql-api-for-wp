@@ -13,7 +13,7 @@ import {
 	withCard,
 	withEditableOnFocus,
 	LinkableInfoTooltip,
-} from '../../../packages/components/src';
+} from '@graphqlapi/components';
 
 const getViewBooleanLabel = ( value ) => value ? `✅ ${ __('Yes', 'graphql-api') }` : `❌ ${ __('No', 'graphql-api') }`
 const getEditBooleanLabel = ( value ) => value ? __('Yes', 'graphql-api') : __('No', 'graphql-api')

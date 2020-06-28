@@ -5,7 +5,7 @@ import {
 	ACCESS_CONTROL_BLOCK_NAME,
 	ACCESS_CONTROL_BLOCK_CATEGORY,
 } from './block-settings.js';
-import { SchemaMode } from '../../../packages/components/src';
+import { SchemaMode } from '@graphqlapi/components';
 
 const AccessControl = ( props ) => {
 	const { className, isIndividualControlForSchemaModeEnabled } = props;

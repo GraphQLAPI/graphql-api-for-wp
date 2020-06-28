@@ -8,7 +8,7 @@
 /**
  * Application imports
  */
-import { AccessControlListEditableOnFocusMultiSelectControl } from '../../../packages/components/src';
+import { AccessControlListEditableOnFocusMultiSelectControl } from '@graphqlapi/components';
 
 const EditBlock = ( props ) => {
 	const { className } = props;

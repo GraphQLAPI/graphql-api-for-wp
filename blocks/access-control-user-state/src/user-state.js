@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { Card, CardBody, RadioControl } from '@wordpress/components';
 import { IN as USER_STATE_IN, OUT as USER_STATE_OUT } from './user-states';
-import { getEditableOnFocusComponentClass } from '../../../packages/components/src';
+import { getEditableOnFocusComponentClass } from '@graphqlapi/components';
 
 const UserState = ( props ) => {
 	const { className, isSelected, setAttributes, attributes: { value } } = props;

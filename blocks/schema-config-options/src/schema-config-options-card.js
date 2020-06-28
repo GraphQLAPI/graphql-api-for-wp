@@ -12,7 +12,7 @@ import {
 	LinkableInfoTooltip,
 	getEditableOnFocusComponentClass,
 	SETTINGS_VALUE_LABEL,
-} from '../../../packages/components/src';
+} from '@graphqlapi/components';
 import {
 	ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT,
 	ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED,

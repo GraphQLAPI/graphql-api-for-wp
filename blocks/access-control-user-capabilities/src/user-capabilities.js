@@ -9,7 +9,7 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import './store';
-import { withErrorMessage, withSpinner, SelectCard } from '../../../packages/components/src';
+import { withErrorMessage, withSpinner, SelectCard } from '@graphqlapi/components';
 
 const UserCapabilitiesSelectCard = ( props ) => {
 	const { capabilities, isSelected, attributes: { value } } = props;

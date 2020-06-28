@@ -27,8 +27,8 @@ import {
 	ACCESS_CONTROL_BLOCK_CATEGORY,
 } from './block-settings.js';
 import { doesAccessControlBlockNotHaveRuleBlocks } from './block-helpers';
-import { DEFAULT_SCHEMA_MODE } from '../../../packages/components/src';
-import { getEditableOnFocusComponentClass } from '../../../packages/components/src';
+import { DEFAULT_SCHEMA_MODE } from '@graphqlapi/components';
+import { getEditableOnFocusComponentClass } from '@graphqlapi/components';
 import './style.scss';
 import '../../../packages/components/src/components/base-styles/editable-on-focus.scss';
 

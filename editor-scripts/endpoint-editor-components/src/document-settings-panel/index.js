@@ -7,7 +7,7 @@ import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
 /**
  * Internal dependencies
  */
-import { MarkdownGuideButton } from '../../../../packages/components/src';
+import { MarkdownGuideButton } from '@graphqlapi/components';
 import { getMarkdownContentOrUseDefault } from '../markdown-loader';
 
 /**

@@ -7,7 +7,7 @@ import { TextControl, Card, CardHeader, CardBody, Tooltip, Icon, ExternalLink } 
 /**
  * Internal dependencies
  */
-import { LinkableInfoTooltip, getEditableOnFocusComponentClass } from '../../../packages/components/src';
+import { LinkableInfoTooltip, getEditableOnFocusComponentClass } from '@graphqlapi/components';
 
 const FieldDeprecation = ( props ) => {
 	const {
