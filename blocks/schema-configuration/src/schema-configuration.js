@@ -8,7 +8,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import { SelectCard, getLabelForNotFoundElement } from '../../../packages/components/src';
+import { SelectCard, getLabelForNotFoundElement } from '@graphqlapi/components';
 import {
 	ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT,
 	ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_NONE,

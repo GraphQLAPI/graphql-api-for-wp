@@ -23,4 +23,5 @@ export { DEFAULT_SCHEMA_MODE, PUBLIC_SCHEMA_MODE, PRIVATE_SCHEMA_MODE } from './
 export { withCard } from './components/card';
 export { withEditableOnFocus } from './components/editable-on-focus';
 export { getLabelForNotFoundElement } from './components/helpers';
+export { maybeGetErrorMessage } from './store/resolvers';
 export { EMPTY_LABEL, SETTINGS_VALUE_LABEL } from './default-configuration';

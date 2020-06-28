@@ -1,10 +1,10 @@
 {
-  "name": "graphql-api-fetch",
+  "name": "@graphqlapi/api-fetch",
   "version": "0.1.0",
   "description": "Fetch data from the server through the GraphQL API",
   "repository": {
     "type": "git",
-    "url": "https://github.com/leoloso/graphql-api-wp-plugin/packages/api-fetch"
+    "url": "https://github.com/GraphQLAPI/graphql-api/packages/api-fetch"
   },
   "keywords": [
     "GraphQL",
@@ -16,6 +16,7 @@
   "author": "Leonardo Losoviz",
   "license": "MIT",
   "main": "build/index.js",
+	"module": "src/index.js",
   "scripts": {
     "build": "wp-scripts build",
     "format:js": "wp-scripts format-js",

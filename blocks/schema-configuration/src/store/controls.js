@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { fetchGraphQLQuery } from '../../../../packages/api-fetch/src';
+import { fetchGraphQLQuery } from '@graphqlapi/api-fetch';
 
 /**
  * Execute the GraphQL queries

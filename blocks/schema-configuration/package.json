@@ -14,6 +14,8 @@
 		"packages-update": "wp-scripts packages-update"
 	},
 	"devDependencies": {
+		"@graphqlapi/components": "file:../../packages/components",
+		"@graphqlapi/api-fetch": "file:../../packages/api-fetch",
 		"@wordpress/components": "^9.9.0",
 		"@wordpress/i18n": "^3.14.0",
 		"@wordpress/scripts": "^12.0.0",
