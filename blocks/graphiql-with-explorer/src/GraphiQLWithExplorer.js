@@ -5,7 +5,14 @@ import { buildClientSchema, getIntrospectionQuery, parse } from "graphql";
 
 import "graphiql/graphiql.css";
 import '../../graphiql/src/style.scss';
-import './style.scss';
+
+/**
+ * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
+ * Those files can contain any CSS code that gets applied to the editor.
+ *
+ * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
+ */
+import './editor.scss';
 
 import { __ } from '@wordpress/i18n';
 

@@ -55,6 +55,16 @@ class GraphiQLBlock extends AbstractBlock
     }
 
     /**
+     * Load index.css from editor.scss
+     *
+     * @return boolean
+     */
+    protected function registerEditorCSS(): bool
+    {
+        return true;
+    }
+
+    /**
      * GraphiQL default query
      *
      * @return string

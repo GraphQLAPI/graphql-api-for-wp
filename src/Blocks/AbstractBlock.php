@@ -282,7 +282,7 @@ abstract class AbstractBlock
          * Register editor CSS file
          */
         if ($this->registerEditorCSS()) {
-            $editor_css = 'editor.css';
+            $editor_css = 'build/index.css';
             \wp_register_style(
                 $blockRegistrationName . '-block-editor',
                 $url . $editor_css,
@@ -296,7 +296,7 @@ abstract class AbstractBlock
          * Register client/editor CSS file
          */
         if ($this->registerCommonStyleCSS()) {
-            $style_css = 'style.css';
+            $style_css = 'build/style-index.css';
             \wp_register_style(
                 $blockRegistrationName . '-block',
                 $url . $style_css,
