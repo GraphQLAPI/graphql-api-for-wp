@@ -4,7 +4,7 @@ import GraphiQLExplorer from "graphiql-explorer";
 import { buildClientSchema, getIntrospectionQuery, parse } from "graphql";
 
 import "graphiql/graphiql.css";
-import '../../graphiql/src/style.scss';
+import '../../graphiql/src/editor.scss';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
