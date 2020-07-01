@@ -2,8 +2,9 @@
 # This bash script generates the JS build,
 # by running `npm run build` on all scripts (blocks/editor-scripts/packages)
 
-# Current dir
-DIR="$( dirname ${BASH_SOURCE[0]} )"
+# Current directory
+# @see: https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself#comment16925670_59895
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 # Function `buildScripts` will run `npm run build`
 # on all folders in the current directory

@@ -5,7 +5,8 @@
 # Make sure package.json contains ALL dependencies needed for everything
 
 # Current directory
-DIR="$( dirname ${BASH_SOURCE[0]} )"
+# @see: https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself#comment16925670_59895
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 # node_modules/ directory, under packages/
 NODE_MODULES_DIR="$DIR/../packages/node_modules/"
