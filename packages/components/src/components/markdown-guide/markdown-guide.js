@@ -27,7 +27,7 @@ const EndpointGuide = ( props ) => {
 			{ pages.map( page => (
 				<GuidePage
 					{ ...props }
-					dangerouslySetInnerHTML={ { __html: page } } 
+					dangerouslySetInnerHTML={ { __html: page } }
 				/>
 			) ) }
 		</Guide>
@@ -48,7 +48,7 @@ const EndpointGuideButton = ( props ) => {
 				{ buttonLabel }
 			</Button>
 			{ isOpen && (
-				<EndpointGuide 
+				<EndpointGuide
 					{ ...props }
 					onFinish={ () => setOpen( false ) }
 				/>
