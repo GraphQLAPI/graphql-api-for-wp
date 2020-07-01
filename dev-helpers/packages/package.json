@@ -16,6 +16,7 @@
 	"devDependencies": {
 		"@graphqlapi/components": "file:../../packages/components",
 		"@graphqlapi/api-fetch": "file:../../packages/api-fetch",
+		"@graphqlapi/access-control": "file:../../packages/access-control",
 		"@wordpress/block-editor": "^4.2.0",
 		"@wordpress/base-styles": "^1.11.0",
 		"@wordpress/components": "^9.9.0",

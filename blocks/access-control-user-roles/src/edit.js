@@ -1,6 +1,6 @@
 import { compose, withState } from '@wordpress/compose';
 import UserRoles from './user-roles';
-import withAccessControlGroup from '../../access-control/src/with-access-control-group';
+import { withAccessControlGroup } from '@graphqlapi/access-control';
 
 /**
  * Same constant as in \PoP\UserRolesAccessControl\Services\AccessControlGroups::ROLES
