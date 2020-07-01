@@ -6,26 +6,21 @@
 DIR="$( dirname ${BASH_SOURCE[0]} )"
 NODE_MODULES_DIR="$DIR/../packages/node_modules/"
 cd "$DIR"
+
 # Blocks
-ln -snf $NODE_MODULES_DIR ../../blocks/access-control/
-ln -snf $NODE_MODULES_DIR ../../blocks/access-control-disable-access/
-ln -snf $NODE_MODULES_DIR ../../blocks/access-control-user-capabilities/
-ln -snf $NODE_MODULES_DIR ../../blocks/access-control-user-roles/
-ln -snf $NODE_MODULES_DIR ../../blocks/access-control-user-state/
-ln -snf $NODE_MODULES_DIR ../../blocks/cache-control/
-ln -snf $NODE_MODULES_DIR ../../blocks/endpoint-options/
-ln -snf $NODE_MODULES_DIR ../../blocks/field-deprecation/
-ln -snf $NODE_MODULES_DIR ../../blocks/graphiql/
-ln -snf $NODE_MODULES_DIR ../../blocks/graphiql-with-explorer/
-ln -snf $NODE_MODULES_DIR ../../blocks/persisted-query-options/
-ln -snf $NODE_MODULES_DIR ../../blocks/schema-config-access-control-lists/
-ln -snf $NODE_MODULES_DIR ../../blocks/schema-config-cache-control-lists/
-ln -snf $NODE_MODULES_DIR ../../blocks/schema-config-field-deprecation-lists/
-ln -snf $NODE_MODULES_DIR ../../blocks/schema-config-options/
-ln -snf $NODE_MODULES_DIR ../../blocks/schema-configuration/
+declare -a BlockArray=("access-control" "access-control-disable-access" "access-control-user-capabilities" "access-control-user-roles" "access-control-user-state" "cache-control" "endpoint-options" "field-deprecation" "graphiql" "graphiql-with-explorer" "persisted-query-options" "schema-config-access-control-lists" "schema-config-cache-control-lists" "schema-config-field-deprecation-lists" "schema-config-options" "schema-configuration")
+for val in ${BlockArray[@]}; do
+   ln -snf $NODE_MODULES_DIR "../../blocks/$val/"
+done
+
 # Editor Scripts
-ln -snf $NODE_MODULES_DIR ../../editor-scripts/endpoint-editor-components/
-ln -snf $NODE_MODULES_DIR ../../editor-scripts/persisted-query-editor-components/
+declare -a EditorScriptArray=("endpoint-editor-components" "persisted-query-editor-components")
+for val in ${EditorScriptArray[@]}; do
+   ln -snf $NODE_MODULES_DIR "../../editor-scripts/$val/"
+done
+
 # Packages
-ln -snf $NODE_MODULES_DIR ../../packages/api-fetch/
-ln -snf $NODE_MODULES_DIR ../../packages/components/
+declare -a PackageArray=("api-fetch" "components")
+for val in ${PackageArray[@]}; do
+   ln -snf $NODE_MODULES_DIR "../../packages/$val/"
+done
