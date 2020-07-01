@@ -15,7 +15,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Application imports
  */
-import GraphiQLWithExplorer from './GraphiQLWithExplorer.js';
+import GraphiQLWithExplorer from './edit.js';
 
 /**
  * Use the settings from the original GraphiQL block, overriding the edit function
@@ -32,10 +32,10 @@ registerBlockType( 'graphql-api/graphiql', {
      * Shared settings
      */
     ...blockTypeSettings,
-    
+
     /**
      * Custom settings for this block
-     * 
+     *
 	 * The edit function describes the structure of your block in the context of the editor.
 	 * This represents what the editor will render when the block is used.
 	 *
