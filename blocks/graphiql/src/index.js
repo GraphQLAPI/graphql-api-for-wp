@@ -10,7 +10,7 @@ import { registerBlockType } from '@wordpress/blocks';
  * for the GraphiQL with Explorer block without including the unneeded EditBlock code (700kb!)
  */
 import { blockTypeSettings } from './block-type-settings.js';
-import EditBlock from './edit-block.js';
+import EditBlock from './edit.js';
 
 /**
  * Every block starts by registering a new block type definition.
@@ -22,10 +22,10 @@ registerBlockType( 'graphql-api/graphiql', {
      * Shared settings
      */
     ...blockTypeSettings,
-    
+
     /**
      * Custom settings for this block
-     * 
+     *
 	 * The edit function describes the structure of your block in the context of the editor.
 	 * This represents what the editor will render when the block is used.
 	 *

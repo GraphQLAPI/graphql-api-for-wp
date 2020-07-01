@@ -21,7 +21,7 @@ import { InnerBlocks } from '@wordpress/block-editor';
  * Application imports
  */
 import { Notice } from '@wordpress/components';
-import EditBlock from './edit-block.js';
+import EditBlock from './edit.js';
 import {
 	ACCESS_CONTROL_BLOCK_NAME,
 	ACCESS_CONTROL_BLOCK_CATEGORY,

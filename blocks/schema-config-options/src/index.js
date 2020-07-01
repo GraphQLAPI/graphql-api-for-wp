@@ -15,7 +15,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Application imports
  */
-import EditBlock from './edit-block';
+import EditBlock from './edit';
 import {
 	ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT,
 } from './namespacing-values';
