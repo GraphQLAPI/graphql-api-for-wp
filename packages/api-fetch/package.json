@@ -4,7 +4,8 @@
   "description": "Fetch data from the server through the GraphQL API",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GraphQLAPI/graphql-api/packages/api-fetch"
+    "url": "https://github.com/GraphQLAPI/graphql-api.git",
+		"directory": "packages/api-fetch"
   },
   "keywords": [
     "GraphQL",

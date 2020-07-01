@@ -4,7 +4,8 @@
   "description": "Components used by the GraphQL API for WordPress plugin",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GraphQLAPI/graphql-api/packages/components"
+		"url": "https://github.com/GraphQLAPI/graphql-api.git",
+		"directory": "packages/components"
   },
   "keywords": [
     "GraphQL",
