@@ -84,7 +84,8 @@ trait HasDocumentationScriptTrait
                     $script_asset['dependencies'],
                     $this->getScriptDependencies()
                 ),
-                $script_asset['version']
+                $script_asset['version'],
+                true
             );
             \wp_enqueue_script($scriptName . '-' . $defaultLang);
         }
@@ -100,7 +101,8 @@ trait HasDocumentationScriptTrait
                         $script_asset['dependencies'],
                         $this->getScriptDependencies()
                     ),
-                    $script_asset['version']
+                    $script_asset['version'],
+                    true
                 );
                 \wp_enqueue_script($scriptName . '-' . $localeLang);
             }

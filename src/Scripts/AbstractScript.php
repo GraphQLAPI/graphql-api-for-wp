@@ -146,7 +146,8 @@ abstract class AbstractScript
                 $script_asset['dependencies'],
                 $this->getScriptDependencies()
             ),
-            $script_asset['version']
+            $script_asset['version'],
+            true
         );
         \wp_enqueue_script($scriptName);
 
