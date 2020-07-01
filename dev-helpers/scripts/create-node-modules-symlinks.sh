@@ -3,9 +3,8 @@
 # to all the blocks/editor-scripts/packages in the plugin
 # Then, a single node_modules/ folder can service everything
 # Make sure package.json contains ALL dependencies needed for everything
-# cd dirname "$0"
 DIR="$( dirname ${BASH_SOURCE[0]} )"
-NODE_MODULES_DIR="$DIR/node_modules/"
+NODE_MODULES_DIR="$DIR/../packages/node_modules/"
 cd "$DIR"
 # Blocks
 ln -snf $NODE_MODULES_DIR ../../blocks/access-control/
