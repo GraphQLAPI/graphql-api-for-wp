@@ -26,7 +26,6 @@ createSymlinks(){
     done
 }
 
-
 # Blocks
 cd "$DIR/../../blocks/"
 createSymlinks

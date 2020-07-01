@@ -1,29 +1,38 @@
 #!/bin/bash
-# Create the symlinks to node_modules/ everywhere
-./create-node-modules-symlinks.sh
+# This bash script generates the JS build,
+# by running `npm run build` on all scripts (blocks/editor-scripts/packages)
 
-# Build all scripts
 # Current dir
 DIR="$( dirname ${BASH_SOURCE[0]} )"
 
+# Function `buildScripts` will run `npm run build`
+# on all folders in the current directory
+buildScripts(){
+    CURRENT_DIR=$( pwd )
+    echo "In folder '$CURRENT_DIR'"
+    for file in ./*
+    do
+        # Make sure it is a directory
+        if [ -d "$file" ]; then
+            echo "In subfolder '$file'"
+            cd "$file"
+            npm run build
+            cd ..
+        fi
+    done
+}
+
+# First create the symlinks to node_modules/ everywhere
+bash -x "$DIR/create-node-modules-symlinks.sh" >/dev/null 2>&1
+
 # Blocks
-declare -a BlockArray=("access-control" "access-control-disable-access" "access-control-user-capabilities" "access-control-user-roles" "access-control-user-state" "cache-control" "endpoint-options" "field-deprecation" "graphiql" "graphiql-with-explorer" "persisted-query-options" "schema-config-access-control-lists" "schema-config-cache-control-lists" "schema-config-field-deprecation-lists" "schema-config-options" "schema-configuration")
-for val in ${BlockArray[@]}; do
-   cd "$DIR/../../blocks/$val/"
-   npm run build
-done
+cd "$DIR/../../blocks/"
+buildScripts
 
 # Editor Scripts
-declare -a EditorScriptArray=("endpoint-editor-components" "persisted-query-editor-components")
-for val in ${EditorScriptArray[@]}; do
-   cd "$DIR/../../blocks/$val/"
-   npm run build
-done
+cd "$DIR/../../editor-scripts/"
+buildScripts
 
 # Packages
-declare -a PackageArray=("api-fetch" "components")
-for val in ${PackageArray[@]}; do
-   cd "$DIR/../../blocks/$val/"
-   npm run build
-done
-
+cd "$DIR/../../packages/"
+buildScripts
