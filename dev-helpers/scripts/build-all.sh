@@ -1,6 +1,6 @@
 #!/bin/bash
 # This bash script generates the JS build,
-# by running `npm run build` on all scripts (blocks/editor-scripts/packages)
+# by running `npm run build` on all scripts (blocks/editor-scripts)
 
 # Current directory
 # @see: https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself#comment16925670_59895
@@ -26,14 +26,14 @@ buildScripts(){
 # First create the symlinks to node_modules/ everywhere
 bash -x "$DIR/create-node-modules-symlinks.sh" >/dev/null 2>&1
 
+# Packages: used by Blocks/Editor Scripts
+cd "$DIR/../../packages/"
+buildScripts
+
 # Blocks
 cd "$DIR/../../blocks/"
 buildScripts
 
 # Editor Scripts
 cd "$DIR/../../editor-scripts/"
-buildScripts
-
-# Packages
-cd "$DIR/../../packages/"
 buildScripts

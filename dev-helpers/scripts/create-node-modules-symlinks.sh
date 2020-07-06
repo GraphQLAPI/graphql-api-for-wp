@@ -1,6 +1,6 @@
 #!/bin/bash
 # Create the symlinks from node_modules/ in the current folder,
-# to all the blocks/editor-scripts/packages in the plugin
+# to all the blocks/editor-scripts in the plugin
 # Then, a single node_modules/ folder can service everything
 # Make sure package.json contains ALL dependencies needed for everything
 
@@ -35,6 +35,6 @@ createSymlinks
 cd "$DIR/../../editor-scripts/"
 createSymlinks
 
-# Packages
-cd "$DIR/../../packages/"
-createSymlinks
+# # Packages
+# cd "$DIR/../../packages/"
+# createSymlinks
