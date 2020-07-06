@@ -9,7 +9,7 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import './store';
-import { withErrorMessage, withSpinner, SelectCard } from '@graphqlapi/components';
+import { SelectCard } from '@graphqlapi/components';
 
 const UserRolesSelectCard = ( props ) => {
 	const { roles, isSelected, attributes: { value } } = props;
