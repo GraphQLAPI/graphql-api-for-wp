@@ -38,7 +38,7 @@ import EditBlock from './edit.js';
 //     }
 // }
 // ```
-const fixIncreadiblyWeirdBug = {
+const fixIncrediblyWeirdBug = {
 	...{},
 }
 // ------------------------------------------------------

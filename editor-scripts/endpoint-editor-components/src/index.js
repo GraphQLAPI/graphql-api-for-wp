@@ -29,7 +29,7 @@ import DocumentSettingsPanel, { DOCUMENT_SETTINGS_PANEL_NAME } from './document-
 //     }
 // }
 // ```
-const fixIncreadiblyWeirdBug = {
+const fixIncrediblyWeirdBug = {
 	...{},
 }
 // ------------------------------------------------------
