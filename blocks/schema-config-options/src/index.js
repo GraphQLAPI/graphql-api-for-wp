@@ -19,6 +19,7 @@ import EditBlock from './edit';
 import {
 	ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT,
 } from './namespacing-values';
+
 /**
  * Every block starts by registering a new block type definition.
  *
