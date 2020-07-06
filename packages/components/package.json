@@ -4,8 +4,8 @@
   "description": "Components used by the GraphQL API for WordPress plugin",
   "repository": {
     "type": "git",
-		"url": "https://github.com/GraphQLAPI/graphql-api.git",
-		"directory": "packages/components"
+    "url": "https://github.com/GraphQLAPI/graphql-api.git",
+    "directory": "packages/components"
   },
   "keywords": [
     "GraphQL",
@@ -15,7 +15,7 @@
   "author": "Leonardo Losoviz",
   "license": "MIT",
   "main": "build/index.js",
-	"module": "src/index.js",
+  "module": "src/index.js",
   "scripts": {
     "build": "wp-scripts build",
     "format:js": "wp-scripts format-js",
@@ -25,17 +25,18 @@
     "packages-update": "wp-scripts packages-update"
   },
   "devDependencies": {
+    "@graphqlapi/api-fetch": "file:../api-fetch",
     "@wordpress/base-styles": "^1.11.0",
     "@wordpress/components": "^9.9.0",
     "@wordpress/compose": "^3.18.0",
     "@wordpress/data": "^4.21.0",
     "@wordpress/edit-post": "^3.20.0",
     "@wordpress/scripts": "^12.0.0",
+    "react-select": "^3.0.8",
     "prettier": "npm:wp-prettier@2.0.5",
     "puppeteer": "^2.1.1",
     "react": "^16.13.1",
     "react-native": "^0.62.2",
-    "react-select": "^3.0.8",
     "typescript": "^3.9.5"
-	}
+  }
 }
