@@ -3,29 +3,6 @@ import { Card, CardBody, RadioControl } from '@wordpress/components';
 import { IN as USER_STATE_IN, OUT as USER_STATE_OUT } from './user-states';
 import { getEditableOnFocusComponentClass } from '@graphqlapi/components';
 
-// ------------------------------------------------------
-// IMPORTANT
-// Do NOT remove this line below!!!!
-// When doing so, executing a block compiled with `npm run build` in the browser does not work!
-// The block doesn't get added to `wp.blocks.getBlockTypes()`, and when executing,
-// it shows an error in the browser console:
-// Uncaught TypeError: e[t] is undefined
-// When adding this hack below, the following code gets added to the compiled `build/index.js` file:
-	// function(e, t) {
-	//     e.exports = function(e, t, n) {
-	//         return t in e ? Object.defineProperty(e, t, {
-	//             value: n,
-	//             enumerable: !0,
-	//             configurable: !0,
-	//             writable: !0
-	//         }) : e[t] = n, e
-	//     }
-	// }
-const fixIncreadiblyWeirdBug = {
-	...{},
-}
-// ------------------------------------------------------
-
 const UserState = ( props ) => {
 	const { className, isSelected, setAttributes, attributes: { value } } = props;
 	/**
