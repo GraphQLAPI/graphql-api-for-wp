@@ -22,7 +22,6 @@
 		"@wordpress/edit-post": "^3.20.0",
 		"@wordpress/plugins": "^2.19.0",
 		"html-loader": "^1.1.0",
-		"markdown-loader": "^5.1.0",
-		"prettier": "npm:wp-prettier@2.0.5"
+		"markdown-loader": "^5.1.0"
 	}
 }
