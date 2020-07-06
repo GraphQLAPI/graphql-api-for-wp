@@ -55,7 +55,7 @@ const SchemaConfigOptionsCard = ( props ) => {
 						{ ...props }
 						text={ __('Select the default behavior of the Schema', 'graphql-api') }
 						href="https://graphql-api.com/documentation/#schema-config-options"
-					/ >
+					/>
 				</CardHeader>
 				<CardBody>
 					{ ! isPublicPrivateSchemaEnabled && ! isSchemaNamespacingEnabled && (
@@ -70,7 +70,7 @@ const SchemaConfigOptionsCard = ( props ) => {
 								{ ...props }
 								text={ __('Public: field/directives are always visible. Private: field/directives are hidden unless rules are satisfied.', 'graphql-api') }
 								href="https://graphql-api.com/documentation/#schema-mode"
-							/ >
+							/>
 							<SchemaModeControl
 								{ ...props }
 								attributeName="defaultSchemaMode"
@@ -87,7 +87,7 @@ const SchemaConfigOptionsCard = ( props ) => {
 								{ ...props }
 								text={ __('Prepend types and interfaces using the PHP package\'s owner and name', 'graphql-api') }
 								href="https://graphql-api.com/documentation/#namespacing"
-							/ >
+							/>
 							{ !isSelected && (
 								<>
 									<br />
