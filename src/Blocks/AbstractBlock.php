@@ -209,8 +209,10 @@ abstract class AbstractBlock
      */
     protected function getAllowedPostTypes(): array
     {
-        $blockCategory = $this->getBlockCategory();
-        return $blockCategory->getPostTypes();
+        if ($blockCategory = $this->getBlockCategory()) {
+            return $blockCategory->getPostTypes();
+        }
+        return [];
     }
 
     /**
