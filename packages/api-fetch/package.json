@@ -5,7 +5,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/GraphQLAPI/graphql-api.git",
-		"directory": "packages/api-fetch"
+    "directory": "packages/api-fetch"
   },
   "keywords": [
     "GraphQL",
@@ -17,7 +17,7 @@
   "author": "Leonardo Losoviz",
   "license": "MIT",
   "main": "build/index.js",
-	"module": "src/index.js",
+  "module": "src/index.js",
   "scripts": {
     "build": "wp-scripts build",
     "format:js": "wp-scripts format-js",
@@ -28,9 +28,6 @@
   },
   "devDependencies": {
     "@wordpress/scripts": "^12.0.0",
-    "graphql-request": "^1.8.2",
-    "prettier": "npm:wp-prettier@2.0.5",
-    "puppeteer": "^2.1.1",
-    "typescript": "^3.9.5"
+    "graphql-request": "^1.8.2"
   }
 }
