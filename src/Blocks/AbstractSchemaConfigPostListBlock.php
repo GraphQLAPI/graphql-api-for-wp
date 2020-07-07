@@ -99,4 +99,15 @@ EOF;
                 )
         );
     }
+
+    /**
+     * Register style-index.css
+     * It contains the styles for the list of elements
+     *
+     * @return boolean
+     */
+    protected function registerCommonStyleCSS(): bool
+    {
+        return true;
+    }
 }

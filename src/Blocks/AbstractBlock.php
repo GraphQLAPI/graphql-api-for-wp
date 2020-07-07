@@ -92,7 +92,7 @@ abstract class AbstractBlock
         );
     }
     /**
-     * Register editor.css
+     * Register index.css
      *
      * @return boolean
      */
@@ -101,7 +101,7 @@ abstract class AbstractBlock
         return false;
     }
     /**
-     * Register style.css
+     * Register style-index.css
      *
      * @return boolean
      */
