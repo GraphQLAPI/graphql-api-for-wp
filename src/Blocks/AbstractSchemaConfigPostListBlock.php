@@ -99,6 +99,15 @@ EOF;
                 )
         );
     }
+    /**
+     * Register index.css
+     *
+     * @return boolean
+     */
+    protected function registerEditorCSS(): bool
+    {
+        return true;
+    }
 
     /**
      * Register style-index.css
