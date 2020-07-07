@@ -17,7 +17,6 @@ import { __ } from '@wordpress/i18n';
  */
 import EditBlock from './edit.js';
 import { getEditableOnFocusComponentClass } from '@graphqlapi/components';
-import '../../../packages/components/src/components/base-styles/editable-on-focus.scss';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.

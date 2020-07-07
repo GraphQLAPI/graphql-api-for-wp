@@ -35,6 +35,11 @@ class CacheControlBlock extends AbstractControlBlock
         return true;
     }
 
+    protected function registerEditorCSS(): bool
+    {
+        return true;
+    }
+
     /**
      * Add the locale language to the localized data?
      *
