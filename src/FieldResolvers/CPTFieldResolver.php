@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\FieldResolvers;
 
-use PoP\Posts\Facades\PostTypeAPIFacade;
-use PoP\Posts\TypeResolvers\PostTypeResolver;
+use PoP\CustomPosts\Facades\CustomPostTypeAPIFacade;
+use PoP\CustomPosts\TypeResolvers\CustomPostTypeResolver;
 use PoP\Engine\TypeResolvers\RootTypeResolver;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\Schema\TypeCastingHelpers;
@@ -88,11 +88,11 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
                     $schemaFieldArgs,
                     $this->getFieldArgumentsSchemaDefinitions($typeResolver, $fieldName)
                 );
-                // Remove the "postTypes" field argument
+                // Remove the "customPostTypes" field argument
                 $schemaFieldArgs = array_filter(
                     $schemaFieldArgs,
                     function ($schemaFieldArg) {
-                        return $schemaFieldArg[SchemaDefinition::ARGNAME_NAME] != 'postTypes';
+                        return $schemaFieldArg[SchemaDefinition::ARGNAME_NAME] != 'customPostTypes';
                     }
                 );
                 break;
@@ -125,7 +125,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
             case 'schemaConfigurations':
                 $query = [
                     'limit' => -1,
-                    'post-status' => [
+                    'custom-post-status' => [
                         Status::PUBLISHED,
                     ],
                 ];
@@ -143,24 +143,24 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         ?array $expressions = null,
         array $options = []
     ) {
-        $postTypeAPI = PostTypeAPIFacade::getInstance();
+        $customPostTypeAPI = CustomPostTypeAPIFacade::getInstance();
         switch ($fieldName) {
             case 'accessControlLists':
             case 'cacheControlLists':
             case 'fieldDeprecationLists':
             case 'schemaConfigurations':
-                // Remove the "postTypes" field argument
-                unset($fieldArgs['postTypes']);
+                // Remove the "customPostTypes" field argument
+                unset($fieldArgs['customPostTypes']);
                 $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
                 // Execute for the corresponding field name
-                $postTypes = [
+                $customPostTypes = [
                     'accessControlLists' => GraphQLAccessControlListPostType::POST_TYPE,
                     'cacheControlLists' => GraphQLCacheControlListPostType::POST_TYPE,
                     'fieldDeprecationLists' => GraphQLFieldDeprecationListPostType::POST_TYPE,
                     'schemaConfigurations' => GraphQLSchemaConfigurationPostType::POST_TYPE,
                 ];
-                $query['post-types'] = [
-                    $postTypes[$fieldName],
+                $query['custom-post-types'] = [
+                    $customPostTypes[$fieldName],
                 ];
                 $options = [
                     'return-type' => POP_RETURNTYPE_IDS,
@@ -168,7 +168,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
                     self::QUERY_OPTION_ALLOW_QUERYING_PRIVATE_CPTS => true,
                 ];
                 $this->addFilterDataloadQueryArgs($options, $typeResolver, $fieldName, $fieldArgs);
-                return $postTypeAPI->getPosts($query, $options);
+                return $customPostTypeAPI->getCustomPosts($query, $options);
         }
 
         return parent::resolveValue(
@@ -192,7 +192,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
             case 'cacheControlLists':
             case 'fieldDeprecationLists':
             case 'schemaConfigurations':
-                return PostTypeResolver::class;
+                return CustomPostTypeResolver::class;
         }
 
         return parent::resolveFieldTypeResolverClass($typeResolver, $fieldName, $fieldArgs);
