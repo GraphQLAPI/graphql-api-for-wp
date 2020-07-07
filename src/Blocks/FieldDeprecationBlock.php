@@ -40,6 +40,11 @@ class FieldDeprecationBlock extends AbstractControlBlock
         return true;
     }
 
+    protected function registerEditorCSS(): bool
+    {
+        return true;
+    }
+
     protected function getBlockDataTitle(): string
     {
         return \__('Fields to deprecate:', 'graphql-api');

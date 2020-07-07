@@ -37,7 +37,6 @@ import { getEditableOnFocusComponentClass } from '@graphqlapi/components';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './style.scss';
-import '../../../packages/components/src/components/base-styles/editable-on-focus.scss';
 
 /**
  * Every block starts by registering a new block type definition.

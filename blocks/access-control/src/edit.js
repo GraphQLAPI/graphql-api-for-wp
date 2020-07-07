@@ -9,6 +9,7 @@ import { withFieldDirectiveMultiSelectControl } from '@graphqlapi/components';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+import '../../../packages/components/src/components/base-styles/editable-on-focus.scss';
 
 export default compose( [
 	withFieldDirectiveMultiSelectControl(),
