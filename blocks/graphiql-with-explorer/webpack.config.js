@@ -1,12 +1,6 @@
 const config = require( '@wordpress/scripts/config/webpack.config' );
 const isProduction = process.env.NODE_ENV === 'production';
 
-/** Allow to import graphiql/graphiql.css */
-config.module.rules.push( {
-	test: /\.css$/i,
-	use: [ 'style-loader', 'css-loader' ],
-} );
-
 if ( ! isProduction ) {
 	/**
 	 * Exclude "node_modules" from "source-map-loader" (problem similar to https://github.com/angular-redux/store/issues/64)
