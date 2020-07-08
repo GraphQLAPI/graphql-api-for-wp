@@ -26,7 +26,6 @@
 		"@wordpress/i18n": "^3.14.0",
 		"@wordpress/plugins": "^2.20.0",
 		"@wordpress/scripts": "^12.1.0",
-		"css-loader": "^3.6.0",
 		"flow-bin": "^0.91.0",
 		"graphiql": "^0.17.5",
 		"graphql": "^14.6.0",
@@ -38,7 +37,6 @@
 		"react": "^16.13.1",
 		"react-native": "^0.62.2",
 		"react-select": "^3.0.8",
-		"style-loader": "^1.2.1",
 		"typescript": "^3.9.5"
 	},
 	"dependencies": {
