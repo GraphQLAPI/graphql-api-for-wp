@@ -17,7 +17,6 @@
 		"@graphqlapi/access-control": "file:../../packages/access-control",
 		"@wordpress/components": "^10.0.0",
 		"@wordpress/i18n": "^3.14.0",
-		"@wordpress/scripts": "^12.1.0",
-		"prettier": "npm:wp-prettier@2.0.5"
+		"@wordpress/scripts": "^12.1.0"
 	}
 }
