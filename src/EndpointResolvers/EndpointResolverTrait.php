@@ -32,12 +32,14 @@ trait EndpointResolverTrait
             1
         );
         /**
-         * Assign the single endpoint
+         * Assign the single endpoint.
+         * Execute last, to make sure it's not overriden RouteNatures::CUSTOMPOST
+         * because querying the persisted query matches `is_single()`
          */
         \add_filter(
             'WPCMSRoutingState:nature',
             [$this, 'getNature'],
-            10,
+            PHP_INT_MAX,
             2
         );
     }
