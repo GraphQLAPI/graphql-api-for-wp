@@ -6,7 +6,7 @@ namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
 use GraphQLAPI\GraphQLAPI\PostTypes\AbstractPostType;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigCacheControlListBlock;
@@ -73,9 +73,9 @@ class GraphQLSchemaConfigurationPostType extends AbstractPostType
         $template = [];
         // Add blocks depending on being enabled by module
         $blockClassModules = [
-            SchemaConfigAccessControlListBlock::class => ModuleResolver::ACCESS_CONTROL,
-            SchemaConfigCacheControlListBlock::class => ModuleResolver::CACHE_CONTROL,
-            SchemaConfigFieldDeprecationListBlock::class => ModuleResolver::FIELD_DEPRECATION,
+            SchemaConfigAccessControlListBlock::class => FunctionalityModuleResolver::ACCESS_CONTROL,
+            SchemaConfigCacheControlListBlock::class => FunctionalityModuleResolver::CACHE_CONTROL,
+            SchemaConfigFieldDeprecationListBlock::class => FunctionalityModuleResolver::FIELD_DEPRECATION,
         ];
         foreach ($blockClassModules as $blockClass => $module) {
             if ($moduleRegistry->isModuleEnabled($module)) {

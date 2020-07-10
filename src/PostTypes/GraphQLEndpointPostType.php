@@ -11,7 +11,7 @@ use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointVoyagerClient;
 use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointGraphiQLClient;
 use GraphQLAPI\GraphQLAPI\Blocks\EndpointOptionsBlock;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Taxonomies\GraphQLQueryTaxonomy;
 use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
@@ -267,7 +267,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     {
         // Check if disabled by module
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::GRAPHIQL_FOR_CUSTOM_ENDPOINTS)) {
+        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::GRAPHIQL_FOR_CUSTOM_ENDPOINTS)) {
             return false;
         }
 
@@ -293,7 +293,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     {
         // Check if disabled by module
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS)) {
+        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS)) {
             return false;
         }
 

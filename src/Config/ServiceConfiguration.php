@@ -12,7 +12,7 @@ use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use GraphQLAPI\GraphQLAPI\Blocks\Overrides\GraphiQLWithExplorerBlock;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use PoP\UserRolesAccessControl\Services\AccessControlGroups as UserRolesAccessControlGroups;
 
 class ServiceConfiguration
@@ -60,7 +60,7 @@ class ServiceConfiguration
     {
         // Maybe use GraphiQL with Explorer
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if ($moduleRegistry->isModuleEnabled(ModuleResolver::GRAPHIQL_EXPLORER)) {
+        if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::GRAPHIQL_EXPLORER)) {
             ContainerBuilderUtils::injectValuesIntoService(
                 'instance_manager',
                 'overrideClass',

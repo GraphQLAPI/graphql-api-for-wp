@@ -10,7 +10,7 @@ use PoP\Root\Component\YAMLServicesTrait;
 use PoP\ComponentModel\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Config\ServiceConfiguration;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Container\ContainerBuilderUtils;
 use PoP\ComponentModel\Facades\Engine\DataloadingEngineFacade;
 use PoP\CacheControl\DirectiveResolvers\CacheControlDirectiveResolver;
@@ -111,7 +111,7 @@ class Component extends AbstractComponent
 
         // Enable the CacheControl, if the module is not disabled
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if ($moduleRegistry->isModuleEnabled(ModuleResolver::CACHE_CONTROL)) {
+        if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::CACHE_CONTROL)) {
             // Unless previewing the query
             if (!\is_preview()) {
                 $dataloadingEngine = DataloadingEngineFacade::getInstance();

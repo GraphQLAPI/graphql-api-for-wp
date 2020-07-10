@@ -6,7 +6,7 @@ namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigCacheControlListBlock;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\CacheControlGraphQLQueryConfigurator;
@@ -46,7 +46,7 @@ class PersistedQuerySchemaConfigurator extends AbstractQueryExecutionSchemaConfi
         }
         // Check it is enabled by module
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::CACHE_CONTROL)) {
+        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::CACHE_CONTROL)) {
             return;
         }
         $instanceManager = InstanceManagerFacade::getInstance();

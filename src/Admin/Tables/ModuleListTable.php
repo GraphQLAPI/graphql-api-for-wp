@@ -51,6 +51,7 @@ class ModuleListTable extends AbstractItemListTable
             $isEnabled = $moduleRegistry->isModuleEnabled($module);
             $items[] = [
                 'module' => $module,
+                'module-type' => $moduleResolver->getModuleType($module),
                 'id' => $moduleResolver->getID($module),
                 'is-enabled' => $isEnabled,
                 'can-be-enabled' => !$isEnabled && $moduleRegistry->canModuleBeEnabled($module),
@@ -357,9 +358,14 @@ class ModuleListTable extends AbstractItemListTable
     public function single_row($item)
     {
         if ($this->usePluginTableStyle()) {
+            $classnames = sprintf(
+                'module-%s %s',
+                $item['module-type'],
+                $item['is-enabled'] ? 'active' : 'inactive'
+            );
             echo sprintf(
                 '<tr class="%s">',
-                $item['is-enabled'] ? 'active' : 'inactive'
+                $classnames
             );
             $this->single_row_columns($item);
             echo '</tr>';

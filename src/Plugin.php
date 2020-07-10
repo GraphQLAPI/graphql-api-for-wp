@@ -6,7 +6,7 @@ namespace GraphQLAPI\GraphQLAPI;
 
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLEndpointPostType;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLPersistedQueryPostType;
@@ -70,12 +70,12 @@ class Plugin
          * Initialize Post Types manually to control in what order they are added to the menu
          */
         $postTypeServiceClassModules = [
-            GraphQLEndpointPostType::class => ModuleResolver::CUSTOM_ENDPOINTS,
-            GraphQLPersistedQueryPostType::class => ModuleResolver::PERSISTED_QUERIES,
-            GraphQLSchemaConfigurationPostType::class => ModuleResolver::SCHEMA_CONFIGURATION,
-            GraphQLAccessControlListPostType::class => ModuleResolver::ACCESS_CONTROL,
-            GraphQLCacheControlListPostType::class => ModuleResolver::CACHE_CONTROL,
-            GraphQLFieldDeprecationListPostType::class => ModuleResolver::FIELD_DEPRECATION,
+            GraphQLEndpointPostType::class => FunctionalityModuleResolver::CUSTOM_ENDPOINTS,
+            GraphQLPersistedQueryPostType::class => FunctionalityModuleResolver::PERSISTED_QUERIES,
+            GraphQLSchemaConfigurationPostType::class => FunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+            GraphQLAccessControlListPostType::class => FunctionalityModuleResolver::ACCESS_CONTROL,
+            GraphQLCacheControlListPostType::class => FunctionalityModuleResolver::CACHE_CONTROL,
+            GraphQLFieldDeprecationListPostType::class => FunctionalityModuleResolver::FIELD_DEPRECATION,
         ];
         foreach ($postTypeServiceClassModules as $serviceClass => $module) {
             // Check that the corresponding module is enabled
@@ -87,7 +87,7 @@ class Plugin
          * Editor Scripts
          * They are all used to show the Welcome Guide
          */
-        if ($moduleRegistry->isModuleEnabled(ModuleResolver::WELCOME_GUIDES)) {
+        if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::WELCOME_GUIDES)) {
             $editorScriptServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\EditorScripts');
             foreach ($editorScriptServiceClasses as $serviceClass) {
                 $instanceManager->getInstance($serviceClass)->initialize();
@@ -106,10 +106,10 @@ class Plugin
          * Register them one by one, as to disable them if module is disabled
          */
         $accessControlRuleBlockServiceClassModules = [
-            AccessControlDisableAccessBlock::class => ModuleResolver::ACCESS_CONTROL_RULE_DISABLE_ACCESS,
-            AccessControlUserStateBlock::class => ModuleResolver::ACCESS_CONTROL_RULE_USER_STATE,
-            AccessControlUserRolesBlock::class => ModuleResolver::ACCESS_CONTROL_RULE_USER_ROLES,
-            AccessControlUserCapabilitiesBlock::class => ModuleResolver::ACCESS_CONTROL_RULE_USER_CAPABILITIES,
+            AccessControlDisableAccessBlock::class => FunctionalityModuleResolver::ACCESS_CONTROL_RULE_DISABLE_ACCESS,
+            AccessControlUserStateBlock::class => FunctionalityModuleResolver::ACCESS_CONTROL_RULE_USER_STATE,
+            AccessControlUserRolesBlock::class => FunctionalityModuleResolver::ACCESS_CONTROL_RULE_USER_ROLES,
+            AccessControlUserCapabilitiesBlock::class => FunctionalityModuleResolver::ACCESS_CONTROL_RULE_USER_CAPABILITIES,
         ];
         foreach ($accessControlRuleBlockServiceClassModules as $serviceClass => $module) {
             if ($moduleRegistry->isModuleEnabled($module)) {

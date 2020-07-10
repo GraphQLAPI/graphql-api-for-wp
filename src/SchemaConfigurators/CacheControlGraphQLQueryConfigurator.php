@@ -10,7 +10,7 @@ use GraphQLAPI\GraphQLAPI\Blocks\CacheControlBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractControlBlock;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\CacheControl\Facades\CacheControlManagerFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigurator
@@ -30,7 +30,7 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
 
         // Only if the module is not disabled
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::CACHE_CONTROL)) {
+        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::CACHE_CONTROL)) {
             return;
         }
 

@@ -8,7 +8,7 @@ use PoP\AccessControl\Schema\SchemaModes;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\GraphQLByPoPBlockTrait;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
 use GraphQLAPI\GraphQLAPI\BlockCategories\SchemaConfigurationBlockCategory;
@@ -52,7 +52,7 @@ class SchemaConfigOptionsBlock extends AbstractOptionsBlock
         $blockContent = '';
 
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if ($moduleRegistry->isModuleEnabled(ModuleResolver::PUBLIC_PRIVATE_SCHEMA)) {
+        if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA)) {
             $schemaModeLabels = [
                 SchemaModes::PUBLIC_SCHEMA_MODE => \__('Public', 'graphql-api'),
                 SchemaModes::PRIVATE_SCHEMA_MODE => \__('Private', 'graphql-api'),
@@ -64,7 +64,7 @@ class SchemaConfigOptionsBlock extends AbstractOptionsBlock
             );
         }
 
-        if ($moduleRegistry->isModuleEnabled(ModuleResolver::SCHEMA_NAMESPACING)) {
+        if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::SCHEMA_NAMESPACING)) {
             $useNamespacingLabels = [
                 self::ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED => \__('✅ Yes', 'graphql-api'),
                 self::ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED => \__('❌ No', 'graphql-api'),
@@ -110,8 +110,8 @@ EOT;
         return array_merge(
             parent::getLocalizedData(),
             [
-                'isPublicPrivateSchemaEnabled' => $moduleRegistry->isModuleEnabled(ModuleResolver::PUBLIC_PRIVATE_SCHEMA),
-                'isSchemaNamespacingEnabled' => $moduleRegistry->isModuleEnabled(ModuleResolver::SCHEMA_NAMESPACING),
+                'isPublicPrivateSchemaEnabled' => $moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA),
+                'isSchemaNamespacingEnabled' => $moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::SCHEMA_NAMESPACING),
             ]
         );
     }

@@ -31,6 +31,13 @@ interface ModuleResolverInterface
     public function getDescription(string $module): string;
     public function hasSettings(string $module): bool;
     /**
+     * The type of the module
+     *
+     * @param string $module
+     * @return string
+     */
+    public function getModuleType(string $module): string;
+    /**
      * Array with the inputs to show as settings for the module:
      * - name
      * - type (string, bool, int)

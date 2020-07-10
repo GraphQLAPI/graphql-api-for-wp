@@ -7,7 +7,7 @@ namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 use PoP\AccessControl\Schema\SchemaModes;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigurationBlock;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
@@ -34,7 +34,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     {
         // Check if it enabled by module
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::SCHEMA_CONFIGURATION)) {
+        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::SCHEMA_CONFIGURATION)) {
             return;
         }
 
@@ -53,11 +53,11 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     {
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
         $schemaConfigurationID = $userSettingsManager->getSetting(
-            ModuleResolver::SCHEMA_CONFIGURATION,
-            ModuleResolver::OPTION_SCHEMA_CONFIGURATION_ID
+            FunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+            FunctionalityModuleResolver::OPTION_SCHEMA_CONFIGURATION_ID
         );
         // `null` is stored as OPTION_VALUE_NO_VALUE_ID
-        if ($schemaConfigurationID == ModuleResolver::OPTION_VALUE_NO_VALUE_ID) {
+        if ($schemaConfigurationID == FunctionalityModuleResolver::OPTION_VALUE_NO_VALUE_ID) {
             return null;
         }
         return $schemaConfigurationID;
@@ -91,7 +91,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT) {
             // If disabled by module, then return nothing
             $moduleRegistry = ModuleRegistryFacade::getInstance();
-            if (!$moduleRegistry->isModuleEnabled(ModuleResolver::API_HIERARCHY)) {
+            if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::API_HIERARCHY)) {
                 return null;
             }
             // Return the schema configuration from the parent, or null if no parent exists
@@ -145,7 +145,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     {
         // Check if it enabled by module
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::SCHEMA_NAMESPACING)) {
+        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::SCHEMA_NAMESPACING)) {
             return;
         }
 
@@ -195,7 +195,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     {
         // Check if it enabled by module
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::PUBLIC_PRIVATE_SCHEMA)) {
+        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA)) {
             return;
         }
 
@@ -246,7 +246,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     {
         // Check it is enabled by module
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::ACCESS_CONTROL)) {
+        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::ACCESS_CONTROL)) {
             return;
         }
         $instanceManager = InstanceManagerFacade::getInstance();
@@ -275,7 +275,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     {
         // Check it is enabled by module
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(ModuleResolver::FIELD_DEPRECATION)) {
+        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::FIELD_DEPRECATION)) {
             return;
         }
         $instanceManager = InstanceManagerFacade::getInstance();

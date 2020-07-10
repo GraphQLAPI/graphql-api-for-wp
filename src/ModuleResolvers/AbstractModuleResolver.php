@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
-use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
+// use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
+
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverInterface;
 
 abstract class AbstractModuleResolver implements ModuleResolverInterface

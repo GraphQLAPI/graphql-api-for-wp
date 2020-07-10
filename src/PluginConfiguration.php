@@ -8,33 +8,34 @@ use PoP\APIEndpoints\EndpointUtils;
 use GraphQLAPI\GraphQLAPI\Environment;
 use PoP\AccessControl\Schema\SchemaModes;
 use PoP\ComponentModel\Misc\GeneralUtils;
+use PoP\Pages\Environment as PagesEnvironment;
+use PoP\Posts\Environment as PostsEnvironment;
+use PoP\Users\Environment as UsersEnvironment;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
+use PoP\CustomPosts\Environment as ContentEnvironment;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use PoP\Taxonomies\Environment as TaxonomiesEnvironment;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use PoP\CacheControl\Environment as CacheControlEnvironment;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
+use PoP\Pages\ComponentConfiguration as PagesComponentConfiguration;
+use PoP\Posts\ComponentConfiguration as PostsComponentConfiguration;
+use PoP\Users\ComponentConfiguration as UsersComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use PoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
+use PoP\CustomPosts\ComponentConfiguration as ContentComponentConfiguration;
+use PoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
+use PoP\Taxonomies\ComponentConfiguration as TaxonomiesComponentConfiguration;
 use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
-use PoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
 use PoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
-use PoP\Posts\Environment as PostsEnvironment;
-use PoP\Posts\ComponentConfiguration as PostsComponentConfiguration;
-use PoP\Users\Environment as UsersEnvironment;
-use PoP\Users\ComponentConfiguration as UsersComponentConfiguration;
-use PoP\Taxonomies\Environment as TaxonomiesEnvironment;
-use PoP\Taxonomies\ComponentConfiguration as TaxonomiesComponentConfiguration;
-use PoP\Pages\Environment as PagesEnvironment;
-use PoP\Pages\ComponentConfiguration as PagesComponentConfiguration;
-use PoP\CustomPosts\Environment as ContentEnvironment;
-use PoP\CustomPosts\ComponentConfiguration as ContentComponentConfiguration;
 
 /**
  * Sets the configuration in all the PoP components.
@@ -159,20 +160,20 @@ class PluginConfiguration
             [
                 'class' => ComponentConfiguration::class,
                 'envVariable' => Environment::EDITING_ACCESS_SCHEME,
-                'module' => ModuleResolver::MAIN,
-                'option' => ModuleResolver::OPTION_EDITING_ACCESS_SCHEME,
+                'module' => FunctionalityModuleResolver::MAIN,
+                'option' => FunctionalityModuleResolver::OPTION_EDITING_ACCESS_SCHEME,
             ],
             // GraphQL single endpoint slug
             [
                 'class' => GraphQLEndpointForWPComponentConfiguration::class,
                 'envVariable' => GraphQLEndpointForWPEnvironment::GRAPHQL_API_ENDPOINT,
-                'module' => ModuleResolver::SINGLE_ENDPOINT,
-                'option' => ModuleResolver::OPTION_PATH,
+                'module' => FunctionalityModuleResolver::SINGLE_ENDPOINT,
+                'option' => FunctionalityModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
                     return self::getURLPathSettingValue(
                         $value,
-                        ModuleResolver::SINGLE_ENDPOINT,
-                        ModuleResolver::OPTION_PATH
+                        FunctionalityModuleResolver::SINGLE_ENDPOINT,
+                        FunctionalityModuleResolver::OPTION_PATH
                     );
                 },
                 'condition' => 'any',
@@ -181,13 +182,13 @@ class PluginConfiguration
             [
                 'class' => ComponentConfiguration::class,
                 'envVariable' => Environment::ENDPOINT_SLUG_BASE,
-                'module' => ModuleResolver::CUSTOM_ENDPOINTS,
-                'option' => ModuleResolver::OPTION_PATH,
+                'module' => FunctionalityModuleResolver::CUSTOM_ENDPOINTS,
+                'option' => FunctionalityModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
                     return self::getCPTPermalinkBasePathSettingValue(
                         $value,
-                        ModuleResolver::CUSTOM_ENDPOINTS,
-                        ModuleResolver::OPTION_PATH
+                        FunctionalityModuleResolver::CUSTOM_ENDPOINTS,
+                        FunctionalityModuleResolver::OPTION_PATH
                     );
                 },
                 'condition' => 'any',
@@ -196,13 +197,13 @@ class PluginConfiguration
             [
                 'class' => ComponentConfiguration::class,
                 'envVariable' => Environment::PERSISTED_QUERY_SLUG_BASE,
-                'module' => ModuleResolver::PERSISTED_QUERIES,
-                'option' => ModuleResolver::OPTION_PATH,
+                'module' => FunctionalityModuleResolver::PERSISTED_QUERIES,
+                'option' => FunctionalityModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
                     return self::getCPTPermalinkBasePathSettingValue(
                         $value,
-                        ModuleResolver::PERSISTED_QUERIES,
-                        ModuleResolver::OPTION_PATH
+                        FunctionalityModuleResolver::PERSISTED_QUERIES,
+                        FunctionalityModuleResolver::OPTION_PATH
                     );
                 },
                 'condition' => 'any',
@@ -211,13 +212,13 @@ class PluginConfiguration
             [
                 'class' => GraphQLClientsForWPComponentConfiguration::class,
                 'envVariable' => GraphQLClientsForWPEnvironment::GRAPHIQL_CLIENT_ENDPOINT,
-                'module' => ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
-                'option' => ModuleResolver::OPTION_PATH,
+                'module' => FunctionalityModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
+                'option' => FunctionalityModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
                     return self::getURLPathSettingValue(
                         $value,
-                        ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
-                        ModuleResolver::OPTION_PATH
+                        FunctionalityModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
+                        FunctionalityModuleResolver::OPTION_PATH
                     );
                 },
                 'condition' => 'any',
@@ -226,13 +227,13 @@ class PluginConfiguration
             [
                 'class' => GraphQLClientsForWPComponentConfiguration::class,
                 'envVariable' => GraphQLClientsForWPEnvironment::VOYAGER_CLIENT_ENDPOINT,
-                'module' => ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
-                'option' => ModuleResolver::OPTION_PATH,
+                'module' => FunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
+                'option' => FunctionalityModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
                     return self::getURLPathSettingValue(
                         $value,
-                        ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
-                        ModuleResolver::OPTION_PATH
+                        FunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
+                        FunctionalityModuleResolver::OPTION_PATH
                     );
                 },
                 'condition' => 'any',
@@ -241,8 +242,8 @@ class PluginConfiguration
             [
                 'class' => AccessControlComponentConfiguration::class,
                 'envVariable' => AccessControlEnvironment::USE_PRIVATE_SCHEMA_MODE,
-                'module' => ModuleResolver::PUBLIC_PRIVATE_SCHEMA,
-                'option' => ModuleResolver::OPTION_MODE,
+                'module' => FunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA,
+                'option' => FunctionalityModuleResolver::OPTION_MODE,
                 'callback' => function ($value) {
                     // It is stored as string "private" in DB, and must be passed as bool `true` to component
                     return $value == SchemaModes::PRIVATE_SCHEMA_MODE;
@@ -252,87 +253,87 @@ class PluginConfiguration
             [
                 'class' => AccessControlComponentConfiguration::class,
                 'envVariable' => AccessControlEnvironment::ENABLE_INDIVIDUAL_CONTROL_FOR_PUBLIC_PRIVATE_SCHEMA_MODE,
-                'module' => ModuleResolver::PUBLIC_PRIVATE_SCHEMA,
-                'option' => ModuleResolver::OPTION_ENABLE_GRANULAR,
+                'module' => FunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA,
+                'option' => FunctionalityModuleResolver::OPTION_ENABLE_GRANULAR,
             ],
             // Use namespacing?
             [
                 'class' => ComponentModelComponentConfiguration::class,
                 'envVariable' => ComponentModelEnvironment::NAMESPACE_TYPES_AND_INTERFACES,
-                'module' => ModuleResolver::SCHEMA_NAMESPACING,
-                'option' => ModuleResolver::OPTION_USE_NAMESPACING,
+                'module' => FunctionalityModuleResolver::SCHEMA_NAMESPACING,
+                'option' => FunctionalityModuleResolver::OPTION_USE_NAMESPACING,
             ],
             // Cache-Control default max-age
             [
                 'class' => CacheControlComponentConfiguration::class,
                 'envVariable' => CacheControlEnvironment::DEFAULT_CACHE_CONTROL_MAX_AGE,
-                'module' => ModuleResolver::CACHE_CONTROL,
-                'option' => ModuleResolver::OPTION_MAX_AGE,
+                'module' => FunctionalityModuleResolver::CACHE_CONTROL,
+                'option' => FunctionalityModuleResolver::OPTION_MAX_AGE,
             ],
             // Post default/max limits
             [
                 'class' => PostsComponentConfiguration::class,
                 'envVariable' => PostsEnvironment::POST_LIST_DEFAULT_LIMIT,
-                'module' => ModuleResolver::SCHEMA_POST_TYPE,
-                'option' => ModuleResolver::OPTION_POST_DEFAULT_LIMIT,
+                'module' => SchemaModuleResolver::SCHEMA_POST_TYPE,
+                'option' => SchemaModuleResolver::OPTION_POST_DEFAULT_LIMIT,
             ],
             [
                 'class' => PostsComponentConfiguration::class,
                 'envVariable' => PostsEnvironment::POST_LIST_MAX_LIMIT,
-                'module' => ModuleResolver::SCHEMA_POST_TYPE,
-                'option' => ModuleResolver::OPTION_POST_MAX_LIMIT,
+                'module' => SchemaModuleResolver::SCHEMA_POST_TYPE,
+                'option' => SchemaModuleResolver::OPTION_POST_MAX_LIMIT,
             ],
             // User default/max limits
             [
                 'class' => UsersComponentConfiguration::class,
                 'envVariable' => UsersEnvironment::USER_LIST_DEFAULT_LIMIT,
-                'module' => ModuleResolver::SCHEMA_USER_TYPE,
-                'option' => ModuleResolver::OPTION_USER_DEFAULT_LIMIT,
+                'module' => SchemaModuleResolver::SCHEMA_USER_TYPE,
+                'option' => SchemaModuleResolver::OPTION_USER_DEFAULT_LIMIT,
             ],
             [
                 'class' => UsersComponentConfiguration::class,
                 'envVariable' => UsersEnvironment::USER_LIST_MAX_LIMIT,
-                'module' => ModuleResolver::SCHEMA_USER_TYPE,
-                'option' => ModuleResolver::OPTION_USER_MAX_LIMIT,
+                'module' => SchemaModuleResolver::SCHEMA_USER_TYPE,
+                'option' => SchemaModuleResolver::OPTION_USER_MAX_LIMIT,
             ],
             // Tag default/max limits
             [
                 'class' => TaxonomiesComponentConfiguration::class,
                 'envVariable' => TaxonomiesEnvironment::TAG_LIST_DEFAULT_LIMIT,
-                'module' => ModuleResolver::SCHEMA_TAXONOMY_TYPE,
-                'option' => ModuleResolver::OPTION_TAG_DEFAULT_LIMIT,
+                'module' => SchemaModuleResolver::SCHEMA_TAXONOMY_TYPE,
+                'option' => SchemaModuleResolver::OPTION_TAG_DEFAULT_LIMIT,
             ],
             [
                 'class' => TaxonomiesComponentConfiguration::class,
                 'envVariable' => TaxonomiesEnvironment::TAG_LIST_MAX_LIMIT,
-                'module' => ModuleResolver::SCHEMA_TAXONOMY_TYPE,
-                'option' => ModuleResolver::OPTION_TAG_MAX_LIMIT,
+                'module' => SchemaModuleResolver::SCHEMA_TAXONOMY_TYPE,
+                'option' => SchemaModuleResolver::OPTION_TAG_MAX_LIMIT,
             ],
             // Page default/max limits
             [
                 'class' => PagesComponentConfiguration::class,
                 'envVariable' => PagesEnvironment::PAGE_LIST_DEFAULT_LIMIT,
-                'module' => ModuleResolver::SCHEMA_PAGE_TYPE,
-                'option' => ModuleResolver::OPTION_PAGE_DEFAULT_LIMIT,
+                'module' => SchemaModuleResolver::SCHEMA_PAGE_TYPE,
+                'option' => SchemaModuleResolver::OPTION_PAGE_DEFAULT_LIMIT,
             ],
             [
                 'class' => PagesComponentConfiguration::class,
                 'envVariable' => PagesEnvironment::PAGE_LIST_MAX_LIMIT,
-                'module' => ModuleResolver::SCHEMA_PAGE_TYPE,
-                'option' => ModuleResolver::OPTION_PAGE_MAX_LIMIT,
+                'module' => SchemaModuleResolver::SCHEMA_PAGE_TYPE,
+                'option' => SchemaModuleResolver::OPTION_PAGE_MAX_LIMIT,
             ],
             // Custom post default/max limits
             [
                 'class' => ContentComponentConfiguration::class,
                 'envVariable' => ContentEnvironment::CUSTOMPOST_LIST_DEFAULT_LIMIT,
-                'module' => ModuleResolver::SCHEMA_CUSTOMPOST_UNION_TYPE,
-                'option' => ModuleResolver::OPTION_CUSTOMPOST_DEFAULT_LIMIT,
+                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOST_UNION_TYPE,
+                'option' => SchemaModuleResolver::OPTION_CUSTOMPOST_DEFAULT_LIMIT,
             ],
             [
                 'class' => ContentComponentConfiguration::class,
                 'envVariable' => ContentEnvironment::CUSTOMPOST_LIST_MAX_LIMIT,
-                'module' => ModuleResolver::SCHEMA_CUSTOMPOST_UNION_TYPE,
-                'option' => ModuleResolver::OPTION_CUSTOMPOST_MAX_LIMIT,
+                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOST_UNION_TYPE,
+                'option' => SchemaModuleResolver::OPTION_CUSTOMPOST_MAX_LIMIT,
             ],
         ];
         // For each environment variable, see if its value has been saved in the settings
@@ -526,19 +527,19 @@ class PluginConfiguration
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         $moduleToComponentClassConfigurationMappings = [
             [
-                'module' => ModuleResolver::SINGLE_ENDPOINT,
+                'module' => FunctionalityModuleResolver::SINGLE_ENDPOINT,
                 'class' => \PoP\GraphQLEndpointForWP\Component::class,
                 'envVariable' => \PoP\GraphQLEndpointForWP\Environment::DISABLE_GRAPHQL_API_ENDPOINT,
                 'callback' => [self::class, 'opposite'],
             ],
             [
-                'module' => ModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
+                'module' => FunctionalityModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
                 'class' => \PoP\GraphQLClientsForWP\Component::class,
                 'envVariable' => \PoP\GraphQLClientsForWP\Environment::DISABLE_GRAPHIQL_CLIENT_ENDPOINT,
                 'callback' => [self::class, 'opposite'],
             ],
             [
-                'module' => ModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
+                'module' => FunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
                 'class' => \PoP\GraphQLClientsForWP\Component::class,
                 'envVariable' => \PoP\GraphQLClientsForWP\Environment::DISABLE_VOYAGER_CLIENT_ENDPOINT,
                 'callback' => [self::class, 'opposite'],
@@ -565,10 +566,10 @@ class PluginConfiguration
 
         // Component classes enabled/disabled by module
         $maybeSkipSchemaModuleComponentClasses = [
-            ModuleResolver::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => [
+            SchemaModuleResolver::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => [
                 \PoP\UsefulDirectives\Component::class,
             ],
-            ModuleResolver::SCHEMA_POST_TYPE => [
+            SchemaModuleResolver::SCHEMA_POST_TYPE => [
                 \PoP\CustomPostMediaWP\Component::class,
                 \PoP\CustomPostMedia\Component::class,
                 \PoP\CustomPostMetaWP\Component::class,
@@ -576,13 +577,13 @@ class PluginConfiguration
                 \PoP\PostsWP\Component::class,
                 \PoP\Posts\Component::class,
             ],
-            ModuleResolver::SCHEMA_COMMENT_TYPE => [
+            SchemaModuleResolver::SCHEMA_COMMENT_TYPE => [
                 \PoP\CommentMetaWP\Component::class,
                 \PoP\CommentMeta\Component::class,
                 \PoP\CommentsWP\Component::class,
                 \PoP\Comments\Component::class,
             ],
-            ModuleResolver::SCHEMA_USER_TYPE => [
+            SchemaModuleResolver::SCHEMA_USER_TYPE => [
                 \PoP\UserMetaWP\Component::class,
                 \PoP\UserMeta\Component::class,
                 \PoP\UsersWP\Component::class,
@@ -591,17 +592,17 @@ class PluginConfiguration
                 \PoP\UserRoles\Component::class,
                 \PoP\UserState\Component::class,
             ],
-            ModuleResolver::SCHEMA_PAGE_TYPE => [
+            SchemaModuleResolver::SCHEMA_PAGE_TYPE => [
                 \PoP\PagesWP\Component::class,
                 \PoP\Pages\Component::class,
             ],
-            ModuleResolver::SCHEMA_MEDIA_TYPE => [
+            SchemaModuleResolver::SCHEMA_MEDIA_TYPE => [
                 \PoP\CustomPostMediaWP\Component::class,
                 \PoP\CustomPostMedia\Component::class,
                 \PoP\MediaWP\Component::class,
                 \PoP\Media\Component::class,
             ],
-            ModuleResolver::SCHEMA_TAXONOMY_TYPE => [
+            SchemaModuleResolver::SCHEMA_TAXONOMY_TYPE => [
                 \PoP\TaxonomiesWP\Component::class,
                 \PoP\Taxonomies\Component::class,
                 \PoP\TaxonomyMetaWP\Component::class,

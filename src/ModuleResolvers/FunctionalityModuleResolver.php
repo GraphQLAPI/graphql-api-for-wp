@@ -6,27 +6,17 @@ namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
 use GraphQLAPI\GraphQLAPI\Plugin;
 use PoP\AccessControl\Schema\SchemaModes;
-use PoP\Pages\TypeResolvers\PageTypeResolver;
-use PoP\Posts\TypeResolvers\PostTypeResolver;
-use PoP\Users\TypeResolvers\UserTypeResolver;
 use GraphQLAPI\GraphQLAPI\General\LocaleUtils;
-use PoP\Media\TypeResolvers\MediaTypeResolver;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
-use PoP\Taxonomies\TypeResolvers\TagTypeResolver;
-use PoP\Comments\TypeResolvers\CommentTypeResolver;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use PoP\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
-use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
-use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
-use PoP\UsefulDirectives\DirectiveResolvers\UpperCaseStringDirectiveResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\HasMarkdownDocumentationModuleResolverTrait;
 use PoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
 use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 
-class ModuleResolver extends AbstractModuleResolver
+class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
     use HasMarkdownDocumentationModuleResolverTrait;
 
@@ -58,14 +48,6 @@ class ModuleResolver extends AbstractModuleResolver
     public const LOW_LEVEL_QUERY_EDITING = Plugin::NAMESPACE . '\low-level-query-editing';
     public const GRAPHIQL_EXPLORER = Plugin::NAMESPACE . '\graphiql-explorer';
     public const WELCOME_GUIDES = Plugin::NAMESPACE . '\welcome-guides';
-    public const DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE = Plugin::NAMESPACE . '\directive-set-convert-lower-uppercase';
-    public const SCHEMA_POST_TYPE = Plugin::NAMESPACE . '\schema-post-type';
-    public const SCHEMA_COMMENT_TYPE = Plugin::NAMESPACE . '\schema-comment-type';
-    public const SCHEMA_USER_TYPE = Plugin::NAMESPACE . '\schema-user-type';
-    public const SCHEMA_PAGE_TYPE = Plugin::NAMESPACE . '\schema-page-type';
-    public const SCHEMA_MEDIA_TYPE = Plugin::NAMESPACE . '\schema-media-type';
-    public const SCHEMA_TAXONOMY_TYPE = Plugin::NAMESPACE . '\schema-taxonomy-type';
-    public const SCHEMA_CUSTOMPOST_UNION_TYPE = Plugin::NAMESPACE . '\schema-custompost-union-type';
 
     /**
      * Setting options
@@ -77,16 +59,6 @@ class ModuleResolver extends AbstractModuleResolver
     public const OPTION_MODE = 'mode';
     public const OPTION_ENABLE_GRANULAR = 'granular';
     public const OPTION_MAX_AGE = 'max-age';
-    public const OPTION_POST_DEFAULT_LIMIT = 'post-default-limit';
-    public const OPTION_POST_MAX_LIMIT = 'post-max-limit';
-    public const OPTION_CUSTOMPOST_DEFAULT_LIMIT = 'custompost-default-limit';
-    public const OPTION_CUSTOMPOST_MAX_LIMIT = 'custompost-max-limit';
-    public const OPTION_USER_DEFAULT_LIMIT = 'user-default-limit';
-    public const OPTION_USER_MAX_LIMIT = 'user-max-limit';
-    public const OPTION_TAG_DEFAULT_LIMIT = 'tag-default-limit';
-    public const OPTION_TAG_MAX_LIMIT = 'tag-max-limit';
-    public const OPTION_PAGE_DEFAULT_LIMIT = 'page-default-limit';
-    public const OPTION_PAGE_MAX_LIMIT = 'page-max-limit';
 
     /**
      * Setting option values
@@ -120,14 +92,6 @@ class ModuleResolver extends AbstractModuleResolver
             self::GRAPHIQL_EXPLORER,
             self::EXCERPT_AS_DESCRIPTION,
             self::WELCOME_GUIDES,
-            self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE,
-            self::SCHEMA_USER_TYPE,
-            self::SCHEMA_PAGE_TYPE,
-            self::SCHEMA_MEDIA_TYPE,
-            self::SCHEMA_POST_TYPE,
-            self::SCHEMA_COMMENT_TYPE,
-            self::SCHEMA_TAXONOMY_TYPE,
-            self::SCHEMA_CUSTOMPOST_UNION_TYPE,
         ];
     }
 
@@ -203,21 +167,6 @@ class ModuleResolver extends AbstractModuleResolver
                         self::PERSISTED_QUERIES,
                     ],
                 ];
-            case self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE:
-            case self::SCHEMA_POST_TYPE:
-            case self::SCHEMA_USER_TYPE:
-            case self::SCHEMA_PAGE_TYPE:
-            case self::SCHEMA_MEDIA_TYPE:
-            case self::SCHEMA_CUSTOMPOST_UNION_TYPE:
-            case self::SCHEMA_COMMENT_TYPE:
-            case self::SCHEMA_TAXONOMY_TYPE:
-                return [
-                    [
-                        self::SINGLE_ENDPOINT,
-                        self::PERSISTED_QUERIES,
-                        self::CUSTOM_ENDPOINTS,
-                    ],
-                ];
         }
         return parent::getDependedModuleLists($module);
     }
@@ -277,14 +226,6 @@ class ModuleResolver extends AbstractModuleResolver
             self::LOW_LEVEL_QUERY_EDITING => \__('Low-Level Query Editing', 'graphql-api'),
             self::GRAPHIQL_EXPLORER => \__('GraphiQL Explorer', 'graphql-api'),
             self::WELCOME_GUIDES => \__('Welcome Guides', 'graphql-api'),
-            self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => \__('Directive Set: Convert Lower/Uppercase', 'graphql-api'),
-            self::SCHEMA_POST_TYPE => \__('Schema Post Type', 'graphql-api'),
-            self::SCHEMA_COMMENT_TYPE => \__('Schema Comment Type', 'graphql-api'),
-            self::SCHEMA_USER_TYPE => \__('Schema User Type', 'graphql-api'),
-            self::SCHEMA_PAGE_TYPE => \__('Schema Page Type', 'graphql-api'),
-            self::SCHEMA_MEDIA_TYPE => \__('Schema Media Type', 'graphql-api'),
-            self::SCHEMA_TAXONOMY_TYPE => \__('Schema Taxonomy Type', 'graphql-api'),
-            self::SCHEMA_CUSTOMPOST_UNION_TYPE => \__('Schema Custom Post Union Type', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
     }
@@ -353,48 +294,6 @@ class ModuleResolver extends AbstractModuleResolver
                     '5.4',
                     '6.1'
                 );
-            case self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE:
-                return sprintf(
-                    \__('Set of directives to manipulate strings: <code>@%s</code>, <code>@%s</code> and <code>@%s</code>', 'graphql-api'),
-                    UpperCaseStringDirectiveResolver::getDirectiveName(),
-                    LowerCaseStringDirectiveResolver::getDirectiveName(),
-                    TitleCaseStringDirectiveResolver::getDirectiveName()
-                );
-            case self::SCHEMA_POST_TYPE:
-                return sprintf(
-                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
-                    PostTypeResolver::NAME,
-                );
-            case self::SCHEMA_USER_TYPE:
-                return sprintf(
-                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
-                    UserTypeResolver::NAME,
-                );
-            case self::SCHEMA_PAGE_TYPE:
-                return sprintf(
-                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
-                    PageTypeResolver::NAME,
-                );
-            case self::SCHEMA_MEDIA_TYPE:
-                return sprintf(
-                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
-                    MediaTypeResolver::NAME,
-                );
-            case self::SCHEMA_COMMENT_TYPE:
-                return sprintf(
-                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
-                    CommentTypeResolver::NAME,
-                );
-            case self::SCHEMA_TAXONOMY_TYPE:
-                return sprintf(
-                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
-                    TagTypeResolver::NAME,
-                );
-            case self::SCHEMA_CUSTOMPOST_UNION_TYPE:
-                return sprintf(
-                    \__('Add the <code>%s</code> union type to the schema', 'graphql-api'),
-                    CustomPostUnionTypeResolver::NAME,
-                );
         }
         return parent::getDescription($module);
     }
@@ -454,26 +353,6 @@ class ModuleResolver extends AbstractModuleResolver
             self::CACHE_CONTROL => [
                 self::OPTION_MAX_AGE => 86400, // 1 day
             ],
-            self::SCHEMA_POST_TYPE => [
-                self::OPTION_POST_DEFAULT_LIMIT => 10,
-                self::OPTION_POST_MAX_LIMIT => 100,
-            ],
-            self::SCHEMA_USER_TYPE => [
-                self::OPTION_USER_DEFAULT_LIMIT => 10,
-                self::OPTION_USER_MAX_LIMIT => 100,
-            ],
-            self::SCHEMA_PAGE_TYPE => [
-                self::OPTION_PAGE_DEFAULT_LIMIT => 10,
-                self::OPTION_PAGE_MAX_LIMIT => 100,
-            ],
-            self::SCHEMA_TAXONOMY_TYPE => [
-                self::OPTION_TAG_DEFAULT_LIMIT => 50,
-                self::OPTION_TAG_MAX_LIMIT => 500,
-            ],
-            self::SCHEMA_CUSTOMPOST_UNION_TYPE => [
-                self::OPTION_CUSTOMPOST_DEFAULT_LIMIT => 10,
-                self::OPTION_CUSTOMPOST_MAX_LIMIT => 100,
-            ],
         ];
         return $defaultValues[$module][$option];
     }
@@ -488,11 +367,6 @@ class ModuleResolver extends AbstractModuleResolver
     {
         $moduleSettings = parent::getSettings($module);
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        // Common variables to set the limit on the schema types
-        $limitArg = 'limit';
-        $unlimitedValue = -1;
-        $defaultLimitMessagePlaceholder = \__('Number of results from querying field <code>%s</code> when argument <code>%s</code> is not provided. Use <code>%s</code> for unlimited', 'graphql-api');
-        $maxLimitMessagePlaceholder = \__('Maximum number of results from querying field <code>%s</code>. Use <code>%s</code> for unlimited', 'graphql-api');
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if ($module == self::MAIN) {
             /**
@@ -712,73 +586,6 @@ class ModuleResolver extends AbstractModuleResolver
                 // Properties::DEFAULT_VALUE => 60,
                 Properties::TYPE => Properties::TYPE_INT,
             ];
-        } elseif (
-            in_array($module, [
-                self::SCHEMA_POST_TYPE,
-                self::SCHEMA_USER_TYPE,
-                self::SCHEMA_TAXONOMY_TYPE,
-                self::SCHEMA_PAGE_TYPE,
-                self::SCHEMA_CUSTOMPOST_UNION_TYPE,
-            ])
-        ) {
-            $moduleFieldOptions = [
-                self::SCHEMA_POST_TYPE => [
-                    'posts' => [self::OPTION_POST_DEFAULT_LIMIT, self::OPTION_POST_MAX_LIMIT],
-                ],
-                self::SCHEMA_USER_TYPE => [
-                    'users' => [self::OPTION_USER_DEFAULT_LIMIT, self::OPTION_USER_MAX_LIMIT],
-                ],
-                self::SCHEMA_TAXONOMY_TYPE => [
-                    'tags' => [self::OPTION_TAG_DEFAULT_LIMIT, self::OPTION_TAG_MAX_LIMIT],
-                ],
-                self::SCHEMA_PAGE_TYPE => [
-                    'pages' => [self::OPTION_PAGE_DEFAULT_LIMIT, self::OPTION_PAGE_MAX_LIMIT],
-                ],
-                self::SCHEMA_CUSTOMPOST_UNION_TYPE => [
-                    'customPosts' => [self::OPTION_CUSTOMPOST_DEFAULT_LIMIT, self::OPTION_CUSTOMPOST_MAX_LIMIT],
-                ],
-            ];
-            foreach ($moduleFieldOptions[$module] as $field => $options) {
-                list(
-                    $defaultLimitOption,
-                    $maxLimitOption,
-                ) = $options;
-                $moduleSettings[] = [
-                    Properties::INPUT => $defaultLimitOption,
-                    Properties::NAME => $this->getSettingOptionName(
-                        $module,
-                        $defaultLimitOption,
-                    ),
-                    Properties::TITLE => sprintf(
-                        \__('Default limit for <code>%s</code>', 'graphql-api'),
-                        $field
-                    ),
-                    Properties::DESCRIPTION => sprintf(
-                        $defaultLimitMessagePlaceholder,
-                        $field,
-                        $limitArg,
-                        $unlimitedValue
-                    ),
-                    Properties::TYPE => Properties::TYPE_INT,
-                ];
-                $moduleSettings[] = [
-                    Properties::INPUT => $maxLimitOption,
-                    Properties::NAME => $this->getSettingOptionName(
-                        $module,
-                        $maxLimitOption,
-                    ),
-                    Properties::TITLE => sprintf(
-                        \__('Max limit for <code>%s</code>', 'graphql-api'),
-                        $field
-                    ),
-                    Properties::DESCRIPTION => sprintf(
-                        $maxLimitMessagePlaceholder,
-                        $field,
-                        $unlimitedValue
-                    ),
-                    Properties::TYPE => Properties::TYPE_INT,
-                ];
-            }
         }
         return $moduleSettings;
     }
@@ -843,26 +650,4 @@ class ModuleResolver extends AbstractModuleResolver
         $lang = $this->getDefaultDocumentationLanguage();
         return constant('GRAPHQL_API_URL') . "docs/${lang}/modules";
     }
-
-    // /**
-    //  * Does the module have HTML Documentation?
-    //  *
-    //  * @param string $module
-    //  * @return bool
-    //  */
-    // public function hasDocumentation(string $module): bool
-    // {
-    //     $skipDocumentationModules = [
-    //         self::SCHEMA_POST_TYPE,
-    //         self::SCHEMA_COMMENT_TYPE,
-    //         self::SCHEMA_USER_TYPE,
-    //         self::SCHEMA_PAGE_TYPE,
-    //         self::SCHEMA_MEDIA_TYPE,
-    //         self::SCHEMA_TAXONOMY_TYPE,
-    //     ];
-    //     if (in_array($module, $skipDocumentationModules)) {
-    //         return false;
-    //     }
-    //     return $this->upstreamHasDocumentation($module);
-    // }
 }

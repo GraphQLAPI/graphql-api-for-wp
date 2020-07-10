@@ -10,7 +10,7 @@ use PoP\ComponentModel\State\ApplicationState;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 
 abstract class AbstractPostType
 {
@@ -174,7 +174,7 @@ abstract class AbstractPostType
          * Check if it is enabled and it is this CPT...
          */
         if (
-            $moduleRegistry->isModuleEnabled(ModuleResolver::EXCERPT_AS_DESCRIPTION)
+            $moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::EXCERPT_AS_DESCRIPTION)
             && UserAuthorization::canAccessSchemaEditor()
             && \is_singular($this->getPostType())
         ) {
@@ -248,7 +248,7 @@ abstract class AbstractPostType
     protected function isExcerptAsDescriptionEnabled(): bool
     {
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        return $moduleRegistry->isModuleEnabled(ModuleResolver::EXCERPT_AS_DESCRIPTION);
+        return $moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::EXCERPT_AS_DESCRIPTION);
     }
 
     /**
@@ -259,7 +259,7 @@ abstract class AbstractPostType
     protected function isAPIHierarchyModuleEnabled(): bool
     {
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        return $moduleRegistry->isModuleEnabled(ModuleResolver::API_HIERARCHY);
+        return $moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::API_HIERARCHY);
     }
 
     /**
