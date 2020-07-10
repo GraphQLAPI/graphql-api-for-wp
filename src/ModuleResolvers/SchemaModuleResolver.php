@@ -50,13 +50,13 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     {
         return [
             self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE,
-            self::SCHEMA_USER_TYPE,
-            self::SCHEMA_PAGE_TYPE,
-            self::SCHEMA_MEDIA_TYPE,
+            self::SCHEMA_CUSTOMPOST_TYPE,
             self::SCHEMA_POST_TYPE,
+            self::SCHEMA_PAGE_TYPE,
+            self::SCHEMA_USER_TYPE,
             self::SCHEMA_COMMENT_TYPE,
             self::SCHEMA_TAXONOMY_TYPE,
-            self::SCHEMA_CUSTOMPOST_TYPE,
+            self::SCHEMA_MEDIA_TYPE,
         ];
     }
 
