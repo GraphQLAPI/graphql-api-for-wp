@@ -14,6 +14,7 @@ use PoP\Comments\TypeResolvers\CommentTypeResolver;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 use PoP\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
+use PoP\CustomPosts\TypeResolvers\CustomPostTypeResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\UpperCaseStringDirectiveResolver;
@@ -29,7 +30,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     public const SCHEMA_PAGE_TYPE = Plugin::NAMESPACE . '\schema-page-type';
     public const SCHEMA_MEDIA_TYPE = Plugin::NAMESPACE . '\schema-media-type';
     public const SCHEMA_TAXONOMY_TYPE = Plugin::NAMESPACE . '\schema-taxonomy-type';
-    public const SCHEMA_CUSTOMPOST_UNION_TYPE = Plugin::NAMESPACE . '\schema-custompost-union-type';
+    public const SCHEMA_CUSTOMPOST_TYPE = Plugin::NAMESPACE . '\schema-custompost-type';
 
     /**
      * Setting options
@@ -55,7 +56,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             self::SCHEMA_POST_TYPE,
             self::SCHEMA_COMMENT_TYPE,
             self::SCHEMA_TAXONOMY_TYPE,
-            self::SCHEMA_CUSTOMPOST_UNION_TYPE,
+            self::SCHEMA_CUSTOMPOST_TYPE,
         ];
     }
 
@@ -67,7 +68,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             case self::SCHEMA_USER_TYPE:
             case self::SCHEMA_PAGE_TYPE:
             case self::SCHEMA_MEDIA_TYPE:
-            case self::SCHEMA_CUSTOMPOST_UNION_TYPE:
+            case self::SCHEMA_CUSTOMPOST_TYPE:
             case self::SCHEMA_COMMENT_TYPE:
             case self::SCHEMA_TAXONOMY_TYPE:
                 return [
@@ -91,7 +92,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             self::SCHEMA_PAGE_TYPE => \__('Schema Page Type', 'graphql-api'),
             self::SCHEMA_MEDIA_TYPE => \__('Schema Media Type', 'graphql-api'),
             self::SCHEMA_TAXONOMY_TYPE => \__('Schema Taxonomy Type', 'graphql-api'),
-            self::SCHEMA_CUSTOMPOST_UNION_TYPE => \__('Schema Custom Post Union Type', 'graphql-api'),
+            self::SCHEMA_CUSTOMPOST_TYPE => \__('Schema Custom Post Types', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
     }
@@ -136,10 +137,11 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                     \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
                     TagTypeResolver::NAME,
                 );
-            case self::SCHEMA_CUSTOMPOST_UNION_TYPE:
+            case self::SCHEMA_CUSTOMPOST_TYPE:
                 return sprintf(
-                    \__('Add the <code>%s</code> union type to the schema', 'graphql-api'),
-                    CustomPostUnionTypeResolver::NAME,
+                    \__('Add the <code>%s</code> and <code>%s</code> types to the schema', 'graphql-api'),
+                    CustomPostTypeResolver::NAME,
+                    CustomPostUnionTypeResolver::NAME
                 );
         }
         return parent::getDescription($module);
@@ -171,7 +173,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 self::OPTION_TAG_DEFAULT_LIMIT => 50,
                 self::OPTION_TAG_MAX_LIMIT => 500,
             ],
-            self::SCHEMA_CUSTOMPOST_UNION_TYPE => [
+            self::SCHEMA_CUSTOMPOST_TYPE => [
                 self::OPTION_CUSTOMPOST_DEFAULT_LIMIT => 10,
                 self::OPTION_CUSTOMPOST_MAX_LIMIT => 100,
             ],
@@ -200,7 +202,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 self::SCHEMA_USER_TYPE,
                 self::SCHEMA_TAXONOMY_TYPE,
                 self::SCHEMA_PAGE_TYPE,
-                self::SCHEMA_CUSTOMPOST_UNION_TYPE,
+                self::SCHEMA_CUSTOMPOST_TYPE,
             ])
         ) {
             $moduleFieldOptions = [
@@ -216,7 +218,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 self::SCHEMA_PAGE_TYPE => [
                     'pages' => [self::OPTION_PAGE_DEFAULT_LIMIT, self::OPTION_PAGE_MAX_LIMIT],
                 ],
-                self::SCHEMA_CUSTOMPOST_UNION_TYPE => [
+                self::SCHEMA_CUSTOMPOST_TYPE => [
                     'customPosts' => [self::OPTION_CUSTOMPOST_DEFAULT_LIMIT, self::OPTION_CUSTOMPOST_MAX_LIMIT],
                 ],
             ];

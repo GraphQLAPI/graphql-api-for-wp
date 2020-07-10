@@ -326,13 +326,13 @@ class PluginConfiguration
             [
                 'class' => ContentComponentConfiguration::class,
                 'envVariable' => ContentEnvironment::CUSTOMPOST_LIST_DEFAULT_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOST_UNION_TYPE,
+                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOST_TYPE,
                 'option' => SchemaModuleResolver::OPTION_CUSTOMPOST_DEFAULT_LIMIT,
             ],
             [
                 'class' => ContentComponentConfiguration::class,
                 'envVariable' => ContentEnvironment::CUSTOMPOST_LIST_MAX_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOST_UNION_TYPE,
+                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOST_TYPE,
                 'option' => SchemaModuleResolver::OPTION_CUSTOMPOST_MAX_LIMIT,
             ],
         ];
