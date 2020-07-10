@@ -244,6 +244,7 @@ class ModuleResolver extends AbstractModuleResolver
         switch ($module) {
             case self::MAIN:
             case self::SCHEMA_CACHE:
+            case self::WELCOME_GUIDES:
                 return true;
         }
         return parent::isHidden($module);
@@ -406,6 +407,7 @@ class ModuleResolver extends AbstractModuleResolver
             case self::SCHEMA_CACHE:
             case self::SCHEMA_NAMESPACING:
             case self::FIELD_DEPRECATION:
+            case self::WELCOME_GUIDES:
                 return false;
         }
         return parent::isEnabledByDefault($module);
