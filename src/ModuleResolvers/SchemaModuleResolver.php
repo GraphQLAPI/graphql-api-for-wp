@@ -64,18 +64,23 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     {
         switch ($module) {
             case self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE:
-            case self::SCHEMA_POST_TYPE:
             case self::SCHEMA_USER_TYPE:
-            case self::SCHEMA_PAGE_TYPE:
             case self::SCHEMA_MEDIA_TYPE:
             case self::SCHEMA_CUSTOMPOST_TYPE:
-            case self::SCHEMA_COMMENT_TYPE:
-            case self::SCHEMA_TAXONOMY_TYPE:
                 return [
                     [
                         FunctionalityModuleResolver::SINGLE_ENDPOINT,
                         FunctionalityModuleResolver::PERSISTED_QUERIES,
                         FunctionalityModuleResolver::CUSTOM_ENDPOINTS,
+                    ],
+                ];
+            case self::SCHEMA_POST_TYPE:
+            case self::SCHEMA_PAGE_TYPE:
+            case self::SCHEMA_COMMENT_TYPE:
+            case self::SCHEMA_TAXONOMY_TYPE:
+                return [
+                    [
+                        self::SCHEMA_CUSTOMPOST_TYPE,
                     ],
                 ];
         }
@@ -145,15 +150,6 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 );
         }
         return parent::getDescription($module);
-    }
-
-    public function canBeDisabled(string $module): bool
-    {
-        switch ($module) {
-            case self::SCHEMA_CUSTOMPOST_TYPE:
-                return false;
-        }
-        return parent::canBeDisabled($module);
     }
 
     /**
