@@ -508,13 +508,6 @@ class PluginConfiguration
         $componentClassConfiguration[\PoP\GraphQLAPIRequest\Component::class] = [
             \PoP\GraphQLAPIRequest\Environment::DISABLE_GRAPHQL_API_FOR_POP => true,
         ];
-        // Cache the component model + schema
-        $componentClassConfiguration[\PoP\ComponentModel\Component::class] = [
-            \PoP\ComponentModel\Environment::USE_COMPONENT_MODEL_CACHE => true,
-        ];
-        $componentClassConfiguration[\PoP\API\Component::class] = [
-            \PoP\API\Environment::USE_SCHEMA_DEFINITION_CACHE => true,
-        ];
 
     }
 
@@ -555,6 +548,17 @@ class PluginConfiguration
                 'class' => \PoP\GraphQLClientsForWP\Component::class,
                 'envVariable' => \PoP\GraphQLClientsForWP\Environment::DISABLE_VOYAGER_CLIENT_ENDPOINT,
                 'callback' => [self::class, 'opposite'],
+            ],
+            // Cache the component model + schema
+            [
+                'module' => FunctionalityModuleResolver::SCHEMA_CACHE,
+                'class' => \PoP\ComponentModel\Component::class,
+                'envVariable' => \PoP\ComponentModel\Environment::USE_COMPONENT_MODEL_CACHE,
+            ],
+            [
+                'module' => FunctionalityModuleResolver::SCHEMA_CACHE,
+                'class' => \PoP\API\Component::class,
+                'envVariable' => \PoP\API\Environment::USE_SCHEMA_DEFINITION_CACHE,
             ],
         ];
         foreach ($moduleToComponentClassConfigurationMappings as $mapping) {

@@ -61,7 +61,11 @@ class Component extends AbstractComponent
         parent::doInitialize($configuration, $skipSchema, $skipSchemaComponentClasses);
         self::initYAMLServices(dirname(__DIR__));
         self::maybeInitYAMLSchemaServices(dirname(__DIR__), $skipSchema);
-        self::initYAMLServices(dirname(__DIR__), '', 'cache-services.yaml');
+        // Register the Cache services, if the module is not disabled
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::SCHEMA_CACHE)) {
+            self::initYAMLServices(dirname(__DIR__), '', 'cache-services.yaml');
+        }
         self::initComponentConfiguration();
         ServiceConfiguration::initialize();
     }
