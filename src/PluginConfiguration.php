@@ -508,6 +508,14 @@ class PluginConfiguration
         $componentClassConfiguration[\PoP\GraphQLAPIRequest\Component::class] = [
             \PoP\GraphQLAPIRequest\Environment::DISABLE_GRAPHQL_API_FOR_POP => true,
         ];
+        // Cache the component model + schema
+        $componentClassConfiguration[\PoP\ComponentModel\Component::class] = [
+            \PoP\ComponentModel\Environment::USE_COMPONENT_MODEL_CACHE => true,
+        ];
+        $componentClassConfiguration[\PoP\API\Component::class] = [
+            \PoP\API\Environment::USE_SCHEMA_DEFINITION_CACHE => true,
+        ];
+
     }
 
     /**

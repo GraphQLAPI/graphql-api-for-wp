@@ -6,7 +6,6 @@ namespace GraphQLAPI\GraphQLAPI\Config;
 
 use PoP\Engine\TypeResolvers\RootTypeResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\GraphiQLBlock;
-use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use PoP\Root\Component\PHPServiceConfigurationTrait;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;

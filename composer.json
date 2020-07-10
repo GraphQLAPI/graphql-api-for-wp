@@ -24,6 +24,8 @@
         "erusev/parsedown": "^1.7",
         "getpop/commentmeta-wp": "dev-master",
         "getpop/comments-wp": "dev-master",
+        "getpop/custompostmedia-wp": "dev-master",
+        "getpop/custompostmeta-wp": "dev-master",
         "getpop/engine-wp": "dev-master",
         "getpop/field-deprecation-by-directive": "dev-master",
         "getpop/graphql": "dev-master",
@@ -31,8 +33,6 @@
         "getpop/graphql-endpoint-for-wp": "dev-master",
         "getpop/media-wp": "dev-master",
         "getpop/pages-wp": "dev-master",
-        "getpop/custompostmedia-wp": "dev-master",
-        "getpop/custompostmeta-wp": "dev-master",
         "getpop/posts-wp": "dev-master",
         "getpop/taxonomies-wp": "dev-master",
         "getpop/taxonomymeta-wp": "dev-master",
@@ -43,6 +43,7 @@
         "getpop/user-state-wp": "dev-master",
         "getpop/usermeta-wp": "dev-master",
         "getpop/users-wp": "dev-master",
+        "symfony/expression-language": "^5.1",
         "wikimedia/composer-merge-plugin": "^1.4"
     },
     "require-dev": {

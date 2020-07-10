@@ -17,4 +17,9 @@ class Options
      * Option name under which to store the enabled/disabled Modules
      */
     public const MODULES = 'graphql-api-modules';
+    /**
+     * Option name under which to store the timestamp from the last
+     * settings/modules write to the DB
+     */
+    public const TIMESTAMP = 'graphql-api-timestamp';
 }
