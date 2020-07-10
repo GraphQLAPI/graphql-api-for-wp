@@ -25,6 +25,13 @@ interface ModuleResolverInterface
      * @return boolean
      */
     public function areRequirementsSatisfied(string $module): bool;
+    /**
+     * Can the module be disabled by the user?
+     *
+     * @param string $module
+     * @return boolean
+     */
+    public function canBeDisabled(string $module): bool;
     public function isHidden(string $module): bool;
     public function getID(string $module): string;
     public function getName(string $module): string;

@@ -147,13 +147,13 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
         return parent::getDescription($module);
     }
 
-    public function isHidden(string $module): bool
+    public function canBeDisabled(string $module): bool
     {
         switch ($module) {
             case self::SCHEMA_CUSTOMPOST_TYPE:
-                return true;
+                return false;
         }
-        return parent::isHidden($module);
+        return parent::canBeDisabled($module);
     }
 
     /**

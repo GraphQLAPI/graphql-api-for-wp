@@ -183,6 +183,15 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
         return parent::areRequirementsSatisfied($module);
     }
 
+    public function canBeDisabled(string $module): bool
+    {
+        switch ($module) {
+            case self::MAIN:
+                return false;
+        }
+        return parent::canBeDisabled($module);
+    }
+
     public function isHidden(string $module): bool
     {
         switch ($module) {

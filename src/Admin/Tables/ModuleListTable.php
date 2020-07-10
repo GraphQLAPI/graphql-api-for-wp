@@ -54,6 +54,7 @@ class ModuleListTable extends AbstractItemListTable
                 'module-type' => $moduleResolver->getModuleType($module),
                 'id' => $moduleResolver->getID($module),
                 'is-enabled' => $isEnabled,
+                'can-be-disabled' => $moduleResolver->canBeDisabled($module),
                 'can-be-enabled' => !$isEnabled && $moduleRegistry->canModuleBeEnabled($module),
                 'has-settings' => $moduleResolver->hasSettings($module),
                 'name' => $moduleResolver->getName($module),
@@ -229,14 +230,19 @@ class ModuleListTable extends AbstractItemListTable
         $actions = [];
         if ($item['is-enabled']) {
             // If it is enabled, offer to disable it
-            $actions['disable'] = \sprintf(
-                $linkPlaceholder,
-                $page,
-                ModuleListTableAction::ACTION_DISABLE,
-                $item['id'],
-                $nonce,
-                \__('Disable', 'graphql-api')
-            );
+            // Unless the module cannot be disabled
+            if ($item['can-be-disabled']) {
+                $actions['disable'] = \sprintf(
+                    $linkPlaceholder,
+                    $page,
+                    ModuleListTableAction::ACTION_DISABLE,
+                    $item['id'],
+                    $nonce,
+                    \__('Disable', 'graphql-api')
+                );
+            } else {
+                $actions['enabled'] = \__('Enabled', 'graphql-api');
+            }
 
             // Maybe add settings links
             if ($item['has-settings']) {

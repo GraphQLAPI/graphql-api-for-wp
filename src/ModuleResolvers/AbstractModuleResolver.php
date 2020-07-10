@@ -20,6 +20,11 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
         return true;
     }
 
+    public function canBeDisabled(string $module): bool
+    {
+        return true;
+    }
+
     public function isHidden(string $module): bool
     {
         return false;

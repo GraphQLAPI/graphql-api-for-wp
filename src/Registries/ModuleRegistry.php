@@ -66,6 +66,10 @@ class ModuleRegistry implements ModuleRegistryInterface
         if (!$this->areDependedModulesEnabled($module)) {
             return false;
         }
+        // If the user can't disable it, then it must be enabled
+        if (!$moduleResolver->canBeDisabled($module)) {
+            return true;
+        }
         $moduleID = $moduleResolver->getID($module);
         // Check if the value has been saved on the DB
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
