@@ -1,0 +1,12 @@
+services:
+    # Configure the cache with dynamic values
+    cache_configuration_manager:
+        class: \GraphQLAPI\GraphQLAPI\Cache\CacheConfigurationManager
+        public: true
+
+    # Override the Cache Item Pool to set a directory where to store the cache
+    persistent_cache_item_pool:
+        class: \Symfony\Component\Cache\Adapter\FilesystemAdapter
+        public: true
+        arguments:
+            $namespace: '@=service("cache_configuration_manager").getNamespace()'

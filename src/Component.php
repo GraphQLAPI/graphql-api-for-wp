@@ -61,6 +61,7 @@ class Component extends AbstractComponent
         parent::doInitialize($configuration, $skipSchema, $skipSchemaComponentClasses);
         self::initYAMLServices(dirname(__DIR__));
         self::maybeInitYAMLSchemaServices(dirname(__DIR__), $skipSchema);
+        self::initYAMLServices(dirname(__DIR__), '', 'cache-services.yaml');
         self::initComponentConfiguration();
         ServiceConfiguration::initialize();
     }
