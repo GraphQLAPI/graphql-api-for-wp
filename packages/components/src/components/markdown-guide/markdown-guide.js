@@ -3,7 +3,7 @@
  */
 import { useState, useEffect } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
-import { Button, Guide, GuidePage } from '@wordpress/components';
+import { Button, Guide } from '@wordpress/components';
 
 const EndpointGuide = ( props ) => {
 	const {
@@ -23,14 +23,12 @@ const EndpointGuide = ( props ) => {
 	return (
 		<Guide
 			{ ...props }
-		>
-			{ pages.map( page => (
-				<GuidePage
-					{ ...props }
-					dangerouslySetInnerHTML={ { __html: page } }
-				/>
+			pages={ pages.map( page => (
+				{ content: <span
+					dangerouslySetInnerHTML={{ __html: page }}
+				/> }
 			) ) }
-		</Guide>
+		/>
 	)
 }
 const EndpointGuideButton = ( props ) => {

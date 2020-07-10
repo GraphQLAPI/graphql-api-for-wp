@@ -227,13 +227,13 @@ class ModuleResolver extends AbstractModuleResolver
         switch ($module) {
             case self::WELCOME_GUIDES:
                 /**
-                 * WordPress 5.4 or above, or Gutenberg 6.1 or above
+                 * WordPress 5.5 or above, or Gutenberg 8.2 or above
                  */
                 return
-                    \is_wp_version_compatible('5.4') ||
+                    \is_wp_version_compatible('5.5') ||
                     (
                         defined('GUTENBERG_VERSION') &&
-                        \version_compare(constant('GUTENBERG_VERSION'), '6.1', '>=')
+                        \version_compare(constant('GUTENBERG_VERSION'), '8.2', '>=')
                     );
         }
         return parent::areRequirementsSatisfied($module);
