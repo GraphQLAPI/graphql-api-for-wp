@@ -8,24 +8,19 @@ use GraphQLAPI\GraphQLAPI\Plugin;
 use PoP\Pages\TypeResolvers\PageTypeResolver;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\Users\TypeResolvers\UserTypeResolver;
-use GraphQLAPI\GraphQLAPI\General\LocaleUtils;
 use PoP\Media\TypeResolvers\MediaTypeResolver;
 use PoP\Taxonomies\TypeResolvers\TagTypeResolver;
 use PoP\Comments\TypeResolvers\CommentTypeResolver;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 use PoP\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\UpperCaseStringDirectiveResolver;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\HasMarkdownDocumentationModuleResolverTrait;
 
 class SchemaModuleResolver extends AbstractSchemaModuleResolver
 {
-    use HasMarkdownDocumentationModuleResolverTrait;
-
-    // use HasMarkdownDocumentationModuleResolverTrait {
-    //     HasMarkdownDocumentationModuleResolverTrait::hasDocumentation as upstreamHasDocumentation;
-    // }
+    use ModuleResolverTrait;
 
     public const DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE = Plugin::NAMESPACE . '\directive-set-convert-lower-uppercase';
     public const SCHEMA_POST_TYPE = Plugin::NAMESPACE . '\schema-post-type';
@@ -269,87 +264,4 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
         }
         return $moduleSettings;
     }
-
-    /**
-     * Where the markdown file localized to the user's language is stored
-     *
-     * @param string $module
-     * @return string
-     */
-    public function getLocalizedMarkdownFileDir(string $module): string
-    {
-        return $this->getMarkdownFileDir($module, LocaleUtils::getLocaleLanguage());
-    }
-
-    /**
-     * Where the default markdown file (for if the localized language is not available) is stored
-     * Default language for documentation: English
-     *
-     * @param string $module
-     * @return string
-     */
-    public function getDefaultMarkdownFileDir(string $module): string
-    {
-        return $this->getMarkdownFileDir(
-            $module,
-            $this->getDefaultDocumentationLanguage()
-        );
-    }
-
-    /**
-     * Default language for documentation: English
-     *
-     * @param string $module
-     * @return string
-     */
-    public function getDefaultDocumentationLanguage(): string
-    {
-        return 'en';
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @param string $module
-     * @param string $lang
-     * @return string
-     */
-    protected function getMarkdownFileDir(string $module, string $lang): string
-    {
-        return constant('GRAPHQL_API_DIR') . "/docs/${lang}/modules";
-    }
-
-    /**
-     * Path URL to append to the local images referenced in the markdown file
-     *
-     * @param string $module
-     * @return string|null
-     */
-    protected function getDefaultMarkdownFileURL(string $module): string
-    {
-        $lang = $this->getDefaultDocumentationLanguage();
-        return constant('GRAPHQL_API_URL') . "docs/${lang}/modules";
-    }
-
-    // /**
-    //  * Does the module have HTML Documentation?
-    //  *
-    //  * @param string $module
-    //  * @return bool
-    //  */
-    // public function hasDocumentation(string $module): bool
-    // {
-    //     $skipDocumentationModules = [
-    //         self::SCHEMA_POST_TYPE,
-    //         self::SCHEMA_COMMENT_TYPE,
-    //         self::SCHEMA_USER_TYPE,
-    //         self::SCHEMA_PAGE_TYPE,
-    //         self::SCHEMA_MEDIA_TYPE,
-    //         self::SCHEMA_TAXONOMY_TYPE,
-    //     ];
-    //     if (in_array($module, $skipDocumentationModules)) {
-    //         return false;
-    //     }
-    //     return $this->upstreamHasDocumentation($module);
-    // }
 }
