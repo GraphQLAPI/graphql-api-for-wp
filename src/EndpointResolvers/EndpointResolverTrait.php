@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\EndpointResolvers;
 
 use PoP\Routing\RouteNatures;
-use PoP\API\Schema\QueryInputs;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
 use PoP\GraphQLAPIRequest\Hooks\VarsHooks;
@@ -76,12 +75,6 @@ trait EndpointResolverTrait
      */
     public function addGraphQLVars($vars_in_array): void
     {
-        /**
-         * Remove any query passed through the request, to avoid users executing a custom query,
-         * bypassing the persisted one
-         */
-        unset($_REQUEST[QueryInputs::QUERY]);
-
         // Indicate it is an API, of type GraphQL. Just by doing is, class
         // \PoP\GraphQLAPIRequest\Hooks\VarsHooks will process the GraphQL request
         $vars = &$vars_in_array[0];
