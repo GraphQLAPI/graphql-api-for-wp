@@ -196,7 +196,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     {
         switch ($module) {
             case self::MAIN:
-            case self::SCHEMA_CACHE:
             case self::WELCOME_GUIDES:
                 return true;
         }
