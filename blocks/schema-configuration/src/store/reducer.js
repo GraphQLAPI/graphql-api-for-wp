@@ -21,26 +21,27 @@ const schemaConfigurations = (
 ) => {
 	switch ( action.type ) {
 		case 'SET_SCHEMA_CONFIGURATIONS':
-			// ------------------------------------------------------
-			// IMPORTANT: THIS CODE IS NEEDED TO FIX A BUG
-			// @see: https://github.com/WordPress/gutenberg/issues/23607#issuecomment-654355737
-			// The spread operator does not work, so use Object.assign instead
-			// ------------------------------------------------------
-			return Object.assign( {}, state, {
-				schemaConfigurations: action.schemaConfigurations,
-				hasRetrievedSchemaConfigurations: true,
-				retrievingSchemaConfigurationsErrorMessage: action.errorMessage,
-			} );
-			// ------------------------------------------------------
-			// The commented code below makes the block not work after compiling with `npm run build`
-			// ------------------------------------------------------
-			// return {
-			// 	...state,
+			// Commented since adding custom `config.output.jsonpFunction` to `webpack.config.js` solves the issue
+			// // ------------------------------------------------------
+			// // IMPORTANT: THIS CODE IS NEEDED TO FIX A BUG
+			// // @see: https://github.com/WordPress/gutenberg/issues/23607#issuecomment-654355737
+			// // The spread operator does not work, so use Object.assign instead
+			// // ------------------------------------------------------
+			// return Object.assign( {}, state, {
 			// 	schemaConfigurations: action.schemaConfigurations,
 			// 	hasRetrievedSchemaConfigurations: true,
 			// 	retrievingSchemaConfigurationsErrorMessage: action.errorMessage,
-			// };
-			// ------------------------------------------------------
+			// } );
+			// // ------------------------------------------------------
+			// // The commented code below makes the block not work after compiling with `npm run build`
+			// // ------------------------------------------------------
+			return {
+				...state,
+				schemaConfigurations: action.schemaConfigurations,
+				hasRetrievedSchemaConfigurations: true,
+				retrievingSchemaConfigurationsErrorMessage: action.errorMessage,
+			};
+			// // ------------------------------------------------------
 
 	}
 	return state;
