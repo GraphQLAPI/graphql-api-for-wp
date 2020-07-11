@@ -2,8 +2,8 @@
 	"plugins": [
         "."
 	],
-	"port": 5475,
-	"testsPort": 5476,
+	"port": 6666,
+	"testsPort": 6667,
 	"config": {
         "WP_DEBUG_DISPLAY": true,
         "GRAPHQL_API_PLUGIN_ENVIRONMENT": "development"
