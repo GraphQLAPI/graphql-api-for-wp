@@ -16,7 +16,7 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use PoP\CacheControl\DirectiveResolvers\CacheControlDirectiveResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\SchemaConfiguratorExecuters\EndpointSchemaConfiguratorExecuter;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\PredefinedForProductionFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\SetForProductionFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\SchemaConfiguratorExecuters\PersistedQuerySchemaConfiguratorExecuter;
 
 /**
@@ -64,7 +64,7 @@ class Component extends AbstractComponent
         self::maybeInitYAMLSchemaServices(dirname(__DIR__), $skipSchema);
         // Register the Cache services, if the module is not disabled
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if ($moduleRegistry->isModuleEnabled(PredefinedForProductionFunctionalityModuleResolver::CONFIGURATION_CACHE)) {
+        if ($moduleRegistry->isModuleEnabled(SetForProductionFunctionalityModuleResolver::CONFIGURATION_CACHE)) {
             self::initYAMLServices(dirname(__DIR__), '', 'cache-services.yaml');
         }
         self::initComponentConfiguration();

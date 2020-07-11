@@ -35,7 +35,7 @@ use PoP\Taxonomies\ComponentConfiguration as TaxonomiesComponentConfiguration;
 use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\PredefinedForProductionFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\SetForProductionFunctionalityModuleResolver;
 use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 use PoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
 
@@ -512,7 +512,7 @@ class PluginConfiguration
         ];
         // Cache the container
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if ($moduleRegistry->isModuleEnabled(PredefinedForProductionFunctionalityModuleResolver::CONFIGURATION_CACHE)) {
+        if ($moduleRegistry->isModuleEnabled(SetForProductionFunctionalityModuleResolver::CONFIGURATION_CACHE)) {
             $cacheConfigurationManager = CacheConfigurationManagerFacade::getInstance();
             $componentClassConfiguration[\PoP\Root\Component::class] = [
                 \PoP\Root\Environment::CACHE_CONTAINER_CONFIGURATION => true,
@@ -561,13 +561,13 @@ class PluginConfiguration
             ],
             // Cache the component model configuration
             [
-                'module' => PredefinedForProductionFunctionalityModuleResolver::CONFIGURATION_CACHE,
+                'module' => SetForProductionFunctionalityModuleResolver::CONFIGURATION_CACHE,
                 'class' => \PoP\ComponentModel\Component::class,
                 'envVariable' => \PoP\ComponentModel\Environment::USE_COMPONENT_MODEL_CACHE,
             ],
             // Cache the schema
             [
-                'module' => PredefinedForProductionFunctionalityModuleResolver::SCHEMA_CACHE,
+                'module' => SetForProductionFunctionalityModuleResolver::SCHEMA_CACHE,
                 'class' => \PoP\API\Component::class,
                 'envVariable' => \PoP\API\Environment::USE_SCHEMA_DEFINITION_CACHE,
             ],

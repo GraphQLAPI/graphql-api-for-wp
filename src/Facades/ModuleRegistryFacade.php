@@ -7,7 +7,7 @@ namespace GraphQLAPI\GraphQLAPI\Facades;
 // use PoP\Root\Container\ContainerBuilderFactory;
 
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\PredefinedForProductionFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\SetForProductionFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaModuleResolver;
 use GraphQLAPI\GraphQLAPI\Registries\ModuleRegistry;
 use GraphQLAPI\GraphQLAPI\Registries\ModuleRegistryInterface;
@@ -29,7 +29,7 @@ class ModuleRegistryFacade
             self::$instance = new ModuleRegistry();
             // Add the ModuleResolvers
             self::$instance->addModuleResolver(new FunctionalityModuleResolver());
-            self::$instance->addModuleResolver(new PredefinedForProductionFunctionalityModuleResolver());
+            self::$instance->addModuleResolver(new SetForProductionFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new SchemaModuleResolver());
         }
         return self::$instance;
