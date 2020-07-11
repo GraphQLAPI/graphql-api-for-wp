@@ -22,6 +22,7 @@ use PoP\AccessControl\Environment as AccessControlEnvironment;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
+use GraphQLAPI\GraphQLAPI\Facades\CacheConfigurationManagerFacade;
 use PoP\Pages\ComponentConfiguration as PagesComponentConfiguration;
 use PoP\Posts\ComponentConfiguration as PostsComponentConfiguration;
 use PoP\Users\ComponentConfiguration as UsersComponentConfiguration;
@@ -559,6 +560,15 @@ class PluginConfiguration
                 'module' => FunctionalityModuleResolver::SCHEMA_CACHE,
                 'class' => \PoP\API\Component::class,
                 'envVariable' => \PoP\API\Environment::USE_SCHEMA_DEFINITION_CACHE,
+            ],
+            [
+                'module' => FunctionalityModuleResolver::SCHEMA_CACHE,
+                'class' => \PoP\Root\Component::class,
+                'envVariable' => \PoP\Root\Environment::CACHE_CONTAINER_CONFIGURATION_NAMESPACE,
+                'callback' => function () {
+                    $cacheConfigurationManager = CacheConfigurationManagerFacade::getInstance();
+                    return $cacheConfigurationManager->getNamespace();
+                }
             ],
         ];
         foreach ($moduleToComponentClassConfigurationMappings as $mapping) {
