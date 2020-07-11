@@ -347,7 +347,7 @@ class PluginConfiguration
             $condition = $mapping['condition'] ?? true;
             // Check if the hook must be executed always (condition => 'any') or with
             // stated enabled (true) or disabled (false). By default, it's enabled
-            if ($condition != 'any' && $condition != $moduleRegistry->isModuleEnabled($module)) {
+            if ($condition !== 'any' && $condition !== $moduleRegistry->isModuleEnabled($module)) {
                 continue;
             }
             // If the environment value has been defined, or the constant in wp-config.php,
