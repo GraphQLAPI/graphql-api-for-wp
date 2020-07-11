@@ -205,7 +205,7 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
         $optionsBlockDataItem = $this->getOptionsBlockDataItem($postOrID);
         // If there was no options block, something went wrong in the post content
         if (is_null($optionsBlockDataItem)) {
-            return null;
+            return $default;
         }
 
         // The default value is not saved in the DB in Gutenberg!
