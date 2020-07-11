@@ -11,6 +11,15 @@ class PluginEnvironment
     public const PLUGIN_ENVIRONMENT = 'PLUGIN_ENVIRONMENT';
 
     /**
+     * The plugins runs in PROD
+     */
+    public const PLUGIN_ENVIRONMENT_PROD = 'production';
+    /**
+     * The plugins runs in DEV
+     */
+    public const PLUGIN_ENVIRONMENT_DEV = 'development';
+
+    /**
      * Return a value for a variable, checking if it is defined in the environment
      * first, and in the wp-config.php second
      *
@@ -37,14 +46,14 @@ class PluginEnvironment
     public static function getPluginEnvironment(): string
     {
         $environments = [
-            'production',
-            'development'
+            self::PLUGIN_ENVIRONMENT_PROD,
+            self::PLUGIN_ENVIRONMENT_DEV,
         ];
         $value = self::getValueFromEnvironmentOrWPConfig(self::PLUGIN_ENVIRONMENT);
         if (!is_null($value) && in_array($value, $environments)) {
             return $value;
         }
         // Default value
-        return 'production';
+        return self::PLUGIN_ENVIRONMENT_PROD;
     }
 }

@@ -18,12 +18,12 @@ abstract class AbstractCacheFunctionalityModuleResolver extends AbstractFunction
     public function isHidden(string $module): bool
     {
         $environment = PluginEnvironment::getPluginEnvironment();
-        return $environment == 'production';
+        return $environment == PluginEnvironment::PLUGIN_ENVIRONMENT_PROD;
     }
 
     public function isEnabledByDefault(string $module): bool
     {
         $environment = PluginEnvironment::getPluginEnvironment();
-        return $environment == 'production';
+        return $environment == PluginEnvironment::PLUGIN_ENVIRONMENT_PROD;
     }
 }
