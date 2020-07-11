@@ -8,7 +8,14 @@ use GraphQLAPI\GraphQLAPI\Plugin;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 
-class CacheFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
+/**
+ * The cache modules have different behavior depending on the environment:
+ * - "development": visible, disabled by default
+ * - "production": hidden, enabled by default
+ *
+ * @author Leonardo Losoviz <leo@getpop.org>
+ */
+class CacheFunctionalityModuleResolver extends AbstractCacheFunctionalityModuleResolver
 {
     use ModuleResolverTrait;
 
@@ -42,16 +49,6 @@ class CacheFunctionalityModuleResolver extends AbstractFunctionalityModuleResolv
         return parent::getDependedModuleLists($module);
     }
 
-    public function isHidden(string $module): bool
-    {
-        switch ($module) {
-            case self::CONFIGURATION_CACHE:
-            case self::SCHEMA_CACHE:
-                return true;
-        }
-        return parent::isHidden($module);
-    }
-
     public function getName(string $module): string
     {
         $names = [
@@ -70,14 +67,5 @@ class CacheFunctionalityModuleResolver extends AbstractFunctionalityModuleResolv
                 return \__('Cache the generated schema to disk', 'graphql-api');
         }
         return parent::getDescription($module);
-    }
-
-    public function isEnabledByDefault(string $module): bool
-    {
-        switch ($module) {
-            case self::SCHEMA_CACHE:
-                return false;
-        }
-        return parent::isEnabledByDefault($module);
     }
 }

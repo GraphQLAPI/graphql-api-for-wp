@@ -65,6 +65,7 @@ class PluginConfiguration
     public static function initialize(): void
     {
         self::mapEnvVariablesToWPConfigConstants();
+        // self::mapWPConfigConstantsToEnvVariables();
         self::defineEnvironmentConstantsFromSettings();
     }
 
@@ -446,12 +447,39 @@ class PluginConfiguration
         }
     }
 
+    // /**
+    //  * Map the environment variables from the components, to WordPress wp-config.php constants
+    //  *
+    //  * @return array
+    //  */
+    // protected static function mapWPConfigConstantsToEnvVariables(): void
+    // {
+    //     // All the environment variables to override
+    //     $envVariables = [
+    //         PluginEnvironment::PLUGIN_ENVIRONMENT,
+    //     ];
+    //     // For each environment variable, see if it has been defined
+    //     // as a wp-config.php constant
+    //     foreach ($envVariables as $envVariable) {
+    //         // If the environment value has been defined, then do nothing,
+    //         // since it has priority
+    //         if (isset($_ENV[$envVariable])) {
+    //             continue;
+    //         }
+
+    //         // Read the value from wp-config.php, set it as an env variable
+    //         if (self::isWPConfigConstantDefined($envVariable)) {
+    //             $_ENV[$envVariable] = self::getWPConfigConstantValue($envVariable);
+    //         };
+    //     }
+    // }
+
     /**
      * Determine if the environment variable was defined as a constant in wp-config.php
      *
      * @return mixed
      */
-    protected static function getWPConfigConstantValue(string $envVariable)
+    public static function getWPConfigConstantValue(string $envVariable)
     {
         return constant(self::getWPConfigConstantName($envVariable));
     }
@@ -461,7 +489,7 @@ class PluginConfiguration
      *
      * @return string
      */
-    protected static function isWPConfigConstantDefined(string $envVariable): bool
+    public static function isWPConfigConstantDefined(string $envVariable): bool
     {
         return defined(self::getWPConfigConstantName($envVariable));
     }
@@ -471,7 +499,7 @@ class PluginConfiguration
      *
      * @return string
      */
-    protected static function getWPConfigConstantName($envVariable): string
+    public static function getWPConfigConstantName($envVariable): string
     {
         return 'GRAPHQL_API_' . $envVariable;
     }
