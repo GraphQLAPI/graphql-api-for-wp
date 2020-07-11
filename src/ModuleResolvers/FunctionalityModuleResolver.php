@@ -170,6 +170,12 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                         defined('GUTENBERG_VERSION') &&
                         \version_compare(constant('GUTENBERG_VERSION'), '8.2', '>=')
                     );
+            case self::GRAPHIQL_FOR_SINGLE_ENDPOINT:
+            case self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT:
+                /**
+                 * Permalink structure must be enabled
+                 */
+                return !empty(\get_option('permalink_structure'));
         }
         return parent::areRequirementsSatisfied($module);
     }
@@ -239,14 +245,14 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 return \__('Expose different subsets of the schema for different targets, such as users (clients, employees, etc), applications (website, mobile app, etc), context (weekday, weekend, etc), and others', 'graphql-api');
             case self::GRAPHIQL_FOR_SINGLE_ENDPOINT:
                 return \sprintf(
-                    \__('Make a public GraphiQL client available under <code>%s</code>, to execute queries against the single endpoint', 'graphql-api'),
+                    \__('Make a public GraphiQL client available under <code>%s</code>, to execute queries against the single endpoint. It requires pretty permalinks enabled', 'graphql-api'),
                     GraphQLClientsForWPComponentConfiguration::getGraphiQLClientEndpoint()
                 );
             case self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS:
                 return \__('Enable custom endpoints to be attached their own GraphiQL client, to execute queries against them', 'graphql-api');
             case self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT:
                 return \sprintf(
-                    \__('Make a public Interactive Schema client available under <code>%s</code>, to visualize the schema accessible through the single endpoint', 'graphql-api'),
+                    \__('Make a public Interactive Schema client available under <code>%s</code>, to visualize the schema accessible through the single endpoint. It requires pretty permalinks enabled', 'graphql-api'),
                     GraphQLClientsForWPComponentConfiguration::getVoyagerClientEndpoint()
                 );
             case self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS:
