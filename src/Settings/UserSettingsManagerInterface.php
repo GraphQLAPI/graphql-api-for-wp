@@ -6,6 +6,26 @@ namespace GraphQLAPI\GraphQLAPI\Settings;
 
 interface UserSettingsManagerInterface
 {
+    /**
+     * Timestamp of latest executed write to DB, concerning plugin activation,
+     * module enabled/disabled, user settings updated
+     *
+     * @return integer
+     */
+    public function getTimestamp(): int;
+    /**
+     * Store the current time to indicate the latest executed write to DB,
+     * concerning plugin activation, module enabled/disabled, user settings updated
+     *
+     * @return integer
+     */
+    public function storeTimestamp(): void;
+    /**
+     * Remove the timestamp
+     *
+     * @return void
+     */
+    public function removeTimestamp(): void;
     public function hasSetting(string $item): bool;
     /**
      * No return type because it could be a bool/int/string

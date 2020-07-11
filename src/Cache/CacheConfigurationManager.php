@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\Cache;
 
 use GraphQLAPI\GraphQLAPI\Settings\Options;
+use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 
 /**
  * Inject configuration to the cache
@@ -25,6 +26,7 @@ class CacheConfigurationManager implements CacheConfigurationManagerInterface
     public function getNamespace(): string
     {
         // The timestamp from when last saving settings/modules to the DB
-        return \get_option(Options::TIMESTAMP, '0');
+        $userSettingsManager = UserSettingsManagerFacade::getInstance();
+        return '_' . $userSettingsManager->getTimestamp();
     }
 }

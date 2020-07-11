@@ -18,6 +18,7 @@ use GraphQLAPI\GraphQLAPI\Settings\UserSettingsManagerInterface;
 class UserSettingsManagerFacade
 {
     private static $instance;
+
     public static function getInstance(): UserSettingsManagerInterface
     {
         if (is_null(self::$instance)) {
@@ -25,6 +26,7 @@ class UserSettingsManagerFacade
         }
         return self::$instance;
     }
+
     // public static function getInstance(): UserSettingsManagerInterface
     // {
     //     return ContainerBuilderFactory::getInstance()->get('user_settings_manager');

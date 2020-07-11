@@ -6,13 +6,14 @@ namespace GraphQLAPI\GraphQLAPI;
 
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLEndpointPostType;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLPersistedQueryPostType;
 use GraphQLAPI\GraphQLAPI\Admin\TableActions\ModuleListTableAction;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLCacheControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLAccessControlListPostType;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserRolesBlock;
@@ -147,6 +148,10 @@ class Plugin
 
         // Then, flush rewrite rules
         \flush_rewrite_rules();
+
+        // Initialize the timestamp
+        $userSettingsManager = UserSettingsManagerFacade::getInstance();
+        $userSettingsManager->storeTimestamp();
     }
 
     /**
@@ -171,5 +176,9 @@ class Plugin
 
         // Then, clear the permalinks to remove the post type's rules from the database.
         \flush_rewrite_rules();
+
+        // Remove the timestamp
+        $userSettingsManager = UserSettingsManagerFacade::getInstance();
+        $userSettingsManager->removeTimestamp();
     }
 }

@@ -159,7 +159,13 @@ class ModuleListTableAction extends AbstractListTableAction
 
         // If modifying a CPT, must flush the rewrite rules
         // But do it at the end! Once the new configuration has been applied
-        \add_action('shutdown', 'flush_rewrite_rules');
+        \add_action('shutdown', function () {
+            \flush_rewrite_rules();
+
+            // Update the timestamp
+            $userSettingsManager = UserSettingsManagerFacade::getInstance();
+            $userSettingsManager->storeTimestamp();
+        });
     }
 
     public function getActions(): array

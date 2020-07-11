@@ -48,12 +48,19 @@ class SettingsMenuPage extends AbstractMenuPage
         );
 
         /**
-         * After saving the settings in the DB,
-         * Flush the rewrite rules, so different URL slugs take effect
+         * After saving the settings in the DB:
+         * - Flush the rewrite rules, so different URL slugs take effect
+         * - Update the timestamp
          */
         \add_action(
             "update_option_{$option}",
-            'flush_rewrite_rules'
+            function () {
+                \flush_rewrite_rules();
+
+                // Update the timestamp
+                $userSettingsManager = UserSettingsManagerFacade::getInstance();
+                $userSettingsManager->storeTimestamp();
+            }
         );
 
         /**

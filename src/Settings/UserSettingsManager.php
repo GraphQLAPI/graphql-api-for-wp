@@ -16,6 +16,36 @@ class UserSettingsManager implements UserSettingsManagerInterface
      */
     protected $options = [];
 
+    /**
+     * Timestamp of latest executed write to DB, concerning plugin activation,
+     * module enabled/disabled, user settings updated
+     *
+     * @return integer
+     */
+    public function getTimestamp(): int
+    {
+        return (int) \get_option(Options::TIMESTAMP, 0);
+    }
+    /**
+     * Store the current time to indicate the latest executed write to DB,
+     * concerning plugin activation, module enabled/disabled, user settings updated
+     *
+     * @return void
+     */
+    public function storeTimestamp(): void
+    {
+        \update_option(Options::TIMESTAMP, time());
+    }
+    /**
+     * Remove the timestamp
+     *
+     * @return void
+     */
+    public function removeTimestamp(): void
+    {
+        \delete_option(Options::TIMESTAMP);
+    }
+
     public function hasSetting(string $item): bool
     {
         return $this->hasItem(Options::SETTINGS, $item);
@@ -53,10 +83,16 @@ class UserSettingsManager implements UserSettingsManagerInterface
     public function setModuleEnabled(string $moduleID, bool $isEnabled): void
     {
         $this->storeItem(Options::MODULES, $moduleID, $isEnabled);
+
+        // Update the timestamp
+        $this->storeTimestamp();
     }
     public function setModulesEnabled(array $moduleIDValues): void
     {
         $this->storeItems(Options::MODULES, $moduleIDValues);
+
+        // Update the timestamp
+        $this->storeTimestamp();
     }
 
     /**
