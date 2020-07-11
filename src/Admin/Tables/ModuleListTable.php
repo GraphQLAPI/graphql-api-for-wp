@@ -355,6 +355,19 @@ class ModuleListTable extends AbstractItemListTable
     }
 
     /**
+     * Classnames to add to the row for the item
+     *
+     * @param object $item The current item
+     */
+    protected function getTableStyleRowClassnames($item): string
+    {
+        return sprintf(
+            'module-%s',
+            $item['module-type']
+        );
+    }
+
+    /**
      * Generates content for a single row of the table
      *
      * @since 3.1.0
@@ -365,8 +378,8 @@ class ModuleListTable extends AbstractItemListTable
     {
         if ($this->usePluginTableStyle()) {
             $classnames = sprintf(
-                'module-%s %s',
-                $item['module-type'],
+                '%s %s',
+                $this->getTableStyleRowClassnames($item),
                 $item['is-enabled'] ? 'active' : 'inactive'
             );
             echo sprintf(
