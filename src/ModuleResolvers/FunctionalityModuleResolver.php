@@ -30,8 +30,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public const SCHEMA_CONFIGURATION = Plugin::NAMESPACE . '\schema-configuration';
     public const SCHEMA_NAMESPACING = Plugin::NAMESPACE . '\schema-namespacing';
     public const PUBLIC_PRIVATE_SCHEMA = Plugin::NAMESPACE . '\public-private-schema';
-    public const CONFIGURATION_CACHE = Plugin::NAMESPACE . '\configuration-cache';
-    public const SCHEMA_CACHE = Plugin::NAMESPACE . '\schema-cache';
     public const ACCESS_CONTROL = Plugin::NAMESPACE . '\access-control';
     public const ACCESS_CONTROL_RULE_DISABLE_ACCESS = Plugin::NAMESPACE . '\access-control-rule-disable-access';
     public const ACCESS_CONTROL_RULE_USER_STATE = Plugin::NAMESPACE . '\access-control-rule-user-state';
@@ -84,8 +82,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             self::FIELD_DEPRECATION,
             self::API_HIERARCHY,
             self::LOW_LEVEL_QUERY_EDITING,
-            self::CONFIGURATION_CACHE,
-            self::SCHEMA_CACHE,
             self::GRAPHIQL_EXPLORER,
             self::EXCERPT_AS_DESCRIPTION,
             self::WELCOME_GUIDES,
@@ -100,7 +96,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             case self::CUSTOM_ENDPOINTS:
             case self::LOW_LEVEL_QUERY_EDITING:
             case self::EXCERPT_AS_DESCRIPTION:
-            case self::CONFIGURATION_CACHE:
                 return [];
             case self::GRAPHIQL_FOR_SINGLE_ENDPOINT:
             case self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT:
@@ -131,16 +126,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 return [
                     [
                         self::SCHEMA_CONFIGURATION,
-                    ],
-                ];
-            case self::SCHEMA_CACHE:
-                $moduleRegistry = ModuleRegistryFacade::getInstance();
-                return [
-                    [
-                        self::CONFIGURATION_CACHE,
-                    ],
-                    [
-                        $moduleRegistry->getInverseDependency(self::PUBLIC_PRIVATE_SCHEMA),
                     ],
                 ];
             case self::CACHE_CONTROL:
@@ -202,8 +187,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     {
         switch ($module) {
             case self::MAIN:
-            case self::CONFIGURATION_CACHE:
-            case self::SCHEMA_CACHE:
             case self::WELCOME_GUIDES:
                 return true;
         }
@@ -224,8 +207,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             self::SCHEMA_CONFIGURATION => \__('Schema Configuration', 'graphql-api'),
             self::SCHEMA_NAMESPACING => \__('Schema Namespacing', 'graphql-api'),
             self::PUBLIC_PRIVATE_SCHEMA => \__('Public/Private Schema', 'graphql-api'),
-            self::CONFIGURATION_CACHE => \__('Configuration Cache', 'graphql-api'),
-            self::SCHEMA_CACHE => \__('Schema Cache', 'graphql-api'),
             self::ACCESS_CONTROL => \__('Access Control', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_DISABLE_ACCESS => \__('Access Control Rule: Disable Access', 'graphql-api'),
             self::ACCESS_CONTROL_RULE_USER_STATE => \__('Access Control Rule: User State', 'graphql-api'),
@@ -276,10 +257,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 return \__('Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions', 'graphql-api');
             case self::PUBLIC_PRIVATE_SCHEMA:
                 return \__('Enable to communicate the existence of some field from the schema to certain users only (private mode) or to everyone (public mode). If disabled, fields are always available to everyone (public mode)', 'graphql-api');
-            case self::CONFIGURATION_CACHE:
-                return \__('Cache the generated application configuration to disk', 'graphql-api');
-            case self::SCHEMA_CACHE:
-                return \__('Cache the generated schema to disk', 'graphql-api');
             case self::ACCESS_CONTROL:
                 return \__('Set-up rules to define who can access the different fields and directives from a schema', 'graphql-api');
             case self::ACCESS_CONTROL_RULE_DISABLE_ACCESS:
@@ -317,7 +294,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
         switch ($module) {
             case self::SINGLE_ENDPOINT:
             case self::LOW_LEVEL_QUERY_EDITING:
-            case self::SCHEMA_CACHE:
             case self::SCHEMA_NAMESPACING:
             case self::FIELD_DEPRECATION:
             case self::WELCOME_GUIDES:
