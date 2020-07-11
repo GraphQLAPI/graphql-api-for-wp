@@ -12,7 +12,7 @@ class ComponentConfiguration
 {
     use ComponentConfigurationTrait;
 
-    private static $getModuleURLBase;
+    // private static $getModuleURLBase;
     private static $groupFieldsUnderTypeForPrint;
     private static $getEmptyLabel;
     private static $getSettingsValueLabel;
