@@ -514,7 +514,7 @@ class PluginConfiguration
         if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::CONFIGURATION_CACHE)) {
             $cacheConfigurationManager = CacheConfigurationManagerFacade::getInstance();
             $componentClassConfiguration[\PoP\Root\Component::class] = [
-                \PoP\Root\Environment::CACHE_CONTAINER_CONFIGURATION_NAMESPACE => $cacheConfigurationManager->getNamespace(),
+                \PoP\Root\Environment::CONTAINER_CONFIGURATION_CACHE_NAMESPACE => $cacheConfigurationManager->getNamespace(),
             ];
         }
     }
