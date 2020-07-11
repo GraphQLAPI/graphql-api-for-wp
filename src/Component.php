@@ -63,7 +63,7 @@ class Component extends AbstractComponent
         self::maybeInitYAMLSchemaServices(dirname(__DIR__), $skipSchema);
         // Register the Cache services, if the module is not disabled
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::SCHEMA_CACHE)) {
+        if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::CONFIGURATION_CACHE)) {
             self::initYAMLServices(dirname(__DIR__), '', 'cache-services.yaml');
         }
         self::initComponentConfiguration();

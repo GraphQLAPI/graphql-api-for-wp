@@ -550,25 +550,27 @@ class PluginConfiguration
                 'envVariable' => \PoP\GraphQLClientsForWP\Environment::DISABLE_VOYAGER_CLIENT_ENDPOINT,
                 'callback' => [self::class, 'opposite'],
             ],
-            // Cache the component model + schema
+            // Cache the container
             [
-                'module' => FunctionalityModuleResolver::SCHEMA_CACHE,
-                'class' => \PoP\ComponentModel\Component::class,
-                'envVariable' => \PoP\ComponentModel\Environment::USE_COMPONENT_MODEL_CACHE,
-            ],
-            [
-                'module' => FunctionalityModuleResolver::SCHEMA_CACHE,
-                'class' => \PoP\API\Component::class,
-                'envVariable' => \PoP\API\Environment::USE_SCHEMA_DEFINITION_CACHE,
-            ],
-            [
-                'module' => FunctionalityModuleResolver::SCHEMA_CACHE,
+                'module' => FunctionalityModuleResolver::CONFIGURATION_CACHE,
                 'class' => \PoP\Root\Component::class,
                 'envVariable' => \PoP\Root\Environment::CACHE_CONTAINER_CONFIGURATION_NAMESPACE,
                 'callback' => function () {
                     $cacheConfigurationManager = CacheConfigurationManagerFacade::getInstance();
                     return $cacheConfigurationManager->getNamespace();
                 }
+            ],
+            // Cache the component model configuration
+            [
+                'module' => FunctionalityModuleResolver::CONFIGURATION_CACHE,
+                'class' => \PoP\ComponentModel\Component::class,
+                'envVariable' => \PoP\ComponentModel\Environment::USE_COMPONENT_MODEL_CACHE,
+            ],
+            // Cache the schema
+            [
+                'module' => FunctionalityModuleResolver::SCHEMA_CACHE,
+                'class' => \PoP\API\Component::class,
+                'envVariable' => \PoP\API\Environment::USE_SCHEMA_DEFINITION_CACHE,
             ],
         ];
         foreach ($moduleToComponentClassConfigurationMappings as $mapping) {
