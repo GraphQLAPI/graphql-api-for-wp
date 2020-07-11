@@ -509,7 +509,14 @@ class PluginConfiguration
         $componentClassConfiguration[\PoP\GraphQLAPIRequest\Component::class] = [
             \PoP\GraphQLAPIRequest\Environment::DISABLE_GRAPHQL_API_FOR_POP => true,
         ];
-
+        // Cache the container
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::CONFIGURATION_CACHE)) {
+            $cacheConfigurationManager = CacheConfigurationManagerFacade::getInstance();
+            $componentClassConfiguration[\PoP\Root\Component::class] = [
+                \PoP\Root\Environment::CACHE_CONTAINER_CONFIGURATION_NAMESPACE => $cacheConfigurationManager->getNamespace(),
+            ];
+        }
     }
 
     /**
@@ -549,16 +556,6 @@ class PluginConfiguration
                 'class' => \PoP\GraphQLClientsForWP\Component::class,
                 'envVariable' => \PoP\GraphQLClientsForWP\Environment::DISABLE_VOYAGER_CLIENT_ENDPOINT,
                 'callback' => [self::class, 'opposite'],
-            ],
-            // Cache the container
-            [
-                'module' => FunctionalityModuleResolver::CONFIGURATION_CACHE,
-                'class' => \PoP\Root\Component::class,
-                'envVariable' => \PoP\Root\Environment::CACHE_CONTAINER_CONFIGURATION_NAMESPACE,
-                'callback' => function () {
-                    $cacheConfigurationManager = CacheConfigurationManagerFacade::getInstance();
-                    return $cacheConfigurationManager->getNamespace();
-                }
             ],
             // Cache the component model configuration
             [
