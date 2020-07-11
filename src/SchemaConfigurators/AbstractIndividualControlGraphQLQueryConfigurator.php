@@ -16,13 +16,16 @@ abstract class AbstractIndividualControlGraphQLQueryConfigurator extends Abstrac
      * @param string|null $schemaMode
      * @return array|null
      */
-    protected function getIndividualControlEntryFromField(string $selectedField, $value, ?string $schemaMode): ?array
+    protected function getIndividualControlEntriesFromField(string $selectedField, $value, ?string $schemaMode): array
     {
-        $entryFromField = $this->getEntryFromField($selectedField, $value);
-        if (!is_null($entryFromField) && !is_null($schemaMode)) {
-            $entryFromField[] = $schemaMode;
+        $entriesFromField = $this->getEntriesFromField($selectedField, $value);
+        // Attach the schemaMode to all elements in the array
+        if (!is_null($schemaMode)) {
+            foreach ($entriesFromField as &$entryFromField) {
+                $entryFromField[] = $schemaMode;
+            }
         }
-        return $entryFromField;
+        return $entriesFromField;
     }
     /**
      * Create the service configuration entries comprising a directive and its value,

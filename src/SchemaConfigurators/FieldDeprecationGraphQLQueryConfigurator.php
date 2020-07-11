@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
+use PoP\ComponentModel\Misc\GeneralUtils;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractControlBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\FieldDeprecationBlock;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use PoP\FieldDeprecationByDirective\Facades\FieldDeprecationManagerFacade;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AbstractGraphQLQueryConfigurator;
 
@@ -40,18 +41,19 @@ class FieldDeprecationGraphQLQueryConfigurator extends AbstractGraphQLQueryConfi
             if ($deprecationReason = $fdlBlockItem['attrs'][FieldDeprecationBlock::ATTRIBUTE_NAME_DEPRECATION_REASON]) {
                 // Extract the saved fields
                 if ($typeFields = $fdlBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS]) {
-                    if (
-                        $entriesForFields = array_filter(
-                            array_map(
-                                function ($selectedField) use ($instanceManager, $deprecationReason) {
-                                    $entry = $this->getEntryFromField($selectedField, $deprecationReason);
+                    if ($entriesForFields = GeneralUtils::arrayFlatten(
+                        array_map(
+                            function ($selectedField) use ($instanceManager, $deprecationReason) {
+                                $entriesFromField = $this->getEntriesFromField($selectedField, $deprecationReason);
+                                $entries = [];
+                                foreach ($entriesFromField as $entry) {
                                     // Once getting the entry, we an obtain the type and field,
                                     // and we can modify the deprecated reason in the entry adding this information
                                     $typeResolverClass = $entry[0];
                                     // If we had a module (eg: "Users") and saved an entry with it,
                                     // and then disable it, the typeResolveClass will be null
                                     if (is_null($typeResolverClass)) {
-                                        return null;
+                                        continue;
                                     }
                                     $typeResolver = $instanceManager->getInstance($typeResolverClass);
                                     $entry[2] = sprintf(
@@ -60,12 +62,13 @@ class FieldDeprecationGraphQLQueryConfigurator extends AbstractGraphQLQueryConfi
                                         $typeResolver->getMaybeNamespacedTypeName(),
                                         $entry[2]
                                     );
-                                    return $entry;
-                                },
-                                $typeFields
-                            )
+                                    $entries[] = $entry;
+                                }
+                                return $entries;
+                            },
+                            $typeFields
                         )
-                    ) {
+                    )) {
                         $fieldDeprecationManager->addEntriesForFields(
                             $entriesForFields
                         );

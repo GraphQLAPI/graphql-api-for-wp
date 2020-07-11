@@ -124,20 +124,18 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
                             $value = $aclBlockItemNestedBlock['attrs'][AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_VALUE];
 
                             // Extract the saved fields
-                            if (
-                                $entriesForFields = array_filter(
-                                    array_map(
-                                        function ($selectedField) use ($value, $schemaMode) {
-                                            return $this->getIndividualControlEntryFromField(
-                                                $selectedField,
-                                                $value,
-                                                $schemaMode
-                                            );
-                                        },
-                                        $aclBlockItemTypeFields
-                                    )
+                            if ($entriesForFields = GeneralUtils::arrayFlatten(
+                                array_map(
+                                    function ($selectedField) use ($value, $schemaMode) {
+                                        return $this->getIndividualControlEntriesFromField(
+                                            $selectedField,
+                                            $value,
+                                            $schemaMode
+                                        );
+                                    },
+                                    $aclBlockItemTypeFields
                                 )
-                            ) {
+                            )) {
                                 $accessControlManager->addEntriesForFields(
                                     $accessControlGroup,
                                     $entriesForFields

@@ -46,16 +46,14 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
             if (!is_null($maxAge) && $maxAge >= 0) {
                 // Extract the saved fields
                 if ($typeFields = $cclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS]) {
-                    if (
-                        $entriesForFields = array_filter(
-                            array_map(
-                                function ($selectedField) use ($maxAge) {
-                                    return $this->getEntryFromField($selectedField, $maxAge);
-                                },
-                                $typeFields
-                            )
+                    if ($entriesForFields = GeneralUtils::arrayFlatten(
+                        array_map(
+                            function ($selectedField) use ($maxAge) {
+                                return $this->getEntriesFromField($selectedField, $maxAge);
+                            },
+                            $typeFields
                         )
-                    ) {
+                    )) {
                         $cacheControlManager->addEntriesForFields(
                             $entriesForFields
                         );
