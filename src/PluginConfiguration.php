@@ -16,6 +16,7 @@ use PoP\CustomPosts\Environment as ContentEnvironment;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\Taxonomies\Environment as TaxonomiesEnvironment;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
+use GraphQLAPI\GraphQLAPI\Config\PluginConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use PoP\CacheControl\Environment as CacheControlEnvironment;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
@@ -65,7 +66,6 @@ class PluginConfiguration
     public static function initialize(): void
     {
         self::mapEnvVariablesToWPConfigConstants();
-        // self::mapWPConfigConstantsToEnvVariables();
         self::defineEnvironmentConstantsFromSettings();
     }
 
@@ -353,7 +353,7 @@ class PluginConfiguration
             // If the environment value has been defined, or the constant in wp-config.php,
             // then do nothing, since they have priority
             $envVariable = $mapping['envVariable'];
-            if (isset($_ENV[$envVariable]) || self::isWPConfigConstantDefined($envVariable)) {
+            if (isset($_ENV[$envVariable]) || PluginConfigurationHelpers::isWPConfigConstantDefined($envVariable)) {
                 continue;
             }
             $hookName = ComponentConfigurationHelpers::getHookName(
@@ -438,70 +438,13 @@ class PluginConfiguration
                  * in wp-config.php, with the environment name prepended with "GRAPHQL_API_"
                  */
                 function ($value) use ($envVariable) {
-                    if (self::isWPConfigConstantDefined($envVariable)) {
-                        return self::getWPConfigConstantValue($envVariable);
+                    if (PluginConfigurationHelpers::isWPConfigConstantDefined($envVariable)) {
+                        return PluginConfigurationHelpers::getWPConfigConstantValue($envVariable);
                     }
                     return $value;
                 }
             );
         }
-    }
-
-    // /**
-    //  * Map the environment variables from the components, to WordPress wp-config.php constants
-    //  *
-    //  * @return array
-    //  */
-    // protected static function mapWPConfigConstantsToEnvVariables(): void
-    // {
-    //     // All the environment variables to override
-    //     $envVariables = [
-    //         PluginEnvironment::PLUGIN_ENVIRONMENT,
-    //     ];
-    //     // For each environment variable, see if it has been defined
-    //     // as a wp-config.php constant
-    //     foreach ($envVariables as $envVariable) {
-    //         // If the environment value has been defined, then do nothing,
-    //         // since it has priority
-    //         if (isset($_ENV[$envVariable])) {
-    //             continue;
-    //         }
-
-    //         // Read the value from wp-config.php, set it as an env variable
-    //         if (self::isWPConfigConstantDefined($envVariable)) {
-    //             $_ENV[$envVariable] = self::getWPConfigConstantValue($envVariable);
-    //         };
-    //     }
-    // }
-
-    /**
-     * Determine if the environment variable was defined as a constant in wp-config.php
-     *
-     * @return mixed
-     */
-    public static function getWPConfigConstantValue(string $envVariable)
-    {
-        return constant(self::getWPConfigConstantName($envVariable));
-    }
-
-    /**
-     * Determine if the environment variable was defined as a constant in wp-config.php
-     *
-     * @return string
-     */
-    public static function isWPConfigConstantDefined(string $envVariable): bool
-    {
-        return defined(self::getWPConfigConstantName($envVariable));
-    }
-
-    /**
-     * Constants defined in wp-config.php must start with this prefix to override GraphQL API environment variables
-     *
-     * @return string
-     */
-    public static function getWPConfigConstantName($envVariable): string
-    {
-        return 'GRAPHQL_API_' . $envVariable;
     }
 
     /**

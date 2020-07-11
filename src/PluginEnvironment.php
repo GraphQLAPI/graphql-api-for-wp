@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI;
 
+use GraphQLAPI\GraphQLAPI\Config\PluginConfigurationHelpers;
+
 class PluginEnvironment
 {
     public const PLUGIN_ENVIRONMENT = 'PLUGIN_ENVIRONMENT';
@@ -20,8 +22,8 @@ class PluginEnvironment
             return $_ENV[$envVariable];
         }
 
-        if (PluginConfiguration::isWPConfigConstantDefined($envVariable)) {
-            return PluginConfiguration::getWPConfigConstantValue($envVariable);
+        if (PluginConfigurationHelpers::isWPConfigConstantDefined($envVariable)) {
+            return PluginConfigurationHelpers::getWPConfigConstantValue($envVariable);
         };
 
         return null;
