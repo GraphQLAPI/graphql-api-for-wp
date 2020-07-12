@@ -15,15 +15,31 @@ use GraphQLAPI\GraphQLAPI\PluginEnvironment;
  */
 abstract class AbstractCacheFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
+    /**
+     * Allow to change the behavior based on the environment
+     *
+     * @return boolean
+     */
+    protected function enabledEnvironmentBasedBehavior(): bool
+    {
+        return false;
+    }
+
     public function isHidden(string $module): bool
     {
-        $environment = PluginEnvironment::getPluginEnvironment();
-        return $environment == PluginEnvironment::PLUGIN_ENVIRONMENT_PROD;
+        if ($this->enabledEnvironmentBasedBehavior()) {
+            $environment = PluginEnvironment::getPluginEnvironment();
+            return $environment == PluginEnvironment::PLUGIN_ENVIRONMENT_PROD;
+        }
+        return parent::isHidden($module);
     }
 
     public function isEnabledByDefault(string $module): bool
     {
-        $environment = PluginEnvironment::getPluginEnvironment();
-        return $environment == PluginEnvironment::PLUGIN_ENVIRONMENT_PROD;
+        if ($this->enabledEnvironmentBasedBehavior()) {
+            $environment = PluginEnvironment::getPluginEnvironment();
+            return $environment == PluginEnvironment::PLUGIN_ENVIRONMENT_PROD;
+        }
+        return parent::isEnabledByDefault($module);
     }
 }
