@@ -97,15 +97,9 @@ class FieldDeprecationGraphQLQueryConfigurator extends AbstractGraphQLQueryConfi
                             );
                             $hooksAPI->addFilter(
                                 $hookName,
-                                function (array $schemaDefinition) use ($typeResolver, $fieldName, $deprecationReason): array {
-                                    $deprecationDescription = sprintf(
-                                        \__('Field \'%1$s\' from type \'%2$s\' has been deprecated: %3$s'),
-                                        $fieldName,
-                                        $typeResolver->getMaybeNamespacedTypeName(),
-                                        $deprecationReason
-                                    );
+                                function (array $schemaDefinition) use ($deprecationReason): array {
                                     $schemaDefinition[SchemaDefinition::ARGNAME_DEPRECATED] = true;
-                                    $schemaDefinition[SchemaDefinition::ARGNAME_DEPRECATIONDESCRIPTION] = $deprecationDescription;
+                                    $schemaDefinition[SchemaDefinition::ARGNAME_DEPRECATIONDESCRIPTION] = $deprecationReason;
                                     return $schemaDefinition;
                                 },
                                 10,
