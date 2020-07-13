@@ -9,6 +9,7 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import MultiSelectControl from '../multi-select-control';
+import AddUndefinedSelectedItemIDs from '../multi-select-control/add-undefined-selected-item-ids';
 
 const DirectiveMultiSelectControl = compose( [
 	withState( { attributeName: 'directives' } ),
@@ -35,6 +36,7 @@ const DirectiveMultiSelectControl = compose( [
 			errorMessage: getRetrievingDirectivesErrorMessage(),
 		};
 	} ),
+	AddUndefinedSelectedItemIDs,
 ] )( MultiSelectControl );
 
 export default DirectiveMultiSelectControl;
