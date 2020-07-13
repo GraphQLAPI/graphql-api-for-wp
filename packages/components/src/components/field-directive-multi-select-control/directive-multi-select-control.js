@@ -26,7 +26,7 @@ const DirectiveMultiSelectControl = compose( [
 		const items = getDirectives().map( directive => (
 			{
 				group: __('Directives', 'graphql-api'),
-				title: directive,
+				title: `@${ directive }`,
 				value: directive,
 			}
 		) );
