@@ -26,8 +26,13 @@ const FieldPrintoutBody = ( props ) => {
 	let combinedTypeFieldNames = {};
 	typeFields.forEach(function(typeField) {
 		const typeFieldEntry = typeFieldNames[ typeField ];
-		combinedTypeFieldNames[ typeFieldEntry.typeName ] = combinedTypeFieldNames[ typeFieldEntry.typeName ] || [];
-		combinedTypeFieldNames[ typeFieldEntry.typeName ].push( typeFieldEntry.field );
+		// If it doesn't find the entry, it's because the schema has changed, and the DB is still
+		// referenting a removed item. For instance, having saved entry `QueryableObject.slug` and
+		// then renaming interface `QueryableObject` to `Queryable`, the entry must be considered stale
+		if (typeFieldEntry != undefined) {
+			combinedTypeFieldNames[ typeFieldEntry.typeName ] = combinedTypeFieldNames[ typeFieldEntry.typeName ] || [];
+			combinedTypeFieldNames[ typeFieldEntry.typeName ].push( typeFieldEntry.field );
+		}
 	} );
 	return (
 		<>
