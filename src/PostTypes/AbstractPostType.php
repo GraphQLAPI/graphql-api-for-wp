@@ -7,9 +7,9 @@ namespace GraphQLAPI\GraphQLAPI\PostTypes;
 use GraphQLAPI\GraphQLAPI\Admin\Menus\Menu;
 use GraphQLAPI\GraphQLAPI\General\CPTUtils;
 use PoP\ComponentModel\State\ApplicationState;
-use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 
 abstract class AbstractPostType
@@ -21,6 +21,7 @@ abstract class AbstractPostType
      */
     public function initialize(): void
     {
+        $postType = $this->getPostType();
         \add_action(
             'init',
             [$this, 'initPostType']
@@ -36,7 +37,10 @@ abstract class AbstractPostType
             2
         );
 
-        /** Add the excerpt, which is the description of the different CPTs (GraphQL query/ACL/CCL) */
+        /**
+         * Add the excerpt, which is the description of the
+         * different CPTs (GraphQL query/ACL/CCL)
+         * */
         if ($this->isExcerptAsDescriptionEnabled() && $this->usePostExcerptAsDescription()) {
             // Execute last as to always add the description at the top
             \add_filter(
@@ -45,7 +49,6 @@ abstract class AbstractPostType
                 PHP_INT_MAX
             );
             // Add the custom columns to the post type
-            $postType = $this->getPostType();
             add_filter(
                 "manage_{$postType}_posts_columns",
                 [$this, 'setTableColumns']
@@ -74,6 +77,44 @@ abstract class AbstractPostType
             10,
             2
         );
+
+        /**
+         * Regenerate the timestamp when saving this CPT
+         */
+        if ($this->regenerateTimestampOnSave()) {
+            // Ideally: Only do it if the post is published,
+            // or was published and had its status changed
+            // Otherwise, editing and saving a draft would also
+            // update the timestamp, and there's no need for that
+            // since it's not added to the schema
+            // However, the old status is not provided through this hook,
+            // so just check it's not being automatically saved in the editor
+            // ("auto-draft" status)
+            // This is also saving "draft" to "draft" for which there's no need,
+            // but can't avoid it
+            \add_action(
+                "save_post_{$postType}",
+                function ($postID, $post): void {
+                    if ($post->post_status != 'auto-draft') {
+                        $userSettingsManager = UserSettingsManagerFacade::getInstance();
+                        $userSettingsManager->storeTimestamp();
+                    }
+                },
+                10,
+                2
+            );
+        }
+    }
+
+    /**
+     * Indicate if, whenever this CPT is created/updated,
+     * the timestamp must be regenerated
+     *
+     * @return boolean
+     */
+    protected function regenerateTimestampOnSave(): bool
+    {
+        return false;
     }
 
     public function setTableColumns(array $columns): array

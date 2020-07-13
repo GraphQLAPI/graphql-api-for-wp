@@ -47,6 +47,17 @@ class GraphQLFieldDeprecationListPostType extends AbstractPostType
     }
 
     /**
+     * Indicate if, whenever this CPT is saved/updated,
+     * the timestamp must be regenerated
+     *
+     * @return boolean
+     */
+    protected function regenerateTimestampOnSave(): bool
+    {
+        return true;
+    }
+
+    /**
      * Indicate if the excerpt must be used as the CPT's description and rendered when rendering the post
      *
      * @return boolean
