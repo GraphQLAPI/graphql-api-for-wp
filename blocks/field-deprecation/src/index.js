@@ -65,7 +65,7 @@ registerBlockType( 'graphql-api/field-deprecation', {
 	 */
 	attributes: {
 		/**
-		 * The max-age amount, in seconds, to set on the Cache-Control header
+		 * The reason/description to deprecate the field
 		 *
 		 * Same attribute name as defined in
 		 * GraphQLAPI\GraphQLAPI\Blocks\FieldDeprecationBlock::ATTRIBUTE_NAME_DEPRECATION_REASON
