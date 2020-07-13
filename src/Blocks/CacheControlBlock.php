@@ -63,7 +63,7 @@ class CacheControlBlock extends AbstractControlBlock
 
     protected function getBlockDataTitle(): string
     {
-        return \__('Set cache-control header for:', 'graphql-api');
+        return \__('Cache-control header for:', 'graphql-api');
     }
     protected function getBlockContentTitle(): string
     {
