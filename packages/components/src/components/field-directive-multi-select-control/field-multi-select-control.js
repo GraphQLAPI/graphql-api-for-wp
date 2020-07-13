@@ -9,6 +9,7 @@ import { compose, withState } from '@wordpress/compose';
  */
 import MultiSelectControl from '../multi-select-control';
 import { TYPE_FIELD_SEPARATOR_FOR_DB } from './block-constants';
+import AddUndefinedSelectedItemIDs from '../multi-select-control/add-undefined-selected-item-ids';
 
 const FieldMultiSelectControl = compose( [
 	withState( { attributeName: 'typeFields' } ),
@@ -39,6 +40,7 @@ const FieldMultiSelectControl = compose( [
 			errorMessage: getRetrievingTypeFieldsErrorMessage(),
 		};
 	} ),
+	AddUndefinedSelectedItemIDs,
 ] )( MultiSelectControl );
 
 export default FieldMultiSelectControl;
