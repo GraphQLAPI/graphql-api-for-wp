@@ -59,7 +59,7 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
          * Code copied from function `handle_row_actions` in file
          * wp-admin/includes/class-wp-posts-list-table.php
          */
-        if (is_post_type_viewable($post_type_object)) {
+        if (\is_post_type_viewable($post_type_object)) {
             $title = \_draft_or_post_title();
             $isEnabled = $this->isEnabled($post);
             $executeLabel = $this->getExecuteActionLabel();
@@ -101,7 +101,7 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
                 if ($isEnabled) {
                     $actions['execute'] = sprintf(
                         '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
-                        get_permalink($post->ID),
+                        \get_permalink($post->ID),
                         esc_attr(sprintf(__('%s &#8220;%s&#8221;', 'graphql-api'), $executeLabel, $title)),
                         $executeLabel
                     );
