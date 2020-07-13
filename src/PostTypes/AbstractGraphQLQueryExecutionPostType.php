@@ -34,6 +34,18 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
     }
 
     /**
+     * Whenever this CPT is saved/updated, the timestamp must be regenerated,
+     * because it contains the SchemaConfiguration block, which contains
+     * Field Deprecation Lists, which can change the schema
+     *
+     * @return boolean
+     */
+    protected function regenerateTimestampOnSave(): bool
+    {
+        return true;
+    }
+
+    /**
      * Label to show on the "execute" action in the CPT table
      *
      * @return string

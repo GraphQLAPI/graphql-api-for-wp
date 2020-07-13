@@ -52,6 +52,18 @@ class GraphQLSchemaConfigurationPostType extends AbstractPostType
     }
 
     /**
+     * Whenever this CPT is saved/updated, the timestamp must be regenerated,
+     * because it contains Field Deprecation Lists,
+     * which can change the schema
+     *
+     * @return boolean
+     */
+    protected function regenerateTimestampOnSave(): bool
+    {
+        return true;
+    }
+
+    /**
      * Indicate if the excerpt must be used as the CPT's description and rendered when rendering the post
      *
      * @return boolean
