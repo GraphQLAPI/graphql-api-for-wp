@@ -27,7 +27,6 @@
         "getpop/custompostmedia-wp": "dev-master",
         "getpop/custompostmeta-wp": "dev-master",
         "getpop/engine-wp": "dev-master",
-        "getpop/field-deprecation-by-directive": "dev-master",
         "getpop/graphql": "dev-master",
         "getpop/graphql-clients-for-wp": "dev-master",
         "getpop/graphql-endpoint-for-wp": "dev-master",

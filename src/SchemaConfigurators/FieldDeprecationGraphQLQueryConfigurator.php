@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
 use PoP\Hooks\Facades\HooksAPIFacade;
-use PoP\ComponentModel\Misc\GeneralUtils;
 use PoP\ComponentModel\Schema\HookHelpers;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use PoP\ComponentModel\Schema\SchemaDefinition;
@@ -14,7 +13,6 @@ use GraphQLAPI\GraphQLAPI\Blocks\FieldDeprecationBlock;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
-use PoP\FieldDeprecationByDirective\Facades\FieldDeprecationManagerFacade;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AbstractGraphQLQueryConfigurator;
 
 class FieldDeprecationGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigurator
@@ -38,45 +36,11 @@ class FieldDeprecationGraphQLQueryConfigurator extends AbstractGraphQLQueryConfi
             $fdlPostID,
             $instanceManager->getInstance(FieldDeprecationBlock::class)
         );
-        // $fieldDeprecationManager = FieldDeprecationManagerFacade::getInstance();
         $instanceManager = InstanceManagerFacade::getInstance();
         $hooksAPI = HooksAPIFacade::getInstance();
         foreach ($fdlBlockItems as $fdlBlockItem) {
             if ($deprecationReason = $fdlBlockItem['attrs'][FieldDeprecationBlock::ATTRIBUTE_NAME_DEPRECATION_REASON]) {
                 if ($typeFields = $fdlBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS]) {
-                    // // Extract the saved fields
-                    // if ($entriesForFields = GeneralUtils::arrayFlatten(
-                    //     array_map(
-                    //         function ($selectedField) use ($instanceManager, $deprecationReason) {
-                    //             $entriesFromField = $this->getEntriesFromField($selectedField, $deprecationReason);
-                    //             $entries = [];
-                    //             foreach ($entriesFromField as $entry) {
-                    //                 // Once getting the entry, we an obtain the type and field,
-                    //                 // and we can modify the deprecated reason in the entry adding this information
-                    //                 $typeResolverClass = $entry[0];
-                    //                 // If we had a module (eg: "Users") and saved an entry with it,
-                    //                 // and then disable it, the typeResolveClass will be null
-                    //                 if (is_null($typeResolverClass)) {
-                    //                     continue;
-                    //                 }
-                    //                 $typeResolver = $instanceManager->getInstance($typeResolverClass);
-                    //                 $entry[2] = sprintf(
-                    //                     \__('Field \'%1$s\' from type \'%2$s\' has been deprecated: %3$s'),
-                    //                     $entry[1],
-                    //                     $typeResolver->getMaybeNamespacedTypeName(),
-                    //                     $entry[2]
-                    //                 );
-                    //                 $entries[] = $entry;
-                    //             }
-                    //             return $entries;
-                    //         },
-                    //         $typeFields
-                    //     )
-                    // )) {
-                    //     $fieldDeprecationManager->addEntriesForFields(
-                    //         $entriesForFields
-                    //     );
-                    // }
                     // Add a hook to override the schema for the selected fields
                     foreach ($typeFields as $selectedField) {
                         $entriesFromField = $this->getEntriesFromField($selectedField, $deprecationReason);
