@@ -19,7 +19,8 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
     use ModuleResolverTrait;
 
-    public const MAIN = Plugin::NAMESPACE . '\main';
+    // public const MAIN = Plugin::NAMESPACE . '\main';
+    public const EDITING_ACCESS = Plugin::NAMESPACE . '\editing-access';
     public const SINGLE_ENDPOINT = Plugin::NAMESPACE . '\single-endpoint';
     public const PERSISTED_QUERIES = Plugin::NAMESPACE . '\persisted-queries';
     public const CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\custom-endpoints';
@@ -62,7 +63,8 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public static function getModulesToResolve(): array
     {
         return [
-            self::MAIN,
+            // self::MAIN,
+            self::EDITING_ACCESS,
             self::SINGLE_ENDPOINT,
             self::GRAPHIQL_FOR_SINGLE_ENDPOINT,
             self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
@@ -183,7 +185,8 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public function canBeDisabled(string $module): bool
     {
         switch ($module) {
-            case self::MAIN:
+            case self::EDITING_ACCESS:
+            // case self::MAIN:
                 return false;
         }
         return parent::canBeDisabled($module);
@@ -192,7 +195,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public function isHidden(string $module): bool
     {
         switch ($module) {
-            case self::MAIN:
+            // case self::MAIN:
             case self::WELCOME_GUIDES:
                 return true;
         }
@@ -202,7 +205,8 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public function getName(string $module): string
     {
         $names = [
-            self::MAIN => \__('Main', 'graphql-api'),
+            // self::MAIN => \__('Main', 'graphql-api'),
+            self::EDITING_ACCESS => \__('Editing Access', 'graphql-api'),
             self::SINGLE_ENDPOINT => \__('Single Endpoint', 'graphql-api'),
             self::PERSISTED_QUERIES => \__('Persisted Queries', 'graphql-api'),
             self::CUSTOM_ENDPOINTS => \__('Custom Endpoints', 'graphql-api'),
@@ -232,8 +236,10 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public function getDescription(string $module): string
     {
         switch ($module) {
-            case self::MAIN:
-                return \__('Artificial module for defining the main settings', 'graphql-api');
+            // case self::MAIN:
+            //     return \__('Artificial module for defining the main settings', 'graphql-api');
+            case self::EDITING_ACCESS:
+                return \__('Establish who can edit the GraphQL schema, and how', 'graphql-api');
             case self::SINGLE_ENDPOINT:
                 return \sprintf(
                     \__('Expose a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
@@ -318,7 +324,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public function getSettingsDefaultValue(string $module, string $option)
     {
         $defaultValues = [
-            self::MAIN => [
+            self::EDITING_ACCESS => [
                 self::OPTION_EDITING_ACCESS_SCHEME => UserAuthorization::ACCESS_SCHEME_ADMIN_ONLY,
             ],
             self::SINGLE_ENDPOINT => [
@@ -364,7 +370,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
         $moduleSettings = parent::getSettings($module);
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
-        if ($module == self::MAIN) {
+        if ($module == self::EDITING_ACCESS) {
             /**
              * Write Access Scheme
              * If `"admin"`, only the admin can compose a GraphQL query and endpoint

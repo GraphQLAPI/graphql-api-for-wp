@@ -163,7 +163,7 @@ class PluginConfiguration
             [
                 'class' => ComponentConfiguration::class,
                 'envVariable' => Environment::EDITING_ACCESS_SCHEME,
-                'module' => FunctionalityModuleResolver::MAIN,
+                'module' => FunctionalityModuleResolver::EDITING_ACCESS,
                 'option' => FunctionalityModuleResolver::OPTION_EDITING_ACCESS_SCHEME,
             ],
             // GraphQL single endpoint slug
