@@ -273,7 +273,7 @@ class PluginConfiguration
                 'module' => FunctionalityModuleResolver::CACHE_CONTROL,
                 'option' => FunctionalityModuleResolver::OPTION_MAX_AGE,
             ],
-            // Post default/max limits
+            // Post default/max limits, add to CustomPostUnion
             [
                 'class' => PostsComponentConfiguration::class,
                 'envVariable' => PostsEnvironment::POST_LIST_DEFAULT_LIMIT,
@@ -285,6 +285,12 @@ class PluginConfiguration
                 'envVariable' => PostsEnvironment::POST_LIST_MAX_LIMIT,
                 'module' => SchemaModuleResolver::SCHEMA_POST_TYPE,
                 'option' => SchemaModuleResolver::OPTION_POST_MAX_LIMIT,
+            ],
+            [
+                'class' => PostsComponentConfiguration::class,
+                'envVariable' => PostsEnvironment::ADD_POST_TYPE_TO_CUSTOMPOST_UNION_TYPES,
+                'module' => SchemaModuleResolver::SCHEMA_POST_TYPE,
+                'option' => SchemaModuleResolver::OPTION_ADD_TYPE_TO_CUSTOMPOST_UNION_TYPE,
             ],
             // User default/max limits
             [
@@ -312,7 +318,7 @@ class PluginConfiguration
                 'module' => SchemaModuleResolver::SCHEMA_TAXONOMY_TYPE,
                 'option' => SchemaModuleResolver::OPTION_TAG_MAX_LIMIT,
             ],
-            // Page default/max limits
+            // Page default/max limits, add to CustomPostUnion
             [
                 'class' => PagesComponentConfiguration::class,
                 'envVariable' => PagesEnvironment::PAGE_LIST_DEFAULT_LIMIT,
@@ -324,6 +330,12 @@ class PluginConfiguration
                 'envVariable' => PagesEnvironment::PAGE_LIST_MAX_LIMIT,
                 'module' => SchemaModuleResolver::SCHEMA_PAGE_TYPE,
                 'option' => SchemaModuleResolver::OPTION_PAGE_MAX_LIMIT,
+            ],
+            [
+                'class' => PagesComponentConfiguration::class,
+                'envVariable' => PagesEnvironment::ADD_PAGE_TYPE_TO_CUSTOMPOST_UNION_TYPES,
+                'module' => SchemaModuleResolver::SCHEMA_PAGE_TYPE,
+                'option' => SchemaModuleResolver::OPTION_ADD_TYPE_TO_CUSTOMPOST_UNION_TYPE,
             ],
             // Custom post default/max limits
             [

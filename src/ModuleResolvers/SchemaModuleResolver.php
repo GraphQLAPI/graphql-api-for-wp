@@ -23,13 +23,13 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     use ModuleResolverTrait;
 
     public const DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE = Plugin::NAMESPACE . '\directive-set-convert-lower-uppercase';
+    public const SCHEMA_CUSTOMPOSTS = Plugin::NAMESPACE . '\schema-customposts';
     public const SCHEMA_POST_TYPE = Plugin::NAMESPACE . '\schema-post-type';
     public const SCHEMA_COMMENT_TYPE = Plugin::NAMESPACE . '\schema-comment-type';
     public const SCHEMA_USER_TYPE = Plugin::NAMESPACE . '\schema-user-type';
     public const SCHEMA_PAGE_TYPE = Plugin::NAMESPACE . '\schema-page-type';
     public const SCHEMA_MEDIA_TYPE = Plugin::NAMESPACE . '\schema-media-type';
     public const SCHEMA_TAXONOMY_TYPE = Plugin::NAMESPACE . '\schema-taxonomy-type';
-    public const SCHEMA_CUSTOMPOSTS = Plugin::NAMESPACE . '\schema-customposts';
 
     /**
      * Setting options
@@ -45,6 +45,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     public const OPTION_PAGE_DEFAULT_LIMIT = 'page-default-limit';
     public const OPTION_PAGE_MAX_LIMIT = 'page-max-limit';
 
+    public const OPTION_ADD_TYPE_TO_CUSTOMPOST_UNION_TYPE = 'add-type-to-custompost-union-type';
     public const OPTION_USE_SINGLE_TYPE_INSTEAD_OF_UNION_TYPE = 'use-single-type-instead-of-union-type';
 
     public static function getModulesToResolve(): array
@@ -159,26 +160,28 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     public function getSettingsDefaultValue(string $module, string $option)
     {
         $defaultValues = [
+            self::SCHEMA_CUSTOMPOSTS => [
+                self::OPTION_CUSTOMPOST_DEFAULT_LIMIT => 10,
+                self::OPTION_CUSTOMPOST_MAX_LIMIT => 100,
+                self::OPTION_USE_SINGLE_TYPE_INSTEAD_OF_UNION_TYPE => false,
+            ],
             self::SCHEMA_POST_TYPE => [
                 self::OPTION_POST_DEFAULT_LIMIT => 10,
                 self::OPTION_POST_MAX_LIMIT => 100,
+                self::OPTION_ADD_TYPE_TO_CUSTOMPOST_UNION_TYPE => true,
+            ],
+            self::SCHEMA_PAGE_TYPE => [
+                self::OPTION_PAGE_DEFAULT_LIMIT => 10,
+                self::OPTION_PAGE_MAX_LIMIT => 100,
+                self::OPTION_ADD_TYPE_TO_CUSTOMPOST_UNION_TYPE => false,
             ],
             self::SCHEMA_USER_TYPE => [
                 self::OPTION_USER_DEFAULT_LIMIT => 10,
                 self::OPTION_USER_MAX_LIMIT => 100,
             ],
-            self::SCHEMA_PAGE_TYPE => [
-                self::OPTION_PAGE_DEFAULT_LIMIT => 10,
-                self::OPTION_PAGE_MAX_LIMIT => 100,
-            ],
             self::SCHEMA_TAXONOMY_TYPE => [
                 self::OPTION_TAG_DEFAULT_LIMIT => 50,
                 self::OPTION_TAG_MAX_LIMIT => 500,
-            ],
-            self::SCHEMA_CUSTOMPOSTS => [
-                self::OPTION_CUSTOMPOST_DEFAULT_LIMIT => 10,
-                self::OPTION_CUSTOMPOST_MAX_LIMIT => 100,
-                self::OPTION_USE_SINGLE_TYPE_INSTEAD_OF_UNION_TYPE => false,
             ],
         ];
         return $defaultValues[$module][$option];
@@ -201,14 +204,17 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if (
             in_array($module, [
+                self::SCHEMA_CUSTOMPOSTS,
                 self::SCHEMA_POST_TYPE,
                 self::SCHEMA_USER_TYPE,
                 self::SCHEMA_TAXONOMY_TYPE,
                 self::SCHEMA_PAGE_TYPE,
-                self::SCHEMA_CUSTOMPOSTS,
             ])
         ) {
             $moduleFieldOptions = [
+                self::SCHEMA_CUSTOMPOSTS => [
+                    'customPosts' => [self::OPTION_CUSTOMPOST_DEFAULT_LIMIT, self::OPTION_CUSTOMPOST_MAX_LIMIT],
+                ],
                 self::SCHEMA_POST_TYPE => [
                     'posts' => [self::OPTION_POST_DEFAULT_LIMIT, self::OPTION_POST_MAX_LIMIT],
                 ],
@@ -220,9 +226,6 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 ],
                 self::SCHEMA_PAGE_TYPE => [
                     'pages' => [self::OPTION_PAGE_DEFAULT_LIMIT, self::OPTION_PAGE_MAX_LIMIT],
-                ],
-                self::SCHEMA_CUSTOMPOSTS => [
-                    'customPosts' => [self::OPTION_CUSTOMPOST_DEFAULT_LIMIT, self::OPTION_CUSTOMPOST_MAX_LIMIT],
                 ],
             ];
             foreach ($moduleFieldOptions[$module] as $field => $options) {
@@ -282,6 +285,54 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                         PostTypeResolver::NAME,
                         'customPosts'
                     ),
+                    Properties::TYPE => Properties::TYPE_BOOL,
+                ];
+            } elseif (
+                in_array($module, [
+                    self::SCHEMA_POST_TYPE,
+                    self::SCHEMA_PAGE_TYPE,
+                ])
+            ) {
+                $titlePlaceholder = sprintf(
+                    \__('Include type <code>%1$s</code> in <code>%2$s</code>?', 'graphql-api'),
+                    '%1$s',
+                    CustomPostUnionTypeResolver::NAME
+                );
+                $moduleTitles = [
+                    self::SCHEMA_POST_TYPE => sprintf(
+                        $titlePlaceholder,
+                        PostTypeResolver::NAME
+                    ),
+                    self::SCHEMA_PAGE_TYPE => sprintf(
+                        $titlePlaceholder,
+                        PageTypeResolver::NAME
+                    ),
+                ];
+                $descriptionPlaceholder = sprintf(
+                    \__('Results of type <code>%1$s</code> will be included when querying a field of type <code>%2$s</code> (such as <code>%3$s</code>)', 'graphql-api'),
+                    '%1$s',
+                    CustomPostUnionTypeResolver::NAME,
+                    'customPosts'
+                );
+                $moduleDescriptions = [
+                    self::SCHEMA_POST_TYPE => sprintf(
+                        $descriptionPlaceholder,
+                        PostTypeResolver::NAME
+                    ),
+                    self::SCHEMA_PAGE_TYPE => sprintf(
+                        $descriptionPlaceholder,
+                        PageTypeResolver::NAME
+                    ),
+                ];
+                $option = self::OPTION_ADD_TYPE_TO_CUSTOMPOST_UNION_TYPE;
+                $moduleSettings[] = [
+                    Properties::INPUT => $option,
+                    Properties::NAME => $this->getSettingOptionName(
+                        $module,
+                        $option,
+                    ),
+                    Properties::TITLE => $moduleTitles[$module],
+                    Properties::DESCRIPTION => $moduleDescriptions[$module],
                     Properties::TYPE => Properties::TYPE_BOOL,
                 ];
             }
