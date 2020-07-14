@@ -1,1 +1,0 @@
-# Schema Custom Post Types
