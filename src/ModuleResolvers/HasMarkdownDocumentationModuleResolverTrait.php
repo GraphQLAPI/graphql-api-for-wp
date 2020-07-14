@@ -71,6 +71,13 @@ trait HasMarkdownDocumentationModuleResolverTrait
             } else {
                 // Otherwise, use the default language version
                 $markdownFile = \trailingslashit($this->getDefaultMarkdownFileDir($module)) . $markdownFilename;
+                // Make sure this file exists
+                if (!file_exists($markdownFile)) {
+                    return sprintf(
+                        '<p>%s</p>',
+                        \__('Ops, the documentation for this module is not available', 'graphql-api')
+                    );
+                }
             }
             $markdownContents = file_get_contents($markdownFile);
             $htmlContents = (new Parsedown())->text($markdownContents);
