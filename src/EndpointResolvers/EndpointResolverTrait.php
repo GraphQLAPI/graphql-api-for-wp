@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\EndpointResolvers;
 
 use PoP\Routing\RouteNatures;
+use PoP\API\Schema\QueryInputs;
+use PoP\GraphQLAPIRequest\Hooks\VarsHooks;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
-use PoP\GraphQLAPIRequest\Hooks\VarsHooks;
 
 trait EndpointResolverTrait
 {
@@ -75,6 +76,15 @@ trait EndpointResolverTrait
      */
     public function addGraphQLVars($vars_in_array): void
     {
+        /**
+         * Remove any query passed through the request, to avoid users executing
+         * a custom query, bypassing the persisted one (for Persisted Query)
+         * or the one in the body (for Custom Endpoint).
+         * Also fixed a bug when using GraphiQL: the query is dynamically
+         * updated on the URL under /?query=..., and this is sent to the server
+         */
+        unset($_REQUEST[QueryInputs::QUERY]);
+
         // Indicate it is an API, of type GraphQL. Just by doing is, class
         // \PoP\GraphQLAPIRequest\Hooks\VarsHooks will process the GraphQL request
         $vars = &$vars_in_array[0];

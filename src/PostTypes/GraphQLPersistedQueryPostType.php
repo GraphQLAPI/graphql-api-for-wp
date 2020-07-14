@@ -14,7 +14,6 @@ use GraphQLAPI\GraphQLAPI\Blocks\PersistedQueryOptionsBlock;
 use GraphQLAPI\GraphQLAPI\General\GraphQLQueryPostTypeHelpers;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
 use GraphQLAPI\GraphQLAPI\PostTypes\AbstractGraphQLQueryExecutionPostType;
-use PoP\API\Schema\QueryInputs;
 
 class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostType
 {
@@ -287,11 +286,6 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
             if (!$this->isEnabled($vars['routing-state']['queried-object-id'])) {
                 return;
             }
-            /**
-             * Remove any query passed through the request, to avoid users executing a custom query,
-             * bypassing the persisted one
-             */
-            unset($_REQUEST[QueryInputs::QUERY]);
 
             // Remove the VarsHooks from the GraphQLAPIRequest, so it doesn't process the GraphQL query
             // Otherwise it will add error "The query in the body is empty"
