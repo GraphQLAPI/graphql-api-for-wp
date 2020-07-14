@@ -46,6 +46,8 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     public const OPTION_PAGE_DEFAULT_LIMIT = 'page-default-limit';
     public const OPTION_PAGE_MAX_LIMIT = 'page-max-limit';
 
+    public const OPTION_USE_SINGLE_TYPE_INSTEAD_OF_UNION_TYPE = 'use-single-type-instead-of-union-type';
+
     public static function getModulesToResolve(): array
     {
         return [
@@ -181,6 +183,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             self::SCHEMA_CUSTOMPOST_TYPE => [
                 self::OPTION_CUSTOMPOST_DEFAULT_LIMIT => 10,
                 self::OPTION_CUSTOMPOST_MAX_LIMIT => 100,
+                self::OPTION_USE_SINGLE_TYPE_INSTEAD_OF_UNION_TYPE => false,
             ],
         ];
         return $defaultValues[$module][$option];
@@ -266,6 +269,25 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                         $unlimitedValue
                     ),
                     Properties::TYPE => Properties::TYPE_INT,
+                ];
+            }
+
+            if ($module == self::SCHEMA_CUSTOMPOST_TYPE) {
+                $option = self::OPTION_USE_SINGLE_TYPE_INSTEAD_OF_UNION_TYPE;
+                $moduleSettings[] = [
+                    Properties::INPUT => $option,
+                    Properties::NAME => $this->getSettingOptionName(
+                        $module,
+                        $option,
+                    ),
+                    Properties::TITLE => \__('Use single type instead of union type?', 'graphql-api'),
+                    Properties::DESCRIPTION => sprintf(
+                        \__('If type <code>%s</code> is composed of only one type (eg: <code>%s</code>), then return this single type directly in field <code>%s</code>?', 'graphql-api'),
+                        CustomPostUnionTypeResolver::NAME,
+                        PostTypeResolver::NAME,
+                        'customPosts'
+                    ),
+                    Properties::TYPE => Properties::TYPE_BOOL,
                 ];
             }
         }

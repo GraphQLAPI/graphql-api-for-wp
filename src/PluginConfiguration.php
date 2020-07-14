@@ -12,7 +12,7 @@ use PoP\Pages\Environment as PagesEnvironment;
 use PoP\Posts\Environment as PostsEnvironment;
 use PoP\Users\Environment as UsersEnvironment;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
-use PoP\CustomPosts\Environment as ContentEnvironment;
+use PoP\CustomPosts\Environment as CustomPostsEnvironment;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\Taxonomies\Environment as TaxonomiesEnvironment;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
@@ -30,7 +30,7 @@ use PoP\Users\ComponentConfiguration as UsersComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use PoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
-use PoP\CustomPosts\ComponentConfiguration as ContentComponentConfiguration;
+use PoP\CustomPosts\ComponentConfiguration as CustomPostsComponentConfiguration;
 use PoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
 use PoP\Taxonomies\ComponentConfiguration as TaxonomiesComponentConfiguration;
 use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
@@ -327,16 +327,23 @@ class PluginConfiguration
             ],
             // Custom post default/max limits
             [
-                'class' => ContentComponentConfiguration::class,
-                'envVariable' => ContentEnvironment::CUSTOMPOST_LIST_DEFAULT_LIMIT,
+                'class' => CustomPostsComponentConfiguration::class,
+                'envVariable' => CustomPostsEnvironment::CUSTOMPOST_LIST_DEFAULT_LIMIT,
                 'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOST_TYPE,
                 'option' => SchemaModuleResolver::OPTION_CUSTOMPOST_DEFAULT_LIMIT,
             ],
             [
-                'class' => ContentComponentConfiguration::class,
-                'envVariable' => ContentEnvironment::CUSTOMPOST_LIST_MAX_LIMIT,
+                'class' => CustomPostsComponentConfiguration::class,
+                'envVariable' => CustomPostsEnvironment::CUSTOMPOST_LIST_MAX_LIMIT,
                 'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOST_TYPE,
                 'option' => SchemaModuleResolver::OPTION_CUSTOMPOST_MAX_LIMIT,
+            ],
+            // Custom post, if there is only one custom type, use it instead of the Union
+            [
+                'class' => CustomPostsComponentConfiguration::class,
+                'envVariable' => CustomPostsEnvironment::USE_SINGLE_TYPE_INSTEAD_OF_CUSTOMPOST_UNION_TYPE,
+                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOST_TYPE,
+                'option' => SchemaModuleResolver::OPTION_USE_SINGLE_TYPE_INSTEAD_OF_UNION_TYPE,
             ],
         ];
         // For each environment variable, see if its value has been saved in the settings
