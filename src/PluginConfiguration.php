@@ -329,20 +329,20 @@ class PluginConfiguration
             [
                 'class' => CustomPostsComponentConfiguration::class,
                 'envVariable' => CustomPostsEnvironment::CUSTOMPOST_LIST_DEFAULT_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOST_TYPE,
+                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
                 'option' => SchemaModuleResolver::OPTION_CUSTOMPOST_DEFAULT_LIMIT,
             ],
             [
                 'class' => CustomPostsComponentConfiguration::class,
                 'envVariable' => CustomPostsEnvironment::CUSTOMPOST_LIST_MAX_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOST_TYPE,
+                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
                 'option' => SchemaModuleResolver::OPTION_CUSTOMPOST_MAX_LIMIT,
             ],
             // Custom post, if there is only one custom type, use it instead of the Union
             [
                 'class' => CustomPostsComponentConfiguration::class,
                 'envVariable' => CustomPostsEnvironment::USE_SINGLE_TYPE_INSTEAD_OF_CUSTOMPOST_UNION_TYPE,
-                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOST_TYPE,
+                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
                 'option' => SchemaModuleResolver::OPTION_USE_SINGLE_TYPE_INSTEAD_OF_UNION_TYPE,
             ],
         ];
