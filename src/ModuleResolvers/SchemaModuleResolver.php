@@ -14,6 +14,7 @@ use PoP\Comments\TypeResolvers\CommentTypeResolver;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 use PoP\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
+use PoP\GenericCustomPosts\TypeResolvers\GenericCustomPostTypeResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\UpperCaseStringDirectiveResolver;
@@ -24,6 +25,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
 
     public const DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE = Plugin::NAMESPACE . '\directive-set-convert-lower-uppercase';
     public const SCHEMA_CUSTOMPOSTS = Plugin::NAMESPACE . '\schema-customposts';
+    public const SCHEMA_GENERIC_CUSTOMPOST_TYPE = Plugin::NAMESPACE . '\schema-generic-custompost-type';
     public const SCHEMA_POST_TYPE = Plugin::NAMESPACE . '\schema-post-type';
     public const SCHEMA_COMMENT_TYPE = Plugin::NAMESPACE . '\schema-comment-type';
     public const SCHEMA_USER_TYPE = Plugin::NAMESPACE . '\schema-user-type';
@@ -34,6 +36,9 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     /**
      * Setting options
      */
+    public const OPTION_GENERIC_CUSTOMPOST_DEFAULT_LIMIT = 'generic-custompost-default-limit';
+    public const OPTION_GENERIC_CUSTOMPOST_MAX_LIMIT = 'generic-custompost-max-limit';
+    public const OPTION_GENERIC_CUSTOMPOST_TYPES = 'generic-custompost-types';
     public const OPTION_POST_DEFAULT_LIMIT = 'post-default-limit';
     public const OPTION_POST_MAX_LIMIT = 'post-max-limit';
     public const OPTION_CUSTOMPOST_DEFAULT_LIMIT = 'custompost-default-limit';
@@ -52,6 +57,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     {
         return [
             self::SCHEMA_CUSTOMPOSTS,
+            self::SCHEMA_GENERIC_CUSTOMPOST_TYPE,
             self::SCHEMA_POST_TYPE,
             self::SCHEMA_PAGE_TYPE,
             self::SCHEMA_USER_TYPE,
@@ -76,6 +82,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                         FunctionalityModuleResolver::CUSTOM_ENDPOINTS,
                     ],
                 ];
+            case self::SCHEMA_GENERIC_CUSTOMPOST_TYPE:
             case self::SCHEMA_POST_TYPE:
             case self::SCHEMA_PAGE_TYPE:
             case self::SCHEMA_COMMENT_TYPE:
@@ -93,6 +100,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     {
         $names = [
             self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => \__('Directive Set: Convert Lower/Uppercase', 'graphql-api'),
+            self::SCHEMA_GENERIC_CUSTOMPOST_TYPE => \__('Schema Generic Custom Post Type', 'graphql-api'),
             self::SCHEMA_POST_TYPE => \__('Schema Post Type', 'graphql-api'),
             self::SCHEMA_COMMENT_TYPE => \__('Schema Comment Type', 'graphql-api'),
             self::SCHEMA_USER_TYPE => \__('Schema User Type', 'graphql-api'),
@@ -113,6 +121,11 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                     UpperCaseStringDirectiveResolver::getDirectiveName(),
                     LowerCaseStringDirectiveResolver::getDirectiveName(),
                     TitleCaseStringDirectiveResolver::getDirectiveName()
+                );
+            case self::SCHEMA_GENERIC_CUSTOMPOST_TYPE:
+                return sprintf(
+                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                    GenericCustomPostTypeResolver::NAME,
                 );
             case self::SCHEMA_POST_TYPE:
                 return sprintf(
@@ -165,6 +178,11 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 self::OPTION_CUSTOMPOST_MAX_LIMIT => 100,
                 self::OPTION_USE_SINGLE_TYPE_INSTEAD_OF_UNION_TYPE => false,
             ],
+            self::SCHEMA_GENERIC_CUSTOMPOST_TYPE => [
+                self::OPTION_GENERIC_CUSTOMPOST_DEFAULT_LIMIT => 10,
+                self::OPTION_GENERIC_CUSTOMPOST_MAX_LIMIT => 100,
+                self::OPTION_GENERIC_CUSTOMPOST_TYPES => ['post', 'page'],
+            ],
             self::SCHEMA_POST_TYPE => [
                 self::OPTION_POST_DEFAULT_LIMIT => 10,
                 self::OPTION_POST_MAX_LIMIT => 100,
@@ -205,6 +223,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
         if (
             in_array($module, [
                 self::SCHEMA_CUSTOMPOSTS,
+                self::SCHEMA_GENERIC_CUSTOMPOST_TYPE,
                 self::SCHEMA_POST_TYPE,
                 self::SCHEMA_USER_TYPE,
                 self::SCHEMA_TAXONOMY_TYPE,
@@ -214,6 +233,9 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             $moduleFieldOptions = [
                 self::SCHEMA_CUSTOMPOSTS => [
                     'customPosts' => [self::OPTION_CUSTOMPOST_DEFAULT_LIMIT, self::OPTION_CUSTOMPOST_MAX_LIMIT],
+                ],
+                self::SCHEMA_GENERIC_CUSTOMPOST_TYPE => [
+                    'posts' => [self::OPTION_GENERIC_CUSTOMPOST_DEFAULT_LIMIT, self::OPTION_GENERIC_CUSTOMPOST_MAX_LIMIT],
                 ],
                 self::SCHEMA_POST_TYPE => [
                     'posts' => [self::OPTION_POST_DEFAULT_LIMIT, self::OPTION_POST_MAX_LIMIT],

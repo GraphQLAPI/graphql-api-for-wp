@@ -9,6 +9,7 @@ use GraphQLAPI\GraphQLAPI\Environment;
 use PoP\AccessControl\Schema\SchemaModes;
 use PoP\ComponentModel\Misc\GeneralUtils;
 use PoP\Pages\Environment as PagesEnvironment;
+use PoP\GenericCustomPosts\Environment as GenericCustomPostsEnvironment;
 use PoP\Posts\Environment as PostsEnvironment;
 use PoP\Users\Environment as UsersEnvironment;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
@@ -25,6 +26,7 @@ use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use GraphQLAPI\GraphQLAPI\Facades\CacheConfigurationManagerFacade;
 use PoP\Pages\ComponentConfiguration as PagesComponentConfiguration;
+use PoP\GenericCustomPosts\ComponentConfiguration as GenericCustomPostsComponentConfiguration;
 use PoP\Posts\ComponentConfiguration as PostsComponentConfiguration;
 use PoP\Users\ComponentConfiguration as UsersComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
@@ -272,6 +274,25 @@ class PluginConfiguration
                 'envVariable' => CacheControlEnvironment::DEFAULT_CACHE_CONTROL_MAX_AGE,
                 'module' => FunctionalityModuleResolver::CACHE_CONTROL,
                 'option' => FunctionalityModuleResolver::OPTION_MAX_AGE,
+            ],
+            // Custom Post default/max limits, Supported custom post types
+            [
+                'class' => GenericCustomPostsComponentConfiguration::class,
+                'envVariable' => GenericCustomPostsEnvironment::GENERIC_CUSTOMPOST_LIST_DEFAULT_LIMIT,
+                'module' => SchemaModuleResolver::SCHEMA_GENERIC_CUSTOMPOST_TYPE,
+                'option' => SchemaModuleResolver::OPTION_GENERIC_CUSTOMPOST_DEFAULT_LIMIT,
+            ],
+            [
+                'class' => GenericCustomPostsComponentConfiguration::class,
+                'envVariable' => GenericCustomPostsEnvironment::GENERIC_CUSTOMPOST_LIST_MAX_LIMIT,
+                'module' => SchemaModuleResolver::SCHEMA_GENERIC_CUSTOMPOST_TYPE,
+                'option' => SchemaModuleResolver::OPTION_GENERIC_CUSTOMPOST_MAX_LIMIT,
+            ],
+            [
+                'class' => GenericCustomPostsComponentConfiguration::class,
+                'envVariable' => GenericCustomPostsEnvironment::GENERIC_CUSTOMPOST_TYPES,
+                'module' => SchemaModuleResolver::SCHEMA_GENERIC_CUSTOMPOST_TYPE,
+                'option' => SchemaModuleResolver::OPTION_GENERIC_CUSTOMPOST_TYPES,
             ],
             // Post default/max limits, add to CustomPostUnion
             [
@@ -585,6 +606,9 @@ class PluginConfiguration
         $maybeSkipSchemaModuleComponentClasses = [
             SchemaModuleResolver::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => [
                 \PoP\UsefulDirectives\Component::class,
+            ],
+            SchemaModuleResolver::SCHEMA_GENERIC_CUSTOMPOST_TYPE => [
+                \PoP\GenericCustomPosts\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_POST_TYPE => [
                 \PoP\CustomPostMediaWP\Component::class,
