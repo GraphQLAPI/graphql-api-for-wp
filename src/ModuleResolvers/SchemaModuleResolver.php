@@ -206,8 +206,8 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
         // Common variables to set the limit on the schema types
         $limitArg = 'limit';
         $unlimitedValue = -1;
-        $defaultLimitMessagePlaceholder = \__('Number of results from querying field <code>%s</code> when argument <code>%s</code> is not provided. Use <code>%s</code> for unlimited', 'graphql-api');
-        $maxLimitMessagePlaceholder = \__('Maximum number of results from querying field <code>%s</code>. Use <code>%s</code> for unlimited', 'graphql-api');
+        $defaultLimitMessagePlaceholder = \__('Number of results from querying %s when argument <code>%s</code> is not provided. Use <code>%s</code> for unlimited', 'graphql-api');
+        $maxLimitMessagePlaceholder = \__('Maximum number of results from querying %s. Use <code>%s</code> for unlimited', 'graphql-api');
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if (
             in_array($module, [
@@ -219,9 +219,9 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 // self::SCHEMA_PAGE_TYPE,
             ])
         ) {
-            $moduleFieldOptions = [
+            $moduleEntries = [
                 self::SCHEMA_CUSTOMPOSTS => [
-                    'customPosts' => null,
+                    'entities' => \__('custom posts', 'graphql-api'),
                 ],
                 // self::SCHEMA_GENERIC_CUSTOMPOST_TYPE => [
                 //     'genericCustomPosts' => null,
@@ -230,61 +230,61 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 //     'posts' => null,
                 // ],
                 self::SCHEMA_USER_TYPE => [
-                    'users' => null,
+                    'entities' => \__('users', 'graphql-api'),
                 ],
                 self::SCHEMA_TAXONOMY_TYPE => [
-                    'tags' => null,
+                    'entities' => \__('tags', 'graphql-api'),
                 ],
                 // self::SCHEMA_PAGE_TYPE => [
                 //     'pages' => null,
                 // ],
             ];
-            foreach ($moduleFieldOptions[$module] as $field => $options) {
-                // If the options is not provided, use the default one
-                $options = $options ?? [
-                    self::OPTION_LIST_DEFAULT_LIMIT,
-                    self::OPTION_LIST_MAX_LIMIT,
-                ];
-                list(
+            $moduleEntry =$moduleEntries[$module];
+            // If the options is not provided, use the default one
+            $entities = $moduleEntry['entities'];
+            $options = $moduleEntry['options'] ?? [
+                self::OPTION_LIST_DEFAULT_LIMIT,
+                self::OPTION_LIST_MAX_LIMIT,
+            ];
+            list(
+                $defaultLimitOption,
+                $maxLimitOption,
+            ) = $options;
+            $moduleSettings[] = [
+                Properties::INPUT => $defaultLimitOption,
+                Properties::NAME => $this->getSettingOptionName(
+                    $module,
                     $defaultLimitOption,
+                ),
+                Properties::TITLE => sprintf(
+                    \__('Default limit for %s', 'graphql-api'),
+                    $entities
+                ),
+                Properties::DESCRIPTION => sprintf(
+                    $defaultLimitMessagePlaceholder,
+                    $entities,
+                    $limitArg,
+                    $unlimitedValue
+                ),
+                Properties::TYPE => Properties::TYPE_INT,
+            ];
+            $moduleSettings[] = [
+                Properties::INPUT => $maxLimitOption,
+                Properties::NAME => $this->getSettingOptionName(
+                    $module,
                     $maxLimitOption,
-                ) = $options;
-                $moduleSettings[] = [
-                    Properties::INPUT => $defaultLimitOption,
-                    Properties::NAME => $this->getSettingOptionName(
-                        $module,
-                        $defaultLimitOption,
-                    ),
-                    Properties::TITLE => sprintf(
-                        \__('Default limit for <code>%s</code>', 'graphql-api'),
-                        $field
-                    ),
-                    Properties::DESCRIPTION => sprintf(
-                        $defaultLimitMessagePlaceholder,
-                        $field,
-                        $limitArg,
-                        $unlimitedValue
-                    ),
-                    Properties::TYPE => Properties::TYPE_INT,
-                ];
-                $moduleSettings[] = [
-                    Properties::INPUT => $maxLimitOption,
-                    Properties::NAME => $this->getSettingOptionName(
-                        $module,
-                        $maxLimitOption,
-                    ),
-                    Properties::TITLE => sprintf(
-                        \__('Max limit for <code>%s</code>', 'graphql-api'),
-                        $field
-                    ),
-                    Properties::DESCRIPTION => sprintf(
-                        $maxLimitMessagePlaceholder,
-                        $field,
-                        $unlimitedValue
-                    ),
-                    Properties::TYPE => Properties::TYPE_INT,
-                ];
-            }
+                ),
+                Properties::TITLE => sprintf(
+                    \__('Max limit for %s', 'graphql-api'),
+                    $entities
+                ),
+                Properties::DESCRIPTION => sprintf(
+                    $maxLimitMessagePlaceholder,
+                    $entities,
+                    $unlimitedValue
+                ),
+                Properties::TYPE => Properties::TYPE_INT,
+            ];
 
             if ($module == self::SCHEMA_CUSTOMPOSTS) {
                 $option = self::OPTION_USE_SINGLE_TYPE_INSTEAD_OF_UNION_TYPE;
