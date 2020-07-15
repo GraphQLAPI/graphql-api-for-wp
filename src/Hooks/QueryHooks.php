@@ -9,6 +9,7 @@ use GraphQLAPI\GraphQLAPI\FieldResolvers\CPTFieldResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLCacheControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLAccessControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
 
 class QueryHooks extends AbstractHookSet
 {
@@ -45,6 +46,7 @@ class QueryHooks extends AbstractHookSet
                 [
                     GraphQLAccessControlListPostType::POST_TYPE,
                     GraphQLCacheControlListPostType::POST_TYPE,
+                    GraphQLFieldDeprecationListPostType::POST_TYPE,
                     GraphQLSchemaConfigurationPostType::POST_TYPE,
                 ]
             );
