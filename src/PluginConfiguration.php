@@ -304,13 +304,13 @@ class PluginConfiguration
                 'optionModule' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
                 'option' => SchemaModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
             ],
-            // [
-            //     'class' => PostsComponentConfiguration::class,
-            //     'envVariable' => PostsEnvironment::POST_LIST_MAX_LIMIT,
-            //     'module' => SchemaModuleResolver::SCHEMA_POST_TYPE,
-            //     'optionModule' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
-            //     'option' => SchemaModuleResolver::OPTION_LIST_MAX_LIMIT,
-            // ],
+            [
+                'class' => PostsComponentConfiguration::class,
+                'envVariable' => PostsEnvironment::POST_LIST_MAX_LIMIT,
+                'module' => SchemaModuleResolver::SCHEMA_POST_TYPE,
+                'optionModule' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
+                'option' => SchemaModuleResolver::OPTION_LIST_MAX_LIMIT,
+            ],
             [
                 'class' => PostsComponentConfiguration::class,
                 'envVariable' => PostsEnvironment::ADD_POST_TYPE_TO_CUSTOMPOST_UNION_TYPES,
@@ -351,13 +351,13 @@ class PluginConfiguration
                 'optionModule' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
                 'option' => SchemaModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
             ],
-            // [
-            //     'class' => PagesComponentConfiguration::class,
-            //     'envVariable' => PagesEnvironment::PAGE_LIST_MAX_LIMIT,
-            //     'module' => SchemaModuleResolver::SCHEMA_PAGE_TYPE,
-            //     'optionModule' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
-            //     'option' => SchemaModuleResolver::OPTION_LIST_MAX_LIMIT,
-            // ],
+            [
+                'class' => PagesComponentConfiguration::class,
+                'envVariable' => PagesEnvironment::PAGE_LIST_MAX_LIMIT,
+                'module' => SchemaModuleResolver::SCHEMA_PAGE_TYPE,
+                'optionModule' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
+                'option' => SchemaModuleResolver::OPTION_LIST_MAX_LIMIT,
+            ],
             [
                 'class' => PagesComponentConfiguration::class,
                 'envVariable' => PagesEnvironment::ADD_PAGE_TYPE_TO_CUSTOMPOST_UNION_TYPES,
