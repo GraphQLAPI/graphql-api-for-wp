@@ -14,7 +14,15 @@ use PoP\Comments\TypeResolvers\CommentTypeResolver;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 use PoP\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLCacheControlListPostType;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLAccessControlListPostType;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\AbstractSchemaModuleResolver;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLEndpointPostType;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use PoP\GenericCustomPosts\TypeResolvers\GenericCustomPostTypeResolver;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLPersistedQueryPostType;
 use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\UpperCaseStringDirectiveResolver;
@@ -355,6 +363,32 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
         } elseif ($module == self::SCHEMA_GENERIC_CUSTOMPOST_TYPE) {
             // Get the list of custom post types from the system
             $possibleValues = \get_post_types();
+            // Not all custom post types make sense or are allowed.
+            // Remove the ones that do not
+            $possibleValues = array_values(array_diff(
+                $possibleValues,
+                [
+                    // Post Types from GraphQL API that contain private data
+                    GraphQLAccessControlListPostType::POST_TYPE,
+                    GraphQLCacheControlListPostType::POST_TYPE,
+                    GraphQLFieldDeprecationListPostType::POST_TYPE,
+                    GraphQLSchemaConfigurationPostType::POST_TYPE,
+                    GraphQLEndpointPostType::POST_TYPE,
+                    GraphQLPersistedQueryPostType::POST_TYPE,
+                    // WordPress internal CPTs
+                    // Attachment not allowed because its post_status="inherit",
+                    // not "publish", and the API filters by "publish" entries
+                    'attachment',
+                    'revision',
+                    'nav_menu_item',
+                    'custom_css',
+                    'customize_changeset',
+                    'oembed_cache',
+                    'user_request',
+                    'wp_block',
+                    'wp_area',
+                ]
+            ));
             $option = self::OPTION_CUSTOMPOST_TYPES;
             $moduleSettings[] = [
                 Properties::INPUT => $option,
