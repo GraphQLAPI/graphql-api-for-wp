@@ -164,6 +164,8 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
                 ];
                 $options = [
                     'return-type' => POP_RETURNTYPE_IDS,
+                    // Do not use the limit set in the settings for custom posts
+                    'skip-max-limit' => true,
                     // With this flag, the hook will not remove the private CPTs
                     self::QUERY_OPTION_ALLOW_QUERYING_PRIVATE_CPTS => true,
                 ];
