@@ -42,10 +42,10 @@ class SettingsMenuPage extends AbstractMenuPage
          * - default value if input is empty
          */
         $option = self::SETTINGS_FIELD;
-        \add_filter(
-            "pre_update_option_{$option}",
-            [$this, 'normalizeSettings']
-        );
+        // \add_filter(
+        //     "pre_update_option_{$option}",
+        //     [$this, 'normalizeSettings']
+        // );
 
         /**
          * After saving the settings in the DB:
@@ -110,7 +110,15 @@ class SettingsMenuPage extends AbstractMenuPage
                  */
                 \register_setting(
                     self::SETTINGS_FIELD,
-                    Options::SETTINGS
+                    Options::SETTINGS,
+                    [
+                        'type' => 'array',
+                        'description' => \__('Settings for the GraphQL API', 'graphql-api'),
+                        // This call is needed to cast the data
+                        // before saving to the DB
+                        'sanitize_callback' => [$this, 'normalizeSettings'],
+                        'show_in_rest' => false,
+                    ]
                 );
             }
         );
