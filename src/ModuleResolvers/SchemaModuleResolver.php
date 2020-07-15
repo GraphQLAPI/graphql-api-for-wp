@@ -398,7 +398,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 ),
                 Properties::TITLE => \__('Included custom post types', 'graphql-api'),
                 Properties::DESCRIPTION => sprintf(
-                    \__('Results from these custom post types will be included when querying a field with type <code>%s</code> (such as <code>%s</code>)', 'graphql-api'),
+                    \__('Results from these custom post types will be included when querying a field with type <code>%s</code> (such as <code>%s</code>)<br/>Press <code>ctrl</code> or <code>shift</code> keys to select more than one', 'graphql-api'),
                     GenericCustomPostTypeResolver::NAME,
                     'genericCustomPosts'
                 ),
