@@ -181,7 +181,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             self::SCHEMA_GENERIC_CUSTOMPOST_TYPE => [
                 self::OPTION_GENERIC_CUSTOMPOST_DEFAULT_LIMIT => 10,
                 self::OPTION_GENERIC_CUSTOMPOST_MAX_LIMIT => 100,
-                self::OPTION_GENERIC_CUSTOMPOST_TYPES => ['post', 'page'],
+                self::OPTION_GENERIC_CUSTOMPOST_TYPES => ['post'],
             ],
             self::SCHEMA_POST_TYPE => [
                 self::OPTION_POST_DEFAULT_LIMIT => 10,
