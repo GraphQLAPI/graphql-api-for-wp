@@ -170,7 +170,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             self::SCHEMA_GENERIC_CUSTOMPOST_TYPE => [
                 // self::OPTION_LIST_DEFAULT_LIMIT => 10,
                 // self::OPTION_LIST_MAX_LIMIT => 100,
-                self::OPTION_CUSTOMPOST_TYPES => ['post', 'page'],
+                self::OPTION_CUSTOMPOST_TYPES => ['post'],
             ],
             self::SCHEMA_POST_TYPE => [
                 // self::OPTION_LIST_DEFAULT_LIMIT => 10,
@@ -304,9 +304,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                     Properties::TYPE => Properties::TYPE_BOOL,
                 ];
             }
-        }
-
-        if (
+        } elseif (
             in_array($module, [
                 self::SCHEMA_POST_TYPE,
                 self::SCHEMA_PAGE_TYPE,
@@ -354,7 +352,30 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 Properties::DESCRIPTION => $moduleDescriptions[$module],
                 Properties::TYPE => Properties::TYPE_BOOL,
             ];
+        } elseif ($module == self::SCHEMA_GENERIC_CUSTOMPOST_TYPE) {
+            // Get the list of custom post types from the system
+            $possibleValues = \get_post_types();
+            $option = self::OPTION_CUSTOMPOST_TYPES;
+            $moduleSettings[] = [
+                Properties::INPUT => $option,
+                Properties::NAME => $this->getSettingOptionName(
+                    $module,
+                    $option,
+                ),
+                Properties::TITLE => \__('Included custom post types', 'graphql-api'),
+                Properties::DESCRIPTION => sprintf(
+                    \__('Results from these custom post types will be included when querying a field with type <code>%s</code> (such as <code>%s</code>)', 'graphql-api'),
+                    GenericCustomPostTypeResolver::NAME,
+                    'genericCustomPosts'
+                ),
+                // Properties::DEFAULT_VALUE => self::OPTION_VALUE_NO_VALUE_ID,
+                Properties::TYPE => Properties::TYPE_ARRAY,
+                // Fetch all Schema Configurations from the DB
+                Properties::POSSIBLE_VALUES => $possibleValues,
+                Properties::IS_MULTIPLE => true,
+            ];
         }
+
         return $moduleSettings;
     }
 }

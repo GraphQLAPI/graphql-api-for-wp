@@ -12,9 +12,10 @@ class Properties
     public const DESCRIPTION = 'description';
     // public const DEFAULT_VALUE = 'defaultValue';
     public const POSSIBLE_VALUES = 'possibleValues';
+    public const IS_MULTIPLE = 'isMultiple';
     public const TYPE = 'type';
     public const TYPE_STRING = 'string';
     public const TYPE_BOOL = 'bool';
     public const TYPE_INT = 'int';
-    // public const IS_MULTIPLE = 'isMultiple';
+    public const TYPE_ARRAY = 'array';
 }

@@ -137,8 +137,9 @@ class SettingsMenuPage extends AbstractMenuPage
                 $name = $itemSetting[Properties::NAME];
                 /**
                  * If the input is empty, replace with the default
-                 * It can't be empty, because that could be equivalent to disabling the module,
-                 * which is done from the Modules page, not from Settings
+                 * It can't be empty, because that could be equivalent
+                 * to disabling the module, which is done
+                 * from the Modules page, not from Settings.
                  * Ignore for bool since empty means `false` (tackled below)
                  */
                 if (empty($value[$name]) && $type != Properties::TYPE_BOOL) {
@@ -369,14 +370,19 @@ class SettingsMenuPage extends AbstractMenuPage
         $name = $itemSetting[Properties::NAME];
         $input = $itemSetting[Properties::INPUT];
         $value = $this->getOptionValue($module, $input);
+        // If it is multiple, $value is an array.
+        // To simplify, deal always with arrays
+        if (!is_array($value)) {
+            $value = is_null($value) ? [] : [$value];
+        }
         $label = $itemSetting[Properties::DESCRIPTION] ? '<br/>' . $itemSetting[Properties::DESCRIPTION] : '';
-        // $maybeMultiple = $itemSetting[Properties::IS_MULTIPLE] ? 'multiple' : '';
+        $isMultiple = $itemSetting[Properties::IS_MULTIPLE] ?? false;
         $possibleValues = $itemSetting[Properties::POSSIBLE_VALUES];
         ?>
             <label for="<?php echo $name; ?>">
-                <select name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" <?php /*echo $maybeMultiple;*/ ?>>
+                <select name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']' . ($isMultiple ? '[]' : ''); ?>" id="<?php echo $name; ?>" <?php echo $isMultiple ? 'multiple="multiple"' : ''; ?>>
                 <?php foreach ($possibleValues as $optionValue => $optionLabel) : ?>
-                    <?php $maybeSelected = $optionValue == $value ? 'selected="selected"' : ''; ?>
+                    <?php $maybeSelected = in_array($optionValue, $value) ? 'selected="selected"' : ''; ?>
                     <option value="<?php echo $optionValue ?>" <?php echo $maybeSelected ?>>
                         <?php echo $optionLabel ?>
                     </option>
