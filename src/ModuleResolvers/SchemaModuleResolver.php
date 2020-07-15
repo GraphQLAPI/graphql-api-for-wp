@@ -50,6 +50,11 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     public const OPTION_USE_SINGLE_TYPE_INSTEAD_OF_UNION_TYPE = 'use-single-type-instead-of-union-type';
     public const OPTION_CUSTOMPOST_TYPES = 'custompost-types';
 
+    /**
+     * Hooks
+     */
+    public const HOOK_GENERIC_CUSTOMPOST_TYPES = __CLASS__ . ':generic-custompost-types';
+
     public static function getModulesToResolve(): array
     {
         return [
@@ -362,11 +367,11 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             ];
         } elseif ($module == self::SCHEMA_GENERIC_CUSTOMPOST_TYPE) {
             // Get the list of custom post types from the system
-            $possibleValues = \get_post_types();
+            $genericCustomPostTypes = \get_post_types();
             // Not all custom post types make sense or are allowed.
             // Remove the ones that do not
-            $possibleValues = array_values(array_diff(
-                $possibleValues,
+            $genericCustomPostTypes = array_values(array_diff(
+                $genericCustomPostTypes,
                 [
                     // Post Types from GraphQL API that contain private data
                     GraphQLAccessControlListPostType::POST_TYPE,
@@ -389,6 +394,17 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                     'wp_area',
                 ]
             ));
+            // Allow plugins to remove their own unwanted custom post types
+            $genericCustomPostTypes = \apply_filters(
+                self::HOOK_GENERIC_CUSTOMPOST_TYPES,
+                $genericCustomPostTypes
+            );
+            // The possible values must have key and value
+            $possibleValues = [];
+            foreach ($genericCustomPostTypes as $genericCustomPostType) {
+                $possibleValues[$genericCustomPostType] = $genericCustomPostType;
+            }
+            // Set the setting
             $option = self::OPTION_CUSTOMPOST_TYPES;
             $moduleSettings[] = [
                 Properties::INPUT => $option,
