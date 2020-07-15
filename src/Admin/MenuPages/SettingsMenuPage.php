@@ -351,9 +351,10 @@ class SettingsMenuPage extends AbstractMenuPage
         $input = $itemSetting[Properties::INPUT];
         $value = $this->getOptionValue($module, $input);
         $label = $itemSetting[Properties::DESCRIPTION] ? '<br/>' . $itemSetting[Properties::DESCRIPTION] : '';
+        $isNumber = $itemSetting[Properties::TYPE] = Properties::TYPE_INT;
         ?>
             <label for="<?php echo $name; ?>">
-                <input type="text" name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="<?php echo $value; ?>" />
+                <input name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="<?php echo $value; ?>" <?php echo $isNumber ? 'type="number" step="1" min="1"' : 'type="text"' ?>/>
                 <?php echo $label; ?>
             </label>
         <?php
