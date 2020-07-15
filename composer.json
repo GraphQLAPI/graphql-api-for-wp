@@ -22,6 +22,7 @@
     "require": {
         "php": "~7.1",
         "erusev/parsedown": "^1.7",
+        "getpop/generic-customposts": "dev-master",
         "getpop/commentmeta-wp": "dev-master",
         "getpop/comments-wp": "dev-master",
         "getpop/custompostmedia-wp": "dev-master",

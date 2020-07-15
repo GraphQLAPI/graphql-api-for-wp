@@ -31,6 +31,7 @@ class Component extends AbstractComponent
     public static function getDependedComponentClasses(): array
     {
         return [
+            \PoP\GenericCustomPosts\Component::class,
             \PoP\CommentMetaWP\Component::class,
             \PoP\GraphQL\Component::class,
             \PoP\MediaWP\Component::class,
