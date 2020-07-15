@@ -17,8 +17,8 @@ class QueryHooks extends AbstractHookSet
     protected function init()
     {
         $this->hooksAPI->addAction(
-            'CMSAPI:posts:query',
-            [$this, 'convertPostsQuery'],
+            'CMSAPI:customposts:query',
+            [$this, 'convertCustomPostsQuery'],
             10,
             2
         );
@@ -31,7 +31,7 @@ class QueryHooks extends AbstractHookSet
      * @param array $options
      * @return array
      */
-    public function convertPostsQuery($query, array $options): array
+    public function convertCustomPostsQuery($query, array $options): array
     {
         // Hooks must be active only when resolving the query into IDs,
         // and not when resolving IDs into object, since there we don't have `$options`
