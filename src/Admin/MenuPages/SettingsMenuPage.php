@@ -141,8 +141,12 @@ class SettingsMenuPage extends AbstractMenuPage
                  * to disabling the module, which is done
                  * from the Modules page, not from Settings.
                  * Ignore for bool since empty means `false` (tackled below)
+                 * For int, "0" is valid, it must not be considered empty
                  */
-                if (empty($value[$name]) && $type != Properties::TYPE_BOOL) {
+                if (empty($value[$name])
+                    && $type != Properties::TYPE_BOOL
+                    && !($type == Properties::TYPE_INT && $value[$name] == '0')
+                ) {
                     $option = $itemSetting[Properties::INPUT];
                     $value[$name] = $moduleResolver->getSettingsDefaultValue($module, $option);
                 } elseif ($type == Properties::TYPE_BOOL) {
@@ -354,7 +358,7 @@ class SettingsMenuPage extends AbstractMenuPage
         $isNumber = $itemSetting[Properties::TYPE] == Properties::TYPE_INT;
         ?>
             <label for="<?php echo $name; ?>">
-                <input name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="<?php echo $value; ?>" <?php echo $isNumber ? 'type="number" step="1" min="1"' : 'type="text"' ?>/>
+                <input name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="<?php echo $value; ?>" <?php echo $isNumber ? 'type="number" step="1"' : 'type="text"' ?>/>
                 <?php echo $label; ?>
             </label>
         <?php
