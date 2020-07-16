@@ -280,6 +280,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                     $unlimitedValue
                 ),
                 Properties::TYPE => Properties::TYPE_INT,
+                Properties::MIN_NUMBER => -1,
             ];
             $moduleSettings[] = [
                 Properties::INPUT => $maxLimitOption,
@@ -297,6 +298,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                     $unlimitedValue
                 ),
                 Properties::TYPE => Properties::TYPE_INT,
+                Properties::MIN_NUMBER => -1,
             ];
 
             if ($module == self::SCHEMA_CUSTOMPOSTS) {

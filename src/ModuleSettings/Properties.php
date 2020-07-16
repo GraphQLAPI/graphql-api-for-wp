@@ -12,7 +12,10 @@ class Properties
     public const DESCRIPTION = 'description';
     // public const DEFAULT_VALUE = 'defaultValue';
     public const POSSIBLE_VALUES = 'possibleValues';
+    // Used for Select inputs
     public const IS_MULTIPLE = 'isMultiple';
+    // Used for Integers
+    public const MIN_NUMBER = 'minNumber';
     public const TYPE = 'type';
     public const TYPE_STRING = 'string';
     public const TYPE_BOOL = 'bool';

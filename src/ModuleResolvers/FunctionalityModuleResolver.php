@@ -587,6 +587,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 Properties::DESCRIPTION => \__('Default max-age value (in seconds) for the Cache-Control header, for all fields and directives in the schema', 'graphql-api'),
                 // Properties::DEFAULT_VALUE => 60,
                 Properties::TYPE => Properties::TYPE_INT,
+                Properties::MIN_NUMBER => 0,
             ];
         }
         return $moduleSettings;

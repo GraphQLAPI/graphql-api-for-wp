@@ -143,6 +143,7 @@ class SettingsMenuPage extends AbstractMenuPage
             foreach ($item['settings'] as $itemSetting) {
                 $type = $itemSetting[Properties::TYPE];
                 $name = $itemSetting[Properties::NAME];
+                $option = $itemSetting[Properties::INPUT];
                 /**
                  * If the input is empty, replace with the default
                  * It can't be empty, because that could be equivalent
@@ -155,12 +156,16 @@ class SettingsMenuPage extends AbstractMenuPage
                     && $type != Properties::TYPE_BOOL
                     && !($type == Properties::TYPE_INT && $value[$name] == '0')
                 ) {
-                    $option = $itemSetting[Properties::INPUT];
                     $value[$name] = $moduleResolver->getSettingsDefaultValue($module, $option);
                 } elseif ($type == Properties::TYPE_BOOL) {
                     $value[$name] = !empty($value[$name]);
                 } elseif ($type == Properties::TYPE_INT) {
                     $value[$name] = (int) $value[$name];
+                    // If the value is below its minimum, reset to the default one
+                    $minNumber = $itemSetting[Properties::MIN_NUMBER];
+                    if (!is_null($minNumber) && $value[$name] < $minNumber) {
+                        $value[$name] = $moduleResolver->getSettingsDefaultValue($module, $option);
+                    }
                 }
             }
         }
@@ -364,9 +369,12 @@ class SettingsMenuPage extends AbstractMenuPage
         $value = $this->getOptionValue($module, $input);
         $label = $itemSetting[Properties::DESCRIPTION] ? '<br/>' . $itemSetting[Properties::DESCRIPTION] : '';
         $isNumber = $itemSetting[Properties::TYPE] == Properties::TYPE_INT;
+        if ($isNumber) {
+            $minNumber = $itemSetting[Properties::MIN_NUMBER];
+        }
         ?>
             <label for="<?php echo $name; ?>">
-                <input name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="<?php echo $value; ?>" <?php echo $isNumber ? 'type="number" step="1"' : 'type="text"' ?>/>
+                <input name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="<?php echo $value; ?>" <?php echo $isNumber ? ('type="number" step="1"' . (!is_null($minNumber) ? ' min="' . $minNumber .'"' : '')) : 'type="text"' ?>/>
                 <?php echo $label; ?>
             </label>
         <?php
