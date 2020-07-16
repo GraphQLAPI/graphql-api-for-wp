@@ -9,7 +9,7 @@ use PoP\Pages\TypeResolvers\PageTypeResolver;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\Users\TypeResolvers\UserTypeResolver;
 use PoP\Media\TypeResolvers\MediaTypeResolver;
-use PoP\Taxonomies\TypeResolvers\TagTypeResolver;
+use PoP\Tags\TypeResolvers\TagTypeResolver;
 use PoP\Comments\TypeResolvers\CommentTypeResolver;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
