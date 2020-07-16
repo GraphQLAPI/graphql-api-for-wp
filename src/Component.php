@@ -40,6 +40,7 @@ class Component extends AbstractComponent
             \PoP\CustomPostMediaWP\Component::class,
             \PoP\CustomPostMetaWP\Component::class,
             \PoP\TaxonomyQueryWP\Component::class,
+            \PoP\TagsWP\Component::class,
             \PoP\UserRolesAccessControl\Component::class,
             \PoP\UserRolesWP\Component::class,
             \PoP\UserStateWP\Component::class,

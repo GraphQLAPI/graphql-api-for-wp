@@ -15,7 +15,7 @@ use PoP\Users\Environment as UsersEnvironment;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use PoP\CustomPosts\Environment as CustomPostsEnvironment;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use PoP\Taxonomies\Environment as TaxonomiesEnvironment;
+use PoP\Tags\Environment as TagsEnvironment;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
 use GraphQLAPI\GraphQLAPI\Config\PluginConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
@@ -34,7 +34,7 @@ use PoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use PoP\CustomPosts\ComponentConfiguration as CustomPostsComponentConfiguration;
 use PoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
-use PoP\Taxonomies\ComponentConfiguration as TaxonomiesComponentConfiguration;
+use PoP\Tags\ComponentConfiguration as TagsComponentConfiguration;
 use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
@@ -332,14 +332,14 @@ class PluginConfiguration
             ],
             // Tag default/max limits
             [
-                'class' => TaxonomiesComponentConfiguration::class,
-                'envVariable' => TaxonomiesEnvironment::TAG_LIST_DEFAULT_LIMIT,
+                'class' => TagsComponentConfiguration::class,
+                'envVariable' => TagsEnvironment::TAG_LIST_DEFAULT_LIMIT,
                 'module' => SchemaModuleResolver::SCHEMA_TAG_TYPE,
                 'option' => SchemaModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
             ],
             [
-                'class' => TaxonomiesComponentConfiguration::class,
-                'envVariable' => TaxonomiesEnvironment::TAG_LIST_MAX_LIMIT,
+                'class' => TagsComponentConfiguration::class,
+                'envVariable' => TagsEnvironment::TAG_LIST_MAX_LIMIT,
                 'module' => SchemaModuleResolver::SCHEMA_TAG_TYPE,
                 'option' => SchemaModuleResolver::OPTION_LIST_MAX_LIMIT,
             ],
@@ -639,7 +639,7 @@ class PluginConfiguration
                 \PoP\Media\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_TAG_TYPE => [
-                \PoP\Taxonomies\Component::class,
+                \PoP\Tags\Component::class,
             ],
         ];
         $skipSchemaModuleComponentClasses = array_filter(
