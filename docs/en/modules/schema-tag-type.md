@@ -1,1 +1,1 @@
-# Schema Taxonomy Type
+# Schema Tag Type
