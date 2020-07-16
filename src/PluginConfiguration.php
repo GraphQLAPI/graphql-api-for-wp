@@ -614,48 +614,36 @@ class PluginConfiguration
             SchemaModuleResolver::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => [
                 \PoP\UsefulDirectives\Component::class,
             ],
+            SchemaModuleResolver::SCHEMA_CUSTOMPOSTS => [
+                \PoP\CustomPostMedia\Component::class,
+                \PoP\CustomPostMeta\Component::class,
+            ],
             SchemaModuleResolver::SCHEMA_GENERIC_CUSTOMPOST_TYPE => [
                 \PoP\GenericCustomPosts\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_POST_TYPE => [
-                \PoP\CustomPostMediaWP\Component::class,
-                \PoP\CustomPostMedia\Component::class,
-                \PoP\CustomPostMetaWP\Component::class,
-                \PoP\CustomPostMeta\Component::class,
-                \PoP\PostsWP\Component::class,
                 \PoP\Posts\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_COMMENT_TYPE => [
-                \PoP\CommentMetaWP\Component::class,
                 \PoP\CommentMeta\Component::class,
-                \PoP\CommentsWP\Component::class,
                 \PoP\Comments\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_USER_TYPE => [
-                \PoP\UserMetaWP\Component::class,
                 \PoP\UserMeta\Component::class,
-                \PoP\UsersWP\Component::class,
                 \PoP\Users\Component::class,
-                \PoP\UserRolesWP\Component::class,
                 \PoP\UserRoles\Component::class,
                 \PoP\UserState\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_PAGE_TYPE => [
-                \PoP\PagesWP\Component::class,
                 \PoP\Pages\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_MEDIA_TYPE => [
-                \PoP\CustomPostMediaWP\Component::class,
                 \PoP\CustomPostMedia\Component::class,
-                \PoP\MediaWP\Component::class,
                 \PoP\Media\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_TAG_TYPE => [
-                \PoP\TaxonomiesWP\Component::class,
                 \PoP\Taxonomies\Component::class,
-                \PoP\TaxonomyMetaWP\Component::class,
                 \PoP\TaxonomyMeta\Component::class,
-                \PoP\TaxonomyQueryWP\Component::class,
                 \PoP\TaxonomyQuery\Component::class,
             ],
         ];
