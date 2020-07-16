@@ -616,7 +616,6 @@ class PluginConfiguration
             ],
             SchemaModuleResolver::SCHEMA_CUSTOMPOSTS => [
                 \PoP\CustomPostMedia\Component::class,
-                \PoP\CustomPostMeta\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_GENERIC_CUSTOMPOST_TYPE => [
                 \PoP\GenericCustomPosts\Component::class,
@@ -625,11 +624,9 @@ class PluginConfiguration
                 \PoP\Posts\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_COMMENT_TYPE => [
-                \PoP\CommentMeta\Component::class,
                 \PoP\Comments\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_USER_TYPE => [
-                \PoP\UserMeta\Component::class,
                 \PoP\Users\Component::class,
                 \PoP\UserRoles\Component::class,
                 \PoP\UserState\Component::class,
@@ -643,8 +640,6 @@ class PluginConfiguration
             ],
             SchemaModuleResolver::SCHEMA_TAG_TYPE => [
                 \PoP\Taxonomies\Component::class,
-                \PoP\TaxonomyMeta\Component::class,
-                \PoP\TaxonomyQuery\Component::class,
             ],
         ];
         $skipSchemaModuleComponentClasses = array_filter(
