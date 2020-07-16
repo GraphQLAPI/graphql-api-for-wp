@@ -334,13 +334,13 @@ class PluginConfiguration
             [
                 'class' => TaxonomiesComponentConfiguration::class,
                 'envVariable' => TaxonomiesEnvironment::TAG_LIST_DEFAULT_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_TAXONOMY_TYPE,
+                'module' => SchemaModuleResolver::SCHEMA_TAG_TYPE,
                 'option' => SchemaModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
             ],
             [
                 'class' => TaxonomiesComponentConfiguration::class,
                 'envVariable' => TaxonomiesEnvironment::TAG_LIST_MAX_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_TAXONOMY_TYPE,
+                'module' => SchemaModuleResolver::SCHEMA_TAG_TYPE,
                 'option' => SchemaModuleResolver::OPTION_LIST_MAX_LIMIT,
             ],
             // Page default/max limits, add to CustomPostUnion
@@ -650,7 +650,7 @@ class PluginConfiguration
                 \PoP\MediaWP\Component::class,
                 \PoP\Media\Component::class,
             ],
-            SchemaModuleResolver::SCHEMA_TAXONOMY_TYPE => [
+            SchemaModuleResolver::SCHEMA_TAG_TYPE => [
                 \PoP\TaxonomiesWP\Component::class,
                 \PoP\Taxonomies\Component::class,
                 \PoP\TaxonomyMetaWP\Component::class,

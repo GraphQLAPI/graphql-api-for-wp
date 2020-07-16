@@ -39,7 +39,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     public const SCHEMA_USER_TYPE = Plugin::NAMESPACE . '\schema-user-type';
     public const SCHEMA_PAGE_TYPE = Plugin::NAMESPACE . '\schema-page-type';
     public const SCHEMA_MEDIA_TYPE = Plugin::NAMESPACE . '\schema-media-type';
-    public const SCHEMA_TAXONOMY_TYPE = Plugin::NAMESPACE . '\schema-taxonomy-type';
+    public const SCHEMA_TAG_TYPE = Plugin::NAMESPACE . '\schema-tag-type';
 
     /**
      * Setting options
@@ -64,7 +64,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             self::SCHEMA_PAGE_TYPE,
             self::SCHEMA_USER_TYPE,
             self::SCHEMA_COMMENT_TYPE,
-            self::SCHEMA_TAXONOMY_TYPE,
+            self::SCHEMA_TAG_TYPE,
             self::SCHEMA_MEDIA_TYPE,
             self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE,
         ];
@@ -88,7 +88,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             case self::SCHEMA_POST_TYPE:
             case self::SCHEMA_PAGE_TYPE:
             case self::SCHEMA_COMMENT_TYPE:
-            case self::SCHEMA_TAXONOMY_TYPE:
+            case self::SCHEMA_TAG_TYPE:
                 return [
                     [
                         self::SCHEMA_CUSTOMPOSTS,
@@ -108,7 +108,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             self::SCHEMA_USER_TYPE => \__('Schema User Type', 'graphql-api'),
             self::SCHEMA_PAGE_TYPE => \__('Schema Page Type', 'graphql-api'),
             self::SCHEMA_MEDIA_TYPE => \__('Schema Media Type', 'graphql-api'),
-            self::SCHEMA_TAXONOMY_TYPE => \__('Schema Taxonomy Type', 'graphql-api'),
+            self::SCHEMA_TAG_TYPE => \__('Schema Tag Type', 'graphql-api'),
             self::SCHEMA_CUSTOMPOSTS => \__('Schema Custom Posts', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
@@ -154,7 +154,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                     \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
                     CommentTypeResolver::NAME,
                 );
-            case self::SCHEMA_TAXONOMY_TYPE:
+            case self::SCHEMA_TAG_TYPE:
                 return sprintf(
                     \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
                     TagTypeResolver::NAME,
@@ -182,7 +182,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 // self::SCHEMA_GENERIC_CUSTOMPOST_TYPE,
                 // self::SCHEMA_POST_TYPE,
                 self::SCHEMA_USER_TYPE,
-                self::SCHEMA_TAXONOMY_TYPE,
+                self::SCHEMA_TAG_TYPE,
                 // self::SCHEMA_PAGE_TYPE,
             ]
         ) && in_array(
@@ -234,7 +234,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 self::OPTION_LIST_DEFAULT_LIMIT => 10,
                 self::OPTION_LIST_MAX_LIMIT => 100,
             ],
-            self::SCHEMA_TAXONOMY_TYPE => [
+            self::SCHEMA_TAG_TYPE => [
                 self::OPTION_LIST_DEFAULT_LIMIT => 50,
                 self::OPTION_LIST_MAX_LIMIT => 500,
             ],
@@ -263,7 +263,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 // self::SCHEMA_GENERIC_CUSTOMPOST_TYPE,
                 // self::SCHEMA_POST_TYPE,
                 self::SCHEMA_USER_TYPE,
-                self::SCHEMA_TAXONOMY_TYPE,
+                self::SCHEMA_TAG_TYPE,
                 // self::SCHEMA_PAGE_TYPE,
             ])
         ) {
@@ -280,7 +280,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 self::SCHEMA_USER_TYPE => [
                     'entities' => \__('users', 'graphql-api'),
                 ],
-                self::SCHEMA_TAXONOMY_TYPE => [
+                self::SCHEMA_TAG_TYPE => [
                     'entities' => \__('tags', 'graphql-api'),
                 ],
                 // self::SCHEMA_PAGE_TYPE => [
