@@ -167,6 +167,11 @@ class SettingsMenuPage extends AbstractMenuPage
                         $value[$name] = $moduleResolver->getSettingsDefaultValue($module, $option);
                     }
                 }
+
+                // Validate it is a valid value, or reset
+                if (!$moduleResolver->isValidValue($module, $option, $value[$name])) {
+                    $value[$name] = $moduleResolver->getSettingsDefaultValue($module, $option);
+                }
             }
         }
         return $value;

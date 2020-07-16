@@ -166,6 +166,41 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     }
 
     /**
+     * Indicate if the given value is valid for that option
+     *
+     * @param string $module
+     * @param string $option
+     * @param mixed $value
+     * @return bool
+     */
+    public function isValidValue(string $module, string $option, $value): bool
+    {
+        if (in_array(
+            $module,
+            [
+                self::SCHEMA_CUSTOMPOSTS,
+                // self::SCHEMA_GENERIC_CUSTOMPOST_TYPE,
+                // self::SCHEMA_POST_TYPE,
+                self::SCHEMA_USER_TYPE,
+                self::SCHEMA_TAXONOMY_TYPE,
+                // self::SCHEMA_PAGE_TYPE,
+            ]
+        ) && in_array(
+            $option,
+            [
+                self::OPTION_LIST_DEFAULT_LIMIT,
+                self::OPTION_LIST_MAX_LIMIT,
+            ]
+        )) {
+            // It can't be less than -1, or 0
+            if ($value < -1 or $value === 0) {
+                return false;
+            }
+        }
+        return parent::isValidValue($module, $option, $value);
+    }
+
+    /**
      * Default value for an option set by the module
      *
      * @param string $module

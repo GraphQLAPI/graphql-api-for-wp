@@ -64,6 +64,15 @@ interface ModuleResolverInterface
      */
     public function getSettingOptionName(string $module, string $option): string;
     /**
+     * Indicate if the given value is valid for that option
+     *
+     * @param string $module
+     * @param string $option
+     * @param mixed $value
+     * @return bool
+     */
+    public function isValidValue(string $module, string $option, $value): bool;
+    /**
      * Name of the setting item, to store in the DB
      *
      * @param string $module

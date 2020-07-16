@@ -592,4 +592,24 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
         }
         return $moduleSettings;
     }
+
+    // No need for this, since the validation is already done through MIN_NUMBER
+    // /**
+    //  * Indicate if the given value is valid for that option
+    //  *
+    //  * @param string $module
+    //  * @param string $option
+    //  * @param mixed $value
+    //  * @return bool
+    //  */
+    // public function isValidValue(string $module, string $option, $value): bool
+    // {
+    //     if ($module == self::CACHE_CONTROL && $option == self::OPTION_MAX_AGE) {
+    //         // It can't be less than 0
+    //         if ($value < 0) {
+    //             return false;
+    //         }
+    //     }
+    //     return parent::isValidValue($module, $option, $value);
+    // }
 }
