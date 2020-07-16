@@ -10,7 +10,6 @@ class Properties
     public const INPUT = 'input';
     public const TITLE = 'title';
     public const DESCRIPTION = 'description';
-    // public const DEFAULT_VALUE = 'defaultValue';
     public const POSSIBLE_VALUES = 'possibleValues';
     // Used for Select inputs
     public const IS_MULTIPLE = 'isMultiple';

@@ -455,7 +455,6 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                     GenericCustomPostTypeResolver::NAME,
                     'genericCustomPosts'
                 ),
-                // Properties::DEFAULT_VALUE => self::OPTION_VALUE_NO_VALUE_ID,
                 Properties::TYPE => Properties::TYPE_ARRAY,
                 // Fetch all Schema Configurations from the DB
                 Properties::POSSIBLE_VALUES => $possibleValues,

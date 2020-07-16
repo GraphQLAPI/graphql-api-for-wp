@@ -402,10 +402,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 ),
                 Properties::TITLE => \__('Endpoint path', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL path to expose the single GraphQL endpoint', 'graphql-api'),
-                // Properties::DEFAULT_VALUE => $this->getSettingsDefaultValue(
-                //     $module,
-                //     self::OPTION_PATH
-                // ),
                 Properties::TYPE => Properties::TYPE_STRING,
             ];
         } elseif ($module == self::GRAPHIQL_FOR_SINGLE_ENDPOINT) {
@@ -418,10 +414,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 ),
                 Properties::TITLE => \__('Client path', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL path to access the public GraphiQL client', 'graphql-api'),
-                // Properties::DEFAULT_VALUE => $this->getSettingsDefaultValue(
-                //     $module,
-                //     self::OPTION_PATH
-                // ),
                 Properties::TYPE => Properties::TYPE_STRING,
             ];
         } elseif ($module == self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT) {
@@ -434,10 +426,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 ),
                 Properties::TITLE => \__('Client path', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL path to access the public Interactive Schema client', 'graphql-api'),
-                // Properties::DEFAULT_VALUE => $this->getSettingsDefaultValue(
-                //     $module,
-                //     self::OPTION_PATH
-                // ),
                 Properties::TYPE => Properties::TYPE_STRING,
             ];
         } elseif ($module == self::CUSTOM_ENDPOINTS) {
@@ -450,10 +438,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 ),
                 Properties::TITLE => \__('Base path', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL base path to expose the Custom Endpoint', 'graphql-api'),
-                // Properties::DEFAULT_VALUE => $this->getSettingsDefaultValue(
-                //     $module,
-                //     self::OPTION_PATH
-                // ),
                 Properties::TYPE => Properties::TYPE_STRING,
             ];
         } elseif ($module == self::PERSISTED_QUERIES) {
@@ -466,10 +450,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 ),
                 Properties::TITLE => \__('Base path', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL base path to expose the Persisted Query', 'graphql-api'),
-                // Properties::DEFAULT_VALUE => $this->getSettingsDefaultValue(
-                //     $module,
-                //     self::OPTION_PATH
-                // ),
                 Properties::TYPE => Properties::TYPE_STRING,
             ];
         } elseif ($module == self::SCHEMA_CONFIGURATION) {
@@ -513,7 +493,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                         $whereModules
                     )
                 ),
-                // Properties::DEFAULT_VALUE => self::OPTION_VALUE_NO_VALUE_ID,
                 Properties::TYPE => Properties::TYPE_INT,
                 // Fetch all Schema Configurations from the DB
                 Properties::POSSIBLE_VALUES => $possibleValues,
@@ -528,7 +507,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 ),
                 Properties::TITLE => \__('Use namespacing?', 'graphql-api'),
                 Properties::DESCRIPTION => \__('Automatically namespace types and interfaces in the schema', 'graphql-api'),
-                // Properties::DEFAULT_VALUE => false,
                 Properties::TYPE => Properties::TYPE_BOOL,
             ];
         } elseif ($module == self::PUBLIC_PRIVATE_SCHEMA) {
@@ -556,7 +534,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                         $whereModules
                     )
                 ),
-                // Properties::DEFAULT_VALUE => SchemaModes::PUBLIC_SCHEMA_MODE,
                 Properties::TYPE => Properties::TYPE_STRING,
                 Properties::POSSIBLE_VALUES => [
                     SchemaModes::PUBLIC_SCHEMA_MODE => \__('Public', 'graphql-api'),
@@ -572,7 +549,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 ),
                 Properties::TITLE => \__('Enable granular control?', 'graphql-api'),
                 Properties::DESCRIPTION => \__('Enable to select the visibility for a set of fields/directives when editing the Access Control List', 'graphql-api'),
-                // Properties::DEFAULT_VALUE => true,
                 Properties::TYPE => Properties::TYPE_BOOL,
             ];
         } elseif ($module == self::CACHE_CONTROL) {
@@ -585,7 +561,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 ),
                 Properties::TITLE => \__('Default max-age', 'graphql-api'),
                 Properties::DESCRIPTION => \__('Default max-age value (in seconds) for the Cache-Control header, for all fields and directives in the schema', 'graphql-api'),
-                // Properties::DEFAULT_VALUE => 60,
                 Properties::TYPE => Properties::TYPE_INT,
                 Properties::MIN_NUMBER => 0,
             ];
