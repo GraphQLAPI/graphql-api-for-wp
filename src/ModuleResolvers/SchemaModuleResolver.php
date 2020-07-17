@@ -9,7 +9,7 @@ use PoP\Pages\TypeResolvers\PageTypeResolver;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\Users\TypeResolvers\UserTypeResolver;
 use PoP\Media\TypeResolvers\MediaTypeResolver;
-use PoP\Tags\TypeResolvers\TagTypeResolver;
+use PoP\PostTags\TypeResolvers\PostTagTypeResolver;
 use PoP\Comments\TypeResolvers\CommentTypeResolver;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
@@ -163,7 +163,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 return sprintf(
                     \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
                     \__('tags', 'graphql-api'),
-                    TagTypeResolver::NAME,
+                    PostTagTypeResolver::NAME,
                 );
             case self::SCHEMA_CUSTOMPOSTS:
                 return \__('Base functionality for all custom posts', 'graphql-api');
