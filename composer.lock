@@ -4254,16 +4254,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/post-tags.git",
-                "reference": "272cc4cac461d6cef61f95492b0899575d504814"
+                "reference": "e242020d0e5735b383241f6bee30d4c93e79d1ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/post-tags/zipball/272cc4cac461d6cef61f95492b0899575d504814",
-                "reference": "272cc4cac461d6cef61f95492b0899575d504814",
+                "url": "https://api.github.com/repos/PoPSchema/post-tags/zipball/e242020d0e5735b383241f6bee30d4c93e79d1ae",
+                "reference": "e242020d0e5735b383241f6bee30d4c93e79d1ae",
                 "shasum": ""
             },
             "require": {
                 "getpop/migrate-post-tags": "dev-master",
+                "getpop/posts": "dev-master",
                 "getpop/tags": "dev-master",
                 "php": "~7.1"
             },
@@ -4306,7 +4307,7 @@
                 "pop",
                 "post-tags"
             ],
-            "time": "2020-07-17T14:01:38+00:00"
+            "time": "2020-07-17T14:26:41+00:00"
         },
         {
             "name": "getpop/post-tags-wp",
@@ -4314,17 +4315,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/post-tags-wp.git",
-                "reference": "57c4019ab0e847e6181109f89d5811d627c4c410"
+                "reference": "f9bff486e8ac56ef617c6ccffdcb863b04166e04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/post-tags-wp/zipball/57c4019ab0e847e6181109f89d5811d627c4c410",
-                "reference": "57c4019ab0e847e6181109f89d5811d627c4c410",
+                "url": "https://api.github.com/repos/PoPSchema/post-tags-wp/zipball/f9bff486e8ac56ef617c6ccffdcb863b04166e04",
+                "reference": "f9bff486e8ac56ef617c6ccffdcb863b04166e04",
                 "shasum": ""
             },
             "require": {
                 "getpop/migrate-post-tags-wp": "dev-master",
                 "getpop/post-tags": "dev-master",
+                "getpop/posts-wp": "dev-master",
                 "getpop/tags-wp": "dev-master",
                 "php": "~7.1"
             },
@@ -4360,7 +4362,7 @@
                 "pop",
                 "post-tags-wp"
             ],
-            "time": "2020-07-17T14:02:03+00:00"
+            "time": "2020-07-17T14:26:47+00:00"
         },
         {
             "name": "getpop/posts",
@@ -4368,12 +4370,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/posts.git",
-                "reference": "1367e58a35e002179fc0d5944b79d003a82c88ca"
+                "reference": "cb2f8b4270c4b673e737dfe96b9244618edc5abf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/posts/zipball/1367e58a35e002179fc0d5944b79d003a82c88ca",
-                "reference": "1367e58a35e002179fc0d5944b79d003a82c88ca",
+                "url": "https://api.github.com/repos/PoPSchema/posts/zipball/cb2f8b4270c4b673e737dfe96b9244618edc5abf",
+                "reference": "cb2f8b4270c4b673e737dfe96b9244618edc5abf",
                 "shasum": ""
             },
             "require": {
@@ -4384,7 +4386,7 @@
             "require-dev": {
                 "getpop/api": "dev-master",
                 "getpop/api-rest": "dev-master",
-                "getpop/tags": "dev-master",
+                "getpop/post-tags": "dev-master",
                 "getpop/users": "dev-master",
                 "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": ">=7.0",
@@ -4393,7 +4395,7 @@
             "suggest": {
                 "getpop/api": "Integrates well with API",
                 "getpop/api-rest": "Integrates well with REST API",
-                "getpop/tags": "Integrates well with Tags",
+                "getpop/post-tags": "Integrates well with Post Tags",
                 "getpop/users": "Integrates well with Users"
             },
             "type": "library",
@@ -4424,7 +4426,7 @@
                 "pop",
                 "posts"
             ],
-            "time": "2020-07-16T07:43:34+00:00"
+            "time": "2020-07-17T14:24:36+00:00"
         },
         {
             "name": "getpop/posts-wp",
