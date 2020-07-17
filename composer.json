@@ -36,7 +36,7 @@
         "getpop/posts-wp": "dev-master",
         "getpop/taxonomymeta-wp": "dev-master",
         "getpop/taxonomyquery-wp": "dev-master",
-        "getpop/tags-wp": "dev-master",
+        "getpop/post-tags-wp": "dev-master",
         "getpop/useful-directives": "dev-master",
         "getpop/user-roles-access-control": "dev-master",
         "getpop/user-roles-wp": "dev-master",
