@@ -84,10 +84,12 @@ abstract class AbstractControlBlock extends AbstractBlock
             $directiveContent = ComponentConfiguration::getEmptyLabel();
             $directives = $attributes[self::ATTRIBUTE_NAME_DIRECTIVES] ?? [];
             if ($directives) {
-                // Notice we are adding the "@" symbol for GraphQL directives
+                // // Notice we are adding the "@" symbol for GraphQL directives
                 $directiveContent = sprintf(
-                    '<ul><li><code>@%s</code></li></ul>',
-                    implode('</code></li><li><code>@', $directives)
+                    // '<ul><li><code>@%s</code></li></ul>',
+                    // implode('</code></li><li><code>@', $directives)
+                    '<ul><li><code>%s</code></li></ul>',
+                    implode('</code></li><li><code>', $directives)
                 );
             }
         }
