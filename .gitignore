@@ -1,5 +1,4 @@
 composer.local.json
-composer.lock
 vendor/
 bin/
 wp-content/
