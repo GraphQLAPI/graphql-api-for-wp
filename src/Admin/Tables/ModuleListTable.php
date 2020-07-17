@@ -160,7 +160,7 @@ class ModuleListTable extends AbstractItemListTable
                             if ($moduleRegistry->isInverseDependency($dependedModule)) {
                                 // Revert to the normal module
                                 $dependedModule = $moduleRegistry->getInverseDependency($dependedModule);
-                                $after = \__('(disabled)</em>', 'graphql-api');
+                                $after = \__('⇠ as disabled', 'graphql-api');
                             }
                             $moduleResolver = $moduleRegistry->getModuleResolver($dependedModule);
                             return sprintf(
