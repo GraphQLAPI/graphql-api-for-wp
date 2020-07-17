@@ -39,7 +39,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     public const SCHEMA_USERS = Plugin::NAMESPACE . '\schema-users';
     public const SCHEMA_PAGES = Plugin::NAMESPACE . '\schema-pages';
     public const SCHEMA_MEDIA = Plugin::NAMESPACE . '\schema-media';
-    public const SCHEMA_TAGS = Plugin::NAMESPACE . '\schema-tags';
+    public const SCHEMA_POST_TAGS = Plugin::NAMESPACE . '\schema-post-tags';
 
     /**
      * Setting options
@@ -64,7 +64,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             self::SCHEMA_PAGES,
             self::SCHEMA_USERS,
             self::SCHEMA_COMMENTS,
-            self::SCHEMA_TAGS,
+            self::SCHEMA_POST_TAGS,
             self::SCHEMA_MEDIA,
             self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE,
         ];
@@ -88,10 +88,15 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             case self::SCHEMA_POSTS:
             case self::SCHEMA_PAGES:
             case self::SCHEMA_COMMENTS:
-            case self::SCHEMA_TAGS:
                 return [
                     [
                         self::SCHEMA_CUSTOMPOSTS,
+                    ],
+                ];
+            case self::SCHEMA_POST_TAGS:
+                return [
+                    [
+                        self::SCHEMA_POSTS,
                     ],
                 ];
         }
@@ -108,7 +113,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             self::SCHEMA_USERS => \__('Schema Users', 'graphql-api'),
             self::SCHEMA_PAGES => \__('Schema Pages', 'graphql-api'),
             self::SCHEMA_MEDIA => \__('Schema Media', 'graphql-api'),
-            self::SCHEMA_TAGS => \__('Schema Tags', 'graphql-api'),
+            self::SCHEMA_POST_TAGS => \__('Schema Post Tags', 'graphql-api'),
             self::SCHEMA_CUSTOMPOSTS => \__('Schema Custom Posts', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
@@ -159,10 +164,10 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                     \__('comments', 'graphql-api'),
                     CommentTypeResolver::NAME,
                 );
-            case self::SCHEMA_TAGS:
+            case self::SCHEMA_POST_TAGS:
                 return sprintf(
                     \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
-                    \__('tags', 'graphql-api'),
+                    \__('post tags', 'graphql-api'),
                     PostTagTypeResolver::NAME,
                 );
             case self::SCHEMA_CUSTOMPOSTS:
@@ -188,7 +193,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 // self::SCHEMA_GENERIC_CUSTOMPOSTS,
                 // self::SCHEMA_POSTS,
                 self::SCHEMA_USERS,
-                self::SCHEMA_TAGS,
+                self::SCHEMA_POST_TAGS,
                 // self::SCHEMA_PAGES,
             ]
         ) && in_array(
@@ -240,7 +245,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 self::OPTION_LIST_DEFAULT_LIMIT => 10,
                 self::OPTION_LIST_MAX_LIMIT => 100,
             ],
-            self::SCHEMA_TAGS => [
+            self::SCHEMA_POST_TAGS => [
                 self::OPTION_LIST_DEFAULT_LIMIT => 50,
                 self::OPTION_LIST_MAX_LIMIT => 500,
             ],
@@ -269,7 +274,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 // self::SCHEMA_GENERIC_CUSTOMPOSTS,
                 // self::SCHEMA_POSTS,
                 self::SCHEMA_USERS,
-                self::SCHEMA_TAGS,
+                self::SCHEMA_POST_TAGS,
                 // self::SCHEMA_PAGES,
             ])
         ) {
@@ -286,8 +291,8 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 self::SCHEMA_USERS => [
                     'entities' => \__('users', 'graphql-api'),
                 ],
-                self::SCHEMA_TAGS => [
-                    'entities' => \__('tags', 'graphql-api'),
+                self::SCHEMA_POST_TAGS => [
+                    'entities' => \__('post tags', 'graphql-api'),
                 ],
                 // self::SCHEMA_PAGES => [
                 //     'pages' => null,

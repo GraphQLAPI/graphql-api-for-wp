@@ -334,13 +334,13 @@ class PluginConfiguration
             [
                 'class' => TagsComponentConfiguration::class,
                 'envVariable' => TagsEnvironment::TAG_LIST_DEFAULT_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_TAGS,
+                'module' => SchemaModuleResolver::SCHEMA_POST_TAGS,
                 'option' => SchemaModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
             ],
             [
                 'class' => TagsComponentConfiguration::class,
                 'envVariable' => TagsEnvironment::TAG_LIST_MAX_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_TAGS,
+                'module' => SchemaModuleResolver::SCHEMA_POST_TAGS,
                 'option' => SchemaModuleResolver::OPTION_LIST_MAX_LIMIT,
             ],
             // Page default/max limits, add to CustomPostUnion
@@ -638,7 +638,7 @@ class PluginConfiguration
                 \PoP\CustomPostMedia\Component::class,
                 \PoP\Media\Component::class,
             ],
-            SchemaModuleResolver::SCHEMA_TAGS => [
+            SchemaModuleResolver::SCHEMA_POST_TAGS => [
                 \PoP\Tags\Component::class,
             ],
         ];
