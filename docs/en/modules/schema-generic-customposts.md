@@ -1,0 +1,2 @@
+# Schema Generic Custom Posts
+

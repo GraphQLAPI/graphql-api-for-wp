@@ -33,13 +33,13 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
 
     public const DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE = Plugin::NAMESPACE . '\directive-set-convert-lower-uppercase';
     public const SCHEMA_CUSTOMPOSTS = Plugin::NAMESPACE . '\schema-customposts';
-    public const SCHEMA_GENERIC_CUSTOMPOST_TYPE = Plugin::NAMESPACE . '\schema-generic-custompost-type';
-    public const SCHEMA_POST_TYPE = Plugin::NAMESPACE . '\schema-post-type';
-    public const SCHEMA_COMMENT_TYPE = Plugin::NAMESPACE . '\schema-comment-type';
-    public const SCHEMA_USER_TYPE = Plugin::NAMESPACE . '\schema-user-type';
-    public const SCHEMA_PAGE_TYPE = Plugin::NAMESPACE . '\schema-page-type';
-    public const SCHEMA_MEDIA_TYPE = Plugin::NAMESPACE . '\schema-media-type';
-    public const SCHEMA_TAG_TYPE = Plugin::NAMESPACE . '\schema-tag-type';
+    public const SCHEMA_GENERIC_CUSTOMPOSTS = Plugin::NAMESPACE . '\schema-generic-customposts';
+    public const SCHEMA_POSTS = Plugin::NAMESPACE . '\schema-posts';
+    public const SCHEMA_COMMENTS = Plugin::NAMESPACE . '\schema-comments';
+    public const SCHEMA_USERS = Plugin::NAMESPACE . '\schema-users';
+    public const SCHEMA_PAGES = Plugin::NAMESPACE . '\schema-pages';
+    public const SCHEMA_MEDIA = Plugin::NAMESPACE . '\schema-media';
+    public const SCHEMA_TAGS = Plugin::NAMESPACE . '\schema-tags';
 
     /**
      * Setting options
@@ -59,13 +59,13 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     {
         return [
             self::SCHEMA_CUSTOMPOSTS,
-            self::SCHEMA_GENERIC_CUSTOMPOST_TYPE,
-            self::SCHEMA_POST_TYPE,
-            self::SCHEMA_PAGE_TYPE,
-            self::SCHEMA_USER_TYPE,
-            self::SCHEMA_COMMENT_TYPE,
-            self::SCHEMA_TAG_TYPE,
-            self::SCHEMA_MEDIA_TYPE,
+            self::SCHEMA_GENERIC_CUSTOMPOSTS,
+            self::SCHEMA_POSTS,
+            self::SCHEMA_PAGES,
+            self::SCHEMA_USERS,
+            self::SCHEMA_COMMENTS,
+            self::SCHEMA_TAGS,
+            self::SCHEMA_MEDIA,
             self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE,
         ];
     }
@@ -74,8 +74,8 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     {
         switch ($module) {
             case self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE:
-            case self::SCHEMA_USER_TYPE:
-            case self::SCHEMA_MEDIA_TYPE:
+            case self::SCHEMA_USERS:
+            case self::SCHEMA_MEDIA:
             case self::SCHEMA_CUSTOMPOSTS:
                 return [
                     [
@@ -84,11 +84,11 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                         FunctionalityModuleResolver::CUSTOM_ENDPOINTS,
                     ],
                 ];
-            case self::SCHEMA_GENERIC_CUSTOMPOST_TYPE:
-            case self::SCHEMA_POST_TYPE:
-            case self::SCHEMA_PAGE_TYPE:
-            case self::SCHEMA_COMMENT_TYPE:
-            case self::SCHEMA_TAG_TYPE:
+            case self::SCHEMA_GENERIC_CUSTOMPOSTS:
+            case self::SCHEMA_POSTS:
+            case self::SCHEMA_PAGES:
+            case self::SCHEMA_COMMENTS:
+            case self::SCHEMA_TAGS:
                 return [
                     [
                         self::SCHEMA_CUSTOMPOSTS,
@@ -102,13 +102,13 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     {
         $names = [
             self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => \__('Directive Set: Convert Lower/Uppercase', 'graphql-api'),
-            self::SCHEMA_GENERIC_CUSTOMPOST_TYPE => \__('Schema Generic Custom Post Type', 'graphql-api'),
-            self::SCHEMA_POST_TYPE => \__('Schema Post Type', 'graphql-api'),
-            self::SCHEMA_COMMENT_TYPE => \__('Schema Comment Type', 'graphql-api'),
-            self::SCHEMA_USER_TYPE => \__('Schema User Type', 'graphql-api'),
-            self::SCHEMA_PAGE_TYPE => \__('Schema Page Type', 'graphql-api'),
-            self::SCHEMA_MEDIA_TYPE => \__('Schema Media Type', 'graphql-api'),
-            self::SCHEMA_TAG_TYPE => \__('Schema Tag Type', 'graphql-api'),
+            self::SCHEMA_GENERIC_CUSTOMPOSTS => \__('Schema Generic Custom Posts', 'graphql-api'),
+            self::SCHEMA_POSTS => \__('Schema Posts', 'graphql-api'),
+            self::SCHEMA_COMMENTS => \__('Schema Comments', 'graphql-api'),
+            self::SCHEMA_USERS => \__('Schema Users', 'graphql-api'),
+            self::SCHEMA_PAGES => \__('Schema Pages', 'graphql-api'),
+            self::SCHEMA_MEDIA => \__('Schema Media', 'graphql-api'),
+            self::SCHEMA_TAGS => \__('Schema Tags', 'graphql-api'),
             self::SCHEMA_CUSTOMPOSTS => \__('Schema Custom Posts', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
@@ -124,43 +124,49 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                     LowerCaseStringDirectiveResolver::getDirectiveName(),
                     TitleCaseStringDirectiveResolver::getDirectiveName()
                 );
-            case self::SCHEMA_GENERIC_CUSTOMPOST_TYPE:
+            case self::SCHEMA_GENERIC_CUSTOMPOSTS:
                 return sprintf(
-                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                    \__('Query any custom post type (added to the schema or not), through a generic type <code>%1$s</code>', 'graphql-api'),
                     GenericCustomPostTypeResolver::NAME,
                 );
-            case self::SCHEMA_POST_TYPE:
+            case self::SCHEMA_POSTS:
                 return sprintf(
-                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                    \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
+                    \__('posts', 'graphql-api'),
                     PostTypeResolver::NAME,
                 );
-            case self::SCHEMA_USER_TYPE:
+            case self::SCHEMA_USERS:
                 return sprintf(
-                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                    \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
+                    \__('users', 'graphql-api'),
                     UserTypeResolver::NAME,
                 );
-            case self::SCHEMA_PAGE_TYPE:
+            case self::SCHEMA_PAGES:
                 return sprintf(
-                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                    \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
+                    \__('pages', 'graphql-api'),
                     PageTypeResolver::NAME,
                 );
-            case self::SCHEMA_MEDIA_TYPE:
+            case self::SCHEMA_MEDIA:
                 return sprintf(
-                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                    \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
+                    \__('media elements', 'graphql-api'),
                     MediaTypeResolver::NAME,
                 );
-            case self::SCHEMA_COMMENT_TYPE:
+            case self::SCHEMA_COMMENTS:
                 return sprintf(
-                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                    \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
+                    \__('comments', 'graphql-api'),
                     CommentTypeResolver::NAME,
                 );
-            case self::SCHEMA_TAG_TYPE:
+            case self::SCHEMA_TAGS:
                 return sprintf(
-                    \__('Add the <code>%s</code> type to the schema', 'graphql-api'),
+                    \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
+                    \__('tags', 'graphql-api'),
                     TagTypeResolver::NAME,
                 );
             case self::SCHEMA_CUSTOMPOSTS:
-                return \__('Add base functionality for all custom posts', 'graphql-api');
+                return \__('Base functionality for all custom posts', 'graphql-api');
         }
         return parent::getDescription($module);
     }
@@ -179,11 +185,11 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             $module,
             [
                 self::SCHEMA_CUSTOMPOSTS,
-                // self::SCHEMA_GENERIC_CUSTOMPOST_TYPE,
-                // self::SCHEMA_POST_TYPE,
-                self::SCHEMA_USER_TYPE,
-                self::SCHEMA_TAG_TYPE,
-                // self::SCHEMA_PAGE_TYPE,
+                // self::SCHEMA_GENERIC_CUSTOMPOSTS,
+                // self::SCHEMA_POSTS,
+                self::SCHEMA_USERS,
+                self::SCHEMA_TAGS,
+                // self::SCHEMA_PAGES,
             ]
         ) && in_array(
             $option,
@@ -215,26 +221,26 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 self::OPTION_LIST_MAX_LIMIT => 100,
                 self::OPTION_USE_SINGLE_TYPE_INSTEAD_OF_UNION_TYPE => false,
             ],
-            self::SCHEMA_GENERIC_CUSTOMPOST_TYPE => [
+            self::SCHEMA_GENERIC_CUSTOMPOSTS => [
                 // self::OPTION_LIST_DEFAULT_LIMIT => 10,
                 // self::OPTION_LIST_MAX_LIMIT => 100,
                 self::OPTION_CUSTOMPOST_TYPES => ['post'],
             ],
-            self::SCHEMA_POST_TYPE => [
+            self::SCHEMA_POSTS => [
                 // self::OPTION_LIST_DEFAULT_LIMIT => 10,
                 // self::OPTION_LIST_MAX_LIMIT => 100,
                 self::OPTION_ADD_TYPE_TO_CUSTOMPOST_UNION_TYPE => true,
             ],
-            self::SCHEMA_PAGE_TYPE => [
+            self::SCHEMA_PAGES => [
                 // self::OPTION_LIST_DEFAULT_LIMIT => 10,
                 // self::OPTION_LIST_MAX_LIMIT => 100,
                 self::OPTION_ADD_TYPE_TO_CUSTOMPOST_UNION_TYPE => false,
             ],
-            self::SCHEMA_USER_TYPE => [
+            self::SCHEMA_USERS => [
                 self::OPTION_LIST_DEFAULT_LIMIT => 10,
                 self::OPTION_LIST_MAX_LIMIT => 100,
             ],
-            self::SCHEMA_TAG_TYPE => [
+            self::SCHEMA_TAGS => [
                 self::OPTION_LIST_DEFAULT_LIMIT => 50,
                 self::OPTION_LIST_MAX_LIMIT => 500,
             ],
@@ -260,30 +266,30 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
         if (
             in_array($module, [
                 self::SCHEMA_CUSTOMPOSTS,
-                // self::SCHEMA_GENERIC_CUSTOMPOST_TYPE,
-                // self::SCHEMA_POST_TYPE,
-                self::SCHEMA_USER_TYPE,
-                self::SCHEMA_TAG_TYPE,
-                // self::SCHEMA_PAGE_TYPE,
+                // self::SCHEMA_GENERIC_CUSTOMPOSTS,
+                // self::SCHEMA_POSTS,
+                self::SCHEMA_USERS,
+                self::SCHEMA_TAGS,
+                // self::SCHEMA_PAGES,
             ])
         ) {
             $moduleEntries = [
                 self::SCHEMA_CUSTOMPOSTS => [
                     'entities' => \__('custom posts', 'graphql-api'),
                 ],
-                // self::SCHEMA_GENERIC_CUSTOMPOST_TYPE => [
+                // self::SCHEMA_GENERIC_CUSTOMPOSTS => [
                 //     'genericCustomPosts' => null,
                 // ],
-                // self::SCHEMA_POST_TYPE => [
+                // self::SCHEMA_POSTS => [
                 //     'posts' => null,
                 // ],
-                self::SCHEMA_USER_TYPE => [
+                self::SCHEMA_USERS => [
                     'entities' => \__('users', 'graphql-api'),
                 ],
-                self::SCHEMA_TAG_TYPE => [
+                self::SCHEMA_TAGS => [
                     'entities' => \__('tags', 'graphql-api'),
                 ],
-                // self::SCHEMA_PAGE_TYPE => [
+                // self::SCHEMA_PAGES => [
                 //     'pages' => null,
                 // ],
             ];
@@ -356,8 +362,8 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             }
         } elseif (
             in_array($module, [
-                self::SCHEMA_POST_TYPE,
-                self::SCHEMA_PAGE_TYPE,
+                self::SCHEMA_POSTS,
+                self::SCHEMA_PAGES,
             ])
         ) {
             $titlePlaceholder = sprintf(
@@ -366,11 +372,11 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 CustomPostUnionTypeResolver::NAME
             );
             $moduleTitles = [
-                self::SCHEMA_POST_TYPE => sprintf(
+                self::SCHEMA_POSTS => sprintf(
                     $titlePlaceholder,
                     PostTypeResolver::NAME
                 ),
-                self::SCHEMA_PAGE_TYPE => sprintf(
+                self::SCHEMA_PAGES => sprintf(
                     $titlePlaceholder,
                     PageTypeResolver::NAME
                 ),
@@ -382,11 +388,11 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 'customPosts'
             );
             $moduleDescriptions = [
-                self::SCHEMA_POST_TYPE => sprintf(
+                self::SCHEMA_POSTS => sprintf(
                     $descriptionPlaceholder,
                     PostTypeResolver::NAME
                 ),
-                self::SCHEMA_PAGE_TYPE => sprintf(
+                self::SCHEMA_PAGES => sprintf(
                     $descriptionPlaceholder,
                     PageTypeResolver::NAME
                 ),
@@ -402,7 +408,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 Properties::DESCRIPTION => $moduleDescriptions[$module],
                 Properties::TYPE => Properties::TYPE_BOOL,
             ];
-        } elseif ($module == self::SCHEMA_GENERIC_CUSTOMPOST_TYPE) {
+        } elseif ($module == self::SCHEMA_GENERIC_CUSTOMPOSTS) {
             // Get the list of custom post types from the system
             $genericCustomPostTypes = \get_post_types();
             // Not all custom post types make sense or are allowed.
