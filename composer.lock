@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b88aebb00ba6e9360210161889c797f3",
+    "content-hash": "9f43d0317d35d1dd5b04bef5991aef50",
     "packages": [
         {
             "name": "brain/cortex",
@@ -873,12 +873,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/comments.git",
-                "reference": "0433d02c7e07b8733fabca64b98577d5e900fd31"
+                "reference": "56492b4c3060f67bf465b5556c1f90770d23d02b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/comments/zipball/0433d02c7e07b8733fabca64b98577d5e900fd31",
-                "reference": "0433d02c7e07b8733fabca64b98577d5e900fd31",
+                "url": "https://api.github.com/repos/PoPSchema/comments/zipball/56492b4c3060f67bf465b5556c1f90770d23d02b",
+                "reference": "56492b4c3060f67bf465b5556c1f90770d23d02b",
                 "shasum": ""
             },
             "require": {
@@ -919,7 +919,7 @@
                 "comments",
                 "pop"
             ],
-            "time": "2020-07-14T03:06:59+00:00"
+            "time": "2020-07-17T10:23:04+00:00"
         },
         {
             "name": "getpop/comments-wp",
@@ -981,12 +981,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/component-model.git",
-                "reference": "7fa21ba45d8039aca768c907085468e94780f0cd"
+                "reference": "3aec5daf478f123d08a1fe7ed6cb31d85100ac5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/component-model/zipball/7fa21ba45d8039aca768c907085468e94780f0cd",
-                "reference": "7fa21ba45d8039aca768c907085468e94780f0cd",
+                "url": "https://api.github.com/repos/getpop/component-model/zipball/3aec5daf478f123d08a1fe7ed6cb31d85100ac5c",
+                "reference": "3aec5daf478f123d08a1fe7ed6cb31d85100ac5c",
                 "shasum": ""
             },
             "require": {
@@ -1032,7 +1032,7 @@
                 "component-model",
                 "pop"
             ],
-            "time": "2020-07-14T03:04:00+00:00"
+            "time": "2020-07-17T09:00:13+00:00"
         },
         {
             "name": "getpop/custompostmedia",
@@ -1040,12 +1040,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/custompostmedia.git",
-                "reference": "bdf2a71a446de9f2ee89d304ecb5a9be3eb2fb8d"
+                "reference": "6e4022c41a01f0946f1dba6e1a3c5866c3f5d49b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/custompostmedia/zipball/bdf2a71a446de9f2ee89d304ecb5a9be3eb2fb8d",
-                "reference": "bdf2a71a446de9f2ee89d304ecb5a9be3eb2fb8d",
+                "url": "https://api.github.com/repos/PoPSchema/custompostmedia/zipball/6e4022c41a01f0946f1dba6e1a3c5866c3f5d49b",
+                "reference": "6e4022c41a01f0946f1dba6e1a3c5866c3f5d49b",
                 "shasum": ""
             },
             "require": {
@@ -1088,7 +1088,7 @@
                 "custompostmedia",
                 "pop"
             ],
-            "time": "2020-06-17T07:22:28+00:00"
+            "time": "2020-07-17T08:44:38+00:00"
         },
         {
             "name": "getpop/custompostmedia-wp",
@@ -1260,12 +1260,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/customposts.git",
-                "reference": "56d3ff6b3bc3a885c750902cad6b5348f2df8a21"
+                "reference": "55afe111847413612c1fe2c121b0d083f47d06c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/customposts/zipball/56d3ff6b3bc3a885c750902cad6b5348f2df8a21",
-                "reference": "56d3ff6b3bc3a885c750902cad6b5348f2df8a21",
+                "url": "https://api.github.com/repos/PoPSchema/customposts/zipball/55afe111847413612c1fe2c121b0d083f47d06c0",
+                "reference": "55afe111847413612c1fe2c121b0d083f47d06c0",
                 "shasum": ""
             },
             "require": {
@@ -1306,7 +1306,7 @@
                 "customposts",
                 "pop"
             ],
-            "time": "2020-07-15T07:12:13+00:00"
+            "time": "2020-07-17T08:43:18+00:00"
         },
         {
             "name": "getpop/customposts-wp",
@@ -1647,12 +1647,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql.git",
-                "reference": "f90d70965df9354a1a576d362ed75cd2604d6049"
+                "reference": "4d5ba7175170a034c97d8d008c9960c71b049c4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql/zipball/f90d70965df9354a1a576d362ed75cd2604d6049",
-                "reference": "f90d70965df9354a1a576d362ed75cd2604d6049",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql/zipball/4d5ba7175170a034c97d8d008c9960c71b049c4c",
+                "reference": "4d5ba7175170a034c97d8d008c9960c71b049c4c",
                 "shasum": ""
             },
             "require": {
@@ -1696,7 +1696,7 @@
                 "graphql",
                 "pop"
             ],
-            "time": "2020-07-14T00:19:44+00:00"
+            "time": "2020-07-17T09:53:00+00:00"
         },
         {
             "name": "getpop/graphql-clients-for-wp",
@@ -2612,12 +2612,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/migrate-comments-wp.git",
-                "reference": "50eee5405e6ba8b62748dc1b023532b8fda3d63d"
+                "reference": "4e8fcfb36e7ad9226ffa654d527fa723b51a33ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/migrate-comments-wp/zipball/50eee5405e6ba8b62748dc1b023532b8fda3d63d",
-                "reference": "50eee5405e6ba8b62748dc1b023532b8fda3d63d",
+                "url": "https://api.github.com/repos/PoPSchema/migrate-comments-wp/zipball/4e8fcfb36e7ad9226ffa654d527fa723b51a33ee",
+                "reference": "4e8fcfb36e7ad9226ffa654d527fa723b51a33ee",
                 "shasum": ""
             },
             "require": {
@@ -2646,7 +2646,7 @@
                 "comments-wp",
                 "pop"
             ],
-            "time": "2020-07-15T07:11:00+00:00"
+            "time": "2020-07-16T13:27:44+00:00"
         },
         {
             "name": "getpop/migrate-component-model",
@@ -2696,12 +2696,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/migrate-custompostmedia.git",
-                "reference": "692ccc31986aa86f8799faad44b7734aa717440e"
+                "reference": "e2c2acf188545a7202d49ce339e168f5d1d24950"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/migrate-custompostmedia/zipball/692ccc31986aa86f8799faad44b7734aa717440e",
-                "reference": "692ccc31986aa86f8799faad44b7734aa717440e",
+                "url": "https://api.github.com/repos/PoPSchema/migrate-custompostmedia/zipball/e2c2acf188545a7202d49ce339e168f5d1d24950",
+                "reference": "e2c2acf188545a7202d49ce339e168f5d1d24950",
                 "shasum": ""
             },
             "require": {
@@ -2730,7 +2730,7 @@
                 "custompostmedia",
                 "pop"
             ],
-            "time": "2020-06-17T08:04:13+00:00"
+            "time": "2020-07-16T11:27:39+00:00"
         },
         {
             "name": "getpop/migrate-custompostmedia-wp",
@@ -2738,12 +2738,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/migrate-custompostmedia-wp.git",
-                "reference": "86ea431698a5ef095b95783498f7eea177ec5fc7"
+                "reference": "47f22f2deb609911e1882215d9d444078aad40e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/migrate-custompostmedia-wp/zipball/86ea431698a5ef095b95783498f7eea177ec5fc7",
-                "reference": "86ea431698a5ef095b95783498f7eea177ec5fc7",
+                "url": "https://api.github.com/repos/PoPSchema/migrate-custompostmedia-wp/zipball/47f22f2deb609911e1882215d9d444078aad40e7",
+                "reference": "47f22f2deb609911e1882215d9d444078aad40e7",
                 "shasum": ""
             },
             "require": {
@@ -2772,7 +2772,7 @@
                 "custompostmedia-wp",
                 "pop"
             ],
-            "time": "2020-06-17T08:04:18+00:00"
+            "time": "2020-07-16T11:27:34+00:00"
         },
         {
             "name": "getpop/migrate-custompostmeta",
@@ -3326,6 +3326,90 @@
             "time": "2020-06-18T03:14:24+00:00"
         },
         {
+            "name": "getpop/migrate-post-tags",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PoPSchema/migrate-post-tags.git",
+                "reference": "50046bfcba3f04cc4c43d259d52bc59bbd22af6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PoPSchema/migrate-post-tags/zipball/50046bfcba3f04cc4c43d259d52bc59bbd22af6b",
+                "reference": "50046bfcba3f04cc4c43d259d52bc59bbd22af6b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "(Temporary package) Migrate code to package https://github.com/getpop/post-tags. Target package description: Adds support for post tags",
+            "homepage": "https://github.com/getpop/migrate-post-tags",
+            "keywords": [
+                "pop",
+                "post-tags"
+            ],
+            "time": "2020-07-17T14:01:15+00:00"
+        },
+        {
+            "name": "getpop/migrate-post-tags-wp",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PoPSchema/migrate-post-tags-wp.git",
+                "reference": "260a8263dbd12b92e0408c6411719333a9b5ae66"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PoPSchema/migrate-post-tags-wp/zipball/260a8263dbd12b92e0408c6411719333a9b5ae66",
+                "reference": "260a8263dbd12b92e0408c6411719333a9b5ae66",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "(Temporary package) Migrate code to package https://github.com/getpop/post-tags-wp. Target package description: Implementation for WordPress of contracts from package \"Post Tags\"",
+            "homepage": "https://github.com/getpop/migrate-post-tags-wp",
+            "keywords": [
+                "pop",
+                "post-tags-wp"
+            ],
+            "time": "2020-07-17T14:00:49+00:00"
+        },
+        {
             "name": "getpop/migrate-posts",
             "version": "dev-master",
             "source": {
@@ -3499,12 +3583,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/migrate-tags.git",
-                "reference": "901dd5ee3801e917389f085d4b7d527e30275a25"
+                "reference": "80e8cac5926495cef80c2d28e69ed4fb01d4d31e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/migrate-tags/zipball/901dd5ee3801e917389f085d4b7d527e30275a25",
-                "reference": "901dd5ee3801e917389f085d4b7d527e30275a25",
+                "url": "https://api.github.com/repos/PoPSchema/migrate-tags/zipball/80e8cac5926495cef80c2d28e69ed4fb01d4d31e",
+                "reference": "80e8cac5926495cef80c2d28e69ed4fb01d4d31e",
                 "shasum": ""
             },
             "require": {
@@ -3533,7 +3617,7 @@
                 "pop",
                 "tags"
             ],
-            "time": "2020-07-16T07:43:46+00:00"
+            "time": "2020-07-17T14:07:12+00:00"
         },
         {
             "name": "getpop/migrate-tags-wp",
@@ -3541,12 +3625,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/migrate-tags-wp.git",
-                "reference": "67a7e53288d982868794c24a51fb1fe0160cc67c"
+                "reference": "faa51e7789af259d31f4647dc92a187a898af093"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/migrate-tags-wp/zipball/67a7e53288d982868794c24a51fb1fe0160cc67c",
-                "reference": "67a7e53288d982868794c24a51fb1fe0160cc67c",
+                "url": "https://api.github.com/repos/PoPSchema/migrate-tags-wp/zipball/faa51e7789af259d31f4647dc92a187a898af093",
+                "reference": "faa51e7789af259d31f4647dc92a187a898af093",
                 "shasum": ""
             },
             "require": {
@@ -3575,7 +3659,7 @@
                 "pop",
                 "tags-wp"
             ],
-            "time": "2020-07-16T07:48:04+00:00"
+            "time": "2020-07-17T14:07:17+00:00"
         },
         {
             "name": "getpop/migrate-taxonomies",
@@ -3583,12 +3667,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/migrate-taxonomies.git",
-                "reference": "8d404e4dfd1e01f366c7cd07db6c55817baeb52e"
+                "reference": "abbea1339d0dc6aa41b64d225b74adbb3bb2b243"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-taxonomies/zipball/8d404e4dfd1e01f366c7cd07db6c55817baeb52e",
-                "reference": "8d404e4dfd1e01f366c7cd07db6c55817baeb52e",
+                "url": "https://api.github.com/repos/getpop/migrate-taxonomies/zipball/abbea1339d0dc6aa41b64d225b74adbb3bb2b243",
+                "reference": "abbea1339d0dc6aa41b64d225b74adbb3bb2b243",
                 "shasum": ""
             },
             "require": {
@@ -3617,7 +3701,7 @@
                 "pop",
                 "taxonomies"
             ],
-            "time": "2020-07-16T06:37:51+00:00"
+            "time": "2020-07-16T11:27:19+00:00"
         },
         {
             "name": "getpop/migrate-taxonomies-wp",
@@ -3625,12 +3709,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/migrate-taxonomies-wp.git",
-                "reference": "260afa2f9ad1ea3c36593750d42ef199468af0ca"
+                "reference": "d8d1ada01073a4aa4863acbd2546bc6ddd163222"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-taxonomies-wp/zipball/260afa2f9ad1ea3c36593750d42ef199468af0ca",
-                "reference": "260afa2f9ad1ea3c36593750d42ef199468af0ca",
+                "url": "https://api.github.com/repos/getpop/migrate-taxonomies-wp/zipball/d8d1ada01073a4aa4863acbd2546bc6ddd163222",
+                "reference": "d8d1ada01073a4aa4863acbd2546bc6ddd163222",
                 "shasum": ""
             },
             "require": {
@@ -3659,7 +3743,7 @@
                 "pop",
                 "taxonomies-wp"
             ],
-            "time": "2020-07-16T06:53:28+00:00"
+            "time": "2020-07-16T11:27:23+00:00"
         },
         {
             "name": "getpop/migrate-taxonomymeta",
@@ -4165,6 +4249,120 @@
             "time": "2020-07-15T11:39:42+00:00"
         },
         {
+            "name": "getpop/post-tags",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PoPSchema/post-tags.git",
+                "reference": "272cc4cac461d6cef61f95492b0899575d504814"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PoPSchema/post-tags/zipball/272cc4cac461d6cef61f95492b0899575d504814",
+                "reference": "272cc4cac461d6cef61f95492b0899575d504814",
+                "shasum": ""
+            },
+            "require": {
+                "getpop/migrate-post-tags": "dev-master",
+                "getpop/tags": "dev-master",
+                "php": "~7.1"
+            },
+            "require-dev": {
+                "getpop/api": "dev-master",
+                "getpop/api-rest": "dev-master",
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": ">=7.0",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "suggest": {
+                "getpop/api": "Integrates well with API",
+                "getpop/api-rest": "Integrates well with REST API"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoP\\PostTags\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "Adds support for post tags",
+            "homepage": "https://github.com/PoPSchema/post-tags",
+            "keywords": [
+                "pop",
+                "post-tags"
+            ],
+            "time": "2020-07-17T14:01:38+00:00"
+        },
+        {
+            "name": "getpop/post-tags-wp",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PoPSchema/post-tags-wp.git",
+                "reference": "57c4019ab0e847e6181109f89d5811d627c4c410"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PoPSchema/post-tags-wp/zipball/57c4019ab0e847e6181109f89d5811d627c4c410",
+                "reference": "57c4019ab0e847e6181109f89d5811d627c4c410",
+                "shasum": ""
+            },
+            "require": {
+                "getpop/migrate-post-tags-wp": "dev-master",
+                "getpop/post-tags": "dev-master",
+                "getpop/tags-wp": "dev-master",
+                "php": "~7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=7.0",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoP\\PostTagsWP\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "Implementation for WordPress of contracts from package \"Post Tags\"",
+            "homepage": "https://github.com/PoPSchema/post-tags-wp",
+            "keywords": [
+                "pop",
+                "post-tags-wp"
+            ],
+            "time": "2020-07-17T14:02:03+00:00"
+        },
+        {
             "name": "getpop/posts",
             "version": "dev-master",
             "source": {
@@ -4288,12 +4486,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/queriedobject.git",
-                "reference": "c13cb2bb84ad238b99a3d0cdc0b54492eca997d7"
+                "reference": "9d37386678c1be6e96363fde6c91435920af9e6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/queriedobject/zipball/c13cb2bb84ad238b99a3d0cdc0b54492eca997d7",
-                "reference": "c13cb2bb84ad238b99a3d0cdc0b54492eca997d7",
+                "url": "https://api.github.com/repos/getpop/queriedobject/zipball/9d37386678c1be6e96363fde6c91435920af9e6b",
+                "reference": "9d37386678c1be6e96363fde6c91435920af9e6b",
                 "shasum": ""
             },
             "require": {
@@ -4334,7 +4532,7 @@
                 "pop",
                 "queriedobject"
             ],
-            "time": "2020-07-15T13:29:45+00:00"
+            "time": "2020-07-17T08:28:33+00:00"
         },
         {
             "name": "getpop/queriedobject-wp",
@@ -4615,12 +4813,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/tags.git",
-                "reference": "7d3ffaee9828bafd6e9ecbc1c8730bae13079843"
+                "reference": "1a7240a92b359b560ff9f1a5c0fb97f9fe9678bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/tags/zipball/7d3ffaee9828bafd6e9ecbc1c8730bae13079843",
-                "reference": "7d3ffaee9828bafd6e9ecbc1c8730bae13079843",
+                "url": "https://api.github.com/repos/PoPSchema/tags/zipball/1a7240a92b359b560ff9f1a5c0fb97f9fe9678bd",
+                "reference": "1a7240a92b359b560ff9f1a5c0fb97f9fe9678bd",
                 "shasum": ""
             },
             "require": {
@@ -4629,15 +4827,9 @@
                 "php": "~7.1"
             },
             "require-dev": {
-                "getpop/api": "dev-master",
-                "getpop/api-rest": "dev-master",
                 "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": ">=7.0",
                 "squizlabs/php_codesniffer": "^3.0"
-            },
-            "suggest": {
-                "getpop/api": "Integrates well with API",
-                "getpop/api-rest": "Integrates well with REST API"
             },
             "type": "library",
             "extra": {
@@ -4667,7 +4859,7 @@
                 "pop",
                 "tags"
             ],
-            "time": "2020-07-16T07:21:31+00:00"
+            "time": "2020-07-17T14:07:30+00:00"
         },
         {
             "name": "getpop/tags-wp",
@@ -5658,12 +5850,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/users.git",
-                "reference": "047b630fa302393c376b7af10f05f5ff781fb731"
+                "reference": "f96e26e3fa0505d2fbc99431ce689f7ab4c47306"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/users/zipball/047b630fa302393c376b7af10f05f5ff781fb731",
-                "reference": "047b630fa302393c376b7af10f05f5ff781fb731",
+                "url": "https://api.github.com/repos/PoPSchema/users/zipball/f96e26e3fa0505d2fbc99431ce689f7ab4c47306",
+                "reference": "f96e26e3fa0505d2fbc99431ce689f7ab4c47306",
                 "shasum": ""
             },
             "require": {
@@ -5712,7 +5904,7 @@
                 "Users",
                 "pop"
             ],
-            "time": "2020-06-18T07:03:41+00:00"
+            "time": "2020-07-17T08:43:27+00:00"
         },
         {
             "name": "getpop/users-wp",
@@ -9963,7 +10155,7 @@
         "getpop/posts-wp": 20,
         "getpop/taxonomymeta-wp": 20,
         "getpop/taxonomyquery-wp": 20,
-        "getpop/tags-wp": 20,
+        "getpop/post-tags-wp": 20,
         "getpop/useful-directives": 20,
         "getpop/user-roles-access-control": 20,
         "getpop/user-roles-wp": 20,
