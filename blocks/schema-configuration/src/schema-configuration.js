@@ -146,8 +146,6 @@ const SchemaConfigurationSelectCard = ( props ) => {
 export default compose( [
 	withState( {
 		label: __('Schema configuration', 'graphql-api'),
-		tooltipLink: 'https://graphql-api.com/documentation/#schema-configuration',
-		tooltip: __('Select a schema configuration, or "Default" (use the one defined in Settings), "None" or "Inherit from parent" (available when defining parent query in "Document -> Page Attributes")', 'graphql-api')
 	} ),
 	withSelect( ( select ) => {
 		const {
