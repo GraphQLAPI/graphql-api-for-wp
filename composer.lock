@@ -873,12 +873,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/comments.git",
-                "reference": "56492b4c3060f67bf465b5556c1f90770d23d02b"
+                "reference": "bfd7eeb31d2df3375b61ee58867a3386153e5f29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/comments/zipball/56492b4c3060f67bf465b5556c1f90770d23d02b",
-                "reference": "56492b4c3060f67bf465b5556c1f90770d23d02b",
+                "url": "https://api.github.com/repos/PoPSchema/comments/zipball/bfd7eeb31d2df3375b61ee58867a3386153e5f29",
+                "reference": "bfd7eeb31d2df3375b61ee58867a3386153e5f29",
                 "shasum": ""
             },
             "require": {
@@ -919,7 +919,7 @@
                 "comments",
                 "pop"
             ],
-            "time": "2020-07-17T10:23:04+00:00"
+            "time": "2020-07-18T03:13:57+00:00"
         },
         {
             "name": "getpop/comments-wp",
@@ -4254,12 +4254,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/post-tags.git",
-                "reference": "aa70ff456245edede45b93a66a2608243c8c2618"
+                "reference": "f34bd93be092bf40e2579cbafcc479ea115391b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/post-tags/zipball/aa70ff456245edede45b93a66a2608243c8c2618",
-                "reference": "aa70ff456245edede45b93a66a2608243c8c2618",
+                "url": "https://api.github.com/repos/PoPSchema/post-tags/zipball/f34bd93be092bf40e2579cbafcc479ea115391b6",
+                "reference": "f34bd93be092bf40e2579cbafcc479ea115391b6",
                 "shasum": ""
             },
             "require": {
@@ -4307,7 +4307,7 @@
                 "pop",
                 "post-tags"
             ],
-            "time": "2020-07-18T02:56:46+00:00"
+            "time": "2020-07-18T03:13:50+00:00"
         },
         {
             "name": "getpop/post-tags-wp",
@@ -4370,12 +4370,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/posts.git",
-                "reference": "18f463b1254131bff6f41284a18bd9f2ce512e50"
+                "reference": "ba450e7cb667d97b3472f07ce6c2a2ac340c82e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/posts/zipball/18f463b1254131bff6f41284a18bd9f2ce512e50",
-                "reference": "18f463b1254131bff6f41284a18bd9f2ce512e50",
+                "url": "https://api.github.com/repos/PoPSchema/posts/zipball/ba450e7cb667d97b3472f07ce6c2a2ac340c82e1",
+                "reference": "ba450e7cb667d97b3472f07ce6c2a2ac340c82e1",
                 "shasum": ""
             },
             "require": {
@@ -4424,7 +4424,7 @@
                 "pop",
                 "posts"
             ],
-            "time": "2020-07-18T02:52:14+00:00"
+            "time": "2020-07-18T03:14:06+00:00"
         },
         {
             "name": "getpop/posts-wp",
@@ -5850,12 +5850,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/users.git",
-                "reference": "81f614ca27514431668e6857224019dd1f55a5ed"
+                "reference": "959514b5b62ce3130f4460c9e8aa7fc0ddb59c91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/users/zipball/81f614ca27514431668e6857224019dd1f55a5ed",
-                "reference": "81f614ca27514431668e6857224019dd1f55a5ed",
+                "url": "https://api.github.com/repos/PoPSchema/users/zipball/959514b5b62ce3130f4460c9e8aa7fc0ddb59c91",
+                "reference": "959514b5b62ce3130f4460c9e8aa7fc0ddb59c91",
                 "shasum": ""
             },
             "require": {
@@ -5904,7 +5904,7 @@
                 "Users",
                 "pop"
             ],
-            "time": "2020-07-18T02:52:34+00:00"
+            "time": "2020-07-18T03:14:12+00:00"
         },
         {
             "name": "getpop/users-wp",
