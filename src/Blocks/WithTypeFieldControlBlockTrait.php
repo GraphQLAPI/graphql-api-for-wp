@@ -26,27 +26,38 @@ trait WithTypeFieldControlBlockTrait
         $typeResolverClasses = $typeRegistry->getTypeResolverClasses();
         // For each class, obtain its namespacedTypeName
         $namespacedTypeNameNames = [];
+        $namespacedInterfaceNames = [];
         foreach ($typeResolverClasses as $typeResolverClass) {
             $typeResolver = $instanceManager->getInstance($typeResolverClass);
             $typeResolverNamespacedName = $typeResolver->getNamespacedTypeName();
             $namespacedTypeNameNames[$typeResolverNamespacedName] = $typeResolver->getTypeName();
+
+            // Iterate all interfaces of the type, and add it to the other array
+            foreach ($typeResolver->getAllImplementedInterfaceResolverInstances() as $interfaceInstance) {
+                $interfaceNamespacedName = $interfaceInstance->getNamespacedInterfaceName();
+                $namespacedInterfaceNames[$interfaceNamespacedName] = $interfaceInstance->getInterfaceName();
+            }
         }
         $typeFieldsForPrint = [];
         foreach ($typeFields as $selectedField) {
             // The field is composed by the type namespaced name, and the field name, separated by "."
             // Extract these values
             $entry = explode(BlockConstants::TYPE_FIELD_SEPARATOR_FOR_DB, $selectedField);
-            $namespacedTypeName = $entry[0];
+            $namespacedTypeOrInterfaceName = $entry[0];
             $field = $entry[1];
-            $typeName = $namespacedTypeNameNames[$namespacedTypeName] ?? $namespacedTypeName;
+            // It can either be a type, or an interface. If not, return the same element
+            $typeOrInterfaceName =
+                $namespacedTypeNameNames[$namespacedTypeOrInterfaceName]
+                ?? $namespacedInterfaceNames[$namespacedTypeOrInterfaceName]
+                ?? $namespacedTypeOrInterfaceName;
             /**
              * If $groupFieldsUnderTypeForPrint is true, combine all types under their shared typeName
              * If $groupFieldsUnderTypeForPrint is false, replace namespacedTypeName for typeName and "." for "/"
              * */
             if ($groupFieldsUnderTypeForPrint) {
-                $typeFieldsForPrint[$typeName][] = $field;
+                $typeFieldsForPrint[$typeOrInterfaceName][] = $field;
             } else {
-                $typeFieldsForPrint[] = $typeName . BlockConstants::TYPE_FIELD_SEPARATOR_FOR_PRINT . $field;
+                $typeFieldsForPrint[] = $typeOrInterfaceName . BlockConstants::TYPE_FIELD_SEPARATOR_FOR_PRINT . $field;
             }
         }
         return $typeFieldsForPrint;
