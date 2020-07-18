@@ -3,12 +3,12 @@
  */
 import { __, sprintf } from '@wordpress/i18n';
 import { TextControl, Card, CardHeader, CardBody } from '@wordpress/components';
-import { getMarkdownContentOrUseDefault } from './markdown-loader';
 
 /**
  * Internal dependencies
  */
 import { MarkdownInfoModalButton, getEditableOnFocusComponentClass } from '@graphqlapi/components';
+import { getMarkdownContentOrUseDefault } from './markdown-loader';
 
 const CacheControl = ( props ) => {
 	const { className, setAttributes, isSelected, attributes: { cacheControlMaxAge } } = props;
