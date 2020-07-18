@@ -54,7 +54,7 @@ const EndpointOptions = ( props ) => {
 						<em>{ __('Expose GraphiQL client?', 'graphql-api') }</em>
 						<InfoTooltip
 							{ ...props }
-							text={ __('A GraphiQL client to query the endpoint will be available under /endpoint/?view=graphiql', 'graphql-api') }
+							text={ __('Publicly available under /{endpoint-slug}/?view=graphiql', 'graphql-api') }
 						/>
 						{ !isSelected && (
 							<>
@@ -82,7 +82,7 @@ const EndpointOptions = ( props ) => {
 						<em>{ __('Expose the Interactive Schema client?', 'graphql-api') }</em>
 						<InfoTooltip
 							{ ...props }
-							text={ __('An Interactive Schema client to show the schema for the endpoint will be available under /endpoint/?view=schema', 'graphql-api') }
+							text={ __('Publicly available under /{endpoint-slug}/?view=schema', 'graphql-api') }
 						/>
 						{ !isSelected && (
 							<>
