@@ -12,8 +12,9 @@ import { ToggleControl } from '@wordpress/components';
 import {
 	withCard,
 	withEditableOnFocus,
-	LinkableInfoTooltip,
+	MarkdownInfoModalButton,
 } from '@graphqlapi/components';
+import { getMarkdownContentOrUseDefault } from './markdown-loader';
 
 const getViewBooleanLabel = ( value ) => value ? `✅ ${ __('Yes', 'graphql-api') }` : `❌ ${ __('No', 'graphql-api') }`
 const getEditBooleanLabel = ( value ) => value ? __('Yes', 'graphql-api') : __('No', 'graphql-api')
@@ -31,6 +32,8 @@ const PersistedQueryOptions = ( props ) => {
 			inheritQuery,
 		}
 	} = props;
+	const variablesAsURLParamsTitle = __('Accept variables as URL params?', 'graphql-api')
+	const inheritQueryTitle = __('Inherit query from ancestor(s)?', 'graphql-api')
 	return (
 		<>
 			<div className={ `${ className }__enabled` }>
@@ -54,12 +57,14 @@ const PersistedQueryOptions = ( props ) => {
 			</div>
 			<hr />
 			<div className={ `${ className }__variables_enabled` }>
-				<em>{ __('Accept variables as URL params?', 'graphql-api') }</em>
-				<LinkableInfoTooltip
-					{ ...props }
-					text={ __('Allow URL params to be the input for variables in the query', 'graphql-api') }
-					href="https://graphql-api.com/documentation/#persisted-query-variables"
-				/>
+				<em>{ variablesAsURLParamsTitle }</em>
+				{ isSelected && (
+					<MarkdownInfoModalButton
+						title={ variablesAsURLParamsTitle }
+						pageFilename="variables-as-url-params"
+						getMarkdownContentCallback={ getMarkdownContentOrUseDefault }
+					/>
+				) }
 				{ !isSelected && (
 					<>
 						<br />
@@ -83,12 +88,14 @@ const PersistedQueryOptions = ( props ) => {
 					<>
 						<hr />
 						<div className={ `${ className }__inherit_query` }>
-							<em>{ __('Inherit query from ancestor(s)?', 'graphql-api') }</em>
-							<LinkableInfoTooltip
-								{ ...props }
-								text={ __('Use the persisted query defined in the ancestor post', 'graphql-api') }
-								href="https://graphql-api.com/documentation/#inherit-query"
-							/>
+							<em>{ inheritQueryTitle }</em>
+							{ isSelected && (
+								<MarkdownInfoModalButton
+									title={ inheritQueryTitle }
+									pageFilename="inherit-query"
+									getMarkdownContentCallback={ getMarkdownContentOrUseDefault }
+								/>
+							) }
 							{ !isSelected && (
 								<>
 									<br />

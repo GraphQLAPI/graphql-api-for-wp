@@ -25,6 +25,27 @@ class PersistedQueryOptionsBlock extends AbstractQueryExecutionOptionsBlock
         return 'persisted-query-options';
     }
 
+    /**
+     * Add the locale language to the localized data?
+     *
+     * @return bool
+     */
+    protected function addLocalLanguage(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Default language for the script/component's documentation
+     *
+     * @return array
+     */
+    protected function getDefaultLanguage(): ?string
+    {
+        // English
+        return 'en';
+    }
+
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
         $instanceManager = InstanceManagerFacade::getInstance();
