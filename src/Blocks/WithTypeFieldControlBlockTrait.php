@@ -30,12 +30,12 @@ trait WithTypeFieldControlBlockTrait
         foreach ($typeResolverClasses as $typeResolverClass) {
             $typeResolver = $instanceManager->getInstance($typeResolverClass);
             $typeResolverNamespacedName = $typeResolver->getNamespacedTypeName();
-            $namespacedTypeNameNames[$typeResolverNamespacedName] = $typeResolver->getTypeName();
+            $namespacedTypeNameNames[$typeResolverNamespacedName] = $typeResolver->getMaybeNamespacedTypeName();
 
             // Iterate all interfaces of the type, and add it to the other array
             foreach ($typeResolver->getAllImplementedInterfaceResolverInstances() as $interfaceInstance) {
                 $interfaceNamespacedName = $interfaceInstance->getNamespacedInterfaceName();
-                $namespacedInterfaceNames[$interfaceNamespacedName] = $interfaceInstance->getInterfaceName();
+                $namespacedInterfaceNames[$interfaceNamespacedName] = $interfaceInstance->getMaybeNamespacedInterfaceName();
             }
         }
         $typeFieldsForPrint = [];
