@@ -11,7 +11,7 @@ import { ToggleControl } from '@wordpress/components';
 import {
 	withCard,
 	withEditableOnFocus,
-	LinkableInfoTooltip,
+	InfoTooltip,
 } from '@graphqlapi/components';
 
 const EndpointOptions = ( props ) => {
@@ -52,10 +52,9 @@ const EndpointOptions = ( props ) => {
 					<hr />
 					<div className={ `${ className }__graphiql_enabled` }>
 						<em>{ __('Expose GraphiQL client?', 'graphql-api') }</em>
-						<LinkableInfoTooltip
+						<InfoTooltip
 							{ ...props }
 							text={ __('A GraphiQL client to query the endpoint will be available under /endpoint/?view=graphiql', 'graphql-api') }
-							href="https://graphql-api.com/documentation/#endpoint-graphiql"
 						/>
 						{ !isSelected && (
 							<>
@@ -81,10 +80,9 @@ const EndpointOptions = ( props ) => {
 					<hr />
 					<div className={ `${ className }__voyager_enabled` }>
 						<em>{ __('Expose the Interactive Schema client?', 'graphql-api') }</em>
-						<LinkableInfoTooltip
+						<InfoTooltip
 							{ ...props }
 							text={ __('An Interactive Schema client to show the schema for the endpoint will be available under /endpoint/?view=schema', 'graphql-api') }
-							href="https://graphql-api.com/documentation/#endpoint-interactive-schema"
 						/>
 						{ !isSelected && (
 							<>
