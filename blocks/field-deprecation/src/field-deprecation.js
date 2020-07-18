@@ -1,13 +1,13 @@
 /**
  * WordPress dependencies
  */
-import { __, sprintf } from '@wordpress/i18n';
-import { TextControl, Card, CardHeader, CardBody, Tooltip, Icon, ExternalLink } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import { TextControl, Card, CardHeader, CardBody } from '@wordpress/components';
 
 /**
  * Internal dependencies
  */
-import { LinkableInfoTooltip, getEditableOnFocusComponentClass } from '@graphqlapi/components';
+import { InfoTooltip, getEditableOnFocusComponentClass } from '@graphqlapi/components';
 
 const FieldDeprecation = ( props ) => {
 	const {
@@ -18,18 +18,18 @@ const FieldDeprecation = ( props ) => {
 		disableHeader
 	} = props;
 	const componentClassName = getEditableOnFocusComponentClass(isSelected);
-	const documentationLink = 'https://graphql-api.com/documentation/#cache-control'
 	return (
 		<div className={ componentClassName }>
 			<Card>
 				{ ! disableHeader && (
 					<CardHeader isShady>
-						{ __('Deprecation reason', 'graphql-api') }
-						<LinkableInfoTooltip
-							{ ...props }
-							text={ __('Deprecated fields must not be queried anymore. The reason can indicate what replacement to use instead', 'graphql-api') }
-							href={ documentationLink }
-						/ >
+						<div>
+							{ __('Deprecation reason', 'graphql-api') }
+							<InfoTooltip
+								{ ...props }
+								text={ __('Deprecated fields must not be queried anymore. Indicate why/what field to use instead', 'graphql-api') }
+							/>
+						</div>
 					</CardHeader>
 				) }
 				<CardBody>
