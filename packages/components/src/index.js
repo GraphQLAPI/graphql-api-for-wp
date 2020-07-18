@@ -11,6 +11,7 @@ export { default as withFieldDirectiveMultiSelectControl } from './components/fi
 export { withErrorMessage, withSpinner } from './components/loading';
 export { SelectCard } from './components/select-card';
 export { LinkableInfoTooltip } from './components/linkable-info-tooltip';
+export { InfoTooltip } from './components/info-tooltip';
 export { AccessControlListEditableOnFocusMultiSelectControl } from './components/acl-multi-select-control';
 export { CacheControlListEditableOnFocusMultiSelectControl } from './components/ccl-multi-select-control';
 export { FieldDeprecationListEditableOnFocusMultiSelectControl } from './components/fdl-multi-select-control';
