@@ -35,9 +35,15 @@ function MultiSelectControl( props ) {
 	const filteredItems = items.filter(
 		( item ) => !search || item.group.toLowerCase().includes(search.toLowerCase()) || item.title.toLowerCase().includes(search.toLowerCase())
 	);
-	const groups = uniq(filteredItems.map(
-		( item ) => item.group
-	))
+	/**
+	 * Create a dictionary of the unique groups,
+	 * and also their groupKinds if available
+	 * Use group as key, and groupKind as the value
+	 */
+	let uniqueFilteredItems = {};
+	filteredItems.forEach(function( item ) {
+		uniqueFilteredItems[ item.group ] = item.groupKind || '';
+	} );
 	return (
 		<div className="multi-select-control__content">
 			<div className="multi-select-control__content_search">
@@ -79,11 +85,12 @@ function MultiSelectControl( props ) {
 						{ __( 'No items found.' ) }
 					</p>
 				) }
-				{ groups.map( ( group ) => (
+				{ Object.keys(uniqueFilteredItems).map( ( group ) => (
 					<MultiSelectControlGroup
 						{ ...props }
 						key={ group }
 						group={ group }
+						groupKind={ uniqueFilteredItems[group] }
 						items={ filter( filteredItems, {
 							group: group,
 						} ) }

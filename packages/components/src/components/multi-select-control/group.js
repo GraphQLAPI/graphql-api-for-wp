@@ -17,6 +17,7 @@ import MultiSelectControlGroupChecklist from './checklist';
 function MultiSelectControlGroup( {
 	instanceId,
 	group,
+	groupKind = '',
 	items,
 	selectedItems,
 	setAttributes,
@@ -52,11 +53,12 @@ function MultiSelectControlGroup( {
 		ariaChecked = 'false';
 	}
 
+	const className = `multi-select-control__category ${ groupKind }`
 	return (
 		<div
 			role="group"
 			aria-labelledby={ titleId }
-			className="multi-select-control__category"
+			className={ className }
 		>
 			<CheckboxControl
 				checked={ isAllChecked }

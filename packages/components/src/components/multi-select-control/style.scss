@@ -103,6 +103,14 @@
 	margin-top: 0;
 	background-color: $blue-medium-100;
 }
+/**
+* Types and interfaces have a different background color on their elements
+*/
+.multi-select-control__category.interface {
+	.multi-select-control__checklist {
+		background-color: #f0e5fa;
+	}
+}
 
 .multi-select-control__checklist-item {
 	margin-bottom: 0;

@@ -34,6 +34,7 @@ export const FETCH_TYPE_FIELDS_GRAPHQL_QUERY = `
 				fields(includeDeprecated: true) {
 					name
 				}
+				kind
 			}
 		}
 	}
@@ -151,6 +152,7 @@ export default {
 		const typeFields = response.data?.__schema?.types?.map(element => ({
 			typeName: element.name,
 			typeNamespacedName: element.namespacedName,
+			typeKind: element.kind,
 			fields: element.fields == null ? null : element.fields.map(subelement => subelement.name),
 		})) || [];
 		return setTypeFields( typeFields );

@@ -29,6 +29,7 @@ const FieldMultiSelectControl = compose( [
 			return typeItem.fields.flatMap(function(field) {
 				return [{
 					group: typeItem.typeName,
+					groupKind: typeItem.typeKind.toLowerCase(),
 					title: field,
 					value: `${ typeItem.typeNamespacedName }${ TYPE_FIELD_SEPARATOR_FOR_DB }${ field }`,
 				}]
