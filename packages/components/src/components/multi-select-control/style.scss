@@ -111,6 +111,14 @@
 		background-color: #f0e5fa;
 	}
 }
+/**
+* Print undefined elements in red
+*/
+.multi-select-control__category.undefined {
+	.multi-select-control__checklist {
+		background-color: #fae5e5;
+	}
+}
 
 .multi-select-control__checklist-item {
 	margin-bottom: 0;

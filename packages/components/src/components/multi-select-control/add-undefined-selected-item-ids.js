@@ -18,6 +18,7 @@ const AddUndefinedSelectedItemIDs = withSelect(
 			items: items.concat(undefinedSelectedItemIDs.map( undefinedSelectedItemID => (
 				{
 					group: __('Undefined elements', 'graphql-api'),
+					groupKind: 'undefined',
 					title: getLabelForNotFoundElement(undefinedSelectedItemID),
 					value: undefinedSelectedItemID,
 				}
