@@ -628,8 +628,10 @@ class PluginConfiguration
             ],
             SchemaModuleResolver::SCHEMA_USERS => [
                 \PoP\Users\Component::class,
-                \PoP\UserRoles\Component::class,
                 \PoP\UserState\Component::class,
+            ],
+            SchemaModuleResolver::SCHEMA_USER_ROLES => [
+                \PoP\UserRoles\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_PAGES => [
                 \PoP\Pages\Component::class,

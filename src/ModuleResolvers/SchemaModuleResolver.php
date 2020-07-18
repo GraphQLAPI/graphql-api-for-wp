@@ -9,20 +9,21 @@ use PoP\Pages\TypeResolvers\PageTypeResolver;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\Users\TypeResolvers\UserTypeResolver;
 use PoP\Media\TypeResolvers\MediaTypeResolver;
-use PoP\PostTags\TypeResolvers\PostTagTypeResolver;
 use PoP\Comments\TypeResolvers\CommentTypeResolver;
+use PoP\PostTags\TypeResolvers\PostTagTypeResolver;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
+use PoP\UserRolesWP\TypeResolvers\UserRoleTypeResolver;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLEndpointPostType;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 use PoP\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
+use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLPersistedQueryPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLCacheControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLAccessControlListPostType;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AbstractSchemaModuleResolver;
-use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLEndpointPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use PoP\GenericCustomPosts\TypeResolvers\GenericCustomPostTypeResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
-use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLPersistedQueryPostType;
 use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
 use PoP\UsefulDirectives\DirectiveResolvers\UpperCaseStringDirectiveResolver;
@@ -37,6 +38,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     public const SCHEMA_POSTS = Plugin::NAMESPACE . '\schema-posts';
     public const SCHEMA_COMMENTS = Plugin::NAMESPACE . '\schema-comments';
     public const SCHEMA_USERS = Plugin::NAMESPACE . '\schema-users';
+    public const SCHEMA_USER_ROLES = Plugin::NAMESPACE . '\schema-user-roles';
     public const SCHEMA_PAGES = Plugin::NAMESPACE . '\schema-pages';
     public const SCHEMA_MEDIA = Plugin::NAMESPACE . '\schema-media';
     public const SCHEMA_POST_TAGS = Plugin::NAMESPACE . '\schema-post-tags';
@@ -63,6 +65,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             self::SCHEMA_POSTS,
             self::SCHEMA_PAGES,
             self::SCHEMA_USERS,
+            self::SCHEMA_USER_ROLES,
             self::SCHEMA_COMMENTS,
             self::SCHEMA_POST_TAGS,
             self::SCHEMA_MEDIA,
@@ -82,6 +85,12 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                         FunctionalityModuleResolver::SINGLE_ENDPOINT,
                         FunctionalityModuleResolver::PERSISTED_QUERIES,
                         FunctionalityModuleResolver::CUSTOM_ENDPOINTS,
+                    ],
+                ];
+            case self::SCHEMA_USER_ROLES:
+                return [
+                    [
+                        self::SCHEMA_USERS,
                     ],
                 ];
             case self::SCHEMA_GENERIC_CUSTOMPOSTS:
@@ -111,6 +120,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             self::SCHEMA_POSTS => \__('Schema Posts', 'graphql-api'),
             self::SCHEMA_COMMENTS => \__('Schema Comments', 'graphql-api'),
             self::SCHEMA_USERS => \__('Schema Users', 'graphql-api'),
+            self::SCHEMA_USER_ROLES => \__('Schema User Roles', 'graphql-api'),
             self::SCHEMA_PAGES => \__('Schema Pages', 'graphql-api'),
             self::SCHEMA_MEDIA => \__('Schema Media', 'graphql-api'),
             self::SCHEMA_POST_TAGS => \__('Schema Post Tags', 'graphql-api'),
@@ -145,6 +155,12 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                     \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
                     \__('users', 'graphql-api'),
                     UserTypeResolver::NAME,
+                );
+            case self::SCHEMA_USER_ROLES:
+                return sprintf(
+                    \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
+                    \__('user roles', 'graphql-api'),
+                    UserRoleTypeResolver::NAME,
                 );
             case self::SCHEMA_PAGES:
                 return sprintf(
