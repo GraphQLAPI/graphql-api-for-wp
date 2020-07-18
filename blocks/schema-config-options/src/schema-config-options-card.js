@@ -9,7 +9,7 @@ import { Card, CardHeader, CardBody, RadioControl, Notice } from '@wordpress/com
  */
 import {
 	SchemaModeControl,
-	LinkableInfoTooltip,
+	InfoTooltip,
 	getEditableOnFocusComponentClass,
 	SETTINGS_VALUE_LABEL,
 } from '@graphqlapi/components';
@@ -51,11 +51,6 @@ const SchemaConfigOptionsCard = ( props ) => {
 			<Card { ...props }>
 				<CardHeader isShady>
 					{ __('Options', 'graphql-api') }
-					<LinkableInfoTooltip
-						{ ...props }
-						text={ __('Select the default behavior of the Schema', 'graphql-api') }
-						href="https://graphql-api.com/documentation/#schema-config-options"
-					/>
 				</CardHeader>
 				<CardBody>
 					{ ! isPublicPrivateSchemaEnabled && ! isSchemaNamespacingEnabled && (
@@ -66,10 +61,9 @@ const SchemaConfigOptionsCard = ( props ) => {
 					{ isPublicPrivateSchemaEnabled && (
 						<div className={ `${ className }__schema_mode` }>
 							<em>{ __('Public/Private Schema:', 'graphql-api') }</em>
-							<LinkableInfoTooltip
+							<InfoTooltip
 								{ ...props }
-								text={ __('Public: field/directives are always visible. Private: field/directives are hidden unless rules are satisfied.', 'graphql-api') }
-								href="https://graphql-api.com/documentation/#schema-mode"
+								text={ __('Default: use value from Settings. Public: fields/directives are always visible. Private: fields/directives are hidden unless rules are satisfied.', 'graphql-api') }
 							/>
 							<SchemaModeControl
 								{ ...props }
@@ -83,10 +77,9 @@ const SchemaConfigOptionsCard = ( props ) => {
 					{ isSchemaNamespacingEnabled && (
 						<div className={ `${ className }__namespacing` }>
 							<em>{ __('Namespace Types and Interfaces?', 'graphql-api') }</em>
-							<LinkableInfoTooltip
+							<InfoTooltip
 								{ ...props }
-								text={ __('Prepend types and interfaces using the PHP package\'s owner and name', 'graphql-api') }
-								href="https://graphql-api.com/documentation/#namespacing"
+								text={ __('Add a unique namespace to types and interfaces to avoid conflicts', 'graphql-api') }
 							/>
 							{ !isSelected && (
 								<>
