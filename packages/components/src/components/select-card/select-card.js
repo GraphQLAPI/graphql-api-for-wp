@@ -5,7 +5,7 @@ import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import { Card, CardHeader, CardBody } from '@wordpress/components';
 import { getEditableOnFocusComponentClass } from '../base-styles'
-import { LinkableInfoTooltip } from '../linkable-info-tooltip';
+import { InfoTooltip } from '../info-tooltip';
 
 /**
  * External dependencies
@@ -116,21 +116,22 @@ const MaybeWithDataLoadingSelectCardBody = ( props ) => {
 }
 
 const SelectCard = ( props ) => {
-	const { label, isSelected, tooltip, tooltipLink } = props;
+	const { label, isSelected, tooltip } = props;
 	const componentClassName = 'graphql-api-select-card';
 	const componentClass = `${ componentClassName } ${ getEditableOnFocusComponentClass(isSelected) }`;
 	return (
 		<div className={ componentClass }>
 			<Card { ...props }>
 				<CardHeader isShady>
-					{ label }
-					{ !! tooltip && !! tooltipLink &&
-						<LinkableInfoTooltip
-							{ ...props }
-							text={ tooltip }
-							href={ tooltipLink }
-						/ >
-					}
+					<div>
+						{ label }
+						{ !! tooltip &&
+							<InfoTooltip
+								{ ...props }
+								text={ tooltip }
+							/>
+						}
+					</div>
 				</CardHeader>
 				<CardBody>
 					<MaybeWithDataLoadingSelectCardBody
