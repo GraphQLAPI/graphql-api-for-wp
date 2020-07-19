@@ -7,3 +7,9 @@
 // @import "~@wordpress/base-styles/animations";
 // @import "~@wordpress/base-styles/z-index";
 @import "./z-index";
+
+// These colors used in the plugin will be removed
+// in @wordpress/base_styles, after version 2.0.0
+// $blue-medium-600: #008dbe;
+// $blue-medium-200: #bfe7f3;
+// $blue-medium-100: #e5f5fa;
