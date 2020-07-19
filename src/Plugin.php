@@ -45,7 +45,7 @@ class Plugin
          *
          * Execute before any other GraphQL plugin
          */
-        add_action('plugins_loaded', [$this, 'initialize'], 0);
+        add_action('plugins_loaded', [$this, 'initialize'], 5);
 
         // Functions to execute when activating/deactivating the plugin
         \register_activation_hook(\GRAPHQL_API_PLUGIN_FILE, [$this, 'activate']);
