@@ -15,18 +15,18 @@
 
 .plugins .active.module-schema td,
 .plugins .active.module-schema th {
-    background-color: #fefdf7;
+    background-color: #fcf7fe;
 }
 .plugin-update-tr.active.module-schema td,
 .plugins .active.module-schema th.check-column {
-    border-left-color: #c4d200;
+    border-left-color: #d200cf;
 }
 
 .plugins .active.module-functionality td,
 .plugins .active.module-functionality th {
-    background-color: #fef7fd;
+    background-color: #fefdf7;
 }
 .plugin-update-tr.active.module-functionality td,
 .plugins .active.module-functionality th.check-column {
-    border-left-color: #d200d2;
+    border-left-color: #c4d200;
 }
