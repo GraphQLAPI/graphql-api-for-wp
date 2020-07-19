@@ -601,7 +601,8 @@ class PluginConfiguration
     }
 
     /**
-     * Provide the classes of the components whose schema initialization must be skipped
+     * Provide the classes of the components whose
+     * schema initialization must be skipped
      *
      * @return array
      */
@@ -611,9 +612,6 @@ class PluginConfiguration
 
         // Component classes enabled/disabled by module
         $maybeSkipSchemaModuleComponentClasses = [
-            SchemaModuleResolver::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => [
-                \PoP\UsefulDirectives\Component::class,
-            ],
             SchemaModuleResolver::SCHEMA_CUSTOMPOSTS => [
                 \PoP\CustomPostMedia\Component::class,
             ],
@@ -651,8 +649,10 @@ class PluginConfiguration
             },
             ARRAY_FILTER_USE_KEY
         );
-        return GeneralUtils::arrayFlatten(array_values(
-            $skipSchemaModuleComponentClasses
-        ));
+        return GeneralUtils::arrayFlatten(
+            array_values(
+                $skipSchemaModuleComponentClasses
+            )
+        );
     }
 }

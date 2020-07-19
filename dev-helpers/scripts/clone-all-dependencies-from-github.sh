@@ -102,7 +102,6 @@ git clone https://github.com/PoPSchema/taxonomyquery.git
 git clone https://github.com/PoPSchema/taxonomyquery-wp.git
 git clone https://github.com/getpop/translation.git
 git clone https://github.com/getpop/translation-wp.git
-git clone https://github.com/PoPSchema/useful-directives.git
 git clone https://github.com/getpop/user-roles.git
 git clone https://github.com/getpop/user-roles-access-control.git
 git clone https://github.com/getpop/user-roles-wp.git

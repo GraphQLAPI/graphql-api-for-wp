@@ -45,8 +45,7 @@ class Component extends AbstractComponent
             \PoP\UserRolesWP\Component::class,
             \PoP\UserStateWP\Component::class,
             \PoP\UserMetaWP\Component::class,
-            \PoP\BasicDirectives\Component::class, // Needed for if UsefulDirectives is disabled
-            \PoP\UsefulDirectives\Component::class,
+            \PoP\BasicDirectives\Component::class,
             \PoP\GraphQLClientsForWP\Component::class,
             \PoP\GraphQLEndpointForWP\Component::class,
         ];

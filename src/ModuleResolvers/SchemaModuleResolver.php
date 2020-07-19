@@ -24,15 +24,11 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\AbstractSchemaModuleResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use PoP\GenericCustomPosts\TypeResolvers\GenericCustomPostTypeResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
-use PoP\UsefulDirectives\DirectiveResolvers\LowerCaseStringDirectiveResolver;
-use PoP\UsefulDirectives\DirectiveResolvers\TitleCaseStringDirectiveResolver;
-use PoP\UsefulDirectives\DirectiveResolvers\UpperCaseStringDirectiveResolver;
 
 class SchemaModuleResolver extends AbstractSchemaModuleResolver
 {
     use ModuleResolverTrait;
 
-    public const DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE = Plugin::NAMESPACE . '\directive-set-convert-lower-uppercase';
     public const SCHEMA_CUSTOMPOSTS = Plugin::NAMESPACE . '\schema-customposts';
     public const SCHEMA_GENERIC_CUSTOMPOSTS = Plugin::NAMESPACE . '\schema-generic-customposts';
     public const SCHEMA_POSTS = Plugin::NAMESPACE . '\schema-posts';
@@ -69,14 +65,12 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             self::SCHEMA_COMMENTS,
             self::SCHEMA_POST_TAGS,
             self::SCHEMA_MEDIA,
-            self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE,
         ];
     }
 
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {
-            case self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE:
             case self::SCHEMA_USERS:
             case self::SCHEMA_MEDIA:
             case self::SCHEMA_CUSTOMPOSTS:
@@ -115,7 +109,6 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     public function getName(string $module): string
     {
         $names = [
-            self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE => \__('Directive Set: Convert Lower/Uppercase', 'graphql-api'),
             self::SCHEMA_GENERIC_CUSTOMPOSTS => \__('Schema Generic Custom Posts', 'graphql-api'),
             self::SCHEMA_POSTS => \__('Schema Posts', 'graphql-api'),
             self::SCHEMA_COMMENTS => \__('Schema Comments', 'graphql-api'),
@@ -132,13 +125,6 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
     public function getDescription(string $module): string
     {
         switch ($module) {
-            case self::DIRECTIVE_SET_CONVERT_LOWER_UPPERCASE:
-                return sprintf(
-                    \__('Set of directives to manipulate strings: <code>@%s</code>, <code>@%s</code> and <code>@%s</code>', 'graphql-api'),
-                    UpperCaseStringDirectiveResolver::getDirectiveName(),
-                    LowerCaseStringDirectiveResolver::getDirectiveName(),
-                    TitleCaseStringDirectiveResolver::getDirectiveName()
-                );
             case self::SCHEMA_GENERIC_CUSTOMPOSTS:
                 return sprintf(
                     \__('Query any custom post type (added to the schema or not), through a generic type <code>%1$s</code>', 'graphql-api'),
