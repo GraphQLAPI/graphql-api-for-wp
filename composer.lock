@@ -711,12 +711,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/cache-control.git",
-                "reference": "f7393e318191b95222d8864c4a660d27d8a15797"
+                "reference": "be8f554eddc8b510fc2008718abe8e4711728c98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/cache-control/zipball/f7393e318191b95222d8864c4a660d27d8a15797",
-                "reference": "f7393e318191b95222d8864c4a660d27d8a15797",
+                "url": "https://api.github.com/repos/getpop/cache-control/zipball/be8f554eddc8b510fc2008718abe8e4711728c98",
+                "reference": "be8f554eddc8b510fc2008718abe8e4711728c98",
                 "shasum": ""
             },
             "require": {
@@ -756,7 +756,7 @@
                 "cache-control",
                 "pop"
             ],
-            "time": "2020-06-10T10:04:09+00:00"
+            "time": "2020-07-18T14:04:34+00:00"
         },
         {
             "name": "getpop/commentmeta",
@@ -981,12 +981,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/component-model.git",
-                "reference": "17e565113299ac983b89aba0f2e05a30fb4cad5c"
+                "reference": "966fde634eefabbcd481d87ee8b7488b52f5cf46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/component-model/zipball/17e565113299ac983b89aba0f2e05a30fb4cad5c",
-                "reference": "17e565113299ac983b89aba0f2e05a30fb4cad5c",
+                "url": "https://api.github.com/repos/getpop/component-model/zipball/966fde634eefabbcd481d87ee8b7488b52f5cf46",
+                "reference": "966fde634eefabbcd481d87ee8b7488b52f5cf46",
                 "shasum": ""
             },
             "require": {
@@ -1032,7 +1032,7 @@
                 "component-model",
                 "pop"
             ],
-            "time": "2020-07-18T13:13:10+00:00"
+            "time": "2020-07-18T14:20:07+00:00"
         },
         {
             "name": "getpop/custompostmedia",
@@ -1421,12 +1421,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/engine.git",
-                "reference": "8311ec8501de2bd5fc7e6fc6e53f12a8ec633f7c"
+                "reference": "472bf27d99b2849b5c6f4bd1e41ed5de616e0004"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/engine/zipball/8311ec8501de2bd5fc7e6fc6e53f12a8ec633f7c",
-                "reference": "8311ec8501de2bd5fc7e6fc6e53f12a8ec633f7c",
+                "url": "https://api.github.com/repos/getpop/engine/zipball/472bf27d99b2849b5c6f4bd1e41ed5de616e0004",
+                "reference": "472bf27d99b2849b5c6f4bd1e41ed5de616e0004",
                 "shasum": ""
             },
             "require": {
@@ -1475,7 +1475,7 @@
                 "engine",
                 "pop"
             ],
-            "time": "2020-07-13T02:38:47+00:00"
+            "time": "2020-07-18T14:04:22+00:00"
         },
         {
             "name": "getpop/engine-wp",
@@ -1647,12 +1647,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql.git",
-                "reference": "4d5ba7175170a034c97d8d008c9960c71b049c4c"
+                "reference": "4014ddadf1b432a164598867f87a89d46679d8b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql/zipball/4d5ba7175170a034c97d8d008c9960c71b049c4c",
-                "reference": "4d5ba7175170a034c97d8d008c9960c71b049c4c",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql/zipball/4014ddadf1b432a164598867f87a89d46679d8b6",
+                "reference": "4014ddadf1b432a164598867f87a89d46679d8b6",
                 "shasum": ""
             },
             "require": {
@@ -1696,7 +1696,7 @@
                 "graphql",
                 "pop"
             ],
-            "time": "2020-07-17T09:53:00+00:00"
+            "time": "2020-07-19T13:13:15+00:00"
         },
         {
             "name": "getpop/graphql-clients-for-wp",
@@ -1812,12 +1812,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-parser.git",
-                "reference": "cab3943fd682ebadae67bd941f4fcd1404bd6219"
+                "reference": "a314f879eaca4805f035fcc8eb612927e231bee3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-parser/zipball/cab3943fd682ebadae67bd941f4fcd1404bd6219",
-                "reference": "cab3943fd682ebadae67bd941f4fcd1404bd6219",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-parser/zipball/a314f879eaca4805f035fcc8eb612927e231bee3",
+                "reference": "a314f879eaca4805f035fcc8eb612927e231bee3",
                 "shasum": ""
             },
             "require": {
@@ -1850,7 +1850,7 @@
             ],
             "description": "Pure PHP GraphQL",
             "homepage": "https://github.com/GraphQLByPoP/graphql-parser",
-            "time": "2020-05-12T23:04:30+00:00"
+            "time": "2020-07-18T13:52:22+00:00"
         },
         {
             "name": "getpop/guzzle-helpers",
