@@ -59,13 +59,13 @@ class GraphiQLMenuPage extends AbstractMenuPage
             'graphql-api-graphiql-client',
             \GRAPHQL_API_URL . 'assets/css/graphiql-client.css',
             array(),
-            \GRAPHQL_BY_POP_VERSION
+            \GRAPHQL_API_VERSION
         );
         \wp_enqueue_style(
             'graphql-api-graphiql',
             \GRAPHQL_API_URL . 'assets/css/vendors/graphiql.min.css',
             array(),
-            \GRAPHQL_BY_POP_VERSION
+            \GRAPHQL_API_VERSION
         );
 
         // JS: execute them all in the footer
@@ -74,14 +74,14 @@ class GraphiQLMenuPage extends AbstractMenuPage
             'graphql-api-graphiql',
             \GRAPHQL_API_URL . 'assets/js/vendors/graphiql.min.js',
             array('graphql-api-react-dom'),
-            \GRAPHQL_BY_POP_VERSION,
+            \GRAPHQL_API_VERSION,
             true
         );
         \wp_enqueue_script(
             'graphql-api-graphiql-client',
             \GRAPHQL_API_URL . 'assets/js/graphiql-client.js',
             array('graphql-api-graphiql'),
-            \GRAPHQL_BY_POP_VERSION,
+            \GRAPHQL_API_VERSION,
             true
         );
 

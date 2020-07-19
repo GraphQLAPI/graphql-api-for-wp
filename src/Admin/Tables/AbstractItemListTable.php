@@ -85,7 +85,7 @@ abstract class AbstractItemListTable extends \WP_List_Table
             'graphql-api-wp-list-table-fix',
             \GRAPHQL_API_URL . 'assets/css/wp-list-table-fix.css',
             array(),
-            \GRAPHQL_BY_POP_VERSION
+            \GRAPHQL_API_VERSION
         );
     }
 

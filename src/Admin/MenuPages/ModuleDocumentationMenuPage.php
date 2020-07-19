@@ -76,7 +76,7 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
             'graphql-api-hide-admin-bar',
             \GRAPHQL_API_URL . 'assets/css/hide-admin-bar.css',
             array(),
-            \GRAPHQL_BY_POP_VERSION
+            \GRAPHQL_API_VERSION
         );
         /**
          * Make images fit within the iframe
@@ -85,7 +85,7 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
             'graphql-api-responsive-images',
             \GRAPHQL_API_URL . 'assets/css/responsive-images.css',
             array(),
-            \GRAPHQL_BY_POP_VERSION
+            \GRAPHQL_API_VERSION
         );
     }
 }

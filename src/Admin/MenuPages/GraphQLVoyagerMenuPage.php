@@ -42,13 +42,13 @@ class GraphQLVoyagerMenuPage extends AbstractMenuPage
             'graphql-api-voyager-client',
             \GRAPHQL_API_URL . 'assets/css/voyager-client.css',
             array(),
-            \GRAPHQL_BY_POP_VERSION
+            \GRAPHQL_API_VERSION
         );
         \wp_enqueue_style(
             'graphql-api-voyager',
             \GRAPHQL_API_URL . 'assets/css/vendors/voyager.css',
             array(),
-            \GRAPHQL_BY_POP_VERSION
+            \GRAPHQL_API_VERSION
         );
 
         // JS: execute them all in the footer
@@ -57,14 +57,14 @@ class GraphQLVoyagerMenuPage extends AbstractMenuPage
             'graphql-api-voyager',
             \GRAPHQL_API_URL . 'assets/js/vendors/voyager.min.js',
             array('graphql-api-react-dom'),
-            \GRAPHQL_BY_POP_VERSION,
+            \GRAPHQL_API_VERSION,
             true
         );
         \wp_enqueue_script(
             'graphql-api-voyager-client',
             \GRAPHQL_API_URL . 'assets/js/voyager-client.js',
             array('graphql-api-voyager'),
-            \GRAPHQL_BY_POP_VERSION,
+            \GRAPHQL_API_VERSION,
             true
         );
 

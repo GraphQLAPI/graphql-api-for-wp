@@ -436,7 +436,7 @@ class ModuleListTable extends AbstractItemListTable
             'graphql-api-module-list-table',
             \GRAPHQL_API_URL . 'assets/css/module-list-table.css',
             array(),
-            \GRAPHQL_BY_POP_VERSION
+            \GRAPHQL_API_VERSION
         );
     }
 
