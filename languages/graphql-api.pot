@@ -1,0 +1,901 @@
+# Copyright (C) 2020 GraphQL API
+# This file is distributed under the same license as the GraphQL API package.
+msgid ""
+msgstr ""
+"Project-Id-Version: GraphQL API\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: Leo <leo@getpop.org>\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../src/ComponentConfiguration.php:77
+msgid "---"
+msgstr ""
+
+#: ../src/ComponentConfiguration.php:99, ../src/Blocks/AccessControlBlock.php:97, ../src/Blocks/SchemaConfigurationBlock.php:76
+msgid "Default"
+msgstr ""
+
+#: ../src/BlockCategories/AccessControlBlockCategory.php:43
+msgid "Access Control for GraphQL"
+msgstr ""
+
+#: ../src/BlockCategories/CacheControlBlockCategory.php:42
+msgid "Cache Control for GraphQL"
+msgstr ""
+
+#: ../src/BlockCategories/EndpointBlockCategory.php:42, ../src/PostTypes/GraphQLEndpointPostType.php:55
+msgid "GraphQL endpoint"
+msgstr ""
+
+#: ../src/BlockCategories/FieldDeprecationBlockCategory.php:42
+msgid "Field Deprecations for the GraphQL schema"
+msgstr ""
+
+#: ../src/BlockCategories/PersistedQueryBlockCategory.php:42, ../src/PostTypes/GraphQLPersistedQueryPostType.php:52
+msgid "GraphQL persisted query"
+msgstr ""
+
+#: ../src/BlockCategories/QueryExecutionBlockCategory.php:47
+msgid "Query execution (endpoint/persisted query)"
+msgstr ""
+
+#: ../src/BlockCategories/SchemaConfigurationBlockCategory.php:42
+msgid "Schema Configuration for GraphQL"
+msgstr ""
+
+#: ../src/Blocks/AbstractBlock.php:91
+msgid "You are not authorized to see this content"
+msgstr ""
+
+#: ../src/Blocks/AbstractBlock.php:258
+msgid "You need to run `npm start` or `npm run build` for the \"%s\" block first."
+msgstr ""
+
+#: ../src/Blocks/AbstractControlBlock.php:106
+msgid "Fields"
+msgstr ""
+
+#: ../src/Blocks/AbstractControlBlock.php:108
+msgid "Directives"
+msgstr ""
+
+#: ../src/Blocks/AbstractControlBlock.php:145
+msgid "Select fields and directives:"
+msgstr ""
+
+#: ../src/Blocks/AbstractControlBlock.php:149
+msgid "Configuration:"
+msgstr ""
+
+#: ../src/Blocks/AbstractOptionsBlock.php:15, ../src/Blocks/SchemaConfigOptionsBlock.php:69
+msgid "✅ Yes"
+msgstr ""
+
+#: ../src/Blocks/AbstractOptionsBlock.php:16, ../src/Blocks/SchemaConfigOptionsBlock.php:70
+msgid "❌ No"
+msgstr ""
+
+#: ../src/Blocks/AbstractQueryExecutionOptionsBlock.php:33, ../src/Blocks/SchemaConfigOptionsBlock.php:97
+msgid "Options"
+msgstr ""
+
+#: ../src/Blocks/AbstractQueryExecutionOptionsBlock.php:44
+msgid "Enabled:"
+msgstr ""
+
+#: ../src/Blocks/AbstractSchemaConfigPostListBlock.php:79
+msgid "Undefined item with ID %s"
+msgstr ""
+
+#: ../src/Blocks/AbstractSchemaConfigPostListBlock.php:98, ../src/Blocks/AccessControlBlock.php:107, ../src/Blocks/CacheControlBlock.php:83, ../src/Blocks/FieldDeprecationBlock.php:67, ../src/Blocks/GraphiQLBlock.php:123, ../src/Blocks/AccessControlRuleBlocks/AbstractItemListAccessControlRuleBlock.php:38
+msgid "(not set)"
+msgstr ""
+
+#: ../src/Blocks/AccessControlBlock.php:47
+msgid "Define access for:"
+msgstr ""
+
+#: ../src/Blocks/AccessControlBlock.php:52
+msgid "Access Control Rules:"
+msgstr ""
+
+#: ../src/Blocks/AccessControlBlock.php:54, ../src/Blocks/AccessControlBlock.php:99
+msgid "Who can access:"
+msgstr ""
+
+#: ../src/Blocks/AccessControlBlock.php:89, ../src/Blocks/SchemaConfigOptionsBlock.php:57, ../src/ModuleResolvers/FunctionalityModuleResolver.php:539
+msgid "Public"
+msgstr ""
+
+#: ../src/Blocks/AccessControlBlock.php:90, ../src/Blocks/SchemaConfigOptionsBlock.php:58, ../src/ModuleResolvers/FunctionalityModuleResolver.php:540
+msgid "Private"
+msgstr ""
+
+#: ../src/Blocks/AccessControlBlock.php:94, ../src/Blocks/SchemaConfigOptionsBlock.php:62
+msgid "Public/Private Schema:"
+msgstr ""
+
+#: ../src/Blocks/CacheControlBlock.php:66
+msgid "Cache-control header for:"
+msgstr ""
+
+#: ../src/Blocks/CacheControlBlock.php:70
+msgid "Max-age:"
+msgstr ""
+
+#: ../src/Blocks/CacheControlBlock.php:92
+msgid "%s seconds"
+msgstr ""
+
+#: ../src/Blocks/CacheControlBlock.php:87
+msgid "%s seconds (<code>no-store</code>)"
+msgstr ""
+
+#: ../src/Blocks/EndpointOptionsBlock.php:46
+msgid "Expose GraphiQL client?"
+msgstr ""
+
+#: ../src/Blocks/EndpointOptionsBlock.php:53
+msgid "Expose the Interactive Schema client?"
+msgstr ""
+
+#: ../src/Blocks/FieldDeprecationBlock.php:50
+msgid "Fields to deprecate:"
+msgstr ""
+
+#: ../src/Blocks/FieldDeprecationBlock.php:54
+msgid "Deprecation reason:"
+msgstr ""
+
+#: ../src/Blocks/GraphiQLBlock.php:116
+msgid "GraphQL Query:"
+msgstr ""
+
+#: ../src/Blocks/GraphiQLBlock.php:129
+msgid "Variables:"
+msgstr ""
+
+#: ../src/Blocks/PersistedQueryOptionsBlock.php:63
+msgid "Accept variables as URL params:"
+msgstr ""
+
+#: ../src/Blocks/PersistedQueryOptionsBlock.php:68
+msgid "Inherit query from ancestor(s):"
+msgstr ""
+
+#: ../src/Blocks/SchemaConfigOptionsBlock.php:74, ../src/ModuleResolvers/FunctionalityModuleResolver.php:508
+msgid "Use namespacing?"
+msgstr ""
+
+#: ../src/Blocks/SchemaConfigOptionsBlock.php:83
+msgid "(Nothing here: All Schema Configuration options are disabled)"
+msgstr ""
+
+#: ../src/Blocks/SchemaConfigurationBlock.php:80
+msgid "Inherit from parent"
+msgstr ""
+
+#: ../src/Blocks/SchemaConfigurationBlock.php:78, ../src/ModuleResolvers/FunctionalityModuleResolver.php:468
+msgid "None"
+msgstr ""
+
+#: ../src/Blocks/SchemaConfigurationBlock.php:98, ../src/ModuleResolvers/FunctionalityModuleResolver.php:217, ../src/PostTypes/GraphQLSchemaConfigurationPostType.php:40
+msgid "Schema Configuration"
+msgstr ""
+
+#: ../src/General/BlockRenderingHelpers.php:19
+msgid "(No title)"
+msgstr ""
+
+#: ../src/General/BlockRenderingHelpers.php:24
+msgid "(%s) %s"
+msgstr ""
+
+#: ../src/ModuleResolvers/CacheFunctionalityModuleResolver.php:55
+msgid "Configuration Cache"
+msgstr ""
+
+#: ../src/ModuleResolvers/CacheFunctionalityModuleResolver.php:56
+msgid "Schema Cache"
+msgstr ""
+
+#: ../src/ModuleResolvers/CacheFunctionalityModuleResolver.php:65
+msgid "Cache the generated application configuration to disk"
+msgstr ""
+
+#: ../src/ModuleResolvers/CacheFunctionalityModuleResolver.php:67
+msgid "Cache the generated schema to disk"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:209, ../src/ModuleResolvers/FunctionalityModuleResolver.php:387
+msgid "Editing Access"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:210
+msgid "Single Endpoint"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:211, ../src/PostTypes/GraphQLPersistedQueryPostType.php:92
+msgid "Persisted Queries"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:212, ../src/PostTypes/GraphQLEndpointPostType.php:85
+msgid "Custom Endpoints"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:213
+msgid "GraphiQL for Single Endpoint"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:214
+msgid "GraphiQL for Custom Endpoints"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:215
+msgid "Interactive Schema for Single Endpoint"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:216
+msgid "Interactive Schema for Custom Endpoints"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:218
+msgid "Schema Namespacing"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:219
+msgid "Public/Private Schema"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:220
+msgid "Access Control"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:221
+msgid "Access Control Rule: Disable Access"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:222
+msgid "Access Control Rule: User State"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:223
+msgid "Access Control Rule: User Roles"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:224
+msgid "Access Control Rule: User Capabilities"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:225
+msgid "Cache Control"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:226
+msgid "Field Deprecation"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:227
+msgid "Excerpt as Description"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:228
+msgid "API Hierarchy"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:229
+msgid "Low-Level Query Editing"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:230
+msgid "GraphiQL Explorer"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:231
+msgid "Welcome Guides"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:242
+msgid "Establish who can edit the GraphQL schema, and how"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:245
+msgid "Expose a single GraphQL endpoint under <code>%s</code>, with unrestricted access"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:249
+msgid "Expose predefined responses through a custom URL, akin to using GraphQL queries to publish REST endpoints"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:251
+msgid "Expose different subsets of the schema for different targets, such as users (clients, employees, etc), applications (website, mobile app, etc), context (weekday, weekend, etc), and others"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:254
+msgid "Make a public GraphiQL client available under <code>%s</code>, to execute queries against the single endpoint. It requires pretty permalinks enabled"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:258
+msgid "Enable custom endpoints to be attached their own GraphiQL client, to execute queries against them"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:261
+msgid "Make a public Interactive Schema client available under <code>%s</code>, to visualize the schema accessible through the single endpoint. It requires pretty permalinks enabled"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:265
+msgid "Enable custom endpoints to be attached their own Interactive schema client, to visualize the custom schema subset"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:267
+msgid "Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:269
+msgid "Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:271
+msgid "Enable to communicate the existence of some field from the schema to certain users only (private mode) or to everyone (public mode). If disabled, fields are always available to everyone (public mode)"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:273
+msgid "Set-up rules to define who can access the different fields and directives from a schema"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:275
+msgid "Remove access to the fields and directives"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:277
+msgid "Allow or reject access to the fields and directives based on the user being logged-in or not"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:279
+msgid "Allow or reject access to the fields and directives based on the user having a certain role"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:281
+msgid "Allow or reject access to the fields and directives based on the user having a certain capability"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:283
+msgid "Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:285
+msgid "Deprecate fields, and explain how to replace them, through a user interface"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:287
+msgid "Provide a description of the different entities (Custom Endpoints, Persisted Queries, and others) through their excerpt"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:289
+msgid "Create a hierarchy of API endpoints extending from other endpoints, and inheriting their properties"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:291
+msgid "Have access to schema-configuration low-level directives when editing GraphQL queries in the admin"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:293
+msgid "Add the Explorer widget to the GraphiQL client when creating Persisted Queries, to simplify coding the query (by point-and-clicking on the fields)"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:296
+msgid "Display welcome guides which demonstrate how to use the plugin's different functionalities. <em>It requires WordPress version '%s' or above, or Gutenberg version '%s' or above</em>"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:562
+msgid "Default max-age"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:563
+msgid "Default max-age value (in seconds) for the Cache-Control header, for all fields and directives in the schema"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:528
+msgid "Default visibility"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:530
+msgid "Visibility to use for fields and directives in the schema when option <code>\"%s\"</code> is selected (in %s)"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:533, ../src/ModuleResolvers/FunctionalityModuleResolver.php:492, ../src/Admin/Tables/ModuleListTable.php:178
+msgid ", "
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:550
+msgid "Enable granular control?"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:551
+msgid "Enable to select the visibility for a set of fields/directives when editing the Access Control List"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:509
+msgid "Automatically namespace types and interfaces in the schema"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:488
+msgid "Default Schema Configuration"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:490
+msgid "Schema Configuration to use when option <code>\"Default\"</code> is selected (in %s)"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:451, ../src/ModuleResolvers/FunctionalityModuleResolver.php:439
+msgid "Base path"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:452
+msgid "URL base path to expose the Persisted Query"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:440
+msgid "URL base path to expose the Custom Endpoint"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:427, ../src/ModuleResolvers/FunctionalityModuleResolver.php:415
+msgid "Client path"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:428
+msgid "URL path to access the public Interactive Schema client"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:416
+msgid "URL path to access the public GraphiQL client"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:403
+msgid "Endpoint path"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:404
+msgid "URL path to expose the single GraphQL endpoint"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:388
+msgid "Who has editing access for Persisted Queries, Custom Endpoints and related post types"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:391
+msgid "Admin user(s) only"
+msgstr ""
+
+#: ../src/ModuleResolvers/FunctionalityModuleResolver.php:392
+msgid "Use same access workflow as for editing posts"
+msgstr ""
+
+#: ../src/ModuleResolvers/HasMarkdownDocumentationModuleResolverTrait.php:78
+msgid "Ops, the documentation for this module is not available"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:118
+msgid "Directive Set: Convert Lower/Uppercase"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:119
+msgid "Schema Generic Custom Posts"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:120
+msgid "Schema Posts"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:121
+msgid "Schema Comments"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:122
+msgid "Schema Users"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:123
+msgid "Schema User Roles"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:124
+msgid "Schema Pages"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:125
+msgid "Schema Media"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:126
+msgid "Schema Post Tags"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:127
+msgid "Schema Custom Posts"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:137
+msgid "Set of directives to manipulate strings: <code>@%s</code>, <code>@%s</code> and <code>@%s</code>"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:144
+msgid "Query any custom post type (added to the schema or not), through a generic type <code>%1$s</code>"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:149, ../src/ModuleResolvers/SchemaModuleResolver.php:155, ../src/ModuleResolvers/SchemaModuleResolver.php:161, ../src/ModuleResolvers/SchemaModuleResolver.php:167, ../src/ModuleResolvers/SchemaModuleResolver.php:173, ../src/ModuleResolvers/SchemaModuleResolver.php:179, ../src/ModuleResolvers/SchemaModuleResolver.php:185
+msgid "Query %1$s, through type <code>%2$s</code> added to the schema"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:150
+msgid "posts"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:156, ../src/ModuleResolvers/SchemaModuleResolver.php:308
+msgid "users"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:162
+msgid "user roles"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:168
+msgid "pages"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:174
+msgid "media elements"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:180
+msgid "comments"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:186, ../src/ModuleResolvers/SchemaModuleResolver.php:311
+msgid "post tags"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:190
+msgid "Base functionality for all custom posts"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:284
+msgid "Number of results from querying %s when argument <code>%s</code> is not provided. Use <code>%s</code> for unlimited"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:285
+msgid "Maximum number of results from querying %s. Use <code>%s</code> for unlimited"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:479
+msgid "Included custom post types"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:481
+msgid "Results from these custom post types will be included when querying a field with type <code>%s</code> (such as <code>%s</code>)<br/>Press <code>ctrl</code> or <code>shift</code> keys to select more than one"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:391
+msgid "Include type <code>%1$s</code> in <code>%2$s</code>?"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:406
+msgid "Results of type <code>%1$s</code> will be included when querying a field of type <code>%2$s</code> (such as <code>%3$s</code>)"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:299
+msgid "custom posts"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:335
+msgid "Default limit for %s"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:354
+msgid "Max limit for %s"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:374
+msgid "Use single type instead of union type?"
+msgstr ""
+
+#: ../src/ModuleResolvers/SchemaModuleResolver.php:376
+msgid "If type <code>%s</code> is composed of only one type (eg: <code>%s</code>), then return this single type directly in field <code>%s</code>?"
+msgstr ""
+
+#: ../src/PostTypes/AbstractGraphQLQueryExecutionPostType.php:55
+msgid "Execute"
+msgstr ""
+
+#: ../src/PostTypes/AbstractGraphQLQueryExecutionPostType.php:110
+msgid "View source &#8220;%s&#8221;"
+msgstr ""
+
+#: ../src/PostTypes/AbstractGraphQLQueryExecutionPostType.php:111
+msgid "View source"
+msgstr ""
+
+#: ../src/PostTypes/AbstractGraphQLQueryExecutionPostType.php:117, ../src/PostTypes/AbstractGraphQLQueryExecutionPostType.php:97
+msgid "%s &#8220;%s&#8221;"
+msgstr ""
+
+#: ../src/PostTypes/AbstractGraphQLQueryExecutionPostType.php:90
+msgid "Preview source &#8220;%s&#8221;"
+msgstr ""
+
+#: ../src/PostTypes/AbstractGraphQLQueryExecutionPostType.php:91
+msgid "Preview source"
+msgstr ""
+
+#: ../src/PostTypes/AbstractPostType.php:132, ../src/Admin/Tables/ModuleListTable.php:312
+msgid "Description"
+msgstr ""
+
+#: ../src/PostTypes/AbstractPostType.php:408, ../src/PostTypes/AbstractPostType.php:409, ../src/Taxonomies/AbstractTaxonomy.php:48, ../src/Taxonomies/AbstractTaxonomy.php:49
+msgid "Add New %s"
+msgstr ""
+
+#: ../src/PostTypes/AbstractPostType.php:410, ../src/Taxonomies/AbstractTaxonomy.php:46
+msgid "Edit %s"
+msgstr ""
+
+#: ../src/PostTypes/AbstractPostType.php:411
+msgid "New %s"
+msgstr ""
+
+#: ../src/PostTypes/AbstractPostType.php:413, ../src/Taxonomies/AbstractTaxonomy.php:50
+msgid "View %s"
+msgstr ""
+
+#: ../src/PostTypes/AbstractPostType.php:414, ../src/Taxonomies/AbstractTaxonomy.php:44
+msgid "Search %s"
+msgstr ""
+
+#: ../src/PostTypes/AbstractPostType.php:415, ../src/Taxonomies/AbstractTaxonomy.php:55
+msgid "No %s found"
+msgstr ""
+
+#: ../src/PostTypes/AbstractPostType.php:416
+msgid "No %s found in Trash"
+msgstr ""
+
+#: ../src/PostTypes/AbstractPostType.php:417
+msgid "Parent %s:"
+msgstr ""
+
+#: ../src/PostTypes/GraphQLAccessControlListPostType.php:37
+msgid "Access Control List"
+msgstr ""
+
+#: ../src/PostTypes/GraphQLAccessControlListPostType.php:48
+msgid "Access Control Lists"
+msgstr ""
+
+#: ../src/PostTypes/GraphQLCacheControlListPostType.php:35
+msgid "Cache Control List"
+msgstr ""
+
+#: ../src/PostTypes/GraphQLCacheControlListPostType.php:46
+msgid "Cache Control Lists"
+msgstr ""
+
+#: ../src/PostTypes/GraphQLEndpointPostType.php:66
+msgid "GraphQL endpoints"
+msgstr ""
+
+#: ../src/PostTypes/GraphQLEndpointPostType.php:167
+msgid "View endpoint"
+msgstr ""
+
+#. translators: %s: Post title.
+#: ../src/PostTypes/GraphQLEndpointPostType.php:350
+msgid "GraphiQL"
+msgstr ""
+
+#. translators: %s: Post title.
+#: ../src/PostTypes/GraphQLEndpointPostType.php:364
+msgid "Interactive schema"
+msgstr ""
+
+#: ../src/PostTypes/GraphQLFieldDeprecationListPostType.php:35
+msgid "Field Deprecation List"
+msgstr ""
+
+#: ../src/PostTypes/GraphQLFieldDeprecationListPostType.php:46
+msgid "Field Deprecation Lists"
+msgstr ""
+
+#: ../src/PostTypes/GraphQLPersistedQueryPostType.php:63
+msgid "GraphQL persisted queries"
+msgstr ""
+
+#: ../src/PostTypes/GraphQLPersistedQueryPostType.php:73
+msgid "Execute query"
+msgstr ""
+
+#: ../src/PostTypes/GraphQLSchemaConfigurationPostType.php:51
+msgid "Schema Configurations"
+msgstr ""
+
+#: ../src/Scripts/AbstractScript.php:131
+msgid "You need to run `npm start` or `npm run build` for the \"%s\" script first."
+msgstr ""
+
+#: ../src/Taxonomies/AbstractTaxonomy.php:47
+msgid "Update %s"
+msgstr ""
+
+#: ../src/Taxonomies/AbstractTaxonomy.php:51
+msgid "Popular %s"
+msgstr ""
+
+#: ../src/Taxonomies/AbstractTaxonomy.php:52
+msgid "Separate %s with commas"
+msgstr ""
+
+#: ../src/Taxonomies/AbstractTaxonomy.php:53
+msgid "Add or remove %s"
+msgstr ""
+
+#: ../src/Taxonomies/AbstractTaxonomy.php:54
+msgid "Choose from the most used %s"
+msgstr ""
+
+#: ../src/Taxonomies/GraphQLQueryTaxonomy.php:31
+msgid "Category"
+msgstr ""
+
+#: ../src/Taxonomies/GraphQLQueryTaxonomy.php:31
+msgid "category"
+msgstr ""
+
+#: ../src/Taxonomies/GraphQLQueryTaxonomy.php:42
+msgid "Categories"
+msgstr ""
+
+#: ../src/Taxonomies/GraphQLQueryTaxonomy.php:42
+msgid "categories"
+msgstr ""
+
+#: ../src/Admin/MenuPages/GraphiQLMenuPage.php:24, ../src/Admin/MenuPages/GraphQLVoyagerMenuPage.php:22
+msgid "Loading..."
+msgstr ""
+
+#: ../src/Admin/MenuPages/ModulesMenuPage.php:26
+msgid "GraphQL API — Modules"
+msgstr ""
+
+#: ../src/Admin/MenuPages/ModulesMenuPage.php:31, ../src/Admin/Tables/ModuleListTable.php:36
+msgid "Modules"
+msgstr ""
+
+#: ../src/Admin/MenuPages/SettingsMenuPage.php:116
+msgid "Settings for the GraphQL API"
+msgstr ""
+
+#: ../src/Admin/MenuPages/SettingsMenuPage.php:227
+msgid "There are no items to be configured"
+msgstr ""
+
+#: ../src/Admin/MenuPages/SettingsMenuPage.php:255
+msgid "GraphQL API — Settings"
+msgstr ""
+
+#: ../src/Admin/Menus/Menu.php:50, ../src/Admin/Menus/Menu.php:51
+msgid "GraphQL API"
+msgstr ""
+
+#: ../src/Admin/Menus/Menu.php:140
+msgid "GraphiQL (public client)"
+msgstr ""
+
+#: ../src/Admin/Menus/Menu.php:150
+msgid "Interactive Schema (public client)"
+msgstr ""
+
+#: ../src/Admin/TableActions/ModuleListTableAction.php:70
+msgid "Operation successful"
+msgstr ""
+
+#: ../src/Admin/TableActions/ModuleListTableAction.php:58
+msgid "Modules disabled successfully"
+msgstr ""
+
+#: ../src/Admin/TableActions/ModuleListTableAction.php:56
+msgid "Module disabled successfully"
+msgstr ""
+
+#: ../src/Admin/TableActions/ModuleListTableAction.php:54
+msgid "Modules enabled successfully"
+msgstr ""
+
+#: ../src/Admin/TableActions/ModuleListTableAction.php:52
+msgid "Module enabled successfully"
+msgstr ""
+
+#: ../src/Admin/TableActions/ModuleListTableAction.php:125
+msgid "This URL is either stale or not valid. Please <a href=\"%s\">click here to reload the page</a>, and try again"
+msgstr ""
+
+#: ../src/Admin/Tables/AbstractItemListTable.php:99
+msgid "No items found."
+msgstr ""
+
+#: ../src/Admin/Tables/ModuleListTable.php:26, ../src/Admin/Tables/ModuleListTable.php:304
+msgid "Module"
+msgstr ""
+
+#: ../src/Admin/Tables/ModuleListTable.php:130
+msgid "View details"
+msgstr ""
+
+#: ../src/Admin/Tables/ModuleListTable.php:146
+msgid "-"
+msgstr ""
+
+#: ../src/Admin/Tables/ModuleListTable.php:163
+msgid "⇠ as disabled"
+msgstr ""
+
+#: ../src/Admin/Tables/ModuleListTable.php:182
+msgid "%s or %s"
+msgstr ""
+
+#: ../src/Admin/Tables/ModuleListTable.php:194
+msgid "Yes"
+msgstr ""
+
+#: ../src/Admin/Tables/ModuleListTable.php:194
+msgid "No"
+msgstr ""
+
+#: ../src/Admin/Tables/ModuleListTable.php:278
+msgid "Disabled"
+msgstr ""
+
+#: ../src/Admin/Tables/ModuleListTable.php:271, ../src/Admin/Tables/ModuleListTable.php:326
+msgid "Enable"
+msgstr ""
+
+#: ../src/Admin/Tables/ModuleListTable.php:244, ../src/Admin/Tables/ModuleListTable.php:309
+msgid "Enabled"
+msgstr ""
+
+#: ../src/Admin/Tables/ModuleListTable.php:241, ../src/Admin/Tables/ModuleListTable.php:327
+msgid "Disable"
+msgstr ""
+
+#: ../src/Admin/Tables/ModuleListTable.php:260
+msgid "Settings"
+msgstr ""
+
+#: ../src/Admin/Tables/ModuleListTable.php:313
+msgid "Depends on"
+msgstr ""
+
+#: ../src/Blocks/AccessControlRuleBlocks/AccessControlDisableAccessBlock.php:31
+msgid "Nobody"
+msgstr ""
+
+#: ../src/Blocks/AccessControlRuleBlocks/AccessControlUserCapabilitiesBlock.php:24
+msgid "Users with any of these capabilities"
+msgstr ""
+
+#: ../src/Blocks/AccessControlRuleBlocks/AccessControlUserRolesBlock.php:24
+msgid "Users with any of these roles"
+msgstr ""
+
+#: ../src/Blocks/AccessControlRuleBlocks/AccessControlUserStateBlock.php:30
+msgid "Logged-in users"
+msgstr ""
+
+#: ../src/Blocks/AccessControlRuleBlocks/AccessControlUserStateBlock.php:31
+msgid "Not logged-in users"
+msgstr ""
