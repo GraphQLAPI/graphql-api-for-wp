@@ -37,6 +37,16 @@ class Plugin
      */
     public function setup(): void
     {
+        /**
+         * Wait until "plugins_loaded" to initialize the plugin, because:
+         *
+         * - ModuleListTableAction requires `wp_verify_nonce`, loaded in pluggable.php
+         * - Allow other plugins to inject their own functionality
+         *
+         * Execute before any other GraphQL plugin
+         */
+        add_action('plugins_loaded', [$this, 'initialize'], 0);
+
         // Functions to execute when activating/deactivating the plugin
         \register_activation_hook(\GRAPHQL_API_PLUGIN_FILE, [$this, 'activate']);
         \register_deactivation_hook(\GRAPHQL_API_PLUGIN_FILE, [$this, 'deactivate']);
@@ -70,6 +80,9 @@ class Plugin
      */
     public function initialize(): void
     {
+        // Boot all PoP components, from this plugin and all extensions
+        ComponentLoader::bootComponents();
+
         $instanceManager = InstanceManagerFacade::getInstance();
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         /**

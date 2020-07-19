@@ -19,8 +19,6 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-use PoP\Engine\ComponentLoader;
-
 define('GRAPHQL_API_PLUGIN_FILE', __FILE__);
 define('GRAPHQL_API_DIR', dirname(__FILE__));
 define('GRAPHQL_API_URL', plugin_dir_url(__FILE__));
@@ -29,23 +27,5 @@ define('GRAPHQL_API_VERSION', '0.1.0');
 // Load Composer’s autoloader
 require_once(__DIR__ . '/vendor/autoload.php');
 
-// Plugin instance
-$plugin = new \GraphQLAPI\GraphQLAPI\Plugin();
-
-// Set-up is executed immediately
-$plugin->setup();
-
-/**
- * Wait until "plugins_loaded" to initialize the plugin, because:
- *
- * - ModuleListTableAction requires `wp_verify_nonce`, loaded in pluggable.php
- * - Allow other plugins to inject their own functionality
- *
- * Execute before any other GraphQL plugin
- */
-add_action('plugins_loaded', function () use ($plugin) {
-    // Boot all PoP components, from this plugin and all extensions
-    ComponentLoader::bootComponents();
-    // Initialize this plugin
-    $plugin->initialize();
-}, 0);
+// Create and set-up the plugin instance
+(new \GraphQLAPI\GraphQLAPI\Plugin())->setup();
