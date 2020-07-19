@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f43d0317d35d1dd5b04bef5991aef50",
+    "content-hash": "0ff03a9f6e9475ac1a7f9087cd83559b",
     "packages": [
         {
             "name": "brain/cortex",
@@ -2401,12 +2401,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/migrate-api.git",
-                "reference": "e54cde7ee5ec12097625724e7ca09787b08a0627"
+                "reference": "a81db69b9f07e170497441efb3ff7c09f2b85486"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-api/zipball/e54cde7ee5ec12097625724e7ca09787b08a0627",
-                "reference": "e54cde7ee5ec12097625724e7ca09787b08a0627",
+                "url": "https://api.github.com/repos/getpop/migrate-api/zipball/a81db69b9f07e170497441efb3ff7c09f2b85486",
+                "reference": "a81db69b9f07e170497441efb3ff7c09f2b85486",
                 "shasum": ""
             },
             "require": {
@@ -2436,7 +2436,7 @@
                 "api",
                 "pop"
             ],
-            "time": "2020-05-21T11:48:33+00:00"
+            "time": "2020-07-19T16:03:26+00:00"
         },
         {
             "name": "getpop/migrate-api-graphql",
@@ -2654,12 +2654,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/migrate-component-model.git",
-                "reference": "e0d15f0381a6d04b76c44c1767982dd7d61c0a82"
+                "reference": "f1e6c06e7eb33dfad54f25b9fe4ac384c8c16b80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-component-model/zipball/e0d15f0381a6d04b76c44c1767982dd7d61c0a82",
-                "reference": "e0d15f0381a6d04b76c44c1767982dd7d61c0a82",
+                "url": "https://api.github.com/repos/getpop/migrate-component-model/zipball/f1e6c06e7eb33dfad54f25b9fe4ac384c8c16b80",
+                "reference": "f1e6c06e7eb33dfad54f25b9fe4ac384c8c16b80",
                 "shasum": ""
             },
             "require": {
@@ -2688,7 +2688,7 @@
                 "component-model",
                 "pop"
             ],
-            "time": "2020-06-11T15:09:39+00:00"
+            "time": "2020-07-19T16:03:31+00:00"
         },
         {
             "name": "getpop/migrate-custompostmedia",
@@ -2948,12 +2948,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/migrate-engine.git",
-                "reference": "3c84d56393d474b80cf86292dc0794ad025bc52f"
+                "reference": "5070fc4c3a39cb42ac07fe12186b03c9cb5ed303"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-engine/zipball/3c84d56393d474b80cf86292dc0794ad025bc52f",
-                "reference": "3c84d56393d474b80cf86292dc0794ad025bc52f",
+                "url": "https://api.github.com/repos/getpop/migrate-engine/zipball/5070fc4c3a39cb42ac07fe12186b03c9cb5ed303",
+                "reference": "5070fc4c3a39cb42ac07fe12186b03c9cb5ed303",
                 "shasum": ""
             },
             "require": {
@@ -2987,7 +2987,7 @@
                 "engine",
                 "pop"
             ],
-            "time": "2020-05-21T11:48:34+00:00"
+            "time": "2020-07-19T16:03:39+00:00"
         },
         {
             "name": "getpop/migrate-engine-wp",
@@ -2995,12 +2995,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/migrate-engine-wp.git",
-                "reference": "0ab545cced6e8c890dda7386a78350f549ca3115"
+                "reference": "661a0de8bd069364719d5792edb8841cb6b619c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-engine-wp/zipball/0ab545cced6e8c890dda7386a78350f549ca3115",
-                "reference": "0ab545cced6e8c890dda7386a78350f549ca3115",
+                "url": "https://api.github.com/repos/getpop/migrate-engine-wp/zipball/661a0de8bd069364719d5792edb8841cb6b619c3",
+                "reference": "661a0de8bd069364719d5792edb8841cb6b619c3",
                 "shasum": ""
             },
             "require": {
@@ -3029,7 +3029,7 @@
                 "engine-wp",
                 "pop"
             ],
-            "time": "2020-05-21T11:48:34+00:00"
+            "time": "2020-07-19T16:03:45+00:00"
         },
         {
             "name": "getpop/migrate-media",
@@ -5349,59 +5349,6 @@
                 "wordpress"
             ],
             "time": "2020-06-10T10:10:54+00:00"
-        },
-        {
-            "name": "getpop/convert-case-directives",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/PoPSchema/convert-case-directives.git",
-                "reference": "9e396688dd3c5008a946614e4454fad55fa5d05b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/convert-case-directives/zipball/9e396688dd3c5008a946614e4454fad55fa5d05b",
-                "reference": "9e396688dd3c5008a946614e4454fad55fa5d05b",
-                "shasum": ""
-            },
-            "require": {
-                "getpop/basic-directives": "dev-master",
-                "php": "~7.1"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": ">=7.0",
-                "squizlabs/php_codesniffer": "^3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PoP\\ConvertCaseDirectives\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Leonardo Losoviz",
-                    "email": "leo@getpop.org",
-                    "homepage": "https://getpop.org"
-                }
-            ],
-            "description": "Collection of useful directives",
-            "homepage": "https://github.com/PoPSchema/convert-case-directives",
-            "keywords": [
-                "pop",
-                "convert-case-directives"
-            ],
-            "time": "2020-06-10T10:11:01+00:00"
         },
         {
             "name": "getpop/user-roles",
@@ -10156,7 +10103,7 @@
         "getpop/taxonomymeta-wp": 20,
         "getpop/taxonomyquery-wp": 20,
         "getpop/post-tags-wp": 20,
-        "getpop/convert-case-directives": 20,
+        "getpop/basic-directives": 20,
         "getpop/user-roles-access-control": 20,
         "getpop/user-roles-wp": 20,
         "getpop/user-state-wp": 20,
