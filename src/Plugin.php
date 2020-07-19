@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI;
 
+use PoP\Engine\ComponentLoader;
+use GraphQLAPI\GraphQLAPI\PluginConfiguration;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
@@ -28,6 +30,44 @@ class Plugin
      */
     public const NAMESPACE = __NAMESPACE__;
 
+    /**
+     * Plugin set-up, executed immediately when loading the plugin
+     *
+     * @return void
+     */
+    public function setup(): void
+    {
+        // Functions to execute when activating/deactivating the plugin
+        \register_activation_hook(\GRAPHQL_API_PLUGIN_FILE, [$this, 'activate']);
+        \register_deactivation_hook(\GRAPHQL_API_PLUGIN_FILE, [$this, 'deactivate']);
+
+        // Configure the plugin. This defines hooks to set environment variables,
+        // so must be executed
+        // before those hooks are triggered for first time
+        // (in ComponentConfiguration classes)
+        PluginConfiguration::initialize();
+
+        // Component configuration
+        $componentClassConfiguration = PluginConfiguration::getComponentClassConfiguration();
+        $skipSchemaComponentClasses = PluginConfiguration::getSkippingSchemaComponentClasses();
+
+        // Initialize the plugin's Component and, with it,
+        // all its dependencies from PoP
+        ComponentLoader::initializeComponents(
+            [
+                \GraphQLAPI\GraphQLAPI\Component::class,
+            ],
+            $componentClassConfiguration,
+            $skipSchemaComponentClasses
+        );
+    }
+
+    /**
+     * Plugin initialization, executed on hook "plugins_loaded"
+     * to wait for all extensions to be loaded
+     *
+     * @return void
+     */
     public function initialize(): void
     {
         $instanceManager = InstanceManagerFacade::getInstance();

@@ -21,6 +21,7 @@ if (!defined('ABSPATH')) {
 
 use PoP\Engine\ComponentLoader;
 
+define('GRAPHQL_API_PLUGIN_FILE', __FILE__);
 define('GRAPHQL_API_DIR', dirname(__FILE__));
 define('GRAPHQL_API_URL', plugin_dir_url(__FILE__));
 define('GRAPHQL_BY_POP_VERSION', '0.1.0');
@@ -31,36 +32,20 @@ require_once(__DIR__ . '/vendor/autoload.php');
 // Plugin instance
 $plugin = new \GraphQLAPI\GraphQLAPI\Plugin();
 
-// Functions to execute when activating/deactivating the plugin
-\register_activation_hook(__FILE__, [$plugin, 'activate']);
-\register_deactivation_hook(__FILE__, [$plugin, 'deactivate']);
-
-// Configure the plugin. This defines hooks to set environment variables, so must be executed
-// before those hooks are triggered for first time (in ComponentConfiguration classes)
-\GraphQLAPI\GraphQLAPI\PluginConfiguration::initialize();
-
-// Component configuration
-$componentClassConfiguration = \GraphQLAPI\GraphQLAPI\PluginConfiguration::getComponentClassConfiguration();
-$skipSchemaComponentClasses = \GraphQLAPI\GraphQLAPI\PluginConfiguration::getSkippingSchemaComponentClasses();
-
-// Initialize the plugin's Component and, with it, all its dependencies from PoP
-ComponentLoader::initializeComponents(
-    [
-        \GraphQLAPI\GraphQLAPI\Component::class,
-    ],
-    $componentClassConfiguration,
-    $skipSchemaComponentClasses
-);
-
-// Boot all PoP components
-ComponentLoader::bootComponents();
+// Set-up is executed immediately
+$plugin->setup();
 
 /**
  * Wait until "plugins_loaded" to initialize the plugin, because:
  *
  * - ModuleListTableAction requires `wp_verify_nonce`, loaded in pluggable.php
  * - Allow other plugins to inject their own functionality
+ *
+ * Execute before any other GraphQL plugin
  */
 add_action('plugins_loaded', function () use ($plugin) {
+    // Boot all PoP components, from this plugin and all extensions
+    ComponentLoader::bootComponents();
+    // Initialize this plugin
     $plugin->initialize();
-});
+}, 0);
