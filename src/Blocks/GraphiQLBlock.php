@@ -120,7 +120,7 @@ EOT, 'graphql-api');
                 $query
             ) : sprintf(
                 '<p><em>%s</em></p>',
-                \__('(Not set)', 'graphql-api')
+                \__('(not set)', 'graphql-api')
             )
         );
         if ($variables) {
