@@ -5351,16 +5351,16 @@
             "time": "2020-06-10T10:10:54+00:00"
         },
         {
-            "name": "getpop/useful-directives",
+            "name": "getpop/convert-case-directives",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/PoPSchema/useful-directives.git",
+                "url": "https://github.com/PoPSchema/convert-case-directives.git",
                 "reference": "9e396688dd3c5008a946614e4454fad55fa5d05b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/useful-directives/zipball/9e396688dd3c5008a946614e4454fad55fa5d05b",
+                "url": "https://api.github.com/repos/PoPSchema/convert-case-directives/zipball/9e396688dd3c5008a946614e4454fad55fa5d05b",
                 "reference": "9e396688dd3c5008a946614e4454fad55fa5d05b",
                 "shasum": ""
             },
@@ -5381,7 +5381,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\UsefulDirectives\\": "src"
+                    "PoP\\ConvertCaseDirectives\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5396,10 +5396,10 @@
                 }
             ],
             "description": "Collection of useful directives",
-            "homepage": "https://github.com/PoPSchema/useful-directives",
+            "homepage": "https://github.com/PoPSchema/convert-case-directives",
             "keywords": [
                 "pop",
-                "useful-directives"
+                "convert-case-directives"
             ],
             "time": "2020-06-10T10:11:01+00:00"
         },
@@ -10156,7 +10156,7 @@
         "getpop/taxonomymeta-wp": 20,
         "getpop/taxonomyquery-wp": 20,
         "getpop/post-tags-wp": 20,
-        "getpop/useful-directives": 20,
+        "getpop/convert-case-directives": 20,
         "getpop/user-roles-access-control": 20,
         "getpop/user-roles-wp": 20,
         "getpop/user-state-wp": 20,
