@@ -174,12 +174,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/access-control.git",
-                "reference": "76f9c55a17f8f8d3ec542f48af348c00ba01bc67"
+                "reference": "3c6f9287ef545a0b41663894333bc74ad3349eb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/access-control/zipball/76f9c55a17f8f8d3ec542f48af348c00ba01bc67",
-                "reference": "76f9c55a17f8f8d3ec542f48af348c00ba01bc67",
+                "url": "https://api.github.com/repos/getpop/access-control/zipball/3c6f9287ef545a0b41663894333bc74ad3349eb2",
+                "reference": "3c6f9287ef545a0b41663894333bc74ad3349eb2",
                 "shasum": ""
             },
             "require": {
@@ -220,7 +220,7 @@
                 "AccessControl",
                 "pop"
             ],
-            "time": "2020-07-11T14:56:35+00:00"
+            "time": "2020-07-20T08:40:34+00:00"
         },
         {
             "name": "getpop/api",
@@ -658,12 +658,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/basic-directives.git",
-                "reference": "9be81495ea5f0276aff7803a8cf324bb4e99fa0a"
+                "reference": "270e0bfb2812e763a41c1355eb4c3a04050948f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/basic-directives/zipball/9be81495ea5f0276aff7803a8cf324bb4e99fa0a",
-                "reference": "9be81495ea5f0276aff7803a8cf324bb4e99fa0a",
+                "url": "https://api.github.com/repos/getpop/basic-directives/zipball/270e0bfb2812e763a41c1355eb4c3a04050948f5",
+                "reference": "270e0bfb2812e763a41c1355eb4c3a04050948f5",
                 "shasum": ""
             },
             "require": {
@@ -703,7 +703,7 @@
                 "basic-directives",
                 "pop"
             ],
-            "time": "2020-07-13T02:38:32+00:00"
+            "time": "2020-07-19T18:03:02+00:00"
         },
         {
             "name": "getpop/cache-control",
@@ -981,12 +981,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/component-model.git",
-                "reference": "966fde634eefabbcd481d87ee8b7488b52f5cf46"
+                "reference": "8f0c5534cc71e350463980a1b294f7d8c5cb7259"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/component-model/zipball/966fde634eefabbcd481d87ee8b7488b52f5cf46",
-                "reference": "966fde634eefabbcd481d87ee8b7488b52f5cf46",
+                "url": "https://api.github.com/repos/getpop/component-model/zipball/8f0c5534cc71e350463980a1b294f7d8c5cb7259",
+                "reference": "8f0c5534cc71e350463980a1b294f7d8c5cb7259",
                 "shasum": ""
             },
             "require": {
@@ -1032,7 +1032,7 @@
                 "component-model",
                 "pop"
             ],
-            "time": "2020-07-18T14:20:07+00:00"
+            "time": "2020-07-19T18:13:26+00:00"
         },
         {
             "name": "getpop/custompostmedia",
@@ -1647,12 +1647,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql.git",
-                "reference": "4014ddadf1b432a164598867f87a89d46679d8b6"
+                "reference": "03675ac24994f5764f86e96d34d3e02b5f1fcf0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql/zipball/4014ddadf1b432a164598867f87a89d46679d8b6",
-                "reference": "4014ddadf1b432a164598867f87a89d46679d8b6",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql/zipball/03675ac24994f5764f86e96d34d3e02b5f1fcf0a",
+                "reference": "03675ac24994f5764f86e96d34d3e02b5f1fcf0a",
                 "shasum": ""
             },
             "require": {
@@ -1696,7 +1696,7 @@
                 "graphql",
                 "pop"
             ],
-            "time": "2020-07-19T13:13:15+00:00"
+            "time": "2020-07-19T18:13:19+00:00"
         },
         {
             "name": "getpop/graphql-clients-for-wp",
@@ -5577,12 +5577,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/user-state-access-control.git",
-                "reference": "0afbe979a2183ba9b99e8bb861a4e62fd8e9fdc5"
+                "reference": "5258c70610d5e16f41242d11b188066261c3afeb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/user-state-access-control/zipball/0afbe979a2183ba9b99e8bb861a4e62fd8e9fdc5",
-                "reference": "0afbe979a2183ba9b99e8bb861a4e62fd8e9fdc5",
+                "url": "https://api.github.com/repos/getpop/user-state-access-control/zipball/5258c70610d5e16f41242d11b188066261c3afeb",
+                "reference": "5258c70610d5e16f41242d11b188066261c3afeb",
                 "shasum": ""
             },
             "require": {
@@ -5627,7 +5627,7 @@
                 "UserStateAccessControl",
                 "pop"
             ],
-            "time": "2020-06-10T10:27:45+00:00"
+            "time": "2020-07-20T08:46:14+00:00"
         },
         {
             "name": "getpop/user-state-wp",
@@ -8700,20 +8700,20 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.32",
+            "version": "0.12.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "d03863f504c8432b3de4d1881f73f6acb8c0e67c"
+                "reference": "46e698a0452526a05c4a351d7c47c4b8c37a548d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d03863f504c8432b3de4d1881f73f6acb8c0e67c",
-                "reference": "d03863f504c8432b3de4d1881f73f6acb8c0e67c",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/46e698a0452526a05c4a351d7c47c4b8c37a548d",
+                "reference": "46e698a0452526a05c4a351d7c47c4b8c37a548d",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1"
+                "php": "^7.1|^8.0"
             },
             "conflict": {
                 "phpstan/phpstan-shim": "*"
@@ -8752,7 +8752,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-01T11:57:52+00:00"
+            "time": "2020-07-19T22:10:11+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
