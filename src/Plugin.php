@@ -229,7 +229,7 @@ class Plugin
         // Flush the rewrite rules not immediately, but at the end of hook "init",
         // after function `addRewriteEndpoints` in `AbstractEndpointHandler`
         // is executed (flush only after doing `add_rewrite_endpoint`)
-        add_action('init', 'flush_rewrite_rules', PHP_INT_MAX);
+        \add_action('init', 'flush_rewrite_rules', PHP_INT_MAX);
 
         // Initialize the timestamp
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
