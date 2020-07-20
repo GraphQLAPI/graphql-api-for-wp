@@ -106,7 +106,7 @@ class GraphiQLMenuPage extends AbstractMenuPage
 
     protected function getDefaultQuery(): string
     {
-        return \__(<<<EOT
+        return <<<EOT
 # Welcome to GraphiQL
 #
 # GraphiQL is an in-browser tool for writing, validating, and
@@ -152,6 +152,6 @@ query {
   }
 }
 
-EOT, 'graphql-api');
+EOT;
     }
 }
