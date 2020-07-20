@@ -382,7 +382,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    $option,
+                    $option
                 ),
                 Properties::TITLE => \__('Editing Access Scheme', 'graphql-api'),
                 Properties::DESCRIPTION => \__('Scheme to decide which users can edit the schema (Persisted Queries, Custom Endpoints and related post types) and with what permissions', 'graphql-api'),
@@ -398,7 +398,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    $option,
+                    $option
                 ),
                 Properties::TITLE => \__('Endpoint path', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL path to expose the single GraphQL endpoint', 'graphql-api'),
@@ -410,7 +410,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    $option,
+                    $option
                 ),
                 Properties::TITLE => \__('Client path', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL path to access the public GraphiQL client', 'graphql-api'),
@@ -422,7 +422,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    $option,
+                    $option
                 ),
                 Properties::TITLE => \__('Client path', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL path to access the public Interactive Schema client', 'graphql-api'),
@@ -434,7 +434,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    $option,
+                    $option
                 ),
                 Properties::TITLE => \__('Base path', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL base path to expose the Custom Endpoint', 'graphql-api'),
@@ -446,7 +446,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    $option,
+                    $option
                 ),
                 Properties::TITLE => \__('Base path', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL base path to expose the Persisted Query', 'graphql-api'),
@@ -483,7 +483,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    $option,
+                    $option
                 ),
                 Properties::TITLE => \__('Default Schema Configuration', 'graphql-api'),
                 Properties::DESCRIPTION => sprintf(
@@ -503,7 +503,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    $option,
+                    $option
                 ),
                 Properties::TITLE => \__('Use namespacing?', 'graphql-api'),
                 Properties::DESCRIPTION => \__('Automatically namespace types and interfaces in the schema', 'graphql-api'),
@@ -523,7 +523,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    $option,
+                    $option
                 ),
                 Properties::TITLE => \__('Default visibility', 'graphql-api'),
                 Properties::DESCRIPTION => sprintf(
@@ -545,7 +545,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    $option,
+                    $option
                 ),
                 Properties::TITLE => \__('Enable granular control?', 'graphql-api'),
                 Properties::DESCRIPTION => \__('Enable to select the visibility for a set of fields/directives when editing the Access Control List', 'graphql-api'),
@@ -557,7 +557,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    $option,
+                    $option
                 ),
                 Properties::TITLE => \__('Default max-age', 'graphql-api'),
                 Properties::DESCRIPTION => \__('Default max-age value (in seconds) for the Cache-Control header, for all fields and directives in the schema', 'graphql-api'),

@@ -135,49 +135,49 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             case self::SCHEMA_GENERIC_CUSTOMPOSTS:
                 return sprintf(
                     \__('Query any custom post type (added to the schema or not), through a generic type <code>%1$s</code>', 'graphql-api'),
-                    GenericCustomPostTypeResolver::NAME,
+                    GenericCustomPostTypeResolver::NAME
                 );
             case self::SCHEMA_POSTS:
                 return sprintf(
                     \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
                     \__('posts', 'graphql-api'),
-                    PostTypeResolver::NAME,
+                    PostTypeResolver::NAME
                 );
             case self::SCHEMA_USERS:
                 return sprintf(
                     \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
                     \__('users', 'graphql-api'),
-                    UserTypeResolver::NAME,
+                    UserTypeResolver::NAME
                 );
             case self::SCHEMA_USER_ROLES:
                 return sprintf(
                     \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
                     \__('user roles', 'graphql-api'),
-                    UserRoleTypeResolver::NAME,
+                    UserRoleTypeResolver::NAME
                 );
             case self::SCHEMA_PAGES:
                 return sprintf(
                     \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
                     \__('pages', 'graphql-api'),
-                    PageTypeResolver::NAME,
+                    PageTypeResolver::NAME
                 );
             case self::SCHEMA_MEDIA:
                 return sprintf(
                     \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
                     \__('media elements', 'graphql-api'),
-                    MediaTypeResolver::NAME,
+                    MediaTypeResolver::NAME
                 );
             case self::SCHEMA_COMMENTS:
                 return sprintf(
                     \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
                     \__('comments', 'graphql-api'),
-                    CommentTypeResolver::NAME,
+                    CommentTypeResolver::NAME
                 );
             case self::SCHEMA_POST_TAGS:
                 return sprintf(
                     \__('Query %1$s, through type <code>%2$s</code> added to the schema', 'graphql-api'),
                     \__('post tags', 'graphql-api'),
-                    PostTagTypeResolver::NAME,
+                    PostTagTypeResolver::NAME
                 );
             case self::SCHEMA_CUSTOMPOSTS:
                 return \__('Base functionality for all custom posts', 'graphql-api');
@@ -324,7 +324,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 Properties::INPUT => $defaultLimitOption,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    $defaultLimitOption,
+                    $defaultLimitOption
                 ),
                 Properties::TITLE => sprintf(
                     \__('Default limit for %s', 'graphql-api'),
@@ -343,7 +343,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 Properties::INPUT => $maxLimitOption,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    $maxLimitOption,
+                    $maxLimitOption
                 ),
                 Properties::TITLE => sprintf(
                     \__('Max limit for %s', 'graphql-api'),
@@ -364,7 +364,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                     Properties::INPUT => $option,
                     Properties::NAME => $this->getSettingOptionName(
                         $module,
-                        $option,
+                        $option
                     ),
                     Properties::TITLE => \__('Use single type instead of union type?', 'graphql-api'),
                     Properties::DESCRIPTION => sprintf(
@@ -418,7 +418,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    $option,
+                    $option
                 ),
                 Properties::TITLE => $moduleTitles[$module],
                 Properties::DESCRIPTION => $moduleDescriptions[$module],
@@ -469,7 +469,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
-                    $option,
+                    $option
                 ),
                 Properties::TITLE => \__('Included custom post types', 'graphql-api'),
                 Properties::DESCRIPTION => sprintf(
