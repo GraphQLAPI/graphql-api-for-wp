@@ -74,7 +74,7 @@ class GraphiQLBlock extends AbstractBlock
         // Temporarily print nothing, until "Ctrl+A" works well:
         // @see https://github.com/WordPress/gutenberg/issues/22689
         return '';
-        return \__(<<<EOT
+        return <<<EOT
 # Welcome to GraphiQL
 #
 # GraphiQL is an in-browser tool for writing, validating, and
@@ -100,7 +100,7 @@ class GraphiQLBlock extends AbstractBlock
 #   Ctrl-Enter (or press the play button above)
 #
 
-EOT, 'graphql-api');
+EOT;
     }
 
     public function renderBlock(array $attributes, string $content): string
