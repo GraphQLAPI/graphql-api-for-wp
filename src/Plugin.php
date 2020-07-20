@@ -32,13 +32,6 @@ class Plugin
     public const NAMESPACE = __NAMESPACE__;
 
     /**
-     * Indicate if the components have already been booted
-     *
-     * @var boolean
-     */
-    private $bootedComponents = false;
-
-    /**
      * Plugin set-up, executed immediately when loading the plugin.
      * There are three stages for this plugin, and for each extension plugin:
      * `setup`, `initialize` and `boot`.
@@ -71,24 +64,8 @@ class Plugin
          * - ModuleListTableAction requires `wp_verify_nonce`, loaded in pluggable.php
          * - Allow other plugins to inject their own functionality
          */
-        add_action('plugins_loaded', [$this, 'initialize'], 5);
-        add_action('plugins_loaded', [$this, 'boot'], 15);
-    }
-
-    /**
-     * Boot all PoP components, from this plugin and all extensions.
-     * This function must be called only once, but can be called
-     * from 2 different places: when activating the plugin the first time,
-     * and when initializing it
-     *
-     * @return void
-     */
-    private function bootComponents(): void
-    {
-        if (!$this->bootedComponents) {
-            $this->bootedComponents = true;
-            ComponentLoader::bootComponents();
-        }
+        \add_action('plugins_loaded', [$this, 'initialize'], 5);
+        \add_action('plugins_loaded', [$this, 'boot'], 15);
     }
 
     /**
@@ -155,7 +132,7 @@ class Plugin
     public function boot(): void
     {
         // Boot all PoP components, from this plugin and all extensions
-        $this->bootComponents();
+        ComponentLoader::bootComponents();
 
         $instanceManager = InstanceManagerFacade::getInstance();
         $moduleRegistry = ModuleRegistryFacade::getInstance();
@@ -254,9 +231,25 @@ class Plugin
      */
     public function activate(): void
     {
-        // Because this function is called before `initialize`, we must
-        // boot the components
-        $this->bootComponents();
+        /**
+         * When activating the plugin, functions `initialize` and `boot`
+         * will not have been executed yet.
+         * But they are needed, to initialize the postType, services,
+         * not just their classes but also they depend on other services,
+         * such as Gutenberg Blocks for their templates.
+         *
+         * Then, trigger to execute these functions, and remove the hooks
+         * so they are not executed again.
+         *
+         * It doesn't matter that we're altering the initialization order
+         * with the extension plugins, since this takes place only when
+         * activating/deactivating the GraphQL API, where nothing else
+         * takes place anyway
+         */
+        \remove_action('plugins_loaded', [$this, 'initialize'], 5);
+        \remove_action('plugins_loaded', [$this, 'boot'], 15);
+        $this->initialize();
+        $this->boot();
 
         // First, initialize all the custom post types
         $instanceManager = InstanceManagerFacade::getInstance();
@@ -288,10 +281,6 @@ class Plugin
      */
     public function deactivate(): void
     {
-        // Because this function is called before `initialize`, we must
-        // boot the components
-        $this->bootComponents();
-
         // First, unregister the post type, so the rules are no longer in memory.
         $instanceManager = InstanceManagerFacade::getInstance();
         $postTypeObjects = array_map(
