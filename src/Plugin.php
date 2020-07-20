@@ -115,7 +115,7 @@ class Plugin
             // because their instantiation produces no side-effects
             $modulesMenuPage = new ModulesMenuPage();
             if ($_GET['page'] == $modulesMenuPage->getScreenID()) {
-                $moduleListTable = new ModuleListTableAction(false);
+                $moduleListTable = new ModuleListTableAction();
                 $moduleListTable->maybeProcessAction();
             }
         }

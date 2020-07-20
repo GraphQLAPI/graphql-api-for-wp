@@ -20,8 +20,7 @@ class ModuleListTableAction extends AbstractListTableAction
     private $mutatedEnabled = false;
 
     /**
-     * Side effects: needed when the class is instantiated through
-     * DependencyInjection, but to be avoided when instantiated from Plugin
+     * Please notice that creatin a new instance carries side effects
      *
      * @param boolean $allowSideEffects
      */
