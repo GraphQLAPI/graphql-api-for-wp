@@ -228,12 +228,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/api.git",
-                "reference": "48375318a80a41dd86914bd864658e66c84eb35f"
+                "reference": "97f8671a1758af97d70b25c468c365fdb48a79ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/api/zipball/48375318a80a41dd86914bd864658e66c84eb35f",
-                "reference": "48375318a80a41dd86914bd864658e66c84eb35f",
+                "url": "https://api.github.com/repos/getpop/api/zipball/97f8671a1758af97d70b25c468c365fdb48a79ba",
+                "reference": "97f8671a1758af97d70b25c468c365fdb48a79ba",
                 "shasum": ""
             },
             "require": {
@@ -278,7 +278,7 @@
                 "api",
                 "pop"
             ],
-            "time": "2020-07-13T02:38:28+00:00"
+            "time": "2020-07-20T15:43:52+00:00"
         },
         {
             "name": "getpop/api-clients",
@@ -981,12 +981,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/component-model.git",
-                "reference": "8f0c5534cc71e350463980a1b294f7d8c5cb7259"
+                "reference": "111fd679c23b206bf2cc62b371fe13fbb186542b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/component-model/zipball/8f0c5534cc71e350463980a1b294f7d8c5cb7259",
-                "reference": "8f0c5534cc71e350463980a1b294f7d8c5cb7259",
+                "url": "https://api.github.com/repos/getpop/component-model/zipball/111fd679c23b206bf2cc62b371fe13fbb186542b",
+                "reference": "111fd679c23b206bf2cc62b371fe13fbb186542b",
                 "shasum": ""
             },
             "require": {
@@ -1032,7 +1032,7 @@
                 "component-model",
                 "pop"
             ],
-            "time": "2020-07-19T18:13:26+00:00"
+            "time": "2020-07-20T16:02:12+00:00"
         },
         {
             "name": "getpop/custompostmedia",
@@ -1647,12 +1647,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql.git",
-                "reference": "03675ac24994f5764f86e96d34d3e02b5f1fcf0a"
+                "reference": "8b540b4350e1adb90546101347696112b5f2ec54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql/zipball/03675ac24994f5764f86e96d34d3e02b5f1fcf0a",
-                "reference": "03675ac24994f5764f86e96d34d3e02b5f1fcf0a",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql/zipball/8b540b4350e1adb90546101347696112b5f2ec54",
+                "reference": "8b540b4350e1adb90546101347696112b5f2ec54",
                 "shasum": ""
             },
             "require": {
@@ -1696,7 +1696,7 @@
                 "graphql",
                 "pop"
             ],
-            "time": "2020-07-19T18:13:19+00:00"
+            "time": "2020-07-20T15:56:41+00:00"
         },
         {
             "name": "getpop/graphql-clients-for-wp",
@@ -2948,12 +2948,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/migrate-engine.git",
-                "reference": "5070fc4c3a39cb42ac07fe12186b03c9cb5ed303"
+                "reference": "22269f652e923b5c39137d486a9ae03dd7226071"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-engine/zipball/5070fc4c3a39cb42ac07fe12186b03c9cb5ed303",
-                "reference": "5070fc4c3a39cb42ac07fe12186b03c9cb5ed303",
+                "url": "https://api.github.com/repos/getpop/migrate-engine/zipball/22269f652e923b5c39137d486a9ae03dd7226071",
+                "reference": "22269f652e923b5c39137d486a9ae03dd7226071",
                 "shasum": ""
             },
             "require": {
@@ -2987,7 +2987,7 @@
                 "engine",
                 "pop"
             ],
-            "time": "2020-07-19T16:03:39+00:00"
+            "time": "2020-07-20T15:52:22+00:00"
         },
         {
             "name": "getpop/migrate-engine-wp",
