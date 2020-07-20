@@ -23,7 +23,7 @@ class FieldDeprecationGraphQLQueryConfigurator extends AbstractGraphQLQueryConfi
      *
      * @return void
      */
-    public function executeSchemaConfiguration($fdlPostID): void
+    public function executeSchemaConfiguration(int $fdlPostID): void
     {
         // Only if the module is not disabled
         $moduleRegistry = ModuleRegistryFacade::getInstance();
