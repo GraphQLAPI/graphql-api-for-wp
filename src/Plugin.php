@@ -31,6 +31,13 @@ class Plugin
     public const NAMESPACE = __NAMESPACE__;
 
     /**
+     * Indicate if the components have already been booted
+     *
+     * @var boolean
+     */
+    private $bootedComponents = false;
+
+    /**
      * Plugin set-up, executed immediately when loading the plugin
      *
      * @return void
@@ -73,6 +80,22 @@ class Plugin
     }
 
     /**
+     * Boot all PoP components, from this plugin and all extensions.
+     * This function must be called only once, but can be called
+     * from 2 different places: when activating the plugin the first time,
+     * and when initializing it
+     *
+     * @return void
+     */
+    private function bootComponents(): void
+    {
+        if (!$this->bootedComponents) {
+            $this->bootedComponents = true;
+            ComponentLoader::bootComponents();
+        }
+    }
+
+    /**
      * Plugin initialization, executed on hook "plugins_loaded"
      * to wait for all extensions to be loaded
      *
@@ -81,7 +104,7 @@ class Plugin
     public function initialize(): void
     {
         // Boot all PoP components, from this plugin and all extensions
-        ComponentLoader::bootComponents();
+        $this->bootComponents();
 
         $instanceManager = InstanceManagerFacade::getInstance();
         $moduleRegistry = ModuleRegistryFacade::getInstance();
@@ -187,6 +210,10 @@ class Plugin
      */
     public function activate(): void
     {
+        // Because this function is called before `initialize`, we must
+        // boot the components
+        $this->bootComponents();
+
         // First, initialize all the custom post types
         $instanceManager = InstanceManagerFacade::getInstance();
         $postTypeObjects = array_map(
@@ -199,8 +226,10 @@ class Plugin
             $postTypeObject->registerPostType();
         }
 
-        // Then, flush rewrite rules
-        \flush_rewrite_rules();
+        // Flush the rewrite rules not immediately, but at the end of hook "init",
+        // after function `addRewriteEndpoints` in `AbstractEndpointHandler`
+        // is executed (flush only after doing `add_rewrite_endpoint`)
+        add_action('init', 'flush_rewrite_rules', PHP_INT_MAX);
 
         // Initialize the timestamp
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
@@ -215,6 +244,10 @@ class Plugin
      */
     public function deactivate(): void
     {
+        // Because this function is called before `initialize`, we must
+        // boot the components
+        $this->bootComponents();
+
         // First, unregister the post type, so the rules are no longer in memory.
         $instanceManager = InstanceManagerFacade::getInstance();
         $postTypeObjects = array_map(
