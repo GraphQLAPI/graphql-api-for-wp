@@ -20,7 +20,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     use ModuleResolverTrait;
 
     // public const MAIN = Plugin::NAMESPACE . '\main';
-    public const EDITING_ACCESS = Plugin::NAMESPACE . '\editing-access';
+    public const SCHEMA_EDITING_ACCESS = Plugin::NAMESPACE . '\schema-editing-access';
     public const SINGLE_ENDPOINT = Plugin::NAMESPACE . '\single-endpoint';
     public const PERSISTED_QUERIES = Plugin::NAMESPACE . '\persisted-queries';
     public const CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\custom-endpoints';
@@ -64,7 +64,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     {
         return [
             // self::MAIN,
-            self::EDITING_ACCESS,
             self::SINGLE_ENDPOINT,
             self::GRAPHIQL_FOR_SINGLE_ENDPOINT,
             self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
@@ -85,6 +84,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             self::API_HIERARCHY,
             self::LOW_LEVEL_QUERY_EDITING,
             self::GRAPHIQL_EXPLORER,
+            self::SCHEMA_EDITING_ACCESS,
             self::EXCERPT_AS_DESCRIPTION,
             self::WELCOME_GUIDES,
         ];
@@ -182,15 +182,15 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
         return parent::areRequirementsSatisfied($module);
     }
 
-    public function canBeDisabled(string $module): bool
-    {
-        switch ($module) {
-            case self::EDITING_ACCESS:
-            // case self::MAIN:
-                return false;
-        }
-        return parent::canBeDisabled($module);
-    }
+    // public function canBeDisabled(string $module): bool
+    // {
+    //     switch ($module) {
+    //         case self::SCHEMA_EDITING_ACCESS:
+    //         // case self::MAIN:
+    //             return false;
+    //     }
+    //     return parent::canBeDisabled($module);
+    // }
 
     public function isHidden(string $module): bool
     {
@@ -206,7 +206,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     {
         $names = [
             // self::MAIN => \__('Main', 'graphql-api'),
-            self::EDITING_ACCESS => \__('Editing Access', 'graphql-api'),
+            self::SCHEMA_EDITING_ACCESS => \__('Schema Editing Access', 'graphql-api'),
             self::SINGLE_ENDPOINT => \__('Single Endpoint', 'graphql-api'),
             self::PERSISTED_QUERIES => \__('Persisted Queries', 'graphql-api'),
             self::CUSTOM_ENDPOINTS => \__('Custom Endpoints', 'graphql-api'),
@@ -238,8 +238,8 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
         switch ($module) {
             // case self::MAIN:
             //     return \__('Artificial module for defining the main settings', 'graphql-api');
-            case self::EDITING_ACCESS:
-                return \__('Establish who can edit the GraphQL schema, and how', 'graphql-api');
+            case self::SCHEMA_EDITING_ACCESS:
+                return \__('Grant access to users other than admins to edit the GraphQL schema', 'graphql-api');
             case self::SINGLE_ENDPOINT:
                 return \sprintf(
                     \__('Expose a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
@@ -324,7 +324,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public function getSettingsDefaultValue(string $module, string $option)
     {
         $defaultValues = [
-            self::EDITING_ACCESS => [
+            self::SCHEMA_EDITING_ACCESS => [
                 self::OPTION_EDITING_ACCESS_SCHEME => UserAuthorization::ACCESS_SCHEME_ADMIN_ONLY,
             ],
             self::SINGLE_ENDPOINT => [
@@ -370,7 +370,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
         $moduleSettings = parent::getSettings($module);
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
-        if ($module == self::EDITING_ACCESS) {
+        if ($module == self::SCHEMA_EDITING_ACCESS) {
             /**
              * Write Access Scheme
              * If `"admin"`, only the admin can compose a GraphQL query and endpoint
@@ -384,8 +384,8 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                     $module,
                     $option,
                 ),
-                Properties::TITLE => \__('Editing Access', 'graphql-api'),
-                Properties::DESCRIPTION => \__('Who has editing access for Persisted Queries, Custom Endpoints and related post types', 'graphql-api'),
+                Properties::TITLE => \__('Editing Access Scheme', 'graphql-api'),
+                Properties::DESCRIPTION => \__('Scheme to decide which users can edit the schema (Persisted Queries, Custom Endpoints and related post types) and with what permissions', 'graphql-api'),
                 Properties::TYPE => Properties::TYPE_STRING,
                 Properties::POSSIBLE_VALUES => [
                     UserAuthorization::ACCESS_SCHEME_ADMIN_ONLY => \__('Admin user(s) only', 'graphql-api'),
