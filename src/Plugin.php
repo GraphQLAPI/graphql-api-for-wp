@@ -8,6 +8,7 @@ use PoP\Engine\ComponentLoader;
 use GraphQLAPI\GraphQLAPI\PluginConfiguration;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLEndpointPostType;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
@@ -38,45 +39,40 @@ class Plugin
     private $bootedComponents = false;
 
     /**
-     * Plugin set-up, executed immediately when loading the plugin
+     * Plugin set-up, executed immediately when loading the plugin.
+     * There are three stages for this plugin, and for each extension plugin:
+     * `setup`, `initialize` and `boot`.
+     *
+     * This is because:
+     *
+     * - The plugin must execute its logic before the extensions
+     * - The services can't be booted before all services have been initialized
+     *
+     * To attain the needed order, we execute them using hook "plugins_loaded":
+     *
+     * 1. GraphQL API => setup(): immediately
+     * 2. GraphQL API extensions => setup(): priority 0
+     * 3. GraphQL API => initialize(): priority 5
+     * 4. GraphQL API extensions => initialize(): priority 10
+     * 5. GraphQL API => boot(): priority 15
+     * 6. GraphQL API extensions => boot(): priority 20
      *
      * @return void
      */
     public function setup(): void
     {
+        // Functions to execute when activating/deactivating the plugin
+        \register_activation_hook(\GRAPHQL_API_PLUGIN_FILE, [$this, 'activate']);
+        \register_deactivation_hook(\GRAPHQL_API_PLUGIN_FILE, [$this, 'deactivate']);
+
         /**
          * Wait until "plugins_loaded" to initialize the plugin, because:
          *
          * - ModuleListTableAction requires `wp_verify_nonce`, loaded in pluggable.php
          * - Allow other plugins to inject their own functionality
-         *
-         * Execute before any other GraphQL plugin
          */
         add_action('plugins_loaded', [$this, 'initialize'], 5);
-
-        // Functions to execute when activating/deactivating the plugin
-        \register_activation_hook(\GRAPHQL_API_PLUGIN_FILE, [$this, 'activate']);
-        \register_deactivation_hook(\GRAPHQL_API_PLUGIN_FILE, [$this, 'deactivate']);
-
-        // Configure the plugin. This defines hooks to set environment variables,
-        // so must be executed
-        // before those hooks are triggered for first time
-        // (in ComponentConfiguration classes)
-        PluginConfiguration::initialize();
-
-        // Component configuration
-        $componentClassConfiguration = PluginConfiguration::getComponentClassConfiguration();
-        $skipSchemaComponentClasses = PluginConfiguration::getSkippingSchemaComponentClasses();
-
-        // Initialize the plugin's Component and, with it,
-        // all its dependencies from PoP
-        ComponentLoader::initializeComponents(
-            [
-                \GraphQLAPI\GraphQLAPI\Component::class,
-            ],
-            $componentClassConfiguration,
-            $skipSchemaComponentClasses
-        );
+        add_action('plugins_loaded', [$this, 'boot'], 15);
     }
 
     /**
@@ -103,6 +99,56 @@ class Plugin
      */
     public function initialize(): void
     {
+        /**
+         * Watch out! If we are in the Modules page and enabling/disabling
+         * a module, then already take that new state!
+         * This is because `maybeProcessAction`, which is where modules are
+         * enabled/disabled, is executed after PluginConfiguration::initialize(),
+         * which is where the plugin reads if a module is enabled/disabled as to
+         * set the environment constants. And only if enabled, a module can be
+         * initialized and then have its state affected when calling `flush_rewrite`
+         */
+        if (\is_admin()) {
+            // We can't use the InstanceManager, since at this stage it hasn't
+            // been initialized yet
+            // We can create directly new instances of the objects,
+            // because their instantiation produces no side-effects
+            $modulesMenuPage = new ModulesMenuPage();
+            if ($_GET['page'] == $modulesMenuPage->getScreenID()) {
+                $moduleListTable = new ModuleListTableAction(false);
+                $moduleListTable->maybeProcessAction();
+            }
+        }
+
+        // Configure the plugin. This defines hooks to set environment variables,
+        // so must be executed
+        // before those hooks are triggered for first time
+        // (in ComponentConfiguration classes)
+        PluginConfiguration::initialize();
+
+        // Component configuration
+        $componentClassConfiguration = PluginConfiguration::getComponentClassConfiguration();
+        $skipSchemaComponentClasses = PluginConfiguration::getSkippingSchemaComponentClasses();
+
+        // Initialize the plugin's Component and, with it,
+        // all its dependencies from PoP
+        ComponentLoader::initializeComponents(
+            [
+                \GraphQLAPI\GraphQLAPI\Component::class,
+            ],
+            $componentClassConfiguration,
+            $skipSchemaComponentClasses
+        );
+    }
+
+    /**
+     * Plugin initialization, executed on hook "plugins_loaded"
+     * to wait for all extensions to be loaded
+     *
+     * @return void
+     */
+    public function boot(): void
+    {
         // Boot all PoP components, from this plugin and all extensions
         $this->bootComponents();
 
@@ -112,12 +158,12 @@ class Plugin
          * Initialize classes for the admin panel
          */
         if (\is_admin()) {
-            /**
-             * Execute the ModuleListTable enable/disable modules immediately,
-             * so that CPTs are enabled/disabled
-             */
-            $moduleListTable = $instanceManager->getInstance(ModuleListTableAction::class);
-            $moduleListTable->maybeProcessAction();
+            // /**
+            //  * Execute the ModuleListTable enable/disable modules immediately,
+            //  * so that CPTs are enabled/disabled
+            //  */
+            // $moduleListTable = $instanceManager->getInstance(ModuleListTableAction::class);
+            // $moduleListTable->maybeProcessAction();
 
             /**
              * Initialize all the services

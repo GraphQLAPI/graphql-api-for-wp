@@ -44,20 +44,24 @@ abstract class AbstractMenuPage implements MenuPageInterface
     public function maybeEnqueueAssets(): void
     {
         // Enqueue assets if we are on that page
-        $screenID = $this->getScreenID();
-        // Check we are on the specific screen
-        $currentScreen = \get_current_screen()->id;
-        // If it is the top level page, the current screen is prepended with "toplevel_page_"
-        // If not, the current screen is prepended with the section name
-        // Then, check that the screen ends with the requested screen ID
-        $enqueueAssets = substr($currentScreen, -1 * strlen($screenID)) == $screenID;
-        if ($enqueueAssets) {
+        if ($this->isCurrentScreen()) {
             $this->enqueueAssets();
         }
     }
 
     abstract public function getMenuName(): string;
     abstract public function getMenuPageSlug(): string;
+
+    protected function isCurrentScreen(): bool
+    {
+        $screenID = $this->getScreenID();
+        // Check we are on the specific screen
+        $currentScreen = \get_current_screen()->id;
+        // If it is the top level page, the current screen is prepended with "toplevel_page_"
+        // If not, the current screen is prepended with the section name
+        // Then, check that the screen ends with the requested screen ID
+        return substr($currentScreen, -1 * strlen($screenID)) == $screenID;
+    }
 
     public function getScreenID(): string
     {

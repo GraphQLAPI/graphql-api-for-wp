@@ -19,15 +19,22 @@ class ModuleListTableAction extends AbstractListTableAction
     private $mutatedModuleIDs = [];
     private $mutatedEnabled = false;
 
-    /** Class constructor */
-    public function __construct()
+    /**
+     * Side effects: needed when the class is instantiated through
+     * DependencyInjection, but to be avoided when instantiated from Plugin
+     *
+     * @param boolean $allowSideEffects
+     */
+    public function __construct(bool $allowSideEffects = true)
     {
-        /**
-         * If executing an operation, print a success message
-         */
-        \add_action('admin_notices', function () {
-            $this->maybeAddAdminNotice();
-        });
+        if ($allowSideEffects) {
+            /**
+             * If executing an operation, print a success message
+             */
+            \add_action('admin_notices', function () {
+                $this->maybeAddAdminNotice();
+            });
+        }
     }
 
     /**
@@ -159,13 +166,17 @@ class ModuleListTableAction extends AbstractListTableAction
 
         // If modifying a CPT, must flush the rewrite rules
         // But do it at the end! Once the new configuration has been applied
-        \add_action('shutdown', function () {
-            \flush_rewrite_rules();
+        \add_action(
+            'init',
+            function () {
+                \flush_rewrite_rules();
 
-            // Update the timestamp
-            $userSettingsManager = UserSettingsManagerFacade::getInstance();
-            $userSettingsManager->storeTimestamp();
-        });
+                // Update the timestamp
+                $userSettingsManager = UserSettingsManagerFacade::getInstance();
+                $userSettingsManager->storeTimestamp();
+            },
+            PHP_INT_MAX
+        );
     }
 
     public function getActions(): array
