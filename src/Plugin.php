@@ -103,18 +103,23 @@ class Plugin
          * Watch out! If we are in the Modules page and enabling/disabling
          * a module, then already take that new state!
          * This is because `maybeProcessAction`, which is where modules are
-         * enabled/disabled, is executed after PluginConfiguration::initialize(),
+         * enabled/disabled, must be executed before PluginConfiguration::initialize(),
          * which is where the plugin reads if a module is enabled/disabled as to
-         * set the environment constants. And only if enabled, a module can be
-         * initialized and then have its state affected when calling `flush_rewrite`
+         * set the environment constants.
+         *
+         * This is mandatory, because only when it is enabled, can a module
+         * have its state persisted when calling `flush_rewrite`
          */
         if (\is_admin()) {
             // We can't use the InstanceManager, since at this stage it hasn't
             // been initialized yet
-            // We can create directly new instances of the objects,
-            // because their instantiation produces no side-effects
+            // We can create a new instances of ModulesMenuPage because
+            // its instantiation produces no side-effects
             $modulesMenuPage = new ModulesMenuPage();
             if ($_GET['page'] == $modulesMenuPage->getScreenID()) {
+                // Instantiating ModuleListTableAction DOES have side-effects,
+                // but they are needed, and won't be repeated when instantiating
+                // the class through the Container Builder
                 $moduleListTable = new ModuleListTableAction();
                 $moduleListTable->maybeProcessAction();
             }
@@ -158,13 +163,6 @@ class Plugin
          * Initialize classes for the admin panel
          */
         if (\is_admin()) {
-            // /**
-            //  * Execute the ModuleListTable enable/disable modules immediately,
-            //  * so that CPTs are enabled/disabled
-            //  */
-            // $moduleListTable = $instanceManager->getInstance(ModuleListTableAction::class);
-            // $moduleListTable->maybeProcessAction();
-
             /**
              * Initialize all the services
              */
