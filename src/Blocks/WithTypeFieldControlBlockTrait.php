@@ -8,6 +8,7 @@ use GraphQLAPI\GraphQLAPI\General\BlockConstants;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use PoP\ComponentModel\Facades\Registries\FieldInterfaceRegistryFacade;
 
 trait WithTypeFieldControlBlockTrait
 {
@@ -23,20 +24,22 @@ trait WithTypeFieldControlBlockTrait
         $groupFieldsUnderTypeForPrint = ComponentConfiguration::groupFieldsUnderTypeForPrint();
         $instanceManager = InstanceManagerFacade::getInstance();
         $typeRegistry = TypeRegistryFacade::getInstance();
-        $typeResolverClasses = $typeRegistry->getTypeResolverClasses();
+        $fieldInterfaceRegistry = FieldInterfaceRegistryFacade::getInstance();
         // For each class, obtain its namespacedTypeName
+        $typeResolverClasses = $typeRegistry->getTypeResolverClasses();
         $namespacedTypeNameNames = [];
-        $namespacedInterfaceNames = [];
         foreach ($typeResolverClasses as $typeResolverClass) {
             $typeResolver = $instanceManager->getInstance($typeResolverClass);
             $typeResolverNamespacedName = $typeResolver->getNamespacedTypeName();
             $namespacedTypeNameNames[$typeResolverNamespacedName] = $typeResolver->getMaybeNamespacedTypeName();
-
-            // Iterate all interfaces of the type, and add it to the other array
-            foreach ($typeResolver->getAllImplementedInterfaceResolverInstances() as $interfaceInstance) {
-                $interfaceNamespacedName = $interfaceInstance->getNamespacedInterfaceName();
-                $namespacedInterfaceNames[$interfaceNamespacedName] = $interfaceInstance->getMaybeNamespacedInterfaceName();
-            }
+        }
+        // For each interface, obtain its namespacedInterfaceName
+        $fieldInterfaceResolverClasses = $fieldInterfaceRegistry->getFieldInterfaceResolverClasses();
+        $namespacedFieldInterfaceNameClasses = [];
+        foreach ($fieldInterfaceResolverClasses as $fieldInterfaceResolverClass) {
+            $fieldInterfaceResolver = $instanceManager->getInstance($fieldInterfaceResolverClass);
+            $fieldInterfaceResolverNamespacedName = $fieldInterfaceResolver->getNamespacedInterfaceName();
+            $namespacedFieldInterfaceNameClasses[$fieldInterfaceResolverNamespacedName] = $fieldInterfaceResolver->getMaybeNamespacedInterfaceName();
         }
         $typeFieldsForPrint = [];
         foreach ($typeFields as $selectedField) {
@@ -48,7 +51,7 @@ trait WithTypeFieldControlBlockTrait
             // It can either be a type, or an interface. If not, return the same element
             $typeOrInterfaceName =
                 $namespacedTypeNameNames[$namespacedTypeOrInterfaceName]
-                ?? $namespacedInterfaceNames[$namespacedTypeOrInterfaceName]
+                ?? $namespacedFieldInterfaceNameClasses[$namespacedTypeOrInterfaceName]
                 ?? $namespacedTypeOrInterfaceName;
             /**
              * If $groupFieldsUnderTypeForPrint is true, combine all types under their shared typeName
