@@ -981,12 +981,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/component-model.git",
-                "reference": "664d71bf6c9bd5ff85a6969566c48871b5bae348"
+                "reference": "82c37402009c1a596526b0829b9a4747b8e9e79f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/component-model/zipball/664d71bf6c9bd5ff85a6969566c48871b5bae348",
-                "reference": "664d71bf6c9bd5ff85a6969566c48871b5bae348",
+                "url": "https://api.github.com/repos/getpop/component-model/zipball/82c37402009c1a596526b0829b9a4747b8e9e79f",
+                "reference": "82c37402009c1a596526b0829b9a4747b8e9e79f",
                 "shasum": ""
             },
             "require": {
@@ -1032,7 +1032,7 @@
                 "component-model",
                 "pop"
             ],
-            "time": "2020-07-21T13:10:09+00:00"
+            "time": "2020-07-21T17:34:38+00:00"
         },
         {
             "name": "getpop/custompostmedia",
