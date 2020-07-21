@@ -36,7 +36,6 @@ class FieldDeprecationGraphQLQueryConfigurator extends AbstractGraphQLQueryConfi
             $fdlPostID,
             $instanceManager->getInstance(FieldDeprecationBlock::class)
         );
-        $instanceManager = InstanceManagerFacade::getInstance();
         $hooksAPI = HooksAPIFacade::getInstance();
         foreach ($fdlBlockItems as $fdlBlockItem) {
             if ($deprecationReason = $fdlBlockItem['attrs'][FieldDeprecationBlock::ATTRIBUTE_NAME_DEPRECATION_REASON]) {
@@ -47,16 +46,15 @@ class FieldDeprecationGraphQLQueryConfigurator extends AbstractGraphQLQueryConfi
                         foreach ($entriesFromField as $entry) {
                             // Once getting the entry, we an obtain the type and field,
                             // and we can modify the deprecated reason in the entry adding this information
-                            $typeResolverClass = $entry[0];
+                            $typeOrFieldInterfaceResolverClass = $entry[0];
                             // If we had a module (eg: "Users") and saved an entry with it,
                             // and then disable it, the typeResolveClass will be null
-                            if (is_null($typeResolverClass)) {
+                            if (is_null($typeOrFieldInterfaceResolverClass)) {
                                 continue;
                             }
                             $fieldName = $entry[1];
-                            $typeResolver = $instanceManager->getInstance($typeResolverClass);
                             $hookName = HookHelpers::getSchemaDefinitionForFieldHookName(
-                                $typeResolver,
+                                $typeOrFieldInterfaceResolverClass,
                                 $fieldName
                             );
                             $hooksAPI->addFilter(
