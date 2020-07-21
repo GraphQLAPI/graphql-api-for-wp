@@ -263,10 +263,10 @@ class Plugin
             $postTypeObject->registerPostType();
         }
 
-        // Flush the rewrite rules not immediately, but at the end of hook "init",
+        // Flush the rewrite rules immediately (doing it at the end of hook "init",
         // after function `addRewriteEndpoints` in `AbstractEndpointHandler`
-        // is executed (flush only after doing `add_rewrite_endpoint`)
-        \add_action('init', 'flush_rewrite_rules', PHP_INT_MAX);
+        // is executed, doesn't work)
+        \flush_rewrite_rules();
 
         // Initialize the timestamp
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
