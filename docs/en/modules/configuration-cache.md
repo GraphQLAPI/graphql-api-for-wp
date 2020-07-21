@@ -1,3 +1,3 @@
 # Configuration Cache
 
-@todo Complete doc
+_This documentation will be completed soon_

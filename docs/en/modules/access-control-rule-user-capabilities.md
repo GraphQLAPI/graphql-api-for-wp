@@ -1,3 +1,3 @@
 # Access Control Rule: User Capabilities
 
-@todo Complete doc
+_This documentation will be completed soon_

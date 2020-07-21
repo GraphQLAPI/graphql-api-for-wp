@@ -1,3 +1,3 @@
 # Directive Set: Convert Lower/Uppercase
 
-@todo Complete doc
+_This documentation will be completed soon_

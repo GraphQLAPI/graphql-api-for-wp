@@ -1,3 +1,3 @@
 Use the persisted query defined in the ancestor post
 
-@todo Complete doc
+_This documentation will be completed soon_
