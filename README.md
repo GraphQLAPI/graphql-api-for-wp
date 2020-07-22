@@ -22,7 +22,7 @@ In the WordPress admin:
 
 ## Modules
 
-GraphQL API is highly extensible. By default, it ships with the following modules:
+GraphQL API is extensible, and ships with the following modules:
 
 _(The documentation for the modules is currently being created)_
 
