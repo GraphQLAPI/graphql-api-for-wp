@@ -24,6 +24,12 @@ After installed, there will be a new "GraphQL API" section on the menu:
 
 ![The interactive schema visualizer](docs/images/interactive-schema.png)
 
+### Ready for production?
+
+This plugin requires 3rd party dependencies, but they have not been scoped yet (see [issue #9](https://github.com/GraphQLAPI/graphql-api/issues/9)). So please install this plugin in a development environment first, to make sure there are no conflicts with the other plugins installed in the site.
+
+If any problem arises, either installing or running the plugin, please [create a new issue](https://github.com/GraphQLAPI/graphql-api/issues/new).
+
 ## Development
 
 Clone repo, and then install Composer dependencies, by running:
