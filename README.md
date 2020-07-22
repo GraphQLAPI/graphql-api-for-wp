@@ -20,6 +20,10 @@ In the WordPress admin:
 - Click on `Install Now` (it may take a few minutes)
 - Once installed, click on `Activate`
 
+After installed, there will be a new "GraphQL API" section on the menu:
+
+![The interactive schema visualizer](docs/images/interactive-schema.png)
+
 ## Development
 
 Clone repo, and then install Composer dependencies, by running:
