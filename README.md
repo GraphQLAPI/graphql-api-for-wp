@@ -168,7 +168,7 @@ The following videos show several features:
 - [Field deprecation](https://vimeo.com/413503110)
 - [Query inheritance](https://vimeo.com/413503010)
 
-For technical information on how the GraphQL server works, check [GraphQL by PoP's documentation](https://graphql-by-pop.com/docs/getting-started/intro.html) and [resources](https://graphql-by-pop.com/resources/) (even though these are still a work in progress).
+For technical information on how the GraphQL server works, check out [GraphQL by PoP's documentation](https://graphql-by-pop.com/docs/getting-started/intro.html) and [resources](https://graphql-by-pop.com/resources/) (these are still a work in progress).
 
 ## Standards
 
