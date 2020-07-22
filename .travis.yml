@@ -1,0 +1,37 @@
+dist: trusty
+language: php
+
+php:
+  - 7.1
+  - 7.2
+  - 7.3
+  - 7.4
+
+## Cache composer
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+## Commented out until version 1.0 (version 0.1.. doesn't follow semver)
+# matrix:
+#   include:
+#     - php: 7.1
+#       env: 'COMPOSER_FLAGS="--prefer-stable --prefer-lowest"'
+
+before_script:
+  - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
+
+script:
+  - vendor/bin/phpcs -n --standard=psr2 src/
+  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+  - vendor/bin/phpstan analyse -c phpstan.neon.dist src
+
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+
+notifications:
+  email:
+    recipients:
+      - leo@getpop.org
+    on_success: change
+    on_failure: always

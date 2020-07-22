@@ -138,6 +138,42 @@ For development, the GraphQL API plugin can use these local projects by overridi
 
 This file will override any corresponding entry defined in `composer.json`.
 
+## Standards
+
+[PSR-1](https://www.php-fig.org/psr/psr-1), [PSR-4](https://www.php-fig.org/psr/psr-4) and [PSR-12](https://www.php-fig.org/psr/psr-12).
+
+## Change log
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## Testing
+
+``` bash
+composer test
+```
+
+## Static Analysis
+
+Execute [phpstan](https://github.com/phpstan/phpstan) with level 5:
+
+``` bash
+composer analyse
+```
+
+To run checks for level 0 (or any level from 0 to 8):
+
+``` bash
+./vendor/bin/phpstan analyse -l 0 src tests
+```
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
+
+## Security
+
+If you discover any security related issues, please email leo@getpop.org instead of using the issue tracker.
+
 ## Credits
 
 - [Leonardo Losoviz][link-author]
