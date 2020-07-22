@@ -144,6 +144,18 @@ For development, the GraphQL API plugin can use these local projects by overridi
 
 This file will override any corresponding entry defined in `composer.json`.
 
+## Resources
+
+The following videos show several features:
+
+- [Persisted queries](https://vimeo.com/413503547)
+- [Custom endpoints](https://vimeo.com/413503485)
+- [Access control](https://vimeo.com/413503383)
+- [Public/private API](https://vimeo.com/413503284)
+- [HTTP caching](https://vimeo.com/413503188)
+- [Field deprecation](https://vimeo.com/413503110)
+- [Query inheritance](https://vimeo.com/413503010)
+
 ## Standards
 
 [PSR-1](https://www.php-fig.org/psr/psr-1), [PSR-4](https://www.php-fig.org/psr/psr-4) and [PSR-12](https://www.php-fig.org/psr/psr-12).
