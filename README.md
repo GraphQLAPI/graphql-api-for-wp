@@ -94,6 +94,50 @@ For development, the GraphQL API plugin can use these local projects by overridi
 
 This file will override any corresponding entry defined in `composer.json`.
 
+## Modules
+
+GraphQL API is highly extensible. By default, it ships with the following modules:
+
+_(The documentation is a work in progress. It should be completed within a couple of weeks)_
+
+| Module | Description |
+| --- | --- |
+| [Single Endpoint](docs/en/modules/single-endpoint.md) | Expose a single GraphQL endpoint under <code>/graphql/</code>, with unrestricted access |
+| [GraphiQL for Single Endpoint](docs/en/modules/graphiql-for-single-endpoint.md) | Make a public GraphiQL client available under <code>/graphiql/</code>, to execute queries against the single endpoint. It requires pretty permalinks enabled |
+| [Interactive Schema for Single Endpoint](docs/en/modules/interactive-schema-for-single-endpoint.md) | Make a public Interactive Schema client available under <code>/schema/</code>, to visualize the schema accessible through the single endpoint. It requires pretty permalinks enabled |
+| [Persisted Queries](docs/en/modules/persisted-queries.md) | Expose predefined responses through a custom URL, akin to using GraphQL queries to publish REST endpoints |
+| [Custom Endpoints](docs/en/modules/custom-endpoints.md) | Expose different subsets of the schema for different targets, such as users (clients, employees, etc), applications (website, mobile app, etc), context (weekday, weekend, etc), and others |
+| [GraphiQL for Custom Endpoints](docs/en/modules/graphiql-for-custom-endpoints.md) | Enable custom endpoints to be attached their own GraphiQL client, to execute queries against them |
+| [Interactive Schema for Custom Endpoints](docs/en/modules/interactive-schema-for-custom-endpoints.md) | Enable custom endpoints to be attached their own Interactive schema client, to visualize the custom schema subset |
+| [Schema Configuration](docs/en/modules/schema-configuration.md) | Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema |
+| [Schema Namespacing](docs/en/modules/schema-namespacing.md) | Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions |
+| [Access Control](docs/en/modules/access-control.md) | Set-up rules to define who can access the different fields and directives from a schema |
+| [Access Control Rule: Disable Access](docs/en/modules/access-control-rule-disable-access.md) | Remove access to the fields and directives |
+| [Access Control Rule: User State](docs/en/modules/access-control-rule-user-state.md) | Allow or reject access to the fields and directives based on the user being logged-in or not |
+| [Access Control Rule: User Roles](docs/en/modules/access-control-rule-user-roles.md) | Allow or reject access to the fields and directives based on the user having a certain role |
+| [Access Control Rule: User Capabilities](docs/en/modules/access-control-rule-user-capabilities.md) | Allow or reject access to the fields and directives based on the user having a certain capability |
+| [Public/Private Schema](docs/en/modules/public-private-schema.md) | Enable to communicate the existence of some field from the schema to certain users only (private mode) or to everyone (public mode). If disabled, fields are always available to everyone (public mode) |
+| [Cache Control](docs/en/modules/cache-control.md) | Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query |
+| [Field Deprecation](docs/en/modules/field-deprecation.md) | Deprecate fields, and explain how to replace them, through a user interface |
+| [API Hierarchy](docs/en/modules/api-hierarchy.md) | Create a hierarchy of API endpoints extending from other endpoints, and inheriting their properties |
+| [Low-Level Query Editing](docs/en/modules/low-level-query-editing.md) | Have access to schema-configuration low-level directives when editing GraphQL queries in the admin |
+| [GraphiQL Explorer](docs/en/modules/graphiql-explorer.md) | Add the Explorer widget to the GraphiQL client when creating Persisted Queries, to simplify coding the query (by point-and-clicking on the fields) |
+| [Schema Editing Access](docs/en/modules/schema-editing-access.md) | Grant access to users other than admins to edit the GraphQL schema |
+| [Excerpt as Description](docs/en/modules/excerpt-as-description.md) | Provide a description of the different entities (Custom Endpoints, Persisted Queries, and others) through their excerpt |
+| [Configuration Cache](docs/en/modules/configuration-cache.md) | Cache the generated application configuration to disk |
+| [Schema Cache](docs/en/modules/schema-cache.md) | Cache the generated schema to disk |
+| [Schema Custom Posts](docs/en/modules/schema-customposts.md) | Base functionality for all custom posts |
+| [Schema Generic Custom Posts](docs/en/modules/schema-generic-customposts.md) | Query any custom post type (added to the schema or not), through a generic type <code>GenericCustomPost</code> |
+| [Schema Posts](docs/en/modules/schema-posts.md) | Query posts, through type <code>Post</code> added to the schema |
+| [Schema Pages](docs/en/modules/schema-pages.md) | Query pages, through type <code>Page</code> added to the schema |
+| [Schema Users](docs/en/modules/schema-users.md) | Query users, through type <code>User</code> added to the schema |
+| [Schema User Roles](docs/en/modules/schema-user-roles.md) | Query user roles, through type <code>UserRole</code> added to the schema |
+| [Schema Comments](docs/en/modules/schema-comments.md) | Query comments, through type <code>Comment</code> added to the schema |
+| [Schema Tags](docs/en/modules/schema-tags.md) | Base functionality for all tags |
+| [Schema Post Tags](docs/en/modules/schema-post-tags.md) | Query post tags, through type <code>PostTag</code> added to the schema |
+| [Schema Media](docs/en/modules/schema-media.md) | Query media elements, through type <code>Media</code> added to the schema |
+---
+
 ## Credits
 
 - [Leonardo Losoviz][link-author]
