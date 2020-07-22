@@ -35,9 +35,9 @@ If any problem arises, either installing or running the plugin, please [create a
 Clone repo, and then install Composer dependencies, by running:
 
 ```bash
-git clone https://github.com/GraphQLAPI/graphql-api.git
-cd graphql-api
-composer install
+$ git clone https://github.com/GraphQLAPI/graphql-api.git
+$ cd graphql-api
+$ composer install
 ```
 
 ### Launch a development environment with `wp-env`
