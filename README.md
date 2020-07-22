@@ -77,7 +77,22 @@ composer install
 
 ### Pushing code
 
-Compiled JavaScript code (such as all files under a block's `build/` folder) is added to the repo, but only as compiled for production, i.e. after running `npm run build`. (In contrast, the output from `npm start` is not allowed in the repo.)
+Compiled JavaScript code (such as all files under a block's `build/` folder) is added to the repo, but only as compiled for production, i.e. after running `npm run build`.
+
+Code compiled for development, i.e. after running `npm start`, is not allowed in the repo.
+
+### Clone own dependencies
+
+GraphQL API is not a monorepo. Instead, its code is distributed across packages (living in repos from [PoP](https://github.com/getpop), [GraphQLByPoP](https://github.com/GraphQLByPoP) and [PoPSchema](https://github.com/PoPSchema)), and managed through Composer.
+
+File [`dev-helpers/scripts/clone-all-dependencies-from-github.sh`](https://github.com/GraphQLAPI/graphql-api/blob/master/dev-helpers/scripts/clone-all-dependencies-from-github.sh) contains the list of all own dependencies, ready to be cloned.
+
+For development, the GraphQL API plugin can use these local projects by overriding Composer's autoload `PSR-4` sources. To do so:
+
+- Duplicate file [`composer.local-sample.json`](https://github.com/GraphQLAPI/graphql-api/blob/master/composer.local-sample.json) as `composer.local.json`
+- Customize it with the paths to the folders
+
+This file will override any corresponding entry defined in `composer.json`.
 
 ## Credits
 
