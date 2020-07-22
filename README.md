@@ -2,6 +2,8 @@
 
 Transform your WordPress site into a GraphQL server.
 
+This plugin is the implementation for WordPress of [GraphQL by PoP](https://graphql-by-pop.com/), a CMS-agnostic GraphQL server in PHP.
+
 ## Requirements
 
 WordPress 5.4 or above, PHP 7.1 or above.
