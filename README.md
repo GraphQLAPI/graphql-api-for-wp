@@ -1,12 +1,32 @@
 # GraphQL API for WordPress
 
-Description: coming soon
+Transform your WordPress site into a GraphQL server.
 
-## Usage
+## Install
 
-Coming soon...
+Download the plugin as a .zip file:
+
+https://github.com/GraphQLAPI/graphql-api/releases/download/0.1.0/graphql-api.zip 
+
+In the WordPress admin:
+
+- Go to `Plugins => Add New`
+- Click on `Upload Plugin`
+- Select the .zip file
+- Click on `Install Now` (it may take a few minutes)
+- Once installed, click on `Activate`
 
 ## Development
+
+Clone repo, and then install Composer dependencies, by running:
+
+```bash
+git clone https://github.com/GraphQLAPI/graphql-api.git
+cd graphql-api
+composer install
+```
+
+### Using `wp-env`
 
 Launch a WordPress environment with the GraphQL API plugin activated through [`wp-env`](https://www.npmjs.com/package/@wordpress/env).
 
@@ -22,24 +42,28 @@ To [install `wp-env`](https://www.npmjs.com/package/@wordpress/env#installation)
 npm -g i @wordpress/env
 ```
 
-To start the WordPress environment, in the root folder of the plugin, execute:
+To start the WordPress environment, after cloning the project, step in the root folder of the plugin in the terminal, and execute (make sure Docker is running):
 
 ```bash
 wp-env start
 ```
 
-The first time, this process can take a long time (half an hour or even more). To see what is happening, execute with the `--debug` option:
+> Please notice: The first time using `wp-env`, this process may take a long time (half an hour or even more). To see what is happening, execute with the `--debug` option: `wp-env start --debug`
+
+<!-- The first time, change the permalink structure to use pretty permalinks:
 
 ```bash
-wp-env start --debug
-```
+wp-env run cli wp rewrite structure '/%postname%/'
+``` -->
 
-Once finished, the website will be accessible under http://localhost:5475.
+The site will be available under `http://localhost:6666`.
 
-To access the wp-admin (under http://localhost:5475/wp-login.php):
+To access the wp-admin, under `http://localhost:6666/wp-admin/`:
 
-- User: admin
-- Password: password
+- User: `admin`
+- Password: `password`
+
+
 
 ## Credits
 
