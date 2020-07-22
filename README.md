@@ -2,6 +2,10 @@
 
 Transform your WordPress site into a GraphQL server.
 
+## Requirements
+
+WordPress 5.4 or above, PHP 7.1 or above.
+
 ## Install
 
 Download the plugin as a .zip file:
@@ -63,7 +67,7 @@ To access the wp-admin, under `http://localhost:6666/wp-admin/`:
 - User: `admin`
 - Password: `password`
 
-### Synchronizing the repo
+### Pulling code
 
 Whenever pulling changes from this repo, install again the dependencies:
 
@@ -71,12 +75,16 @@ Whenever pulling changes from this repo, install again the dependencies:
 composer install
 ```
 
+### Pushing code
+
+Compiled JavaScript code (such as all files under a block's `build/` folder) is added to the repo, but only as compiled for production, i.e. after running `npm run build`. (In contrast, the output from `npm start` is not allowed in the repo.)
+
 ## Credits
 
 - [Leonardo Losoviz][link-author]
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+GPLv2 or later. Please see [License File](LICENSE.md) for more information.
 
 [link-author]: https://github.com/leoloso
