@@ -111,6 +111,12 @@ To access the wp-admin, under `http://localhost:6666/wp-admin/`:
 - User: `admin`
 - Password: `password`
 
+To enable pretty permalinks, run:
+
+```bash
+wp-env run cli wp rewrite structure '/%postname%/'
+```
+
 ### Pulling code
 
 Whenever pulling changes from this repo, install again the dependencies:
