@@ -42,7 +42,7 @@ To [install `wp-env`](https://www.npmjs.com/package/@wordpress/env#installation)
 npm -g i @wordpress/env
 ```
 
-To start the WordPress environment, after cloning the project, step in the root folder of the plugin in the terminal, and execute (make sure Docker is running):
+To start a new WordPress instance with the GraphQL API plugin already installed and activated, execute in the root folder of the plugin (make sure Docker is running):
 
 ```bash
 wp-env start
@@ -63,7 +63,13 @@ To access the wp-admin, under `http://localhost:6666/wp-admin/`:
 - User: `admin`
 - Password: `password`
 
+### Synchronizing the repo
 
+Whenever pulling changes from this repo, install again the dependencies:
+
+```bash
+composer install
+```
 
 ## Credits
 
