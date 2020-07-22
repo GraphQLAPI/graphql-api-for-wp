@@ -30,7 +30,7 @@ cd graphql-api
 composer install
 ```
 
-### Using `wp-env`
+### Launch a development environment with `wp-env`
 
 Launch a WordPress environment with the GraphQL API plugin activated through [`wp-env`](https://www.npmjs.com/package/@wordpress/env).
 
