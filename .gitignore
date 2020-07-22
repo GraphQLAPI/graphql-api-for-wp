@@ -1,3 +1,4 @@
 composer.local.json
 vendor/
 bin/
+build/report.junit.xml
