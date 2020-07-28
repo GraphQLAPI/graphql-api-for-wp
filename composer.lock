@@ -2948,12 +2948,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/migrate-engine.git",
-                "reference": "22269f652e923b5c39137d486a9ae03dd7226071"
+                "reference": "52d7c8578329fb88d6fd72a0618bf9e066fb1c58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-engine/zipball/22269f652e923b5c39137d486a9ae03dd7226071",
-                "reference": "22269f652e923b5c39137d486a9ae03dd7226071",
+                "url": "https://api.github.com/repos/getpop/migrate-engine/zipball/52d7c8578329fb88d6fd72a0618bf9e066fb1c58",
+                "reference": "52d7c8578329fb88d6fd72a0618bf9e066fb1c58",
                 "shasum": ""
             },
             "require": {
@@ -2987,7 +2987,7 @@
                 "engine",
                 "pop"
             ],
-            "time": "2020-07-20T15:52:22+00:00"
+            "time": "2020-07-28T10:52:39+00:00"
         },
         {
             "name": "getpop/migrate-engine-wp",
