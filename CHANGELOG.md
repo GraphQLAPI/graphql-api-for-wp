@@ -4,7 +4,14 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 0.1.1 - 2020-07-28
+
+### Fixed
+
+- GraphiQL client retrieves domain using $_SERVER['HTTP_HOST'] instead of $_SERVER['SERVER_NAME'], for if configuration in server is not correct
+
 ## 0.1.0 - 2020-07-22
 
 ### Added
+
 - Launched project
