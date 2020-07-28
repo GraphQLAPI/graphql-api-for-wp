@@ -17,7 +17,13 @@ trait CustomEndpointClientTrait
      */
     protected function getEndpointURL(): string
     {
-        $endpointURL = \remove_query_arg(RequestParams::VIEW, \fullUrl());
+        /**
+         * If accessing from Nginx, the server_name might point to localhost
+         * instead of the actual server domain. So use the user-requested host
+         */
+        $fullURL = \fullUrl(true);
+        // Remove the ?view=..., and maybe add ?use_namespace=true
+        $endpointURL = \remove_query_arg(RequestParams::VIEW, $fullURL);
         if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
             $endpointURL = \add_query_arg(APIRequest::URLPARAM_USE_NAMESPACE, true, $endpointURL);
         }
