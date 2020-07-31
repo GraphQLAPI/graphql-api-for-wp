@@ -10,10 +10,11 @@ jobs:
       - name: Build project
         run: |
           composer install --no-dev --optimize-autoloader
+          mkdir build
       - name: Create artifact
         uses: montudor/action-zip@v0.1.0
         with:
-          args: zip -r graphql-api.zip . -x *.git* node_modules/\*
+          args: zip -X -r build/graphql-api.zip . -x *.git* node_modules/\* dev-helpers/\* build/\* .* *.md composer.*
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
