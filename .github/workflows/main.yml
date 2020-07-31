@@ -12,7 +12,7 @@
 #   - Folder dev-helpers/ <= not needed for the plugin
 # - Upload the .zip file as an artifact to the action (this step is possibly optional)
 # - Upload the .zip file as a release, for download
-name: Upload Release Asset
+name: Generate Installable Plugin, and Upload as Release Asset
 on:
   release:
     types: [published]
