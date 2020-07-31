@@ -4,6 +4,12 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 0.1.20 - 2020-07-31
+
+### Added
+
+- Added a GitHub action that, whenever the source code is tagged, creates the installable plugin and uploads it as a release asset
+
 ## 0.1.1 - 2020-07-31
 
 ### Fixed
