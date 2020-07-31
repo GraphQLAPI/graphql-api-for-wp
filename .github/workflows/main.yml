@@ -1,32 +1,42 @@
-name: Deploy to WordPress.org and Upload Release Asset
 on:
   push:
+    # Sequence of patterns matched against refs/tags
     tags:
     - 'v*'
+
+name: Upload Release Asset
+
 jobs:
-  tag:
-    name: New release
+  build:
+    name: Upload Release Asset
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Build
-      run: |
-        composer install --no-dev --optimize-autoloader
-    - name: WordPress Plugin Deploy
-      id: deploy
-      uses: 10up/action-wordpress-plugin-deploy@stable
-      with:
-        generate-zip: true
-    #   env:
-    #     SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
-    #     SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
-    - name: Upload release asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ${{github.workspace}}/${{ github.event.repository.name }}.zip
-        asset_name: ${{ github.event.repository.name }}.zip
-        asset_content_type: application/zip
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build project
+        run: |
+          composer install --no-dev --optimize-autoloader
+      - name: Create artifact
+        uses: montudor/action-zip@v0.1.0
+        with:
+          args: zip -qq -r ./graphql-api.zip *
+    #   - name: Create Release
+    #     id: create_release
+    #     uses: actions/create-release@v1
+    #     env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     with:
+    #       tag_name: plugin-${{ github.ref }}
+    #       release_name: GraphQL API installable plugin - Release ${{ github.ref }}
+    #       draft: false
+    #       prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./graphql-api.zip
+          asset_name: graphql-api.zip
+          asset_content_type: application/zip
