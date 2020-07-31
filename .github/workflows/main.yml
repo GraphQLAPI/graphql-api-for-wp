@@ -19,7 +19,7 @@ jobs:
       - name: Create artifact
         uses: montudor/action-zip@v0.1.0
         with:
-          args: zip -r graphql-api.zip .
+          args: zip -r graphql-api.zip . -x *.git* node_modules/\*
     #   - name: Create Release
     #     id: create_release
     #     uses: actions/create-release@v1
