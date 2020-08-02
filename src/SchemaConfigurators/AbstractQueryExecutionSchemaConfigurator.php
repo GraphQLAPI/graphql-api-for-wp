@@ -27,8 +27,6 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     /**
      * Extract the items defined in the Schema Configuration,
      * and inject them into the service as to take effect in the current GraphQL query
-     *
-     * @return void
      */
     public function executeSchemaConfiguration(int $customPostID): void
     {
@@ -46,8 +44,6 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
 
     /**
      * Return the stored Schema Configuration ID
-     *
-     * @return integer|null
      */
     protected function getUserSettingSchemaConfigurationID(): ?int
     {
@@ -65,8 +61,6 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
 
     /**
      * Extract the Schema Configuration ID from the block stored in the post
-     *
-     * @return void
      */
     protected function getSchemaConfigurationID(int $customPostID): ?int
     {
@@ -111,9 +105,6 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
      * - Options
      * - Access Control Lists
      * - Field Deprecation Lists
-     *
-     * @param integer $schemaConfigurationID
-     * @return void
      */
     protected function executeSchemaConfigurationItems(int $schemaConfigurationID): void
     {
@@ -125,9 +116,6 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     /**
      * Apply all the settings defined in the Schema Configuration for:
      * - Options
-     *
-     * @param integer $schemaConfigurationID
-     * @return void
      */
     protected function executeSchemaConfigurationOptions(int $schemaConfigurationID): void
     {
@@ -137,9 +125,6 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
 
     /**
      * Apply the Namespacing settings
-     *
-     * @param integer $schemaConfigurationID
-     * @return void
      */
     protected function executeSchemaConfigurationOptionsNamespacing(int $schemaConfigurationID): void
     {
@@ -187,9 +172,6 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
 
     /**
      * Apply the default Schema mode settings
-     *
-     * @param integer $schemaConfigurationID
-     * @return void
      */
     protected function executeSchemaConfigurationOptionsDefaultSchemaMode(int $schemaConfigurationID): void
     {
@@ -238,9 +220,6 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     /**
      * Apply all the settings defined in the Schema Configuration for:
      * - Access Control Lists
-     *
-     * @param integer $schemaConfigurationID
-     * @return void
      */
     protected function executeSchemaConfigurationAccessControlLists(int $schemaConfigurationID): void
     {
@@ -267,9 +246,6 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     /**
      * Apply all the settings defined in the Schema Configuration for:
      * - Field Deprecation Lists
-     *
-     * @param integer $schemaConfigurationID
-     * @return void
      */
     protected function executeSchemaConfigurationFieldDeprecationLists(int $schemaConfigurationID): void
     {

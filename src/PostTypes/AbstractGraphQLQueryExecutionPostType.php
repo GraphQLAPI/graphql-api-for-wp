@@ -25,8 +25,6 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
     /**
      * Indicates if we executing the GraphQL query (`true`) or visualizing the query source (`false`)
      * It returns always `true`, unless passing ?view=source in the single post URL
-     *
-     * @return boolean
      */
     protected function isGraphQLQueryExecution(): bool
     {
@@ -37,8 +35,6 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
      * Whenever this CPT is saved/updated, the timestamp must be regenerated,
      * because it contains the SchemaConfiguration block, which contains
      * Field Deprecation Lists, which can change the schema
-     *
-     * @return boolean
      */
     protected function regenerateTimestampOnSave(): bool
     {
@@ -47,8 +43,6 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 
     /**
      * Label to show on the "execute" action in the CPT table
-     *
-     * @return string
      */
     protected function getExecuteActionLabel(): string
     {
@@ -59,8 +53,7 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
      * Get actions to add for this CPT
      * "View" action must be attached ?view=source, and the view link is called "Execute"
      *
-     * @param Object $post
-     * @return array
+     * @param \WP_Post $post
      */
     protected function getPostTypeTableActions($post): array
     {
@@ -125,8 +118,6 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 
     /**
      * Add the hook to initialize the different post types
-     *
-     * @return void
      */
     public function initialize(): void
     {
@@ -147,8 +138,6 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
     /**
      * Do something else, not the execution of the GraphQL query.
      * By default, print the Query source
-     *
-     * @return void
      */
     protected function doSomethingElse(): void
     {
@@ -161,9 +150,6 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 
     /**
      * Render the GraphQL Query CPT
-     *
-     * @param [type] $content
-     * @return string
      */
     public function maybeGetGraphQLQuerySourceContent(string $content): string
     {
@@ -180,9 +166,6 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 
     /**
      * Render the GraphQL Query CPT
-     *
-     * @param [type] $content
-     * @return string
      */
     protected function getGraphQLQuerySourceContent(string $content, $graphQLQueryPost): string
     {
@@ -209,8 +192,6 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 
     /**
      * Read the options block and check the value of attribute "isEnabled"
-     *
-     * @return void
      */
     protected function isOptionsBlockValueOn($postOrID, string $attribute, bool $default): bool
     {
@@ -226,8 +207,6 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 
     /**
      * Read the options block and check the value of attribute "isEnabled"
-     *
-     * @return void
      */
     protected function isEnabled($postOrID): bool
     {
@@ -249,8 +228,6 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 
     /**
      * Indicate if the GraphQL variables must override the URL params
-     *
-     * @return boolean
      */
     protected function doURLParamsOverrideGraphQLVariables($postOrID): bool
     {
@@ -259,8 +236,6 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 
     /**
      * Check if requesting the single post of this CPT and, in this case, set the request with the needed API params
-     *
-     * @return void
      */
     public function addGraphQLVars($vars_in_array): void
     {
@@ -272,8 +247,6 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 
     /**
      * If enabled by module, add the Schema Configuration block to the locked Gutenberg template
-     *
-     * @return array
      */
     protected function maybeAddSchemaConfigurationBlock(array &$template): void
     {

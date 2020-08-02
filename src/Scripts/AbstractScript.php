@@ -19,8 +19,6 @@ abstract class AbstractScript
 {
     /**
      * Execute this function to initialize the script
-     *
-     * @return void
      */
     public function initialize(): void
     {
@@ -29,27 +27,21 @@ abstract class AbstractScript
 
     /**
      * Plugin dir
-     *
-     * @return string
      */
     abstract protected function getPluginDir(): string;
+
     /**
      * Plugin URL
-     *
-     * @return string
      */
     abstract protected function getPluginURL(): string;
+
     /**
      * Block name
-     *
-     * @return string
      */
     abstract protected function getScriptName(): string;
 
     // /**
     //  * Register CSS
-    //  *
-    //  * @return bool
     //  */
     // protected function registerScriptCSS(): bool
     // {
@@ -58,8 +50,6 @@ abstract class AbstractScript
 
     /**
      * Script localization name
-     *
-     * @return string
      */
     final protected function getScriptLocalizationName(): string
     {
@@ -68,8 +58,6 @@ abstract class AbstractScript
 
     /**
      * Pass localized data to the block
-     *
-     * @return array
      */
     protected function getLocalizedData(): array
     {
@@ -78,8 +66,6 @@ abstract class AbstractScript
 
     /**
      * URL to the script
-     *
-     * @return string
      */
     protected function getScriptDirURL(): string
     {
@@ -88,8 +74,6 @@ abstract class AbstractScript
 
     /**
      * Where is the script stored
-     *
-     * @return string
      */
     protected function getScriptDir(): string
     {
@@ -98,8 +82,6 @@ abstract class AbstractScript
 
     /**
      * Dependencies to load before the script
-     *
-     * @return array
      */
     protected function getScriptDependencies(): array
     {
@@ -108,8 +90,6 @@ abstract class AbstractScript
 
     /**
      * Dependencies to load before the style
-     *
-     * @return array
      */
     protected function getStyleDependencies(): array
     {

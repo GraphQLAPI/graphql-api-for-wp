@@ -19,8 +19,6 @@ class UserSettingsManager implements UserSettingsManagerInterface
     /**
      * Timestamp of latest executed write to DB, concerning plugin activation,
      * module enabled/disabled, user settings updated
-     *
-     * @return integer
      */
     public function getTimestamp(): int
     {
@@ -29,8 +27,6 @@ class UserSettingsManager implements UserSettingsManagerInterface
     /**
      * Store the current time to indicate the latest executed write to DB,
      * concerning plugin activation, module enabled/disabled, user settings updated
-     *
-     * @return void
      */
     public function storeTimestamp(): void
     {
@@ -38,8 +34,6 @@ class UserSettingsManager implements UserSettingsManagerInterface
     }
     /**
      * Remove the timestamp
-     *
-     * @return void
      */
     public function removeTimestamp(): void
     {
@@ -54,7 +48,6 @@ class UserSettingsManager implements UserSettingsManagerInterface
     /**
      * No return type because it could be a bool/int/string
      *
-     * @param string $item
      * @return mixed
      */
     public function getSetting(string $module, string $option)
@@ -76,10 +69,12 @@ class UserSettingsManager implements UserSettingsManagerInterface
     {
         return $this->hasItem(Options::MODULES, $moduleID);
     }
+
     public function isModuleEnabled(string $moduleID): bool
     {
         return (bool) $this->getItem(Options::MODULES, $moduleID);
     }
+
     public function setModuleEnabled(string $moduleID, bool $isEnabled): void
     {
         $this->storeItem(Options::MODULES, $moduleID, $isEnabled);
@@ -87,6 +82,7 @@ class UserSettingsManager implements UserSettingsManagerInterface
         // Update the timestamp
         $this->storeTimestamp();
     }
+
     public function setModulesEnabled(array $moduleIDValues): void
     {
         $this->storeItems(Options::MODULES, $moduleIDValues);
@@ -98,10 +94,7 @@ class UserSettingsManager implements UserSettingsManagerInterface
     /**
      * Get the stored value for the option under the group
      *
-     * @param array|null $var
-     * @param string $optionName
-     * @param string $item
-     * @return void
+     * @return mixed
      */
     protected function getItem(string $optionName, string $item)
     {
@@ -111,10 +104,6 @@ class UserSettingsManager implements UserSettingsManagerInterface
 
     /**
      * Is there a stored value for the option under the group
-     *
-     * @param string $optionName
-     * @param string $item
-     * @return void
      */
     protected function hasItem(string $optionName, string $item): bool
     {
@@ -124,9 +113,6 @@ class UserSettingsManager implements UserSettingsManagerInterface
 
     /**
      * Load the options from the DB
-     *
-     * @param string $optionName
-     * @return void
      */
     protected function maybeLoadOptions(string $optionName): void
     {
@@ -138,9 +124,6 @@ class UserSettingsManager implements UserSettingsManagerInterface
 
     /**
      * Store the options in the DB
-     *
-     * @param string $optionName
-     * @return void
      */
     protected function storeItem(string $optionName, string $item, $value): void
     {
@@ -149,9 +132,6 @@ class UserSettingsManager implements UserSettingsManagerInterface
 
     /**
      * Store the options in the DB
-     *
-     * @param string $optionName
-     * @return void
      */
     protected function storeItems(string $optionName, array $itemValues): void
     {

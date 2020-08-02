@@ -27,8 +27,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Custom Post Type name
-     *
-     * @return string
      */
     protected function getPostType(): string
     {
@@ -37,8 +35,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Access endpoints under /graphql, or wherever it is configured to
-     *
-     * @return string|null
      */
     protected function getSlugBase(): ?string
     {
@@ -47,8 +43,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Custom post type name
-     *
-     * @return void
      */
     public function getPostTypeName(): string
     {
@@ -59,7 +53,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
      * Custom Post Type plural name
      *
      * @param bool $uppercase Indicate if the name must be uppercase (for starting a sentence) or, otherwise, lowercase
-     * @return string
      */
     protected function getPostTypePluralNames(bool $uppercase): string
     {
@@ -72,7 +65,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
      * @param string $name_uc Singular name uppercase
      * @param string $names_uc Plural name uppercase
      * @param string $names_lc Plural name lowercase
-     * @return array
      */
     protected function getPostTypeLabels(string $name_uc, string $names_uc, string $names_lc): array
     {
@@ -89,8 +81,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * The Query is publicly accessible, and the permalink must be configurable
-     *
-     * @return boolean
      */
     protected function isPublic(): bool
     {
@@ -99,8 +89,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Taxonomies
-     *
-     * @return array
      */
     protected function getTaxonomies(): array
     {
@@ -111,8 +99,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Hierarchical
-     *
-     * @return bool
      */
     protected function isHierarchical(): bool
     {
@@ -121,8 +107,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Gutenberg templates to lock down the Custom Post Type to
-     *
-     * @return array
      */
     protected function getGutenbergTemplate(): array
     {
@@ -139,8 +123,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Indicates if to lock the Gutenberg templates
-     *
-     * @return boolean
      */
     protected function lockGutenbergTemplate(): bool
     {
@@ -149,8 +131,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Indicate if the excerpt must be used as the CPT's description and rendered when rendering the post
-     *
-     * @return boolean
      */
     public function usePostExcerptAsDescription(): bool
     {
@@ -159,8 +139,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Label to show on the "execute" action in the CPT table
-     *
-     * @return string
      */
     protected function getExecuteActionLabel(): string
     {
@@ -169,8 +147,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Provide the query to execute and its variables
-     *
-     * @return array
      */
     protected function getGraphQLQueryAndVariables($graphQLQueryPost): array
     {
@@ -189,8 +165,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     /**
      * Indicates if we executing the GraphQL query (`true`) or visualizing the query source (`false`)
      * It returns always `true`, unless passing ?view=source in the single post URL
-     *
-     * @return boolean
      */
     protected function isGraphQLQueryExecution(): bool
     {
@@ -206,8 +180,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Set the hook to expose the GraphiQL/Voyager clients
-     *
-     * @return void
      */
     protected function doSomethingElse(): void
     {
@@ -227,8 +199,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     }
     /**
      * Expose the GraphiQL/Voyager clients
-     *
-     * @return void
      */
     public function maybePrintClient(): void
     {
@@ -260,8 +230,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Read the options block and check the value of attribute "isGraphiQLEnabled"
-     *
-     * @return void
      */
     protected function isGraphiQLEnabled($postOrID): bool
     {
@@ -286,8 +254,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Read the options block and check the value of attribute "isVoyagerEnabled"
-     *
-     * @return void
      */
     protected function isVoyagerEnabled($postOrID): bool
     {
@@ -313,8 +279,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     /**
      * Get actions to add for this CPT
      *
-     * @param Object $post
-     * @return array
+     * @param \WP_Post $post
      */
     protected function getPostTypeTableActions($post): array
     {
