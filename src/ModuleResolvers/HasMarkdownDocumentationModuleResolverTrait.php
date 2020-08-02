@@ -75,7 +75,7 @@ trait HasMarkdownDocumentationModuleResolverTrait
                 if (!file_exists($markdownFile)) {
                     return sprintf(
                         '<p>%s</p>',
-                        \__('Ops, the documentation for this module is not available', 'graphql-api')
+                        \__('Oops, the documentation for this module is not available', 'graphql-api')
                     );
                 }
             }
@@ -137,7 +137,7 @@ trait HasMarkdownDocumentationModuleResolverTrait
         );
         return preg_replace_callback(
             $regex,
-            function ($matches) use ($pathURL) {
+            function ($matches) use ($pathURL, $attr) {
                 // If the element has an absolute route, then no need
                 if (
                     substr($matches[1], 0, strlen('http://')) == 'http://'
