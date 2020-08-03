@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Clients;
 
+use PoP\ComponentModel\Misc\RequestUtils;
 use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use PoP\API\Configuration\Request as APIRequest;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
@@ -21,7 +22,7 @@ trait CustomEndpointClientTrait
          * If accessing from Nginx, the server_name might point to localhost
          * instead of the actual server domain. So use the user-requested host
          */
-        $fullURL = \fullUrl(true);
+        $fullURL = RequestUtils::getRequestedFullURL(true);
         // Remove the ?view=..., and maybe add ?use_namespace=true
         $endpointURL = \remove_query_arg(RequestParams::VIEW, $fullURL);
         if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
