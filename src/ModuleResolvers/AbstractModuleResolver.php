@@ -131,9 +131,6 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
 
     /**
      * By default, the slug is the module's name, without the owner/package
-     *
-     * @param string $module
-     * @return string
      */
     public function getSlug(string $module): string
     {

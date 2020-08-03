@@ -9,6 +9,11 @@ use Parsedown;
 trait HasMarkdownDocumentationModuleResolverTrait
 {
     /**
+     * The module slug
+     */
+    abstract public function getSlug(string $module): string;
+
+    /**
      * The name of the Markdown filename.
      * By default, it's the same as the slug
      *
