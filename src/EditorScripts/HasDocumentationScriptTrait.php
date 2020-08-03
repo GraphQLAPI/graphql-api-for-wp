@@ -85,7 +85,7 @@ trait HasDocumentationScriptTrait
                 $version,
                 true
             );
-            \wp_enqueue_script($scriptName . '-' . $defaultLang);
+            \wp_enqueue_script($scriptName . '-' . /** @scrutinizer ignore-type */ $defaultLang);
         }
         if ($this->addLocalLanguage()) {
             $localeLang = LocaleUtils::getLocaleLanguage();
