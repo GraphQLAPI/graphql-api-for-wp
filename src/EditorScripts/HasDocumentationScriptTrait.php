@@ -74,17 +74,15 @@ trait HasDocumentationScriptTrait
     protected function registerDocumentationScripts(
         string $scriptName,
         string $url,
-        array $script_asset
+        ?array $dependencies = [],
+        ?string $version = null
     ): void {
         if ($defaultLang = $this->getDefaultLanguage()) {
             \wp_register_script(
                 $scriptName . '-' . $defaultLang,
                 $url . 'build/docs-' . $defaultLang . '.js',
-                array_merge(
-                    $script_asset['dependencies'],
-                    $this->getScriptDependencies()
-                ),
-                $script_asset['version'],
+                $dependencies,
+                $version,
                 true
             );
             \wp_enqueue_script($scriptName . '-' . $defaultLang);
@@ -97,11 +95,8 @@ trait HasDocumentationScriptTrait
                 \wp_register_script(
                     $scriptName . '-' . $localeLang,
                     $url . 'build/docs-' . $localeLang . '.js',
-                    array_merge(
-                        $script_asset['dependencies'],
-                        $this->getScriptDependencies()
-                    ),
-                    $script_asset['version'],
+                    $dependencies,
+                    $version,
                     true
                 );
                 \wp_enqueue_script($scriptName . '-' . $localeLang);
