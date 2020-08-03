@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "405bd71ade44d08792f95baf605dd10a",
+    "content-hash": "16057e2646deada75641d964549c54f3",
     "packages": [
         {
             "name": "brain/cortex",
@@ -4200,12 +4200,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/pages-wp.git",
-                "reference": "b9ea171570bda0ed56a4094bb99cc767f62e951e"
+                "reference": "db1ee5ecb8f3c15a81858693859a72cf912d787d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/pages-wp/zipball/b9ea171570bda0ed56a4094bb99cc767f62e951e",
-                "reference": "b9ea171570bda0ed56a4094bb99cc767f62e951e",
+                "url": "https://api.github.com/repos/PoPSchema/pages-wp/zipball/db1ee5ecb8f3c15a81858693859a72cf912d787d",
+                "reference": "db1ee5ecb8f3c15a81858693859a72cf912d787d",
                 "shasum": ""
             },
             "require": {
@@ -4215,8 +4215,10 @@
                 "php": "~7.1"
             },
             "require-dev": {
+                "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": ">=7.0",
-                "squizlabs/php_codesniffer": "^3.0"
+                "squizlabs/php_codesniffer": "^3.0",
+                "szepeviktor/phpstan-wordpress": "^0.6.2"
             },
             "type": "library",
             "extra": {
@@ -4246,7 +4248,7 @@
                 "pages-wp",
                 "pop"
             ],
-            "time": "2020-07-21T12:37:41+00:00"
+            "time": "2020-08-03T08:14:48+00:00"
         },
         {
             "name": "getpop/post-tags",
