@@ -79,7 +79,7 @@ trait HasDocumentationScriptTrait
     ): void {
         if ($defaultLang = $this->getDefaultLanguage()) {
             \wp_register_script(
-                $scriptName . '-' . $defaultLang,
+                $scriptName . '-' . /** @scrutinizer ignore-type */ $defaultLang,
                 $url . 'build/docs-' . $defaultLang . '.js',
                 $dependencies,
                 $version,
