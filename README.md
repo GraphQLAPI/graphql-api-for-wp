@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/img/graphql-api-logo.png" width="150" /></p>
+
 # GraphQL API for WordPress
 
 [![Build Status][ico-travis]][link-travis]
