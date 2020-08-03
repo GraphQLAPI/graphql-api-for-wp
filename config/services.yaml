@@ -43,7 +43,3 @@ services:
     GraphQLAPI\GraphQLAPI\Clients\:
         resource: '../src/Clients/*'
         public: true
-
-    # GraphQLAPI\GraphQLAPI\ModuleResolvers\:
-    #     resource: '../src/ModuleResolvers/*'
-    #     public: true

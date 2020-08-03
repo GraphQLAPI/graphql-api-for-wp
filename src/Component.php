@@ -10,7 +10,7 @@ use PoP\Root\Component\YAMLServicesTrait;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Config\ServiceConfiguration;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\Container\ContainerBuilderUtils;
+use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use PoP\ComponentModel\Facades\Engine\DataloadingEngineFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use PoP\CacheControl\DirectiveResolvers\CacheControlDirectiveResolver;
@@ -103,7 +103,6 @@ class Component extends AbstractComponent
         // Initialize classes
         ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Hooks');
         ContainerBuilderUtils::attachFieldResolversFromNamespace(__NAMESPACE__ . '\\FieldResolvers', false);
-        ContainerBuilderUtils::registerModuleResolversFromNamespace(__NAMESPACE__ . '\\ModuleResolvers');
     }
 
     /**
