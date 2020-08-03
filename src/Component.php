@@ -7,7 +7,7 @@ namespace GraphQLAPI\GraphQLAPI;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use PoP\Root\Component\AbstractComponent;
 use PoP\Root\Component\YAMLServicesTrait;
-use PoP\ComponentModel\ComponentConfiguration;
+use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Config\ServiceConfiguration;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Container\ContainerBuilderUtils;
@@ -78,7 +78,7 @@ class Component extends AbstractComponent
          * from the type/directive names, saved in the DB in the ACL/CCL Custom Post Types
          */
         $hookName = ComponentConfigurationHelpers::getHookName(
-            ComponentConfiguration::class,
+            ComponentModelComponentConfiguration::class,
             ComponentModelEnvironment::ENABLE_SCHEMA_ENTITY_REGISTRIES
         );
         \add_filter(
