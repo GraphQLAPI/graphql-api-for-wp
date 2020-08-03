@@ -3,6 +3,8 @@
 [![Build Status][ico-travis]][link-travis]
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Software License][ico-license]](LICENSE.md)
+[![GitHub release][ico-release]][link-release]
+<!-- [![Github all releases][ico-downloads]][link-downloads] -->
 
 Transform your WordPress site into a GraphQL server.
 
@@ -225,17 +227,18 @@ If you discover any security related issues, please email leo@getpop.org instead
 
 GPLv2 or later. Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/GraphQLAPI/graphql-api-for-wp.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-GPL%20(%3E%3D%202)-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/GraphQLAPI/graphql-api/master.svg?style=flat-square
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/GraphQLAPI/graphql-api-for-wp.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/GraphQLAPI/graphql-api-for-wp.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/GraphQLAPI/graphql-api-for-wp.svg?style=flat-square
+[ico-release]: https://img.shields.io/github/release/GraphQLAPI/graphql-api-for-wp.svg
+[ico-downloads]: https://img.shields.io/github/downloads/GraphQLAPI/graphql-api-for-wp/total.svg
 
-[link-packagist]: https://packagist.org/packages/GraphQLAPI/graphql-api-for-wp
 [link-travis]: https://travis-ci.com/github/GraphQLAPI/graphql-api
 [link-scrutinizer]: https://scrutinizer-ci.com/g/GraphQLAPI/graphql-api-for-wp/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/GraphQLAPI/graphql-api-for-wp
-[link-downloads]: https://packagist.org/packages/GraphQLAPI/graphql-api-for-wp
+[link-downloads]: https://GitHub.com/GraphQLAPI/graphql-api-for-wp/releases/
+[link-release]: https://GitHub.com/GraphQLAPI/graphql-api-for-wp/releases/
+[link-downloads]: https://GitHub.com/GraphQLAPI/graphql-api-for-wp/releases/
 [link-contributors]: ../../contributors
 [link-author]: https://github.com/leoloso
