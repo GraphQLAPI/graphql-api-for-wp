@@ -83,7 +83,7 @@ class Component extends AbstractComponent
         );
         \add_filter(
             $hookName,
-            function ($value) {
+            function () {
                 return true;
             },
             PHP_INT_MAX,
