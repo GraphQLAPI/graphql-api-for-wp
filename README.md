@@ -15,7 +15,7 @@ Please read the author's [introduction to the GraphQL API for WordPress](https:/
 
 ## Requirements
 
-WordPress 5.4 or above, PHP 7.1 or above.
+WordPress 5.4 or above, PHP 7.2.5 or above.
 
 ## Install
 

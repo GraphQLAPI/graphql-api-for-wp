@@ -2,7 +2,6 @@ dist: trusty
 language: php
 
 php:
-  - 7.1
   - 7.2
   - 7.3
   - 7.4
@@ -15,7 +14,7 @@ cache:
 ## Commented out until version 1.0 (version 0.1.. doesn't follow semver)
 # matrix:
 #   include:
-#     - php: 7.1
+#     - php: 7.2
 #       env: 'COMPOSER_FLAGS="--prefer-stable --prefer-lowest"'
 
 before_script:
