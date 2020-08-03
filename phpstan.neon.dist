@@ -8,6 +8,3 @@ parameters:
         - vendor/getpop/migrate-engine/migrate/library/functions/utils.php
     paths:
         - src/
-    ignoreErrors:
-        # TODO Tidy up abstract methods.
-        - '#^Call to an undefined method GraphQLAPI\\GraphQLAPI\\Blocks\\AbstractBlock::getScriptDependencies\(\)\.$#'
