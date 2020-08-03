@@ -58,13 +58,20 @@ EOF;
             foreach ($postObjects as $postObject) {
                 $foundPostListIDs[] = $postObject->ID;
                 $postDescription = CPTUtils::getCustomPostDescription($postObject);
-                $postContentElems[] = \sprintf(
-                    '<code><a href="%s">%s</a></code>%s',
-                    \get_permalink($postObject->ID),
-                    BlockRenderingHelpers::getCustomPostTitle($postObject),
-                    $postDescription ?
-                        '<br/><small>' . $postDescription . '</small>'
-                        : ''
+                $permalink = \get_permalink($postObject->ID);
+                $postContentElems[] = ($permalink ?
+                    \sprintf(
+                        '<code><a href="%s">%s</a></code>',
+                        $permalink,
+                        BlockRenderingHelpers::getCustomPostTitle($postObject)
+                    ) :
+                    \sprintf(
+                        '<code>%s</code>',
+                        BlockRenderingHelpers::getCustomPostTitle($postObject)
+                    )
+                ) . ($postDescription ?
+                    '<br/><small>' . $postDescription . '</small>'
+                    : ''
                 );
             }
             // If any ID was not retrieved as an object, it is a deleted post
