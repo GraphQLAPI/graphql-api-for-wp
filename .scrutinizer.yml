@@ -5,9 +5,14 @@ build:
                 override: true
             tests:
                 override: [php-scrutinizer-run]
+            dependencies:
+                before:
+                    - composer require --dev johnpbloch/wordpress
 
 filter:
     excluded_paths: [tests/*]
+    dependency_paths:
+        - wordpress/
 
 checks:
     php:
