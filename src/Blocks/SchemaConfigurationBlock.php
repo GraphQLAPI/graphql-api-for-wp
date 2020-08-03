@@ -81,13 +81,20 @@ EOF;
         } elseif ($schemaConfigurationID > 0) {
             $schemaConfigurationObject = \get_post($schemaConfigurationID);
             $schemaConfigurationDescription = CPTUtils::getCustomPostDescription($schemaConfigurationObject);
-            $schemaConfigurationContent = \sprintf(
-                '<code><a href="%s">%s</a></code>%s',
-                \get_permalink($schemaConfigurationObject->ID),
-                BlockRenderingHelpers::getCustomPostTitle($schemaConfigurationObject),
-                $schemaConfigurationDescription ?
-                    '<br/><small>' . $schemaConfigurationDescription . '</small>'
-                    : ''
+            $permalink = \get_permalink($schemaConfigurationObject->ID);
+            $schemaConfigurationContent = ($permalink ?
+                \sprintf(
+                    '<code><a href="%s">%s</a></code>',
+                    $permalink,
+                    BlockRenderingHelpers::getCustomPostTitle($schemaConfigurationObject)
+                ) :
+                \sprintf(
+                    '<code>%s</code>',
+                    BlockRenderingHelpers::getCustomPostTitle($schemaConfigurationObject)
+                )
+            ) . ($schemaConfigurationDescription ?
+                '<br/><small>' . $schemaConfigurationDescription . '</small>'
+                : ''
             );
         }
         $className = $this->getBlockClassName();
