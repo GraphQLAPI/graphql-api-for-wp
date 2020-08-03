@@ -93,7 +93,7 @@ abstract class AbstractItemListTable extends \WP_List_Table
      * Text displayed when there are no items
      *
      * @return void
-     * phpcs:ignore Sniff.Name.Sniff.Name
+     * phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
      */
     public function no_items()
     {
