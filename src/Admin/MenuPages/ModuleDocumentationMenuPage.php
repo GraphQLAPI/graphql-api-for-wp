@@ -54,7 +54,7 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
             id="graphql-api-module-docs"
             class="wrap responsive-img-container"
         >
-            <h1><?php echo $title ?></h1>
+            <!--h1><?php echo $title ?></h1-->
             <?php echo $documentation ?>
         </div>
         <?php
