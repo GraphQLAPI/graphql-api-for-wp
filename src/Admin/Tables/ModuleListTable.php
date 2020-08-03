@@ -90,6 +90,7 @@ class ModuleListTable extends AbstractItemListTable
      * Returns the count of records in the database.
      *
      * @return null|string
+     * phpcs:ignore Sniff.Name.Sniff.Name
      */
     public function record_count()
     {
@@ -104,6 +105,7 @@ class ModuleListTable extends AbstractItemListTable
      * @param string $column_name
      *
      * @return mixed
+     * phpcs:ignore Sniff.Name.Sniff.Name
      */
     public function column_default($item, $column_name)
     {
@@ -204,6 +206,7 @@ class ModuleListTable extends AbstractItemListTable
      * @param array $item
      *
      * @return string
+     * phpcs:ignore Sniff.Name.Sniff.Name
      */
     public function column_cb($item)
     {
@@ -220,6 +223,7 @@ class ModuleListTable extends AbstractItemListTable
      * @param array $item an array of DB data
      *
      * @return string
+     * phpcs:ignore Sniff.Name.Sniff.Name
      */
     public function column_name($item)
     {
@@ -295,6 +299,7 @@ class ModuleListTable extends AbstractItemListTable
      *  Associative array of columns
      *
      * @return array
+     * phpcs:ignore Sniff.Name.Sniff.Name
      */
     public function get_columns()
     {
@@ -319,6 +324,7 @@ class ModuleListTable extends AbstractItemListTable
      * Returns an associative array containing the bulk action
      *
      * @return array
+     * phpcs:ignore Sniff.Name.Sniff.Name
      */
     public function get_bulk_actions()
     {
@@ -334,6 +340,7 @@ class ModuleListTable extends AbstractItemListTable
      * @since 3.1.0
      *
      * @return string[] Array of CSS classes for the table tag.
+     * phpcs:ignore Sniff.Name.Sniff.Name
      */
     protected function get_table_classes()
     {
@@ -373,6 +380,7 @@ class ModuleListTable extends AbstractItemListTable
      * @since 3.1.0
      *
      * @param object $item The current item
+     * phpcs:ignore Sniff.Name.Sniff.Name
      */
     public function single_row($item)
     {
@@ -395,6 +403,8 @@ class ModuleListTable extends AbstractItemListTable
 
     /**
      * Handles data query and filter, sorting, and pagination.
+     *
+     * phpcs:ignore Sniff.Name.Sniff.Name
      */
     public function prepare_items()
     {
