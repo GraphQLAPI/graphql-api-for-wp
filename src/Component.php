@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI;
 
-use PoP\ComponentModel\Environment;
+use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use PoP\Root\Component\AbstractComponent;
 use PoP\Root\Component\YAMLServicesTrait;
 use PoP\ComponentModel\ComponentConfiguration;
@@ -79,7 +79,7 @@ class Component extends AbstractComponent
          */
         $hookName = ComponentConfigurationHelpers::getHookName(
             ComponentConfiguration::class,
-            Environment::ENABLE_SCHEMA_ENTITY_REGISTRIES
+            ComponentModelEnvironment::ENABLE_SCHEMA_ENTITY_REGISTRIES
         );
         \add_filter(
             $hookName,
