@@ -94,23 +94,25 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
                     }
                 }
             } elseif ('trash' != $post->post_status) {
-                $actions['view'] = sprintf(
-                    '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
-                    \add_query_arg(
-                        RequestParams::VIEW,
-                        RequestParams::VIEW_SOURCE,
-                        get_permalink($post->ID)
-                    ),
-                    esc_attr(sprintf(__('View source &#8220;%s&#8221;', 'graphql-api'), $title)),
-                    __('View source', 'graphql-api')
-                );
-                if ($isEnabled) {
-                    $actions['execute'] = sprintf(
+                if ($permalink = \get_permalink($post->ID)) {
+                    $actions['view'] = sprintf(
                         '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
-                        \get_permalink($post->ID),
-                        esc_attr(sprintf(__('%s &#8220;%s&#8221;', 'graphql-api'), $executeLabel, $title)),
-                        $executeLabel
+                        \add_query_arg(
+                            RequestParams::VIEW,
+                            RequestParams::VIEW_SOURCE,
+                            $permalink
+                        ),
+                        esc_attr(sprintf(__('View source &#8220;%s&#8221;', 'graphql-api'), $title)),
+                        __('View source', 'graphql-api')
                     );
+                    if ($isEnabled) {
+                        $actions['execute'] = sprintf(
+                            '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
+                            $permalink,
+                            esc_attr(sprintf(__('%s &#8220;%s&#8221;', 'graphql-api'), $executeLabel, $title)),
+                            $executeLabel
+                        );
+                    }
                 }
             }
         }
