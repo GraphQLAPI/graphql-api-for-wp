@@ -8,15 +8,11 @@ abstract class AbstractTaxonomy
 {
     /**
      * Taxonomy
-     *
-     * @return string
      */
     abstract public function getTaxonomy(): string;
 
     /**
      * Add the hook to initialize the different taxonomies
-     *
-     * @return void
      */
     public function initialize(): void
     {
@@ -33,7 +29,6 @@ abstract class AbstractTaxonomy
      * @param string $names_uc Plural name uppercase
      * @param string $name_lc Singulare name lowercase
      * @param string $names_lc Plural name lowercase
-     * @return array
      */
     protected function getTaxonomyLabels(string $name_uc, string $names_uc, string $name_lc, string $names_lc): array
     {
@@ -58,8 +53,6 @@ abstract class AbstractTaxonomy
 
     /**
      * Taxonomy name
-     *
-     * @return void
      */
     abstract public function getTaxonomyName(bool $uppercase = true): string;
 
@@ -67,15 +60,12 @@ abstract class AbstractTaxonomy
      * Taxonomy plural name
      *
      * @param bool $uppercase Indicate if the name must be uppercase (for starting a sentence) or, otherwise, lowercase
-     * @return string
      */
     abstract protected function getTaxonomyPluralNames(bool $uppercase = true): string;
 
 
     /**
      * Initialize the different post types
-     *
-     * @return void
      */
     public function initTaxonomy(): void
     {

@@ -11,8 +11,6 @@ abstract class AbstractSchemaConfiguratorExecuter
 {
     /**
      * Initialize the configuration if vising the corresponding CPT
-     *
-     * @return void
      */
     public function init(): void
     {
@@ -35,8 +33,6 @@ abstract class AbstractSchemaConfiguratorExecuter
 
     /**
      * Function to override, to initialize the configuration of services before the execution of the GraphQL query
-     *
-     * @return void
      */
     abstract protected function getSchemaConfigurator(): SchemaConfiguratorInterface;
 }
