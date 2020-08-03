@@ -360,6 +360,6 @@ abstract class AbstractBlock
         $blockRegistrationName = $this->getBlockRegistrationName();
         $scriptRegistrationName = $blockRegistrationName . '-block-editor';
 
-        $this->registerDocumentationScripts($scriptRegistrationName, $url, $script_asset);
+        $this->registerDocumentationScripts($scriptRegistrationName, $url, $script_asset['dependencies'], $script_asset['version']);
     }
 }

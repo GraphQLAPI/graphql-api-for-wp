@@ -97,6 +97,6 @@ abstract class AbstractEditorScript extends AbstractScript
         $url = $this->getScriptDirURL();
         $script_asset = require($script_asset_path);
 
-        $this->registerDocumentationScripts($scriptName, $url, $script_asset);
+        $this->registerDocumentationScripts($scriptName, $url, $script_asset['dependencies'], $script_asset['version']);
     }
 }
