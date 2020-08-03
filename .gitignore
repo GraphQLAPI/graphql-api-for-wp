@@ -1,4 +1,5 @@
 composer.local.json
 vendor/
 bin/
-build/report.junit.xml
+# Root folder build/ is ignored, but not blocks/**/build/
+/build/
