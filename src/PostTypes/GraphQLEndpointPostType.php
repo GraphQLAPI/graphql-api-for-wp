@@ -206,8 +206,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
         $post = $vars['routing-state']['queried-object'];
         $view = $_REQUEST[RequestParams::VIEW];
         // Read from the configuration if to expose the GraphiQL/Voyager client
-        if (
-            (
+        if ((
                 $view == RequestParams::VIEW_GRAPHIQL
                 && $this->isGraphiQLEnabled($post)
             )

@@ -62,15 +62,14 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
 
                 // Extract the saved directives
                 if ($directives = $cclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_DIRECTIVES]) {
-                    if (
-                        $entriesForDirectives = GeneralUtils::arrayFlatten(array_filter(
-                            array_map(
-                                function ($selectedDirective) use ($maxAge) {
-                                    return $this->getEntriesFromDirective($selectedDirective, $maxAge);
-                                },
-                                $directives
-                            )
-                        ))
+                    if ($entriesForDirectives = GeneralUtils::arrayFlatten(array_filter(
+                        array_map(
+                            function ($selectedDirective) use ($maxAge) {
+                                return $this->getEntriesFromDirective($selectedDirective, $maxAge);
+                            },
+                            $directives
+                        )
+                    ))
                     ) {
                         $cacheControlManager->addEntriesForDirectives(
                             $entriesForDirectives

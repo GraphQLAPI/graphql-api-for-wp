@@ -223,7 +223,7 @@ class ModuleListTable extends AbstractItemListTable
      */
     public function column_name($item)
     {
-        $nonce = \wp_create_nonce( 'graphql_api_enable_or_disable_module' );
+        $nonce = \wp_create_nonce('graphql_api_enable_or_disable_module');
         $title = '<strong>' . $item['name'] . '</strong>';
         $linkPlaceholder = '<a href="?page=%s&action=%s&item=%s&_wpnonce=%s">%s</a>';
         $page = esc_attr($_REQUEST['page']);

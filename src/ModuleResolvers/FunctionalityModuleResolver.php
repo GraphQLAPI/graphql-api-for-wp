@@ -467,8 +467,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             $possibleValues = [
                 self::OPTION_VALUE_NO_VALUE_ID => \__('None', 'graphql-api'),
             ];
-            if (
-                $customPosts = \get_posts([
+            if ($customPosts = \get_posts([
                     'posts_per_page' => -1,
                     'post_type' => GraphQLSchemaConfigurationPostType::POST_TYPE,
                     'post_status' => 'publish',

@@ -279,8 +279,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
         $defaultLimitMessagePlaceholder = \__('Number of results from querying %s when argument <code>%s</code> is not provided. Use <code>%s</code> for unlimited', 'graphql-api');
         $maxLimitMessagePlaceholder = \__('Maximum number of results from querying %s. Use <code>%s</code> for unlimited', 'graphql-api');
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
-        if (
-            in_array($module, [
+        if (in_array($module, [
                 self::SCHEMA_CUSTOMPOSTS,
                 // self::SCHEMA_GENERIC_CUSTOMPOSTS,
                 // self::SCHEMA_POSTS,
@@ -376,8 +375,7 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                     Properties::TYPE => Properties::TYPE_BOOL,
                 ];
             }
-        } elseif (
-            in_array($module, [
+        } elseif (in_array($module, [
                 self::SCHEMA_POSTS,
                 self::SCHEMA_PAGES,
             ])

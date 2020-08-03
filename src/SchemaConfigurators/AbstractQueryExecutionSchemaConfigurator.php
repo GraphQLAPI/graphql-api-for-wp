@@ -147,8 +147,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             // Only execute if it has value "enabled" or "disabled".
             // If "default", then the general settings will already take effect, so do nothing
             // (And if any other unsupported value, also do nothing)
-            if (
-                !in_array($useNamespacing, [
+            if (!in_array($useNamespacing, [
                     SchemaConfigOptionsBlock::ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED,
                     SchemaConfigOptionsBlock::ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED,
                 ])
@@ -194,8 +193,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             // Only execute if it has value "public" or "private".
             // If "default", then the general settings will already take effect, so do nothing
             // (And if any other unsupported value, also do nothing)
-            if (
-                !in_array($defaultSchemaMode, [
+            if (!in_array($defaultSchemaMode, [
                     SchemaModes::PUBLIC_SCHEMA_MODE,
                     SchemaModes::PRIVATE_SCHEMA_MODE,
                 ])

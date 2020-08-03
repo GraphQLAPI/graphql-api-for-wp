@@ -129,7 +129,7 @@ abstract class AbstractPostType
                 true
             ),
             [
-                'description' => \__('Description', 'graphql-api' ),
+                'description' => \__('Description', 'graphql-api'),
             ],
             array_slice(
                 $columns,
@@ -144,7 +144,7 @@ abstract class AbstractPostType
     public function resolveCustomColumn($column, $post_id): void
     {
         switch ($column) {
-            case 'description' :
+            case 'description':
                 $post = \get_post($post_id);
                 echo CPTUtils::getCustomPostDescription($post);
                 break;
@@ -214,8 +214,7 @@ abstract class AbstractPostType
         /**
          * Check if it is enabled and it is this CPT...
          */
-        if (
-            $moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::EXCERPT_AS_DESCRIPTION)
+        if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::EXCERPT_AS_DESCRIPTION)
             && UserAuthorization::canAccessSchemaEditor()
             && \is_singular($this->getPostType())
         ) {
