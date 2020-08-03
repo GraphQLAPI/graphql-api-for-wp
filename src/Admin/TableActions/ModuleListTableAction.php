@@ -53,7 +53,7 @@ class ModuleListTableAction extends AbstractListTableAction
             /**
              * Executing at the beginning (in Plugin.php): Add a precise message
              */
-            if ($this->mutatedModuleIDs) {
+            if (!empty($this->mutatedModuleIDs)) {
                 if (count($this->mutatedModuleIDs) == 1 && $this->mutatedEnabled) {
                     $message = \__('Module enabled successfully', 'graphql-api');
                 } elseif (count($this->mutatedModuleIDs) > 1 && $this->mutatedEnabled) {
