@@ -1,5 +1,9 @@
 # GraphQL API for WordPress
 
+[![Build Status][ico-travis]][link-travis]
+[![Quality Score][ico-code-quality]][link-code-quality]
+[![Software License][ico-license]](LICENSE.md)
+
 Transform your WordPress site into a GraphQL server.
 
 This plugin is the implementation for WordPress of [GraphQL by PoP](https://graphql-by-pop.com/), a CMS-agnostic GraphQL server in PHP.
@@ -221,4 +225,17 @@ If you discover any security related issues, please email leo@getpop.org instead
 
 GPLv2 or later. Please see [License File](LICENSE.md) for more information.
 
+[ico-version]: https://img.shields.io/packagist/v/GraphQLAPI/graphql-api-for-wp.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-GPL%20(%3E%3D%202)-brightgreen.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/GraphQLAPI/graphql-api/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/GraphQLAPI/graphql-api-for-wp.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/GraphQLAPI/graphql-api-for-wp.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/GraphQLAPI/graphql-api-for-wp.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/GraphQLAPI/graphql-api-for-wp
+[link-travis]: https://travis-ci.com/github/GraphQLAPI/graphql-api
+[link-scrutinizer]: https://scrutinizer-ci.com/g/GraphQLAPI/graphql-api-for-wp/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/GraphQLAPI/graphql-api-for-wp
+[link-downloads]: https://packagist.org/packages/GraphQLAPI/graphql-api-for-wp
+[link-contributors]: ../../contributors
 [link-author]: https://github.com/leoloso
