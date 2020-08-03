@@ -374,6 +374,7 @@ class SettingsMenuPage extends AbstractMenuPage
         $value = $this->getOptionValue($module, $input);
         $label = $itemSetting[Properties::DESCRIPTION] ? '<br/>' . $itemSetting[Properties::DESCRIPTION] : '';
         $isNumber = $itemSetting[Properties::TYPE] == Properties::TYPE_INT;
+        $minNumber = null;
         if ($isNumber) {
             $minNumber = $itemSetting[Properties::MIN_NUMBER];
         }
