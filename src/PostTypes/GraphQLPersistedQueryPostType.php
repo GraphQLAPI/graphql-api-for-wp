@@ -199,6 +199,7 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
             $graphiQLBlock = $instanceManager->getInstance(GraphiQLBlock::class);
 
             // Check if the user is authorized to see the content
+            $ancestorContent = null;
             if (UserAuthorization::canAccessSchemaEditor()) {
                 /**
                  * If the query has a parent, also render the inherited output
@@ -227,7 +228,7 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
             } else {
                 $ancestorContent = $graphiQLBlock->renderUnauthorizedAccess();
             }
-            if ($ancestorContent) {
+            if (!is_null($ancestorContent)) {
                 $content = sprintf(
                     '%s%s<hr/>%s%s',
                     \__('<p><u>GraphQL query, inheriting properties from ancestor(s): </u></p>'),
