@@ -108,7 +108,7 @@ class ModuleListTableAction extends AbstractListTableAction
          * and we don't want to execute it again
          */
         if ($isBulkAction) {
-            if ($moduleIDs = \esc_sql($_POST[self::INPUT_BULK_ACTION_IDS] ?? '')) {
+            if ($moduleIDs = \esc_sql($_POST[self::INPUT_BULK_ACTION_IDS] ?? [])) {
                 // Enable or disable
                 if ($_POST['action'] == self::ACTION_ENABLE || $_POST['action2'] == self::ACTION_ENABLE) {
                     $this->setModulesEnabledValue($moduleIDs, true);
