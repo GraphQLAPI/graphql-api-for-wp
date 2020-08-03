@@ -72,7 +72,7 @@
         "test": "phpunit",
         "check-style": "phpcs src tests",
         "fix-style": "phpcbf src tests",
-        "analyse": "phpstan analyse -c phpstan.neon.dist"
+        "analyse": "phpstan analyse -c phpstan.neon.dist --memory-limit 256K"
     },
     "extra": {
         "branch-alias": {
