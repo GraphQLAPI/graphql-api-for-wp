@@ -3,8 +3,5 @@ includes:
 parameters:
 #    level: 5
     level: 0
-    scanFiles:
-        # fullUrl() comes from this file
-        - vendor/getpop/migrate-engine/migrate/library/functions/utils.php
     paths:
         - src/
