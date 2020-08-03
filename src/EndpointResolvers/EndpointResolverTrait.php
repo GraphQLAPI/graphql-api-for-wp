@@ -9,6 +9,7 @@ use PoP\API\Schema\QueryInputs;
 use PoP\GraphQLAPIRequest\Hooks\VarsHooks;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
+use WP_Post;
 
 trait EndpointResolverTrait
 {
@@ -57,7 +58,7 @@ trait EndpointResolverTrait
      *
      * @return array Array of 2 elements: [query, variables]
      */
-    abstract protected function getGraphQLQueryAndVariables($graphQLQueryPost): array;
+    abstract protected function getGraphQLQueryAndVariables(?WP_Post $graphQLQueryPost): array;
 
     /**
      * Indicate if the GraphQL variables must override the URL params

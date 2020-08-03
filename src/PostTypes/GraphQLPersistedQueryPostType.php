@@ -14,6 +14,7 @@ use GraphQLAPI\GraphQLAPI\Blocks\PersistedQueryOptionsBlock;
 use GraphQLAPI\GraphQLAPI\General\GraphQLQueryPostTypeHelpers;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
 use GraphQLAPI\GraphQLAPI\PostTypes\AbstractGraphQLQueryExecutionPostType;
+use WP_Post;
 
 class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostType
 {
@@ -183,7 +184,7 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
      * @param Object $graphQLQueryPost
      * @return string
      */
-    protected function getGraphQLQuerySourceContent(string $content, $graphQLQueryPost): string
+    protected function getGraphQLQuerySourceContent(string $content, WP_Post $graphQLQueryPost): string
     {
         $content = parent::getGraphQLQuerySourceContent($content, $graphQLQueryPost);
 
@@ -247,7 +248,7 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
      *
      * @return array
      */
-    protected function getGraphQLQueryAndVariables($graphQLQueryPost): array
+    protected function getGraphQLQueryAndVariables(?WP_Post $graphQLQueryPost): array
     {
         /**
          * Extract the query from the post (or from its parents), and set it in $vars

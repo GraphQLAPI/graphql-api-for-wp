@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\General;
 
 use GraphQLAPI\GraphQLAPI\General\BlockContentHelpers;
+use WP_Post;
 
 class GraphQLQueryPostTypeHelpers
 {
@@ -23,11 +24,11 @@ class GraphQLQueryPostTypeHelpers
      * 2. Define a root GraphQL query without variables, and extend with posts "MobileApp" and "Website"
      * with different variables, eg: changing the value for `$limit`
      *
-     * @param [type] $graphQLQueryPost
+     * @param WP_Post $graphQLQueryPost The post to extract the attributes from
      * @param bool $inheritAttributes Indicate if to fetch attributes (query/variables) from ancestor posts
      * @return array array with 2 elements: [$graphQLQuery, $graphQLVariables]
      */
-    public static function getGraphQLQueryPostAttributes($graphQLQueryPost, bool $inheritAttributes): array
+    public static function getGraphQLQueryPostAttributes(?WP_Post $graphQLQueryPost, bool $inheritAttributes): array
     {
         /**
          * Obtain the attributes from the block:

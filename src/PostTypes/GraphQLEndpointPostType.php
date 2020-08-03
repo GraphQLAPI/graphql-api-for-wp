@@ -17,6 +17,7 @@ use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
 use GraphQLAPI\GraphQLAPI\PostTypes\AbstractGraphQLQueryExecutionPostType;
+use WP_Post;
 
 class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 {
@@ -148,7 +149,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     /**
      * Provide the query to execute and its variables
      */
-    protected function getGraphQLQueryAndVariables($graphQLQueryPost): array
+    protected function getGraphQLQueryAndVariables(?WP_Post $graphQLQueryPost): array
     {
         /**
          * Extract the query from the BODY through standard GraphQL endpoint execution

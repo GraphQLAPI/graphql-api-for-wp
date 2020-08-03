@@ -14,6 +14,7 @@ use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigurationBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\EndpointResolvers\EndpointResolverTrait;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
+use WP_Post;
 
 abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 {
@@ -167,7 +168,7 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
     /**
      * Render the GraphQL Query CPT
      */
-    protected function getGraphQLQuerySourceContent(string $content, $graphQLQueryPost): string
+    protected function getGraphQLQuerySourceContent(string $content, WP_Post $graphQLQueryPost): string
     {
         /**
          * Prettyprint the code

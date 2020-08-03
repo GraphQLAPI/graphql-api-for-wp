@@ -7,16 +7,16 @@ namespace GraphQLAPI\GraphQLAPI\General;
 use GraphQLAPI\GraphQLAPI\Blocks\GraphiQLBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\PersistedQueryOptionsBlock;
+use WP_Post;
 
 class BlockContentHelpers
 {
     /**
      * Extract the GraphiQL block attributes from the post
      *
-     * @param [type] $post
      * @return null|array an array of 2 items: [$query, $variables], or null if the post contains 0 or more than 1 block
      */
-    public static function getSingleGraphiQLBlockAttributesFromPost($post): ?array
+    public static function getSingleGraphiQLBlockAttributesFromPost(WP_Post $post): ?array
     {
         // There must be only one block of type GraphiQL. Fetch it
         $instanceManager = InstanceManagerFacade::getInstance();
@@ -37,10 +37,9 @@ class BlockContentHelpers
     /**
      * Extract the Persisted Query Options block attributes from the post
      *
-     * @param [type] $post
      * @return null|array an array of 1 item: [$inheritQuery], or null if the post contains 0 or more than 1 block
      */
-    public static function getSinglePersistedQueryOptionsBlockAttributesFromPost($post): ?array
+    public static function getSinglePersistedQueryOptionsBlockAttributesFromPost(WP_Post $post): ?array
     {
         // There must be only one block of type PersistedQueryOptionsBlock. Fetch it
         $instanceManager = InstanceManagerFacade::getInstance();

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
+use WP_Post;
 use GraphQLAPI\GraphQLAPI\Admin\Menus\Menu;
 use GraphQLAPI\GraphQLAPI\General\CPTUtils;
 use PoP\ComponentModel\State\ApplicationState;
@@ -472,10 +473,9 @@ abstract class AbstractPostType
      * Restrict the Gutenberg blocks available for this Custom Post Type
      *
      * @param array|bool $allowedBlocks
-     * @param [type] $post
-     * @return array
+     * @return array|bool
      */
-    public function allowGutenbergBlocksForCustomPostType($allowedBlocks, $post)
+    public function allowGutenbergBlocksForCustomPostType($allowedBlocks, WP_Post $post)
     {
         /**
          * Check it is this CPT

@@ -10,6 +10,7 @@ use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\EndpointResolvers\EndpointResolverTrait;
 use GraphQLAPI\GraphQLAPI\EndpointResolvers\AbstractEndpointResolver;
+use WP_Post;
 
 class AdminEndpointResolver extends AbstractEndpointResolver
 {
@@ -19,10 +20,8 @@ class AdminEndpointResolver extends AbstractEndpointResolver
 
     /**
      * Provide the query to execute and its variables
-     *
-     * @return array
      */
-    protected function getGraphQLQueryAndVariables($graphQLQueryPost): array
+    protected function getGraphQLQueryAndVariables(?WP_Post $graphQLQueryPost): array
     {
         /**
          * Extract the query from the BODY through standard GraphQL endpoint execution

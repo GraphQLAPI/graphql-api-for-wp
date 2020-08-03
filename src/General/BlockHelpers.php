@@ -18,8 +18,7 @@ class BlockHelpers
     /**
      * Extract the blocks from the post
      *
-     * @param mixed $configurationPostID
-     * @return array
+     * @param WP_Post|int $configurationPostOrID
      */
     public static function getBlocksFromCustomPost(
         $configurationPostOrID
@@ -59,9 +58,7 @@ class BlockHelpers
     /**
      * Read the configuration post, and extract the configuration, contained through the specified block
      *
-     * @param mixed $configurationPostID
-     * @param AbstractBlock $block
-     * @return array
+     * @param WP_Post|int $configurationPostOrID
      */
     public static function getBlocksOfTypeFromCustomPost(
         $configurationPostOrID,
@@ -83,9 +80,7 @@ class BlockHelpers
      * Read the single block of a certain type, contained in the post.
      * If there are more than 1, or none, return null
      *
-     * @param mixed $configurationPostID
-     * @param AbstractBlock $block
-     * @return array
+     * @param WP_Post|int $configurationPostOrID
      */
     public static function getSingleBlockOfTypeFromCustomPost(
         $configurationPostOrID,
