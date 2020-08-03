@@ -18,6 +18,9 @@ use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
 use PoP\CustomPosts\Types\Status;
 
+/**
+ * FieldResolver for the Custom Post Types from this plugin
+ */
 class CPTFieldResolver extends AbstractQueryableFieldResolver
 {
     /**
