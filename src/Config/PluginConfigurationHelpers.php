@@ -34,11 +34,8 @@ class PluginConfigurationHelpers
     /**
      * Constants defined in wp-config.php must start with this prefix
      * to override GraphQL API environment variables
-     *
-     * @param [type] $envVariable
-     * @return string
      */
-    public static function getWPConfigConstantName($envVariable): string
+    public static function getWPConfigConstantName(string $envVariable): string
     {
         return 'GRAPHQL_API_' . $envVariable;
     }

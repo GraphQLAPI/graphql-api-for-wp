@@ -74,12 +74,8 @@ class GraphQLAccessControlListPostType extends AbstractPostType
 
     /**
      * Use both the Access Control block and all of its nested blocks
-     *
-     * @param [type] $allowedBlocks
-     * @param [type] $post
-     * @return array
      */
-    protected function getGutenbergBlocksForCustomPostType()
+    protected function getGutenbergBlocksForCustomPostType(): array
     {
         $instanceManager = InstanceManagerFacade::getInstance();
         $aclBlock = $instanceManager->getInstance(AccessControlBlock::class);

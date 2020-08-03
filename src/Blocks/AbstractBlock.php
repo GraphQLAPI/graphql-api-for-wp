@@ -61,8 +61,6 @@ abstract class AbstractBlock
 
     /**
      * If the block is dynamic, it will return the server-side HTML through function `renderBlock`
-     *
-     * @return boolean
      */
     protected function isDynamicBlock(): bool
     {
@@ -70,10 +68,6 @@ abstract class AbstractBlock
     }
     /**
      * Produce the HTML for dynamic blocks
-     *
-     * @param [type] $attributes
-     * @param [type] $content
-     * @return string
      */
     public function renderBlock(array $attributes, string $content): string
     {
@@ -81,8 +75,6 @@ abstract class AbstractBlock
     }
     /**
      * Do not output the content, and show an error message to the visitor
-     *
-     * @return string
      */
     public function renderUnauthorizedAccess(): string
     {

@@ -42,12 +42,8 @@ abstract class AbstractBlockCategory
 
     /**
      * Register the category when in the corresponding CPT
-     *
-     * @param [type] $categories
-     * @param [type] $post
-     * @return void
      */
-    public function getBlockCategories(array $categories, $post)
+    public function getBlockCategories(array $categories, $post): array
     {
         /**
          * If specified CPTs, register the category only for them

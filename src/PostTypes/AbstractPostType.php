@@ -204,9 +204,6 @@ abstract class AbstractPostType
     /**
      * Render the excerpt as the description for the current CPT
      * Can enable/disable through environment variable
-     *
-     * @param [type] $content
-     * @return string
      */
     public function maybeAddExcerptAsDescription(string $content): string
     {
@@ -474,7 +471,7 @@ abstract class AbstractPostType
     /**
      * Restrict the Gutenberg blocks available for this Custom Post Type
      *
-     * @param [type] $allowedBlocks
+     * @param array|bool $allowedBlocks
      * @param [type] $post
      * @return array
      */
@@ -550,12 +547,8 @@ abstract class AbstractPostType
 
     /**
      * By default, if providing a template, then restrict the CPT to the blocks involved in the template
-     *
-     * @param [type] $allowedBlocks
-     * @param [type] $post
-     * @return array
      */
-    protected function getGutenbergBlocksForCustomPostType()
+    protected function getGutenbergBlocksForCustomPostType(): array
     {
         /**
          * If the CPT defined a template, then maybe restrict to those blocks

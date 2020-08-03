@@ -112,10 +112,6 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
     }
     /**
      * Initialize the `$directiveNameClasses` array
-     *
-     * @param string $selectedField
-     * @param [type] $value
-     * @return array
      */
     protected function initDirectiveNameClasses(): void
     {

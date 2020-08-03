@@ -12,7 +12,7 @@ abstract class AbstractIndividualControlGraphQLQueryConfigurator extends Abstrac
      * It returns a single array (or null)
      *
      * @param string $selectedField
-     * @param [type] $value
+     * @param mixed|null $value
      * @param string|null $schemaMode
      * @return array|null
      */
