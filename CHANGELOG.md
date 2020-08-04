@@ -4,7 +4,11 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 0.1.22 - 2020-08-04
 
+### Fixed
+
+- Non-default endpoints did not work after re-activating the plugin, WP requires to add hack to execute `flush_rewrite_rules` in first request after plugin is activated
 
 ## 0.1.21 - 2020-08-04
 
