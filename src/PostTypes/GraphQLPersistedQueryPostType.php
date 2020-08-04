@@ -299,8 +299,7 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
             \remove_action(
                 'ApplicationState:addVars',
                 array($graphQLAPIRequestHookSet, 'addURLParamVars'),
-                20,
-                1
+                20
             );
 
             // Execute the original logic
