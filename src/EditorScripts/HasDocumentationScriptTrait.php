@@ -79,13 +79,13 @@ trait HasDocumentationScriptTrait
     ): void {
         if ($defaultLang = $this->getDefaultLanguage()) {
             \wp_register_script(
-                $scriptName . '-' . /** @scrutinizer ignore-type */ $defaultLang,
-                $url . 'build/docs-' . /** @scrutinizer ignore-type */ $defaultLang . '.js',
+                $scriptName . '-' . $defaultLang,
+                $url . 'build/docs-' . $defaultLang . '.js',
                 $dependencies,
                 $version,
                 true
             );
-            \wp_enqueue_script($scriptName . '-' . /** @scrutinizer ignore-type */ $defaultLang);
+            \wp_enqueue_script($scriptName . '-' . $defaultLang);
         }
         if ($this->addLocalLanguage()) {
             $localeLang = LocaleUtils::getLocaleLanguage();
