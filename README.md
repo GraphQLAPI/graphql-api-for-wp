@@ -230,13 +230,13 @@ If you discover any security related issues, please email leo@getpop.org instead
 GPLv2 or later. Please see [License File](LICENSE.md) for more information.
 
 [ico-license]: https://img.shields.io/badge/license-GPL%20(%3E%3D%202)-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/GraphQLAPI/graphql-api/master.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/GraphQLAPI/graphql-api-for-wp/master.svg?style=flat-square
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/GraphQLAPI/graphql-api-for-wp.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/GraphQLAPI/graphql-api-for-wp.svg?style=flat-square
 [ico-release]: https://img.shields.io/github/release/GraphQLAPI/graphql-api-for-wp.svg
 [ico-downloads]: https://img.shields.io/github/downloads/GraphQLAPI/graphql-api-for-wp/total.svg
 
-[link-travis]: https://travis-ci.com/github/GraphQLAPI/graphql-api
+[link-travis]: https://travis-ci.com/github/GraphQLAPI/graphql-api-for-wp
 [link-scrutinizer]: https://scrutinizer-ci.com/g/GraphQLAPI/graphql-api-for-wp/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/GraphQLAPI/graphql-api-for-wp
 [link-downloads]: https://GitHub.com/GraphQLAPI/graphql-api-for-wp/releases/
