@@ -55,8 +55,41 @@ class Plugin
     public function setup(): void
     {
         // Functions to execute when activating/deactivating the plugin
-        \register_activation_hook(\GRAPHQL_API_PLUGIN_FILE, [$this, 'activate']);
         \register_deactivation_hook(\GRAPHQL_API_PLUGIN_FILE, [$this, 'deactivate']);
+        /**
+         * PoP depends on hook "init" to set-up the endpoint rewrite,
+         * as in function `addRewriteEndpoints` in `AbstractEndpointHandler`
+         * However, activating the plugin takes place AFTER hooks "plugins_loaded"
+         * and "init". Hence, the code cannot flush the rewrite_rules when the plugin
+         * is activated, and any non-default GraphQL endpoint is not set.
+         *
+         * The solution (hack) is to check if the plugin has just been installed,
+         * and then apply the logic, on every request in the admin!
+         *
+         * @see https://developer.wordpress.org/reference/functions/register_activation_hook/#process-flow
+         */
+        $isPluginJustActivatedOptionName = 'graphql-api-activated-plugin';
+        \register_activation_hook(
+            \GRAPHQL_API_PLUGIN_FILE,
+            function () use ($isPluginJustActivatedOptionName): void {
+                // Flag to indicate that the plugin has been activated
+                \add_option($isPluginJustActivatedOptionName, true);
+                // This is the proper activation logic
+                $this->activate();
+            }
+        );
+        \add_action(
+            'admin_init',
+            function () use ($isPluginJustActivatedOptionName): void {
+                // If the flag is there, it's the first screen after activating the plugin
+                if (\is_admin() && \get_option($isPluginJustActivatedOptionName) == true) {
+                    // Delete the flag
+                    \delete_option($isPluginJustActivatedOptionName);
+                    // Required logic after plugin is activated
+                    \flush_rewrite_rules();
+                }
+            }
+        );
 
         /**
          * Wait until "plugins_loaded" to initialize the plugin, because:
@@ -231,43 +264,6 @@ class Plugin
      */
     public function activate(): void
     {
-        /**
-         * When activating the plugin, functions `initialize` and `boot`
-         * will not have been executed yet.
-         * But they are needed, to initialize the postType, services,
-         * not just their classes but also they depend on other services,
-         * such as Gutenberg Blocks for their templates.
-         *
-         * Then, trigger to execute these functions, and remove the hooks
-         * so they are not executed again.
-         *
-         * It doesn't matter that we're altering the initialization order
-         * with the extension plugins, since this takes place only when
-         * activating/deactivating the GraphQL API, where nothing else
-         * takes place anyway
-         */
-        \remove_action('plugins_loaded', [$this, 'initialize'], 5);
-        \remove_action('plugins_loaded', [$this, 'boot'], 15);
-        $this->initialize();
-        $this->boot();
-
-        // First, initialize all the custom post types
-        $instanceManager = InstanceManagerFacade::getInstance();
-        $postTypeObjects = array_map(
-            function ($serviceClass) use ($instanceManager) {
-                return $instanceManager->getInstance($serviceClass);
-            },
-            ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\PostTypes')
-        );
-        foreach ($postTypeObjects as $postTypeObject) {
-            $postTypeObject->registerPostType();
-        }
-
-        // Flush the rewrite rules immediately (doing it at the end of hook "init",
-        // after function `addRewriteEndpoints` in `AbstractEndpointHandler`
-        // is executed, doesn't work)
-        \flush_rewrite_rules();
-
         // Initialize the timestamp
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
         $userSettingsManager->storeTimestamp();
