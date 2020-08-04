@@ -4,6 +4,14 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+
+
+## 0.1.21 - 2020-08-04
+
+### Fixed
+
+- Exception was thrown when executing a query, and option `"Enable to select the visibility for a set of fields/directives when editing the Access Control List"` was disabled
+
 ## 0.1.20 - 2020-07-31
 
 ### Added
