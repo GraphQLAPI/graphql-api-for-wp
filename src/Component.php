@@ -61,7 +61,12 @@ class Component extends AbstractComponent
     ): void {
         parent::doInitialize($configuration, $skipSchema, $skipSchemaComponentClasses);
         self::initYAMLServices(dirname(__DIR__));
-        self::maybeInitYAMLSchemaServices(dirname(__DIR__), $skipSchema);
+        /**
+         * FieldResolvers used to configure the services can also be accessed in the admin area
+         */
+        if (\is_admin()) {
+            self::maybeInitYAMLSchemaServices(dirname(__DIR__), $skipSchema, '', 'admin-schema-services.yaml');
+        }
         // Register the Cache services, if the module is not disabled
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         if ($moduleRegistry->isModuleEnabled(CacheFunctionalityModuleResolver::CONFIGURATION_CACHE)) {
@@ -102,7 +107,7 @@ class Component extends AbstractComponent
 
         // Initialize classes
         ContainerBuilderUtils::instantiateNamespaceServices(__NAMESPACE__ . '\\Hooks');
-        ContainerBuilderUtils::attachFieldResolversFromNamespace(__NAMESPACE__ . '\\FieldResolvers', false);
+        ContainerBuilderUtils::attachFieldResolversFromNamespace(__NAMESPACE__ . '\\Admin\\FieldResolvers', false);
     }
 
     /**

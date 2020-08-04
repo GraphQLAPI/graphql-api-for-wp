@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\Hooks;
 
 use PoP\Engine\Hooks\AbstractHookSet;
-use GraphQLAPI\GraphQLAPI\FieldResolvers\CPTFieldResolver;
+use GraphQLAPI\GraphQLAPI\Admin\FieldResolvers\CPTFieldResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLCacheControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLAccessControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;

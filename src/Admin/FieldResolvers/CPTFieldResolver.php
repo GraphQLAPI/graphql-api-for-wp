@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GraphQLAPI\GraphQLAPI\FieldResolvers;
+namespace GraphQLAPI\GraphQLAPI\Admin\FieldResolvers;
 
 use PoP\CustomPosts\Facades\CustomPostTypeAPIFacade;
 use PoP\CustomPosts\TypeResolvers\CustomPostTypeResolver;
