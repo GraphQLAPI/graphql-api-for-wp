@@ -125,6 +125,7 @@ class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModu
         if ($module == self::PUBLIC_PRIVATE_SCHEMA) {
             $whereModules = [];
             $dependencyModules = [
+                FunctionalityModuleResolver::SCHEMA_CONFIGURATION,
                 self::ACCESS_CONTROL,
             ];
             foreach ($dependencyModules as $dependencyModule) {
