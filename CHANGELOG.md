@@ -4,6 +4,13 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 0.2.0 - DATE
+
+### Added
+
+- Directive aliases (through trait `AliasSchemaDirectiveResolverTrait`)
+- Field aliases on the server (through trait `AliasSchemaFieldResolverTrait`)
+
 ## 0.1.22 - 2020-08-04
 
 ### Fixed
