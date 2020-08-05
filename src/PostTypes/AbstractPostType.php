@@ -12,6 +12,7 @@ use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\AddonFunctionalityModuleResolver;
 
 abstract class AbstractPostType
 {
@@ -212,7 +213,7 @@ abstract class AbstractPostType
         /**
          * Check if it is enabled and it is this CPT...
          */
-        if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::EXCERPT_AS_DESCRIPTION)
+        if ($moduleRegistry->isModuleEnabled(AddonFunctionalityModuleResolver::EXCERPT_AS_DESCRIPTION)
             && UserAuthorization::canAccessSchemaEditor()
             && \is_singular($this->getPostType())
         ) {
@@ -286,7 +287,7 @@ abstract class AbstractPostType
     protected function isExcerptAsDescriptionEnabled(): bool
     {
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        return $moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::EXCERPT_AS_DESCRIPTION);
+        return $moduleRegistry->isModuleEnabled(AddonFunctionalityModuleResolver::EXCERPT_AS_DESCRIPTION);
     }
 
     /**

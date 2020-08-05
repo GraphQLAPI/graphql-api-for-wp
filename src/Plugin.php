@@ -19,6 +19,7 @@ use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLAccessControlListPostType;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\AddonFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserRolesBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserStateBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlDisableAccessBlock;
@@ -218,7 +219,7 @@ class Plugin
          * Editor Scripts
          * They are all used to show the Welcome Guide
          */
-        if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::WELCOME_GUIDES)) {
+        if ($moduleRegistry->isModuleEnabled(AddonFunctionalityModuleResolver::WELCOME_GUIDES)) {
             $editorScriptServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\EditorScripts');
             foreach ($editorScriptServiceClasses as $serviceClass) {
                 $instanceManager->getInstance($serviceClass)->initialize();

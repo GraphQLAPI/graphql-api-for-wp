@@ -33,10 +33,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public const ACCESS_CONTROL_RULE_USER_CAPABILITIES = Plugin::NAMESPACE . '\access-control-rule-user-capabilities';
     public const CACHE_CONTROL = Plugin::NAMESPACE . '\cache-control';
     public const FIELD_DEPRECATION = Plugin::NAMESPACE . '\field-deprecation';
-    public const EXCERPT_AS_DESCRIPTION = Plugin::NAMESPACE . '\excerpt-as-description';
     public const API_HIERARCHY = Plugin::NAMESPACE . '\api-hierarchy';
-    public const LOW_LEVEL_QUERY_EDITING = Plugin::NAMESPACE . '\low-level-query-editing';
-    public const WELCOME_GUIDES = Plugin::NAMESPACE . '\welcome-guides';
 
     /**
      * Setting options
@@ -72,10 +69,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             self::CACHE_CONTROL,
             self::FIELD_DEPRECATION,
             self::API_HIERARCHY,
-            self::LOW_LEVEL_QUERY_EDITING,
             self::SCHEMA_EDITING_ACCESS,
-            self::EXCERPT_AS_DESCRIPTION,
-            self::WELCOME_GUIDES,
         ];
     }
 
@@ -85,11 +79,8 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             case self::PERSISTED_QUERIES:
             case self::SINGLE_ENDPOINT:
             case self::CUSTOM_ENDPOINTS:
-            case self::LOW_LEVEL_QUERY_EDITING:
-            case self::EXCERPT_AS_DESCRIPTION:
                 return [];
             case self::SCHEMA_CONFIGURATION:
-            case self::WELCOME_GUIDES:
             case self::API_HIERARCHY:
                 return [
                     [
@@ -128,23 +119,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
         return parent::getDependedModuleLists($module);
     }
 
-    public function areRequirementsSatisfied(string $module): bool
-    {
-        switch ($module) {
-            case self::WELCOME_GUIDES:
-                /**
-                 * WordPress 5.5 or above, or Gutenberg 8.2 or above
-                 */
-                return
-                    \is_wp_version_compatible('5.5') ||
-                    (
-                        defined('GUTENBERG_VERSION') &&
-                        \version_compare(constant('GUTENBERG_VERSION'), '8.2', '>=')
-                    );
-        }
-        return parent::areRequirementsSatisfied($module);
-    }
-
     // public function canBeDisabled(string $module): bool
     // {
     //     switch ($module) {
@@ -155,15 +129,14 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     //     return parent::canBeDisabled($module);
     // }
 
-    public function isHidden(string $module): bool
-    {
-        switch ($module) {
-            // case self::MAIN:
-            case self::WELCOME_GUIDES:
-                return true;
-        }
-        return parent::isHidden($module);
-    }
+    // public function isHidden(string $module): bool
+    // {
+    //     switch ($module) {
+    //         case self::MAIN:
+    //             return true;
+    //     }
+    //     return parent::isHidden($module);
+    // }
 
     public function getName(string $module): string
     {
@@ -183,10 +156,7 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             self::ACCESS_CONTROL_RULE_USER_CAPABILITIES => \__('Access Control Rule: User Capabilities', 'graphql-api'),
             self::CACHE_CONTROL => \__('Cache Control', 'graphql-api'),
             self::FIELD_DEPRECATION => \__('Field Deprecation', 'graphql-api'),
-            self::EXCERPT_AS_DESCRIPTION => \__('Excerpt as Description', 'graphql-api'),
             self::API_HIERARCHY => \__('API Hierarchy', 'graphql-api'),
-            self::LOW_LEVEL_QUERY_EDITING => \__('Low-Level Query Editing', 'graphql-api'),
-            self::WELCOME_GUIDES => \__('Welcome Guides', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
     }
@@ -227,18 +197,8 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 return \__('Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query', 'graphql-api');
             case self::FIELD_DEPRECATION:
                 return \__('Deprecate fields, and explain how to replace them, through a user interface', 'graphql-api');
-            case self::EXCERPT_AS_DESCRIPTION:
-                return \__('Provide a description of the different entities (Custom Endpoints, Persisted Queries, and others) through their excerpt', 'graphql-api');
             case self::API_HIERARCHY:
                 return \__('Create a hierarchy of API endpoints extending from other endpoints, and inheriting their properties', 'graphql-api');
-            case self::LOW_LEVEL_QUERY_EDITING:
-                return \__('Have access to schema-configuration low-level directives when editing GraphQL queries in the admin', 'graphql-api');
-            case self::WELCOME_GUIDES:
-                return sprintf(
-                    \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities. <em>It requires WordPress version \'%s\' or above, or Gutenberg version \'%s\' or above</em>', 'graphql-api'),
-                    '5.4',
-                    '6.1'
-                );
         }
         return parent::getDescription($module);
     }
@@ -247,10 +207,8 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     {
         switch ($module) {
             case self::SINGLE_ENDPOINT:
-            case self::LOW_LEVEL_QUERY_EDITING:
             case self::SCHEMA_NAMESPACING:
             case self::FIELD_DEPRECATION:
-            case self::WELCOME_GUIDES:
                 return false;
         }
         return parent::isEnabledByDefault($module);
