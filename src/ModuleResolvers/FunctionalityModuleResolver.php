@@ -12,7 +12,6 @@ use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
-use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 use PoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
 
 class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
@@ -24,10 +23,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public const SINGLE_ENDPOINT = Plugin::NAMESPACE . '\single-endpoint';
     public const PERSISTED_QUERIES = Plugin::NAMESPACE . '\persisted-queries';
     public const CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\custom-endpoints';
-    public const GRAPHIQL_FOR_SINGLE_ENDPOINT = Plugin::NAMESPACE . '\graphiql-for-single-endpoint';
-    public const GRAPHIQL_FOR_CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\graphiql-for-custom-endpoints';
-    public const INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT = Plugin::NAMESPACE . '\interactive-schema-for-single-endpoint';
-    public const INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\interactive-schema-for-custom-endpoints';
     public const SCHEMA_CONFIGURATION = Plugin::NAMESPACE . '\schema-configuration';
     public const SCHEMA_NAMESPACING = Plugin::NAMESPACE . '\schema-namespacing';
     public const PUBLIC_PRIVATE_SCHEMA = Plugin::NAMESPACE . '\public-private-schema';
@@ -41,7 +36,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public const EXCERPT_AS_DESCRIPTION = Plugin::NAMESPACE . '\excerpt-as-description';
     public const API_HIERARCHY = Plugin::NAMESPACE . '\api-hierarchy';
     public const LOW_LEVEL_QUERY_EDITING = Plugin::NAMESPACE . '\low-level-query-editing';
-    public const GRAPHIQL_EXPLORER = Plugin::NAMESPACE . '\graphiql-explorer';
     public const WELCOME_GUIDES = Plugin::NAMESPACE . '\welcome-guides';
 
     /**
@@ -65,12 +59,8 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
         return [
             // self::MAIN,
             self::SINGLE_ENDPOINT,
-            self::GRAPHIQL_FOR_SINGLE_ENDPOINT,
-            self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
             self::PERSISTED_QUERIES,
             self::CUSTOM_ENDPOINTS,
-            self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS,
-            self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS,
             self::SCHEMA_CONFIGURATION,
             self::SCHEMA_NAMESPACING,
             self::ACCESS_CONTROL,
@@ -83,7 +73,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             self::FIELD_DEPRECATION,
             self::API_HIERARCHY,
             self::LOW_LEVEL_QUERY_EDITING,
-            self::GRAPHIQL_EXPLORER,
             self::SCHEMA_EDITING_ACCESS,
             self::EXCERPT_AS_DESCRIPTION,
             self::WELCOME_GUIDES,
@@ -99,20 +88,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             case self::LOW_LEVEL_QUERY_EDITING:
             case self::EXCERPT_AS_DESCRIPTION:
                 return [];
-            case self::GRAPHIQL_FOR_SINGLE_ENDPOINT:
-            case self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT:
-                return [
-                    [
-                        self::SINGLE_ENDPOINT,
-                    ],
-                ];
-            case self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS:
-            case self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS:
-                return [
-                    [
-                        self::CUSTOM_ENDPOINTS,
-                    ],
-                ];
             case self::SCHEMA_CONFIGURATION:
             case self::WELCOME_GUIDES:
             case self::API_HIERARCHY:
@@ -149,12 +124,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                         self::ACCESS_CONTROL,
                     ],
                 ];
-            case self::GRAPHIQL_EXPLORER:
-                return [
-                    [
-                        self::PERSISTED_QUERIES,
-                    ],
-                ];
         }
         return parent::getDependedModuleLists($module);
     }
@@ -172,12 +141,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                         defined('GUTENBERG_VERSION') &&
                         \version_compare(constant('GUTENBERG_VERSION'), '8.2', '>=')
                     );
-            case self::GRAPHIQL_FOR_SINGLE_ENDPOINT:
-            case self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT:
-                /**
-                 * Permalink structure must be enabled
-                 */
-                return !empty(\get_option('permalink_structure'));
         }
         return parent::areRequirementsSatisfied($module);
     }
@@ -210,10 +173,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             self::SINGLE_ENDPOINT => \__('Single Endpoint', 'graphql-api'),
             self::PERSISTED_QUERIES => \__('Persisted Queries', 'graphql-api'),
             self::CUSTOM_ENDPOINTS => \__('Custom Endpoints', 'graphql-api'),
-            self::GRAPHIQL_FOR_SINGLE_ENDPOINT => \__('GraphiQL for Single Endpoint', 'graphql-api'),
-            self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS => \__('GraphiQL for Custom Endpoints', 'graphql-api'),
-            self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => \__('Interactive Schema for Single Endpoint', 'graphql-api'),
-            self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS => \__('Interactive Schema for Custom Endpoints', 'graphql-api'),
             self::SCHEMA_CONFIGURATION => \__('Schema Configuration', 'graphql-api'),
             self::SCHEMA_NAMESPACING => \__('Schema Namespacing', 'graphql-api'),
             self::PUBLIC_PRIVATE_SCHEMA => \__('Public/Private Schema', 'graphql-api'),
@@ -227,7 +186,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             self::EXCERPT_AS_DESCRIPTION => \__('Excerpt as Description', 'graphql-api'),
             self::API_HIERARCHY => \__('API Hierarchy', 'graphql-api'),
             self::LOW_LEVEL_QUERY_EDITING => \__('Low-Level Query Editing', 'graphql-api'),
-            self::GRAPHIQL_EXPLORER => \__('GraphiQL Explorer', 'graphql-api'),
             self::WELCOME_GUIDES => \__('Welcome Guides', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
@@ -249,20 +207,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 return \__('Expose predefined responses through a custom URL, akin to using GraphQL queries to publish REST endpoints', 'graphql-api');
             case self::CUSTOM_ENDPOINTS:
                 return \__('Expose different subsets of the schema for different targets, such as users (clients, employees, etc), applications (website, mobile app, etc), context (weekday, weekend, etc), and others', 'graphql-api');
-            case self::GRAPHIQL_FOR_SINGLE_ENDPOINT:
-                return \sprintf(
-                    \__('Make a public GraphiQL client available under <code>%s</code>, to execute queries against the single endpoint. It requires pretty permalinks enabled', 'graphql-api'),
-                    GraphQLClientsForWPComponentConfiguration::getGraphiQLClientEndpoint()
-                );
-            case self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS:
-                return \__('Enable custom endpoints to be attached their own GraphiQL client, to execute queries against them', 'graphql-api');
-            case self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT:
-                return \sprintf(
-                    \__('Make a public Interactive Schema client available under <code>%s</code>, to visualize the schema accessible through the single endpoint. It requires pretty permalinks enabled', 'graphql-api'),
-                    GraphQLClientsForWPComponentConfiguration::getVoyagerClientEndpoint()
-                );
-            case self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS:
-                return \__('Enable custom endpoints to be attached their own Interactive schema client, to visualize the custom schema subset', 'graphql-api');
             case self::SCHEMA_CONFIGURATION:
                 return \__('Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema', 'graphql-api');
             case self::SCHEMA_NAMESPACING:
@@ -289,8 +233,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 return \__('Create a hierarchy of API endpoints extending from other endpoints, and inheriting their properties', 'graphql-api');
             case self::LOW_LEVEL_QUERY_EDITING:
                 return \__('Have access to schema-configuration low-level directives when editing GraphQL queries in the admin', 'graphql-api');
-            case self::GRAPHIQL_EXPLORER:
-                return \__('Add the Explorer widget to the GraphiQL client when creating Persisted Queries, to simplify coding the query (by point-and-clicking on the fields)', 'graphql-api');
             case self::WELCOME_GUIDES:
                 return sprintf(
                     \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities. <em>It requires WordPress version \'%s\' or above, or Gutenberg version \'%s\' or above</em>', 'graphql-api'),
@@ -329,12 +271,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             ],
             self::SINGLE_ENDPOINT => [
                 self::OPTION_PATH => '/graphql/',
-            ],
-            self::GRAPHIQL_FOR_SINGLE_ENDPOINT => [
-                self::OPTION_PATH => '/graphiql/',
-            ],
-            self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => [
-                self::OPTION_PATH => '/schema/',
             ],
             self::CUSTOM_ENDPOINTS => [
                 self::OPTION_PATH => 'graphql',
@@ -402,30 +338,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 ),
                 Properties::TITLE => \__('Endpoint path', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL path to expose the single GraphQL endpoint', 'graphql-api'),
-                Properties::TYPE => Properties::TYPE_STRING,
-            ];
-        } elseif ($module == self::GRAPHIQL_FOR_SINGLE_ENDPOINT) {
-            $option = self::OPTION_PATH;
-            $moduleSettings[] = [
-                Properties::INPUT => $option,
-                Properties::NAME => $this->getSettingOptionName(
-                    $module,
-                    $option
-                ),
-                Properties::TITLE => \__('Client path', 'graphql-api'),
-                Properties::DESCRIPTION => \__('URL path to access the public GraphiQL client', 'graphql-api'),
-                Properties::TYPE => Properties::TYPE_STRING,
-            ];
-        } elseif ($module == self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT) {
-            $option = self::OPTION_PATH;
-            $moduleSettings[] = [
-                Properties::INPUT => $option,
-                Properties::NAME => $this->getSettingOptionName(
-                    $module,
-                    $option
-                ),
-                Properties::TITLE => \__('Client path', 'graphql-api'),
-                Properties::DESCRIPTION => \__('URL path to access the public Interactive Schema client', 'graphql-api'),
                 Properties::TYPE => Properties::TYPE_STRING,
             ];
         } elseif ($module == self::CUSTOM_ENDPOINTS) {

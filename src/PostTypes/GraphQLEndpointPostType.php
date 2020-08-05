@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
+use WP_Post;
 use PoP\ComponentModel\State\ApplicationState;
 use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
-use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointVoyagerClient;
-use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointGraphiQLClient;
 use GraphQLAPI\GraphQLAPI\Blocks\EndpointOptionsBlock;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Taxonomies\GraphQLQueryTaxonomy;
 use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
+use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointVoyagerClient;
+use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointGraphiQLClient;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
 use GraphQLAPI\GraphQLAPI\PostTypes\AbstractGraphQLQueryExecutionPostType;
-use WP_Post;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 
 class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 {
@@ -235,7 +235,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     {
         // Check if disabled by module
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::GRAPHIQL_FOR_CUSTOM_ENDPOINTS)) {
+        if (!$moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::GRAPHIQL_FOR_CUSTOM_ENDPOINTS)) {
             return false;
         }
 
@@ -259,7 +259,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     {
         // Check if disabled by module
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS)) {
+        if (!$moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS)) {
             return false;
         }
 

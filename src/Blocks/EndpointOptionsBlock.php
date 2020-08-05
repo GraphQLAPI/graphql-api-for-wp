@@ -6,11 +6,11 @@ namespace GraphQLAPI\GraphQLAPI\Blocks;
 
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\GraphQLByPoPBlockTrait;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
 use GraphQLAPI\GraphQLAPI\BlockCategories\EndpointBlockCategory;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 
 /**
  * Endpoint Options block
@@ -40,14 +40,14 @@ class EndpointOptionsBlock extends AbstractQueryExecutionOptionsBlock
 
         $labels = $this->getBooleanLabels();
         $blockContentPlaceholder = '<p><strong>%s</strong> %s</p>';
-        if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::GRAPHIQL_FOR_CUSTOM_ENDPOINTS)) {
+        if ($moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::GRAPHIQL_FOR_CUSTOM_ENDPOINTS)) {
             $blockContent .= sprintf(
                 $blockContentPlaceholder,
                 \__('Expose GraphiQL client?', 'graphql-api'),
                 $labels[$attributes[self::ATTRIBUTE_NAME_IS_GRAPHIQL_ENABLED] ?? true]
             );
         }
-        if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS)) {
+        if ($moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS)) {
             $blockContent .= sprintf(
                 $blockContentPlaceholder,
                 \__('Expose the Interactive Schema client?', 'graphql-api'),
@@ -69,8 +69,8 @@ class EndpointOptionsBlock extends AbstractQueryExecutionOptionsBlock
         return array_merge(
             parent::getLocalizedData(),
             [
-                'isGraphiQLEnabled' => $moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::GRAPHIQL_FOR_CUSTOM_ENDPOINTS),
-                'isVoyagerEnabled' => $moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS),
+                'isGraphiQLEnabled' => $moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::GRAPHIQL_FOR_CUSTOM_ENDPOINTS),
+                'isVoyagerEnabled' => $moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS),
             ]
         );
     }

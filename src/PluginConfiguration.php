@@ -8,14 +8,13 @@ use PoP\APIEndpoints\EndpointUtils;
 use GraphQLAPI\GraphQLAPI\Environment;
 use PoP\AccessControl\Schema\SchemaModes;
 use PoP\ComponentModel\Misc\GeneralUtils;
+use PoP\Tags\Environment as TagsEnvironment;
 use PoP\Pages\Environment as PagesEnvironment;
-use PoP\GenericCustomPosts\Environment as GenericCustomPostsEnvironment;
 use PoP\Posts\Environment as PostsEnvironment;
 use PoP\Users\Environment as UsersEnvironment;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
-use PoP\CustomPosts\Environment as CustomPostsEnvironment;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use PoP\Tags\Environment as TagsEnvironment;
+use PoP\CustomPosts\Environment as CustomPostsEnvironment;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
 use GraphQLAPI\GraphQLAPI\Config\PluginConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
@@ -25,20 +24,22 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use GraphQLAPI\GraphQLAPI\Facades\CacheConfigurationManagerFacade;
+use PoP\Tags\ComponentConfiguration as TagsComponentConfiguration;
 use PoP\Pages\ComponentConfiguration as PagesComponentConfiguration;
-use PoP\GenericCustomPosts\ComponentConfiguration as GenericCustomPostsComponentConfiguration;
 use PoP\Posts\ComponentConfiguration as PostsComponentConfiguration;
 use PoP\Users\ComponentConfiguration as UsersComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
+use PoP\GenericCustomPosts\Environment as GenericCustomPostsEnvironment;
 use PoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\CacheFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
-use PoP\CustomPosts\ComponentConfiguration as CustomPostsComponentConfiguration;
 use PoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
-use PoP\Tags\ComponentConfiguration as TagsComponentConfiguration;
+use PoP\CustomPosts\ComponentConfiguration as CustomPostsComponentConfiguration;
 use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\CacheFunctionalityModuleResolver;
+use PoP\GenericCustomPosts\ComponentConfiguration as GenericCustomPostsComponentConfiguration;
 use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 use PoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
 
@@ -217,12 +218,12 @@ class PluginConfiguration
             [
                 'class' => GraphQLClientsForWPComponentConfiguration::class,
                 'envVariable' => GraphQLClientsForWPEnvironment::GRAPHIQL_CLIENT_ENDPOINT,
-                'module' => FunctionalityModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
+                'module' => ClientFunctionalityModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
                 'option' => FunctionalityModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
                     return self::getURLPathSettingValue(
                         $value,
-                        FunctionalityModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
+                        ClientFunctionalityModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
                         FunctionalityModuleResolver::OPTION_PATH
                     );
                 },
@@ -232,12 +233,12 @@ class PluginConfiguration
             [
                 'class' => GraphQLClientsForWPComponentConfiguration::class,
                 'envVariable' => GraphQLClientsForWPEnvironment::VOYAGER_CLIENT_ENDPOINT,
-                'module' => FunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
+                'module' => ClientFunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
                 'option' => FunctionalityModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
                     return self::getURLPathSettingValue(
                         $value,
-                        FunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
+                        ClientFunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
                         FunctionalityModuleResolver::OPTION_PATH
                     );
                 },
@@ -566,13 +567,13 @@ class PluginConfiguration
                 'callback' => [self::class, 'opposite'],
             ],
             [
-                'module' => FunctionalityModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
+                'module' => ClientFunctionalityModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
                 'class' => \PoP\GraphQLClientsForWP\Component::class,
                 'envVariable' => \PoP\GraphQLClientsForWP\Environment::DISABLE_GRAPHIQL_CLIENT_ENDPOINT,
                 'callback' => [self::class, 'opposite'],
             ],
             [
-                'module' => FunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
+                'module' => ClientFunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
                 'class' => \PoP\GraphQLClientsForWP\Component::class,
                 'envVariable' => \PoP\GraphQLClientsForWP\Environment::DISABLE_VOYAGER_CLIENT_ENDPOINT,
                 'callback' => [self::class, 'opposite'],
