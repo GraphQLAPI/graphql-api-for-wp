@@ -8,6 +8,7 @@ use GraphQLAPI\GraphQLAPI\Plugin;
 use PoP\AccessControl\Schema\SchemaModes;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 
 class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
@@ -121,16 +122,19 @@ class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModu
     public function getSettings(string $module): array
     {
         $moduleSettings = parent::getSettings($module);
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if ($module == self::PUBLIC_PRIVATE_SCHEMA) {
-            $whereModules = [];
-            $dependencyModules = [
+            $whereModules = [
                 FunctionalityModuleResolver::SCHEMA_CONFIGURATION,
                 self::ACCESS_CONTROL,
             ];
-            foreach ($dependencyModules as $dependencyModule) {
-                $whereModules[] = '▹ ' . $this->getName($dependencyModule);
-            }
+            $whereModuleNames = array_map(
+                function ($whereModule) use ($moduleRegistry) {
+                    return '▹ ' . $moduleRegistry->getModuleResolver($whereModule)->getName($whereModule);
+                },
+                $whereModules
+            );
             $option = self::OPTION_MODE;
             $moduleSettings[] = [
                 Properties::INPUT => $option,
@@ -144,7 +148,7 @@ class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModu
                     ComponentConfiguration::getSettingsValueLabel(),
                     implode(
                         \__(', ', 'graphql-api'),
-                        $whereModules
+                        $whereModuleNames
                     )
                 ),
                 Properties::TYPE => Properties::TYPE_STRING,
