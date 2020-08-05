@@ -140,7 +140,6 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
     public function getSettings(string $module): array
     {
         $moduleSettings = parent::getSettings($module);
-        $moduleRegistry = ModuleRegistryFacade::getInstance();
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if ($module == self::GRAPHIQL_FOR_SINGLE_ENDPOINT) {
             $option = FunctionalityModuleResolver::OPTION_PATH;
