@@ -37,6 +37,7 @@ use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use PoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
 use PoP\CustomPosts\ComponentConfiguration as CustomPostsComponentConfiguration;
 use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use PoP\GenericCustomPosts\ComponentConfiguration as GenericCustomPostsComponentConfiguration;
@@ -248,8 +249,8 @@ class PluginConfiguration
             [
                 'class' => AccessControlComponentConfiguration::class,
                 'envVariable' => AccessControlEnvironment::USE_PRIVATE_SCHEMA_MODE,
-                'module' => FunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA,
-                'option' => FunctionalityModuleResolver::OPTION_MODE,
+                'module' => AccessControlFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA,
+                'option' => AccessControlFunctionalityModuleResolver::OPTION_MODE,
                 'callback' => function ($value) {
                     // It is stored as string "private" in DB, and must be passed as bool `true` to component
                     return $value == SchemaModes::PRIVATE_SCHEMA_MODE;
@@ -259,8 +260,8 @@ class PluginConfiguration
             [
                 'class' => AccessControlComponentConfiguration::class,
                 'envVariable' => AccessControlEnvironment::ENABLE_INDIVIDUAL_CONTROL_FOR_PUBLIC_PRIVATE_SCHEMA_MODE,
-                'module' => FunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA,
-                'option' => FunctionalityModuleResolver::OPTION_ENABLE_GRANULAR,
+                'module' => AccessControlFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA,
+                'option' => AccessControlFunctionalityModuleResolver::OPTION_ENABLE_GRANULAR,
             ],
             // Use namespacing?
             [

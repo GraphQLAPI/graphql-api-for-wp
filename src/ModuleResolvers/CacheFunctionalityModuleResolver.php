@@ -7,6 +7,7 @@ namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 use GraphQLAPI\GraphQLAPI\Plugin;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 
 /**
  * The cache modules have different behavior depending on the environment:
@@ -42,7 +43,7 @@ class CacheFunctionalityModuleResolver extends AbstractCacheFunctionalityModuleR
                         self::CONFIGURATION_CACHE,
                     ],
                     [
-                        $moduleRegistry->getInverseDependency(FunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA),
+                        $moduleRegistry->getInverseDependency(AccessControlFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA),
                     ],
                 ];
         }

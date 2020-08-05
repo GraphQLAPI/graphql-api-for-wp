@@ -6,6 +6,7 @@ namespace GraphQLAPI\GraphQLAPI\Hooks;
 
 use PoP\Engine\Hooks\AbstractHookSet;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AccessControlGraphQLQueryConfigurator;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserRolesBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserStateBlock;
@@ -33,10 +34,10 @@ class ACLRuleBlockHooks extends AbstractHookSet
         return array_merge(
             $blockClassModules,
             [
-                AccessControlDisableAccessBlock::class => FunctionalityModuleResolver::ACCESS_CONTROL_RULE_DISABLE_ACCESS,
-                AccessControlUserStateBlock::class => FunctionalityModuleResolver::ACCESS_CONTROL_RULE_USER_STATE,
-                AccessControlUserRolesBlock::class => FunctionalityModuleResolver::ACCESS_CONTROL_RULE_USER_ROLES,
-                AccessControlUserCapabilitiesBlock::class => FunctionalityModuleResolver::ACCESS_CONTROL_RULE_USER_CAPABILITIES,
+                AccessControlDisableAccessBlock::class => AccessControlFunctionalityModuleResolver::ACCESS_CONTROL_RULE_DISABLE_ACCESS,
+                AccessControlUserStateBlock::class => AccessControlFunctionalityModuleResolver::ACCESS_CONTROL_RULE_USER_STATE,
+                AccessControlUserRolesBlock::class => AccessControlFunctionalityModuleResolver::ACCESS_CONTROL_RULE_USER_ROLES,
+                AccessControlUserCapabilitiesBlock::class => AccessControlFunctionalityModuleResolver::ACCESS_CONTROL_RULE_USER_CAPABILITIES,
             ]
         );
     }

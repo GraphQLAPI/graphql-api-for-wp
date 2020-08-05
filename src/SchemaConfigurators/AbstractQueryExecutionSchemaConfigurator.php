@@ -7,7 +7,6 @@ namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 use PoP\AccessControl\Schema\SchemaModes;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigurationBlock;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
@@ -15,8 +14,10 @@ use PoP\AccessControl\Environment as AccessControlEnvironment;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigAccessControlListBlock;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigFieldDeprecationListBlock;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AccessControlGraphQLQueryConfigurator;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
@@ -176,7 +177,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     {
         // Check if it enabled by module
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA)) {
+        if (!$moduleRegistry->isModuleEnabled(AccessControlFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA)) {
             return;
         }
 
@@ -223,7 +224,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     {
         // Check it is enabled by module
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::ACCESS_CONTROL)) {
+        if (!$moduleRegistry->isModuleEnabled(AccessControlFunctionalityModuleResolver::ACCESS_CONTROL)) {
             return;
         }
         $instanceManager = InstanceManagerFacade::getInstance();

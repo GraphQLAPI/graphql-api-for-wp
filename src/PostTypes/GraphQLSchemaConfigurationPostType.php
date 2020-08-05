@@ -6,12 +6,13 @@ namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
 use GraphQLAPI\GraphQLAPI\PostTypes\AbstractPostType;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigCacheControlListBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigAccessControlListBlock;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigFieldDeprecationListBlock;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 
 class GraphQLSchemaConfigurationPostType extends AbstractPostType
 {
@@ -85,7 +86,7 @@ class GraphQLSchemaConfigurationPostType extends AbstractPostType
         $template = [];
         // Add blocks depending on being enabled by module
         $blockClassModules = [
-            SchemaConfigAccessControlListBlock::class => FunctionalityModuleResolver::ACCESS_CONTROL,
+            SchemaConfigAccessControlListBlock::class => AccessControlFunctionalityModuleResolver::ACCESS_CONTROL,
             SchemaConfigCacheControlListBlock::class => FunctionalityModuleResolver::CACHE_CONTROL,
             SchemaConfigFieldDeprecationListBlock::class => FunctionalityModuleResolver::FIELD_DEPRECATION,
         ];

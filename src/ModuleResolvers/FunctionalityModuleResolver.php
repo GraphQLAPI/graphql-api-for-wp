@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
 use GraphQLAPI\GraphQLAPI\Plugin;
-use PoP\AccessControl\Schema\SchemaModes;
-use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
@@ -25,12 +23,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public const CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\custom-endpoints';
     public const SCHEMA_CONFIGURATION = Plugin::NAMESPACE . '\schema-configuration';
     public const SCHEMA_NAMESPACING = Plugin::NAMESPACE . '\schema-namespacing';
-    public const PUBLIC_PRIVATE_SCHEMA = Plugin::NAMESPACE . '\public-private-schema';
-    public const ACCESS_CONTROL = Plugin::NAMESPACE . '\access-control';
-    public const ACCESS_CONTROL_RULE_DISABLE_ACCESS = Plugin::NAMESPACE . '\access-control-rule-disable-access';
-    public const ACCESS_CONTROL_RULE_USER_STATE = Plugin::NAMESPACE . '\access-control-rule-user-state';
-    public const ACCESS_CONTROL_RULE_USER_ROLES = Plugin::NAMESPACE . '\access-control-rule-user-roles';
-    public const ACCESS_CONTROL_RULE_USER_CAPABILITIES = Plugin::NAMESPACE . '\access-control-rule-user-capabilities';
     public const CACHE_CONTROL = Plugin::NAMESPACE . '\cache-control';
     public const FIELD_DEPRECATION = Plugin::NAMESPACE . '\field-deprecation';
     public const API_HIERARCHY = Plugin::NAMESPACE . '\api-hierarchy';
@@ -42,8 +34,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public const OPTION_PATH = 'path';
     public const OPTION_SCHEMA_CONFIGURATION_ID = 'schema-configuration-id';
     public const OPTION_USE_NAMESPACING = 'use-namespacing';
-    public const OPTION_MODE = 'mode';
-    public const OPTION_ENABLE_GRANULAR = 'granular';
     public const OPTION_MAX_AGE = 'max-age';
 
     /**
@@ -60,12 +50,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             self::CUSTOM_ENDPOINTS,
             self::SCHEMA_CONFIGURATION,
             self::SCHEMA_NAMESPACING,
-            self::ACCESS_CONTROL,
-            self::ACCESS_CONTROL_RULE_DISABLE_ACCESS,
-            self::ACCESS_CONTROL_RULE_USER_STATE,
-            self::ACCESS_CONTROL_RULE_USER_ROLES,
-            self::ACCESS_CONTROL_RULE_USER_CAPABILITIES,
-            self::PUBLIC_PRIVATE_SCHEMA,
             self::CACHE_CONTROL,
             self::FIELD_DEPRECATION,
             self::API_HIERARCHY,
@@ -89,7 +73,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                     ],
                 ];
             case self::SCHEMA_NAMESPACING:
-            case self::ACCESS_CONTROL:
             case self::FIELD_DEPRECATION:
                 return [
                     [
@@ -103,16 +86,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                     ],
                     [
                         self::PERSISTED_QUERIES,
-                    ],
-                ];
-            case self::PUBLIC_PRIVATE_SCHEMA:
-            case self::ACCESS_CONTROL_RULE_DISABLE_ACCESS:
-            case self::ACCESS_CONTROL_RULE_USER_STATE:
-            case self::ACCESS_CONTROL_RULE_USER_ROLES:
-            case self::ACCESS_CONTROL_RULE_USER_CAPABILITIES:
-                return [
-                    [
-                        self::ACCESS_CONTROL,
                     ],
                 ];
         }
@@ -148,12 +121,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             self::CUSTOM_ENDPOINTS => \__('Custom Endpoints', 'graphql-api'),
             self::SCHEMA_CONFIGURATION => \__('Schema Configuration', 'graphql-api'),
             self::SCHEMA_NAMESPACING => \__('Schema Namespacing', 'graphql-api'),
-            self::PUBLIC_PRIVATE_SCHEMA => \__('Public/Private Schema', 'graphql-api'),
-            self::ACCESS_CONTROL => \__('Access Control', 'graphql-api'),
-            self::ACCESS_CONTROL_RULE_DISABLE_ACCESS => \__('Access Control Rule: Disable Access', 'graphql-api'),
-            self::ACCESS_CONTROL_RULE_USER_STATE => \__('Access Control Rule: User State', 'graphql-api'),
-            self::ACCESS_CONTROL_RULE_USER_ROLES => \__('Access Control Rule: User Roles', 'graphql-api'),
-            self::ACCESS_CONTROL_RULE_USER_CAPABILITIES => \__('Access Control Rule: User Capabilities', 'graphql-api'),
             self::CACHE_CONTROL => \__('Cache Control', 'graphql-api'),
             self::FIELD_DEPRECATION => \__('Field Deprecation', 'graphql-api'),
             self::API_HIERARCHY => \__('API Hierarchy', 'graphql-api'),
@@ -181,18 +148,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 return \__('Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema', 'graphql-api');
             case self::SCHEMA_NAMESPACING:
                 return \__('Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions', 'graphql-api');
-            case self::PUBLIC_PRIVATE_SCHEMA:
-                return \__('Enable to communicate the existence of some field from the schema to certain users only (private mode) or to everyone (public mode). If disabled, fields are always available to everyone (public mode)', 'graphql-api');
-            case self::ACCESS_CONTROL:
-                return \__('Set-up rules to define who can access the different fields and directives from a schema', 'graphql-api');
-            case self::ACCESS_CONTROL_RULE_DISABLE_ACCESS:
-                return \__('Remove access to the fields and directives', 'graphql-api');
-            case self::ACCESS_CONTROL_RULE_USER_STATE:
-                return \__('Allow or reject access to the fields and directives based on the user being logged-in or not', 'graphql-api');
-            case self::ACCESS_CONTROL_RULE_USER_ROLES:
-                return \__('Allow or reject access to the fields and directives based on the user having a certain role', 'graphql-api');
-            case self::ACCESS_CONTROL_RULE_USER_CAPABILITIES:
-                return \__('Allow or reject access to the fields and directives based on the user having a certain capability', 'graphql-api');
             case self::CACHE_CONTROL:
                 return \__('Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query', 'graphql-api');
             case self::FIELD_DEPRECATION:
@@ -241,10 +196,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             ],
             self::SCHEMA_NAMESPACING => [
                 self::OPTION_USE_NAMESPACING => false,
-            ],
-            self::PUBLIC_PRIVATE_SCHEMA => [
-                self::OPTION_MODE => SchemaModes::PUBLIC_SCHEMA_MODE,
-                self::OPTION_ENABLE_GRANULAR => true,
             ],
             self::CACHE_CONTROL => [
                 self::OPTION_MAX_AGE => 86400, // 1 day
@@ -376,48 +327,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 ),
                 Properties::TITLE => \__('Use namespacing?', 'graphql-api'),
                 Properties::DESCRIPTION => \__('Automatically namespace types and interfaces in the schema', 'graphql-api'),
-                Properties::TYPE => Properties::TYPE_BOOL,
-            ];
-        } elseif ($module == self::PUBLIC_PRIVATE_SCHEMA) {
-            $whereModules = [];
-            $dependencyModules = [
-                self::SCHEMA_CONFIGURATION,
-                self::ACCESS_CONTROL,
-            ];
-            foreach ($dependencyModules as $dependencyModule) {
-                $whereModules[] = '▹ ' . $this->getName($dependencyModule);
-            }
-            $option = self::OPTION_MODE;
-            $moduleSettings[] = [
-                Properties::INPUT => $option,
-                Properties::NAME => $this->getSettingOptionName(
-                    $module,
-                    $option
-                ),
-                Properties::TITLE => \__('Default visibility', 'graphql-api'),
-                Properties::DESCRIPTION => sprintf(
-                    \__('Visibility to use for fields and directives in the schema when option <code>"%s"</code> is selected (in %s)', 'graphql-api'),
-                    ComponentConfiguration::getSettingsValueLabel(),
-                    implode(
-                        \__(', ', 'graphql-api'),
-                        $whereModules
-                    )
-                ),
-                Properties::TYPE => Properties::TYPE_STRING,
-                Properties::POSSIBLE_VALUES => [
-                    SchemaModes::PUBLIC_SCHEMA_MODE => \__('Public', 'graphql-api'),
-                    SchemaModes::PRIVATE_SCHEMA_MODE => \__('Private', 'graphql-api'),
-                ],
-            ];
-            $option = self::OPTION_ENABLE_GRANULAR;
-            $moduleSettings[] = [
-                Properties::INPUT => $option,
-                Properties::NAME => $this->getSettingOptionName(
-                    $module,
-                    $option
-                ),
-                Properties::TITLE => \__('Enable granular control?', 'graphql-api'),
-                Properties::DESCRIPTION => \__('Enable to select the visibility for a set of fields/directives when editing the Access Control List', 'graphql-api'),
                 Properties::TYPE => Properties::TYPE_BOOL,
             ];
         } elseif ($module == self::CACHE_CONTROL) {

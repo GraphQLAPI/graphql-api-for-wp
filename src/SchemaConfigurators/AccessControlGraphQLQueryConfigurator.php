@@ -9,9 +9,9 @@ use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractControlBlock;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use PoP\AccessControl\Facades\AccessControlManagerFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AbstractAccessControlRuleBlock;
 
 class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGraphQLQueryConfigurator
@@ -81,7 +81,7 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
     {
         // Only if the module is not disabled
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::ACCESS_CONTROL)) {
+        if (!$moduleRegistry->isModuleEnabled(AccessControlFunctionalityModuleResolver::ACCESS_CONTROL)) {
             return;
         }
 

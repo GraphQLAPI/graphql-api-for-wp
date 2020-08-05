@@ -20,6 +20,7 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AddonFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserRolesBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserStateBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlDisableAccessBlock;
@@ -205,7 +206,7 @@ class Plugin
             GraphQLEndpointPostType::class => FunctionalityModuleResolver::CUSTOM_ENDPOINTS,
             GraphQLPersistedQueryPostType::class => FunctionalityModuleResolver::PERSISTED_QUERIES,
             GraphQLSchemaConfigurationPostType::class => FunctionalityModuleResolver::SCHEMA_CONFIGURATION,
-            GraphQLAccessControlListPostType::class => FunctionalityModuleResolver::ACCESS_CONTROL,
+            GraphQLAccessControlListPostType::class => AccessControlFunctionalityModuleResolver::ACCESS_CONTROL,
             GraphQLCacheControlListPostType::class => FunctionalityModuleResolver::CACHE_CONTROL,
             GraphQLFieldDeprecationListPostType::class => FunctionalityModuleResolver::FIELD_DEPRECATION,
         ];
@@ -238,10 +239,10 @@ class Plugin
          * Register them one by one, as to disable them if module is disabled
          */
         $accessControlRuleBlockServiceClassModules = [
-            AccessControlDisableAccessBlock::class => FunctionalityModuleResolver::ACCESS_CONTROL_RULE_DISABLE_ACCESS,
-            AccessControlUserStateBlock::class => FunctionalityModuleResolver::ACCESS_CONTROL_RULE_USER_STATE,
-            AccessControlUserRolesBlock::class => FunctionalityModuleResolver::ACCESS_CONTROL_RULE_USER_ROLES,
-            AccessControlUserCapabilitiesBlock::class => FunctionalityModuleResolver::ACCESS_CONTROL_RULE_USER_CAPABILITIES,
+            AccessControlDisableAccessBlock::class => AccessControlFunctionalityModuleResolver::ACCESS_CONTROL_RULE_DISABLE_ACCESS,
+            AccessControlUserStateBlock::class => AccessControlFunctionalityModuleResolver::ACCESS_CONTROL_RULE_USER_STATE,
+            AccessControlUserRolesBlock::class => AccessControlFunctionalityModuleResolver::ACCESS_CONTROL_RULE_USER_ROLES,
+            AccessControlUserCapabilitiesBlock::class => AccessControlFunctionalityModuleResolver::ACCESS_CONTROL_RULE_USER_CAPABILITIES,
         ];
         foreach ($accessControlRuleBlockServiceClassModules as $serviceClass => $module) {
             if ($moduleRegistry->isModuleEnabled($module)) {

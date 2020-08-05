@@ -13,6 +13,7 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AddonFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\CacheFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 
 /**
  * Obtain an instance of the ModuleRegistry.
@@ -31,6 +32,7 @@ class ModuleRegistryFacade
             self::$instance = new ModuleRegistry();
             // Add the ModuleResolvers
             self::$instance->addModuleResolver(new FunctionalityModuleResolver());
+            self::$instance->addModuleResolver(new AccessControlFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new CacheFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new AddonFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new ClientFunctionalityModuleResolver());
