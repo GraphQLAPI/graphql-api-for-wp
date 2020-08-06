@@ -11,6 +11,10 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Directive aliases (through trait `AliasSchemaDirectiveResolverTrait`)
 - Field aliases on the server (through trait `AliasSchemaFieldResolverTrait`)
 
+### Fixed
+
+- Enabled variables as expressions for `@export`
+
 ## 0.1.22 - 2020-08-04
 
 ### Fixed
