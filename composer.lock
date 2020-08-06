@@ -497,12 +497,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/api-graphql-query.git",
-                "reference": "580237d41a90d5620c5d388f6a72dcf26e1089f6"
+                "reference": "beeb6aeff9245b7cc8748d918ffaed0eb67f980d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/api-graphql-query/zipball/580237d41a90d5620c5d388f6a72dcf26e1089f6",
-                "reference": "580237d41a90d5620c5d388f6a72dcf26e1089f6",
+                "url": "https://api.github.com/repos/GraphQLByPoP/api-graphql-query/zipball/beeb6aeff9245b7cc8748d918ffaed0eb67f980d",
+                "reference": "beeb6aeff9245b7cc8748d918ffaed0eb67f980d",
                 "shasum": ""
             },
             "require": {
@@ -545,7 +545,7 @@
                 "api-graphql-query",
                 "pop"
             ],
-            "time": "2020-08-03T13:31:01+00:00"
+            "time": "2020-08-06T07:19:28+00:00"
         },
         {
             "name": "getpop/api-graphql-request",
@@ -553,12 +553,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/api-graphql-request.git",
-                "reference": "df35a7b7d2c8042fba35e2c56459c2b83e2c9ad9"
+                "reference": "1a5f12e19bb6cf2a28f258ed19e19d3d38f7ff0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/api-graphql-request/zipball/df35a7b7d2c8042fba35e2c56459c2b83e2c9ad9",
-                "reference": "df35a7b7d2c8042fba35e2c56459c2b83e2c9ad9",
+                "url": "https://api.github.com/repos/GraphQLByPoP/api-graphql-request/zipball/1a5f12e19bb6cf2a28f258ed19e19d3d38f7ff0e",
+                "reference": "1a5f12e19bb6cf2a28f258ed19e19d3d38f7ff0e",
                 "shasum": ""
             },
             "require": {
@@ -598,7 +598,7 @@
                 "api-graphql-request",
                 "pop"
             ],
-            "time": "2020-08-03T13:31:08+00:00"
+            "time": "2020-08-06T07:15:08+00:00"
         },
         {
             "name": "getpop/api-mirrorquery",
@@ -606,12 +606,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/api-mirrorquery.git",
-                "reference": "e4b79c1b70d0608ecde8d9b1007c64cb1142d833"
+                "reference": "dc253a082adb6cc179fbf4289eb5de29ef65c185"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/api-mirrorquery/zipball/e4b79c1b70d0608ecde8d9b1007c64cb1142d833",
-                "reference": "e4b79c1b70d0608ecde8d9b1007c64cb1142d833",
+                "url": "https://api.github.com/repos/getpop/api-mirrorquery/zipball/dc253a082adb6cc179fbf4289eb5de29ef65c185",
+                "reference": "dc253a082adb6cc179fbf4289eb5de29ef65c185",
                 "shasum": ""
             },
             "require": {
@@ -651,7 +651,7 @@
                 "api-mirrorquery",
                 "pop"
             ],
-            "time": "2020-08-03T13:31:21+00:00"
+            "time": "2020-08-06T07:00:58+00:00"
         },
         {
             "name": "getpop/basic-directives",
@@ -1654,12 +1654,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql.git",
-                "reference": "7b6e2097d0ab041dfbc6174fcd01cc3ea0fa9945"
+                "reference": "550d067710178b5a82a2f3b1ea74e797c91932d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql/zipball/7b6e2097d0ab041dfbc6174fcd01cc3ea0fa9945",
-                "reference": "7b6e2097d0ab041dfbc6174fcd01cc3ea0fa9945",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql/zipball/550d067710178b5a82a2f3b1ea74e797c91932d5",
+                "reference": "550d067710178b5a82a2f3b1ea74e797c91932d5",
                 "shasum": ""
             },
             "require": {
@@ -1703,7 +1703,7 @@
                 "graphql",
                 "pop"
             ],
-            "time": "2020-08-03T13:42:18+00:00"
+            "time": "2020-08-06T09:14:26+00:00"
         },
         {
             "name": "getpop/graphql-clients-for-wp",
@@ -8947,16 +8947,16 @@
         },
         {
             "name": "phpunit/php-invoker",
-            "version": "3.0.2",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-invoker.git",
-                "reference": "f6eedfed1085dd1f4c599629459a0277d25f9a66"
+                "reference": "7a85b66acc48cacffdf87dadd3694e7123674298"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-invoker/zipball/f6eedfed1085dd1f4c599629459a0277d25f9a66",
-                "reference": "f6eedfed1085dd1f4c599629459a0277d25f9a66",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-invoker/zipball/7a85b66acc48cacffdf87dadd3694e7123674298",
+                "reference": "7a85b66acc48cacffdf87dadd3694e7123674298",
                 "shasum": ""
             },
             "require": {
@@ -8972,7 +8972,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "3.1-dev"
                 }
             },
             "autoload": {
@@ -9002,7 +9002,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-06-26T11:53:53+00:00"
+            "time": "2020-08-06T07:04:15+00:00"
         },
         {
             "name": "phpunit/php-text-template",
