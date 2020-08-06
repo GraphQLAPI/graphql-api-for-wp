@@ -38,6 +38,7 @@ use PoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
 use PoP\CustomPosts\ComponentConfiguration as CustomPostsComponentConfiguration;
 use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\AddonFunctionalityModuleResolver;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use PoP\GenericCustomPosts\ComponentConfiguration as GenericCustomPostsComponentConfiguration;
@@ -537,6 +538,12 @@ class PluginConfiguration
             $componentClassConfiguration[\PoP\Root\Component::class] = [
                 \PoP\Root\Environment::CACHE_CONTAINER_CONFIGURATION => true,
                 \PoP\Root\Environment::CONTAINER_CONFIGURATION_CACHE_NAMESPACE => $cacheConfigurationManager->getNamespace(),
+            ];
+        }
+        // Expose the "self" field when doing Low Level Query Editing
+        if ($moduleRegistry->isModuleEnabled(AddonFunctionalityModuleResolver::LOW_LEVEL_QUERY_EDITING)) {
+            $componentClassConfiguration[\PoP\GraphQL\Component::class] = [
+                \PoP\GraphQL\Environment::ADD_SELF_FIELD_FOR_ROOT_TYPE_TO_SCHEMA => true,
             ];
         }
     }
