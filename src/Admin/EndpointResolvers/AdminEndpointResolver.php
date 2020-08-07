@@ -26,7 +26,7 @@ class AdminEndpointResolver extends AbstractEndpointResolver
         /**
          * Extract the query from the BODY through standard GraphQL endpoint execution
          */
-        return QueryExecutionHelpers::getRequestedGraphQLQueryAndVariables();
+        return QueryExecutionHelpers::extractRequestedGraphQLQueryPayload();
     }
 
     /**

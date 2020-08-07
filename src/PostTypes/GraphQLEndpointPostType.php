@@ -154,7 +154,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
         /**
          * Extract the query from the BODY through standard GraphQL endpoint execution
          */
-        return QueryExecutionHelpers::getRequestedGraphQLQueryAndVariables();
+        return QueryExecutionHelpers::extractRequestedGraphQLQueryPayload();
     }
 
     protected function getQueryExecutionOptionsBlock(): AbstractQueryExecutionOptionsBlock
