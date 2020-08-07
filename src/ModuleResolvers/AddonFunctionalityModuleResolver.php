@@ -87,8 +87,8 @@ class AddonFunctionalityModuleResolver extends AbstractFunctionalityModuleResolv
             case self::WELCOME_GUIDES:
                 return sprintf(
                     \__('Display welcome guides which demonstrate how to use the plugin\'s different functionalities. <em>It requires WordPress version \'%s\' or above, or Gutenberg version \'%s\' or above</em>', 'graphql-api'),
-                    '5.4',
-                    '6.1'
+                    '5.5',
+                    '8.2'
                 );
         }
         return parent::getDescription($module);
