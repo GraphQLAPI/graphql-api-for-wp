@@ -117,7 +117,7 @@ class UserSettingsManager implements UserSettingsManagerInterface
     protected function maybeLoadOptions(string $optionName): void
     {
         // Lazy load the options
-        if (is_null($this->options[$optionName])) {
+        if (!isset($this->options[$optionName]) || is_null($this->options[$optionName])) {
             $this->options[$optionName] = \get_option($optionName, []);
         }
     }

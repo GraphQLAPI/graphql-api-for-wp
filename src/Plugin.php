@@ -128,7 +128,7 @@ class Plugin
             // We can create a new instances of ModulesMenuPage because
             // its instantiation produces no side-effects
             $modulesMenuPage = new ModulesMenuPage();
-            if ($_GET['page'] == $modulesMenuPage->getScreenID()) {
+            if (isset($_GET['page']) && $_GET['page'] == $modulesMenuPage->getScreenID()) {
                 // Instantiating ModuleListTableAction DOES have side-effects,
                 // but they are needed, and won't be repeated when instantiating
                 // the class through the Container Builder
