@@ -4,6 +4,13 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## NEXT
+
+### Added
+
+- Process only the operation indicated in `operationName` in the GraphQL payload, as sent by GraphiQL
+- Hack to add support for query batching from GraphiQL: When in GraphiQL running query ```query ALL { id }```, it will execute all the other queries in the document
+
 ## 0.2.0 - 2020-08-06
 
 ### Added
