@@ -4,7 +4,7 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## NEXT
+## 0.2.1 - 2020-08-07
 
 ### Added
 
