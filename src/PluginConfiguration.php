@@ -34,7 +34,7 @@ use GraphQLByPoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironme
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\CacheFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
-use PoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
+use GraphQLByPoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
 use PoP\CustomPosts\ComponentConfiguration as CustomPostsComponentConfiguration;
 use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
@@ -43,7 +43,7 @@ use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfigurat
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use PoP\GenericCustomPosts\ComponentConfiguration as GenericCustomPostsComponentConfiguration;
 use GraphQLByPoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
-use PoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
+use GraphQLByPoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
 
 /**
  * Sets the configuration in all the PoP components.
@@ -570,8 +570,8 @@ class PluginConfiguration
         $moduleToComponentClassConfigurationMappings = [
             [
                 'module' => FunctionalityModuleResolver::SINGLE_ENDPOINT,
-                'class' => \PoP\GraphQLEndpointForWP\Component::class,
-                'envVariable' => \PoP\GraphQLEndpointForWP\Environment::DISABLE_GRAPHQL_API_ENDPOINT,
+                'class' => \GraphQLByPoP\GraphQLEndpointForWP\Component::class,
+                'envVariable' => \GraphQLByPoP\GraphQLEndpointForWP\Environment::DISABLE_GRAPHQL_API_ENDPOINT,
                 'callback' => [self::class, 'opposite'],
             ],
             [

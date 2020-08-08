@@ -5703,7 +5703,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\GraphQLEndpointForWP\\": "src"
+                    "GraphQLByPoP\\GraphQLEndpointForWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
