@@ -2052,7 +2052,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\GraphQLServer\\": "src"
+                    "GraphQLByPoP\\GraphQLServer\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",

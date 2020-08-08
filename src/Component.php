@@ -33,7 +33,7 @@ class Component extends AbstractComponent
         return [
             \PoPSchema\GenericCustomPosts\Component::class,
             \PoPSchema\CommentMetaWP\Component::class,
-            \PoP\GraphQLServer\Component::class,
+            \GraphQLByPoP\GraphQLServer\Component::class,
             \PoPSchema\MediaWP\Component::class,
             \PoPSchema\PostsWP\Component::class,
             \PoPSchema\PagesWP\Component::class,

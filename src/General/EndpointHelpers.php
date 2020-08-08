@@ -7,7 +7,7 @@ namespace GraphQLAPI\GraphQLAPI\General;
 use GraphQLAPI\GraphQLAPI\Admin\Menus\Menu;
 use PoP\API\Configuration\Request as APIRequest;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use PoP\GraphQLServer\Configuration\Request as GraphQLServerRequest;
+use GraphQLByPoP\GraphQLServer\Configuration\Request as GraphQLServerRequest;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AddonFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 

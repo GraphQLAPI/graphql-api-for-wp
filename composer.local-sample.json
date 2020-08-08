@@ -27,7 +27,7 @@
             "PoP\\EngineWP\\": "../engine-wp/src",
             "PoP\\FieldQuery\\": "../field-query/src",
             "PoPSchema\\GenericCustomPosts\\": "../generic-customposts/src",
-            "PoP\\GraphQLServer\\": "../graphql-server/src",
+            "GraphQLByPoP\\GraphQLServer\\": "../graphql-server/src",
             "PoP\\GraphQLAPI\\": "../api-graphql/src",
             "GraphQLByPoP\\GraphQLQuery\\": "../graphql-query/src",
             "GraphQLByPoP\\GraphQLRequest\\": "../graphql-request/src",

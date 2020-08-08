@@ -542,8 +542,8 @@ class PluginConfiguration
         }
         // Expose the "self" field when doing Low Level Query Editing
         if ($moduleRegistry->isModuleEnabled(AddonFunctionalityModuleResolver::LOW_LEVEL_QUERY_EDITING)) {
-            $componentClassConfiguration[\PoP\GraphQLServer\Component::class] = [
-                \PoP\GraphQLServer\Environment::ADD_SELF_FIELD_FOR_ROOT_TYPE_TO_SCHEMA => true,
+            $componentClassConfiguration[\GraphQLByPoP\GraphQLServer\Component::class] = [
+                \GraphQLByPoP\GraphQLServer\Environment::ADD_SELF_FIELD_FOR_ROOT_TYPE_TO_SCHEMA => true,
             ];
         }
     }
