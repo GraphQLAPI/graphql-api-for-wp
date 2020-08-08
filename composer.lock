@@ -5621,12 +5621,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-clients-for-wp.git",
-                "reference": "45b8621d5d6a655811f7b77172656bbde6ca2848"
+                "reference": "005b150362ec942f2938f04540dfbc2bdd283524"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-clients-for-wp/zipball/45b8621d5d6a655811f7b77172656bbde6ca2848",
-                "reference": "45b8621d5d6a655811f7b77172656bbde6ca2848",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-clients-for-wp/zipball/005b150362ec942f2938f04540dfbc2bdd283524",
+                "reference": "005b150362ec942f2938f04540dfbc2bdd283524",
                 "shasum": ""
             },
             "require": {
@@ -5666,10 +5666,10 @@
             "description": "GraphiQL and Voyager GraphQL Clients for WordPress",
             "homepage": "https://github.com/GraphQLByPoP/graphql-clients-for-wp",
             "keywords": [
-                "graphql-clients-for-wp",
-                "pop"
+                "GraphQLByPoP",
+                "graphql-clients-for-wp"
             ],
-            "time": "2020-08-08T04:29:45+00:00"
+            "time": "2020-08-08T04:48:03+00:00"
         },
         {
             "name": "graphql-by-pop/graphql-endpoint-for-wp",
