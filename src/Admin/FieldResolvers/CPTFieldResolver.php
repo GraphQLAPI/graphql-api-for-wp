@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\FieldResolvers;
 
-use PoP\CustomPosts\Facades\CustomPostTypeAPIFacade;
-use PoP\CustomPosts\TypeResolvers\CustomPostTypeResolver;
+use PoPSchema\CustomPosts\Facades\CustomPostTypeAPIFacade;
+use PoPSchema\CustomPosts\TypeResolvers\CustomPostTypeResolver;
 use PoP\Engine\TypeResolvers\RootTypeResolver;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\Schema\TypeCastingHelpers;
@@ -16,7 +16,7 @@ use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLCacheControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLAccessControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
-use PoP\CustomPosts\Types\Status;
+use PoPSchema\CustomPosts\Types\Status;
 
 /**
  * FieldResolver for the Custom Post Types from this plugin

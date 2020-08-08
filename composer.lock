@@ -545,16 +545,16 @@
             "time": "2020-08-06T07:00:58+00:00"
         },
         {
-            "name": "getpop/basic-directives",
+            "name": "pop-schema/basic-directives",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/basic-directives.git",
+                "url": "https://github.com/pop-schema/basic-directives.git",
                 "reference": "01707479caf309de0b2887d2bbbd609b2e53ad79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/basic-directives/zipball/01707479caf309de0b2887d2bbbd609b2e53ad79",
+                "url": "https://api.github.com/repos/pop-schema/basic-directives/zipball/01707479caf309de0b2887d2bbbd609b2e53ad79",
                 "reference": "01707479caf309de0b2887d2bbbd609b2e53ad79",
                 "shasum": ""
             },
@@ -575,7 +575,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\BasicDirectives\\": "src"
+                    "PoPSchema\\BasicDirectives\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -590,7 +590,7 @@
                 }
             ],
             "description": "Set of basic directives",
-            "homepage": "https://github.com/getpop/basic-directives",
+            "homepage": "https://github.com/pop-schema/basic-directives",
             "keywords": [
                 "basic-directives",
                 "pop"
@@ -651,7 +651,7 @@
             "time": "2020-08-03T13:32:08+00:00"
         },
         {
-            "name": "getpop/commentmeta",
+            "name": "pop-schema/commentmeta",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -665,9 +665,9 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/comments": "dev-master",
-                "getpop/meta": "dev-master",
-                "getpop/migrate-commentmeta": "dev-master",
+                "pop-schema/comments": "dev-master",
+                "pop-schema/meta": "dev-master",
+                "pop-schema/migrate-commentmeta": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -683,7 +683,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\CommentMeta\\": "src"
+                    "PoPSchema\\CommentMeta\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -706,7 +706,7 @@
             "time": "2020-08-03T13:32:55+00:00"
         },
         {
-            "name": "getpop/commentmeta-wp",
+            "name": "pop-schema/commentmeta-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -720,9 +720,9 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/commentmeta": "dev-master",
-                "getpop/comments-wp": "dev-master",
-                "getpop/migrate-commentmeta-wp": "dev-master",
+                "pop-schema/commentmeta": "dev-master",
+                "pop-schema/comments-wp": "dev-master",
+                "pop-schema/migrate-commentmeta-wp": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -738,7 +738,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\CommentMetaWP\\": "src"
+                    "PoPSchema\\CommentMetaWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -761,7 +761,7 @@
             "time": "2020-08-03T13:32:48+00:00"
         },
         {
-            "name": "getpop/comments",
+            "name": "pop-schema/comments",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -775,8 +775,8 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/customposts": "dev-master",
-                "getpop/migrate-comments": "dev-master",
+                "pop-schema/customposts": "dev-master",
+                "pop-schema/migrate-comments": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -792,7 +792,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\Comments\\": "src"
+                    "PoPSchema\\Comments\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -815,7 +815,7 @@
             "time": "2020-08-03T13:33:09+00:00"
         },
         {
-            "name": "getpop/comments-wp",
+            "name": "pop-schema/comments-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -829,9 +829,9 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/comments": "dev-master",
-                "getpop/customposts-wp": "dev-master",
-                "getpop/migrate-comments-wp": "dev-master",
+                "pop-schema/comments": "dev-master",
+                "pop-schema/customposts-wp": "dev-master",
+                "pop-schema/migrate-comments-wp": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -847,7 +847,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\CommentsWP\\": "src"
+                    "PoPSchema\\CommentsWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -929,7 +929,7 @@
             "time": "2020-08-05T03:48:34+00:00"
         },
         {
-            "name": "getpop/custompostmedia",
+            "name": "pop-schema/custompostmedia",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -943,10 +943,10 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/basic-directives": "dev-master",
-                "getpop/customposts": "dev-master",
-                "getpop/media": "dev-master",
-                "getpop/migrate-custompostmedia": "dev-master",
+                "pop-schema/basic-directives": "dev-master",
+                "pop-schema/customposts": "dev-master",
+                "pop-schema/media": "dev-master",
+                "pop-schema/migrate-custompostmedia": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -962,7 +962,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\CustomPostMedia\\": "src"
+                    "PoPSchema\\CustomPostMedia\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -985,7 +985,7 @@
             "time": "2020-08-03T13:33:48+00:00"
         },
         {
-            "name": "getpop/custompostmedia-wp",
+            "name": "pop-schema/custompostmedia-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -999,10 +999,10 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/custompostmedia": "dev-master",
-                "getpop/customposts-wp": "dev-master",
-                "getpop/media-wp": "dev-master",
-                "getpop/migrate-custompostmedia-wp": "dev-master",
+                "pop-schema/custompostmedia": "dev-master",
+                "pop-schema/customposts-wp": "dev-master",
+                "pop-schema/media-wp": "dev-master",
+                "pop-schema/migrate-custompostmedia-wp": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -1018,7 +1018,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\CustomPostMediaWP\\": "src"
+                    "PoPSchema\\CustomPostMediaWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1041,7 +1041,7 @@
             "time": "2020-08-03T13:33:42+00:00"
         },
         {
-            "name": "getpop/custompostmeta",
+            "name": "pop-schema/custompostmeta",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -1055,9 +1055,9 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/customposts": "dev-master",
-                "getpop/meta": "dev-master",
-                "getpop/migrate-custompostmeta": "dev-master",
+                "pop-schema/customposts": "dev-master",
+                "pop-schema/meta": "dev-master",
+                "pop-schema/migrate-custompostmeta": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -1073,7 +1073,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\CustomPostMeta\\": "src"
+                    "PoPSchema\\CustomPostMeta\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1096,7 +1096,7 @@
             "time": "2020-08-03T13:34:00+00:00"
         },
         {
-            "name": "getpop/custompostmeta-wp",
+            "name": "pop-schema/custompostmeta-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -1110,9 +1110,9 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/custompostmeta": "dev-master",
-                "getpop/customposts-wp": "dev-master",
-                "getpop/migrate-custompostmeta-wp": "dev-master",
+                "pop-schema/custompostmeta": "dev-master",
+                "pop-schema/customposts-wp": "dev-master",
+                "pop-schema/migrate-custompostmeta-wp": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -1128,7 +1128,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\CustomPostMetaWP\\": "src"
+                    "PoPSchema\\CustomPostMetaWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1151,7 +1151,7 @@
             "time": "2020-08-03T13:33:54+00:00"
         },
         {
-            "name": "getpop/customposts",
+            "name": "pop-schema/customposts",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -1165,8 +1165,8 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/migrate-customposts": "dev-master",
-                "getpop/queriedobject": "dev-master",
+                "pop-schema/migrate-customposts": "dev-master",
+                "pop-schema/queriedobject": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -1182,7 +1182,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\CustomPosts\\": "src"
+                    "PoPSchema\\CustomPosts\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1205,7 +1205,7 @@
             "time": "2020-08-07T06:40:28+00:00"
         },
         {
-            "name": "getpop/customposts-wp",
+            "name": "pop-schema/customposts-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -1219,9 +1219,9 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/customposts": "dev-master",
-                "getpop/migrate-customposts-wp": "dev-master",
-                "getpop/queriedobject-wp": "dev-master",
+                "pop-schema/customposts": "dev-master",
+                "pop-schema/migrate-customposts-wp": "dev-master",
+                "pop-schema/queriedobject-wp": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -1237,7 +1237,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\CustomPostsWP\\": "src"
+                    "PoPSchema\\CustomPostsWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1487,7 +1487,7 @@
             "time": "2020-08-07T05:47:05+00:00"
         },
         {
-            "name": "getpop/generic-customposts",
+            "name": "pop-schema/generic-customposts",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -1501,7 +1501,7 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/customposts": "dev-master",
+                "pop-schema/customposts": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -1517,7 +1517,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\GenericCustomPosts\\": "src"
+                    "PoPSchema\\GenericCustomPosts\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1810,7 +1810,7 @@
             "time": "2020-08-03T13:43:29+00:00"
         },
         {
-            "name": "getpop/media",
+            "name": "pop-schema/media",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -1825,17 +1825,17 @@
             },
             "require": {
                 "getpop/engine": "dev-master",
-                "getpop/migrate-media": "dev-master",
+                "pop-schema/migrate-media": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
-                "getpop/users": "dev-master",
+                "pop-schema/users": "dev-master",
                 "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": ">=8.5",
                 "squizlabs/php_codesniffer": "^3.0"
             },
             "suggest": {
-                "getpop/users": "Integration with Users"
+                "pop-schema/users": "Integration with Users"
             },
             "type": "library",
             "extra": {
@@ -1845,7 +1845,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\Media\\": "src"
+                    "PoPSchema\\Media\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1868,7 +1868,7 @@
             "time": "2020-08-03T13:43:41+00:00"
         },
         {
-            "name": "getpop/media-wp",
+            "name": "pop-schema/media-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -1883,8 +1883,8 @@
             },
             "require": {
                 "getpop/engine-wp": "dev-master",
-                "getpop/media": "dev-master",
-                "getpop/migrate-media-wp": "dev-master",
+                "pop-schema/media": "dev-master",
+                "pop-schema/migrate-media-wp": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -1900,7 +1900,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\MediaWP\\": "src"
+                    "PoPSchema\\MediaWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1923,22 +1923,22 @@
             "time": "2020-08-03T13:43:35+00:00"
         },
         {
-            "name": "getpop/meta",
+            "name": "pop-schema/meta",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/meta.git",
+                "url": "https://github.com/pop-schema/meta.git",
                 "reference": "d164974cb0206e75da1eb2b6cf8d4531f206ef3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/meta/zipball/d164974cb0206e75da1eb2b6cf8d4531f206ef3b",
+                "url": "https://api.github.com/repos/pop-schema/meta/zipball/d164974cb0206e75da1eb2b6cf8d4531f206ef3b",
                 "reference": "d164974cb0206e75da1eb2b6cf8d4531f206ef3b",
                 "shasum": ""
             },
             "require": {
                 "getpop/engine": "dev-master",
-                "getpop/migrate-meta": "dev-master",
+                "pop-schema/migrate-meta": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -1954,7 +1954,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\Meta\\": "src"
+                    "PoPSchema\\Meta\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1969,7 +1969,7 @@
                 }
             ],
             "description": "Adds support for meta",
-            "homepage": "https://github.com/getpop/meta",
+            "homepage": "https://github.com/pop-schema/meta",
             "keywords": [
                 "meta",
                 "pop"
@@ -1977,22 +1977,22 @@
             "time": "2020-08-03T13:43:59+00:00"
         },
         {
-            "name": "getpop/metaquery",
+            "name": "pop-schema/metaquery",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/metaquery.git",
+                "url": "https://github.com/pop-schema/metaquery.git",
                 "reference": "abd81e3786b56e0dfd87a33d02df3098ffcff132"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/metaquery/zipball/abd81e3786b56e0dfd87a33d02df3098ffcff132",
+                "url": "https://api.github.com/repos/pop-schema/metaquery/zipball/abd81e3786b56e0dfd87a33d02df3098ffcff132",
                 "reference": "abd81e3786b56e0dfd87a33d02df3098ffcff132",
                 "shasum": ""
             },
             "require": {
-                "getpop/meta": "dev-master",
-                "getpop/migrate-metaquery": "dev-master",
+                "pop-schema/meta": "dev-master",
+                "pop-schema/migrate-metaquery": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -2008,7 +2008,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\MetaQuery\\": "src"
+                    "PoPSchema\\MetaQuery\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2023,7 +2023,7 @@
                 }
             ],
             "description": "Adds support for meta queries",
-            "homepage": "https://github.com/getpop/metaquery",
+            "homepage": "https://github.com/pop-schema/metaquery",
             "keywords": [
                 "metaquery",
                 "pop"
@@ -2031,23 +2031,23 @@
             "time": "2020-08-03T13:44:12+00:00"
         },
         {
-            "name": "getpop/metaquery-wp",
+            "name": "pop-schema/metaquery-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/metaquery-wp.git",
+                "url": "https://github.com/pop-schema/metaquery-wp.git",
                 "reference": "bcc8f39c824cbabd2306b93dc6b51db0fb862957"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/metaquery-wp/zipball/bcc8f39c824cbabd2306b93dc6b51db0fb862957",
+                "url": "https://api.github.com/repos/pop-schema/metaquery-wp/zipball/bcc8f39c824cbabd2306b93dc6b51db0fb862957",
                 "reference": "bcc8f39c824cbabd2306b93dc6b51db0fb862957",
                 "shasum": ""
             },
             "require": {
                 "getpop/engine-wp": "dev-master",
-                "getpop/metaquery": "dev-master",
-                "getpop/migrate-metaquery-wp": "dev-master",
+                "pop-schema/metaquery": "dev-master",
+                "pop-schema/migrate-metaquery-wp": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -2063,7 +2063,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\MetaQueryWP\\": "src"
+                    "PoPSchema\\MetaQueryWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2078,7 +2078,7 @@
                 }
             ],
             "description": "Implementation for WordPress of contracts from package \"Meta Query\"",
-            "homepage": "https://github.com/getpop/metaquery-wp",
+            "homepage": "https://github.com/pop-schema/metaquery-wp",
             "keywords": [
                 "metaquery-wp",
                 "pop"
@@ -2171,7 +2171,7 @@
             "time": "2020-08-03T13:44:18+00:00"
         },
         {
-            "name": "getpop/migrate-commentmeta",
+            "name": "pop-schema/migrate-commentmeta",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -2204,7 +2204,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/commentmeta. Target package description: Adds support for comment meta",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/commentmeta. Target package description: Adds support for comment meta",
             "homepage": "https://github.com/PoPSchema/migrate-commentmeta",
             "keywords": [
                 "commentmeta",
@@ -2213,7 +2213,7 @@
             "time": "2020-08-03T13:44:48+00:00"
         },
         {
-            "name": "getpop/migrate-commentmeta-wp",
+            "name": "pop-schema/migrate-commentmeta-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -2246,7 +2246,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/commentmeta-wp. Target package description: Implementation for WordPress of contracts from package \"Comment Meta\"",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/commentmeta-wp. Target package description: Implementation for WordPress of contracts from package \"Comment Meta\"",
             "homepage": "https://github.com/PoPSchema/migrate-commentmeta-wp",
             "keywords": [
                 "commentmeta-wp",
@@ -2255,7 +2255,7 @@
             "time": "2020-08-03T13:44:41+00:00"
         },
         {
-            "name": "getpop/migrate-comments",
+            "name": "pop-schema/migrate-comments",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -2288,7 +2288,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/comments. Target package description: Adds support for comments",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/comments. Target package description: Adds support for comments",
             "homepage": "https://github.com/PoPSchema/migrate-comments",
             "keywords": [
                 "comments",
@@ -2297,7 +2297,7 @@
             "time": "2020-08-03T13:45:00+00:00"
         },
         {
-            "name": "getpop/migrate-comments-wp",
+            "name": "pop-schema/migrate-comments-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -2330,7 +2330,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/comments-wp. Target package description: Implementation for WordPress of contracts from package \"Comments\"",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/comments-wp. Target package description: Implementation for WordPress of contracts from package \"Comments\"",
             "homepage": "https://github.com/PoPSchema/migrate-comments-wp",
             "keywords": [
                 "comments-wp",
@@ -2381,7 +2381,7 @@
             "time": "2020-08-03T13:45:14+00:00"
         },
         {
-            "name": "getpop/migrate-custompostmedia",
+            "name": "pop-schema/migrate-custompostmedia",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -2414,7 +2414,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/custompostmedia. Target package description: Adds support for post media",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/custompostmedia. Target package description: Adds support for post media",
             "homepage": "https://github.com/PoPSchema/migrate-custompostmedia",
             "keywords": [
                 "custompostmedia",
@@ -2423,7 +2423,7 @@
             "time": "2020-08-03T13:45:26+00:00"
         },
         {
-            "name": "getpop/migrate-custompostmedia-wp",
+            "name": "pop-schema/migrate-custompostmedia-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -2456,7 +2456,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/custompostmedia-wp. Target package description: Implementation for WordPress of contracts from package \"Post Media\"",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/custompostmedia-wp. Target package description: Implementation for WordPress of contracts from package \"Post Media\"",
             "homepage": "https://github.com/PoPSchema/migrate-custompostmedia-wp",
             "keywords": [
                 "custompostmedia-wp",
@@ -2465,7 +2465,7 @@
             "time": "2020-08-03T13:45:20+00:00"
         },
         {
-            "name": "getpop/migrate-custompostmeta",
+            "name": "pop-schema/migrate-custompostmeta",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -2498,7 +2498,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/custompostmeta. Target package description: Adds support for post meta",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/custompostmeta. Target package description: Adds support for post meta",
             "homepage": "https://github.com/PoPSchema/migrate-custompostmeta",
             "keywords": [
                 "custompostmeta",
@@ -2507,7 +2507,7 @@
             "time": "2020-08-03T13:45:38+00:00"
         },
         {
-            "name": "getpop/migrate-custompostmeta-wp",
+            "name": "pop-schema/migrate-custompostmeta-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -2540,7 +2540,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/custompostmeta-wp. Target package description: Implementation for WordPress of contracts from package \"Post Meta\"",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/custompostmeta-wp. Target package description: Implementation for WordPress of contracts from package \"Post Meta\"",
             "homepage": "https://github.com/PoPSchema/migrate-custompostmeta-wp",
             "keywords": [
                 "custompostmeta-wp",
@@ -2549,7 +2549,7 @@
             "time": "2020-08-03T13:45:32+00:00"
         },
         {
-            "name": "getpop/migrate-customposts",
+            "name": "pop-schema/migrate-customposts",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -2582,7 +2582,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/customposts. Target package description: Adds support for custom posts",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/customposts. Target package description: Adds support for custom posts",
             "homepage": "https://github.com/PoPSchema/migrate-customposts",
             "keywords": [
                 "customposts",
@@ -2591,7 +2591,7 @@
             "time": "2020-08-03T13:45:51+00:00"
         },
         {
-            "name": "getpop/migrate-customposts-wp",
+            "name": "pop-schema/migrate-customposts-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -2624,7 +2624,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/customposts-wp. Target package description: Implementation for WordPress of contracts from package \"Custom Posts\"",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/customposts-wp. Target package description: Implementation for WordPress of contracts from package \"Custom Posts\"",
             "homepage": "https://github.com/PoPSchema/migrate-customposts-wp",
             "keywords": [
                 "customposts-wp",
@@ -2722,7 +2722,7 @@
             "time": "2020-08-03T13:45:57+00:00"
         },
         {
-            "name": "getpop/migrate-media",
+            "name": "pop-schema/migrate-media",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -2755,7 +2755,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/media. Target package description: Adds support for media",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/media. Target package description: Adds support for media",
             "homepage": "https://github.com/PoPSchema/migrate-media",
             "keywords": [
                 "media",
@@ -2764,7 +2764,7 @@
             "time": "2020-08-03T13:46:46+00:00"
         },
         {
-            "name": "getpop/migrate-media-wp",
+            "name": "pop-schema/migrate-media-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -2797,7 +2797,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/media-wp. Target package description: Implementation for WordPress of contracts from package \"Media\"",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/media-wp. Target package description: Implementation for WordPress of contracts from package \"Media\"",
             "homepage": "https://github.com/PoPSchema/migrate-media-wp",
             "keywords": [
                 "media-wp",
@@ -2806,16 +2806,16 @@
             "time": "2020-08-03T13:46:39+00:00"
         },
         {
-            "name": "getpop/migrate-meta",
+            "name": "pop-schema/migrate-meta",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/migrate-meta.git",
+                "url": "https://github.com/pop-schema/migrate-meta.git",
                 "reference": "91376ab3689c75747a3b2b7d61ed85fe5fe5aef8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-meta/zipball/91376ab3689c75747a3b2b7d61ed85fe5fe5aef8",
+                "url": "https://api.github.com/repos/pop-schema/migrate-meta/zipball/91376ab3689c75747a3b2b7d61ed85fe5fe5aef8",
                 "reference": "91376ab3689c75747a3b2b7d61ed85fe5fe5aef8",
                 "shasum": ""
             },
@@ -2839,8 +2839,8 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/meta. Target package description: Adds support for meta",
-            "homepage": "https://github.com/getpop/migrate-meta",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/meta. Target package description: Adds support for meta",
+            "homepage": "https://github.com/pop-schema/migrate-meta",
             "keywords": [
                 "meta",
                 "pop"
@@ -2848,16 +2848,16 @@
             "time": "2020-08-03T13:46:52+00:00"
         },
         {
-            "name": "getpop/migrate-metaquery",
+            "name": "pop-schema/migrate-metaquery",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/migrate-metaquery.git",
+                "url": "https://github.com/pop-schema/migrate-metaquery.git",
                 "reference": "aaa54285d8243c7a5973277a71e5a613ffa7f5fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-metaquery/zipball/aaa54285d8243c7a5973277a71e5a613ffa7f5fe",
+                "url": "https://api.github.com/repos/pop-schema/migrate-metaquery/zipball/aaa54285d8243c7a5973277a71e5a613ffa7f5fe",
                 "reference": "aaa54285d8243c7a5973277a71e5a613ffa7f5fe",
                 "shasum": ""
             },
@@ -2881,8 +2881,8 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/metaquery. Target package description: Adds support for meta queries",
-            "homepage": "https://github.com/getpop/migrate-metaquery",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/metaquery. Target package description: Adds support for meta queries",
+            "homepage": "https://github.com/pop-schema/migrate-metaquery",
             "keywords": [
                 "metaquery",
                 "pop"
@@ -2890,16 +2890,16 @@
             "time": "2020-08-03T13:47:04+00:00"
         },
         {
-            "name": "getpop/migrate-metaquery-wp",
+            "name": "pop-schema/migrate-metaquery-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/migrate-metaquery-wp.git",
+                "url": "https://github.com/pop-schema/migrate-metaquery-wp.git",
                 "reference": "5f724add51bb3ed307983b7141472e216ed7d92c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-metaquery-wp/zipball/5f724add51bb3ed307983b7141472e216ed7d92c",
+                "url": "https://api.github.com/repos/pop-schema/migrate-metaquery-wp/zipball/5f724add51bb3ed307983b7141472e216ed7d92c",
                 "reference": "5f724add51bb3ed307983b7141472e216ed7d92c",
                 "shasum": ""
             },
@@ -2923,8 +2923,8 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/metaquery-wp. Target package description: Implementation for WordPress of contracts from package \"Meta Query\"",
-            "homepage": "https://github.com/getpop/migrate-metaquery-wp",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/metaquery-wp. Target package description: Implementation for WordPress of contracts from package \"Meta Query\"",
+            "homepage": "https://github.com/pop-schema/migrate-metaquery-wp",
             "keywords": [
                 "metaquery-wp",
                 "pop"
@@ -2932,7 +2932,7 @@
             "time": "2020-08-03T13:46:58+00:00"
         },
         {
-            "name": "getpop/migrate-pages",
+            "name": "pop-schema/migrate-pages",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -2965,7 +2965,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/pages. Target package description: Adds support for pages",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/pages. Target package description: Adds support for pages",
             "homepage": "https://github.com/PoPSchema/migrate-pages",
             "keywords": [
                 "pages",
@@ -2974,7 +2974,7 @@
             "time": "2020-08-03T13:47:15+00:00"
         },
         {
-            "name": "getpop/migrate-pages-wp",
+            "name": "pop-schema/migrate-pages-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3007,7 +3007,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/pages-wp. Target package description: Implementation for WordPress of contracts from package \"Pages\"",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/pages-wp. Target package description: Implementation for WordPress of contracts from package \"Pages\"",
             "homepage": "https://github.com/PoPSchema/migrate-pages-wp",
             "keywords": [
                 "pages-wp",
@@ -3016,7 +3016,7 @@
             "time": "2020-08-03T13:47:09+00:00"
         },
         {
-            "name": "getpop/migrate-post-tags",
+            "name": "pop-schema/migrate-post-tags",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3049,8 +3049,8 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/post-tags. Target package description: Adds support for post tags",
-            "homepage": "https://github.com/getpop/migrate-post-tags",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/post-tags. Target package description: Adds support for post tags",
+            "homepage": "https://github.com/pop-schema/migrate-post-tags",
             "keywords": [
                 "pop",
                 "post-tags"
@@ -3058,7 +3058,7 @@
             "time": "2020-08-03T13:47:28+00:00"
         },
         {
-            "name": "getpop/migrate-post-tags-wp",
+            "name": "pop-schema/migrate-post-tags-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3091,8 +3091,8 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/post-tags-wp. Target package description: Implementation for WordPress of contracts from package \"Post Tags\"",
-            "homepage": "https://github.com/getpop/migrate-post-tags-wp",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/post-tags-wp. Target package description: Implementation for WordPress of contracts from package \"Post Tags\"",
+            "homepage": "https://github.com/pop-schema/migrate-post-tags-wp",
             "keywords": [
                 "pop",
                 "post-tags-wp"
@@ -3100,7 +3100,7 @@
             "time": "2020-08-03T13:47:21+00:00"
         },
         {
-            "name": "getpop/migrate-posts",
+            "name": "pop-schema/migrate-posts",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3133,7 +3133,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/posts. Target package description: Adds support for posts",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/posts. Target package description: Adds support for posts",
             "homepage": "https://github.com/PoPSchema/migrate-posts",
             "keywords": [
                 "pop",
@@ -3142,7 +3142,7 @@
             "time": "2020-08-03T13:47:40+00:00"
         },
         {
-            "name": "getpop/migrate-posts-wp",
+            "name": "pop-schema/migrate-posts-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3175,7 +3175,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/posts-wp. Target package description: Implementation for WordPress of contracts from package \"Posts\"",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/posts-wp. Target package description: Implementation for WordPress of contracts from package \"Posts\"",
             "homepage": "https://github.com/PoPSchema/migrate-posts-wp",
             "keywords": [
                 "pop",
@@ -3184,16 +3184,16 @@
             "time": "2020-08-03T13:47:34+00:00"
         },
         {
-            "name": "getpop/migrate-queriedobject",
+            "name": "pop-schema/migrate-queriedobject",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/migrate-queriedobject.git",
+                "url": "https://github.com/pop-schema/migrate-queriedobject.git",
                 "reference": "524c1db8519f2f31d9d93b2769efca79a4b4755d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-queriedobject/zipball/524c1db8519f2f31d9d93b2769efca79a4b4755d",
+                "url": "https://api.github.com/repos/pop-schema/migrate-queriedobject/zipball/524c1db8519f2f31d9d93b2769efca79a4b4755d",
                 "reference": "524c1db8519f2f31d9d93b2769efca79a4b4755d",
                 "shasum": ""
             },
@@ -3217,8 +3217,8 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/queriedobject. Target package description: Adds support to query single objects (users, posts, etc) in the request",
-            "homepage": "https://github.com/getpop/migrate-queriedobject",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/queriedobject. Target package description: Adds support to query single objects (users, posts, etc) in the request",
+            "homepage": "https://github.com/pop-schema/migrate-queriedobject",
             "keywords": [
                 "pop",
                 "queriedobject"
@@ -3226,16 +3226,16 @@
             "time": "2020-08-03T13:47:52+00:00"
         },
         {
-            "name": "getpop/migrate-queriedobject-wp",
+            "name": "pop-schema/migrate-queriedobject-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/migrate-queriedobject-wp.git",
+                "url": "https://github.com/pop-schema/migrate-queriedobject-wp.git",
                 "reference": "9a61a52b47c51da0229a7d8ec926c93896afd124"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-queriedobject-wp/zipball/9a61a52b47c51da0229a7d8ec926c93896afd124",
+                "url": "https://api.github.com/repos/pop-schema/migrate-queriedobject-wp/zipball/9a61a52b47c51da0229a7d8ec926c93896afd124",
                 "reference": "9a61a52b47c51da0229a7d8ec926c93896afd124",
                 "shasum": ""
             },
@@ -3259,8 +3259,8 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/queriedobject-wp. Target package description: Implementation for WordPress of contracts from package \"Queried Object\"",
-            "homepage": "https://github.com/getpop/migrate-queriedobject-wp",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/queriedobject-wp. Target package description: Implementation for WordPress of contracts from package \"Queried Object\"",
+            "homepage": "https://github.com/pop-schema/migrate-queriedobject-wp",
             "keywords": [
                 "pop",
                 "queriedobject-wp"
@@ -3268,7 +3268,7 @@
             "time": "2020-08-03T13:47:46+00:00"
         },
         {
-            "name": "getpop/migrate-tags",
+            "name": "pop-schema/migrate-tags",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3301,8 +3301,8 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/tags. Target package description: Adds support for tags",
-            "homepage": "https://github.com/getpop/migrate-tags",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/tags. Target package description: Adds support for tags",
+            "homepage": "https://github.com/pop-schema/migrate-tags",
             "keywords": [
                 "pop",
                 "tags"
@@ -3310,7 +3310,7 @@
             "time": "2020-08-03T13:48:11+00:00"
         },
         {
-            "name": "getpop/migrate-tags-wp",
+            "name": "pop-schema/migrate-tags-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3343,8 +3343,8 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/tags-wp. Target package description: Implementation for WordPress of contracts from package \"Tags\"",
-            "homepage": "https://github.com/getpop/migrate-tags-wp",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/tags-wp. Target package description: Implementation for WordPress of contracts from package \"Tags\"",
+            "homepage": "https://github.com/pop-schema/migrate-tags-wp",
             "keywords": [
                 "pop",
                 "tags-wp"
@@ -3352,16 +3352,16 @@
             "time": "2020-08-03T13:48:05+00:00"
         },
         {
-            "name": "getpop/migrate-taxonomies",
+            "name": "pop-schema/migrate-taxonomies",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/migrate-taxonomies.git",
+                "url": "https://github.com/pop-schema/migrate-taxonomies.git",
                 "reference": "c48240cc05df38ac1bf30802790bd7e5af62157c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-taxonomies/zipball/c48240cc05df38ac1bf30802790bd7e5af62157c",
+                "url": "https://api.github.com/repos/pop-schema/migrate-taxonomies/zipball/c48240cc05df38ac1bf30802790bd7e5af62157c",
                 "reference": "c48240cc05df38ac1bf30802790bd7e5af62157c",
                 "shasum": ""
             },
@@ -3385,8 +3385,8 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/taxonomies. Target package description: Adds support for taxonomies",
-            "homepage": "https://github.com/getpop/migrate-taxonomies",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/taxonomies. Target package description: Adds support for taxonomies",
+            "homepage": "https://github.com/pop-schema/migrate-taxonomies",
             "keywords": [
                 "pop",
                 "taxonomies"
@@ -3394,16 +3394,16 @@
             "time": "2020-08-03T13:48:24+00:00"
         },
         {
-            "name": "getpop/migrate-taxonomies-wp",
+            "name": "pop-schema/migrate-taxonomies-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/migrate-taxonomies-wp.git",
+                "url": "https://github.com/pop-schema/migrate-taxonomies-wp.git",
                 "reference": "6c8b57dcdb8d7c31946e4e898b9cf1c2dc32856e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-taxonomies-wp/zipball/6c8b57dcdb8d7c31946e4e898b9cf1c2dc32856e",
+                "url": "https://api.github.com/repos/pop-schema/migrate-taxonomies-wp/zipball/6c8b57dcdb8d7c31946e4e898b9cf1c2dc32856e",
                 "reference": "6c8b57dcdb8d7c31946e4e898b9cf1c2dc32856e",
                 "shasum": ""
             },
@@ -3427,8 +3427,8 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/taxonomies-wp. Target package description: Implementation for WordPress of contracts from package \"Taxonomies\"",
-            "homepage": "https://github.com/getpop/migrate-taxonomies-wp",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/taxonomies-wp. Target package description: Implementation for WordPress of contracts from package \"Taxonomies\"",
+            "homepage": "https://github.com/pop-schema/migrate-taxonomies-wp",
             "keywords": [
                 "pop",
                 "taxonomies-wp"
@@ -3436,16 +3436,16 @@
             "time": "2020-08-03T13:48:17+00:00"
         },
         {
-            "name": "getpop/migrate-taxonomymeta",
+            "name": "pop-schema/migrate-taxonomymeta",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/migrate-taxonomymeta.git",
+                "url": "https://github.com/pop-schema/migrate-taxonomymeta.git",
                 "reference": "de1830590c46a6c82ce8b68daf372c936000b757"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-taxonomymeta/zipball/de1830590c46a6c82ce8b68daf372c936000b757",
+                "url": "https://api.github.com/repos/pop-schema/migrate-taxonomymeta/zipball/de1830590c46a6c82ce8b68daf372c936000b757",
                 "reference": "de1830590c46a6c82ce8b68daf372c936000b757",
                 "shasum": ""
             },
@@ -3469,8 +3469,8 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/taxonomymeta. Target package description: Adds support for taxonomy (category and tag) meta",
-            "homepage": "https://github.com/getpop/migrate-taxonomymeta",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/taxonomymeta. Target package description: Adds support for taxonomy (category and tag) meta",
+            "homepage": "https://github.com/pop-schema/migrate-taxonomymeta",
             "keywords": [
                 "pop",
                 "taxonomymeta"
@@ -3478,16 +3478,16 @@
             "time": "2020-08-03T13:48:41+00:00"
         },
         {
-            "name": "getpop/migrate-taxonomymeta-wp",
+            "name": "pop-schema/migrate-taxonomymeta-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/migrate-taxonomymeta-wp.git",
+                "url": "https://github.com/pop-schema/migrate-taxonomymeta-wp.git",
                 "reference": "2b7c7edec6b01932bf84000d4ae71cabd744f995"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-taxonomymeta-wp/zipball/2b7c7edec6b01932bf84000d4ae71cabd744f995",
+                "url": "https://api.github.com/repos/pop-schema/migrate-taxonomymeta-wp/zipball/2b7c7edec6b01932bf84000d4ae71cabd744f995",
                 "reference": "2b7c7edec6b01932bf84000d4ae71cabd744f995",
                 "shasum": ""
             },
@@ -3511,8 +3511,8 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/taxonomymeta-wp. Target package description: Implementation for WordPress of contracts from package \"Taxonomy Meta\"",
-            "homepage": "https://github.com/getpop/migrate-taxonomymeta-wp",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/taxonomymeta-wp. Target package description: Implementation for WordPress of contracts from package \"Taxonomy Meta\"",
+            "homepage": "https://github.com/pop-schema/migrate-taxonomymeta-wp",
             "keywords": [
                 "pop",
                 "taxonomymeta-wp"
@@ -3520,16 +3520,16 @@
             "time": "2020-08-03T13:48:33+00:00"
         },
         {
-            "name": "getpop/migrate-taxonomyquery",
+            "name": "pop-schema/migrate-taxonomyquery",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/migrate-taxonomyquery.git",
+                "url": "https://github.com/pop-schema/migrate-taxonomyquery.git",
                 "reference": "f436c342f8126c4e4820100d914e5bca77b592b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-taxonomyquery/zipball/f436c342f8126c4e4820100d914e5bca77b592b7",
+                "url": "https://api.github.com/repos/pop-schema/migrate-taxonomyquery/zipball/f436c342f8126c4e4820100d914e5bca77b592b7",
                 "reference": "f436c342f8126c4e4820100d914e5bca77b592b7",
                 "shasum": ""
             },
@@ -3553,8 +3553,8 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/taxonomyquery. Target package description: Adds support for taxonomy (category and tag) queries",
-            "homepage": "https://github.com/getpop/migrate-taxonomyquery",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/taxonomyquery. Target package description: Adds support for taxonomy (category and tag) queries",
+            "homepage": "https://github.com/pop-schema/migrate-taxonomyquery",
             "keywords": [
                 "pop",
                 "taxonomyquery"
@@ -3562,16 +3562,16 @@
             "time": "2020-08-03T13:48:53+00:00"
         },
         {
-            "name": "getpop/migrate-taxonomyquery-wp",
+            "name": "pop-schema/migrate-taxonomyquery-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/migrate-taxonomyquery-wp.git",
+                "url": "https://github.com/pop-schema/migrate-taxonomyquery-wp.git",
                 "reference": "23aa86a204ec2e8dd0332a16d9fbb5ea95663d0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-taxonomyquery-wp/zipball/23aa86a204ec2e8dd0332a16d9fbb5ea95663d0a",
+                "url": "https://api.github.com/repos/pop-schema/migrate-taxonomyquery-wp/zipball/23aa86a204ec2e8dd0332a16d9fbb5ea95663d0a",
                 "reference": "23aa86a204ec2e8dd0332a16d9fbb5ea95663d0a",
                 "shasum": ""
             },
@@ -3595,8 +3595,8 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/taxonomyquery-wp. Target package description: Implementation for WordPress of contracts from package \"Taxonomy Query\"",
-            "homepage": "https://github.com/getpop/migrate-taxonomyquery-wp",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/taxonomyquery-wp. Target package description: Implementation for WordPress of contracts from package \"Taxonomy Query\"",
+            "homepage": "https://github.com/pop-schema/migrate-taxonomyquery-wp",
             "keywords": [
                 "pop",
                 "taxonomyquery-wp"
@@ -3604,7 +3604,7 @@
             "time": "2020-08-03T13:48:47+00:00"
         },
         {
-            "name": "getpop/migrate-usermeta",
+            "name": "pop-schema/migrate-usermeta",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3637,7 +3637,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/usermeta. Target package description: Adds support for user meta",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/usermeta. Target package description: Adds support for user meta",
             "homepage": "https://github.com/PoPSchema/migrate-usermeta",
             "keywords": [
                 "pop",
@@ -3646,7 +3646,7 @@
             "time": "2020-08-03T13:49:05+00:00"
         },
         {
-            "name": "getpop/migrate-usermeta-wp",
+            "name": "pop-schema/migrate-usermeta-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3679,7 +3679,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/usermeta-wp. Target package description: Implementation for WordPress of contracts from package \"User Meta\"",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/usermeta-wp. Target package description: Implementation for WordPress of contracts from package \"User Meta\"",
             "homepage": "https://github.com/PoPSchema/migrate-usermeta-wp",
             "keywords": [
                 "pop",
@@ -3688,7 +3688,7 @@
             "time": "2020-08-03T13:48:59+00:00"
         },
         {
-            "name": "getpop/migrate-users",
+            "name": "pop-schema/migrate-users",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3721,7 +3721,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/users. Target package description: Adds support for users",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/users. Target package description: Adds support for users",
             "homepage": "https://github.com/PoPSchema/migrate-users",
             "keywords": [
                 "Users",
@@ -3730,7 +3730,7 @@
             "time": "2020-08-03T13:49:17+00:00"
         },
         {
-            "name": "getpop/migrate-users-wp",
+            "name": "pop-schema/migrate-users-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3763,7 +3763,7 @@
                     "homepage": "https://getpop.org"
                 }
             ],
-            "description": "(Temporary package) Migrate code to package https://github.com/getpop/users-wp. Target package description: Implementation for WordPress of contracts from package \"Users\"",
+            "description": "(Temporary package) Migrate code to package https://github.com/pop-schema/users-wp. Target package description: Implementation for WordPress of contracts from package \"Users\"",
             "homepage": "https://github.com/PoPSchema/migrate-users-wp",
             "keywords": [
                 "pop",
@@ -3825,7 +3825,7 @@
             "time": "2020-08-03T13:49:23+00:00"
         },
         {
-            "name": "getpop/pages",
+            "name": "pop-schema/pages",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3839,8 +3839,8 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/customposts": "dev-master",
-                "getpop/migrate-pages": "dev-master",
+                "pop-schema/customposts": "dev-master",
+                "pop-schema/migrate-pages": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -3862,7 +3862,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\Pages\\": "src"
+                    "PoPSchema\\Pages\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3885,7 +3885,7 @@
             "time": "2020-08-07T06:41:06+00:00"
         },
         {
-            "name": "getpop/pages-wp",
+            "name": "pop-schema/pages-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3899,9 +3899,9 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/customposts-wp": "dev-master",
-                "getpop/migrate-pages-wp": "dev-master",
-                "getpop/pages": "dev-master",
+                "pop-schema/customposts-wp": "dev-master",
+                "pop-schema/migrate-pages-wp": "dev-master",
+                "pop-schema/pages": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -3917,7 +3917,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\PagesWP\\": "src"
+                    "PoPSchema\\PagesWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3940,7 +3940,7 @@
             "time": "2020-08-03T13:49:48+00:00"
         },
         {
-            "name": "getpop/post-tags",
+            "name": "pop-schema/post-tags",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3954,9 +3954,9 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/migrate-post-tags": "dev-master",
-                "getpop/posts": "dev-master",
-                "getpop/tags": "dev-master",
+                "pop-schema/migrate-post-tags": "dev-master",
+                "pop-schema/posts": "dev-master",
+                "pop-schema/tags": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -3978,7 +3978,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\PostTags\\": "src"
+                    "PoPSchema\\PostTags\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4001,7 +4001,7 @@
             "time": "2020-08-07T06:41:12+00:00"
         },
         {
-            "name": "getpop/post-tags-wp",
+            "name": "pop-schema/post-tags-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -4015,10 +4015,10 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/migrate-post-tags-wp": "dev-master",
-                "getpop/post-tags": "dev-master",
-                "getpop/posts-wp": "dev-master",
-                "getpop/tags-wp": "dev-master",
+                "pop-schema/migrate-post-tags-wp": "dev-master",
+                "pop-schema/post-tags": "dev-master",
+                "pop-schema/posts-wp": "dev-master",
+                "pop-schema/tags-wp": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -4034,7 +4034,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\PostTagsWP\\": "src"
+                    "PoPSchema\\PostTagsWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4057,7 +4057,7 @@
             "time": "2020-08-03T13:50:00+00:00"
         },
         {
-            "name": "getpop/posts",
+            "name": "pop-schema/posts",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -4071,14 +4071,14 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/customposts": "dev-master",
-                "getpop/migrate-posts": "dev-master",
+                "pop-schema/customposts": "dev-master",
+                "pop-schema/migrate-posts": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
                 "getpop/api": "dev-master",
                 "getpop/api-rest": "dev-master",
-                "getpop/users": "dev-master",
+                "pop-schema/users": "dev-master",
                 "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": ">=8.5",
                 "squizlabs/php_codesniffer": "^3.0"
@@ -4086,7 +4086,7 @@
             "suggest": {
                 "getpop/api": "Integrates well with API",
                 "getpop/api-rest": "Integrates well with REST API",
-                "getpop/users": "Integrates well with Users"
+                "pop-schema/users": "Integrates well with Users"
             },
             "type": "library",
             "extra": {
@@ -4096,7 +4096,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\Posts\\": "src"
+                    "PoPSchema\\Posts\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4119,7 +4119,7 @@
             "time": "2020-08-07T06:41:19+00:00"
         },
         {
-            "name": "getpop/posts-wp",
+            "name": "pop-schema/posts-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -4133,9 +4133,9 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/customposts-wp": "dev-master",
-                "getpop/migrate-posts-wp": "dev-master",
-                "getpop/posts": "dev-master",
+                "pop-schema/customposts-wp": "dev-master",
+                "pop-schema/migrate-posts-wp": "dev-master",
+                "pop-schema/posts": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -4151,7 +4151,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\PostsWP\\": "src"
+                    "PoPSchema\\PostsWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4174,22 +4174,22 @@
             "time": "2020-08-03T13:50:14+00:00"
         },
         {
-            "name": "getpop/queriedobject",
+            "name": "pop-schema/queriedobject",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/queriedobject.git",
+                "url": "https://github.com/pop-schema/queriedobject.git",
                 "reference": "c31e4b0bce095ac0670b3d321da35e5be8311e71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/queriedobject/zipball/c31e4b0bce095ac0670b3d321da35e5be8311e71",
+                "url": "https://api.github.com/repos/pop-schema/queriedobject/zipball/c31e4b0bce095ac0670b3d321da35e5be8311e71",
                 "reference": "c31e4b0bce095ac0670b3d321da35e5be8311e71",
                 "shasum": ""
             },
             "require": {
                 "getpop/engine": "dev-master",
-                "getpop/migrate-queriedobject": "dev-master",
+                "pop-schema/migrate-queriedobject": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -4205,7 +4205,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\QueriedObject\\": "src"
+                    "PoPSchema\\QueriedObject\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4220,7 +4220,7 @@
                 }
             ],
             "description": "Adds support to query single objects (users, posts, etc) in the request",
-            "homepage": "https://github.com/getpop/queriedobject",
+            "homepage": "https://github.com/pop-schema/queriedobject",
             "keywords": [
                 "pop",
                 "queriedobject"
@@ -4228,23 +4228,23 @@
             "time": "2020-08-03T13:50:34+00:00"
         },
         {
-            "name": "getpop/queriedobject-wp",
+            "name": "pop-schema/queriedobject-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/queriedobject-wp.git",
+                "url": "https://github.com/pop-schema/queriedobject-wp.git",
                 "reference": "49ed823a08035fbe6b83be7ddf3833c0d9f4c6cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/queriedobject-wp/zipball/49ed823a08035fbe6b83be7ddf3833c0d9f4c6cb",
+                "url": "https://api.github.com/repos/pop-schema/queriedobject-wp/zipball/49ed823a08035fbe6b83be7ddf3833c0d9f4c6cb",
                 "reference": "49ed823a08035fbe6b83be7ddf3833c0d9f4c6cb",
                 "shasum": ""
             },
             "require": {
                 "getpop/engine-wp": "dev-master",
-                "getpop/migrate-queriedobject-wp": "dev-master",
-                "getpop/queriedobject": "dev-master",
+                "pop-schema/migrate-queriedobject-wp": "dev-master",
+                "pop-schema/queriedobject": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -4260,7 +4260,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\QueriedObjectWP\\": "src"
+                    "PoPSchema\\QueriedObjectWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4275,7 +4275,7 @@
                 }
             ],
             "description": "Implementation for WordPress of contracts from package \"Queried Object\"",
-            "homepage": "https://github.com/getpop/queriedobject-wp",
+            "homepage": "https://github.com/pop-schema/queriedobject-wp",
             "keywords": [
                 "pop",
                 "queriedobject-wp"
@@ -4503,7 +4503,7 @@
             "time": "2020-08-03T13:51:03+00:00"
         },
         {
-            "name": "getpop/tags",
+            "name": "pop-schema/tags",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -4517,8 +4517,8 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/migrate-tags": "dev-master",
-                "getpop/taxonomies": "dev-master",
+                "pop-schema/migrate-tags": "dev-master",
+                "pop-schema/taxonomies": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -4534,7 +4534,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\Tags\\": "src"
+                    "PoPSchema\\Tags\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4557,7 +4557,7 @@
             "time": "2020-08-03T13:51:57+00:00"
         },
         {
-            "name": "getpop/tags-wp",
+            "name": "pop-schema/tags-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -4571,9 +4571,9 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/migrate-tags-wp": "dev-master",
-                "getpop/tags": "dev-master",
-                "getpop/taxonomies-wp": "dev-master",
+                "pop-schema/migrate-tags-wp": "dev-master",
+                "pop-schema/tags": "dev-master",
+                "pop-schema/taxonomies-wp": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -4589,7 +4589,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\TagsWP\\": "src"
+                    "PoPSchema\\TagsWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4612,7 +4612,7 @@
             "time": "2020-08-03T13:51:51+00:00"
         },
         {
-            "name": "getpop/taxonomies",
+            "name": "pop-schema/taxonomies",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -4626,8 +4626,8 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/customposts": "dev-master",
-                "getpop/migrate-taxonomies": "dev-master",
+                "pop-schema/customposts": "dev-master",
+                "pop-schema/migrate-taxonomies": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -4643,7 +4643,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\Taxonomies\\": "src"
+                    "PoPSchema\\Taxonomies\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4666,7 +4666,7 @@
             "time": "2020-08-03T13:52:09+00:00"
         },
         {
-            "name": "getpop/taxonomies-wp",
+            "name": "pop-schema/taxonomies-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -4680,9 +4680,9 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/customposts-wp": "dev-master",
-                "getpop/migrate-taxonomies-wp": "dev-master",
-                "getpop/taxonomies": "dev-master",
+                "pop-schema/customposts-wp": "dev-master",
+                "pop-schema/migrate-taxonomies-wp": "dev-master",
+                "pop-schema/taxonomies": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -4698,7 +4698,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\TaxonomiesWP\\": "src"
+                    "PoPSchema\\TaxonomiesWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4721,7 +4721,7 @@
             "time": "2020-08-03T13:52:03+00:00"
         },
         {
-            "name": "getpop/taxonomymeta",
+            "name": "pop-schema/taxonomymeta",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -4735,9 +4735,9 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/meta": "dev-master",
-                "getpop/migrate-taxonomymeta": "dev-master",
-                "getpop/taxonomies": "dev-master",
+                "pop-schema/meta": "dev-master",
+                "pop-schema/migrate-taxonomymeta": "dev-master",
+                "pop-schema/taxonomies": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -4753,7 +4753,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\TaxonomyMeta\\": "src"
+                    "PoPSchema\\TaxonomyMeta\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4776,7 +4776,7 @@
             "time": "2020-08-03T13:52:24+00:00"
         },
         {
-            "name": "getpop/taxonomymeta-wp",
+            "name": "pop-schema/taxonomymeta-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -4790,9 +4790,9 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/migrate-taxonomymeta-wp": "dev-master",
-                "getpop/taxonomies-wp": "dev-master",
-                "getpop/taxonomymeta": "dev-master",
+                "pop-schema/migrate-taxonomymeta-wp": "dev-master",
+                "pop-schema/taxonomies-wp": "dev-master",
+                "pop-schema/taxonomymeta": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -4808,7 +4808,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\TaxonomyMetaWP\\": "src"
+                    "PoPSchema\\TaxonomyMetaWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4831,7 +4831,7 @@
             "time": "2020-08-03T13:52:15+00:00"
         },
         {
-            "name": "getpop/taxonomyquery",
+            "name": "pop-schema/taxonomyquery",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -4845,8 +4845,8 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/migrate-taxonomyquery": "dev-master",
-                "getpop/taxonomymeta": "dev-master",
+                "pop-schema/migrate-taxonomyquery": "dev-master",
+                "pop-schema/taxonomymeta": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -4862,7 +4862,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\TaxonomyQuery\\": "src"
+                    "PoPSchema\\TaxonomyQuery\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4885,7 +4885,7 @@
             "time": "2020-08-03T13:52:36+00:00"
         },
         {
-            "name": "getpop/taxonomyquery-wp",
+            "name": "pop-schema/taxonomyquery-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -4899,10 +4899,10 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/metaquery-wp": "dev-master",
-                "getpop/migrate-taxonomyquery-wp": "dev-master",
-                "getpop/taxonomymeta-wp": "dev-master",
-                "getpop/taxonomyquery": "dev-master",
+                "pop-schema/metaquery-wp": "dev-master",
+                "pop-schema/migrate-taxonomyquery-wp": "dev-master",
+                "pop-schema/taxonomymeta-wp": "dev-master",
+                "pop-schema/taxonomyquery": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -4918,7 +4918,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\TaxonomyQueryWP\\": "src"
+                    "PoPSchema\\TaxonomyQueryWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5051,21 +5051,21 @@
             "time": "2020-08-03T13:53:02+00:00"
         },
         {
-            "name": "getpop/user-roles",
+            "name": "pop-schema/user-roles",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/user-roles.git",
+                "url": "https://github.com/pop-schema/user-roles.git",
                 "reference": "f12c0a0e4c8f3401f6630c8005ba1bb35b1b8b68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/user-roles/zipball/f12c0a0e4c8f3401f6630c8005ba1bb35b1b8b68",
+                "url": "https://api.github.com/repos/pop-schema/user-roles/zipball/f12c0a0e4c8f3401f6630c8005ba1bb35b1b8b68",
                 "reference": "f12c0a0e4c8f3401f6630c8005ba1bb35b1b8b68",
                 "shasum": ""
             },
             "require": {
-                "getpop/users": "dev-master",
+                "pop-schema/users": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -5081,7 +5081,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\UserRoles\\": "src"
+                    "PoPSchema\\UserRoles\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5096,7 +5096,7 @@
                 }
             ],
             "description": "Adds support for user roles",
-            "homepage": "https://github.com/getpop/user-roles",
+            "homepage": "https://github.com/pop-schema/user-roles",
             "keywords": [
                 "pop",
                 "user-roles"
@@ -5104,22 +5104,22 @@
             "time": "2020-08-03T13:53:33+00:00"
         },
         {
-            "name": "getpop/user-roles-access-control",
+            "name": "pop-schema/user-roles-access-control",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/user-roles-access-control.git",
+                "url": "https://github.com/pop-schema/user-roles-access-control.git",
                 "reference": "f72c93f12614b5377f43a0172958e0d6f20d2192"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/user-roles-access-control/zipball/f72c93f12614b5377f43a0172958e0d6f20d2192",
+                "url": "https://api.github.com/repos/pop-schema/user-roles-access-control/zipball/f72c93f12614b5377f43a0172958e0d6f20d2192",
                 "reference": "f72c93f12614b5377f43a0172958e0d6f20d2192",
                 "shasum": ""
             },
             "require": {
-                "getpop/user-roles": "dev-master",
-                "getpop/user-state-access-control": "dev-master",
+                "pop-schema/user-roles": "dev-master",
+                "pop-schema/user-state-access-control": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -5139,7 +5139,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\UserRolesAccessControl\\": "src"
+                    "PoPSchema\\UserRolesAccessControl\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5154,7 +5154,7 @@
                 }
             ],
             "description": "Access Control based on the user having a given role/capability",
-            "homepage": "https://github.com/getpop/user-roles-access-control",
+            "homepage": "https://github.com/pop-schema/user-roles-access-control",
             "keywords": [
                 "UserRolesAccessControl",
                 "pop"
@@ -5162,32 +5162,32 @@
             "time": "2020-08-03T13:53:14+00:00"
         },
         {
-            "name": "getpop/user-roles-wp",
+            "name": "pop-schema/user-roles-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/user-roles-wp.git",
+                "url": "https://github.com/pop-schema/user-roles-wp.git",
                 "reference": "afcba909123a6bc0511f9519c48fd3eaf58446c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/user-roles-wp/zipball/afcba909123a6bc0511f9519c48fd3eaf58446c0",
+                "url": "https://api.github.com/repos/pop-schema/user-roles-wp/zipball/afcba909123a6bc0511f9519c48fd3eaf58446c0",
                 "reference": "afcba909123a6bc0511f9519c48fd3eaf58446c0",
                 "shasum": ""
             },
             "require": {
-                "getpop/user-roles": "dev-master",
-                "getpop/users-wp": "dev-master",
+                "pop-schema/user-roles": "dev-master",
+                "pop-schema/users-wp": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
-                "getpop/user-state-wp": "dev-master",
+                "pop-schema/user-state-wp": "dev-master",
                 "phpunit/phpunit": ">=8.5",
                 "squizlabs/php_codesniffer": "^3.0",
                 "szepeviktor/phpstan-wordpress": "^0.6.2"
             },
             "suggest": {
-                "getpop/user-state-wp": "Integration with User State"
+                "pop-schema/user-state-wp": "Integration with User State"
             },
             "type": "library",
             "extra": {
@@ -5197,7 +5197,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\UserRolesWP\\": "src"
+                    "PoPSchema\\UserRolesWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5212,7 +5212,7 @@
                 }
             ],
             "description": "Implementation for WordPress of contracts from package \"User Roles\"",
-            "homepage": "https://github.com/getpop/user-roles-wp",
+            "homepage": "https://github.com/pop-schema/user-roles-wp",
             "keywords": [
                 "pop",
                 "user-roles-wp"
@@ -5220,21 +5220,21 @@
             "time": "2020-08-03T13:53:27+00:00"
         },
         {
-            "name": "getpop/user-state",
+            "name": "pop-schema/user-state",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/user-state.git",
+                "url": "https://github.com/pop-schema/user-state.git",
                 "reference": "81c204769ec7ae52017afb29b26abb7b23ec780d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/user-state/zipball/81c204769ec7ae52017afb29b26abb7b23ec780d",
+                "url": "https://api.github.com/repos/pop-schema/user-state/zipball/81c204769ec7ae52017afb29b26abb7b23ec780d",
                 "reference": "81c204769ec7ae52017afb29b26abb7b23ec780d",
                 "shasum": ""
             },
             "require": {
-                "getpop/users": "dev-master",
+                "pop-schema/users": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -5250,7 +5250,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\UserState\\": "src"
+                    "PoPSchema\\UserState\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5265,7 +5265,7 @@
                 }
             ],
             "description": "Enables users to log in and have user state",
-            "homepage": "https://github.com/getpop/user-state",
+            "homepage": "https://github.com/pop-schema/user-state",
             "keywords": [
                 "pop",
                 "user-state"
@@ -5273,22 +5273,22 @@
             "time": "2020-08-03T13:53:51+00:00"
         },
         {
-            "name": "getpop/user-state-access-control",
+            "name": "pop-schema/user-state-access-control",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/user-state-access-control.git",
+                "url": "https://github.com/pop-schema/user-state-access-control.git",
                 "reference": "8a08b4da7f607822f97c9ded9fe847bac08019ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/user-state-access-control/zipball/8a08b4da7f607822f97c9ded9fe847bac08019ca",
+                "url": "https://api.github.com/repos/pop-schema/user-state-access-control/zipball/8a08b4da7f607822f97c9ded9fe847bac08019ca",
                 "reference": "8a08b4da7f607822f97c9ded9fe847bac08019ca",
                 "shasum": ""
             },
             "require": {
                 "getpop/access-control": "dev-master",
-                "getpop/user-state": "dev-master",
+                "pop-schema/user-state": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -5308,7 +5308,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\UserStateAccessControl\\": "src"
+                    "PoPSchema\\UserStateAccessControl\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5323,7 +5323,7 @@
                 }
             ],
             "description": "Access Control based on the user being logged-in or not",
-            "homepage": "https://github.com/getpop/user-state-access-control",
+            "homepage": "https://github.com/pop-schema/user-state-access-control",
             "keywords": [
                 "UserStateAccessControl",
                 "pop"
@@ -5331,22 +5331,22 @@
             "time": "2020-08-03T13:53:39+00:00"
         },
         {
-            "name": "getpop/user-state-wp",
+            "name": "pop-schema/user-state-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getpop/user-state-wp.git",
+                "url": "https://github.com/pop-schema/user-state-wp.git",
                 "reference": "72fbfcd689ca29264daf4de1120f8ad5af7107e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/user-state-wp/zipball/72fbfcd689ca29264daf4de1120f8ad5af7107e4",
+                "url": "https://api.github.com/repos/pop-schema/user-state-wp/zipball/72fbfcd689ca29264daf4de1120f8ad5af7107e4",
                 "reference": "72fbfcd689ca29264daf4de1120f8ad5af7107e4",
                 "shasum": ""
             },
             "require": {
-                "getpop/user-state": "dev-master",
-                "getpop/users-wp": "dev-master",
+                "pop-schema/user-state": "dev-master",
+                "pop-schema/users-wp": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -5362,7 +5362,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\UserStateWP\\": "src"
+                    "PoPSchema\\UserStateWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5377,7 +5377,7 @@
                 }
             ],
             "description": "Implementation for WordPress of contracts from package \"User State\"",
-            "homepage": "https://github.com/getpop/user-state-wp",
+            "homepage": "https://github.com/pop-schema/user-state-wp",
             "keywords": [
                 "pop",
                 "user-state-wp"
@@ -5385,7 +5385,7 @@
             "time": "2020-08-03T13:53:45+00:00"
         },
         {
-            "name": "getpop/usermeta",
+            "name": "pop-schema/usermeta",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -5399,9 +5399,9 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/meta": "dev-master",
-                "getpop/migrate-usermeta": "dev-master",
-                "getpop/users": "dev-master",
+                "pop-schema/meta": "dev-master",
+                "pop-schema/migrate-usermeta": "dev-master",
+                "pop-schema/users": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -5417,7 +5417,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\UserMeta\\": "src"
+                    "PoPSchema\\UserMeta\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5440,7 +5440,7 @@
             "time": "2020-08-03T13:54:05+00:00"
         },
         {
-            "name": "getpop/usermeta-wp",
+            "name": "pop-schema/usermeta-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -5454,9 +5454,9 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/migrate-usermeta-wp": "dev-master",
-                "getpop/usermeta": "dev-master",
-                "getpop/users-wp": "dev-master",
+                "pop-schema/migrate-usermeta-wp": "dev-master",
+                "pop-schema/usermeta": "dev-master",
+                "pop-schema/users-wp": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -5472,7 +5472,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\UserMetaWP\\": "src"
+                    "PoPSchema\\UserMetaWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5495,7 +5495,7 @@
             "time": "2020-08-03T13:53:58+00:00"
         },
         {
-            "name": "getpop/users",
+            "name": "pop-schema/users",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -5509,14 +5509,14 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/migrate-users": "dev-master",
-                "getpop/queriedobject": "dev-master",
+                "pop-schema/migrate-users": "dev-master",
+                "pop-schema/queriedobject": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
                 "getpop/api": "dev-master",
                 "getpop/api-rest": "dev-master",
-                "getpop/customposts": "dev-master",
+                "pop-schema/customposts": "dev-master",
                 "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": ">=8.5",
                 "squizlabs/php_codesniffer": "^3.0"
@@ -5524,7 +5524,7 @@
             "suggest": {
                 "getpop/api": "Integrates well with API",
                 "getpop/api-rest": "Integrates well with REST API",
-                "getpop/customposts": "Integrates well with Custom Posts"
+                "pop-schema/customposts": "Integrates well with Custom Posts"
             },
             "type": "library",
             "extra": {
@@ -5534,7 +5534,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\Users\\": "src"
+                    "PoPSchema\\Users\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5557,7 +5557,7 @@
             "time": "2020-08-07T06:41:34+00:00"
         },
         {
-            "name": "getpop/users-wp",
+            "name": "pop-schema/users-wp",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -5571,19 +5571,19 @@
                 "shasum": ""
             },
             "require": {
-                "getpop/migrate-users-wp": "dev-master",
-                "getpop/queriedobject-wp": "dev-master",
-                "getpop/users": "dev-master",
+                "pop-schema/migrate-users-wp": "dev-master",
+                "pop-schema/queriedobject-wp": "dev-master",
+                "pop-schema/users": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
-                "getpop/customposts-wp": "dev-master",
+                "pop-schema/customposts-wp": "dev-master",
                 "phpunit/phpunit": ">=8.5",
                 "squizlabs/php_codesniffer": "^3.0",
                 "szepeviktor/phpstan-wordpress": "^0.6.2"
             },
             "suggest": {
-                "getpop/customposts-wp": "Integrates well with Custom Posts for WordPress"
+                "pop-schema/customposts-wp": "Integrates well with Custom Posts for WordPress"
             },
             "type": "library",
             "extra": {
@@ -5593,7 +5593,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\UsersWP\\": "src"
+                    "PoPSchema\\UsersWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -10403,27 +10403,27 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "getpop/generic-customposts": 20,
-        "getpop/commentmeta-wp": 20,
-        "getpop/comments-wp": 20,
-        "getpop/custompostmedia-wp": 20,
-        "getpop/custompostmeta-wp": 20,
+        "pop-schema/generic-customposts": 20,
+        "pop-schema/commentmeta-wp": 20,
+        "pop-schema/comments-wp": 20,
+        "pop-schema/custompostmedia-wp": 20,
+        "pop-schema/custompostmeta-wp": 20,
         "getpop/engine-wp": 20,
         "graphql-by-pop/graphql-server": 20,
         "graphql-by-pop/graphql-clients-for-wp": 20,
         "graphql-by-pop/graphql-endpoint-for-wp": 20,
-        "getpop/media-wp": 20,
-        "getpop/pages-wp": 20,
-        "getpop/posts-wp": 20,
-        "getpop/taxonomymeta-wp": 20,
-        "getpop/taxonomyquery-wp": 20,
-        "getpop/post-tags-wp": 20,
-        "getpop/basic-directives": 20,
-        "getpop/user-roles-access-control": 20,
-        "getpop/user-roles-wp": 20,
-        "getpop/user-state-wp": 20,
-        "getpop/usermeta-wp": 20,
-        "getpop/users-wp": 20
+        "pop-schema/media-wp": 20,
+        "pop-schema/pages-wp": 20,
+        "pop-schema/posts-wp": 20,
+        "pop-schema/taxonomymeta-wp": 20,
+        "pop-schema/taxonomyquery-wp": 20,
+        "pop-schema/post-tags-wp": 20,
+        "pop-schema/basic-directives": 20,
+        "pop-schema/user-roles-access-control": 20,
+        "pop-schema/user-roles-wp": 20,
+        "pop-schema/user-state-wp": 20,
+        "pop-schema/usermeta-wp": 20,
+        "pop-schema/users-wp": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

@@ -8,13 +8,13 @@ use PoP\APIEndpoints\EndpointUtils;
 use GraphQLAPI\GraphQLAPI\Environment;
 use PoP\AccessControl\Schema\SchemaModes;
 use PoP\ComponentModel\Misc\GeneralUtils;
-use PoP\Tags\Environment as TagsEnvironment;
-use PoP\Pages\Environment as PagesEnvironment;
-use PoP\Posts\Environment as PostsEnvironment;
-use PoP\Users\Environment as UsersEnvironment;
+use PoPSchema\Tags\Environment as TagsEnvironment;
+use PoPSchema\Pages\Environment as PagesEnvironment;
+use PoPSchema\Posts\Environment as PostsEnvironment;
+use PoPSchema\Users\Environment as UsersEnvironment;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use PoP\CustomPosts\Environment as CustomPostsEnvironment;
+use PoPSchema\CustomPosts\Environment as CustomPostsEnvironment;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
 use GraphQLAPI\GraphQLAPI\Config\PluginConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
@@ -24,24 +24,24 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use GraphQLAPI\GraphQLAPI\Facades\CacheConfigurationManagerFacade;
-use PoP\Tags\ComponentConfiguration as TagsComponentConfiguration;
-use PoP\Pages\ComponentConfiguration as PagesComponentConfiguration;
-use PoP\Posts\ComponentConfiguration as PostsComponentConfiguration;
-use PoP\Users\ComponentConfiguration as UsersComponentConfiguration;
+use PoPSchema\Tags\ComponentConfiguration as TagsComponentConfiguration;
+use PoPSchema\Pages\ComponentConfiguration as PagesComponentConfiguration;
+use PoPSchema\Posts\ComponentConfiguration as PostsComponentConfiguration;
+use PoPSchema\Users\ComponentConfiguration as UsersComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
-use PoP\GenericCustomPosts\Environment as GenericCustomPostsEnvironment;
+use PoPSchema\GenericCustomPosts\Environment as GenericCustomPostsEnvironment;
 use GraphQLByPoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\CacheFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use GraphQLByPoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
-use PoP\CustomPosts\ComponentConfiguration as CustomPostsComponentConfiguration;
+use PoPSchema\CustomPosts\ComponentConfiguration as CustomPostsComponentConfiguration;
 use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AddonFunctionalityModuleResolver;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
-use PoP\GenericCustomPosts\ComponentConfiguration as GenericCustomPostsComponentConfiguration;
+use PoPSchema\GenericCustomPosts\ComponentConfiguration as GenericCustomPostsComponentConfiguration;
 use GraphQLByPoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 use GraphQLByPoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
 
@@ -622,36 +622,36 @@ class PluginConfiguration
         // Component classes enabled/disabled by module
         $maybeSkipSchemaModuleComponentClasses = [
             SchemaModuleResolver::SCHEMA_CUSTOMPOSTS => [
-                \PoP\CustomPostMedia\Component::class,
+                \PoPSchema\CustomPostMedia\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_GENERIC_CUSTOMPOSTS => [
-                \PoP\GenericCustomPosts\Component::class,
+                \PoPSchema\GenericCustomPosts\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_POSTS => [
-                \PoP\Posts\Component::class,
+                \PoPSchema\Posts\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_COMMENTS => [
-                \PoP\Comments\Component::class,
+                \PoPSchema\Comments\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_USERS => [
-                \PoP\Users\Component::class,
-                \PoP\UserState\Component::class,
+                \PoPSchema\Users\Component::class,
+                \PoPSchema\UserState\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_USER_ROLES => [
-                \PoP\UserRoles\Component::class,
+                \PoPSchema\UserRoles\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_PAGES => [
-                \PoP\Pages\Component::class,
+                \PoPSchema\Pages\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_MEDIA => [
-                \PoP\CustomPostMedia\Component::class,
-                \PoP\Media\Component::class,
+                \PoPSchema\CustomPostMedia\Component::class,
+                \PoPSchema\Media\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_TAGS => [
-                \PoP\Tags\Component::class,
+                \PoPSchema\Tags\Component::class,
             ],
             SchemaModuleResolver::SCHEMA_POST_TAGS => [
-                \PoP\PostTags\Component::class,
+                \PoPSchema\PostTags\Component::class,
             ],
         ];
         $skipSchemaModuleComponentClasses = array_filter(

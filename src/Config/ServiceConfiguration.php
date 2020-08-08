@@ -12,7 +12,7 @@ use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use GraphQLAPI\GraphQLAPI\Blocks\Overrides\GraphiQLWithExplorerBlock;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
-use PoP\UserRolesAccessControl\Services\AccessControlGroups as UserRolesAccessControlGroups;
+use PoPSchema\UserRolesAccessControl\Services\AccessControlGroups as UserRolesAccessControlGroups;
 
 class ServiceConfiguration
 {

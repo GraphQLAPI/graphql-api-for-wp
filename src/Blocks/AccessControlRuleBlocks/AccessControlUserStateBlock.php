@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks;
 
-use PoP\UserStateAccessControl\ConfigurationEntries\UserStates;
+use PoPSchema\UserStateAccessControl\ConfigurationEntries\UserStates;
 use GraphQLAPI\GraphQLAPI\Blocks\GraphQLByPoPBlockTrait;
 
 /**
