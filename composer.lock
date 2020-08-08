@@ -5805,7 +5805,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "GraphQLByPoP\\GraphQLAPIQuery\\": "src"
+                    "GraphQLByPoP\\GraphQLQuery\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",

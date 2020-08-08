@@ -29,7 +29,7 @@
             "PoP\\GenericCustomPosts\\": "../generic-customposts/src",
             "PoP\\GraphQLServer\\": "../graphql-server/src",
             "PoP\\GraphQLAPI\\": "../api-graphql/src",
-            "GraphQLByPoP\\GraphQLAPIQuery\\": "../graphql-query/src",
+            "GraphQLByPoP\\GraphQLQuery\\": "../graphql-query/src",
             "PoP\\GraphQLAPIRequest\\": "../graphql-request/src",
             "GraphQLByPoP\\GraphQLClientsForWP\\": "../graphql-clients-for-wp/src",
             "GraphQLByPoP\\GraphQLEndpointForWP\\": "../graphql-endpoint-for-wp/src",
