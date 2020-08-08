@@ -46,7 +46,7 @@ class Component extends AbstractComponent
             \PoP\UserStateWP\Component::class,
             \PoP\UserMetaWP\Component::class,
             \PoP\BasicDirectives\Component::class,
-            \PoP\GraphQLClientsForWP\Component::class,
+            \GraphQLByPoP\GraphQLClientsForWP\Component::class,
             \PoP\GraphQLEndpointForWP\Component::class,
         ];
     }

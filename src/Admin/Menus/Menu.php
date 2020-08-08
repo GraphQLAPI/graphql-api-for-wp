@@ -15,7 +15,7 @@ use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphQLVoyagerMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModuleDocumentationMenuPage;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
-use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
+use GraphQLByPoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 
 /**
  * Admin menu class

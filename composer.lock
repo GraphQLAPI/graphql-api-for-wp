@@ -5649,7 +5649,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\GraphQLClientsForWP\\": "src"
+                    "GraphQLByPoP\\GraphQLClientsForWP\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",

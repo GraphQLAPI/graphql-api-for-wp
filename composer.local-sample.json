@@ -31,7 +31,7 @@
             "PoP\\GraphQLAPI\\": "../api-graphql/src",
             "PoP\\GraphQLAPIQuery\\": "../graphql-query/src",
             "PoP\\GraphQLAPIRequest\\": "../graphql-request/src",
-            "PoP\\GraphQLClientsForWP\\": "../graphql-clients-for-wp/src",
+            "GraphQLByPoP\\GraphQLClientsForWP\\": "../graphql-clients-for-wp/src",
             "PoP\\GraphQLEndpointForWP\\": "../graphql-endpoint-for-wp/src",
             "PoP\\GuzzleHelpers\\": "../guzzle-helpers/src",
             "PoP\\Hooks\\": "../hooks/src",

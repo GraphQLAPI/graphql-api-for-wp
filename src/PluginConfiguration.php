@@ -30,7 +30,7 @@ use PoP\Posts\ComponentConfiguration as PostsComponentConfiguration;
 use PoP\Users\ComponentConfiguration as UsersComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use PoP\GenericCustomPosts\Environment as GenericCustomPostsEnvironment;
-use PoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
+use GraphQLByPoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\CacheFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
@@ -42,7 +42,7 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\AddonFunctionalityModuleResolver;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use PoP\GenericCustomPosts\ComponentConfiguration as GenericCustomPostsComponentConfiguration;
-use PoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
+use GraphQLByPoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 use PoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
 
 /**
@@ -520,8 +520,8 @@ class PluginConfiguration
         $componentClassConfiguration[\PoP\Engine\Component::class] = [
             \PoP\Engine\Environment::ADD_MANDATORY_CACHE_CONTROL_DIRECTIVE => false,
         ];
-        $componentClassConfiguration[\PoP\GraphQLClientsForWP\Component::class] = [
-            \PoP\GraphQLClientsForWP\Environment::GRAPHQL_CLIENTS_COMPONENT_URL => \GRAPHQL_API_URL . 'vendor/graphql-by-pop/graphql-clients-for-wp',
+        $componentClassConfiguration[\GraphQLByPoP\GraphQLClientsForWP\Component::class] = [
+            \GraphQLByPoP\GraphQLClientsForWP\Environment::GRAPHQL_CLIENTS_COMPONENT_URL => \GRAPHQL_API_URL . 'vendor/graphql-by-pop/graphql-clients-for-wp',
         ];
         // Disable the Native endpoint
         $componentClassConfiguration[\PoP\APIEndpointsForWP\Component::class] = [
@@ -576,14 +576,14 @@ class PluginConfiguration
             ],
             [
                 'module' => ClientFunctionalityModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
-                'class' => \PoP\GraphQLClientsForWP\Component::class,
-                'envVariable' => \PoP\GraphQLClientsForWP\Environment::DISABLE_GRAPHIQL_CLIENT_ENDPOINT,
+                'class' => \GraphQLByPoP\GraphQLClientsForWP\Component::class,
+                'envVariable' => \GraphQLByPoP\GraphQLClientsForWP\Environment::DISABLE_GRAPHIQL_CLIENT_ENDPOINT,
                 'callback' => [self::class, 'opposite'],
             ],
             [
                 'module' => ClientFunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
-                'class' => \PoP\GraphQLClientsForWP\Component::class,
-                'envVariable' => \PoP\GraphQLClientsForWP\Environment::DISABLE_VOYAGER_CLIENT_ENDPOINT,
+                'class' => \GraphQLByPoP\GraphQLClientsForWP\Component::class,
+                'envVariable' => \GraphQLByPoP\GraphQLClientsForWP\Environment::DISABLE_VOYAGER_CLIENT_ENDPOINT,
                 'callback' => [self::class, 'opposite'],
             ],
             // Cache the component model configuration
