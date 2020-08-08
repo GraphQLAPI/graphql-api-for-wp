@@ -4,8 +4,8 @@ git clone https://github.com/getpop/api-clients.git
 git clone https://github.com/getpop/api-endpoints.git
 git clone https://github.com/getpop/api-endpoints-for-wp.git
 git clone https://github.com/getpop/api-graphql.git
-git clone https://github.com/GraphQLByPoP/api-graphql-query.git
-git clone https://github.com/GraphQLByPoP/api-graphql-request.git
+git clone https://github.com/GraphQLByPoP/graphql-query.git
+git clone https://github.com/GraphQLByPoP/graphql-request.git
 git clone https://github.com/getpop/api-mirrorquery.git
 git clone https://github.com/getpop/basic-directives.git
 git clone https://github.com/getpop/cache-control.git

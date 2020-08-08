@@ -492,115 +492,6 @@
             "time": "2020-08-03T13:31:15+00:00"
         },
         {
-            "name": "getpop/api-graphql-query",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GraphQLByPoP/api-graphql-query.git",
-                "reference": "4b4db5b1f965923fb04bd06ea783f30564972537"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/api-graphql-query/zipball/4b4db5b1f965923fb04bd06ea783f30564972537",
-                "reference": "4b4db5b1f965923fb04bd06ea783f30564972537",
-                "shasum": ""
-            },
-            "require": {
-                "getpop/api-graphql": "dev-master",
-                "getpop/engine": "dev-master",
-                "getpop/field-query": "~0.1",
-                "getpop/graphql-parser": "dev-master",
-                "php": "~7.2"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": ">=8.5",
-                "squizlabs/php_codesniffer": "^3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PoP\\GraphQLAPIQuery\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Leonardo Losoviz",
-                    "email": "leo@getpop.org",
-                    "homepage": "https://getpop.org"
-                }
-            ],
-            "description": "Utilities to transform the query from the GraphQL syntax to the Field query syntax",
-            "homepage": "https://github.com/GraphQLByPoP/api-graphql-query",
-            "keywords": [
-                "api-graphql-query",
-                "pop"
-            ],
-            "time": "2020-08-07T14:55:26+00:00"
-        },
-        {
-            "name": "getpop/api-graphql-request",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GraphQLByPoP/api-graphql-request.git",
-                "reference": "774df5b4980cd386e04b80a2fb759f82b1ac6cc5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/api-graphql-request/zipball/774df5b4980cd386e04b80a2fb759f82b1ac6cc5",
-                "reference": "774df5b4980cd386e04b80a2fb759f82b1ac6cc5",
-                "shasum": ""
-            },
-            "require": {
-                "getpop/api-graphql-query": "dev-master",
-                "php": "~7.2"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": ">=8.5",
-                "squizlabs/php_codesniffer": "^3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PoP\\GraphQLAPIRequest\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Leonardo Losoviz",
-                    "email": "leo@getpop.org",
-                    "homepage": "https://getpop.org"
-                }
-            ],
-            "description": "Enables GraphQL for PoP to process the GraphQL query using the standard syntax",
-            "homepage": "https://github.com/GraphQLByPoP/api-graphql-request",
-            "keywords": [
-                "api-graphql-request",
-                "pop"
-            ],
-            "time": "2020-08-07T14:12:35+00:00"
-        },
-        {
             "name": "getpop/api-mirrorquery",
             "version": "dev-master",
             "source": {
@@ -1654,16 +1545,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql.git",
-                "reference": "d78d10bde2b67f036d0a6390f4e8411adc62c2c6"
+                "reference": "9dd2d60526e40ccce92206fde2295ec45c8ee92e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql/zipball/d78d10bde2b67f036d0a6390f4e8411adc62c2c6",
-                "reference": "d78d10bde2b67f036d0a6390f4e8411adc62c2c6",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql/zipball/9dd2d60526e40ccce92206fde2295ec45c8ee92e",
+                "reference": "9dd2d60526e40ccce92206fde2295ec45c8ee92e",
                 "shasum": ""
             },
             "require": {
-                "getpop/api-graphql-request": "dev-master",
+                "getpop/graphql-request": "dev-master",
                 "php": "~7.2"
             },
             "require-dev": {
@@ -1703,7 +1594,7 @@
                 "graphql",
                 "pop"
             ],
-            "time": "2020-08-07T07:36:58+00:00"
+            "time": "2020-08-08T02:03:01+00:00"
         },
         {
             "name": "getpop/graphql-clients-for-wp",
@@ -1860,6 +1751,115 @@
             "description": "Pure PHP GraphQL",
             "homepage": "https://github.com/GraphQLByPoP/graphql-parser",
             "time": "2020-08-07T13:39:56+00:00"
+        },
+        {
+            "name": "getpop/graphql-query",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GraphQLByPoP/graphql-query.git",
+                "reference": "f3e26b99f889b30699efea5f983eb2da58e6af95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-query/zipball/f3e26b99f889b30699efea5f983eb2da58e6af95",
+                "reference": "f3e26b99f889b30699efea5f983eb2da58e6af95",
+                "shasum": ""
+            },
+            "require": {
+                "getpop/api-graphql": "dev-master",
+                "getpop/engine": "dev-master",
+                "getpop/field-query": "~0.1",
+                "getpop/graphql-parser": "dev-master",
+                "php": "~7.2"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": ">=8.5",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoP\\GraphQLAPIQuery\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "Utilities to transform the query from the GraphQL syntax to the Field query syntax",
+            "homepage": "https://github.com/GraphQLByPoP/graphql-query",
+            "keywords": [
+                "graphql-query",
+                "pop"
+            ],
+            "time": "2020-08-08T02:03:28+00:00"
+        },
+        {
+            "name": "getpop/graphql-request",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GraphQLByPoP/graphql-request.git",
+                "reference": "a86a4f352cbad16dc976d9d81fddfaca29c3c2f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-request/zipball/a86a4f352cbad16dc976d9d81fddfaca29c3c2f1",
+                "reference": "a86a4f352cbad16dc976d9d81fddfaca29c3c2f1",
+                "shasum": ""
+            },
+            "require": {
+                "getpop/graphql-query": "dev-master",
+                "php": "~7.2"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": ">=8.5",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoP\\GraphQLAPIRequest\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "Enables GraphQL for PoP to process the GraphQL query using the standard syntax",
+            "homepage": "https://github.com/GraphQLByPoP/graphql-request",
+            "keywords": [
+                "graphql-request",
+                "pop"
+            ],
+            "time": "2020-08-08T02:03:40+00:00"
         },
         {
             "name": "getpop/guzzle-helpers",
