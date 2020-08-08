@@ -1545,12 +1545,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-clients-for-wp.git",
-                "reference": "ac961cf90c42e19971dd9f68432a057b4785f83c"
+                "reference": "62944a55c9c7623117f259d404a946709f96c49e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-clients-for-wp/zipball/ac961cf90c42e19971dd9f68432a057b4785f83c",
-                "reference": "ac961cf90c42e19971dd9f68432a057b4785f83c",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-clients-for-wp/zipball/62944a55c9c7623117f259d404a946709f96c49e",
+                "reference": "62944a55c9c7623117f259d404a946709f96c49e",
                 "shasum": ""
             },
             "require": {
@@ -1593,7 +1593,7 @@
                 "graphql-clients-for-wp",
                 "pop"
             ],
-            "time": "2020-08-08T02:28:42+00:00"
+            "time": "2020-08-08T02:54:04+00:00"
         },
         {
             "name": "getpop/graphql-endpoint-for-wp",
@@ -1810,12 +1810,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "ffe1ca3a393333bf6fc1fd377cbb9ec2583c6c09"
+                "reference": "ccc64c6e3db7d61cb32d9a3b022d08e77840f112"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/ffe1ca3a393333bf6fc1fd377cbb9ec2583c6c09",
-                "reference": "ffe1ca3a393333bf6fc1fd377cbb9ec2583c6c09",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/ccc64c6e3db7d61cb32d9a3b022d08e77840f112",
+                "reference": "ccc64c6e3db7d61cb32d9a3b022d08e77840f112",
                 "shasum": ""
             },
             "require": {
@@ -1839,7 +1839,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\GraphQL\\": "src"
+                    "PoP\\GraphQLServer\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1860,7 +1860,7 @@
                 "pop",
                 "server"
             ],
-            "time": "2020-08-08T02:28:46+00:00"
+            "time": "2020-08-08T02:54:13+00:00"
         },
         {
             "name": "getpop/guzzle-helpers",
