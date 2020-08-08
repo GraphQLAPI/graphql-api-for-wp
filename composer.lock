@@ -5621,12 +5621,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-clients-for-wp.git",
-                "reference": "005b150362ec942f2938f04540dfbc2bdd283524"
+                "reference": "36735d5e3b1a83fa6e7f0594da97191642644038"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-clients-for-wp/zipball/005b150362ec942f2938f04540dfbc2bdd283524",
-                "reference": "005b150362ec942f2938f04540dfbc2bdd283524",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-clients-for-wp/zipball/36735d5e3b1a83fa6e7f0594da97191642644038",
+                "reference": "36735d5e3b1a83fa6e7f0594da97191642644038",
                 "shasum": ""
             },
             "require": {
@@ -5669,7 +5669,7 @@
                 "GraphQLByPoP",
                 "graphql-clients-for-wp"
             ],
-            "time": "2020-08-08T04:48:03+00:00"
+            "time": "2020-08-08T04:55:32+00:00"
         },
         {
             "name": "graphql-by-pop/graphql-endpoint-for-wp",
@@ -5677,12 +5677,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-endpoint-for-wp.git",
-                "reference": "f991c9db2e73963c0525979eef1d6189de193b69"
+                "reference": "909cead768c69bd31c4a9f51f2b144ce7c06fd8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-endpoint-for-wp/zipball/f991c9db2e73963c0525979eef1d6189de193b69",
-                "reference": "f991c9db2e73963c0525979eef1d6189de193b69",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-endpoint-for-wp/zipball/909cead768c69bd31c4a9f51f2b144ce7c06fd8a",
+                "reference": "909cead768c69bd31c4a9f51f2b144ce7c06fd8a",
                 "shasum": ""
             },
             "require": {
@@ -5723,7 +5723,7 @@
                 "graphql-endpoint-for-wp",
                 "pop"
             ],
-            "time": "2020-08-08T04:29:38+00:00"
+            "time": "2020-08-08T04:55:26+00:00"
         },
         {
             "name": "graphql-by-pop/graphql-parser",
@@ -5777,12 +5777,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-query.git",
-                "reference": "95b34ed09f774e638cebe7e0e805a83c3b7a7618"
+                "reference": "c614694745d80cf8ac57673c4b39465213b1c72f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-query/zipball/95b34ed09f774e638cebe7e0e805a83c3b7a7618",
-                "reference": "95b34ed09f774e638cebe7e0e805a83c3b7a7618",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-query/zipball/c614694745d80cf8ac57673c4b39465213b1c72f",
+                "reference": "c614694745d80cf8ac57673c4b39465213b1c72f",
                 "shasum": ""
             },
             "require": {
@@ -5825,7 +5825,7 @@
                 "graphql-query",
                 "pop"
             ],
-            "time": "2020-08-08T04:29:55+00:00"
+            "time": "2020-08-08T04:58:23+00:00"
         },
         {
             "name": "graphql-by-pop/graphql-request",
@@ -5833,12 +5833,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-request.git",
-                "reference": "3bc9b9cc185c22c621b02b24ab5cc5e3ae572c98"
+                "reference": "9e2f182c4d8e1f8f9abdd45818a6908a70f05a33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-request/zipball/3bc9b9cc185c22c621b02b24ab5cc5e3ae572c98",
-                "reference": "3bc9b9cc185c22c621b02b24ab5cc5e3ae572c98",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-request/zipball/9e2f182c4d8e1f8f9abdd45818a6908a70f05a33",
+                "reference": "9e2f182c4d8e1f8f9abdd45818a6908a70f05a33",
                 "shasum": ""
             },
             "require": {
@@ -5858,7 +5858,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "GraphQLByPoP\\GraphQLRequest\\": "src"
+                    "PoP\\GraphQLAPIRequest\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5878,7 +5878,7 @@
                 "graphql-request",
                 "pop"
             ],
-            "time": "2020-08-08T04:30:00+00:00"
+            "time": "2020-08-08T04:58:27+00:00"
         },
         {
             "name": "graphql-by-pop/graphql-server",
@@ -5886,12 +5886,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "45ad55c4a44af31f75addd43c0a66723ed3b0168"
+                "reference": "1b47b54021a464ec929847dbe10edb6143ba5197"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/45ad55c4a44af31f75addd43c0a66723ed3b0168",
-                "reference": "45ad55c4a44af31f75addd43c0a66723ed3b0168",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/1b47b54021a464ec929847dbe10edb6143ba5197",
+                "reference": "1b47b54021a464ec929847dbe10edb6143ba5197",
                 "shasum": ""
             },
             "require": {
@@ -5936,7 +5936,7 @@
                 "pop",
                 "server"
             ],
-            "time": "2020-08-08T04:30:03+00:00"
+            "time": "2020-08-08T04:58:31+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
