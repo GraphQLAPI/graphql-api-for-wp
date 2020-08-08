@@ -5833,12 +5833,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-request.git",
-                "reference": "9e2f182c4d8e1f8f9abdd45818a6908a70f05a33"
+                "reference": "c76e943c34ac3f9bd2e6859e8e75fadce6757135"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-request/zipball/9e2f182c4d8e1f8f9abdd45818a6908a70f05a33",
-                "reference": "9e2f182c4d8e1f8f9abdd45818a6908a70f05a33",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-request/zipball/c76e943c34ac3f9bd2e6859e8e75fadce6757135",
+                "reference": "c76e943c34ac3f9bd2e6859e8e75fadce6757135",
                 "shasum": ""
             },
             "require": {
@@ -5858,7 +5858,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "PoP\\GraphQLAPIRequest\\": "src"
+                    "GraphQLByPoP\\GraphQLRequest\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5878,7 +5878,7 @@
                 "graphql-request",
                 "pop"
             ],
-            "time": "2020-08-08T04:58:27+00:00"
+            "time": "2020-08-08T04:59:51+00:00"
         },
         {
             "name": "graphql-by-pop/graphql-server",
@@ -5886,12 +5886,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "1b47b54021a464ec929847dbe10edb6143ba5197"
+                "reference": "a2a546896ba7f365ca7dceca20c013fe1021b409"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/1b47b54021a464ec929847dbe10edb6143ba5197",
-                "reference": "1b47b54021a464ec929847dbe10edb6143ba5197",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/a2a546896ba7f365ca7dceca20c013fe1021b409",
+                "reference": "a2a546896ba7f365ca7dceca20c013fe1021b409",
                 "shasum": ""
             },
             "require": {
@@ -5936,7 +5936,7 @@
                 "pop",
                 "server"
             ],
-            "time": "2020-08-08T04:58:31+00:00"
+            "time": "2020-08-08T04:59:57+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
