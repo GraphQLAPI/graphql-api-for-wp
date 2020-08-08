@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "02cab819f165a41b477673bca8c2a77a",
+    "content-hash": "da182228de3e923425b01b440c55adf3",
     "packages": [
         {
             "name": "brain/cortex",
@@ -1538,329 +1538,6 @@
                 "pop"
             ],
             "time": "2020-08-03T13:35:52+00:00"
-        },
-        {
-            "name": "getpop/graphql-clients-for-wp",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GraphQLByPoP/graphql-clients-for-wp.git",
-                "reference": "62944a55c9c7623117f259d404a946709f96c49e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-clients-for-wp/zipball/62944a55c9c7623117f259d404a946709f96c49e",
-                "reference": "62944a55c9c7623117f259d404a946709f96c49e",
-                "shasum": ""
-            },
-            "require": {
-                "getpop/api-clients": "dev-master",
-                "getpop/api-endpoints-for-wp": "dev-master",
-                "getpop/graphql-server": "dev-master",
-                "php": "~7.2"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": ">=8.5",
-                "squizlabs/php_codesniffer": "^3.0",
-                "szepeviktor/phpstan-wordpress": "^0.6.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PoP\\GraphQLClientsForWP\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Leonardo Losoviz",
-                    "email": "leo@getpop.org",
-                    "homepage": "https://getpop.org"
-                }
-            ],
-            "description": "GraphiQL and Voyager GraphQL Clients for WordPress",
-            "homepage": "https://github.com/GraphQLByPoP/graphql-clients-for-wp",
-            "keywords": [
-                "graphql-clients-for-wp",
-                "pop"
-            ],
-            "time": "2020-08-08T02:54:04+00:00"
-        },
-        {
-            "name": "getpop/graphql-endpoint-for-wp",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GraphQLByPoP/graphql-endpoint-for-wp.git",
-                "reference": "f943724db19a739a9c73d640231261b25e2e8feb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-endpoint-for-wp/zipball/f943724db19a739a9c73d640231261b25e2e8feb",
-                "reference": "f943724db19a739a9c73d640231261b25e2e8feb",
-                "shasum": ""
-            },
-            "require": {
-                "getpop/api-endpoints-for-wp": "dev-master",
-                "getpop/api-graphql": "dev-master",
-                "php": "~7.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": ">=8.5",
-                "squizlabs/php_codesniffer": "^3.0",
-                "szepeviktor/phpstan-wordpress": "^0.6.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PoP\\GraphQLEndpointForWP\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Leonardo Losoviz",
-                    "email": "leo@getpop.org",
-                    "homepage": "https://getpop.org"
-                }
-            ],
-            "description": "Add pretty permalinks for the single GraphQL endpoint, for WordPress",
-            "homepage": "https://github.com/GraphQLByPoP/graphql-endpoint-for-wp",
-            "keywords": [
-                "graphql-endpoint-for-wp",
-                "pop"
-            ],
-            "time": "2020-08-03T13:42:11+00:00"
-        },
-        {
-            "name": "getpop/graphql-parser",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GraphQLByPoP/graphql-parser.git",
-                "reference": "def8c6312c687fd9e8498c27cd54b85445e4f021"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-parser/zipball/def8c6312c687fd9e8498c27cd54b85445e4f021",
-                "reference": "def8c6312c687fd9e8498c27cd54b85445e4f021",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "php": ">=5.5",
-                "symfony/property-access": "^2.8 || ^3.4 || ^4.4"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Youshido\\GraphQL\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Alexandr Viniychuk",
-                    "email": "a@viniychuk.com"
-                },
-                {
-                    "name": "Portey Vasil",
-                    "email": "portey@gmail.com"
-                }
-            ],
-            "description": "Pure PHP GraphQL",
-            "homepage": "https://github.com/GraphQLByPoP/graphql-parser",
-            "time": "2020-08-07T13:39:56+00:00"
-        },
-        {
-            "name": "getpop/graphql-query",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GraphQLByPoP/graphql-query.git",
-                "reference": "f3e26b99f889b30699efea5f983eb2da58e6af95"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-query/zipball/f3e26b99f889b30699efea5f983eb2da58e6af95",
-                "reference": "f3e26b99f889b30699efea5f983eb2da58e6af95",
-                "shasum": ""
-            },
-            "require": {
-                "getpop/api-graphql": "dev-master",
-                "getpop/engine": "dev-master",
-                "getpop/field-query": "~0.1",
-                "getpop/graphql-parser": "dev-master",
-                "php": "~7.2"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": ">=8.5",
-                "squizlabs/php_codesniffer": "^3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PoP\\GraphQLAPIQuery\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Leonardo Losoviz",
-                    "email": "leo@getpop.org",
-                    "homepage": "https://getpop.org"
-                }
-            ],
-            "description": "Utilities to transform the query from the GraphQL syntax to the Field query syntax",
-            "homepage": "https://github.com/GraphQLByPoP/graphql-query",
-            "keywords": [
-                "graphql-query",
-                "pop"
-            ],
-            "time": "2020-08-08T02:03:28+00:00"
-        },
-        {
-            "name": "getpop/graphql-request",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GraphQLByPoP/graphql-request.git",
-                "reference": "a86a4f352cbad16dc976d9d81fddfaca29c3c2f1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-request/zipball/a86a4f352cbad16dc976d9d81fddfaca29c3c2f1",
-                "reference": "a86a4f352cbad16dc976d9d81fddfaca29c3c2f1",
-                "shasum": ""
-            },
-            "require": {
-                "getpop/graphql-query": "dev-master",
-                "php": "~7.2"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": ">=8.5",
-                "squizlabs/php_codesniffer": "^3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PoP\\GraphQLAPIRequest\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Leonardo Losoviz",
-                    "email": "leo@getpop.org",
-                    "homepage": "https://getpop.org"
-                }
-            ],
-            "description": "Enables GraphQL for PoP to process the GraphQL query using the standard syntax",
-            "homepage": "https://github.com/GraphQLByPoP/graphql-request",
-            "keywords": [
-                "graphql-request",
-                "pop"
-            ],
-            "time": "2020-08-08T02:03:40+00:00"
-        },
-        {
-            "name": "getpop/graphql-server",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "ccc64c6e3db7d61cb32d9a3b022d08e77840f112"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/ccc64c6e3db7d61cb32d9a3b022d08e77840f112",
-                "reference": "ccc64c6e3db7d61cb32d9a3b022d08e77840f112",
-                "shasum": ""
-            },
-            "require": {
-                "getpop/graphql-request": "dev-master",
-                "php": "~7.2"
-            },
-            "require-dev": {
-                "getpop/access-control": "dev-master",
-                "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": ">=8.5",
-                "squizlabs/php_codesniffer": "^3.0"
-            },
-            "suggest": {
-                "getpop/access-control": "Integrates well with Access Control"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PoP\\GraphQLServer\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Leonardo Losoviz",
-                    "email": "leo@getpop.org",
-                    "homepage": "https://getpop.org"
-                }
-            ],
-            "description": "GraphQL server in PHP, implemented through the PoP API",
-            "homepage": "https://github.com/GraphQLByPoP/graphql-server",
-            "keywords": [
-                "graphql",
-                "pop",
-                "server"
-            ],
-            "time": "2020-08-08T02:54:13+00:00"
         },
         {
             "name": "getpop/guzzle-helpers",
@@ -5937,6 +5614,329 @@
                 "users-wp"
             ],
             "time": "2020-08-03T13:54:11+00:00"
+        },
+        {
+            "name": "graphql-by-pop/graphql-clients-for-wp",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GraphQLByPoP/graphql-clients-for-wp.git",
+                "reference": "45b8621d5d6a655811f7b77172656bbde6ca2848"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-clients-for-wp/zipball/45b8621d5d6a655811f7b77172656bbde6ca2848",
+                "reference": "45b8621d5d6a655811f7b77172656bbde6ca2848",
+                "shasum": ""
+            },
+            "require": {
+                "getpop/api-clients": "dev-master",
+                "getpop/api-endpoints-for-wp": "dev-master",
+                "graphql-by-pop/graphql-server": "dev-master",
+                "php": "~7.2"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": ">=8.5",
+                "squizlabs/php_codesniffer": "^3.0",
+                "szepeviktor/phpstan-wordpress": "^0.6.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoP\\GraphQLClientsForWP\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "GraphiQL and Voyager GraphQL Clients for WordPress",
+            "homepage": "https://github.com/GraphQLByPoP/graphql-clients-for-wp",
+            "keywords": [
+                "graphql-clients-for-wp",
+                "pop"
+            ],
+            "time": "2020-08-08T04:29:45+00:00"
+        },
+        {
+            "name": "graphql-by-pop/graphql-endpoint-for-wp",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GraphQLByPoP/graphql-endpoint-for-wp.git",
+                "reference": "f991c9db2e73963c0525979eef1d6189de193b69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-endpoint-for-wp/zipball/f991c9db2e73963c0525979eef1d6189de193b69",
+                "reference": "f991c9db2e73963c0525979eef1d6189de193b69",
+                "shasum": ""
+            },
+            "require": {
+                "getpop/api-endpoints-for-wp": "dev-master",
+                "getpop/api-graphql": "dev-master",
+                "php": "~7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=8.5",
+                "squizlabs/php_codesniffer": "^3.0",
+                "szepeviktor/phpstan-wordpress": "^0.6.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoP\\GraphQLEndpointForWP\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "Add pretty permalinks for the single GraphQL endpoint, for WordPress",
+            "homepage": "https://github.com/GraphQLByPoP/graphql-endpoint-for-wp",
+            "keywords": [
+                "graphql-endpoint-for-wp",
+                "pop"
+            ],
+            "time": "2020-08-08T04:29:38+00:00"
+        },
+        {
+            "name": "graphql-by-pop/graphql-parser",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GraphQLByPoP/graphql-parser.git",
+                "reference": "b300aff440a94ac6f8f36140aa2ca657e623895c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-parser/zipball/b300aff440a94ac6f8f36140aa2ca657e623895c",
+                "reference": "b300aff440a94ac6f8f36140aa2ca657e623895c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.5",
+                "symfony/property-access": "^2.8 || ^3.4 || ^4.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Youshido\\GraphQL\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexandr Viniychuk",
+                    "email": "a@viniychuk.com"
+                },
+                {
+                    "name": "Portey Vasil",
+                    "email": "portey@gmail.com"
+                }
+            ],
+            "description": "Pure PHP GraphQL",
+            "homepage": "https://github.com/GraphQLByPoP/graphql-parser",
+            "time": "2020-08-08T04:29:49+00:00"
+        },
+        {
+            "name": "graphql-by-pop/graphql-query",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GraphQLByPoP/graphql-query.git",
+                "reference": "95b34ed09f774e638cebe7e0e805a83c3b7a7618"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-query/zipball/95b34ed09f774e638cebe7e0e805a83c3b7a7618",
+                "reference": "95b34ed09f774e638cebe7e0e805a83c3b7a7618",
+                "shasum": ""
+            },
+            "require": {
+                "getpop/api-graphql": "dev-master",
+                "getpop/engine": "dev-master",
+                "getpop/field-query": "~0.1",
+                "graphql-by-pop/graphql-parser": "dev-master",
+                "php": "~7.2"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": ">=8.5",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoP\\GraphQLAPIQuery\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "Utilities to transform the query from the GraphQL syntax to the Field query syntax",
+            "homepage": "https://github.com/GraphQLByPoP/graphql-query",
+            "keywords": [
+                "graphql-query",
+                "pop"
+            ],
+            "time": "2020-08-08T04:29:55+00:00"
+        },
+        {
+            "name": "graphql-by-pop/graphql-request",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GraphQLByPoP/graphql-request.git",
+                "reference": "3bc9b9cc185c22c621b02b24ab5cc5e3ae572c98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-request/zipball/3bc9b9cc185c22c621b02b24ab5cc5e3ae572c98",
+                "reference": "3bc9b9cc185c22c621b02b24ab5cc5e3ae572c98",
+                "shasum": ""
+            },
+            "require": {
+                "graphql-by-pop/graphql-query": "dev-master",
+                "php": "~7.2"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": ">=8.5",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoP\\GraphQLAPIRequest\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "Enables GraphQL for PoP to process the GraphQL query using the standard syntax",
+            "homepage": "https://github.com/GraphQLByPoP/graphql-request",
+            "keywords": [
+                "graphql-request",
+                "pop"
+            ],
+            "time": "2020-08-08T04:30:00+00:00"
+        },
+        {
+            "name": "graphql-by-pop/graphql-server",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GraphQLByPoP/graphql-server.git",
+                "reference": "45ad55c4a44af31f75addd43c0a66723ed3b0168"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/45ad55c4a44af31f75addd43c0a66723ed3b0168",
+                "reference": "45ad55c4a44af31f75addd43c0a66723ed3b0168",
+                "shasum": ""
+            },
+            "require": {
+                "graphql-by-pop/graphql-request": "dev-master",
+                "php": "~7.2"
+            },
+            "require-dev": {
+                "getpop/access-control": "dev-master",
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": ">=8.5",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "suggest": {
+                "getpop/access-control": "Integrates well with Access Control"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoP\\GraphQLServer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "GraphQL server in PHP, implemented through the PoP API",
+            "homepage": "https://github.com/GraphQLByPoP/graphql-server",
+            "keywords": [
+                "graphql",
+                "pop",
+                "server"
+            ],
+            "time": "2020-08-08T04:30:03+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -10409,9 +10409,9 @@
         "getpop/custompostmedia-wp": 20,
         "getpop/custompostmeta-wp": 20,
         "getpop/engine-wp": 20,
-        "getpop/graphql-server": 20,
-        "getpop/graphql-clients-for-wp": 20,
-        "getpop/graphql-endpoint-for-wp": 20,
+        "graphql-by-pop/graphql-server": 20,
+        "graphql-by-pop/graphql-clients-for-wp": 20,
+        "graphql-by-pop/graphql-endpoint-for-wp": 20,
         "getpop/media-wp": 20,
         "getpop/pages-wp": 20,
         "getpop/posts-wp": 20,

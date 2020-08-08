@@ -521,7 +521,7 @@ class PluginConfiguration
             \PoP\Engine\Environment::ADD_MANDATORY_CACHE_CONTROL_DIRECTIVE => false,
         ];
         $componentClassConfiguration[\PoP\GraphQLClientsForWP\Component::class] = [
-            \PoP\GraphQLClientsForWP\Environment::GRAPHQL_CLIENTS_COMPONENT_URL => \GRAPHQL_API_URL . 'vendor/getpop/graphql-clients-for-wp',
+            \PoP\GraphQLClientsForWP\Environment::GRAPHQL_CLIENTS_COMPONENT_URL => \GRAPHQL_API_URL . 'vendor/graphql-by-pop/graphql-clients-for-wp',
         ];
         // Disable the Native endpoint
         $componentClassConfiguration[\PoP\APIEndpointsForWP\Component::class] = [
