@@ -30,7 +30,7 @@
             "PoP\\GraphQLServer\\": "../graphql-server/src",
             "PoP\\GraphQLAPI\\": "../api-graphql/src",
             "GraphQLByPoP\\GraphQLQuery\\": "../graphql-query/src",
-            "PoP\\GraphQLAPIRequest\\": "../graphql-request/src",
+            "GraphQLByPoP\\GraphQLRequest\\": "../graphql-request/src",
             "GraphQLByPoP\\GraphQLClientsForWP\\": "../graphql-clients-for-wp/src",
             "GraphQLByPoP\\GraphQLEndpointForWP\\": "../graphql-endpoint-for-wp/src",
             "PoP\\GuzzleHelpers\\": "../guzzle-helpers/src",

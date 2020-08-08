@@ -6,7 +6,7 @@ namespace GraphQLAPI\GraphQLAPI\Admin\EndpointResolvers;
 
 use PoP\EngineWP\Templates\TemplateHelpers;
 use GraphQLAPI\GraphQLAPI\General\EndpointHelpers;
-use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
+use GraphQLByPoP\GraphQLRequest\Execution\QueryExecutionHelpers;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\EndpointResolvers\EndpointResolverTrait;
 use GraphQLAPI\GraphQLAPI\EndpointResolvers\AbstractEndpointResolver;

@@ -295,7 +295,7 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
             // Remove the VarsHooks from the GraphQLAPIRequest, so it doesn't process the GraphQL query
             // Otherwise it will add error "The query in the body is empty"
             $instanceManager = InstanceManagerFacade::getInstance();
-            $graphQLAPIRequestHookSet = $instanceManager->getInstance(\PoP\GraphQLAPIRequest\Hooks\VarsHooks::class);
+            $graphQLAPIRequestHookSet = $instanceManager->getInstance(\GraphQLByPoP\GraphQLRequest\Hooks\VarsHooks::class);
             \remove_action(
                 'ApplicationState:addVars',
                 array($graphQLAPIRequestHookSet, 'addURLParamVars'),

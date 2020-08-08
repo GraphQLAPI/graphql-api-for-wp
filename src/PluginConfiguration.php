@@ -528,8 +528,8 @@ class PluginConfiguration
             \PoP\APIEndpointsForWP\Environment::DISABLE_NATIVE_API_ENDPOINT => true,
         ];
         // Disable processing ?query=...
-        $componentClassConfiguration[\PoP\GraphQLAPIRequest\Component::class] = [
-            \PoP\GraphQLAPIRequest\Environment::DISABLE_GRAPHQL_API_FOR_POP => true,
+        $componentClassConfiguration[\GraphQLByPoP\GraphQLRequest\Component::class] = [
+            \GraphQLByPoP\GraphQLRequest\Environment::DISABLE_GRAPHQL_API_FOR_POP => true,
         ];
         // Cache the container
         $moduleRegistry = ModuleRegistryFacade::getInstance();

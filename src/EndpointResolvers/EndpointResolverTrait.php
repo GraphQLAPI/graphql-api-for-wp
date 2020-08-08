@@ -6,7 +6,7 @@ namespace GraphQLAPI\GraphQLAPI\EndpointResolvers;
 
 use PoP\Routing\RouteNatures;
 use PoP\API\Schema\QueryInputs;
-use PoP\GraphQLAPIRequest\Hooks\VarsHooks;
+use GraphQLByPoP\GraphQLRequest\Hooks\VarsHooks;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
 use WP_Post;
@@ -87,7 +87,7 @@ trait EndpointResolverTrait
         unset($_REQUEST[QueryInputs::QUERY]);
 
         // Indicate it is an API, of type GraphQL. Just by doing is, class
-        // \PoP\GraphQLAPIRequest\Hooks\VarsHooks will process the GraphQL request
+        // \GraphQLByPoP\GraphQLRequest\Hooks\VarsHooks will process the GraphQL request
         $vars = &$vars_in_array[0];
         $vars['scheme'] = \POP_SCHEME_API;
         $vars['datastructure'] = GraphQLDataStructureFormatter::getName();

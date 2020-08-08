@@ -11,7 +11,7 @@ use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Blocks\EndpointOptionsBlock;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Taxonomies\GraphQLQueryTaxonomy;
-use PoP\GraphQLAPIRequest\Execution\QueryExecutionHelpers;
+use GraphQLByPoP\GraphQLRequest\Execution\QueryExecutionHelpers;
 use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointVoyagerClient;
 use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointGraphiQLClient;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
