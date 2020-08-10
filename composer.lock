@@ -1477,16 +1477,16 @@
         },
         {
             "name": "getpop/root",
-            "version": "0.2.15",
+            "version": "0.2.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/root.git",
-                "reference": "f19ee22b864c5036d47a228fac7d2d0b1f4d53d4"
+                "reference": "8328e72f96828b89f2798980805778d65c509df8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/root/zipball/f19ee22b864c5036d47a228fac7d2d0b1f4d53d4",
-                "reference": "f19ee22b864c5036d47a228fac7d2d0b1f4d53d4",
+                "url": "https://api.github.com/repos/getpop/root/zipball/8328e72f96828b89f2798980805778d65c509df8",
+                "reference": "8328e72f96828b89f2798980805778d65c509df8",
                 "shasum": ""
             },
             "require": {
@@ -1529,7 +1529,7 @@
                 "pop",
                 "root"
             ],
-            "time": "2020-08-03T13:50:57+00:00"
+            "time": "2020-08-08T08:47:02+00:00"
         },
         {
             "name": "getpop/routing",
@@ -2732,12 +2732,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/custompostmedia.git",
-                "reference": "7accd95baee4d079eac858653b86037562e099f5"
+                "reference": "5340437e39bbcc03fc7a446086d878d25306f69c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/custompostmedia/zipball/7accd95baee4d079eac858653b86037562e099f5",
-                "reference": "7accd95baee4d079eac858653b86037562e099f5",
+                "url": "https://api.github.com/repos/PoPSchema/custompostmedia/zipball/5340437e39bbcc03fc7a446086d878d25306f69c",
+                "reference": "5340437e39bbcc03fc7a446086d878d25306f69c",
                 "shasum": ""
             },
             "require": {
@@ -2780,7 +2780,7 @@
                 "custompostmedia",
                 "pop"
             ],
-            "time": "2020-08-08T06:32:23+00:00"
+            "time": "2020-08-08T08:49:25+00:00"
         },
         {
             "name": "pop-schema/custompostmedia-wp",
@@ -2788,12 +2788,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/custompostmedia-wp.git",
-                "reference": "4d8c07d54d331bd3fff387e3f378db124065c25c"
+                "reference": "7b005b310476dcfc22c86bea3a16bdf7ff73a428"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/custompostmedia-wp/zipball/4d8c07d54d331bd3fff387e3f378db124065c25c",
-                "reference": "4d8c07d54d331bd3fff387e3f378db124065c25c",
+                "url": "https://api.github.com/repos/PoPSchema/custompostmedia-wp/zipball/7b005b310476dcfc22c86bea3a16bdf7ff73a428",
+                "reference": "7b005b310476dcfc22c86bea3a16bdf7ff73a428",
                 "shasum": ""
             },
             "require": {
@@ -2836,7 +2836,7 @@
                 "custompostmedia-wp",
                 "pop"
             ],
-            "time": "2020-08-08T06:32:17+00:00"
+            "time": "2020-08-08T08:49:19+00:00"
         },
         {
             "name": "pop-schema/custompostmeta",
@@ -2844,12 +2844,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/custompostmeta.git",
-                "reference": "2f9c294ca48a93d0af306901688f846fce8a289a"
+                "reference": "88eb15f3dbf65e023ebc1d3fa5de1b22e956b89f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/custompostmeta/zipball/2f9c294ca48a93d0af306901688f846fce8a289a",
-                "reference": "2f9c294ca48a93d0af306901688f846fce8a289a",
+                "url": "https://api.github.com/repos/PoPSchema/custompostmeta/zipball/88eb15f3dbf65e023ebc1d3fa5de1b22e956b89f",
+                "reference": "88eb15f3dbf65e023ebc1d3fa5de1b22e956b89f",
                 "shasum": ""
             },
             "require": {
@@ -2891,7 +2891,7 @@
                 "custompostmeta",
                 "pop"
             ],
-            "time": "2020-08-08T06:32:35+00:00"
+            "time": "2020-08-08T08:49:37+00:00"
         },
         {
             "name": "pop-schema/custompostmeta-wp",
@@ -2899,12 +2899,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/custompostmeta-wp.git",
-                "reference": "dadfd93e0164dcdb1ebc28f2c017eb88f2f6596b"
+                "reference": "92d09482ebf1ff6c296fe7bba220590a366886a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/custompostmeta-wp/zipball/dadfd93e0164dcdb1ebc28f2c017eb88f2f6596b",
-                "reference": "dadfd93e0164dcdb1ebc28f2c017eb88f2f6596b",
+                "url": "https://api.github.com/repos/PoPSchema/custompostmeta-wp/zipball/92d09482ebf1ff6c296fe7bba220590a366886a0",
+                "reference": "92d09482ebf1ff6c296fe7bba220590a366886a0",
                 "shasum": ""
             },
             "require": {
@@ -2946,7 +2946,7 @@
                 "custompostmeta-wp",
                 "pop"
             ],
-            "time": "2020-08-08T06:32:30+00:00"
+            "time": "2020-08-08T08:49:31+00:00"
         },
         {
             "name": "pop-schema/customposts",
@@ -2954,12 +2954,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/customposts.git",
-                "reference": "eb7eef667e7938b2fc4ce046bf1a9820153a5030"
+                "reference": "04965dfe1058ae65222d1683efd3f43533e2b7c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/customposts/zipball/eb7eef667e7938b2fc4ce046bf1a9820153a5030",
-                "reference": "eb7eef667e7938b2fc4ce046bf1a9820153a5030",
+                "url": "https://api.github.com/repos/PoPSchema/customposts/zipball/04965dfe1058ae65222d1683efd3f43533e2b7c1",
+                "reference": "04965dfe1058ae65222d1683efd3f43533e2b7c1",
                 "shasum": ""
             },
             "require": {
@@ -3000,7 +3000,7 @@
                 "customposts",
                 "pop"
             ],
-            "time": "2020-08-08T06:32:48+00:00"
+            "time": "2020-08-08T08:49:51+00:00"
         },
         {
             "name": "pop-schema/customposts-wp",
@@ -3008,12 +3008,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/customposts-wp.git",
-                "reference": "5cb8b3abb1760efb7b969cc8b2ed0abc047227f5"
+                "reference": "6f57cbbcc233ff1ae3ddec8da6319cd1fde70cd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/customposts-wp/zipball/5cb8b3abb1760efb7b969cc8b2ed0abc047227f5",
-                "reference": "5cb8b3abb1760efb7b969cc8b2ed0abc047227f5",
+                "url": "https://api.github.com/repos/PoPSchema/customposts-wp/zipball/6f57cbbcc233ff1ae3ddec8da6319cd1fde70cd6",
+                "reference": "6f57cbbcc233ff1ae3ddec8da6319cd1fde70cd6",
                 "shasum": ""
             },
             "require": {
@@ -3055,7 +3055,7 @@
                 "customposts-wp",
                 "pop"
             ],
-            "time": "2020-08-08T06:32:42+00:00"
+            "time": "2020-08-08T08:49:45+00:00"
         },
         {
             "name": "pop-schema/generic-customposts",
@@ -4977,12 +4977,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/post-tags.git",
-                "reference": "7325474a849935bf1fbcd937b4a80d5acbd856c1"
+                "reference": "7bf6733c575cb9e7f17632936b97f90c5529cd79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/post-tags/zipball/7325474a849935bf1fbcd937b4a80d5acbd856c1",
-                "reference": "7325474a849935bf1fbcd937b4a80d5acbd856c1",
+                "url": "https://api.github.com/repos/PoPSchema/post-tags/zipball/7bf6733c575cb9e7f17632936b97f90c5529cd79",
+                "reference": "7bf6733c575cb9e7f17632936b97f90c5529cd79",
                 "shasum": ""
             },
             "require": {
@@ -5030,7 +5030,7 @@
                 "pop",
                 "post-tags"
             ],
-            "time": "2020-08-08T06:40:00+00:00"
+            "time": "2020-08-08T08:51:28+00:00"
         },
         {
             "name": "pop-schema/post-tags-wp",
@@ -5038,12 +5038,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/post-tags-wp.git",
-                "reference": "136febe13d6c6c04349766c2e1c186c0eaa60953"
+                "reference": "734b7aadc7ddb6b36fbb7d36e2ed5a2c2f319d4f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/post-tags-wp/zipball/136febe13d6c6c04349766c2e1c186c0eaa60953",
-                "reference": "136febe13d6c6c04349766c2e1c186c0eaa60953",
+                "url": "https://api.github.com/repos/PoPSchema/post-tags-wp/zipball/734b7aadc7ddb6b36fbb7d36e2ed5a2c2f319d4f",
+                "reference": "734b7aadc7ddb6b36fbb7d36e2ed5a2c2f319d4f",
                 "shasum": ""
             },
             "require": {
@@ -5086,7 +5086,7 @@
                 "pop",
                 "post-tags-wp"
             ],
-            "time": "2020-08-08T06:39:54+00:00"
+            "time": "2020-08-08T08:51:22+00:00"
         },
         {
             "name": "pop-schema/posts",
@@ -5320,12 +5320,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/tags.git",
-                "reference": "6605b2e12eee1042ee73b0ddc23e62d8814596d8"
+                "reference": "89a177fb904bd7fbaeaa4ba62ba00aa097aa92fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/tags/zipball/6605b2e12eee1042ee73b0ddc23e62d8814596d8",
-                "reference": "6605b2e12eee1042ee73b0ddc23e62d8814596d8",
+                "url": "https://api.github.com/repos/PoPSchema/tags/zipball/89a177fb904bd7fbaeaa4ba62ba00aa097aa92fd",
+                "reference": "89a177fb904bd7fbaeaa4ba62ba00aa097aa92fd",
                 "shasum": ""
             },
             "require": {
@@ -5366,7 +5366,7 @@
                 "pop",
                 "tags"
             ],
-            "time": "2020-08-08T06:40:50+00:00"
+            "time": "2020-08-08T08:52:11+00:00"
         },
         {
             "name": "pop-schema/tags-wp",
@@ -5374,12 +5374,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/tags-wp.git",
-                "reference": "d28e88967e10685f1262aa7fa4b1a2d03467d6d0"
+                "reference": "2302df14a78143519b743a81a7a64593dd60a39c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/tags-wp/zipball/d28e88967e10685f1262aa7fa4b1a2d03467d6d0",
-                "reference": "d28e88967e10685f1262aa7fa4b1a2d03467d6d0",
+                "url": "https://api.github.com/repos/PoPSchema/tags-wp/zipball/2302df14a78143519b743a81a7a64593dd60a39c",
+                "reference": "2302df14a78143519b743a81a7a64593dd60a39c",
                 "shasum": ""
             },
             "require": {
@@ -5421,7 +5421,7 @@
                 "pop",
                 "tags-wp"
             ],
-            "time": "2020-08-08T06:40:44+00:00"
+            "time": "2020-08-08T08:52:03+00:00"
         },
         {
             "name": "pop-schema/taxonomies",
@@ -8415,16 +8415,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.7.0",
+            "version": "v4.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "21dce06dfbf0365c6a7cc8fdbdc995926c6a9300"
+                "reference": "8c58eb4cd4f3883f82611abeac2efbc3dbed787e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/21dce06dfbf0365c6a7cc8fdbdc995926c6a9300",
-                "reference": "21dce06dfbf0365c6a7cc8fdbdc995926c6a9300",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/8c58eb4cd4f3883f82611abeac2efbc3dbed787e",
+                "reference": "8c58eb4cd4f3883f82611abeac2efbc3dbed787e",
                 "shasum": ""
             },
             "require": {
@@ -8432,8 +8432,8 @@
                 "php": ">=7.0"
             },
             "require-dev": {
-                "ircmaxell/php-yacc": "0.0.5",
-                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0"
+                "ircmaxell/php-yacc": "^0.0.6",
+                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0 || ^9.0"
             },
             "bin": [
                 "bin/php-parse"
@@ -8441,7 +8441,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.7-dev"
+                    "dev-master": "4.8-dev"
                 }
             },
             "autoload": {
@@ -8463,7 +8463,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2020-07-25T13:18:53+00:00"
+            "time": "2020-08-09T10:23:20+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -8819,16 +8819,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.36",
+            "version": "0.12.37",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "eaeff985e395ff4e7aebf3251a43fca6c9be1af3"
+                "reference": "5e16d83e6eb2dd784fbdaeaece5e2bca72e4f68a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/eaeff985e395ff4e7aebf3251a43fca6c9be1af3",
-                "reference": "eaeff985e395ff4e7aebf3251a43fca6c9be1af3",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/5e16d83e6eb2dd784fbdaeaece5e2bca72e4f68a",
+                "reference": "5e16d83e6eb2dd784fbdaeaece5e2bca72e4f68a",
                 "shasum": ""
             },
             "require": {
@@ -8871,7 +8871,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-05T09:29:40+00:00"
+            "time": "2020-08-09T14:32:41+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
