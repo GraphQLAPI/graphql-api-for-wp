@@ -131,9 +131,20 @@ This file will override any corresponding entry defined in `composer.json`.
 
 The package owner for this plugin is `GraphQLAPI`. In addition, there are 3 other package owners for all the required components, each as an organization in GitHub:
 
-- [GraphQLByPoP](https://github.com/GraphQLByPoP): components belonging to the CMS-agnostic GraphQL server
-- [PoPSchema](https://github.com/PoPSchema): components to add entities to the schema (types, field resolvers, directives). These components do not depend on GraphQL: from a single source of truth, they can also load data for other targets, such as REST.
+- [GraphQLByPoP](https://github.com/GraphQLByPoP): components belonging to "GraphQL by PoP", the CMS-agnostic GraphQL server which powers the plugin
+- [PoPSchema](https://github.com/PoPSchema): components to add entities to the schema (types, field resolvers, directives)
 - [PoP](https://github.com/getpop): the core server-side component architecture, used by the server to load the graph data.
+
+### CMS-agnosticism
+
+Even though this plugin is already the implementation for WordPress, it is recommended to develop components following the [CMS-agnostic method employed by GraphQL by PoP](https://graphql-by-pop.com/docs/architecture/repositories.html), so that they can benefit from architectural optimizations and future developments.
+
+In particular, support for serverless PHP (a feature which is [on the roadmap](https://graphql-by-pop.com/docs/roadmap/serverless-wordpress.html)) may require to decouple the codebase from WordPress.
+
+This method requires the code for the component to be divided into 2 separate packages:
+
+- A CMS-agnostic package, containing the business code and generic contracts, but without using any WordPress code (eg: [posts](https://github.com/PoPSchema/posts))
+- A CMS-specific package, containing the implementation of the contracts for WordPress (eg: [posts-wp](https://github.com/PoPSchema/posts-wp))
 
 ## Modules
 
