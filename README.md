@@ -133,7 +133,7 @@ The package owner for this plugin is `GraphQLAPI`. In addition, there are 3 othe
 
 - [GraphQLByPoP](https://github.com/GraphQLByPoP): components belonging to "GraphQL by PoP", the CMS-agnostic GraphQL server which powers the plugin
 - [PoPSchema](https://github.com/PoPSchema): components to add entities to the schema (types, field resolvers, directives)
-- [PoP](https://github.com/getpop): the core server-side component architecture, used by the server to load the graph data.
+- [PoP](https://github.com/getpop): the core server-side component architecture, used by the server to load the graph data
 
 ### CMS-agnosticism
 
