@@ -116,7 +116,7 @@ Code compiled for development, i.e. after running `npm start`, is not allowed in
 
 ### Clone own dependencies
 
-GraphQL API is not a monorepo. Instead, its code is distributed across packages (living in repos from [PoP](https://github.com/getpop), [GraphQLByPoP](https://github.com/GraphQLByPoP) and [PoPSchema](https://github.com/PoPSchema)), and managed through Composer.
+GraphQL API is not a monorepo. Instead, every package lives under its own repo, and everything is managed and assembled together through Composer.
 
 File [`dev-helpers/scripts/clone-all-dependencies-from-github.sh`](https://github.com/GraphQLAPI/graphql-api/blob/master/dev-helpers/scripts/clone-all-dependencies-from-github.sh) contains the list of all own dependencies, ready to be cloned.
 
@@ -126,6 +126,14 @@ For development, the GraphQL API plugin can use these local projects by overridi
 - Customize it with the paths to the folders
 
 This file will override any corresponding entry defined in `composer.json`.
+
+### PSR-4 Namespaces
+
+The package owner for this plugin is `GraphQLAPI`. In addition, there are 3 other package owners for all the required components, each as an organization in GitHub:
+
+- [GraphQLByPoP](https://github.com/GraphQLByPoP): components belonging to the CMS-agnostic GraphQL server
+- [PoPSchema](https://github.com/PoPSchema): components to add entities to the schema (types, field resolvers, directives). These components do not depend on GraphQL: from a single source of truth, they can also load data for other targets, such as REST.
+- [PoP](https://github.com/getpop): the core server-side component architecture, used by the server to load the graph data.
 
 ## Modules
 
