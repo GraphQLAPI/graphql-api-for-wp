@@ -1914,12 +1914,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-query.git",
-                "reference": "c614694745d80cf8ac57673c4b39465213b1c72f"
+                "reference": "9fc7fda6cf610a8e3ec683570f289629799418f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-query/zipball/c614694745d80cf8ac57673c4b39465213b1c72f",
-                "reference": "c614694745d80cf8ac57673c4b39465213b1c72f",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-query/zipball/9fc7fda6cf610a8e3ec683570f289629799418f7",
+                "reference": "9fc7fda6cf610a8e3ec683570f289629799418f7",
                 "shasum": ""
             },
             "require": {
@@ -1962,7 +1962,7 @@
                 "graphql-query",
                 "pop"
             ],
-            "time": "2020-08-08T04:58:23+00:00"
+            "time": "2020-08-12T15:59:24+00:00"
         },
         {
             "name": "graphql-by-pop/graphql-request",
@@ -1970,12 +1970,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-request.git",
-                "reference": "c76e943c34ac3f9bd2e6859e8e75fadce6757135"
+                "reference": "c8f03e504e13e90076a90a1d61e126db6c5c4a0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-request/zipball/c76e943c34ac3f9bd2e6859e8e75fadce6757135",
-                "reference": "c76e943c34ac3f9bd2e6859e8e75fadce6757135",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-request/zipball/c8f03e504e13e90076a90a1d61e126db6c5c4a0a",
+                "reference": "c8f03e504e13e90076a90a1d61e126db6c5c4a0a",
                 "shasum": ""
             },
             "require": {
@@ -2015,7 +2015,7 @@
                 "graphql-request",
                 "pop"
             ],
-            "time": "2020-08-08T04:59:51+00:00"
+            "time": "2020-08-12T15:58:15+00:00"
         },
         {
             "name": "graphql-by-pop/graphql-server",
@@ -2023,12 +2023,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "cf10e9911a6357dd0b977681575cba12aa995291"
+                "reference": "eac5536aefaded5ebfbaa84bfda12ea34d0894a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/cf10e9911a6357dd0b977681575cba12aa995291",
-                "reference": "cf10e9911a6357dd0b977681575cba12aa995291",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/eac5536aefaded5ebfbaa84bfda12ea34d0894a9",
+                "reference": "eac5536aefaded5ebfbaa84bfda12ea34d0894a9",
                 "shasum": ""
             },
             "require": {
@@ -2073,7 +2073,7 @@
                 "pop",
                 "server"
             ],
-            "time": "2020-08-08T09:03:53+00:00"
+            "time": "2020-08-12T15:58:03+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
