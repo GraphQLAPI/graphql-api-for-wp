@@ -22,7 +22,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public const PERSISTED_QUERIES = Plugin::NAMESPACE . '\persisted-queries';
     public const CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\custom-endpoints';
     public const SCHEMA_CONFIGURATION = Plugin::NAMESPACE . '\schema-configuration';
-    public const SCHEMA_NAMESPACING = Plugin::NAMESPACE . '\schema-namespacing';
     public const CACHE_CONTROL = Plugin::NAMESPACE . '\cache-control';
     public const FIELD_DEPRECATION = Plugin::NAMESPACE . '\field-deprecation';
     public const API_HIERARCHY = Plugin::NAMESPACE . '\api-hierarchy';
@@ -33,7 +32,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public const OPTION_EDITING_ACCESS_SCHEME = 'editing-access-scheme';
     public const OPTION_PATH = 'path';
     public const OPTION_SCHEMA_CONFIGURATION_ID = 'schema-configuration-id';
-    public const OPTION_USE_NAMESPACING = 'use-namespacing';
     public const OPTION_MAX_AGE = 'max-age';
 
     /**
@@ -49,7 +47,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             self::PERSISTED_QUERIES,
             self::CUSTOM_ENDPOINTS,
             self::SCHEMA_CONFIGURATION,
-            self::SCHEMA_NAMESPACING,
             self::CACHE_CONTROL,
             self::FIELD_DEPRECATION,
             self::API_HIERARCHY,
@@ -72,7 +69,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                         self::CUSTOM_ENDPOINTS,
                     ],
                 ];
-            case self::SCHEMA_NAMESPACING:
             case self::FIELD_DEPRECATION:
                 return [
                     [
@@ -120,7 +116,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             self::PERSISTED_QUERIES => \__('Persisted Queries', 'graphql-api'),
             self::CUSTOM_ENDPOINTS => \__('Custom Endpoints', 'graphql-api'),
             self::SCHEMA_CONFIGURATION => \__('Schema Configuration', 'graphql-api'),
-            self::SCHEMA_NAMESPACING => \__('Schema Namespacing', 'graphql-api'),
             self::CACHE_CONTROL => \__('Cache Control', 'graphql-api'),
             self::FIELD_DEPRECATION => \__('Field Deprecation', 'graphql-api'),
             self::API_HIERARCHY => \__('API Hierarchy', 'graphql-api'),
@@ -146,8 +141,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 return \__('Expose different subsets of the schema for different targets, such as users (clients, employees, etc), applications (website, mobile app, etc), context (weekday, weekend, etc), and others', 'graphql-api');
             case self::SCHEMA_CONFIGURATION:
                 return \__('Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema', 'graphql-api');
-            case self::SCHEMA_NAMESPACING:
-                return \__('Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions', 'graphql-api');
             case self::CACHE_CONTROL:
                 return \__('Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query', 'graphql-api');
             case self::FIELD_DEPRECATION:
@@ -162,7 +155,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     {
         switch ($module) {
             case self::SINGLE_ENDPOINT:
-            case self::SCHEMA_NAMESPACING:
             case self::FIELD_DEPRECATION:
                 return false;
         }
@@ -193,9 +185,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             ],
             self::SCHEMA_CONFIGURATION => [
                 self::OPTION_SCHEMA_CONFIGURATION_ID => self::OPTION_VALUE_NO_VALUE_ID,
-            ],
-            self::SCHEMA_NAMESPACING => [
-                self::OPTION_USE_NAMESPACING => false,
             ],
             self::CACHE_CONTROL => [
                 self::OPTION_MAX_AGE => 86400, // 1 day
@@ -316,18 +305,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 Properties::TYPE => Properties::TYPE_INT,
                 // Fetch all Schema Configurations from the DB
                 Properties::POSSIBLE_VALUES => $possibleValues,
-            ];
-        } elseif ($module == self::SCHEMA_NAMESPACING) {
-            $option = self::OPTION_USE_NAMESPACING;
-            $moduleSettings[] = [
-                Properties::INPUT => $option,
-                Properties::NAME => $this->getSettingOptionName(
-                    $module,
-                    $option
-                ),
-                Properties::TITLE => \__('Use namespacing?', 'graphql-api'),
-                Properties::DESCRIPTION => \__('Automatically namespace types and interfaces in the schema', 'graphql-api'),
-                Properties::TYPE => Properties::TYPE_BOOL,
             ];
         } elseif ($module == self::CACHE_CONTROL) {
             $option = self::OPTION_MAX_AGE;

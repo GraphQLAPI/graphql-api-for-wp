@@ -8,13 +8,12 @@ use PoP\APIEndpoints\EndpointUtils;
 use GraphQLAPI\GraphQLAPI\Environment;
 use PoP\AccessControl\Schema\SchemaModes;
 use PoP\ComponentModel\Misc\GeneralUtils;
+use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use PoPSchema\Tags\Environment as TagsEnvironment;
 use PoPSchema\Pages\Environment as PagesEnvironment;
 use PoPSchema\Posts\Environment as PostsEnvironment;
 use PoPSchema\Users\Environment as UsersEnvironment;
-use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use PoPSchema\CustomPosts\Environment as CustomPostsEnvironment;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
 use GraphQLAPI\GraphQLAPI\Config\PluginConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
@@ -23,24 +22,26 @@ use PoP\AccessControl\Environment as AccessControlEnvironment;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
+use PoPSchema\CustomPosts\Environment as CustomPostsEnvironment;
 use GraphQLAPI\GraphQLAPI\Facades\CacheConfigurationManagerFacade;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use PoPSchema\Tags\ComponentConfiguration as TagsComponentConfiguration;
 use PoPSchema\Pages\ComponentConfiguration as PagesComponentConfiguration;
 use PoPSchema\Posts\ComponentConfiguration as PostsComponentConfiguration;
 use PoPSchema\Users\ComponentConfiguration as UsersComponentConfiguration;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
-use PoPSchema\GenericCustomPosts\Environment as GenericCustomPostsEnvironment;
-use GraphQLByPoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\AddonFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\CacheFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
-use GraphQLByPoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
-use PoPSchema\CustomPosts\ComponentConfiguration as CustomPostsComponentConfiguration;
+use PoPSchema\GenericCustomPosts\Environment as GenericCustomPostsEnvironment;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\PioneeringFunctionalityModuleResolver;
 use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\AddonFunctionalityModuleResolver;
+use GraphQLByPoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
+use GraphQLByPoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
+use PoPSchema\CustomPosts\ComponentConfiguration as CustomPostsComponentConfiguration;
 use PoPSchema\GenericCustomPosts\ComponentConfiguration as GenericCustomPostsComponentConfiguration;
 use GraphQLByPoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 use GraphQLByPoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
@@ -268,8 +269,8 @@ class PluginConfiguration
             [
                 'class' => ComponentModelComponentConfiguration::class,
                 'envVariable' => ComponentModelEnvironment::NAMESPACE_TYPES_AND_INTERFACES,
-                'module' => FunctionalityModuleResolver::SCHEMA_NAMESPACING,
-                'option' => FunctionalityModuleResolver::OPTION_USE_NAMESPACING,
+                'module' => PioneeringFunctionalityModuleResolver::SCHEMA_NAMESPACING,
+                'option' => PioneeringFunctionalityModuleResolver::OPTION_USE_NAMESPACING,
             ],
             // Cache-Control default max-age
             [
@@ -546,6 +547,10 @@ class PluginConfiguration
                 \GraphQLByPoP\GraphQLServer\Environment::ADD_SELF_FIELD_FOR_ROOT_TYPE_TO_SCHEMA => true,
             ];
         }
+        // Enable Multiple Query Execution?
+        $componentClassConfiguration[\GraphQLByPoP\GraphQLRequest\Component::class] = [
+            \GraphQLByPoP\GraphQLRequest\Environment::ENABLE_MULTIPLE_QUERY_EXECUTION => $moduleRegistry->isModuleEnabled(PioneeringFunctionalityModuleResolver::MULTIPLE_QUERY_EXECUTION),
+        ];
     }
 
     /**

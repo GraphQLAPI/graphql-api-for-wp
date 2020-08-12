@@ -292,7 +292,7 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
             // The Persisted Query is also standard GraphQL
             $vars['standard-graphql'] = true;
 
-            // Remove the VarsHooks from the GraphQLAPIRequest, so it doesn't process the GraphQL query
+            // Remove the VarsHooks from the GraphQLRequest, so it doesn't process the GraphQL query
             // Otherwise it will add error "The query in the body is empty"
             $instanceManager = InstanceManagerFacade::getInstance();
             $graphQLAPIRequestHookSet = $instanceManager->getInstance(\GraphQLByPoP\GraphQLRequest\Hooks\VarsHooks::class);

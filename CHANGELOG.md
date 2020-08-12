@@ -4,6 +4,15 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 0.3.0 - DATE
+
+### Added
+
+- Module "Multiple Query Execution" to enable/disable functionality
+- If module "Multiple Query Execution" is disabled:
+    - Directive `@export` is also disabled
+    - The server respects the GraphQL spec concerning `operationName` (https://spec.graphql.org/draft/#GetOperation()) 
+
 ## 0.2.1 - 2020-08-07
 
 ### Added
