@@ -52,6 +52,7 @@ class ModuleListTable extends AbstractItemListTable
             $items[] = [
                 'module' => $module,
                 'module-type' => $moduleResolver->getModuleType($module),
+                'module-subtype' => $moduleResolver->getModuleSubtype($module),
                 'id' => $moduleResolver->getID($module),
                 'is-enabled' => $isEnabled,
                 'can-be-disabled' => $moduleResolver->canBeDisabled($module),
@@ -368,10 +369,18 @@ class ModuleListTable extends AbstractItemListTable
      */
     protected function getTableStyleRowClassnames($item): string
     {
-        return sprintf(
+        $classnames = sprintf(
             'module-%s',
             $item['module-type']
         );
+        if (!is_null($item['module-subtype'])) {
+            $classnames .= ' ' . sprintf(
+                'module-%s-%s',
+                $item['module-type'],
+                $item['module-subtype']
+            );
+        }
+        return $classnames;
     }
 
     /**

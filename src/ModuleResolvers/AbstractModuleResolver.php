@@ -30,6 +30,14 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
         return false;
     }
 
+    /**
+     * Enable to customize a specific UI for the module
+     */
+    public function getModuleSubtype(string $module): ?string
+    {
+        return null;
+    }
+
     public function getID(string $module): string
     {
         $moduleID = strtolower($module);

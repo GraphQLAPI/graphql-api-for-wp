@@ -28,6 +28,14 @@ class PioneeringFunctionalityModuleResolver extends AbstractFunctionalityModuleR
         ];
     }
 
+    /**
+     * Enable to customize a specific UI for the module
+     */
+    public function getModuleSubtype(string $module): ?string
+    {
+        return 'pioneering';
+    }
+
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {

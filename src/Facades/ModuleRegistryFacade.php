@@ -35,8 +35,8 @@ class ModuleRegistryFacade
             self::$instance->addModuleResolver(new FunctionalityModuleResolver());
             self::$instance->addModuleResolver(new AccessControlFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new CacheFunctionalityModuleResolver());
-            self::$instance->addModuleResolver(new PioneeringFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new AddonFunctionalityModuleResolver());
+            self::$instance->addModuleResolver(new PioneeringFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new ClientFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new SchemaModuleResolver());
         }

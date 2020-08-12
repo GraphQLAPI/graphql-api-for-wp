@@ -30,3 +30,21 @@
 .plugins .active.module-functionality th.check-column {
     border-left-color: #c4d200;
 }
+
+.plugins .active.module-functionality-pioneering td,
+.plugins .active.module-functionality-pioneering th {
+    background-color: #f9fef7;
+}
+.plugin-update-tr.active.module-functionality-pioneering td,
+.plugins .active.module-functionality-pioneering th.check-column {
+    border-left-color: #00d20b;
+}
+
+.plugins .active.module-functionality-client td,
+.plugins .active.module-functionality-client th {
+    background-color: #f7fbfe;
+}
+.plugin-update-tr.active.module-functionality-client td,
+.plugins .active.module-functionality-client th.check-column {
+    border-left-color: #005bd2;
+}
