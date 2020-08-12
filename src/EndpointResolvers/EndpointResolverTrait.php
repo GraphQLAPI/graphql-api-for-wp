@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\EndpointResolvers;
 
+use WP_Post;
 use PoP\Routing\RouteNatures;
 use PoP\API\Schema\QueryInputs;
 use GraphQLByPoP\GraphQLRequest\Hooks\VarsHooks;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use GraphQLByPoP\GraphQLRequest\Execution\QueryExecutionHelpers;
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
-use WP_Post;
 
 trait EndpointResolverTrait
 {
@@ -120,9 +121,15 @@ trait EndpointResolverTrait
                     $graphQLVariables
                 );
         }
+        // Extract the operationName from the payload, it's not saved on the post!
+        list(
+            $unneededGraphQLQuery,
+            $unneededVariables,
+            $operationName
+        ) = QueryExecutionHelpers::extractRequestedGraphQLQueryPayload();
         // Add the query into $vars
         $instanceManager = InstanceManagerFacade::getInstance();
         $graphQLAPIRequestHookSet = $instanceManager->getInstance(VarsHooks::class);
-        $graphQLAPIRequestHookSet->addGraphQLQueryToVars($vars, $graphQLQuery);
+        $graphQLAPIRequestHookSet->addGraphQLQueryToVars($vars, $graphQLQuery, $operationName);
     }
 }
