@@ -52,7 +52,7 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
         ?>
         <div
             id="graphql-api-module-docs"
-            class="wrap responsive-img-container"
+            class="wrap responsive-content-container"
         >
             <!--h1><?php echo $title ?></h1-->
             <?php echo $documentation ?>
@@ -82,8 +82,8 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
          * Make images fit within the iframe
          */
         \wp_enqueue_style(
-            'graphql-api-responsive-images',
-            \GRAPHQL_API_URL . 'assets/css/responsive-images.css',
+            'graphql-api-responsive-content',
+            \GRAPHQL_API_URL . 'assets/css/responsive-content.css',
             array(),
             \GRAPHQL_API_VERSION
         );
