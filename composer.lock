@@ -1914,12 +1914,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-query.git",
-                "reference": "9fc7fda6cf610a8e3ec683570f289629799418f7"
+                "reference": "bf7da611756d613e0d7eabdc73a5d379231647a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-query/zipball/9fc7fda6cf610a8e3ec683570f289629799418f7",
-                "reference": "9fc7fda6cf610a8e3ec683570f289629799418f7",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-query/zipball/bf7da611756d613e0d7eabdc73a5d379231647a0",
+                "reference": "bf7da611756d613e0d7eabdc73a5d379231647a0",
                 "shasum": ""
             },
             "require": {
@@ -1962,7 +1962,7 @@
                 "graphql-query",
                 "pop"
             ],
-            "time": "2020-08-12T15:59:24+00:00"
+            "time": "2020-08-12T16:12:41+00:00"
         },
         {
             "name": "graphql-by-pop/graphql-request",
