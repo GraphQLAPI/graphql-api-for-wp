@@ -85,22 +85,64 @@ trait HasMarkdownDocumentationModuleResolverTrait
                 }
             }
             $markdownContents = file_get_contents($markdownFile);
-            $htmlContents = (new Parsedown())->text($markdownContents);
-            $defaultModulePathURL = $this->getDefaultMarkdownFileURL($module);
-            // Add the path to the images and anchors
-            $htmlContents = $this->appendPathURLToImages($defaultModulePathURL, $htmlContents);
-            $htmlContents = $this->appendPathURLToAnchors($defaultModulePathURL, $htmlContents);
-            // Add classes to HTML elements
-            $htmlContents = $this->addClasses($htmlContents);
-            return $htmlContents;
+            $htmlContent = (new Parsedown())->text($markdownContents);
+            return $this->processHTMLContent($module, $htmlContent);
         }
         return null;
     }
 
     /**
+     * Process the HTML content:
+     *
+     * - Add the path to the images and anchors
+     * - Add classes to HTML elements
+     * - Append video embeds
+     */
+    protected function processHTMLContent(string $module, string $htmlContent): string
+    {
+        $defaultModulePathURL = $this->getDefaultMarkdownFileURL($module);
+        // Add the path to the images and anchors
+        $htmlContent = $this->appendPathURLToImages($defaultModulePathURL, $htmlContent);
+        $htmlContent = $this->appendPathURLToAnchors($defaultModulePathURL, $htmlContent);
+        // Add classes to HTML elements
+        $htmlContent = $this->addClasses($htmlContent);
+        // Append video embeds
+        $htmlContent = $this->embedVideos($htmlContent);
+        return $htmlContent;
+    }
+
+    /**
+     * Append video embeds. These are not already in the markdown file
+     * because GitHub can't add `<iframe>`. Then, the source only contains
+     * a link to the video. This must be identified, and transformed into
+     * the embed.
+     */
+    protected function embedVideos(string $htmlContent): string
+    {
+        // Identify videos from Vimeo/Youtube
+        return preg_replace_callback(
+            '/<p>(.*?)<a href="https:\/\/(vimeo.com|youtube.com|youtu.be)\/(.*?)">(.*?)<\/a>\.?<\/p>/',
+            function ($matches) {
+                global $wp_embed;
+                // Keep the link, and append the embed immediately after
+                return
+                    $matches[0]
+                    . '<div class="video-responsive-container">' .
+                        $wp_embed->autoembed(sprintf(
+                            'https://%s/%s',
+                            $matches[2],
+                            $matches[3]
+                        ))
+                    . '</div>';
+            },
+            $htmlContent
+        );
+    }
+
+    /**
      * Add classes to the HTML elements
      */
-    protected function addClasses(string $htmlContents): string
+    protected function addClasses(string $htmlContent): string
     {
         /**
          * Add class "wp-list-table widefat" to all tables
@@ -108,7 +150,7 @@ trait HasMarkdownDocumentationModuleResolverTrait
         return str_replace(
             '<table>',
             '<table class="wp-list-table widefat striped">',
-            $htmlContents
+            $htmlContent
         );
     }
 
@@ -116,24 +158,24 @@ trait HasMarkdownDocumentationModuleResolverTrait
      * Convert relative paths to absolute paths for image URLs
      *
      * @param string $pathURL
-     * @param string $htmlContents
+     * @param string $htmlContent
      * @return string
      */
-    protected function appendPathURLToImages(string $pathURL, string $htmlContents): string
+    protected function appendPathURLToImages(string $pathURL, string $htmlContent): string
     {
-        return $this->appendPathURLToElement('img', 'src', $pathURL, $htmlContents);
+        return $this->appendPathURLToElement('img', 'src', $pathURL, $htmlContent);
     }
 
     /**
      * Convert relative paths to absolute paths for image URLs
      *
      * @param string $pathURL
-     * @param string $htmlContents
+     * @param string $htmlContent
      * @return string
      */
-    protected function appendPathURLToAnchors(string $pathURL, string $htmlContents): string
+    protected function appendPathURLToAnchors(string $pathURL, string $htmlContent): string
     {
-        return $this->appendPathURLToElement('a', 'href', $pathURL, $htmlContents);
+        return $this->appendPathURLToElement('a', 'href', $pathURL, $htmlContent);
     }
 
     /**
@@ -142,10 +184,10 @@ trait HasMarkdownDocumentationModuleResolverTrait
      * @param string $tag
      * @param string $attr
      * @param string $pathURL
-     * @param string $htmlContents
+     * @param string $htmlContent
      * @return string
      */
-    protected function appendPathURLToElement(string $tag, string $attr, string $pathURL, string $htmlContents): string
+    protected function appendPathURLToElement(string $tag, string $attr, string $pathURL, string $htmlContent): string
     {
         /**
          * $regex will become:
@@ -173,7 +215,7 @@ trait HasMarkdownDocumentationModuleResolverTrait
                     $matches[0]
                 );
             },
-            $htmlContents
+            $htmlContent
         );
     }
 }

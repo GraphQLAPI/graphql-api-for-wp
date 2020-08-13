@@ -82,5 +82,3 @@ These are the inputs in the Document settings:
 ## Resources
 
 Video showing how to create a persisted query: https://vimeo.com/443790273
-
-<!-- <iframe src="https://player.vimeo.com/video/443790273?loop=1" width="900" height="507" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
