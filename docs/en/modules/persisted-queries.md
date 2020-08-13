@@ -78,6 +78,8 @@ A persisted query is a custom post type (CPT). To create a new persisted query, 
 
 <a href="../../images/new-persisted-query.png" target="_blank">![Creating a new Persisted Query](../../images/new-persisted-query.png)</a>
 
+### Inputs
+
 These are the inputs in the body of the editor:
 
 | Input | Description | 
