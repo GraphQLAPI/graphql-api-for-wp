@@ -52,7 +52,7 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
         ?>
         <div
             id="graphql-api-module-docs"
-            class="wrap responsive-content-container"
+            class="modal-window-content-wrapper"
         >
             <!--h1><?php echo $title ?></h1-->
             <?php echo $documentation ?>
@@ -79,11 +79,11 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
             \GRAPHQL_API_VERSION
         );
         /**
-         * Make images fit within the iframe
+         * Styles for content within the modal window
          */
         \wp_enqueue_style(
-            'graphql-api-responsive-content',
-            \GRAPHQL_API_URL . 'assets/css/responsive-content.css',
+            'graphql-api-modal-window-content',
+            \GRAPHQL_API_URL . 'assets/css/modal-window-content.css',
             array(),
             \GRAPHQL_API_VERSION
         );

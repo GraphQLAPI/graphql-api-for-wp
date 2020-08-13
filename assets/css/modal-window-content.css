@@ -1,0 +1,22 @@
+/**
+ * Make images fit within the iframe
+ */
+.modal-window-content-wrapper img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+
+/**
+ * Make iframes (like the embedded videos) fit within the iframe
+ */
+.modal-window-content-wrapper iframe {
+    max-width: 100%;
+}
+
+/**
+ * Add some spacing between 2 tables
+ */
+.modal-window-content-wrapper table + table {
+    margin-top: 1em;
+}
