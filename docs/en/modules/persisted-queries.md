@@ -78,6 +78,14 @@ A persisted query is a custom post type (CPT). To create a new persisted query, 
 
 <a href="../../images/new-persisted-query.png" target="_blank">![Creating a new Persisted Query](../../images/new-persisted-query.png)</a>
 
+The main input is the GraphiQL client, which comes with the Explorer by default. Clicking on the fields on the left side panel adds them to the query, and clicking on the "Run" button executes the query:
+
+<a href="../../images/graphiql-explorer.gif" target="_blank">![Writing and executing a persisted query](../../images/graphiql-explorer.gif)</a>
+
+When the query is ready, publish it, and its permalink becomes its endpoint:
+
+<a href="../../images/publishing-persisted-query.gif" target="_blank">![Publishing the persisted query](../../images/publishing-persisted-query.gif)</a>
+
 ### Inputs
 
 These are the inputs in the body of the editor:
