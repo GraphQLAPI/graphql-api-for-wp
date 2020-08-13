@@ -94,6 +94,9 @@ These are the inputs in the Document settings:
 | Input | Description | 
 | --- | --- |
 | **Permalink** | The endpoint under which the persisted query will be available |
+| **Categories** | Can categorize the persisted query.<br/>Eg: `mobile`, `app`, etc |
+| **Except** | Provide a description for the persisted query.<br/>This input is available when module "Excerpt as Description" is enabled |
+| **Page attributes** | Select a parent persisted query.<br/>This input is available when module "API Hierarchy" is enabled |
 
 ## Resources
 
