@@ -20,3 +20,11 @@
 .modal-window-content-wrapper table + table {
     margin-top: 1em;
 }
+
+/**
+ * Re-establish the list styles
+ */
+.modal-window-content-wrapper ul {
+    padding-left: 20px;
+    list-style: initial;
+}
