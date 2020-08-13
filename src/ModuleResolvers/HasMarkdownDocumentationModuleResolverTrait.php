@@ -86,13 +86,30 @@ trait HasMarkdownDocumentationModuleResolverTrait
             }
             $markdownContents = file_get_contents($markdownFile);
             $htmlContents = (new Parsedown())->text($markdownContents);
-            // Add the path to the images and anchors
             $defaultModulePathURL = $this->getDefaultMarkdownFileURL($module);
+            // Add the path to the images and anchors
             $htmlContents = $this->appendPathURLToImages($defaultModulePathURL, $htmlContents);
             $htmlContents = $this->appendPathURLToAnchors($defaultModulePathURL, $htmlContents);
+            // Add classes to HTML elements
+            $htmlContents = $this->addClasses($htmlContents);
             return $htmlContents;
         }
         return null;
+    }
+
+    /**
+     * Add classes to the HTML elements
+     */
+    protected function addClasses(string $htmlContents): string
+    {
+        /**
+         * Add class "wp-list-table widefat" to all tables
+         */
+        return str_replace(
+            '<table>',
+            '<table class="wp-list-table widefat">',
+            $htmlContents
+        );
     }
 
     /**
