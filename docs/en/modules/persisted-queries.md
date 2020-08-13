@@ -108,6 +108,6 @@ These are the inputs in the Document settings:
 
 ## Resources
 
-This video demonstrates how to create a new persisted query:
+Video showing how to create a persisted query: https://vimeo.com/443790273
 
-<iframe src="https://player.vimeo.com/video/443790273?loop=1" width="900" height="507" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<!-- <iframe src="https://player.vimeo.com/video/443790273?loop=1" width="900" height="507" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
