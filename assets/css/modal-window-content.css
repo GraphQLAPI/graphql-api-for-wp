@@ -1,4 +1,11 @@
 /**
+ * Add some spacing to the right
+ */
+.modal-window-content-wrapper {
+    padding-right: 10px;
+}
+
+/**
  * Make images fit within the iframe
  */
 .modal-window-content-wrapper img {
