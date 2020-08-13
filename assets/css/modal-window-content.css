@@ -29,6 +29,13 @@
 }
 
 /**
+ * Table styles
+ */
+.modal-window-content-wrapper table.striped tbody tr:nth-child(odd) {
+    background-color: #ebf4f4;
+}
+
+/**
  * Re-establish the list styles
  */
 .modal-window-content-wrapper ul {

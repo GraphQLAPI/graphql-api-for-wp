@@ -107,7 +107,7 @@ trait HasMarkdownDocumentationModuleResolverTrait
          */
         return str_replace(
             '<table>',
-            '<table class="wp-list-table widefat">',
+            '<table class="wp-list-table widefat striped">',
             $htmlContents
         );
     }
