@@ -156,7 +156,7 @@ _(The documentation for the modules is currently being created)_
 | --- | --- |
 | **Single Endpoint**<!--**[Single Endpoint](docs/en/modules/single-endpoint.md)**--> | Expose a single GraphQL endpoint under <code>/graphql/</code>, with unrestricted access |
 | [Persisted Queries](docs/en/modules/persisted-queries.md) | Expose predefined responses through a custom URL, akin to using GraphQL queries to publish REST endpoints |
-| **Custom Endpoints**<!--**[Custom Endpoints](docs/en/modules/custom-endpoints.md**)--> | Expose different subsets of the schema for different targets, such as users (clients, employees, etc), applications (website, mobile app, etc), context (weekday, weekend, etc), and others |
+| [Custom Endpoints](docs/en/modules/custom-endpoints.md) | Expose different subsets of the schema for different targets, such as users (clients, employees, etc), applications (website, mobile app, etc), context (weekday, weekend, etc), and others |
 | **Schema Configuration**<!--**[Schema Configuration](docs/en/modules/schema-configuration.md)**--> | Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema |
 | **Access Control**<!--**[Access Control](docs/en/modules/access-control.md)**--> | Set-up rules to define who can access the different fields and directives from a schema |
 | **Access Control Rule: Disable Acces**s<!--**[Access Control Rule: Disable Access](docs/en/modules/access-control-rule-disable-access.md)**--> | Remove access to the fields and directives |
