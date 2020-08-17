@@ -150,7 +150,7 @@ This method requires the code for the component to be divided into 2 separate pa
 
 GraphQL API is extensible, and ships with the following modules:
 
-_(The documentation for the modules is currently being created)_
+_(The documentation for the modules is currently being completed)_
 
 | Module | Description |
 | --- | --- |
