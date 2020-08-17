@@ -59,6 +59,10 @@ When the query is ready, publish it, and its permalink becomes its endpoint:
 
 <a href="../../images/publishing-persisted-query.gif" target="_blank">![Publishing the persisted query](../../images/publishing-persisted-query.gif)</a>
 
+Appending `?view=source` to the permalink, it will show the persisted query and its configuration (as long as the user has access to it):
+
+<a href="../../images/persisted-query-source.png" target="_blank">![Persisted query source](../../images/persisted-query-source.png)</a>
+
 ### Inputs
 
 These are the inputs in the body of the editor:
