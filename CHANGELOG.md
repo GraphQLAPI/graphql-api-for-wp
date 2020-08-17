@@ -12,6 +12,8 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - If module "Multiple Query Execution" is disabled:
     - Directive `@export` is also disabled
     - The server respects the GraphQL spec concerning `operationName` (https://spec.graphql.org/draft/#GetOperation()) 
+- Modules can have a subtype, used to differentiate them with custom background colors in the modules page.
+- Defined bg color for 4 module categories: standard functionalities, pioneering functionalities, clients, and schema.
 
 ## 0.2.1 - 2020-08-07
 
