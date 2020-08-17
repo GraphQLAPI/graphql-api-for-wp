@@ -79,6 +79,12 @@ These are the inputs in the Document settings:
 | **Except** | Provide a description for the persisted query.<br/>This input is available when module `"Excerpt as Description"` is enabled |
 | **Page attributes** | Select a parent persisted query.<br/>This input is available when module `"API Hierarchy"` is enabled |
 
+## Settings
+
+| Option | Description | 
+| --- | --- |
+| **Base path** | The base path for the custom endpoint URL. It defaults to `graphql-query` |
+
 ## Resources
 
 Video showing how to create a persisted query: https://vimeo.com/443790273
