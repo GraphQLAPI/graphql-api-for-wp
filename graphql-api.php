@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 define('GRAPHQL_API_PLUGIN_FILE', __FILE__);
 define('GRAPHQL_API_DIR', dirname(__FILE__));
 define('GRAPHQL_API_URL', plugin_dir_url(__FILE__));
-define('GRAPHQL_API_VERSION', '0.1.0');
+define('GRAPHQL_API_VERSION', '0.2.1');
 
 // Load Composer’s autoloader
 require_once(__DIR__ . '/vendor/autoload.php');
