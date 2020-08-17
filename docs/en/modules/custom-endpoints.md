@@ -10,9 +10,7 @@ In addition to supporting the single endpoint, the GraphQL API also makes it pos
 - 3rd-party APIs
 - Any other
 
-The custom endpoint is a Custom Post Type, and its permalink is the endpoint.
-
-For instance, an endpoint with title `"My endpoint"` and slug `my-endpoint` will be accessible under `/graphql/my-endpoint/`.
+The custom endpoint is a Custom Post Type, and its permalink is the endpoint. An endpoint with title `"My endpoint"` and slug `my-endpoint` will be accessible under `/graphql/my-endpoint/`.
 
 <a href="../../images/custom-endpoint.png" target="_blank">![Creating a custom endpoint](../../images/custom-endpoint.png "Creating a custom endpoint")</a>
 
@@ -20,15 +18,15 @@ For instance, an endpoint with title `"My endpoint"` and slug `my-endpoint` will
 
 Each custom endpoint has its own set of clients to interact with:
 
-👉 A **GraphiQL client**, available under the endpoint + `?view=graphiql` (eg: `/graphql/my-endpoint/?view=graphiql`).
+✅ A **GraphiQL client**, available under the endpoint + `?view=graphiql` (eg: `/graphql/my-endpoint/?view=graphiql`).
 
-Module `"GraphiQL for Custom Endpoints"` must be enabled.
+Module `GraphiQL for Custom Endpoints` must be enabled.
 
 <a href="../../images/custom-endpoint-graphiql.png" target="_blank">![Custom endpoint's GraphiQL client](../../images/custom-endpoint-graphiql.png "Custom endpoint's GraphiQL client")</a>
 
-👉 An **Interactive schema client**, available under the endpoint + `?view=schema` (eg: `/graphql/my-endpoint/?view=schema`).
+✅ An **Interactive schema client**, available under the endpoint + `?view=schema` (eg: `/graphql/my-endpoint/?view=schema`).
 
-Module `"Interactive Schema for Custom Endpoints"` must be enabled.
+Module `Interactive Schema for Custom Endpoints` must be enabled.
 
 <a href="../../images/custom-endpoint-interactive-schema.png" target="_blank">![Custom endpoint's Interactive schema](../../images/custom-endpoint-interactive-schema.png "Custom endpoint's Interactive schema")</a>
 
@@ -45,6 +43,10 @@ A custom endpoint is a custom post type (CPT). To create a new custom endpoint, 
 When the endpoint is ready, publish it, and its permalink becomes its endpoint:
 
 <a href="../../images/publishing-custom-endpoint.gif" target="_blank">![Publishing the custom endpoint](../../images/publishing-custom-endpoint.gif)</a>
+
+Appending `?view=source` to the permalink, it will show the endpoint's configuration (as long as the user has access to it):
+
+<a href="../../images/custom-endpoint-source.png" target="_blank">![Custom endpoint source](../../images/custom-endpoint-source.png)</a>
 
 ### Inputs
 
