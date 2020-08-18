@@ -108,6 +108,72 @@ trait HasMarkdownDocumentationModuleResolverTrait
         $htmlContent = $this->addClasses($htmlContent);
         // Append video embeds
         $htmlContent = $this->embedVideos($htmlContent);
+        // Convert the <h2> into tabs
+        $htmlContent = $this->tabContent($htmlContent);
+        return $htmlContent;
+    }
+
+    /**
+     * Add tabs to the content wherever there is an <h2>
+     */
+    protected function tabContent(string $htmlContent): string
+    {
+        $tag = 'h2';
+        $firstTagPos = strpos($htmlContent, '<' . $tag . '>');
+        // Check if there is any <h2>
+        if ($firstTagPos !== false) {
+            // Content before the first <h2> does not go within any tab
+            $contentStarter = substr(
+                $htmlContent,
+                0,
+                $firstTagPos
+            );
+            // Add the markup for the tabs around every <h2>
+            $regex = sprintf(
+                '/<%1$s>(.*?)<\/%1$s>/',
+                $tag
+            );
+            $headers = [];
+            $panelContent = preg_replace_callback(
+                $regex,
+                function ($matches) use (&$headers) {
+                    $isFirstTab = empty($headers);
+                    if (!$isFirstTab) {
+                        $tabbedPanel = '</div>';
+                    }
+                    $headers[] = $matches[1];
+                    return $tabbedPanel . sprintf(
+                        '<div id="doc-panel-%s" class="tab-content" style="display: %s;">',
+                        count($headers),
+                        $isFirstTab ? 'block' : 'none'
+                    );// . $matches[0];
+                },
+                substr(
+                    $htmlContent,
+                    $firstTagPos
+                )
+            ) . '</div>';
+
+            // Create the tabs
+            $panelTabs = '<h2 class="nav-tab-wrapper">';
+            for ($i = 0; $i < count($headers); $i++) {
+                $isFirstTab = $i == 0;
+                $panelTabs .= sprintf(
+                    '<a href="#doc-panel-%s" class="nav-tab %s">%s</a>',
+                    $i + 1,
+                    $isFirstTab ? 'nav-tab-active' : '',
+                    $headers[$i]
+                );
+            }
+            $panelTabs .= '</h2>';
+
+            return
+                $contentStarter
+                . '<div class="graphql-api-tabpanel">'
+                . $panelTabs
+                . $panelContent
+                . '</div>';
+        }
         return $htmlContent;
     }
 
@@ -116,6 +182,9 @@ trait HasMarkdownDocumentationModuleResolverTrait
      * because GitHub can't add `<iframe>`. Then, the source only contains
      * a link to the video. This must be identified, and transformed into
      * the embed.
+     *
+     * The match is produced when a link is pointing to a video in
+     * Vimeo or Youtube by the end of the paragraph, with/out a final dot.
      */
     protected function embedVideos(string $htmlContent): string
     {
