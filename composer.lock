@@ -228,12 +228,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/api.git",
-                "reference": "be8a3f3def6ecf165bc90d052441eee69c723d86"
+                "reference": "ee1a829dd2ffef0f46ddec678478bb5630b293b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/api/zipball/be8a3f3def6ecf165bc90d052441eee69c723d86",
-                "reference": "be8a3f3def6ecf165bc90d052441eee69c723d86",
+                "url": "https://api.github.com/repos/getpop/api/zipball/ee1a829dd2ffef0f46ddec678478bb5630b293b3",
+                "reference": "ee1a829dd2ffef0f46ddec678478bb5630b293b3",
                 "shasum": ""
             },
             "require": {
@@ -278,7 +278,7 @@
                 "api",
                 "pop"
             ],
-            "time": "2020-08-18T00:54:25+00:00"
+            "time": "2020-08-18T01:05:26+00:00"
         },
         {
             "name": "getpop/api-clients",
