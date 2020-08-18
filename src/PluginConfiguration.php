@@ -408,12 +408,13 @@ class PluginConfiguration
             );
             $option = $mapping['option'];
             $optionModule = $mapping['optionModule'] ?? $module;
-            $callback = $mapping['callback'];
+            // Make explicit it can be null so that PHPStan level 3 doesn't fail
+            $callback = $mapping['callback'] ?? null;
             \add_filter(
                 $hookName,
                 function () use ($userSettingsManager, $optionModule, $option, $callback) {
                     $value = $userSettingsManager->getSetting($optionModule, $option);
-                    if ($callback) {
+                    if (!is_null($callback)) {
                         return $callback($value);
                     }
                     return $value;

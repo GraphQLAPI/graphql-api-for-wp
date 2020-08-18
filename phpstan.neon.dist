@@ -8,6 +8,6 @@ parameters:
     bootstrapFiles:
         - graphql-api.php
 #    level: 5
-    level: 2
+    level: 3
     paths:
         - src/

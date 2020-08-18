@@ -89,11 +89,8 @@ class ModuleListTable extends AbstractItemListTable
 
     /**
      * Returns the count of records in the database.
-     *
-     * @return null|string
-     * phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
      */
-    public function record_count()
+    public function getRecordCount(): int
     {
         $results = $this->getAllItems();
         return count($results);
@@ -102,13 +99,13 @@ class ModuleListTable extends AbstractItemListTable
     /**
      * Render a column when no column specific method exist.
      *
-     * @param array $item
-     * @param string $column_name
+     * @param object $item
+	 * @param string $column_name
      *
      * @return mixed
      * phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
      */
-    public function column_default($item, $column_name)
+    protected function column_default($item, $column_name)
     {
         switch ($column_name) {
             case 'desc':
@@ -204,12 +201,12 @@ class ModuleListTable extends AbstractItemListTable
     /**
      * Render the bulk edit checkbox
      *
-     * @param array $item
+     * @param object $item
      *
      * @return string
      * phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
      */
-    public function column_cb($item)
+    protected function column_cb($item)
     {
         return sprintf(
             '<input type="checkbox" name="%s[]" value="%s" />',
@@ -427,7 +424,7 @@ class ModuleListTable extends AbstractItemListTable
             $this->getDefaultItemsPerPage()
         );
         $current_page = $this->get_pagenum();
-        $total_items  = $this->record_count();
+        $total_items  = $this->getRecordCount();
 
         $this->set_pagination_args([
             'total_items' => $total_items,
