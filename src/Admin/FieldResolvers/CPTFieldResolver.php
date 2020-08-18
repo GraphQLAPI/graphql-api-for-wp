@@ -17,6 +17,7 @@ use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLAccessControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
 use PoPSchema\CustomPosts\Types\Status;
+use PoPSchema\SchemaCommons\DataLoading\ReturnTypes;
 
 /**
  * FieldResolver for the Custom Post Types from this plugin
@@ -166,7 +167,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
                     $customPostTypes[$fieldName],
                 ];
                 $options = [
-                    'return-type' => POP_RETURNTYPE_IDS,
+                    'return-type' => ReturnTypes::IDS,
                     // Do not use the limit set in the settings for custom posts
                     'skip-max-limit' => true,
                     // With this flag, the hook will not remove the private CPTs

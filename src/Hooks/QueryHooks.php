@@ -10,6 +10,7 @@ use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLCacheControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLAccessControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
+use PoPSchema\SchemaCommons\DataLoading\ReturnTypes;
 
 class QueryHooks extends AbstractHookSet
 {
@@ -38,7 +39,7 @@ class QueryHooks extends AbstractHookSet
         // and not when resolving IDs into object, since there we don't have `$options`
         if ($query['post_type']
             && !$options[CPTFieldResolver::QUERY_OPTION_ALLOW_QUERYING_PRIVATE_CPTS]
-            && $options['return-type'] == \POP_RETURNTYPE_IDS
+            && $options['return-type'] == ReturnTypes::IDS
         ) {
             // These CPTs must not be queried from outside, since they contain private configuration data
             $query['post_type'] = array_diff(
