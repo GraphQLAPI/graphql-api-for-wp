@@ -1,5 +1,7 @@
 # Custom Endpoints
 
+## Description
+
 A GraphQL server normally exposes a single endpoint for retrieving and posting data.
 
 In addition to supporting the single endpoint, the GraphQL API also makes it possible to create custom endpoints, providing different schema configurations to deal with the needs from different targets, such as:
@@ -48,7 +50,7 @@ Appending `?view=source` to the permalink, it will show the endpoint's configura
 
 <a href="../../images/custom-endpoint-source.png" target="_blank">![Custom endpoint source](../../images/custom-endpoint-source.png)</a>
 
-### Inputs
+## Editor Inputs
 
 These are the inputs in the body of the editor:
 
@@ -67,11 +69,11 @@ These are the inputs in the Document settings:
 | **Except** | Provide a description for the custom endpoint.<br/>This input is available when module `"Excerpt as Description"` is enabled |
 | **Page attributes** | Select a parent custom endpoint.<br/>This input is available when module `"API Hierarchy"` is enabled |
 
-## Settings
+<!-- ## Settings
 
 | Option | Description | 
 | --- | --- |
-| **Base path** | The base path for the custom endpoint URL. It defaults to `graphql` |
+| **Base path** | The base path for the custom endpoint URL. It defaults to `graphql` | -->
 
 ## Resources
 

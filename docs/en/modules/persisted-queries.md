@@ -1,5 +1,7 @@
 # Persisted Queries
 
+## Description
+
 Persisted queries use GraphQL to provide pre-defined enpoints as in REST, obtaining the benefits of both APIs.
 
 ---
@@ -63,7 +65,7 @@ Appending `?view=source` to the permalink, it will show the persisted query and 
 
 <a href="../../images/persisted-query-source.png" target="_blank">![Persisted query source](../../images/persisted-query-source.png)</a>
 
-### Inputs
+## Editor Inputs
 
 These are the inputs in the body of the editor:
 
@@ -83,11 +85,11 @@ These are the inputs in the Document settings:
 | **Except** | Provide a description for the persisted query.<br/>This input is available when module `Excerpt as Description` is enabled |
 | **Page attributes** | Select a parent persisted query.<br/>This input is available when module `API Hierarchy` is enabled |
 
-## Settings
+<!-- ## Settings
 
 | Option | Description | 
 | --- | --- |
-| **Base path** | The base path for the custom endpoint URL. It defaults to `graphql-query` |
+| **Base path** | The base path for the custom endpoint URL. It defaults to `graphql-query` | -->
 
 ## Resources
 
