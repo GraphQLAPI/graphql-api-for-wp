@@ -16,8 +16,6 @@ interface UserSettingsManagerInterface
     /**
      * Store the current time to indicate the latest executed write to DB,
      * concerning plugin activation, module enabled/disabled, user settings updated
-     *
-     * @return integer
      */
     public function storeTimestamp(): void;
     /**
@@ -30,7 +28,6 @@ interface UserSettingsManagerInterface
     /**
      * No return type because it could be a bool/int/string
      *
-     * @param string $item
      * @return mixed
      */
     public function getSetting(string $module, string $option);

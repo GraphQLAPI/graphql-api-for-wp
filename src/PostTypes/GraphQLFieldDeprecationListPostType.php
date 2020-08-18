@@ -27,8 +27,6 @@ class GraphQLFieldDeprecationListPostType extends AbstractPostType
 
     /**
      * Custom post type name
-     *
-     * @return void
      */
     public function getPostTypeName(): string
     {

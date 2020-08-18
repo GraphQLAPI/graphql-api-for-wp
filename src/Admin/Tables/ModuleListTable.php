@@ -288,8 +288,6 @@ class ModuleListTable extends AbstractItemListTable
 
     /**
      * Indicate if to show the enabled column or not
-     *
-     * @return array
      */
     protected function usePluginTableStyle(): bool
     {

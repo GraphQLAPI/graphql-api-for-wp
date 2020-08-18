@@ -66,10 +66,6 @@ abstract class AbstractModuleResolver implements ModuleResolverInterface
 
     /**
      * Name of the setting item, to store in the DB
-     *
-     * @param string $module
-     * @param string $option
-     * @return mixed
      */
     public function getSettingOptionName(string $module, string $option): string
     {

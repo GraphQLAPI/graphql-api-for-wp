@@ -174,7 +174,6 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
      * Create the service configuration entries comprising a directive and its value
      * It returns an array of arrays
      *
-     * @param string $selectedField
      * @param mixed $value
      * @return array|null
      */

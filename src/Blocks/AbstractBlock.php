@@ -151,8 +151,6 @@ abstract class AbstractBlock
 
     /**
      * Block align class
-     *
-     * @return boolean
      */
     public function getAlignClass(): string
     {

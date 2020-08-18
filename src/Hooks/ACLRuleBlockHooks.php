@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\Hooks;
 
 use PoP\Engine\Hooks\AbstractHookSet;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AccessControlGraphQLQueryConfigurator;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserRolesBlock;
@@ -25,9 +24,6 @@ class ACLRuleBlockHooks extends AbstractHookSet
 
     /**
      * Add the modules to check if an ACL Rule Block is enabled or not
-     *
-     * @param array $aclRuleBlockClassModules
-     * @return array
      */
     public function getACLRuleBlockClassModules(array $blockClassModules): array
     {

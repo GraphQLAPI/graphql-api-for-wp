@@ -23,8 +23,6 @@ class PluginConfigurationHelpers
     /**
      * Determine if the environment variable was defined
      * as a constant in wp-config.php
-     *
-     * @return string
      */
     public static function isWPConfigConstantDefined(string $envVariable): bool
     {

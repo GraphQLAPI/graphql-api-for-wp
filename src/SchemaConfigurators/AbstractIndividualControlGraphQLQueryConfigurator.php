@@ -11,10 +11,7 @@ abstract class AbstractIndividualControlGraphQLQueryConfigurator extends Abstrac
      * adding an individual schema mode for access control.
      * It returns a single array (or null)
      *
-     * @param string $selectedField
      * @param mixed|null $value
-     * @param string|null $schemaMode
-     * @return array|null
      */
     protected function getIndividualControlEntriesFromField(string $selectedField, $value, ?string $schemaMode): array
     {
@@ -32,9 +29,7 @@ abstract class AbstractIndividualControlGraphQLQueryConfigurator extends Abstrac
      * adding an individual schema mode for access control.
      * It returns an array of arrays (or null)
      *
-     * @param string $selectedField
      * @param mixed $value
-     * @return array|null
      */
     protected function getIndividualControlEntriesFromDirective(string $selectedDirective, $value, ?string $schemaMode): ?array
     {

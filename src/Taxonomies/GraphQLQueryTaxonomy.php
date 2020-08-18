@@ -23,8 +23,6 @@ class GraphQLQueryTaxonomy extends AbstractTaxonomy
 
     /**
      * Taxonomy name
-     *
-     * @return void
      */
     public function getTaxonomyName(bool $uppercase = true): string
     {

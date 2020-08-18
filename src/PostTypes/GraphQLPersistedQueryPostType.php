@@ -45,8 +45,6 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
 
     /**
      * Custom post type name
-     *
-     * @return void
      */
     public function getPostTypeName(): string
     {
@@ -180,9 +178,6 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
 
     /**
      * Add the parent query to the rendering of the GraphQL Query CPT
-     *
-     * @param Object $graphQLQueryPost
-     * @return string
      */
     protected function getGraphQLQuerySourceContent(string $content, WP_Post $graphQLQueryPost): string
     {

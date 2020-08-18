@@ -1,9 +1,13 @@
 includes:
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
+    ignoreErrors:
+        -
+            message: '#Access to an undefined property WP_Post_Type::\$template_lock#'
+            path: src/PostTypes/AbstractPostType.php
     bootstrapFiles:
         - graphql-api.php
 #    level: 5
-    level: 1
+    level: 2
     paths:
         - src/

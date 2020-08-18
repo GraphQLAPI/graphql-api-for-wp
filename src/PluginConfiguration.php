@@ -66,8 +66,6 @@ class PluginConfiguration
 
     /**
      * Initialize all configuration
-     *
-     * @return array
      */
     public static function initialize(): void
     {
@@ -158,8 +156,6 @@ class PluginConfiguration
 
     /**
      * Define the values for certain environment constants from the plugin settings
-     *
-     * @return array
      */
     protected static function defineEnvironmentConstantsFromSettings(): void
     {
@@ -428,8 +424,6 @@ class PluginConfiguration
 
     /**
      * Map the environment variables from the components, to WordPress wp-config.php constants
-     *
-     * @return array
      */
     protected static function mapEnvVariablesToWPConfigConstants(): void
     {

@@ -40,8 +40,6 @@ class PluginEnvironment
 
     /**
      * The label to show when the value is empty
-     *
-     * @return boolean
      */
     public static function getPluginEnvironment(): string
     {

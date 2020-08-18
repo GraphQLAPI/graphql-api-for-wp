@@ -34,9 +34,6 @@ interface ModuleRegistryInterface
     public function getInverseDependency(string $dependedModule): string;
     /**
      * Indicate if the dependency is on its being disabled, not enabled
-     *
-     * @param string $dependedModule
-     * @return string
      */
     public function isInverseDependency(string $dependedModule): bool;
 }

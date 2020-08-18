@@ -62,8 +62,6 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
 
     /**
      * Obtain the module enabling/disabling a certain ACL rule block
-     *
-     * @return array
      */
     protected function getACLRuleBlockModule(string $blockName): ?string
     {

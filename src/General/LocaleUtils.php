@@ -8,8 +8,6 @@ class LocaleUtils
 {
     /**
      * User's selected language code for the admin panel
-     *
-     * @return array
      */
     public static function getLocaleLanguage(): string
     {

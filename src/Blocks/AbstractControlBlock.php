@@ -34,8 +34,6 @@ abstract class AbstractControlBlock extends AbstractBlock
 
     /**
      * Block align class
-     *
-     * @return boolean
      */
     public function getAlignClass(): string
     {

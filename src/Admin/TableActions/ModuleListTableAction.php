@@ -145,10 +145,6 @@ class ModuleListTableAction extends AbstractListTableAction
 
     /**
      * Enable or Disable a list of modules
-     *
-     * @param array $moduleIDs
-     * @param boolean $value
-     * @return void
      */
     protected function setModulesEnabledValue(array $moduleIDs, bool $isEnabled): void
     {

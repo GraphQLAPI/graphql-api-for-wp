@@ -12,8 +12,6 @@ class CacheControlBlockCategory extends AbstractBlockCategory
 
     /**
      * Custom Post Type for which to enable the block category
-     *
-     * @return string
      */
     public function getPostTypes(): array
     {

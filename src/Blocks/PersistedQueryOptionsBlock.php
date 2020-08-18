@@ -37,8 +37,6 @@ class PersistedQueryOptionsBlock extends AbstractQueryExecutionOptionsBlock
 
     /**
      * Default language for the script/component's documentation
-     *
-     * @return array
      */
     protected function getDefaultLanguage(): ?string
     {

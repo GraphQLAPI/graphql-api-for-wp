@@ -66,8 +66,6 @@ class ComponentConfiguration
 
     /**
      * The label to show when the value is empty
-     *
-     * @return boolean
      */
     public static function getEmptyLabel(): string
     {
@@ -87,8 +85,6 @@ class ComponentConfiguration
 
     /**
      * The label to show when the value comes from the settings
-     *
-     * @return boolean
      */
     public static function getSettingsValueLabel(): string
     {

@@ -39,9 +39,6 @@ trait ModuleResolverTrait
 
     /**
      * Default language for documentation: English
-     *
-     * @param string $module
-     * @return string
      */
     public function getDefaultDocumentationLanguage(): string
     {
@@ -62,9 +59,6 @@ trait ModuleResolverTrait
 
     /**
      * Path URL to append to the local images referenced in the markdown file
-     *
-     * @param string $module
-     * @return string|null
      */
     protected function getDefaultMarkdownFileURL(string $module): string
     {

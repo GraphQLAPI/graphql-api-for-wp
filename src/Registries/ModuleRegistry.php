@@ -172,9 +172,6 @@ class ModuleRegistry implements ModuleRegistryInterface
     }
     /**
      * Indicate if the dependency is on its being disabled, not enabled
-     *
-     * @param string $dependedModule
-     * @return string
      */
     public function isInverseDependency(string $dependedModule): bool
     {

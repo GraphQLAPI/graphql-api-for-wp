@@ -195,8 +195,6 @@ abstract class AbstractPostType
 
     /**
      * Block align class
-     *
-     * @return boolean
      */
     public function getAlignClass(): string
     {
@@ -473,7 +471,6 @@ abstract class AbstractPostType
     /**
      * Restrict the Gutenberg blocks available for this Custom Post Type
      *
-     * @param array|bool $allowedBlocks
      * @return array|bool
      */
     public function allowGutenbergBlocksForCustomPostType($allowedBlocks, WP_Post $post)

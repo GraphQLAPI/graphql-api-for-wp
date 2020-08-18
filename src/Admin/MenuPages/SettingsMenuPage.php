@@ -333,8 +333,7 @@ class SettingsMenuPage extends AbstractMenuPage
     /**
      * Get the option value
      *
-     * @param string $name
-     * @return boolean
+     * @return mixed
      */
     protected function getOptionValue(string $module, string $option)
     {
