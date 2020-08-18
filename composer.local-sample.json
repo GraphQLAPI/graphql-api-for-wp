@@ -58,6 +58,7 @@
             "PoPSchema\\PostTagsWP\\": "../../graphql-api-components/pop-schema/post-tags-wp/src",
             "PoPSchema\\QueriedObject\\": "../../graphql-api-components/pop-schema/queriedobject/src",
             "PoPSchema\\QueriedObjectWP\\": "../../graphql-api-components/pop-schema/queriedobject-wp/src",
+            "PoPSchema\\SchemaCommons\\": "../../graphql-api-components/pop-schema/schema-commons/src",
             "PoPSchema\\Tags\\": "../../graphql-api-components/pop-schema/tags/src",
             "PoPSchema\\TagsWP\\": "../../graphql-api-components/pop-schema/tags-wp/src",
             "PoPSchema\\Taxonomies\\": "../../graphql-api-components/pop-schema/taxonomies/src",

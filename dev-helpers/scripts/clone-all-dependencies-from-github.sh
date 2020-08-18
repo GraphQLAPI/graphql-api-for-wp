@@ -117,6 +117,7 @@ git clone git@github.com:PoPSchema/posts-wp.git #https://github.com/PoPSchema/po
 git clone git@github.com:PoPSchema/posts.git #https://github.com/PoPSchema/posts.git
 git clone git@github.com:PoPSchema/queriedobject-wp.git #https://github.com/PoPSchema/queriedobject-wp.git
 git clone git@github.com:PoPSchema/queriedobject.git #https://github.com/PoPSchema/queriedobject.git
+git clone git@github.com:PoPSchema/schema-commons.git #https://github.com/PoPSchema/schema-commons.git
 git clone git@github.com:PoPSchema/tags-wp.git #https://github.com/PoPSchema/tags-wp.git
 git clone git@github.com:PoPSchema/tags.git #https://github.com/PoPSchema/tags.git
 git clone git@github.com:PoPSchema/taxonomies-wp.git #https://github.com/PoPSchema/taxonomies-wp.git
