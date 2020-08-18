@@ -140,6 +140,8 @@ trait HasMarkdownDocumentationModuleResolverTrait
                     $isFirstTab = empty($headers);
                     if (!$isFirstTab) {
                         $tabbedPanel = '</div>';
+                    } else {
+                        $tabbedPanel = '';
                     }
                     $headers[] = $matches[1];
                     return $tabbedPanel . sprintf(
