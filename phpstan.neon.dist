@@ -5,9 +5,16 @@ parameters:
         -
             message: '#^Access to an undefined property WP_Post_Type::\$template_lock\.$#'
             path: src/PostTypes/AbstractPostType.php
+        -
+            message: '#^Unreachable statement - code above always terminates\.$#'
+            path: src/Blocks/GraphiQLBlock.php
+        -
+            message: '#^Call to function is_null\(\) with array will always evaluate to false\.$#'
+            path: src/SchemaConfigurators/AbstractGraphQLQueryConfigurator.php
+            count: 3
     bootstrapFiles:
         - graphql-api.php
 #    level: 5
-    level: 3
+    level: 4
     paths:
         - src/

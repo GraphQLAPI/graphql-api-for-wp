@@ -602,7 +602,9 @@ class PluginConfiguration
         foreach ($moduleToComponentClassConfigurationMappings as $mapping) {
             // Copy the state (enabled/disabled) to the component
             $value = $moduleRegistry->isModuleEnabled($mapping['module']);
-            if ($callback = $mapping['callback']) {
+            // Make explicit it can be null so that PHPStan level 3 doesn't fail
+            $callback = $mapping['callback'] ?? null;
+            if (!is_null($callback)) {
                 $value = $callback($value);
             }
             $componentClassConfiguration[$mapping['class']][$mapping['envVariable']] = $value;
