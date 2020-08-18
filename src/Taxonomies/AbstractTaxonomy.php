@@ -97,7 +97,7 @@ abstract class AbstractTaxonomy
          */
         \register_taxonomy(
             $this->getTaxonomy(),
-            null,
+            [],
             $args
         );
     }

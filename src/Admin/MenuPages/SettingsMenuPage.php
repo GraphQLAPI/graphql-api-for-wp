@@ -77,7 +77,8 @@ class SettingsMenuPage extends AbstractMenuPage
                         $settingsFieldForModule,
                         // The empty string ensures the render function won't output a h2.
                         '',
-                        null,
+                        function () {
+                        },
                         self::SETTINGS_FIELD
                     );
                     foreach ($item['settings'] as $itemSetting) {
