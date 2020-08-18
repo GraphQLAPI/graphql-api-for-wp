@@ -1,7 +1,9 @@
 includes:
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
+    bootstrapFiles:
+        - graphql-api.php
 #    level: 5
-    level: 0
+    level: 1
     paths:
         - src/
