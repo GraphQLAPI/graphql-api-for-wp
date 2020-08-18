@@ -8,6 +8,7 @@ use PoP\Engine\Hooks\AbstractHookSet;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
+use PoP\API\Response\Schemes as APISchemes;
 
 class VarsHooks extends AbstractHookSet
 {
@@ -35,7 +36,7 @@ class VarsHooks extends AbstractHookSet
     public function maybeRemoveVars($vars_in_array)
     {
         $vars = &$vars_in_array[0];
-        if ($vars['scheme'] == \POP_SCHEME_API) {
+        if ($vars['scheme'] == APISchemes::API) {
             $moduleRegistry = ModuleRegistryFacade::getInstance();
             // By setting explicit allowed datastructures, we avoid the empty one
             // being processed /?scheme=api <= native API

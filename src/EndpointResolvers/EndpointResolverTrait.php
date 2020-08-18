@@ -11,6 +11,7 @@ use GraphQLByPoP\GraphQLRequest\Hooks\VarsHooks;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLByPoP\GraphQLRequest\Execution\QueryExecutionHelpers;
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
+use PoP\API\Response\Schemes as APISchemes;
 
 trait EndpointResolverTrait
 {
@@ -90,7 +91,7 @@ trait EndpointResolverTrait
         // Indicate it is an API, of type GraphQL. Just by doing is, class
         // \GraphQLByPoP\GraphQLRequest\Hooks\VarsHooks will process the GraphQL request
         $vars = &$vars_in_array[0];
-        $vars['scheme'] = \POP_SCHEME_API;
+        $vars['scheme'] = APISchemes::API;
         $vars['datastructure'] = GraphQLDataStructureFormatter::getName();
 
         /**
