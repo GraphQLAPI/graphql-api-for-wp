@@ -100,7 +100,7 @@ class ModuleListTable extends AbstractItemListTable
      * Render a column when no column specific method exist.
      *
      * @param object $item
-	 * @param string $column_name
+     * @param string $column_name
      *
      * @return mixed
      * phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
