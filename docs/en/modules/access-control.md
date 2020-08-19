@@ -21,13 +21,11 @@ Every Access Control List contains one or many entries, each of them with the fo
 
 <a href="../../images/access-control-list.png" target="_blank">![Creating an Access Control List](../../images/access-control-list.png "Creating an Access Control List")</a>
 
-Validation for fields from an interface is carried on all types implementing the interface.
-
-<a href="../../images/selecting-field-from-interface.png" target="_blank">![Creating an Access Control List](../../images/selecting-field-from-interface.png "Selecting a field from an interface")</a>
-
-If module `Public/Private Schema` is enabled, and option `Enable to select the visibility for a set of fields/directives when editing the Access Control List` in the settings is `on`, there is an additional element:
+If module `Public/Private Schema` is enabled, and option `Enable granular control?` in the settings is `on`, there is an additional element:
 
 - Public/Private Schema: behavior when access is denied
+
+<a href="../../images/settings-enable-granular-control.png" target="_blank">![Enable granular control?](../../images/settings-enable-granular-control.png "Enable granular control?")</a>
 
 <a href="../../images/public-private-individual-control.png" target="_blank">![Creating an Access Control List](../../images/public-private-individual-control.png "Creating an Access Control List")</a>
 
@@ -35,14 +33,18 @@ Every entry is created by selecting the fields and directives, and configuring t
 
 <a href="../../images/access-control.gif" target="_blank">![Creating an Access Control List](../../images/access-control.gif "Creating an Access Control List")</a>
 
+Validation for fields from an interface is carried on all types implementing the interface.
+
+<a href="../../images/selecting-field-from-interface.png" target="_blank">![Creating an Access Control List](../../images/selecting-field-from-interface.png "Selecting a field from an interface")</a>
+
 ## How it works
 
 Whenever the requested query, either executed through a custom endpoint or as a persisted query, contains one of the selected fields or directives, the corresponding list of rules is evaluated. If any rule is not satisfied, access to that field or directive is denied.
 
 If module `Public/Private Schema` is enabled, when access to some field or directive is denied, there are 2 ways for the API to behave:
 
-- **Public mode**: Provide an error message to the user, indicating why access is denied. This behavior makes the metadata from the schema always available.
-- **Private mode**: The error message indicates that the field or directive does not exist. This behavior exposes the metadata from the schema only to those users who can access it.
+- **Public mode**: Provide an error message to the user, indicating why access is denied
+- **Private mode**: The error message indicates that the field or directive does not exist
 
 If this module is not enabled, the default behavior ir `Public`.
 
