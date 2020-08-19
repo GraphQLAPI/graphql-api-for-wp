@@ -66,7 +66,7 @@ These are the inputs in the Document settings:
 | --- | --- |
 | **Permalink** | The endpoint under which the custom endpoint will be available |
 | **Categories** | Can categorize the custom endpoint.<br/>Eg: `mobile`, `app`, etc |
-| **Except** | Provide a description for the custom endpoint.<br/>This input is available when module `"Excerpt as Description"` is enabled |
+| **Excerpt** | Provide a description for the custom endpoint.<br/>This input is available when module `"Excerpt as Description"` is enabled |
 | **Page attributes** | Select a parent custom endpoint.<br/>This input is available when module `"API Hierarchy"` is enabled |
 
 <!-- ## Settings
