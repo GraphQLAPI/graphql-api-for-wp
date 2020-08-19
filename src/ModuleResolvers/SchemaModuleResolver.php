@@ -27,7 +27,9 @@ use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
 
 class SchemaModuleResolver extends AbstractSchemaModuleResolver
 {
-    use ModuleResolverTrait;
+    use ModuleResolverTrait {
+        ModuleResolverTrait::hasDocumentation as upstreamHasDocumentation;
+    }
 
     public const SCHEMA_CUSTOMPOSTS = Plugin::NAMESPACE . '\schema-customposts';
     public const SCHEMA_GENERIC_CUSTOMPOSTS = Plugin::NAMESPACE . '\schema-generic-customposts';
@@ -185,6 +187,25 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
                 return \__('Base functionality for all tags', 'graphql-api');
         }
         return parent::getDescription($module);
+    }
+
+    /**
+     * Does the module have HTML Documentation?
+     */
+    public function hasDocumentation(string $module): bool
+    {
+        switch ($module) {
+            case self::SCHEMA_POSTS:
+            case self::SCHEMA_PAGES:
+            case self::SCHEMA_USERS:
+            case self::SCHEMA_USER_ROLES:
+            case self::SCHEMA_COMMENTS:
+            case self::SCHEMA_TAGS:
+            case self::SCHEMA_POST_TAGS:
+            case self::SCHEMA_MEDIA:
+                return false;
+        }
+        return $this->upstreamHasDocumentation($module);
     }
 
     /**
