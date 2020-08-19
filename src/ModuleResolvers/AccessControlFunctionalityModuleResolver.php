@@ -13,7 +13,9 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 
 class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
-    use ModuleResolverTrait;
+    use ModuleResolverTrait {
+        ModuleResolverTrait::hasDocumentation as upstreamHasDocumentation;
+    }
 
     public const PUBLIC_PRIVATE_SCHEMA = Plugin::NAMESPACE . '\public-private-schema';
     public const ACCESS_CONTROL = Plugin::NAMESPACE . '\access-control';
@@ -101,6 +103,24 @@ class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModu
                 return \__('Allow or reject access to the fields and directives based on the user having a certain capability', 'graphql-api');
         }
         return parent::getDescription($module);
+    }
+
+    /**
+     * Does the module have HTML Documentation?
+     *
+     * @param string $module
+     * @return bool
+     */
+    public function hasDocumentation(string $module): bool
+    {
+        switch ($module) {
+            case self::ACCESS_CONTROL_RULE_DISABLE_ACCESS:
+            case self::ACCESS_CONTROL_RULE_USER_STATE:
+            case self::ACCESS_CONTROL_RULE_USER_ROLES:
+            case self::ACCESS_CONTROL_RULE_USER_CAPABILITIES:
+                return false;
+        }
+        return $this->upstreamHasDocumentation($module);
     }
 
     /**
