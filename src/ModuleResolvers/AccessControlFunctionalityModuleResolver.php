@@ -107,9 +107,6 @@ class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModu
 
     /**
      * Does the module have HTML Documentation?
-     *
-     * @param string $module
-     * @return bool
      */
     public function hasDocumentation(string $module): bool
     {
