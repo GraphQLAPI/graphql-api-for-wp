@@ -40,6 +40,14 @@ class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModu
         ];
     }
 
+    /**
+     * Enable to customize a specific UI for the module
+     */
+    public function getModuleSubtype(string $module): ?string
+    {
+        return 'accesscontrol';
+    }
+
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {

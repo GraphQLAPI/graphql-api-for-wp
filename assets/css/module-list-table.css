@@ -40,6 +40,15 @@
     border-left-color: #00d20b;
 }
 
+.plugins .active.module-functionality-accesscontrol td,
+.plugins .active.module-functionality-accesscontrol th {
+    background-color: #fef7f9;
+}
+.plugin-update-tr.active.module-functionality-accesscontrol td,
+.plugins .active.module-functionality-accesscontrol th.check-column {
+    border-left-color: #d20046;
+}
+
 .plugins .active.module-functionality-client td,
 .plugins .active.module-functionality-client th {
     background-color: #f7fbfe;
