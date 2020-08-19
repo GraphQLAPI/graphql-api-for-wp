@@ -37,7 +37,7 @@ Every entry is created by selecting the fields and directives, and configuring t
 
 ## How it works
 
-Whenever the requested query (from either a custom endpoint or a persisted query) contains one of the selected fields or directives, the corresponding list of rules is evaluated. If any rule is not satisfied, access to that field or directive is denied.
+Whenever the requested query, either executed through a custom endpoint or as a persisted query, contains one of the selected fields or directives, the corresponding list of rules is evaluated. If any rule is not satisfied, access to that field or directive is denied.
 
 If module `Public/Private Schema` is enabled, when access to some field or directive is denied, there are 2 ways for the API to behave:
 
