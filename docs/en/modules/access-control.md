@@ -27,7 +27,7 @@ If module `Public/Private Schema` is enabled, and option `Enable granular contro
 
 <a href="../../images/settings-enable-granular-control.png" target="_blank">![Enable granular control?](../../images/settings-enable-granular-control.png "Enable granular control?")</a>
 
-<a href="../../images/public-private-individual-control.png" target="_blank">![Creating an Access Control List](../../images/public-private-individual-control.png "Creating an Access Control List")</a>
+<a href="../../images/public-private-individual-control.png" target="_blank">![Individual Public/Private schema mode](../../images/public-private-individual-control.png "Individual Public/Private schema mode")</a>
 
 Every entry is created by selecting the fields and directives, and configuring the rules:
 
