@@ -63,7 +63,7 @@ _(The documentation for the modules is currently being completed)_
 | [Schema Configuration](docs/en/modules/schema-configuration.md) | Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema |
 | [Cache Control](docs/en/modules/cache-control.md) | Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query |
 | [Field Deprecation](docs/en/modules/field-deprecation.md) | Deprecate fields, and explain how to replace them, through a user interface |
-| **API Hierarchy**<!--[API Hierarchy](docs/en/modules/api-hierarchy.md)--> | Create a hierarchy of API endpoints extending from other endpoints, and inheriting their properties |
+| [API Hierarchy](docs/en/modules/api-hierarchy.md) | Create a hierarchy of API endpoints extending from other endpoints, and inheriting their properties |
 | **Low-Level Query Editing**<!--[Low-Level Query Editing](docs/en/modules/low-level-query-editing.md)--> | Have access to schema-configuration low-level directives when editing GraphQL queries in the admin |
 | **Schema Editing Access**<!--[Schema Editing Access](docs/en/modules/schema-editing-access.md)--> | Grant access to users other than admins to edit the GraphQL schema |
 | **Excerpt as Description**<!--[Excerpt as Description](docs/en/modules/excerpt-as-description.md)--> | Provide a description of the different entities (Custom Endpoints, Persisted Queries, and others) through their excerpt |
