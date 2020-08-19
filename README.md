@@ -79,7 +79,7 @@ _(The documentation for the modules is currently being completed)_
 | Access Control Rule: User State | Allow or reject access to the fields and directives based on the user being logged-in or not |
 | Access Control Rule: User Roles | Allow or reject access to the fields and directives based on the user having a certain role |
 | Access Control Rule: User Capabilities | Allow or reject access to the fields and directives based on the user having a certain capability |
-| **Public/Private Schema**<!--[Public/Private Schema](docs/en/modules/public-private-schema.md)--> | Enable to communicate the existence of some field from the schema to certain users only (private mode) or to everyone (public mode). If disabled, fields are always available to everyone (public mode) |
+| [Public/Private Schema](docs/en/modules/public-private-schema.md) | Enable to communicate the existence of some field from the schema to certain users only (private mode) or to everyone (public mode). If disabled, fields are always available to everyone (public mode) |
 
 ### Pioneering functionality
 
