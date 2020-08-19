@@ -168,7 +168,6 @@ _(The documentation for the modules is currently being completed)_
 | **Excerpt as Description**<!--[Excerpt as Description](docs/en/modules/excerpt-as-description.md)--> | Provide a description of the different entities (Custom Endpoints, Persisted Queries, and others) through their excerpt |
 | **Configuration Cache**<!--[Configuration Cache](docs/en/modules/configuration-cache.md)--> | Cache the generated application configuration to disk |
 | **Schema Cache**<!--[Schema Cache](docs/en/modules/schema-cache.md)--> | Cache the generated schema to disk |
----
 
 ### Access Control
 
@@ -180,7 +179,6 @@ _(The documentation for the modules is currently being completed)_
 | **Access Control Rule: User Role**s<!--[Access Control Rule: User Roles](docs/en/modules/access-control-rule-user-roles.md)--> | Allow or reject access to the fields and directives based on the user having a certain role |
 | **Access Control Rule: User Capabilitie**s<!--[Access Control Rule: User Capabilities](docs/en/modules/access-control-rule-user-capabilities.md)--> | Allow or reject access to the fields and directives based on the user having a certain capability |
 | **Public/Private Schema**<!--[Public/Private Schema](docs/en/modules/public-private-schema.md)--> | Enable to communicate the existence of some field from the schema to certain users only (private mode) or to everyone (public mode). If disabled, fields are always available to everyone (public mode) |
----
 
 ### Pioneering functionality
 
@@ -190,7 +188,6 @@ These are functionalities proposed for, but not yet merged into, the [GraphQL sp
 | --- | --- |
 | [Schema Namespacing](docs/en/modules/schema-namespacing.md) | Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions |
 | **Multiple Query Execution**<!--[Multiple Query Execution](docs/en/modules/multiple-query-execution.md)--> | Execute multiple GraphQL queries in a single operation |
----
 
 ### Clients
 
@@ -201,7 +198,6 @@ These are functionalities proposed for, but not yet merged into, the [GraphQL sp
 | [GraphiQL for Custom Endpoints](docs/en/modules/graphiql-for-custom-endpoints.md) | Enable custom endpoints to be attached their own GraphiQL client, to execute queries against them |
 | [Interactive Schema for Custom Endpoints](docs/en/modules/interactive-schema-for-custom-endpoints.md) | Enable custom endpoints to be attached their own Interactive schema client, to visualize the custom schema subset |
 | [GraphiQL Explorer](docs/en/modules/graphiql-explorer.md) | Add the Explorer widget to the GraphiQL client when creating Persisted Queries, to simplify coding the query (by point-and-clicking on the fields) |
----
 
 ### Schema
 
@@ -217,7 +213,6 @@ These are functionalities proposed for, but not yet merged into, the [GraphQL sp
 | **Schema Tags**<!--[Schema Tags](docs/en/modules/schema-tags.md)--> | Base functionality for all tags |
 | **Schema Post Tags**<!--[Schema Post Tags](docs/en/modules/schema-post-tags.md)--> | Query post tags, through type <code>PostTag</code> added to the schema |
 | **Schema Media**<!--[Schema Media](docs/en/modules/schema-media.md)--> | Query media elements, through type <code>Media</code> added to the schema |
----
 
 ## Resources
 
