@@ -74,7 +74,7 @@ _(The documentation for the modules is currently being completed)_
 
 | Module | Description |
 | --- | --- |
-| **Access Control**<!--[Access Control](docs/en/modules/access-control.md)--> | Set-up rules to define who can access the different fields and directives from a schema |
+| [Access Control](docs/en/modules/access-control.md) | Set-up rules to define who can access the different fields and directives from a schema |
 | **Access Control Rule: Disable Acces**s<!--[Access Control Rule: Disable Access](docs/en/modules/access-control-rule-disable-access.md)--> | Remove access to the fields and directives |
 | **Access Control Rule: User Stat**e<!--[Access Control Rule: User State](docs/en/modules/access-control-rule-user-state.md)--> | Allow or reject access to the fields and directives based on the user being logged-in or not |
 | **Access Control Rule: User Role**s<!--[Access Control Rule: User Roles](docs/en/modules/access-control-rule-user-roles.md)--> | Allow or reject access to the fields and directives based on the user having a certain role |
