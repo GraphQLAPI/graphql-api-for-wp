@@ -159,6 +159,7 @@ class PluginConfiguration
      */
     protected static function defineEnvironmentConstantsFromSettings(): void
     {
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
         // All the environment variables to override
         $mappings = [
             // Editing Access Scheme
@@ -260,6 +261,14 @@ class PluginConfiguration
                 'envVariable' => AccessControlEnvironment::ENABLE_INDIVIDUAL_CONTROL_FOR_PUBLIC_PRIVATE_SCHEMA_MODE,
                 'module' => AccessControlFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA,
                 'option' => AccessControlFunctionalityModuleResolver::OPTION_ENABLE_GRANULAR,
+                'callback' => function ($value) use ($moduleRegistry) {
+                    // Also make sure that the module is enabled.
+                    // Otherwise set the value in `false`, to override a potential `true` in the Settings
+                    return
+                        $moduleRegistry->isModuleEnabled(AccessControlFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA)
+                        && $value;
+                },
+                'condition' => 'any',
             ],
             // Use namespacing?
             [
@@ -387,7 +396,6 @@ class PluginConfiguration
         ];
         // For each environment variable, see if its value has been saved in the settings
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
-        $moduleRegistry = ModuleRegistryFacade::getInstance();
         foreach ($mappings as $mapping) {
             $module = $mapping['module'];
             $condition = $mapping['condition'] ?? true;

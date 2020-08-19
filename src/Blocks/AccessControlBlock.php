@@ -43,13 +43,6 @@ class AccessControlBlock extends AbstractControlBlock
     {
         return true;
     }
-    protected function enableIndividualControlForPublicPrivateSchemaMode(): bool
-    {
-        $moduleRegistry = ModuleRegistryFacade::getInstance();
-        return
-            $moduleRegistry->isModuleEnabled(AccessControlFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA)
-            && ComponentConfiguration::enableIndividualControlForPublicPrivateSchemaMode();
-    }
 
     protected function getBlockDataTitle(): string
     {
@@ -57,7 +50,7 @@ class AccessControlBlock extends AbstractControlBlock
     }
     protected function getBlockContentTitle(): string
     {
-        if ($this->enableIndividualControlForPublicPrivateSchemaMode()) {
+        if (ComponentConfiguration::enableIndividualControlForPublicPrivateSchemaMode()) {
             return \__('Access Control Rules:', 'graphql-api');
         }
         return \__('Who can access:', 'graphql-api');
@@ -73,7 +66,7 @@ class AccessControlBlock extends AbstractControlBlock
         return array_merge(
             parent::getLocalizedData(),
             [
-                'isIndividualControlForSchemaModeEnabled' => $this->enableIndividualControlForPublicPrivateSchemaMode(),
+                'isIndividualControlForSchemaModeEnabled' => ComponentConfiguration::enableIndividualControlForPublicPrivateSchemaMode(),
             ]
         );
     }
@@ -88,7 +81,7 @@ class AccessControlBlock extends AbstractControlBlock
     protected function getBlockContent(array $attributes, string $content): string
     {
         $maybeSchemaModeContent = '';
-        if ($this->enableIndividualControlForPublicPrivateSchemaMode()) {
+        if (ComponentConfiguration::enableIndividualControlForPublicPrivateSchemaMode()) {
             $blockContentPlaceholder = <<<EOT
                 <p><strong>%s</strong> %s</p>
                 <h4 class="%s">%s</h4>
