@@ -7,10 +7,12 @@ namespace GraphQLAPI\GraphQLAPI\Blocks;
 use PoP\AccessControl\Schema\SchemaModes;
 use PoP\AccessControl\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractControlBlock;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\GraphQLByPoPBlockTrait;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
 use GraphQLAPI\GraphQLAPI\BlockCategories\AccessControlBlockCategory;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 
 /**
  * Access Control block
@@ -41,6 +43,13 @@ class AccessControlBlock extends AbstractControlBlock
     {
         return true;
     }
+    protected function enableIndividualControlForPublicPrivateSchemaMode(): bool
+    {
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        return
+            $moduleRegistry->isModuleEnabled(AccessControlFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA)
+            && ComponentConfiguration::enableIndividualControlForPublicPrivateSchemaMode();
+    }
 
     protected function getBlockDataTitle(): string
     {
@@ -48,7 +57,7 @@ class AccessControlBlock extends AbstractControlBlock
     }
     protected function getBlockContentTitle(): string
     {
-        if (ComponentConfiguration::enableIndividualControlForPublicPrivateSchemaMode()) {
+        if ($this->enableIndividualControlForPublicPrivateSchemaMode()) {
             return \__('Access Control Rules:', 'graphql-api');
         }
         return \__('Who can access:', 'graphql-api');
@@ -64,7 +73,7 @@ class AccessControlBlock extends AbstractControlBlock
         return array_merge(
             parent::getLocalizedData(),
             [
-                'isIndividualControlForSchemaModeEnabled' => ComponentConfiguration::enableIndividualControlForPublicPrivateSchemaMode(),
+                'isIndividualControlForSchemaModeEnabled' => $this->enableIndividualControlForPublicPrivateSchemaMode(),
             ]
         );
     }
@@ -79,7 +88,7 @@ class AccessControlBlock extends AbstractControlBlock
     protected function getBlockContent(array $attributes, string $content): string
     {
         $maybeSchemaModeContent = '';
-        if (ComponentConfiguration::enableIndividualControlForPublicPrivateSchemaMode()) {
+        if ($this->enableIndividualControlForPublicPrivateSchemaMode()) {
             $blockContentPlaceholder = <<<EOT
                 <p><strong>%s</strong> %s</p>
                 <h4 class="%s">%s</h4>
