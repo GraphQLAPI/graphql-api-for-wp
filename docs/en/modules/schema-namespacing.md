@@ -6,6 +6,8 @@ Namespacing the schema avoids naming conflicts, which happens when different own
 
 ## How it works
 
+In the namespaced schema, type `Post` becomes `PoP_ComponentModel_Post` and interface `CustomPost` becomes `PoP_ComponentModel_CustomPost` (following that the PHP package where this functionality was implemented has owner `"PoP"` and name `"ComponentModel"`).
+
 While the schema normally looks like this:
 
 <a href="../../images/normal-interactive-schema.jpg" target="_blank">![Interactive schema](../../images/normal-interactive-schema.jpg)</a>
@@ -14,7 +16,19 @@ While the schema normally looks like this:
 
 <a href="../../images/namespaced-interactive-schema.jpg" target="_blank">![Namespaced interactive schema](../../images/namespaced-interactive-schema.jpg)</a>
 
-In the namespaced schema, type `Post` becomes `PoP_ComponentModel_Post` and interface `CustomPost` becomes `PoP_ComponentModel_CustomPost` (following that the PHP package where this functionality was implemented has owner `"PoP"` and name `"ComponentModel"`).
+## How to use
+
+Namespacing the schema can be configured as follows, in order of priority:
+
+✅ Specific mode for the custom endpoint or persisted query, defined in the schema configuration
+
+<a href="../../images/schema-configuration-namespacing.png" target="_blank">![Namespacing, set in the Schema configuration](../../images/schema-configuration-namespacing.png "Namespacing, set in the Schema configuration")</a>
+
+✅ Default mode, defined in the Settings
+
+If the schema configuration has value `"Default"`, it will use the mode defined in the Settings:
+
+<a href="../../images/settings-namespacing.png" target="_blank">![Namespacing in Settings](../../images/settings-namespacing.png "Namespacing in Settings")</a>
 
 ## When to use
 
