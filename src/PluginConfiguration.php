@@ -554,6 +554,10 @@ class PluginConfiguration
         $componentClassConfiguration[\GraphQLByPoP\GraphQLRequest\Component::class] = [
             \GraphQLByPoP\GraphQLRequest\Environment::ENABLE_MULTIPLE_QUERY_EXECUTION => $moduleRegistry->isModuleEnabled(PioneeringFunctionalityModuleResolver::MULTIPLE_QUERY_EXECUTION),
         ];
+        // Enable @removeIfNull?
+        $componentClassConfiguration[\GraphQLByPoP\GraphQLServer\Component::class] = [
+            \GraphQLByPoP\GraphQLServer\Environment::ENABLE_REMOVE_IF_NULL_DIRECTIVE => $moduleRegistry->isModuleEnabled(PioneeringFunctionalityModuleResolver::REMOVE_IF_NULL_DIRECTIVE),
+        ];
     }
 
     /**

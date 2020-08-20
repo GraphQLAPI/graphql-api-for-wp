@@ -14,6 +14,7 @@ class PioneeringFunctionalityModuleResolver extends AbstractFunctionalityModuleR
 
     public const SCHEMA_NAMESPACING = Plugin::NAMESPACE . '\schema-namespacing';
     public const MULTIPLE_QUERY_EXECUTION = Plugin::NAMESPACE . '\multiple-query-execution';
+    public const REMOVE_IF_NULL_DIRECTIVE = Plugin::NAMESPACE . '\remove-if-null-directive';
 
     /**
      * Setting options
@@ -25,6 +26,7 @@ class PioneeringFunctionalityModuleResolver extends AbstractFunctionalityModuleR
         return [
             self::SCHEMA_NAMESPACING,
             self::MULTIPLE_QUERY_EXECUTION,
+            self::REMOVE_IF_NULL_DIRECTIVE,
         ];
     }
 
@@ -53,6 +55,8 @@ class PioneeringFunctionalityModuleResolver extends AbstractFunctionalityModuleR
                         FunctionalityModuleResolver::CUSTOM_ENDPOINTS,
                     ],
                 ];
+            case self::REMOVE_IF_NULL_DIRECTIVE:
+                return [];
         }
         return parent::getDependedModuleLists($module);
     }
@@ -62,6 +66,7 @@ class PioneeringFunctionalityModuleResolver extends AbstractFunctionalityModuleR
         $names = [
             self::SCHEMA_NAMESPACING => \__('Schema Namespacing', 'graphql-api'),
             self::MULTIPLE_QUERY_EXECUTION => \__('Multiple Query Execution', 'graphql-api'),
+            self::REMOVE_IF_NULL_DIRECTIVE => \__('Remove if Null', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
     }
@@ -73,6 +78,8 @@ class PioneeringFunctionalityModuleResolver extends AbstractFunctionalityModuleR
                 return \__('Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions', 'graphql-api');
             case self::MULTIPLE_QUERY_EXECUTION:
                 return \__('Execute multiple GraphQL queries in a single operation', 'graphql-api');
+            case self::REMOVE_IF_NULL_DIRECTIVE:
+                return \__('Addition of <code>@removeIfNull</code> directive, to remove an output from the response if it is <code>null</code>', 'graphql-api');
         }
         return parent::getDescription($module);
     }
@@ -82,6 +89,7 @@ class PioneeringFunctionalityModuleResolver extends AbstractFunctionalityModuleR
         switch ($module) {
             case self::SCHEMA_NAMESPACING:
             case self::MULTIPLE_QUERY_EXECUTION:
+            case self::REMOVE_IF_NULL_DIRECTIVE:
                 return false;
         }
         return parent::isEnabledByDefault($module);

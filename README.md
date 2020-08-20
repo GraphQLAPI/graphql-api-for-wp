@@ -89,6 +89,7 @@ These are functionalities proposed for, but not yet merged into, the [GraphQL sp
 | --- | --- |
 | [Schema Namespacing](docs/en/modules/schema-namespacing.md) | Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions |
 | [Multiple Query Execution](docs/en/modules/multiple-query-execution.md) | Execute multiple GraphQL queries in a single operation |
+| **Remove if Null**<!--[Remove if Null](docs/en/modules/remove-if-null-directive.md)--> | Addition of `@removeIfNull` directive, to remove an output from the response if it is `null` |
 
 ### Clients
 
