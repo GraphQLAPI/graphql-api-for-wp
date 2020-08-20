@@ -88,7 +88,7 @@ These are functionalities proposed for, but not yet merged into, the [GraphQL sp
 | Module | Description |
 | --- | --- |
 | [Schema Namespacing](docs/en/modules/schema-namespacing.md) | Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions |
-| **Multiple Query Execution**<!--[Multiple Query Execution](docs/en/modules/multiple-query-execution.md)--> | Execute multiple GraphQL queries in a single operation |
+| [Multiple Query Execution](docs/en/modules/multiple-query-execution.md) | Execute multiple GraphQL queries in a single operation |
 
 ### Clients
 
