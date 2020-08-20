@@ -15,6 +15,7 @@ class PioneeringFunctionalityModuleResolver extends AbstractFunctionalityModuleR
     public const SCHEMA_NAMESPACING = Plugin::NAMESPACE . '\schema-namespacing';
     public const MULTIPLE_QUERY_EXECUTION = Plugin::NAMESPACE . '\multiple-query-execution';
     public const REMOVE_IF_NULL_DIRECTIVE = Plugin::NAMESPACE . '\remove-if-null-directive';
+    public const PROACTIVE_FEEDBACK = Plugin::NAMESPACE . '\proactive-feedback';
 
     /**
      * Setting options
@@ -27,6 +28,7 @@ class PioneeringFunctionalityModuleResolver extends AbstractFunctionalityModuleR
             self::SCHEMA_NAMESPACING,
             self::MULTIPLE_QUERY_EXECUTION,
             self::REMOVE_IF_NULL_DIRECTIVE,
+            self::PROACTIVE_FEEDBACK,
         ];
     }
 
@@ -56,6 +58,7 @@ class PioneeringFunctionalityModuleResolver extends AbstractFunctionalityModuleR
                     ],
                 ];
             case self::REMOVE_IF_NULL_DIRECTIVE:
+            case self::PROACTIVE_FEEDBACK:
                 return [];
         }
         return parent::getDependedModuleLists($module);
@@ -67,6 +70,7 @@ class PioneeringFunctionalityModuleResolver extends AbstractFunctionalityModuleR
             self::SCHEMA_NAMESPACING => \__('Schema Namespacing', 'graphql-api'),
             self::MULTIPLE_QUERY_EXECUTION => \__('Multiple Query Execution', 'graphql-api'),
             self::REMOVE_IF_NULL_DIRECTIVE => \__('Remove if Null', 'graphql-api'),
+            self::PROACTIVE_FEEDBACK => \__('Proactive Feedback', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
     }
@@ -80,6 +84,8 @@ class PioneeringFunctionalityModuleResolver extends AbstractFunctionalityModuleR
                 return \__('Execute multiple GraphQL queries in a single operation', 'graphql-api');
             case self::REMOVE_IF_NULL_DIRECTIVE:
                 return \__('Addition of <code>@removeIfNull</code> directive, to remove an output from the response if it is <code>null</code>', 'graphql-api');
+            case self::PROACTIVE_FEEDBACK:
+                return \__('Usage of the top-level entry <code>extensions</code> to send deprecations, warnings, logs, notices and traces in the response to the query', 'graphql-api');
         }
         return parent::getDescription($module);
     }

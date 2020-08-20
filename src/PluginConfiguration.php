@@ -558,6 +558,10 @@ class PluginConfiguration
         $componentClassConfiguration[\GraphQLByPoP\GraphQLServer\Component::class] = [
             \GraphQLByPoP\GraphQLServer\Environment::ENABLE_REMOVE_IF_NULL_DIRECTIVE => $moduleRegistry->isModuleEnabled(PioneeringFunctionalityModuleResolver::REMOVE_IF_NULL_DIRECTIVE),
         ];
+        // Enable Proactive Feedback?
+        $componentClassConfiguration[\GraphQLByPoP\GraphQLServer\Component::class] = [
+            \GraphQLByPoP\GraphQLServer\Environment::ENABLE_PROACTIVE_FEEDBACK => $moduleRegistry->isModuleEnabled(PioneeringFunctionalityModuleResolver::PROACTIVE_FEEDBACK),
+        ];
     }
 
     /**
