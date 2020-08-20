@@ -62,3 +62,20 @@
     width:100%;
     height:100%;
 }
+
+/**
+ * Style code. Must select all <pre> because it is not given any class
+ * but it is aimed at <pre><code> only. Selector "pre:has(> code)" will
+ * eventually solve it
+ */
+pre {
+    background-color: #282c34;
+    color: #fff;
+    border-radius: 6px;
+    line-height: 1.4;
+    padding: 1.25rem 1.5rem;
+    margin: .85rem 0;
+    overflow: auto;
+    position: relative;
+    z-index: 1;
+}
