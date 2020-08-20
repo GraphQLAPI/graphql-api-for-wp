@@ -4,7 +4,7 @@ This module allows to have all types and interfaces in the schema be automatical
 
 Namespacing the schema avoids naming conflicts, which happens when different owners (eg: different teams in the company, or 3rd party plugins) use the same name for a type or interface.
 
-## Results
+## How it works
 
 While the schema normally looks like this:
 
