@@ -73,11 +73,11 @@ pre {
     color: #fff;
     border-radius: 6px;
     padding: 1.25rem 1.5rem;
+    overflow: auto;
     /* line-height: 1.4; */
     /* margin: .85rem 0; */
-    /* overflow: auto;
-    position: relative;
-    z-index: 1; */
+    /* position: relative; */
+    /* z-index: 1; */
 }
 pre > code {
     padding: 0;
