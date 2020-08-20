@@ -8,6 +8,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Added
 
+- Module "Remove if Null" to add directive `@removeIfNull`
 - Module "Multiple Query Execution" to enable/disable functionality
 - If module "Multiple Query Execution" is disabled:
     - Directive `@export` is also disabled
