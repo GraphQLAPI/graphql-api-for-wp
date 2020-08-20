@@ -443,12 +443,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/api-graphql.git",
-                "reference": "f40728af0101843f28f545d6a708160db5b79c44"
+                "reference": "ce2cfc6c44b9446a59117fa1d9157d8e80abbb50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/api-graphql/zipball/f40728af0101843f28f545d6a708160db5b79c44",
-                "reference": "f40728af0101843f28f545d6a708160db5b79c44",
+                "url": "https://api.github.com/repos/getpop/api-graphql/zipball/ce2cfc6c44b9446a59117fa1d9157d8e80abbb50",
+                "reference": "ce2cfc6c44b9446a59117fa1d9157d8e80abbb50",
                 "shasum": ""
             },
             "require": {
@@ -489,7 +489,7 @@
                 "api-graphql",
                 "pop"
             ],
-            "time": "2020-08-19T08:47:59+00:00"
+            "time": "2020-08-20T08:14:42+00:00"
         },
         {
             "name": "getpop/api-mirrorquery",
@@ -2023,12 +2023,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "36218645c18a6956b25837910eeb93985db9b89d"
+                "reference": "10a06dfbad86cabfe4a4af44506e271028288bad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/36218645c18a6956b25837910eeb93985db9b89d",
-                "reference": "36218645c18a6956b25837910eeb93985db9b89d",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/10a06dfbad86cabfe4a4af44506e271028288bad",
+                "reference": "10a06dfbad86cabfe4a4af44506e271028288bad",
                 "shasum": ""
             },
             "require": {
@@ -2073,7 +2073,7 @@
                 "pop",
                 "server"
             ],
-            "time": "2020-08-20T05:48:01+00:00"
+            "time": "2020-08-20T08:14:47+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
