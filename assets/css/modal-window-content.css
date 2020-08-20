@@ -72,10 +72,13 @@ pre {
     background-color: #282c34;
     color: #fff;
     border-radius: 6px;
-    line-height: 1.4;
     padding: 1.25rem 1.5rem;
-    margin: .85rem 0;
-    overflow: auto;
+    /* line-height: 1.4; */
+    /* margin: .85rem 0; */
+    /* overflow: auto;
     position: relative;
-    z-index: 1;
+    z-index: 1; */
+}
+pre > code {
+    padding: 0;
 }
