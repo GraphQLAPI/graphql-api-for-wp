@@ -35,3 +35,7 @@ If the schema configuration has value `"Default"`, it will use the mode defined 
 If plugins WooCommerce and Easy Digital Downloads both implemented a `Product` type for the GraphQL API, then we could not normally install both plugins at the same time. By enabling the Schema namespacing module, this conflict is avoided because their type names would be converted into `Automattic_WooCommerce_Product` and `SandhillsDevelopment_EasyDigitalDownloads_Product` respectively.
 
 Similarly, the Marketing and Tutorials teams from the same company can release their own type `Discount`, instead of `Marketing_Discount` and `Tutorial_Discount`.
+
+## GraphQL spec
+
+This feature has been requested in <a href="https://github.com/graphql/graphql-spec/issues/163" target="_blank">issue #163 - Namespaces</a>.
