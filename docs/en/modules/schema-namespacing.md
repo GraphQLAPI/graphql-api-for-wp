@@ -38,4 +38,4 @@ Similarly, the Marketing and Tutorials teams from the same company can release t
 
 ## GraphQL spec
 
-This feature has been requested in <a href="https://github.com/graphql/graphql-spec/issues/163" target="_blank">issue #163 - Namespaces</a>.
+This functionality is currently not part of the GraphQL spec, but it has been requested in <a href="https://github.com/graphql/graphql-spec/issues/163" target="_blank">issue #163 - Namespaces</a>.
