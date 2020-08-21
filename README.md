@@ -67,7 +67,7 @@ _(The documentation for the modules is currently being completed)_
 | [Low-Level Persisted Query Editing](docs/en/modules/low-level-persisted-query-editing.md) | Have access to schema-configuration low-level directives when editing GraphQL queries in the admin |
 | [Schema Editing Access](docs/en/modules/schema-editing-access.md) | Grant access to users other than admins to edit the GraphQL schema |
 | [Excerpt as Description](docs/en/modules/excerpt-as-description.md) | Provide a description of the different entities (Custom Endpoints, Persisted Queries, and others) through their excerpt |
-| **Configuration Cache**<!--[Configuration Cache](docs/en/modules/configuration-cache.md)--> | Cache the generated application configuration to disk |
+| [Configuration Cache](docs/en/modules/configuration-cache.md) | Cache the generated application configuration to disk |
 | **Schema Cache**<!--[Schema Cache](docs/en/modules/schema-cache.md)--> | Cache the generated schema to disk |
 
 ### Access Control
