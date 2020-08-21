@@ -1,6 +1,6 @@
-# Low-Level Query Editing
+# Low-Level Persisted Query Editing
 
-Have access to directives to apply to the schema, already in the persisted queries' editor.
+Have access to directives to apply to the schema, already in the persisted query's editor.
 
 ## Description
 
@@ -14,15 +14,21 @@ For instance, Cache Control works by applying directive `@cacheControl` on the s
 
 <a href="../../images/cache-control.gif" target="_blank">![Defining a cache control policy](../../images/cache-control.gif "Defining a cache control policy")</a>
 
-Similarly, Access Control works by applying directives `@disableAccess`, `@validateIsUserLoggedIn`, `@validateDoesLoggedInUserHaveAnyCapability`, and others.
+Similarly, these directives provide Access Control for fields (and similar directives provide Access Control for directives): 
+
+- `@disableAccess`
+- `@validateIsUserLoggedIn`
+- `@validateIsUserNotLoggedIn`
+- `@validateDoesLoggedInUserHaveAnyRole`.
+- `@validateDoesLoggedInUserHaveAnyCapability`
 
 ---
 
-This module "Low-Level Query Editing" makes all directives to be applied to the schema available in the GraphiQL editor when editing persisted queries, allowing to avoid the user interface and add the schema-type directives already in the persisted query.
+This module "Low-Level Persisted Query Editing" makes all directives to be applied to the schema available in the GraphiQL editor when editing persisted queries, allowing to avoid the user interface and add the schema-type directives already in the persisted query.
 
 <a href="../../images/schema-type-directives.gif" target="_blank">![Schema-type directives](../../images/schema-type-directives.gif "Schema-type directives")</a>
 
 For instance, defining Cache Control can be done directly in the persisted query, by setting directive `@cacheControl` with argument `maxAge` on the field:
 
-<a href="../../images/low-level-query-editing.png" target="_blank">![Schema-type directives available in the Persisted queries editor](../../images/low-level-query-editing.png "Schema-type directives available in the Persisted queries editor")</a>
+<a href="../../images/low-level-persisted-query-editing.png" target="_blank">![Schema-type directives available in the Persisted queries editor](../../images/low-level-persisted-query-editing.png "Schema-type directives available in the Persisted queries editor")</a>
 

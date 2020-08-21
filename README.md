@@ -64,7 +64,7 @@ _(The documentation for the modules is currently being completed)_
 | [Cache Control](docs/en/modules/cache-control.md) | Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query |
 | [Field Deprecation](docs/en/modules/field-deprecation.md) | Deprecate fields, and explain how to replace them, through a user interface |
 | [API Hierarchy](docs/en/modules/api-hierarchy.md) | Create a hierarchy of API endpoints extending from other endpoints, and inheriting their properties |
-| [Low-Level Query Editing](docs/en/modules/low-level-query-editing.md) | Have access to schema-configuration low-level directives when editing GraphQL queries in the admin |
+| [Low-Level Persisted Query Editing](docs/en/modules/low-level-persisted-query-editing.md) | Have access to schema-configuration low-level directives when editing GraphQL queries in the admin |
 | **Schema Editing Access**<!--[Schema Editing Access](docs/en/modules/schema-editing-access.md)--> | Grant access to users other than admins to edit the GraphQL schema |
 | **Excerpt as Description**<!--[Excerpt as Description](docs/en/modules/excerpt-as-description.md)--> | Provide a description of the different entities (Custom Endpoints, Persisted Queries, and others) through their excerpt |
 | **Configuration Cache**<!--[Configuration Cache](docs/en/modules/configuration-cache.md)--> | Cache the generated application configuration to disk |
