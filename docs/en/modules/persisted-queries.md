@@ -1,10 +1,8 @@
 # Persisted Queries
 
+Use GraphQL queries to create pre-defined enpoints as in REST, obtaining the benefits from both APIs.
+
 ## Description
-
-Persisted queries use GraphQL to provide pre-defined enpoints as in REST, obtaining the benefits of both APIs.
-
----
 
 With **REST**, you create multiple endpoints, each returning a pre-defined set of data.
 

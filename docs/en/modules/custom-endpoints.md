@@ -1,5 +1,7 @@
 # Custom Endpoints
 
+Create custom schemas, with custom access rules for different users, each available under its own endpoint.
+
 ## Description
 
 A GraphQL server normally exposes a single endpoint for retrieving and posting data.
