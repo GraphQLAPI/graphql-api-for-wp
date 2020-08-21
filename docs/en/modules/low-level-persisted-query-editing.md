@@ -24,7 +24,7 @@ Similarly, these directives provide Access Control for fields (and similar direc
 
 ---
 
-This module "Low-Level Persisted Query Editing" makes all directives to be applied to the schema available in the GraphiQL editor when editing persisted queries, allowing to avoid the user interface and add the schema-type directives already in the persisted query.
+This module `Low-Level Persisted Query Editing` makes all directives to be applied to the schema available in the GraphiQL editor when editing persisted queries, allowing to avoid the user interface and add the schema-type directives already in the persisted query.
 
 <a href="../../images/schema-type-directives.gif" target="_blank">![Schema-type directives](../../images/schema-type-directives.gif "Schema-type directives")</a>
 
