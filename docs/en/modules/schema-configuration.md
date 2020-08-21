@@ -1,12 +1,19 @@
 # Schema Configuration
 
-A schema configuration is used by Custom Endpoints and Persisted Queries to customize their behavior, including:
+A schema configuration is used by Custom Endpoints and Persisted Queries to customize their behavior.
 
-- Access Control
-- HTTP Caching
-- Field Deprecation
+## Description
 
-Other elements can also provided by extensions.
+The schema can be configured with the following elements (more items can also provided by extensions), and one or more entries can be selected for each:
+
+- Access Control Lists: to define who can access the schema
+- Cache Control Lists: to set-up HTTP caching
+- Field Deprecation Lists: to version the schema
+
+Modules can define their own configuration to be applied in the schema through the `Options` box, including:
+
+- Setting the schema as public or private
+- Namespacing the schema
 
 <a href="../../images/schema-configuration.png" target="_blank">![Creating a new schema configuration](../../images/schema-configuration.png "Creating a new schema configuration")</a>
 
