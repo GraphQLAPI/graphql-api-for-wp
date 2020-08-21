@@ -28,7 +28,12 @@ class EndpointHelpers
             && $_GET[RequestParams::ACTION] == RequestParams::ACTION_EXECUTE_QUERY;
     }
 
-    public static function getAdminGraphQLEndpoint(): string
+    /**
+     * GraphQL single endpoint to be used in wp-admin
+     *
+     * @param boolean $enableLowLevelQueryEditing Enable persisted queries to access schema-type directives
+     */
+    public static function getAdminGraphQLEndpoint(bool $enableLowLevelQueryEditing = false): string
     {
         $endpoint = \admin_url(sprintf(
             'edit.php?page=%s&%s=%s',
@@ -36,10 +41,12 @@ class EndpointHelpers
             RequestParams::ACTION,
             RequestParams::ACTION_EXECUTE_QUERY
         ));
-        // Add /?edit_schema=1 so the query-type directives are also visible
-        $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if ($moduleRegistry->isModuleEnabled(AddonFunctionalityModuleResolver::LOW_LEVEL_QUERY_EDITING)) {
-            $endpoint = \add_query_arg(GraphQLServerRequest::URLPARAM_EDIT_SCHEMA, true, $endpoint);
+        if ($enableLowLevelQueryEditing) {
+            // Add /?edit_schema=1 so the query-type directives are also visible
+            $moduleRegistry = ModuleRegistryFacade::getInstance();
+            if ($moduleRegistry->isModuleEnabled(AddonFunctionalityModuleResolver::LOW_LEVEL_QUERY_EDITING)) {
+                $endpoint = \add_query_arg(GraphQLServerRequest::URLPARAM_EDIT_SCHEMA, true, $endpoint);
+            }
         }
         // If namespaced, add /?use_namespace=1 to the endpoint
         if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {

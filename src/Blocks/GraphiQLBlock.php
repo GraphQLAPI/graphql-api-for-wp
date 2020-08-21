@@ -48,7 +48,7 @@ class GraphiQLBlock extends AbstractBlock
             parent::getLocalizedData(),
             [
                 'nonce' => \wp_create_nonce('wp_rest'),
-                'endpoint' => EndpointHelpers::getAdminGraphQLEndpoint(),
+                'endpoint' => EndpointHelpers::getAdminGraphQLEndpoint(true),
                 'defaultQuery' => $this->getDefaultQuery(),
             ]
         );
