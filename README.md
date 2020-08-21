@@ -106,7 +106,7 @@ These are functionalities proposed for, but not yet merged into, the [GraphQL sp
 
 | Module | Description |
 | --- | --- |
-| **Schema Custom Posts**<!--[Schema Custom Posts](docs/en/modules/schema-customposts.md)--> | Base functionality for all custom posts |
+| [Schema Custom Posts](docs/en/modules/schema-customposts.md) | Base functionality for all custom posts |
 | **Schema Generic Custom Posts**<!--[Schema Generic Custom Posts](docs/en/modules/schema-generic-customposts.md)--> | Query any custom post type (added to the schema or not), through a generic type <code>GenericCustomPost</code> |
 | Schema Posts | Query posts, through type <code>Post</code> added to the schema |
 | Schema Pages | Query pages, through type <code>Page</code> added to the schema |
