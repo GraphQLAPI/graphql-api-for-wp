@@ -28,6 +28,8 @@ This module `Low-Level Persisted Query Editing` makes all directives to be appli
 
 <a href="../../images/schema-type-directives.gif" target="_blank">![Schema-type directives](../../images/schema-type-directives.gif "Schema-type directives")</a>
 
+## How to use
+
 For instance, defining Cache Control can be done directly in the persisted query, by setting directive `@cacheControl` with argument `maxAge` on the field:
 
 <a href="../../images/low-level-persisted-query-editing.png" target="_blank">![Schema-type directives available in the Persisted queries editor](../../images/low-level-persisted-query-editing.png "Schema-type directives available in the Persisted queries editor")</a>
