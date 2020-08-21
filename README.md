@@ -68,7 +68,7 @@ _(The documentation for the modules is currently being completed)_
 | [Schema Editing Access](docs/en/modules/schema-editing-access.md) | Grant access to users other than admins to edit the GraphQL schema |
 | [Excerpt as Description](docs/en/modules/excerpt-as-description.md) | Provide a description of the different entities (Custom Endpoints, Persisted Queries, and others) through their excerpt |
 | [Configuration Cache](docs/en/modules/configuration-cache.md) | Cache the generated application configuration to disk |
-| **Schema Cache**<!--[Schema Cache](docs/en/modules/schema-cache.md)--> | Cache the generated schema to disk |
+| [Schema Cache](docs/en/modules/schema-cache.md) | Cache the generated schema to disk |
 
 ### Access Control
 
