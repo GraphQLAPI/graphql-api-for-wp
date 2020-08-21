@@ -28,6 +28,11 @@ class AddonFunctionalityModuleResolver extends AbstractFunctionalityModuleResolv
     {
         switch ($module) {
             case self::LOW_LEVEL_QUERY_EDITING:
+                return [
+                    [
+                        FunctionalityModuleResolver::PERSISTED_QUERIES,
+                    ],
+                ];
             case self::EXCERPT_AS_DESCRIPTION:
                 return [];
             case self::WELCOME_GUIDES:
