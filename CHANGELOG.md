@@ -8,6 +8,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Added
 
+- Documentation for all modules, accessible clicking on "View details" on each module
 - Module "Remove if Null" to add directive `@removeIfNull`
 - Module "Proactive Feedback" to send data about deprecations, warnings, logs, notices and traces in the response to the query
 - Module "Multiple Query Execution" to enable/disable functionality
