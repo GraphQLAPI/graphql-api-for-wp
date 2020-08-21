@@ -51,8 +51,6 @@ If any problem arises, either installing or running the plugin, please [create a
 
 GraphQL API is extensible, and ships with the following modules:
 
-_(The documentation for the modules is currently being completed)_
-
 ### Standard functionality
 
 | Module | Description |
