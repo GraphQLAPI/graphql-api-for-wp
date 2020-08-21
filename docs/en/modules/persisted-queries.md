@@ -65,6 +65,10 @@ Appending `?view=source` to the permalink, it will show the persisted query and 
 
 <a href="../../images/persisted-query-source.png" target="_blank">![Persisted query source](../../images/persisted-query-source.png)</a>
 
+By default, the persisted query's endpoint has path `/graphql-query/`, and this value is configurable through the Settings:
+
+<a href="../../images/settings-persisted-queries.png" target="_blank">![Persisted query Settings](../../images/settings-persisted-queries.png)</a>
+
 ## Editor Inputs
 
 These are the inputs in the body of the editor:

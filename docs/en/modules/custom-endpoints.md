@@ -50,6 +50,10 @@ Appending `?view=source` to the permalink, it will show the endpoint's configura
 
 <a href="../../images/custom-endpoint-source.png" target="_blank">![Custom endpoint source](../../images/custom-endpoint-source.png)</a>
 
+By default, the custom endpoint has path `/graphql/`, and this value is configurable through the Settings:
+
+<a href="../../images/settings-custom-endpoints.png" target="_blank">![Custom endpoint Settings](../../images/settings-custom-endpoints.png)</a>
+
 ## Editor Inputs
 
 These are the inputs in the body of the editor:
