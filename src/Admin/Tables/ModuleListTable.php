@@ -8,6 +8,7 @@ use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
+use GraphQLAPI\GraphQLAPI\Facades\ModuleTypeRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Admin\TableActions\ModuleListTableAction;
 
@@ -45,13 +46,16 @@ class ModuleListTable extends AbstractItemListTable
     {
         $items = [];
         $moduleRegistry = ModuleRegistryFacade::getInstance();
+        $moduleTypeRegistry = ModuleTypeRegistryFacade::getInstance();
         $modules = $moduleRegistry->getAllModules();
         foreach ($modules as $module) {
             $moduleResolver = $moduleRegistry->getModuleResolver($module);
+            $moduleType = $moduleResolver->getModuleType($module);
+            $moduleTypeResolver = $moduleTypeRegistry->getModuleTypeResolver($moduleType);
             $isEnabled = $moduleRegistry->isModuleEnabled($module);
             $items[] = [
                 'module' => $module,
-                'module-type' => $moduleResolver->getModuleType($module),
+                'module-type' => $moduleTypeResolver->getName($moduleType),
                 'id' => $moduleResolver->getID($module),
                 'is-enabled' => $isEnabled,
                 'can-be-disabled' => $moduleResolver->canBeDisabled($module),

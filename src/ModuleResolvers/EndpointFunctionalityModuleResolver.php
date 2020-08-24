@@ -8,6 +8,7 @@ use GraphQLAPI\GraphQLAPI\Plugin;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
+use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolver;
 use GraphQLByPoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
 
 class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
@@ -41,7 +42,7 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
      */
     public function getModuleType(string $module): string
     {
-        return 'endpoint';
+        return ModuleTypeResolver::ENDPOINT;
     }
 
     public function getDependedModuleLists(string $module): array

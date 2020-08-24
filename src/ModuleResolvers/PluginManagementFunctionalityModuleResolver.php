@@ -9,6 +9,7 @@ use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
+use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolver;
 
 class PluginManagementFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
@@ -33,7 +34,7 @@ class PluginManagementFunctionalityModuleResolver extends AbstractFunctionalityM
      */
     public function getModuleType(string $module): string
     {
-        return 'plugin-management';
+        return ModuleTypeResolver::PLUGIN_MANAGEMENT;
     }
 
     // public function canBeDisabled(string $module): bool

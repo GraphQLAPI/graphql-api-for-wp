@@ -9,6 +9,7 @@ use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolver;
 
 /**
  * The cache modules have different behavior depending on the environment:
@@ -44,7 +45,7 @@ class PerformanceFunctionalityModuleResolver extends AbstractCacheFunctionalityM
      */
     public function getModuleType(string $module): string
     {
-        return 'performance';
+        return ModuleTypeResolver::PERFORMANCE;
     }
 
     public function getDependedModuleLists(string $module): array

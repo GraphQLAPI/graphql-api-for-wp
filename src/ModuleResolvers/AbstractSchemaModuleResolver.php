@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
+use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolver;
+
 abstract class AbstractSchemaModuleResolver extends AbstractModuleResolver
 {
-    public const MODULE_TYPE_SCHEMA = 'schema-type';
-
     /**
      * The type of the module
      *
@@ -16,6 +16,6 @@ abstract class AbstractSchemaModuleResolver extends AbstractModuleResolver
      */
     public function getModuleType(string $module): string
     {
-        return self::MODULE_TYPE_SCHEMA;
+        return ModuleTypeResolver::SCHEMA_TYPE;
     }
 }

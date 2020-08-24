@@ -8,6 +8,7 @@ use GraphQLAPI\GraphQLAPI\Plugin;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
+use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolver;
 use GraphQLByPoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 
 /**
@@ -41,7 +42,7 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
      */
     public function getModuleType(string $module): string
     {
-        return 'client';
+        return ModuleTypeResolver::CLIENT;
     }
 
     public function getDependedModuleLists(string $module): array

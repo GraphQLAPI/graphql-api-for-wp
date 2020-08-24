@@ -6,6 +6,7 @@ namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
 use GraphQLAPI\GraphQLAPI\Plugin;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
+use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolver;
 
 class UserInterfaceFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
@@ -29,7 +30,7 @@ class UserInterfaceFunctionalityModuleResolver extends AbstractFunctionalityModu
      */
     public function getModuleType(string $module): string
     {
-        return 'user-interface';
+        return ModuleTypeResolver::USER_INTERFACE;
     }
 
     public function getDependedModuleLists(string $module): array

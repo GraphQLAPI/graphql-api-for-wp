@@ -7,6 +7,7 @@ namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 use GraphQLAPI\GraphQLAPI\Plugin;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolver;
 
 class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
@@ -36,7 +37,7 @@ class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModu
      */
     public function getModuleType(string $module): string
     {
-        return 'accesscontrol';
+        return ModuleTypeResolver::ACCESS_CONTROL;
     }
 
     public function getDependedModuleLists(string $module): array

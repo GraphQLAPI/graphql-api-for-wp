@@ -11,6 +11,7 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use PoP\AccessControl\Schema\SchemaModes;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolver;
 
 class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
@@ -47,7 +48,7 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
      */
     public function getModuleType(string $module): string
     {
-        return 'schema-configuration';
+        return ModuleTypeResolver::SCHEMA_CONFIGURATION;
     }
 
     public function getDependedModuleLists(string $module): array

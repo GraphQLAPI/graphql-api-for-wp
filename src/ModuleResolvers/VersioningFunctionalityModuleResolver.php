@@ -7,6 +7,7 @@ namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 use GraphQLAPI\GraphQLAPI\Plugin;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolver;
 
 class VersioningFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
@@ -26,7 +27,7 @@ class VersioningFunctionalityModuleResolver extends AbstractFunctionalityModuleR
      */
     public function getModuleType(string $module): string
     {
-        return 'versioning';
+        return ModuleTypeResolver::VERSIONING;
     }
 
     public function getDependedModuleLists(string $module): array

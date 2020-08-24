@@ -6,6 +6,7 @@ namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
 use GraphQLAPI\GraphQLAPI\Plugin;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
+use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolver;
 
 class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
@@ -29,7 +30,7 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
      */
     public function getModuleType(string $module): string
     {
-        return 'operational';
+        return ModuleTypeResolver::OPERATIONAL;
     }
 
     public function getDependedModuleLists(string $module): array
