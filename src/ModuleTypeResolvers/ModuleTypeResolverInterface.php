@@ -9,5 +9,4 @@ interface ModuleTypeResolverInterface
     public static function getModuleTypesToResolve(): array;
     public function getSlug(string $moduleType): string;
     public function getName(string $moduleType): string;
-    public function getDescription(string $moduleType): string;
 }
