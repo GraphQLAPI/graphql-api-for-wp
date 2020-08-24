@@ -11,6 +11,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Filter modules by type
 - Use different colors to distinguish modules by type
 - Documentation for all modules, accessible clicking on "View details" on each module
+- Documentation for modals inside blocks
 - Module "Remove if Null" to add directive `@removeIfNull`
 - Module "Proactive Feedback" to send data about deprecations, warnings, logs, notices and traces in the response to the query
 - Module "Multiple Query Execution" to enable/disable functionality
