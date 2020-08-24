@@ -7,7 +7,7 @@ namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 use GraphQLAPI\GraphQLAPI\Plugin;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 
-class AddonFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
+class UserInterfaceFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
     use ModuleResolverTrait;
 

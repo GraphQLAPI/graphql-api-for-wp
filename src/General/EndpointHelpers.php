@@ -8,7 +8,7 @@ use GraphQLAPI\GraphQLAPI\Admin\Menus\Menu;
 use PoP\API\Configuration\Request as APIRequest;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLByPoP\GraphQLServer\Configuration\Request as GraphQLServerRequest;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\AddonFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\UserInterfaceFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 
 class EndpointHelpers
@@ -44,7 +44,7 @@ class EndpointHelpers
         if ($enableLowLevelQueryEditing) {
             // Add /?edit_schema=1 so the query-type directives are also visible
             $moduleRegistry = ModuleRegistryFacade::getInstance();
-            if ($moduleRegistry->isModuleEnabled(AddonFunctionalityModuleResolver::LOW_LEVEL_PERSISTED_QUERY_EDITING)) {
+            if ($moduleRegistry->isModuleEnabled(UserInterfaceFunctionalityModuleResolver::LOW_LEVEL_PERSISTED_QUERY_EDITING)) {
                 $endpoint = \add_query_arg(GraphQLServerRequest::URLPARAM_EDIT_SCHEMA, true, $endpoint);
             }
         }

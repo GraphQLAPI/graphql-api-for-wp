@@ -29,7 +29,7 @@ use PoPSchema\Tags\ComponentConfiguration as TagsComponentConfiguration;
 use PoPSchema\Pages\ComponentConfiguration as PagesComponentConfiguration;
 use PoPSchema\Posts\ComponentConfiguration as PostsComponentConfiguration;
 use PoPSchema\Users\ComponentConfiguration as UsersComponentConfiguration;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\AddonFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\UserInterfaceFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PerformanceFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
@@ -545,7 +545,7 @@ class PluginConfiguration
             ];
         }
         // Expose the "self" field when doing Low Level Query Editing
-        if ($moduleRegistry->isModuleEnabled(AddonFunctionalityModuleResolver::LOW_LEVEL_PERSISTED_QUERY_EDITING)) {
+        if ($moduleRegistry->isModuleEnabled(UserInterfaceFunctionalityModuleResolver::LOW_LEVEL_PERSISTED_QUERY_EDITING)) {
             $componentClassConfiguration[\GraphQLByPoP\GraphQLServer\Component::class] = [
                 \GraphQLByPoP\GraphQLServer\Environment::ADD_SELF_FIELD_FOR_ROOT_TYPE_TO_SCHEMA => true,
             ];

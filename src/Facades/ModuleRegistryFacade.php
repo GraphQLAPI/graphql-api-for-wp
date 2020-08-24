@@ -10,7 +10,7 @@ use GraphQLAPI\GraphQLAPI\Registries\ModuleRegistry;
 use GraphQLAPI\GraphQLAPI\Registries\ModuleRegistryInterface;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\AddonFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\UserInterfaceFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PerformanceFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PioneeringFunctionalityModuleResolver;
@@ -35,7 +35,7 @@ class ModuleRegistryFacade
             // Add the ModuleResolvers
             self::$instance->addModuleResolver(new FunctionalityModuleResolver());
             self::$instance->addModuleResolver(new VersioningFunctionalityModuleResolver());
-            self::$instance->addModuleResolver(new AddonFunctionalityModuleResolver());
+            self::$instance->addModuleResolver(new UserInterfaceFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new PerformanceFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new AccessControlFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new PioneeringFunctionalityModuleResolver());
