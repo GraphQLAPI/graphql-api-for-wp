@@ -36,6 +36,14 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
         ];
     }
 
+    /**
+     * Enable to customize a specific UI for the module
+     */
+    public function getModuleType(string $module): string
+    {
+        return 'endpoint';
+    }
+
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {

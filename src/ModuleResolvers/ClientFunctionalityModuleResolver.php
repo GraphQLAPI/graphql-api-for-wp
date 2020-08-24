@@ -39,7 +39,7 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
     /**
      * Enable to customize a specific UI for the module
      */
-    public function getModuleSubtype(string $module): ?string
+    public function getModuleType(string $module): string
     {
         return 'client';
     }

@@ -24,6 +24,14 @@ class UserInterfaceFunctionalityModuleResolver extends AbstractFunctionalityModu
         ];
     }
 
+    /**
+     * Enable to customize a specific UI for the module
+     */
+    public function getModuleType(string $module): string
+    {
+        return 'user-interface';
+    }
+
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {

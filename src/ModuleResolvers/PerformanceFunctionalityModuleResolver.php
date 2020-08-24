@@ -39,6 +39,14 @@ class PerformanceFunctionalityModuleResolver extends AbstractCacheFunctionalityM
         ];
     }
 
+    /**
+     * Enable to customize a specific UI for the module
+     */
+    public function getModuleType(string $module): string
+    {
+        return 'performance';
+    }
+
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {

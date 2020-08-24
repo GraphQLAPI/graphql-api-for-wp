@@ -28,6 +28,14 @@ class PluginManagementFunctionalityModuleResolver extends AbstractFunctionalityM
         ];
     }
 
+    /**
+     * Enable to customize a specific UI for the module
+     */
+    public function getModuleType(string $module): string
+    {
+        return 'plugin-management';
+    }
+
     // public function canBeDisabled(string $module): bool
     // {
     //     switch ($module) {

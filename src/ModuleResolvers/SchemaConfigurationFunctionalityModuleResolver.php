@@ -42,6 +42,14 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
         ];
     }
 
+    /**
+     * Enable to customize a specific UI for the module
+     */
+    public function getModuleType(string $module): string
+    {
+        return 'schema-configuration';
+    }
+
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {

@@ -27,9 +27,9 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
     /**
      * Enable to customize a specific UI for the module
      */
-    public function getModuleSubtype(string $module): ?string
+    public function getModuleType(string $module): string
     {
-        return 'pioneering';
+        return 'operational';
     }
 
     public function getDependedModuleLists(string $module): array

@@ -6,7 +6,7 @@ namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
 abstract class AbstractSchemaModuleResolver extends AbstractModuleResolver
 {
-    public const MODULE_TYPE_SCHEMA = 'schema';
+    public const MODULE_TYPE_SCHEMA = 'schema-type';
 
     /**
      * The type of the module

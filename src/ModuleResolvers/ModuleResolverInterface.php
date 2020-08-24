@@ -45,10 +45,6 @@ interface ModuleResolverInterface
      */
     public function getModuleType(string $module): string;
     /**
-     * Enable to customize a specific UI for the module
-     */
-    public function getModuleSubtype(string $module): ?string;
-    /**
      * Array with the inputs to show as settings for the module:
      * - name
      * - type (string, bool, int)
