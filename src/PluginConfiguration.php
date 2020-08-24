@@ -29,17 +29,18 @@ use PoPSchema\Tags\ComponentConfiguration as TagsComponentConfiguration;
 use PoPSchema\Pages\ComponentConfiguration as PagesComponentConfiguration;
 use PoPSchema\Posts\ComponentConfiguration as PostsComponentConfiguration;
 use PoPSchema\Users\ComponentConfiguration as UsersComponentConfiguration;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\UserInterfaceFunctionalityModuleResolver;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\PerformanceFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use PoPSchema\GenericCustomPosts\Environment as GenericCustomPostsEnvironment;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PioneeringFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\PerformanceFunctionalityModuleResolver;
 use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\UserInterfaceFunctionalityModuleResolver;
 use GraphQLByPoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use GraphQLByPoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\PluginManagementFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use PoPSchema\CustomPosts\ComponentConfiguration as CustomPostsComponentConfiguration;
 use PoPSchema\GenericCustomPosts\ComponentConfiguration as GenericCustomPostsComponentConfiguration;
@@ -166,8 +167,8 @@ class PluginConfiguration
             [
                 'class' => ComponentConfiguration::class,
                 'envVariable' => Environment::EDITING_ACCESS_SCHEME,
-                'module' => FunctionalityModuleResolver::SCHEMA_EDITING_ACCESS,
-                'option' => FunctionalityModuleResolver::OPTION_EDITING_ACCESS_SCHEME,
+                'module' => PluginManagementFunctionalityModuleResolver::SCHEMA_EDITING_ACCESS,
+                'option' => PluginManagementFunctionalityModuleResolver::OPTION_EDITING_ACCESS_SCHEME,
             ],
             // GraphQL single endpoint slug
             [
