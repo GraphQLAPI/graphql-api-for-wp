@@ -10,9 +10,9 @@ use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigCacheControlListBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigAccessControlListBlock;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigFieldDeprecationListBlock;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\VersioningFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\PerformanceFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 
 class GraphQLSchemaConfigurationPostType extends AbstractPostType
@@ -86,7 +86,7 @@ class GraphQLSchemaConfigurationPostType extends AbstractPostType
         // Add blocks depending on being enabled by module
         $blockClassModules = [
             SchemaConfigAccessControlListBlock::class => AccessControlFunctionalityModuleResolver::ACCESS_CONTROL,
-            SchemaConfigCacheControlListBlock::class => FunctionalityModuleResolver::CACHE_CONTROL,
+            SchemaConfigCacheControlListBlock::class => PerformanceFunctionalityModuleResolver::CACHE_CONTROL,
             SchemaConfigFieldDeprecationListBlock::class => VersioningFunctionalityModuleResolver::FIELD_DEPRECATION,
         ];
         foreach ($blockClassModules as $blockClass => $module) {

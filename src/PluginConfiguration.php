@@ -281,8 +281,8 @@ class PluginConfiguration
             [
                 'class' => CacheControlComponentConfiguration::class,
                 'envVariable' => CacheControlEnvironment::DEFAULT_CACHE_CONTROL_MAX_AGE,
-                'module' => FunctionalityModuleResolver::CACHE_CONTROL,
-                'option' => FunctionalityModuleResolver::OPTION_MAX_AGE,
+                'module' => PerformanceFunctionalityModuleResolver::CACHE_CONTROL,
+                'option' => PerformanceFunctionalityModuleResolver::OPTION_MAX_AGE,
             ],
             // Custom Post default/max limits, Supported custom post types
             [
