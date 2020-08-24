@@ -16,7 +16,7 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolv
  *
  * @author Leonardo Losoviz <leo@getpop.org>
  */
-class CacheFunctionalityModuleResolver extends AbstractCacheFunctionalityModuleResolver
+class PerformanceFunctionalityModuleResolver extends AbstractCacheFunctionalityModuleResolver
 {
     use ModuleResolverTrait;
 

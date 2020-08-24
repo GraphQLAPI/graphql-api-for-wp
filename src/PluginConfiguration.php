@@ -30,7 +30,7 @@ use PoPSchema\Pages\ComponentConfiguration as PagesComponentConfiguration;
 use PoPSchema\Posts\ComponentConfiguration as PostsComponentConfiguration;
 use PoPSchema\Users\ComponentConfiguration as UsersComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AddonFunctionalityModuleResolver;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\CacheFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\PerformanceFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use PoPSchema\GenericCustomPosts\Environment as GenericCustomPostsEnvironment;
@@ -537,7 +537,7 @@ class PluginConfiguration
         ];
         // Cache the container
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if ($moduleRegistry->isModuleEnabled(CacheFunctionalityModuleResolver::CONFIGURATION_CACHE)) {
+        if ($moduleRegistry->isModuleEnabled(PerformanceFunctionalityModuleResolver::CONFIGURATION_CACHE)) {
             $cacheConfigurationManager = CacheConfigurationManagerFacade::getInstance();
             $componentClassConfiguration[\PoP\Root\Component::class] = [
                 \PoP\Root\Environment::CACHE_CONTAINER_CONFIGURATION => true,
@@ -604,13 +604,13 @@ class PluginConfiguration
             ],
             // Cache the component model configuration
             [
-                'module' => CacheFunctionalityModuleResolver::CONFIGURATION_CACHE,
+                'module' => PerformanceFunctionalityModuleResolver::CONFIGURATION_CACHE,
                 'class' => \PoP\ComponentModel\Component::class,
                 'envVariable' => \PoP\ComponentModel\Environment::USE_COMPONENT_MODEL_CACHE,
             ],
             // Cache the schema
             [
-                'module' => CacheFunctionalityModuleResolver::SCHEMA_CACHE,
+                'module' => PerformanceFunctionalityModuleResolver::SCHEMA_CACHE,
                 'class' => \PoP\API\Component::class,
                 'envVariable' => \PoP\API\Environment::USE_SCHEMA_DEFINITION_CACHE,
             ],
