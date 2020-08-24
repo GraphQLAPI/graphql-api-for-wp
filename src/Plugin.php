@@ -16,16 +16,17 @@ use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLPersistedQueryPostType;
 use GraphQLAPI\GraphQLAPI\Admin\TableActions\ModuleListTableAction;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLCacheControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLAccessControlListPostType;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\UserInterfaceFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\VersioningFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PerformanceFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\UserInterfaceFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserRolesBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserStateBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlDisableAccessBlock;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserCapabilitiesBlock;
 
 class Plugin
@@ -207,7 +208,7 @@ class Plugin
         $postTypeServiceClassModules = [
             GraphQLEndpointPostType::class => EndpointFunctionalityModuleResolver::CUSTOM_ENDPOINTS,
             GraphQLPersistedQueryPostType::class => EndpointFunctionalityModuleResolver::PERSISTED_QUERIES,
-            GraphQLSchemaConfigurationPostType::class => EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+            GraphQLSchemaConfigurationPostType::class => SchemaConfigurationFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
             GraphQLAccessControlListPostType::class => AccessControlFunctionalityModuleResolver::ACCESS_CONTROL,
             GraphQLCacheControlListPostType::class => PerformanceFunctionalityModuleResolver::CACHE_CONTROL,
             GraphQLFieldDeprecationListPostType::class => VersioningFunctionalityModuleResolver::FIELD_DEPRECATION,

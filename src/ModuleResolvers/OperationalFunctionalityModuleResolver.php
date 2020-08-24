@@ -7,6 +7,7 @@ namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 use GraphQLAPI\GraphQLAPI\Plugin;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
 
 class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
@@ -46,7 +47,7 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
             case self::SCHEMA_NAMESPACING:
                 return [
                     [
-                        EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+                        SchemaConfigurationFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
                     ],
                 ];
             case self::MULTIPLE_QUERY_EXECUTION:

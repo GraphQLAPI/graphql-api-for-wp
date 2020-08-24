@@ -14,16 +14,17 @@ use PoP\AccessControl\Environment as AccessControlEnvironment;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigAccessControlListBlock;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigFieldDeprecationListBlock;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\OperationalFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\VersioningFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\OperationalFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AccessControlGraphQLQueryConfigurator;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\FieldDeprecationGraphQLQueryConfigurator;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
 
 abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfiguratorInterface
 {
@@ -35,7 +36,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     {
         // Check if it enabled by module
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION)) {
+        if (!$moduleRegistry->isModuleEnabled(SchemaConfigurationFunctionalityModuleResolver::SCHEMA_CONFIGURATION)) {
             return;
         }
 
@@ -52,11 +53,11 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     {
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
         $schemaConfigurationID = $userSettingsManager->getSetting(
-            EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
-            EndpointFunctionalityModuleResolver::OPTION_SCHEMA_CONFIGURATION_ID
+            SchemaConfigurationFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+            SchemaConfigurationFunctionalityModuleResolver::OPTION_SCHEMA_CONFIGURATION_ID
         );
         // `null` is stored as OPTION_VALUE_NO_VALUE_ID
-        if ($schemaConfigurationID == EndpointFunctionalityModuleResolver::OPTION_VALUE_NO_VALUE_ID) {
+        if ($schemaConfigurationID == SchemaConfigurationFunctionalityModuleResolver::OPTION_VALUE_NO_VALUE_ID) {
             return null;
         }
         return $schemaConfigurationID;

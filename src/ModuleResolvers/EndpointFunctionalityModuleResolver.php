@@ -8,7 +8,6 @@ use GraphQLAPI\GraphQLAPI\Plugin;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
-use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use GraphQLByPoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
 
 class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
@@ -19,19 +18,12 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
     public const SINGLE_ENDPOINT = Plugin::NAMESPACE . '\single-endpoint';
     public const PERSISTED_QUERIES = Plugin::NAMESPACE . '\persisted-queries';
     public const CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\custom-endpoints';
-    public const SCHEMA_CONFIGURATION = Plugin::NAMESPACE . '\schema-configuration';
     public const API_HIERARCHY = Plugin::NAMESPACE . '\api-hierarchy';
 
     /**
      * Setting options
      */
     public const OPTION_PATH = 'path';
-    public const OPTION_SCHEMA_CONFIGURATION_ID = 'schema-configuration-id';
-
-    /**
-     * Setting option values
-     */
-    public const OPTION_VALUE_NO_VALUE_ID = 0;
 
     public static function getModulesToResolve(): array
     {
@@ -40,7 +32,6 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
             self::SINGLE_ENDPOINT,
             self::PERSISTED_QUERIES,
             self::CUSTOM_ENDPOINTS,
-            self::SCHEMA_CONFIGURATION,
             self::API_HIERARCHY,
         ];
     }
@@ -52,7 +43,6 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
             case self::SINGLE_ENDPOINT:
             case self::CUSTOM_ENDPOINTS:
                 return [];
-            case self::SCHEMA_CONFIGURATION:
             case self::API_HIERARCHY:
                 return [
                     [
@@ -89,7 +79,6 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
             self::SINGLE_ENDPOINT => \__('Single Endpoint', 'graphql-api'),
             self::PERSISTED_QUERIES => \__('Persisted Queries', 'graphql-api'),
             self::CUSTOM_ENDPOINTS => \__('Custom Endpoints', 'graphql-api'),
-            self::SCHEMA_CONFIGURATION => \__('Schema Configuration', 'graphql-api'),
             self::API_HIERARCHY => \__('API Hierarchy', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
@@ -109,8 +98,6 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
                 return \__('Expose predefined responses through a custom URL, akin to using GraphQL queries to publish REST endpoints', 'graphql-api');
             case self::CUSTOM_ENDPOINTS:
                 return \__('Expose different subsets of the schema for different targets, such as users (clients, employees, etc), applications (website, mobile app, etc), context (weekday, weekend, etc), and others', 'graphql-api');
-            case self::SCHEMA_CONFIGURATION:
-                return \__('Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema', 'graphql-api');
             case self::API_HIERARCHY:
                 return \__('Create a hierarchy of API endpoints extending from other endpoints, and inheriting their properties', 'graphql-api');
         }
@@ -144,9 +131,6 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
             ],
             self::PERSISTED_QUERIES => [
                 self::OPTION_PATH => 'graphql-query',
-            ],
-            self::SCHEMA_CONFIGURATION => [
-                self::OPTION_SCHEMA_CONFIGURATION_ID => self::OPTION_VALUE_NO_VALUE_ID,
             ],
         ];
         return $defaultValues[$module][$option];
@@ -198,50 +182,6 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
                 Properties::TITLE => \__('Base path', 'graphql-api'),
                 Properties::DESCRIPTION => \__('URL base path to expose the Persisted Query', 'graphql-api'),
                 Properties::TYPE => Properties::TYPE_STRING,
-            ];
-        } elseif ($module == self::SCHEMA_CONFIGURATION) {
-            $whereModules = [];
-            $maybeWhereModules = [
-                self::CUSTOM_ENDPOINTS,
-                self::PERSISTED_QUERIES,
-            ];
-            foreach ($maybeWhereModules as $maybeWhereModule) {
-                if ($moduleRegistry->isModuleEnabled($maybeWhereModule)) {
-                    $whereModules[] = '▹ ' . $this->getName($maybeWhereModule);
-                }
-            }
-            // Build all the possible values by fetching all the Schema Configuration posts
-            $possibleValues = [
-                self::OPTION_VALUE_NO_VALUE_ID => \__('None', 'graphql-api'),
-            ];
-            if ($customPosts = \get_posts([
-                    'posts_per_page' => -1,
-                    'post_type' => GraphQLSchemaConfigurationPostType::POST_TYPE,
-                    'post_status' => 'publish',
-                ])
-            ) {
-                foreach ($customPosts as $customPost) {
-                    $possibleValues[$customPost->ID] = $customPost->post_title;
-                }
-            }
-            $option = self::OPTION_SCHEMA_CONFIGURATION_ID;
-            $moduleSettings[] = [
-                Properties::INPUT => $option,
-                Properties::NAME => $this->getSettingOptionName(
-                    $module,
-                    $option
-                ),
-                Properties::TITLE => \__('Default Schema Configuration', 'graphql-api'),
-                Properties::DESCRIPTION => sprintf(
-                    \__('Schema Configuration to use when option <code>"Default"</code> is selected (in %s)', 'graphql-api'),
-                    implode(
-                        \__(', ', 'graphql-api'),
-                        $whereModules
-                    )
-                ),
-                Properties::TYPE => Properties::TYPE_INT,
-                // Fetch all Schema Configurations from the DB
-                Properties::POSSIBLE_VALUES => $possibleValues,
             ];
         }
         return $moduleSettings;

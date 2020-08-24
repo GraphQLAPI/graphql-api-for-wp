@@ -10,6 +10,7 @@ use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
 
 class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
@@ -56,7 +57,7 @@ class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModu
             case self::ACCESS_CONTROL:
                 return [
                     [
-                        EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+                        SchemaConfigurationFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
                     ],
                 ];
             case self::PUBLIC_PRIVATE_SCHEMA:
@@ -151,7 +152,7 @@ class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModu
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if ($module == self::PUBLIC_PRIVATE_SCHEMA) {
             $whereModules = [
-                EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+                SchemaConfigurationFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
                 self::ACCESS_CONTROL,
             ];
             $whereModuleNames = array_map(

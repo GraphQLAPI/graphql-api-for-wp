@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
 use GraphQLAPI\GraphQLAPI\Plugin;
+use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
-use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
 
 /**
  * The cache modules have different behavior depending on the environment:
@@ -45,7 +46,7 @@ class PerformanceFunctionalityModuleResolver extends AbstractCacheFunctionalityM
             case self::CACHE_CONTROL:
                 return [
                     [
-                        EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+                        SchemaConfigurationFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
                     ],
                     [
                         EndpointFunctionalityModuleResolver::PERSISTED_QUERIES,

@@ -6,6 +6,7 @@ namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
 use GraphQLAPI\GraphQLAPI\Plugin;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
 
 class VersioningFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
@@ -26,7 +27,7 @@ class VersioningFunctionalityModuleResolver extends AbstractFunctionalityModuleR
             case self::FIELD_DEPRECATION:
                 return [
                     [
-                        EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+                        SchemaConfigurationFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
                     ],
                 ];
         }
