@@ -15,11 +15,13 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
     use ModuleResolverTrait;
 
     public const SCHEMA_CONFIGURATION = Plugin::NAMESPACE . '\schema-configuration';
+    public const SCHEMA_NAMESPACING = Plugin::NAMESPACE . '\schema-namespacing';
 
     /**
      * Setting options
      */
     public const OPTION_SCHEMA_CONFIGURATION_ID = 'schema-configuration-id';
+    public const OPTION_USE_NAMESPACING = 'use-namespacing';
 
     /**
      * Setting option values
@@ -30,6 +32,7 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
     {
         return [
             self::SCHEMA_CONFIGURATION,
+            self::SCHEMA_NAMESPACING,
         ];
     }
 
@@ -43,6 +46,12 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
                         EndpointFunctionalityModuleResolver::CUSTOM_ENDPOINTS,
                     ],
                 ];
+            case self::SCHEMA_NAMESPACING:
+                return [
+                    [
+                        self::SCHEMA_CONFIGURATION,
+                    ],
+                ];
         }
         return parent::getDependedModuleLists($module);
     }
@@ -51,6 +60,7 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
     {
         $names = [
             self::SCHEMA_CONFIGURATION => \__('Schema Configuration', 'graphql-api'),
+            self::SCHEMA_NAMESPACING => \__('Schema Namespacing', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
     }
@@ -60,8 +70,19 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
         switch ($module) {
             case self::SCHEMA_CONFIGURATION:
                 return \__('Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema', 'graphql-api');
+            case self::SCHEMA_NAMESPACING:
+                return \__('Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions', 'graphql-api');
         }
         return parent::getDescription($module);
+    }
+
+    public function isEnabledByDefault(string $module): bool
+    {
+        switch ($module) {
+            case self::SCHEMA_NAMESPACING:
+                return false;
+        }
+        return parent::isEnabledByDefault($module);
     }
 
     /**
@@ -76,6 +97,9 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
         $defaultValues = [
             self::SCHEMA_CONFIGURATION => [
                 self::OPTION_SCHEMA_CONFIGURATION_ID => self::OPTION_VALUE_NO_VALUE_ID,
+            ],
+            self::SCHEMA_NAMESPACING => [
+                self::OPTION_USE_NAMESPACING => false,
             ],
         ];
         return $defaultValues[$module][$option];
@@ -135,6 +159,18 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
                 Properties::TYPE => Properties::TYPE_INT,
                 // Fetch all Schema Configurations from the DB
                 Properties::POSSIBLE_VALUES => $possibleValues,
+            ];
+        } elseif ($module == self::SCHEMA_NAMESPACING) {
+            $option = self::OPTION_USE_NAMESPACING;
+            $moduleSettings[] = [
+                Properties::INPUT => $option,
+                Properties::NAME => $this->getSettingOptionName(
+                    $module,
+                    $option
+                ),
+                Properties::TITLE => \__('Use namespacing?', 'graphql-api'),
+                Properties::DESCRIPTION => \__('Automatically namespace types and interfaces in the schema', 'graphql-api'),
+                Properties::TYPE => Properties::TYPE_BOOL,
             ];
         }
         return $moduleSettings;

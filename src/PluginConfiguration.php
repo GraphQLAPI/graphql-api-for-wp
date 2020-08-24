@@ -19,18 +19,18 @@ use GraphQLAPI\GraphQLAPI\Config\PluginConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use PoP\CacheControl\Environment as CacheControlEnvironment;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaTypeModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use PoPSchema\CustomPosts\Environment as CustomPostsEnvironment;
 use GraphQLAPI\GraphQLAPI\Facades\CacheConfigurationManagerFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaTypeModuleResolver;
 use PoPSchema\Tags\ComponentConfiguration as TagsComponentConfiguration;
 use PoPSchema\Pages\ComponentConfiguration as PagesComponentConfiguration;
 use PoPSchema\Posts\ComponentConfiguration as PostsComponentConfiguration;
 use PoPSchema\Users\ComponentConfiguration as UsersComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
 use PoPSchema\GenericCustomPosts\Environment as GenericCustomPostsEnvironment;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\OperationalFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PerformanceFunctionalityModuleResolver;
@@ -43,6 +43,7 @@ use GraphQLByPoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnviron
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PluginManagementFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use PoPSchema\CustomPosts\ComponentConfiguration as CustomPostsComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
 use PoPSchema\GenericCustomPosts\ComponentConfiguration as GenericCustomPostsComponentConfiguration;
 use GraphQLByPoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 use GraphQLByPoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
@@ -275,8 +276,8 @@ class PluginConfiguration
             [
                 'class' => ComponentModelComponentConfiguration::class,
                 'envVariable' => ComponentModelEnvironment::NAMESPACE_TYPES_AND_INTERFACES,
-                'module' => OperationalFunctionalityModuleResolver::SCHEMA_NAMESPACING,
-                'option' => OperationalFunctionalityModuleResolver::OPTION_USE_NAMESPACING,
+                'module' => SchemaConfigurationFunctionalityModuleResolver::SCHEMA_NAMESPACING,
+                'option' => SchemaConfigurationFunctionalityModuleResolver::OPTION_USE_NAMESPACING,
             ],
             // Cache-Control default max-age
             [
