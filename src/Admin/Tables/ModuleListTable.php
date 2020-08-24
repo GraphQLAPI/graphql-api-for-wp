@@ -100,10 +100,16 @@ class ModuleListTable extends AbstractItemListTable
         $views = [];
         $currentView = $this->getCurrentView();
 
+        // Module page URL
+        $url = admin_url(sprintf(
+            'admin.php?page=%s',
+            esc_attr($_REQUEST['page'])
+        ));
+
         // All entries
         $views['all'] = sprintf(
             '<a href="%s" class="%s">%s</a>',
-            \remove_query_arg(self::URL_PARAM_MODULE_TYPE),
+            $url,
             $currentView == '' ? 'current' : '',
             \__('All', 'graphql-api')
         );
@@ -123,7 +129,7 @@ class ModuleListTable extends AbstractItemListTable
             $moduleTypeSlug = $moduleTypeResolver->getSlug($moduleType);
             $views[$moduleTypeSlug] = sprintf(
                 '<a href="%s" class="%s">%s</a>',
-                \add_query_arg(self::URL_PARAM_MODULE_TYPE, $moduleTypeSlug),
+                \add_query_arg(self::URL_PARAM_MODULE_TYPE, $moduleTypeSlug, $url),
                 'module-type-view module-type-' . $moduleTypeSlug . ($currentView == $moduleTypeSlug ? ' current' : ''),
                 $moduleTypeResolver->getName($moduleType)
             );
