@@ -19,7 +19,7 @@ use GraphQLAPI\GraphQLAPI\Config\PluginConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use PoP\CacheControl\Environment as CacheControlEnvironment;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaTypeModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use PoPSchema\CustomPosts\Environment as CustomPostsEnvironment;
@@ -289,110 +289,110 @@ class PluginConfiguration
             [
                 'class' => GenericCustomPostsComponentConfiguration::class,
                 'envVariable' => GenericCustomPostsEnvironment::GENERIC_CUSTOMPOST_LIST_DEFAULT_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_GENERIC_CUSTOMPOSTS,
-                'optionModule' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
-                'option' => SchemaModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
+                'module' => SchemaTypeModuleResolver::SCHEMA_GENERIC_CUSTOMPOSTS,
+                'optionModule' => SchemaTypeModuleResolver::SCHEMA_CUSTOMPOSTS,
+                'option' => SchemaTypeModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
             ],
             // [
             //     'class' => GenericCustomPostsComponentConfiguration::class,
             //     'envVariable' => GenericCustomPostsEnvironment::GENERIC_CUSTOMPOST_LIST_MAX_LIMIT,
-            //     'module' => SchemaModuleResolver::SCHEMA_GENERIC_CUSTOMPOSTS,
-            //     'optionModule' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
-            //     'option' => SchemaModuleResolver::OPTION_LIST_MAX_LIMIT,
+            //     'module' => SchemaTypeModuleResolver::SCHEMA_GENERIC_CUSTOMPOSTS,
+            //     'optionModule' => SchemaTypeModuleResolver::SCHEMA_CUSTOMPOSTS,
+            //     'option' => SchemaTypeModuleResolver::OPTION_LIST_MAX_LIMIT,
             // ],
             [
                 'class' => GenericCustomPostsComponentConfiguration::class,
                 'envVariable' => GenericCustomPostsEnvironment::GENERIC_CUSTOMPOST_TYPES,
-                'module' => SchemaModuleResolver::SCHEMA_GENERIC_CUSTOMPOSTS,
-                'option' => SchemaModuleResolver::OPTION_CUSTOMPOST_TYPES,
+                'module' => SchemaTypeModuleResolver::SCHEMA_GENERIC_CUSTOMPOSTS,
+                'option' => SchemaTypeModuleResolver::OPTION_CUSTOMPOST_TYPES,
             ],
             // Post default/max limits, add to CustomPostUnion
             [
                 'class' => PostsComponentConfiguration::class,
                 'envVariable' => PostsEnvironment::POST_LIST_DEFAULT_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_POSTS,
-                'optionModule' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
-                'option' => SchemaModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
+                'module' => SchemaTypeModuleResolver::SCHEMA_POSTS,
+                'optionModule' => SchemaTypeModuleResolver::SCHEMA_CUSTOMPOSTS,
+                'option' => SchemaTypeModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
             ],
             [
                 'class' => PostsComponentConfiguration::class,
                 'envVariable' => PostsEnvironment::POST_LIST_MAX_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_POSTS,
-                'optionModule' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
-                'option' => SchemaModuleResolver::OPTION_LIST_MAX_LIMIT,
+                'module' => SchemaTypeModuleResolver::SCHEMA_POSTS,
+                'optionModule' => SchemaTypeModuleResolver::SCHEMA_CUSTOMPOSTS,
+                'option' => SchemaTypeModuleResolver::OPTION_LIST_MAX_LIMIT,
             ],
             [
                 'class' => PostsComponentConfiguration::class,
                 'envVariable' => PostsEnvironment::ADD_POST_TYPE_TO_CUSTOMPOST_UNION_TYPES,
-                'module' => SchemaModuleResolver::SCHEMA_POSTS,
-                'option' => SchemaModuleResolver::OPTION_ADD_TYPE_TO_CUSTOMPOST_UNION_TYPE,
+                'module' => SchemaTypeModuleResolver::SCHEMA_POSTS,
+                'option' => SchemaTypeModuleResolver::OPTION_ADD_TYPE_TO_CUSTOMPOST_UNION_TYPE,
             ],
             // User default/max limits
             [
                 'class' => UsersComponentConfiguration::class,
                 'envVariable' => UsersEnvironment::USER_LIST_DEFAULT_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_USERS,
-                'option' => SchemaModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
+                'module' => SchemaTypeModuleResolver::SCHEMA_USERS,
+                'option' => SchemaTypeModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
             ],
             [
                 'class' => UsersComponentConfiguration::class,
                 'envVariable' => UsersEnvironment::USER_LIST_MAX_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_USERS,
-                'option' => SchemaModuleResolver::OPTION_LIST_MAX_LIMIT,
+                'module' => SchemaTypeModuleResolver::SCHEMA_USERS,
+                'option' => SchemaTypeModuleResolver::OPTION_LIST_MAX_LIMIT,
             ],
             // Tag default/max limits
             [
                 'class' => TagsComponentConfiguration::class,
                 'envVariable' => TagsEnvironment::TAG_LIST_DEFAULT_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_TAGS,
-                'option' => SchemaModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
+                'module' => SchemaTypeModuleResolver::SCHEMA_TAGS,
+                'option' => SchemaTypeModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
             ],
             [
                 'class' => TagsComponentConfiguration::class,
                 'envVariable' => TagsEnvironment::TAG_LIST_MAX_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_TAGS,
-                'option' => SchemaModuleResolver::OPTION_LIST_MAX_LIMIT,
+                'module' => SchemaTypeModuleResolver::SCHEMA_TAGS,
+                'option' => SchemaTypeModuleResolver::OPTION_LIST_MAX_LIMIT,
             ],
             // Page default/max limits, add to CustomPostUnion
             [
                 'class' => PagesComponentConfiguration::class,
                 'envVariable' => PagesEnvironment::PAGE_LIST_DEFAULT_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_PAGES,
-                'optionModule' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
-                'option' => SchemaModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
+                'module' => SchemaTypeModuleResolver::SCHEMA_PAGES,
+                'optionModule' => SchemaTypeModuleResolver::SCHEMA_CUSTOMPOSTS,
+                'option' => SchemaTypeModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
             ],
             [
                 'class' => PagesComponentConfiguration::class,
                 'envVariable' => PagesEnvironment::PAGE_LIST_MAX_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_PAGES,
-                'optionModule' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
-                'option' => SchemaModuleResolver::OPTION_LIST_MAX_LIMIT,
+                'module' => SchemaTypeModuleResolver::SCHEMA_PAGES,
+                'optionModule' => SchemaTypeModuleResolver::SCHEMA_CUSTOMPOSTS,
+                'option' => SchemaTypeModuleResolver::OPTION_LIST_MAX_LIMIT,
             ],
             [
                 'class' => PagesComponentConfiguration::class,
                 'envVariable' => PagesEnvironment::ADD_PAGE_TYPE_TO_CUSTOMPOST_UNION_TYPES,
-                'module' => SchemaModuleResolver::SCHEMA_PAGES,
-                'option' => SchemaModuleResolver::OPTION_ADD_TYPE_TO_CUSTOMPOST_UNION_TYPE,
+                'module' => SchemaTypeModuleResolver::SCHEMA_PAGES,
+                'option' => SchemaTypeModuleResolver::OPTION_ADD_TYPE_TO_CUSTOMPOST_UNION_TYPE,
             ],
             // Custom post default/max limits
             [
                 'class' => CustomPostsComponentConfiguration::class,
                 'envVariable' => CustomPostsEnvironment::CUSTOMPOST_LIST_DEFAULT_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
-                'option' => SchemaModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
+                'module' => SchemaTypeModuleResolver::SCHEMA_CUSTOMPOSTS,
+                'option' => SchemaTypeModuleResolver::OPTION_LIST_DEFAULT_LIMIT,
             ],
             [
                 'class' => CustomPostsComponentConfiguration::class,
                 'envVariable' => CustomPostsEnvironment::CUSTOMPOST_LIST_MAX_LIMIT,
-                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
-                'option' => SchemaModuleResolver::OPTION_LIST_MAX_LIMIT,
+                'module' => SchemaTypeModuleResolver::SCHEMA_CUSTOMPOSTS,
+                'option' => SchemaTypeModuleResolver::OPTION_LIST_MAX_LIMIT,
             ],
             // Custom post, if there is only one custom type, use it instead of the Union
             [
                 'class' => CustomPostsComponentConfiguration::class,
                 'envVariable' => CustomPostsEnvironment::USE_SINGLE_TYPE_INSTEAD_OF_CUSTOMPOST_UNION_TYPE,
-                'module' => SchemaModuleResolver::SCHEMA_CUSTOMPOSTS,
-                'option' => SchemaModuleResolver::OPTION_USE_SINGLE_TYPE_INSTEAD_OF_UNION_TYPE,
+                'module' => SchemaTypeModuleResolver::SCHEMA_CUSTOMPOSTS,
+                'option' => SchemaTypeModuleResolver::OPTION_USE_SINGLE_TYPE_INSTEAD_OF_UNION_TYPE,
             ],
         ];
         // For each environment variable, see if its value has been saved in the settings
@@ -640,36 +640,36 @@ class PluginConfiguration
 
         // Component classes enabled/disabled by module
         $maybeSkipSchemaModuleComponentClasses = [
-            SchemaModuleResolver::SCHEMA_CUSTOMPOSTS => [
+            SchemaTypeModuleResolver::SCHEMA_CUSTOMPOSTS => [
                 \PoPSchema\CustomPostMedia\Component::class,
             ],
-            SchemaModuleResolver::SCHEMA_GENERIC_CUSTOMPOSTS => [
+            SchemaTypeModuleResolver::SCHEMA_GENERIC_CUSTOMPOSTS => [
                 \PoPSchema\GenericCustomPosts\Component::class,
             ],
-            SchemaModuleResolver::SCHEMA_POSTS => [
+            SchemaTypeModuleResolver::SCHEMA_POSTS => [
                 \PoPSchema\Posts\Component::class,
             ],
-            SchemaModuleResolver::SCHEMA_COMMENTS => [
+            SchemaTypeModuleResolver::SCHEMA_COMMENTS => [
                 \PoPSchema\Comments\Component::class,
             ],
-            SchemaModuleResolver::SCHEMA_USERS => [
+            SchemaTypeModuleResolver::SCHEMA_USERS => [
                 \PoPSchema\Users\Component::class,
                 \PoPSchema\UserState\Component::class,
             ],
-            SchemaModuleResolver::SCHEMA_USER_ROLES => [
+            SchemaTypeModuleResolver::SCHEMA_USER_ROLES => [
                 \PoPSchema\UserRoles\Component::class,
             ],
-            SchemaModuleResolver::SCHEMA_PAGES => [
+            SchemaTypeModuleResolver::SCHEMA_PAGES => [
                 \PoPSchema\Pages\Component::class,
             ],
-            SchemaModuleResolver::SCHEMA_MEDIA => [
+            SchemaTypeModuleResolver::SCHEMA_MEDIA => [
                 \PoPSchema\CustomPostMedia\Component::class,
                 \PoPSchema\Media\Component::class,
             ],
-            SchemaModuleResolver::SCHEMA_TAGS => [
+            SchemaTypeModuleResolver::SCHEMA_TAGS => [
                 \PoPSchema\Tags\Component::class,
             ],
-            SchemaModuleResolver::SCHEMA_POST_TAGS => [
+            SchemaTypeModuleResolver::SCHEMA_POST_TAGS => [
                 \PoPSchema\PostTags\Component::class,
             ],
         ];

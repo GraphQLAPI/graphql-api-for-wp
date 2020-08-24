@@ -25,7 +25,7 @@ use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use PoPSchema\GenericCustomPosts\TypeResolvers\GenericCustomPostTypeResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
 
-class SchemaModuleResolver extends AbstractSchemaModuleResolver
+class SchemaTypeModuleResolver extends AbstractSchemaModuleResolver
 {
     use ModuleResolverTrait {
         ModuleResolverTrait::hasDocumentation as upstreamHasDocumentation;
