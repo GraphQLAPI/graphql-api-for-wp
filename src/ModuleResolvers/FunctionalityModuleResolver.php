@@ -23,7 +23,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     public const CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\custom-endpoints';
     public const SCHEMA_CONFIGURATION = Plugin::NAMESPACE . '\schema-configuration';
     public const CACHE_CONTROL = Plugin::NAMESPACE . '\cache-control';
-    public const FIELD_DEPRECATION = Plugin::NAMESPACE . '\field-deprecation';
     public const API_HIERARCHY = Plugin::NAMESPACE . '\api-hierarchy';
 
     /**
@@ -48,7 +47,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             self::CUSTOM_ENDPOINTS,
             self::SCHEMA_CONFIGURATION,
             self::CACHE_CONTROL,
-            self::FIELD_DEPRECATION,
             self::API_HIERARCHY,
             self::SCHEMA_EDITING_ACCESS,
         ];
@@ -67,12 +65,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                     [
                         self::PERSISTED_QUERIES,
                         self::CUSTOM_ENDPOINTS,
-                    ],
-                ];
-            case self::FIELD_DEPRECATION:
-                return [
-                    [
-                        self::SCHEMA_CONFIGURATION,
                     ],
                 ];
             case self::CACHE_CONTROL:
@@ -117,7 +109,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
             self::CUSTOM_ENDPOINTS => \__('Custom Endpoints', 'graphql-api'),
             self::SCHEMA_CONFIGURATION => \__('Schema Configuration', 'graphql-api'),
             self::CACHE_CONTROL => \__('Cache Control', 'graphql-api'),
-            self::FIELD_DEPRECATION => \__('Field Deprecation', 'graphql-api'),
             self::API_HIERARCHY => \__('API Hierarchy', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
@@ -143,8 +134,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
                 return \__('Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema', 'graphql-api');
             case self::CACHE_CONTROL:
                 return \__('Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query', 'graphql-api');
-            case self::FIELD_DEPRECATION:
-                return \__('Deprecate fields, and explain how to replace them, through a user interface', 'graphql-api');
             case self::API_HIERARCHY:
                 return \__('Create a hierarchy of API endpoints extending from other endpoints, and inheriting their properties', 'graphql-api');
         }
@@ -155,7 +144,6 @@ class FunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
     {
         switch ($module) {
             case self::SINGLE_ENDPOINT:
-            case self::FIELD_DEPRECATION:
                 return false;
         }
         return parent::isEnabledByDefault($module);

@@ -12,6 +12,7 @@ use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigCacheControlListBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigAccessControlListBlock;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigFieldDeprecationListBlock;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\VersioningFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 
 class GraphQLSchemaConfigurationPostType extends AbstractPostType
@@ -86,7 +87,7 @@ class GraphQLSchemaConfigurationPostType extends AbstractPostType
         $blockClassModules = [
             SchemaConfigAccessControlListBlock::class => AccessControlFunctionalityModuleResolver::ACCESS_CONTROL,
             SchemaConfigCacheControlListBlock::class => FunctionalityModuleResolver::CACHE_CONTROL,
-            SchemaConfigFieldDeprecationListBlock::class => FunctionalityModuleResolver::FIELD_DEPRECATION,
+            SchemaConfigFieldDeprecationListBlock::class => VersioningFunctionalityModuleResolver::FIELD_DEPRECATION,
         ];
         foreach ($blockClassModules as $blockClass => $module) {
             if ($moduleRegistry->isModuleEnabled($module)) {

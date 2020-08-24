@@ -18,6 +18,7 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigFieldDeprecationListBlock;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PioneeringFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\VersioningFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AccessControlGraphQLQueryConfigurator;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
@@ -251,7 +252,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     {
         // Check it is enabled by module
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::FIELD_DEPRECATION)) {
+        if (!$moduleRegistry->isModuleEnabled(VersioningFunctionalityModuleResolver::FIELD_DEPRECATION)) {
             return;
         }
         $instanceManager = InstanceManagerFacade::getInstance();

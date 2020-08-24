@@ -12,8 +12,8 @@ use GraphQLAPI\GraphQLAPI\Blocks\AbstractControlBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\FieldDeprecationBlock;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AbstractGraphQLQueryConfigurator;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\VersioningFunctionalityModuleResolver;
 
 class FieldDeprecationGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigurator
 {
@@ -27,7 +27,7 @@ class FieldDeprecationGraphQLQueryConfigurator extends AbstractGraphQLQueryConfi
     {
         // Only if the module is not disabled
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::FIELD_DEPRECATION)) {
+        if (!$moduleRegistry->isModuleEnabled(VersioningFunctionalityModuleResolver::FIELD_DEPRECATION)) {
             return;
         }
 
