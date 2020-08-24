@@ -7,7 +7,7 @@ namespace GraphQLAPI\GraphQLAPI\Blocks;
 use GraphQLAPI\GraphQLAPI\General\CPTUtils;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\General\BlockRenderingHelpers;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
 use GraphQLAPI\GraphQLAPI\BlockCategories\QueryExecutionBlockCategory;
@@ -54,7 +54,7 @@ class SchemaConfigurationBlock extends AbstractBlock
         return array_merge(
             parent::getLocalizedData(),
             [
-                'isAPIHierarchyEnabled' => $moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::API_HIERARCHY),
+                'isAPIHierarchyEnabled' => $moduleRegistry->isModuleEnabled(EndpointFunctionalityModuleResolver::API_HIERARCHY),
             ]
         );
     }

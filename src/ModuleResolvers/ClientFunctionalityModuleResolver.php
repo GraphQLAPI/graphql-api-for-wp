@@ -51,20 +51,20 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
             case self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT:
                 return [
                     [
-                        FunctionalityModuleResolver::SINGLE_ENDPOINT,
+                        EndpointFunctionalityModuleResolver::SINGLE_ENDPOINT,
                     ],
                 ];
             case self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS:
             case self::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS:
                 return [
                     [
-                        FunctionalityModuleResolver::CUSTOM_ENDPOINTS,
+                        EndpointFunctionalityModuleResolver::CUSTOM_ENDPOINTS,
                     ],
                 ];
             case self::GRAPHIQL_EXPLORER:
                 return [
                     [
-                        FunctionalityModuleResolver::PERSISTED_QUERIES,
+                        EndpointFunctionalityModuleResolver::PERSISTED_QUERIES,
                     ],
                 ];
         }
@@ -130,10 +130,10 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
     {
         $defaultValues = [
             self::GRAPHIQL_FOR_SINGLE_ENDPOINT => [
-                FunctionalityModuleResolver::OPTION_PATH => '/graphiql/',
+                EndpointFunctionalityModuleResolver::OPTION_PATH => '/graphiql/',
             ],
             self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT => [
-                FunctionalityModuleResolver::OPTION_PATH => '/schema/',
+                EndpointFunctionalityModuleResolver::OPTION_PATH => '/schema/',
             ],
         ];
         return $defaultValues[$module][$option];
@@ -150,7 +150,7 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
         $moduleSettings = parent::getSettings($module);
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if ($module == self::GRAPHIQL_FOR_SINGLE_ENDPOINT) {
-            $option = FunctionalityModuleResolver::OPTION_PATH;
+            $option = EndpointFunctionalityModuleResolver::OPTION_PATH;
             $moduleSettings[] = [
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
@@ -162,7 +162,7 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
                 Properties::TYPE => Properties::TYPE_STRING,
             ];
         } elseif ($module == self::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT) {
-            $option = FunctionalityModuleResolver::OPTION_PATH;
+            $option = EndpointFunctionalityModuleResolver::OPTION_PATH;
             $moduleSettings[] = [
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(

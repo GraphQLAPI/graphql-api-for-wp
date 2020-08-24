@@ -9,7 +9,7 @@ use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\PostTypes\AbstractPostType;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigurationBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\EndpointResolvers\EndpointResolverTrait;
@@ -254,7 +254,7 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
     protected function maybeAddSchemaConfigurationBlock(array &$template): void
     {
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if ($moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::SCHEMA_CONFIGURATION)) {
+        if ($moduleRegistry->isModuleEnabled(EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION)) {
             $instanceManager = InstanceManagerFacade::getInstance();
             $schemaConfigurationBlock = $instanceManager->getInstance(SchemaConfigurationBlock::class);
             $template[] = [$schemaConfigurationBlock->getBlockFullName()];

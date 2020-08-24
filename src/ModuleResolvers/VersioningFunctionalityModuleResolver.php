@@ -26,7 +26,7 @@ class VersioningFunctionalityModuleResolver extends AbstractFunctionalityModuleR
             case self::FIELD_DEPRECATION:
                 return [
                     [
-                        FunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+                        EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
                     ],
                 ];
         }

@@ -24,7 +24,7 @@ use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use PoPSchema\CustomPosts\Environment as CustomPostsEnvironment;
 use GraphQLAPI\GraphQLAPI\Facades\CacheConfigurationManagerFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
 use PoPSchema\Tags\ComponentConfiguration as TagsComponentConfiguration;
 use PoPSchema\Pages\ComponentConfiguration as PagesComponentConfiguration;
 use PoPSchema\Posts\ComponentConfiguration as PostsComponentConfiguration;
@@ -174,13 +174,13 @@ class PluginConfiguration
             [
                 'class' => GraphQLEndpointForWPComponentConfiguration::class,
                 'envVariable' => GraphQLEndpointForWPEnvironment::GRAPHQL_API_ENDPOINT,
-                'module' => FunctionalityModuleResolver::SINGLE_ENDPOINT,
-                'option' => FunctionalityModuleResolver::OPTION_PATH,
+                'module' => EndpointFunctionalityModuleResolver::SINGLE_ENDPOINT,
+                'option' => EndpointFunctionalityModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
                     return self::getURLPathSettingValue(
                         $value,
-                        FunctionalityModuleResolver::SINGLE_ENDPOINT,
-                        FunctionalityModuleResolver::OPTION_PATH
+                        EndpointFunctionalityModuleResolver::SINGLE_ENDPOINT,
+                        EndpointFunctionalityModuleResolver::OPTION_PATH
                     );
                 },
                 'condition' => 'any',
@@ -189,13 +189,13 @@ class PluginConfiguration
             [
                 'class' => ComponentConfiguration::class,
                 'envVariable' => Environment::ENDPOINT_SLUG_BASE,
-                'module' => FunctionalityModuleResolver::CUSTOM_ENDPOINTS,
-                'option' => FunctionalityModuleResolver::OPTION_PATH,
+                'module' => EndpointFunctionalityModuleResolver::CUSTOM_ENDPOINTS,
+                'option' => EndpointFunctionalityModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
                     return self::getCPTPermalinkBasePathSettingValue(
                         $value,
-                        FunctionalityModuleResolver::CUSTOM_ENDPOINTS,
-                        FunctionalityModuleResolver::OPTION_PATH
+                        EndpointFunctionalityModuleResolver::CUSTOM_ENDPOINTS,
+                        EndpointFunctionalityModuleResolver::OPTION_PATH
                     );
                 },
                 'condition' => 'any',
@@ -204,13 +204,13 @@ class PluginConfiguration
             [
                 'class' => ComponentConfiguration::class,
                 'envVariable' => Environment::PERSISTED_QUERY_SLUG_BASE,
-                'module' => FunctionalityModuleResolver::PERSISTED_QUERIES,
-                'option' => FunctionalityModuleResolver::OPTION_PATH,
+                'module' => EndpointFunctionalityModuleResolver::PERSISTED_QUERIES,
+                'option' => EndpointFunctionalityModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
                     return self::getCPTPermalinkBasePathSettingValue(
                         $value,
-                        FunctionalityModuleResolver::PERSISTED_QUERIES,
-                        FunctionalityModuleResolver::OPTION_PATH
+                        EndpointFunctionalityModuleResolver::PERSISTED_QUERIES,
+                        EndpointFunctionalityModuleResolver::OPTION_PATH
                     );
                 },
                 'condition' => 'any',
@@ -220,12 +220,12 @@ class PluginConfiguration
                 'class' => GraphQLClientsForWPComponentConfiguration::class,
                 'envVariable' => GraphQLClientsForWPEnvironment::GRAPHIQL_CLIENT_ENDPOINT,
                 'module' => ClientFunctionalityModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
-                'option' => FunctionalityModuleResolver::OPTION_PATH,
+                'option' => EndpointFunctionalityModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
                     return self::getURLPathSettingValue(
                         $value,
                         ClientFunctionalityModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
-                        FunctionalityModuleResolver::OPTION_PATH
+                        EndpointFunctionalityModuleResolver::OPTION_PATH
                     );
                 },
                 'condition' => 'any',
@@ -235,12 +235,12 @@ class PluginConfiguration
                 'class' => GraphQLClientsForWPComponentConfiguration::class,
                 'envVariable' => GraphQLClientsForWPEnvironment::VOYAGER_CLIENT_ENDPOINT,
                 'module' => ClientFunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
-                'option' => FunctionalityModuleResolver::OPTION_PATH,
+                'option' => EndpointFunctionalityModuleResolver::OPTION_PATH,
                 'callback' => function ($value) {
                     return self::getURLPathSettingValue(
                         $value,
                         ClientFunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
-                        FunctionalityModuleResolver::OPTION_PATH
+                        EndpointFunctionalityModuleResolver::OPTION_PATH
                     );
                 },
                 'condition' => 'any',
@@ -586,7 +586,7 @@ class PluginConfiguration
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         $moduleToComponentClassConfigurationMappings = [
             [
-                'module' => FunctionalityModuleResolver::SINGLE_ENDPOINT,
+                'module' => EndpointFunctionalityModuleResolver::SINGLE_ENDPOINT,
                 'class' => \GraphQLByPoP\GraphQLEndpointForWP\Component::class,
                 'envVariable' => \GraphQLByPoP\GraphQLEndpointForWP\Environment::DISABLE_GRAPHQL_API_ENDPOINT,
                 'callback' => [self::class, 'opposite'],

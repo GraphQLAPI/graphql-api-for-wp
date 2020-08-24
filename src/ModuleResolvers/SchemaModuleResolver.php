@@ -19,7 +19,7 @@ use PoPSchema\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLPersistedQueryPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLCacheControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLAccessControlListPostType;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AbstractSchemaModuleResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use PoPSchema\GenericCustomPosts\TypeResolvers\GenericCustomPostTypeResolver;
@@ -80,9 +80,9 @@ class SchemaModuleResolver extends AbstractSchemaModuleResolver
             case self::SCHEMA_CUSTOMPOSTS:
                 return [
                     [
-                        FunctionalityModuleResolver::SINGLE_ENDPOINT,
-                        FunctionalityModuleResolver::PERSISTED_QUERIES,
-                        FunctionalityModuleResolver::CUSTOM_ENDPOINTS,
+                        EndpointFunctionalityModuleResolver::SINGLE_ENDPOINT,
+                        EndpointFunctionalityModuleResolver::PERSISTED_QUERIES,
+                        EndpointFunctionalityModuleResolver::CUSTOM_ENDPOINTS,
                     ],
                 ];
             case self::SCHEMA_USER_ROLES:

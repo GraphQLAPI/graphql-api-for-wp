@@ -46,15 +46,15 @@ class PioneeringFunctionalityModuleResolver extends AbstractFunctionalityModuleR
             case self::SCHEMA_NAMESPACING:
                 return [
                     [
-                        FunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+                        EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
                     ],
                 ];
             case self::MULTIPLE_QUERY_EXECUTION:
                 return [
                     [
-                        FunctionalityModuleResolver::PERSISTED_QUERIES,
-                        FunctionalityModuleResolver::SINGLE_ENDPOINT,
-                        FunctionalityModuleResolver::CUSTOM_ENDPOINTS,
+                        EndpointFunctionalityModuleResolver::PERSISTED_QUERIES,
+                        EndpointFunctionalityModuleResolver::SINGLE_ENDPOINT,
+                        EndpointFunctionalityModuleResolver::CUSTOM_ENDPOINTS,
                     ],
                 ];
             case self::REMOVE_IF_NULL_DIRECTIVE:

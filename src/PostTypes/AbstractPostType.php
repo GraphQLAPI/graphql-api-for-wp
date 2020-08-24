@@ -11,7 +11,7 @@ use PoP\ComponentModel\State\ApplicationState;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\UserInterfaceFunctionalityModuleResolver;
 
 abstract class AbstractPostType
@@ -296,7 +296,7 @@ abstract class AbstractPostType
     protected function isAPIHierarchyModuleEnabled(): bool
     {
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        return $moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::API_HIERARCHY);
+        return $moduleRegistry->isModuleEnabled(EndpointFunctionalityModuleResolver::API_HIERARCHY);
     }
 
     /**

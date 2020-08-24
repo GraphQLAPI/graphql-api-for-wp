@@ -45,10 +45,10 @@ class PerformanceFunctionalityModuleResolver extends AbstractCacheFunctionalityM
             case self::CACHE_CONTROL:
                 return [
                     [
-                        FunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+                        EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
                     ],
                     [
-                        FunctionalityModuleResolver::PERSISTED_QUERIES,
+                        EndpointFunctionalityModuleResolver::PERSISTED_QUERIES,
                     ],
                 ];
             case self::CONFIGURATION_CACHE:

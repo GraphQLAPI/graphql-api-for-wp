@@ -56,7 +56,7 @@ class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModu
             case self::ACCESS_CONTROL:
                 return [
                     [
-                        FunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+                        EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
                     ],
                 ];
             case self::PUBLIC_PRIVATE_SCHEMA:
@@ -151,7 +151,7 @@ class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModu
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if ($module == self::PUBLIC_PRIVATE_SCHEMA) {
             $whereModules = [
-                FunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+                EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
                 self::ACCESS_CONTROL,
             ];
             $whereModuleNames = array_map(

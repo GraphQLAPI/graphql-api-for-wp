@@ -30,7 +30,7 @@ class UserInterfaceFunctionalityModuleResolver extends AbstractFunctionalityModu
             case self::LOW_LEVEL_PERSISTED_QUERY_EDITING:
                 return [
                     [
-                        FunctionalityModuleResolver::PERSISTED_QUERIES,
+                        EndpointFunctionalityModuleResolver::PERSISTED_QUERIES,
                     ],
                 ];
             case self::EXCERPT_AS_DESCRIPTION:
@@ -38,8 +38,8 @@ class UserInterfaceFunctionalityModuleResolver extends AbstractFunctionalityModu
             case self::WELCOME_GUIDES:
                 return [
                     [
-                        FunctionalityModuleResolver::PERSISTED_QUERIES,
-                        FunctionalityModuleResolver::CUSTOM_ENDPOINTS,
+                        EndpointFunctionalityModuleResolver::PERSISTED_QUERIES,
+                        EndpointFunctionalityModuleResolver::CUSTOM_ENDPOINTS,
                     ],
                 ];
         }

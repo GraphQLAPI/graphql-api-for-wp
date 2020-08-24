@@ -9,7 +9,7 @@ namespace GraphQLAPI\GraphQLAPI\Facades;
 use GraphQLAPI\GraphQLAPI\Registries\ModuleRegistry;
 use GraphQLAPI\GraphQLAPI\Registries\ModuleRegistryInterface;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaModuleResolver;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PioneeringFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\VersioningFunctionalityModuleResolver;
@@ -34,7 +34,7 @@ class ModuleRegistryFacade
             // Instantiate
             self::$instance = new ModuleRegistry();
             // Add the ModuleResolvers
-            self::$instance->addModuleResolver(new FunctionalityModuleResolver());
+            self::$instance->addModuleResolver(new EndpointFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new VersioningFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new UserInterfaceFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new PerformanceFunctionalityModuleResolver());

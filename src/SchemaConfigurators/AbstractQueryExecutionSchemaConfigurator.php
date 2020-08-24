@@ -14,7 +14,7 @@ use PoP\AccessControl\Environment as AccessControlEnvironment;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigAccessControlListBlock;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigFieldDeprecationListBlock;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PioneeringFunctionalityModuleResolver;
@@ -35,7 +35,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     {
         // Check if it enabled by module
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::SCHEMA_CONFIGURATION)) {
+        if (!$moduleRegistry->isModuleEnabled(EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION)) {
             return;
         }
 
@@ -52,11 +52,11 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     {
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
         $schemaConfigurationID = $userSettingsManager->getSetting(
-            FunctionalityModuleResolver::SCHEMA_CONFIGURATION,
-            FunctionalityModuleResolver::OPTION_SCHEMA_CONFIGURATION_ID
+            EndpointFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+            EndpointFunctionalityModuleResolver::OPTION_SCHEMA_CONFIGURATION_ID
         );
         // `null` is stored as OPTION_VALUE_NO_VALUE_ID
-        if ($schemaConfigurationID == FunctionalityModuleResolver::OPTION_VALUE_NO_VALUE_ID) {
+        if ($schemaConfigurationID == EndpointFunctionalityModuleResolver::OPTION_VALUE_NO_VALUE_ID) {
             return null;
         }
         return $schemaConfigurationID;
@@ -88,7 +88,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         } elseif ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_INHERIT) {
             // If disabled by module, then return nothing
             $moduleRegistry = ModuleRegistryFacade::getInstance();
-            if (!$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::API_HIERARCHY)) {
+            if (!$moduleRegistry->isModuleEnabled(EndpointFunctionalityModuleResolver::API_HIERARCHY)) {
                 return null;
             }
             // Return the schema configuration from the parent, or null if no parent exists

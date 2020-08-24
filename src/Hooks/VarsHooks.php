@@ -6,7 +6,7 @@ namespace GraphQLAPI\GraphQLAPI\Hooks;
 
 use PoP\Engine\Hooks\AbstractHookSet;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\FunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
 use PoP\GraphQLAPI\DataStructureFormatters\GraphQLDataStructureFormatter;
 use PoP\API\Response\Schemes as APISchemes;
 
@@ -46,7 +46,7 @@ class VarsHooks extends AbstractHookSet
             ];
             if (
                 // If single endpoint not enabled
-                !$moduleRegistry->isModuleEnabled(FunctionalityModuleResolver::SINGLE_ENDPOINT)
+                !$moduleRegistry->isModuleEnabled(EndpointFunctionalityModuleResolver::SINGLE_ENDPOINT)
                 // If datastructure is not GraphQL (or another allowed one)
                 || !in_array($vars['datastructure'], $allowedDataStructures)
             ) {
