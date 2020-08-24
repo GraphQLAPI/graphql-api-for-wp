@@ -296,7 +296,9 @@ class ModuleListTable extends AbstractItemListTable
     {
         $nonce = \wp_create_nonce('graphql_api_enable_or_disable_module');
         $title = '<strong>' . $item['name'] . '</strong>';
-        $linkPlaceholder = '<a href="?page=%s&action=%s&item=%s&_wpnonce=%s">%s</a>';
+        $currentView = $this->getCurrentView();
+        $maybeCurrentViewParam = !empty($currentView) ? '&' . self::URL_PARAM_MODULE_TYPE . '=' . $currentView : '';
+        $linkPlaceholder = '<a href="?page=%s&action=%s&item=%s&_wpnonce=%s' . ($maybeCurrentViewParam) . '">%s</a>';
         $page = esc_attr($_REQUEST['page']);
         $actions = [];
         if ($item['is-enabled']) {
