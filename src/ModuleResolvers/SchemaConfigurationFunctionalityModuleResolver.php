@@ -9,6 +9,8 @@ use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
+use PoP\AccessControl\Schema\SchemaModes;
+use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 
 class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
@@ -16,12 +18,15 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
 
     public const SCHEMA_CONFIGURATION = Plugin::NAMESPACE . '\schema-configuration';
     public const SCHEMA_NAMESPACING = Plugin::NAMESPACE . '\schema-namespacing';
+    public const PUBLIC_PRIVATE_SCHEMA = Plugin::NAMESPACE . '\public-private-schema';
 
     /**
      * Setting options
      */
     public const OPTION_SCHEMA_CONFIGURATION_ID = 'schema-configuration-id';
     public const OPTION_USE_NAMESPACING = 'use-namespacing';
+    public const OPTION_MODE = 'mode';
+    public const OPTION_ENABLE_GRANULAR = 'granular';
 
     /**
      * Setting option values
@@ -33,6 +38,7 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
         return [
             self::SCHEMA_CONFIGURATION,
             self::SCHEMA_NAMESPACING,
+            self::PUBLIC_PRIVATE_SCHEMA,
         ];
     }
 
@@ -52,6 +58,12 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
                         self::SCHEMA_CONFIGURATION,
                     ],
                 ];
+            case self::PUBLIC_PRIVATE_SCHEMA:
+                return [
+                    [
+                        AccessControlFunctionalityModuleResolver::ACCESS_CONTROL,
+                    ],
+                ];
         }
         return parent::getDependedModuleLists($module);
     }
@@ -61,6 +73,7 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
         $names = [
             self::SCHEMA_CONFIGURATION => \__('Schema Configuration', 'graphql-api'),
             self::SCHEMA_NAMESPACING => \__('Schema Namespacing', 'graphql-api'),
+            self::PUBLIC_PRIVATE_SCHEMA => \__('Public/Private Schema', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
     }
@@ -72,6 +85,8 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
                 return \__('Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema', 'graphql-api');
             case self::SCHEMA_NAMESPACING:
                 return \__('Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions', 'graphql-api');
+            case self::PUBLIC_PRIVATE_SCHEMA:
+                return \__('Enable to communicate the existence of some field from the schema to certain users only (private mode) or to everyone (public mode). If disabled, fields are always available to everyone (public mode)', 'graphql-api');
         }
         return parent::getDescription($module);
     }
@@ -100,6 +115,10 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
             ],
             self::SCHEMA_NAMESPACING => [
                 self::OPTION_USE_NAMESPACING => false,
+            ],
+            self::PUBLIC_PRIVATE_SCHEMA => [
+                self::OPTION_MODE => SchemaModes::PUBLIC_SCHEMA_MODE,
+                self::OPTION_ENABLE_GRANULAR => true,
             ],
         ];
         return $defaultValues[$module][$option];
@@ -170,6 +189,50 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
                 ),
                 Properties::TITLE => \__('Use namespacing?', 'graphql-api'),
                 Properties::DESCRIPTION => \__('Automatically namespace types and interfaces in the schema', 'graphql-api'),
+                Properties::TYPE => Properties::TYPE_BOOL,
+            ];
+        } elseif ($module == self::PUBLIC_PRIVATE_SCHEMA) {
+            $whereModules = [
+                SchemaConfigurationFunctionalityModuleResolver::SCHEMA_CONFIGURATION,
+                AccessControlFunctionalityModuleResolver::ACCESS_CONTROL,
+            ];
+            $whereModuleNames = array_map(
+                function ($whereModule) use ($moduleRegistry) {
+                    return '▹ ' . $moduleRegistry->getModuleResolver($whereModule)->getName($whereModule);
+                },
+                $whereModules
+            );
+            $option = self::OPTION_MODE;
+            $moduleSettings[] = [
+                Properties::INPUT => $option,
+                Properties::NAME => $this->getSettingOptionName(
+                    $module,
+                    $option
+                ),
+                Properties::TITLE => \__('Default visibility', 'graphql-api'),
+                Properties::DESCRIPTION => sprintf(
+                    \__('Visibility to use for fields and directives in the schema when option <code>"%s"</code> is selected (in %s)', 'graphql-api'),
+                    ComponentConfiguration::getSettingsValueLabel(),
+                    implode(
+                        \__(', ', 'graphql-api'),
+                        $whereModuleNames
+                    )
+                ),
+                Properties::TYPE => Properties::TYPE_STRING,
+                Properties::POSSIBLE_VALUES => [
+                    SchemaModes::PUBLIC_SCHEMA_MODE => \__('Public', 'graphql-api'),
+                    SchemaModes::PRIVATE_SCHEMA_MODE => \__('Private', 'graphql-api'),
+                ],
+            ];
+            $option = self::OPTION_ENABLE_GRANULAR;
+            $moduleSettings[] = [
+                Properties::INPUT => $option,
+                Properties::NAME => $this->getSettingOptionName(
+                    $module,
+                    $option
+                ),
+                Properties::TITLE => \__('Enable granular control?', 'graphql-api'),
+                Properties::DESCRIPTION => \__('Enable to select the visibility for a set of fields/directives when editing the Access Control List', 'graphql-api'),
                 Properties::TYPE => Properties::TYPE_BOOL,
             ];
         }

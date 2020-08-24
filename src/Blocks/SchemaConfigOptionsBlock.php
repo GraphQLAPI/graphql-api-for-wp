@@ -11,7 +11,6 @@ use GraphQLAPI\GraphQLAPI\Blocks\GraphQLByPoPBlockTrait;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
 use GraphQLAPI\GraphQLAPI\BlockCategories\SchemaConfigurationBlockCategory;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
 
 /**
@@ -53,7 +52,7 @@ class SchemaConfigOptionsBlock extends AbstractOptionsBlock
         $blockContent = '';
 
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if ($moduleRegistry->isModuleEnabled(AccessControlFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA)) {
+        if ($moduleRegistry->isModuleEnabled(SchemaConfigurationFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA)) {
             $schemaModeLabels = [
                 SchemaModes::PUBLIC_SCHEMA_MODE => \__('Public', 'graphql-api'),
                 SchemaModes::PRIVATE_SCHEMA_MODE => \__('Private', 'graphql-api'),
@@ -111,7 +110,7 @@ EOT;
         return array_merge(
             parent::getLocalizedData(),
             [
-                'isPublicPrivateSchemaEnabled' => $moduleRegistry->isModuleEnabled(AccessControlFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA),
+                'isPublicPrivateSchemaEnabled' => $moduleRegistry->isModuleEnabled(SchemaConfigurationFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA),
                 'isSchemaNamespacingEnabled' => $moduleRegistry->isModuleEnabled(SchemaConfigurationFunctionalityModuleResolver::SCHEMA_NAMESPACING),
             ]
         );

@@ -37,10 +37,10 @@ class ModuleRegistryFacade
             // Add the ModuleResolvers
             self::$instance->addModuleResolver(new EndpointFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new SchemaConfigurationFunctionalityModuleResolver());
+            self::$instance->addModuleResolver(new AccessControlFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new VersioningFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new UserInterfaceFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new PerformanceFunctionalityModuleResolver());
-            self::$instance->addModuleResolver(new AccessControlFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new OperationalFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new PluginManagementFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new ClientFunctionalityModuleResolver());

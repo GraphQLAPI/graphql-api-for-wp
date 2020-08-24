@@ -35,7 +35,6 @@ use PoPSchema\GenericCustomPosts\Environment as GenericCustomPostsEnvironment;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\OperationalFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PerformanceFunctionalityModuleResolver;
 use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\UserInterfaceFunctionalityModuleResolver;
 use GraphQLByPoP\GraphQLClientsForWP\Environment as GraphQLClientsForWPEnvironment;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
@@ -250,8 +249,8 @@ class PluginConfiguration
             [
                 'class' => AccessControlComponentConfiguration::class,
                 'envVariable' => AccessControlEnvironment::USE_PRIVATE_SCHEMA_MODE,
-                'module' => AccessControlFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA,
-                'option' => AccessControlFunctionalityModuleResolver::OPTION_MODE,
+                'module' => SchemaConfigurationFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA,
+                'option' => SchemaConfigurationFunctionalityModuleResolver::OPTION_MODE,
                 'callback' => function ($value) {
                     // It is stored as string "private" in DB, and must be passed as bool `true` to component
                     return $value == SchemaModes::PRIVATE_SCHEMA_MODE;
@@ -261,13 +260,13 @@ class PluginConfiguration
             [
                 'class' => AccessControlComponentConfiguration::class,
                 'envVariable' => AccessControlEnvironment::ENABLE_INDIVIDUAL_CONTROL_FOR_PUBLIC_PRIVATE_SCHEMA_MODE,
-                'module' => AccessControlFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA,
-                'option' => AccessControlFunctionalityModuleResolver::OPTION_ENABLE_GRANULAR,
+                'module' => SchemaConfigurationFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA,
+                'option' => SchemaConfigurationFunctionalityModuleResolver::OPTION_ENABLE_GRANULAR,
                 'callback' => function ($value) use ($moduleRegistry) {
                     // Also make sure that the module is enabled.
                     // Otherwise set the value in `false`, to override a potential `true` in the Settings
                     return
-                        $moduleRegistry->isModuleEnabled(AccessControlFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA)
+                        $moduleRegistry->isModuleEnabled(SchemaConfigurationFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA)
                         && $value;
                 },
                 'condition' => 'any',
