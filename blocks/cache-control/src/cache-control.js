@@ -18,14 +18,16 @@ const CacheControl = ( props ) => {
 		<div className={ componentClassName }>
 			<Card>
 				<CardHeader isShady>
-					{ title }
-					{ isSelected && (
-						<MarkdownInfoModalButton
-							title={ title }
-							pageFilename="max-age"
-							getMarkdownContentCallback={ getMarkdownContentOrUseDefault }
-						/>
-					) }
+					<span>
+						{ title }
+						{ isSelected && (
+							<MarkdownInfoModalButton
+								title={ title }
+								pageFilename="max-age"
+								getMarkdownContentCallback={ getMarkdownContentOrUseDefault }
+							/>
+						) }
+					</span>
 				</CardHeader>
 				<CardBody>
 					{ isSelected && (

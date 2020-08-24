@@ -43,7 +43,7 @@ When selected, in the Options of the persisted query we can choose to inherit th
 
 Different strategies can be applied to create the API hierarchy.
 
-For persisted queries, we can define the GraphQl query only on the parent (in this case, called `posts`), and then each child persisted query (in this case, `mobile-app` and `website`) will obtain the query from the parent, and define only the schema configuration:
+For persisted queries, we can define the GraphQL query only on the parent (in this case, called `posts`), and then each child persisted query (in this case, `mobile-app` and `website`) will obtain the query from the parent, and define only the schema configuration:
 
 - `/graphql-query/posts/mobile-app/`
 - `/graphql-query/posts/website/`
