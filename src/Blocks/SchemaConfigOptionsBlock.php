@@ -11,7 +11,7 @@ use GraphQLAPI\GraphQLAPI\Blocks\GraphQLByPoPBlockTrait;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
 use GraphQLAPI\GraphQLAPI\BlockCategories\SchemaConfigurationBlockCategory;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\PioneeringFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\OperationalFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 
 /**
@@ -65,7 +65,7 @@ class SchemaConfigOptionsBlock extends AbstractOptionsBlock
             );
         }
 
-        if ($moduleRegistry->isModuleEnabled(PioneeringFunctionalityModuleResolver::SCHEMA_NAMESPACING)) {
+        if ($moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::SCHEMA_NAMESPACING)) {
             $useNamespacingLabels = [
                 self::ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED => \__('✅ Yes', 'graphql-api'),
                 self::ATTRIBUTE_VALUE_USE_NAMESPACING_DISABLED => \__('❌ No', 'graphql-api'),
@@ -112,7 +112,7 @@ EOT;
             parent::getLocalizedData(),
             [
                 'isPublicPrivateSchemaEnabled' => $moduleRegistry->isModuleEnabled(AccessControlFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA),
-                'isSchemaNamespacingEnabled' => $moduleRegistry->isModuleEnabled(PioneeringFunctionalityModuleResolver::SCHEMA_NAMESPACING),
+                'isSchemaNamespacingEnabled' => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::SCHEMA_NAMESPACING),
             ]
         );
     }

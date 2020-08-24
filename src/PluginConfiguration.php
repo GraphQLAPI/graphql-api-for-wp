@@ -32,7 +32,7 @@ use PoPSchema\Users\ComponentConfiguration as UsersComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use PoPSchema\GenericCustomPosts\Environment as GenericCustomPostsEnvironment;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\PioneeringFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\OperationalFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PerformanceFunctionalityModuleResolver;
 use PoP\CacheControl\ComponentConfiguration as CacheControlComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
@@ -275,8 +275,8 @@ class PluginConfiguration
             [
                 'class' => ComponentModelComponentConfiguration::class,
                 'envVariable' => ComponentModelEnvironment::NAMESPACE_TYPES_AND_INTERFACES,
-                'module' => PioneeringFunctionalityModuleResolver::SCHEMA_NAMESPACING,
-                'option' => PioneeringFunctionalityModuleResolver::OPTION_USE_NAMESPACING,
+                'module' => OperationalFunctionalityModuleResolver::SCHEMA_NAMESPACING,
+                'option' => OperationalFunctionalityModuleResolver::OPTION_USE_NAMESPACING,
             ],
             // Cache-Control default max-age
             [
@@ -553,15 +553,15 @@ class PluginConfiguration
         }
         // Enable Multiple Query Execution?
         $componentClassConfiguration[\GraphQLByPoP\GraphQLRequest\Component::class] = [
-            \GraphQLByPoP\GraphQLRequest\Environment::ENABLE_MULTIPLE_QUERY_EXECUTION => $moduleRegistry->isModuleEnabled(PioneeringFunctionalityModuleResolver::MULTIPLE_QUERY_EXECUTION),
+            \GraphQLByPoP\GraphQLRequest\Environment::ENABLE_MULTIPLE_QUERY_EXECUTION => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::MULTIPLE_QUERY_EXECUTION),
         ];
         // Enable @removeIfNull?
         $componentClassConfiguration[\GraphQLByPoP\GraphQLServer\Component::class] = [
-            \GraphQLByPoP\GraphQLServer\Environment::ENABLE_REMOVE_IF_NULL_DIRECTIVE => $moduleRegistry->isModuleEnabled(PioneeringFunctionalityModuleResolver::REMOVE_IF_NULL_DIRECTIVE),
+            \GraphQLByPoP\GraphQLServer\Environment::ENABLE_REMOVE_IF_NULL_DIRECTIVE => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::REMOVE_IF_NULL_DIRECTIVE),
         ];
         // Enable Proactive Feedback?
         $componentClassConfiguration[\GraphQLByPoP\GraphQLServer\Component::class] = [
-            \GraphQLByPoP\GraphQLServer\Environment::ENABLE_PROACTIVE_FEEDBACK => $moduleRegistry->isModuleEnabled(PioneeringFunctionalityModuleResolver::PROACTIVE_FEEDBACK),
+            \GraphQLByPoP\GraphQLServer\Environment::ENABLE_PROACTIVE_FEEDBACK => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::PROACTIVE_FEEDBACK),
         ];
     }
 

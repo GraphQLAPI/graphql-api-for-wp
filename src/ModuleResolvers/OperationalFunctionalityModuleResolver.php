@@ -8,7 +8,7 @@ use GraphQLAPI\GraphQLAPI\Plugin;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 
-class PioneeringFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
+class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
     use ModuleResolverTrait;
 
