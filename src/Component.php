@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI;
 
-use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use PoP\Root\Component\AbstractComponent;
 use PoP\Root\Component\YAMLServicesTrait;
-use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Config\ServiceConfiguration;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use PoP\ComponentModel\Facades\Engine\DataloadingEngineFacade;
+use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use PoP\CacheControl\DirectiveResolvers\CacheControlDirectiveResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\CacheFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
-use GraphQLAPI\GraphQLAPI\SchemaConfiguratorExecuters\EndpointSchemaConfiguratorExecuter;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PerformanceFunctionalityModuleResolver;
+use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\SchemaConfiguratorExecuters\EndpointSchemaConfiguratorExecuter;
 use GraphQLAPI\GraphQLAPI\SchemaConfiguratorExecuters\PersistedQuerySchemaConfiguratorExecuter;
 
 /**
@@ -68,7 +69,7 @@ class Component extends AbstractComponent
         }
         // Register the Cache services, if the module is not disabled
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if ($moduleRegistry->isModuleEnabled(PerformanceFunctionalityModuleResolver::CONFIGURATION_CACHE)) {
+        if ($moduleRegistry->isModuleEnabled(CacheFunctionalityModuleResolver::CONFIGURATION_CACHE)) {
             self::initYAMLServices(dirname(__DIR__), '', 'cache-services.yaml');
         }
         self::initComponentConfiguration();

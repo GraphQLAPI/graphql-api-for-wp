@@ -28,6 +28,7 @@ use PoPSchema\Tags\ComponentConfiguration as TagsComponentConfiguration;
 use PoPSchema\Pages\ComponentConfiguration as PagesComponentConfiguration;
 use PoPSchema\Posts\ComponentConfiguration as PostsComponentConfiguration;
 use PoPSchema\Users\ComponentConfiguration as UsersComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\CacheFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
@@ -538,7 +539,7 @@ class PluginConfiguration
         ];
         // Cache the container
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if ($moduleRegistry->isModuleEnabled(PerformanceFunctionalityModuleResolver::CONFIGURATION_CACHE)) {
+        if ($moduleRegistry->isModuleEnabled(CacheFunctionalityModuleResolver::CONFIGURATION_CACHE)) {
             $cacheConfigurationManager = CacheConfigurationManagerFacade::getInstance();
             $componentClassConfiguration[\PoP\Root\Component::class] = [
                 \PoP\Root\Environment::CACHE_CONTAINER_CONFIGURATION => true,
@@ -605,13 +606,13 @@ class PluginConfiguration
             ],
             // Cache the component model configuration
             [
-                'module' => PerformanceFunctionalityModuleResolver::CONFIGURATION_CACHE,
+                'module' => CacheFunctionalityModuleResolver::CONFIGURATION_CACHE,
                 'class' => \PoP\ComponentModel\Component::class,
                 'envVariable' => \PoP\ComponentModel\Environment::USE_COMPONENT_MODEL_CACHE,
             ],
             // Cache the schema
             [
-                'module' => PerformanceFunctionalityModuleResolver::SCHEMA_CACHE,
+                'module' => CacheFunctionalityModuleResolver::SCHEMA_CACHE,
                 'class' => \PoP\API\Component::class,
                 'envVariable' => \PoP\API\Environment::USE_SCHEMA_DEFINITION_CACHE,
             ],

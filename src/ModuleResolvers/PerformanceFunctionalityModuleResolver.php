@@ -6,7 +6,6 @@ namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
 use GraphQLAPI\GraphQLAPI\Plugin;
 use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
-use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolver;
@@ -18,13 +17,11 @@ use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolver;
  *
  * @author Leonardo Losoviz <leo@getpop.org>
  */
-class PerformanceFunctionalityModuleResolver extends AbstractCacheFunctionalityModuleResolver
+class PerformanceFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
     use ModuleResolverTrait;
 
     public const CACHE_CONTROL = Plugin::NAMESPACE . '\cache-control';
-    public const CONFIGURATION_CACHE = Plugin::NAMESPACE . '\configuration-cache';
-    public const SCHEMA_CACHE = Plugin::NAMESPACE . '\schema-cache';
 
     /**
      * Setting options
@@ -35,8 +32,6 @@ class PerformanceFunctionalityModuleResolver extends AbstractCacheFunctionalityM
     {
         return [
             self::CACHE_CONTROL,
-            self::CONFIGURATION_CACHE,
-            self::SCHEMA_CACHE,
         ];
     }
 
@@ -60,18 +55,6 @@ class PerformanceFunctionalityModuleResolver extends AbstractCacheFunctionalityM
                         EndpointFunctionalityModuleResolver::PERSISTED_QUERIES,
                     ],
                 ];
-            case self::CONFIGURATION_CACHE:
-                return [];
-            case self::SCHEMA_CACHE:
-                $moduleRegistry = ModuleRegistryFacade::getInstance();
-                return [
-                    [
-                        self::CONFIGURATION_CACHE,
-                    ],
-                    [
-                        $moduleRegistry->getInverseDependency(SchemaConfigurationFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA),
-                    ],
-                ];
         }
         return parent::getDependedModuleLists($module);
     }
@@ -80,8 +63,6 @@ class PerformanceFunctionalityModuleResolver extends AbstractCacheFunctionalityM
     {
         $names = [
             self::CACHE_CONTROL => \__('Cache Control', 'graphql-api'),
-            self::CONFIGURATION_CACHE => \__('Configuration Cache', 'graphql-api'),
-            self::SCHEMA_CACHE => \__('Schema Cache', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
     }
@@ -91,10 +72,6 @@ class PerformanceFunctionalityModuleResolver extends AbstractCacheFunctionalityM
         switch ($module) {
             case self::CACHE_CONTROL:
                 return \__('Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query', 'graphql-api');
-            case self::CONFIGURATION_CACHE:
-                return \__('Cache the generated application configuration to disk', 'graphql-api');
-            case self::SCHEMA_CACHE:
-                return \__('Cache the generated schema to disk', 'graphql-api');
         }
         return parent::getDescription($module);
     }
