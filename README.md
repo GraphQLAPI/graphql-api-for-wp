@@ -49,24 +49,24 @@ If any problem arises, either installing or running the plugin, please [create a
 
 ## Modules
 
-GraphQL API is extensible, and ships with the following modules:
+GraphQL API is extensible, and ships with the following modules (organized by category):
 
-### Standard functionality
+### Endpoint
 
 | Module | Description |
 | --- | --- |
 | [Single Endpoint](docs/en/modules/single-endpoint.md) | Expose a single GraphQL endpoint under <code>/graphql/</code>, with unrestricted access |
 | [Persisted Queries](docs/en/modules/persisted-queries.md) | Expose predefined responses through a custom URL, akin to using GraphQL queries to publish REST endpoints |
 | [Custom Endpoints](docs/en/modules/custom-endpoints.md) | Expose different subsets of the schema for different targets, such as users (clients, employees, etc), applications (website, mobile app, etc), context (weekday, weekend, etc), and others |
-| [Schema Configuration](docs/en/modules/schema-configuration.md) | Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema |
-| [Cache Control](docs/en/modules/cache-control.md) | Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query |
-| [Field Deprecation](docs/en/modules/field-deprecation.md) | Deprecate fields, and explain how to replace them, through a user interface |
 | [API Hierarchy](docs/en/modules/api-hierarchy.md) | Create a hierarchy of API endpoints extending from other endpoints, and inheriting their properties |
-| [Low-Level Persisted Query Editing](docs/en/modules/low-level-persisted-query-editing.md) | Have access to schema-configuration low-level directives when editing GraphQL queries in the admin |
-| [Schema Editing Access](docs/en/modules/schema-editing-access.md) | Grant access to users other than admins to edit the GraphQL schema |
-| [Excerpt as Description](docs/en/modules/excerpt-as-description.md) | Provide a description of the different entities (Custom Endpoints, Persisted Queries, and others) through their excerpt |
-| [Configuration Cache](docs/en/modules/configuration-cache.md) | Cache the generated application configuration to disk |
-| [Schema Cache](docs/en/modules/schema-cache.md) | Cache the generated schema to disk |
+
+### Schema Configuration
+
+| Module | Description |
+| --- | --- |
+| [Schema Configuration](docs/en/modules/schema-configuration.md) | Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema |
+| [Schema Namespacing](docs/en/modules/schema-namespacing.md) | Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions |
+| [Public/Private Schema](docs/en/modules/public-private-schema.md) | Enable to communicate the existence of some field from the schema to certain users only (private mode) or to everyone (public mode). If disabled, fields are always available to everyone (public mode) |
 
 ### Access Control
 
@@ -77,18 +77,41 @@ GraphQL API is extensible, and ships with the following modules:
 | Access Control Rule: User State | Allow or reject access to the fields and directives based on the user being logged-in or not |
 | Access Control Rule: User Roles | Allow or reject access to the fields and directives based on the user having a certain role |
 | Access Control Rule: User Capabilities | Allow or reject access to the fields and directives based on the user having a certain capability |
-| [Public/Private Schema](docs/en/modules/public-private-schema.md) | Enable to communicate the existence of some field from the schema to certain users only (private mode) or to everyone (public mode). If disabled, fields are always available to everyone (public mode) |
 
-### Pioneering functionality
-
-These are functionalities proposed for, but not yet merged into, the [GraphQL spec](https://spec.graphql.org/draft/).
+### Versioning
 
 | Module | Description |
 | --- | --- |
-| [Schema Namespacing](docs/en/modules/schema-namespacing.md) | Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions |
+| [Field Deprecation](docs/en/modules/field-deprecation.md) | Deprecate fields, and explain how to replace them, through a user interface |
+
+### User Interface
+
+| Module | Description |
+| --- | --- |
+| [Low-Level Persisted Query Editing](docs/en/modules/low-level-persisted-query-editing.md) | Have access to schema-configuration low-level directives when editing GraphQL queries in the admin |
+| [Excerpt as Description](docs/en/modules/excerpt-as-description.md) | Provide a description of the different entities (Custom Endpoints, Persisted Queries, and others) through their excerpt |
+
+### Performance
+
+| Module | Description |
+| --- | --- |
+| [Cache Control](docs/en/modules/cache-control.md) | Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query |
+| [Configuration Cache](docs/en/modules/configuration-cache.md) | Cache the generated application configuration to disk |
+| [Schema Cache](docs/en/modules/schema-cache.md) | Cache the generated schema to disk |
+
+### Operational
+
+| Module | Description |
+| --- | --- |
 | [Multiple Query Execution](docs/en/modules/multiple-query-execution.md) | Execute multiple GraphQL queries in a single operation |
 | [Remove if Null](docs/en/modules/remove-if-null-directive.md) | Addition of `@removeIfNull` directive, to remove an output from the response if it is `null` |
 | [Proactive Feedback](docs/en/modules/proactive-feedback.md) | Usage of the top-level entry `extensions` to send deprecations, warnings, logs, notices and traces in the response to the query |
+
+### Plugin Management
+
+| Module | Description |
+| --- | --- |
+| [Schema Editing Access](docs/en/modules/schema-editing-access.md) | Grant access to users other than admins to edit the GraphQL schema |
 
 ### Clients
 
@@ -100,7 +123,7 @@ These are functionalities proposed for, but not yet merged into, the [GraphQL sp
 | [Interactive Schema for Custom Endpoints](docs/en/modules/interactive-schema-for-custom-endpoints.md) | Enable custom endpoints to be attached their own Interactive schema client, to visualize the custom schema subset |
 | [GraphiQL Explorer](docs/en/modules/graphiql-explorer.md) | Add the Explorer widget to the GraphiQL client when creating Persisted Queries, to simplify coding the query (by point-and-clicking on the fields) |
 
-### Schema
+### Schema Type
 
 | Module | Description |
 | --- | --- |
