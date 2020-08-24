@@ -17,6 +17,8 @@ use GraphQLAPI\GraphQLAPI\Admin\TableActions\ModuleListTableAction;
  */
 class ModuleListTable extends AbstractItemListTable
 {
+    public const URL_PARAM_MODULE_TYPE = 'module-type';
+
     /**
      * Singular name of the listed records
      *
@@ -48,28 +50,86 @@ class ModuleListTable extends AbstractItemListTable
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         $moduleTypeRegistry = ModuleTypeRegistryFacade::getInstance();
         $modules = $moduleRegistry->getAllModules();
+        $currentView = $this->getCurrentView();
         foreach ($modules as $module) {
             $moduleResolver = $moduleRegistry->getModuleResolver($module);
             $moduleType = $moduleResolver->getModuleType($module);
             $moduleTypeResolver = $moduleTypeRegistry->getModuleTypeResolver($moduleType);
-            $isEnabled = $moduleRegistry->isModuleEnabled($module);
-            $items[] = [
-                'module' => $module,
-                'module-type' => $moduleTypeResolver->getName($moduleType),
-                'id' => $moduleResolver->getID($module),
-                'is-enabled' => $isEnabled,
-                'can-be-disabled' => $moduleResolver->canBeDisabled($module),
-                'can-be-enabled' => !$isEnabled && $moduleRegistry->canModuleBeEnabled($module),
-                'has-settings' => $moduleResolver->hasSettings($module),
-                'name' => $moduleResolver->getName($module),
-                'description' => $moduleResolver->getDescription($module),
-                'depends-on' => $moduleResolver->getDependedModuleLists($module),
-                // 'url' => $moduleResolver->getURL($module),
-                'slug' => $moduleResolver->getSlug($module),
-                'has-docs' => $moduleResolver->hasDocumentation($module),
-            ];
+            $moduleTypeSlug = $moduleTypeResolver->getSlug($moduleType);
+            // If filtering the view, only add the items with that module type
+            if (!$currentView || $currentView == $moduleTypeSlug) {
+                $isEnabled = $moduleRegistry->isModuleEnabled($module);
+                $items[] = [
+                    'module' => $module,
+                    'module-type' => $moduleTypeSlug,
+                    'id' => $moduleResolver->getID($module),
+                    'is-enabled' => $isEnabled,
+                    'can-be-disabled' => $moduleResolver->canBeDisabled($module),
+                    'can-be-enabled' => !$isEnabled && $moduleRegistry->canModuleBeEnabled($module),
+                    'has-settings' => $moduleResolver->hasSettings($module),
+                    'name' => $moduleResolver->getName($module),
+                    'description' => $moduleResolver->getDescription($module),
+                    'depends-on' => $moduleResolver->getDependedModuleLists($module),
+                    // 'url' => $moduleResolver->getURL($module),
+                    'slug' => $moduleResolver->getSlug($module),
+                    'has-docs' => $moduleResolver->hasDocumentation($module),
+                ];
+            }
         }
         return $items;
+    }
+
+    /**
+     * Gets the current filtering view
+     *
+     * @return string
+     */
+    protected function getCurrentView(): string
+    {
+        return !empty($_REQUEST[self::URL_PARAM_MODULE_TYPE]) ? $_REQUEST[self::URL_PARAM_MODULE_TYPE] : '';
+    }
+
+    /**
+     * Gets the list of views available on this table.
+     *
+     * @return array
+     * phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+     */
+    protected function get_views()
+    {
+        $views = [];
+        $currentView = $this->getCurrentView();
+
+        // All entries
+        $views['all'] = sprintf(
+            '<a href="%s" class="%s">%s</a>',
+            \remove_query_arg(self::URL_PARAM_MODULE_TYPE),
+            $currentView == '' ? 'current' : '',
+            \__('All', 'graphql-api')
+        );
+
+        // Entries for every module type: retrieve the moduleType from all modules
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        $moduleTypeRegistry = ModuleTypeRegistryFacade::getInstance();
+        $modules = $moduleRegistry->getAllModules();
+        $moduleTypes = [];
+        foreach ($modules as $module) {
+            $moduleResolver = $moduleRegistry->getModuleResolver($module);
+            $moduleTypes[] = $moduleResolver->getModuleType($module);
+        }
+        $moduleTypes = array_unique($moduleTypes);
+        foreach ($moduleTypes as $moduleType) {
+            $moduleTypeResolver = $moduleTypeRegistry->getModuleTypeResolver($moduleType);
+            $moduleTypeSlug = $moduleTypeResolver->getSlug($moduleType);
+            $views[$moduleTypeSlug] = sprintf(
+                '<a href="%s" class="%s">%s</a>',
+                \add_query_arg(self::URL_PARAM_MODULE_TYPE, $moduleTypeSlug),
+                'module-type-view module-type-' . $moduleTypeSlug . ($currentView == $moduleTypeSlug ? ' current' : ''),
+                $moduleTypeResolver->getName($moduleType)
+            );
+        }
+
+        return $views;
     }
 
     /**

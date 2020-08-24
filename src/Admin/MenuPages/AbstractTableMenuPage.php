@@ -16,11 +16,21 @@ abstract class AbstractTableMenuPage extends AbstractMenuPage
 
     abstract protected function getHeader(): string;
 
+    protected function hasViews(): bool
+    {
+        return false;
+    }
+
     public function print(): void
     {
         ?>
         <div class="wrap">
             <h1><?php echo $this->getHeader() ?></h1>
+            <?php
+            if ($this->hasViews()) {
+                $this->tableObject->views();
+            }
+            ?>
             <form method="post">
                 <?php
                 $this->tableObject->prepare_items();

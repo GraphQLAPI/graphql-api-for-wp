@@ -26,6 +26,11 @@ class ModulesMenuPage extends AbstractTableMenuPage
         return \__('GraphQL API — Modules', 'graphql-api');
     }
 
+    protected function hasViews(): bool
+    {
+        return true;
+    }
+
     protected function getScreenOptionLabel(): string
     {
         return \__('Modules', 'graphql-api');
