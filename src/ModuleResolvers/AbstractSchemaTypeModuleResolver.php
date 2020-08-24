@@ -6,7 +6,7 @@ namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
 use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolver;
 
-abstract class AbstractSchemaModuleResolver extends AbstractModuleResolver
+abstract class AbstractSchemaTypeModuleResolver extends AbstractModuleResolver
 {
     /**
      * The type of the module
