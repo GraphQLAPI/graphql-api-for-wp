@@ -8,7 +8,7 @@ When access to some a field or directive is denied through Access Control, there
 
 **Public mode**: the fields in the schema are exposed, and when the permission is not satisfied, the user gets an error message with a description of why the permission was rejected. This behavior makes the metadata from the schema always available.
 
-**Private mode**, the schema is customized to every user, containing only the fields available to him or her, and so when attempting to access a forbidden field, the error message says that the field doesn't exist. This behavior exposes the metadata from the schema only to those users who can access it.
+**Private mode**: the schema is customized to every user, containing only the fields available to him or her, and so when attempting to access a forbidden field, the error message says that the field doesn't exist. This behavior exposes the metadata from the schema only to those users who can access it.
 
 <a href="../../images/public-private-schema.gif" target="_blank">![Public/Private schema](../../images/public-private-schema.gif "Public/Private schema")</a>
 
