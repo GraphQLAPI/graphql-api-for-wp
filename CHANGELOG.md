@@ -8,6 +8,8 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Added
 
+- Lazy-load the documentation inside blocks
+
 ### Fixed
 
 - `is_admin()` or not affects the configuration, so this value must be accounted for when generating the cache
