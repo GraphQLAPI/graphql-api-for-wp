@@ -27,6 +27,11 @@ class CacheConfigurationManager implements CacheConfigurationManagerInterface
     {
         // The timestamp from when last saving settings/modules to the DB
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
-        return '_' . $userSettingsManager->getTimestamp();
+        $timestamp = '_' . $userSettingsManager->getTimestamp();
+        // admin/non-admin screens have different services enabled
+        if (\is_admin()) {
+            $timestamp .= '_admin';
+        }
+        return $timestamp;
     }
 }
