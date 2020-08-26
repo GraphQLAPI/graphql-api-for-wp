@@ -32,7 +32,7 @@ if (defined('GRAPHQL_API_VERSION')) {
                 '<p>%s</p>' .
             '</div>',
             sprintf(
-                __('Plugin GraphQL API for WordPress is already installed with version <code>%s</code>, so version <code>%s</code> has not been loaded. Please keep only the latest version of the plugin, remove the other one.', 'graphql-api'),
+                __('Plugin <strong>GraphQL API for WordPress</strong> is already installed with version <code>%s</code>, so version <code>%s</code> has not been loaded. Please deactivate all versions, remove the older version, and activate again the latest version of the plugin.', 'graphql-api'),
                 \GRAPHQL_API_VERSION,
                 '0.4.1'
             )
