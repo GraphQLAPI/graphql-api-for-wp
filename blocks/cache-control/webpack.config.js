@@ -3,11 +3,16 @@ const path = require( 'path' );
 const config = require( '@wordpress/scripts/config/webpack.config' );
 
 /**
- * Documentation in different languages
+ * Resolve folder docs/ as @docs
  */
-langs = ['en']
-langs.forEach( lang => config.entry[`docs-${ lang }`] = path.resolve( process.cwd(), `docs/${ lang }`, 'index.js' ) )
 config.resolve.alias['@docs'] = path.resolve(process.cwd(), 'docs/')
+
+// ---------------------------------------------
+// Consider for webpack v5, to generate the bundle containing all docs per language
+// (as `docs-en.js`, `docs-es.js`, etc) and not lazy-load them
+// langs = ['en'/*, 'es' */]
+// langs.forEach( lang => config.entry[`docs-${ lang }`] = path.resolve( process.cwd(), `docs/${ lang }`, 'index.js' ) )
+// ---------------------------------------------
 
 // ---------------------------------------------
 // Uncomment for webpack v5, to not duplicate the content of the docs inside build/index.js

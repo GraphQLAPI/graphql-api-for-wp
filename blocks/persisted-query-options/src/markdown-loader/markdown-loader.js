@@ -1,3 +1,8 @@
+/**
+ * Path to load the lazy chunks on the fly
+ * @see https://v4.webpack.js.org/guides/public-path/#on-the-fly
+ */
+__webpack_public_path__ = window.graphqlApiPersistedQueryOptions?.publicPath;
 
 /**
  * Read the content from a Markdown file in a given language, and return it as HTML
@@ -6,9 +11,14 @@
  * @param {string} lang The language folder from which to retrieve the Markdown file
  */
 const getMarkdownContent = ( fileName, lang ) => {
-	return import( /* webpackMode: "eager" */ `@docs/${ lang }/${ fileName }.md` )
+	return import( /* webpackChunkName: "docs/[request]" */ `@docs/${ lang }/${ fileName }.md` )
 		.then(obj => obj.default)
-		// .then( ( { default: _ } ) )
+	// ---------------------------------------------
+	// Maybe uncomment for webpack v5, to not lazy load the docs,
+	// but to load a single bundle with all files per language in advance
+	// return import( /* webpackMode: "eager" */ `@docs/${ lang }/${ fileName }.md` )
+	// 	.then(obj => obj.default)
+	// ---------------------------------------------
 }
 
 /**
