@@ -51,92 +51,62 @@ If any problem arises, either installing or running the plugin, please [create a
 
 GraphQL API is extensible, and ships with the following modules (organized by category):
 
-### Endpoint
+<table>
+<thead>
+<tr><th>Module</th><th>Description</th></tr>
+</thead>
+<tbody>
 
-| Module | Description |
-| --- | --- |
-| [Single Endpoint](docs/en/modules/single-endpoint.md) | Expose a single GraphQL endpoint under <code>/graphql/</code>, with unrestricted access |
-| [Persisted Queries](docs/en/modules/persisted-queries.md) | Expose predefined responses through a custom URL, akin to using GraphQL queries to publish REST endpoints |
-| [Custom Endpoints](docs/en/modules/custom-endpoints.md) | Expose different subsets of the schema for different targets, such as users (clients, employees, etc), applications (website, mobile app, etc), context (weekday, weekend, etc), and others |
-| [API Hierarchy](docs/en/modules/api-hierarchy.md) | Create a hierarchy of API endpoints extending from other endpoints, and inheriting their properties |
+<tr><th colspan="2"><br/>Endpoint</th></tr>
+<tr><td><a href="docs/en/modules/single-endpoint.md">Single Endpoint</a></td><td>Expose a single GraphQL endpoint under <code>/graphql/</code>, with unrestricted access</td></tr>
+<tr><td><a href="docs/en/modules/persisted-queries.md">Persisted Queries</a></td><td>Expose predefined responses through a custom URL, akin to using GraphQL queries to publish REST endpoints</td></tr>
+<tr><td><a href="docs/en/modules/custom-endpoints.md">Custom Endpoints</a></td><td>Expose different subsets of the schema for different targets, such as users (clients, employees, etc), applications (website, mobile app, etc), context (weekday, weekend, etc), and others</td></tr>
+<tr><td><a href="docs/en/modules/api-hierarchy.md">API Hierarchy</a></td><td>Create a hierarchy of API endpoints extending from other endpoints, and inheriting their properties</td></tr>
+<tr><th colspan="2"><br/>Schema Configuration</th></tr>
+<tr><td><a href="docs/en/modules/schema-configuration.md">Schema Configuration</a></td><td>Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema</td></tr>
+<tr><td><a href="docs/en/modules/schema-namespacing.md">Schema Namespacing</a></td><td>Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions</td></tr>
+<tr><td><a href="docs/en/modules/public-private-schema.md">Public/Private Schema</a></td><td>Enable to communicate the existence of some field from the schema to certain users only (private mode) or to everyone (public mode). If disabled, fields are always available to everyone (public mode)</td></tr>
+<tr><th colspan="2"><br/>Access Control</th></tr>
+<tr><td><a href="docs/en/modules/access-control.md">Access Control</a></td><td>Set-up rules to define who can access the different fields and directives from a schema</td></tr>
+<tr><td>Access Control Rule: Disable Access</td><td>Remove access to the fields and directives</td></tr>
+<tr><td>Access Control Rule: User State</td><td>Allow or reject access to the fields and directives based on the user being logged-in or not</td></tr>
+<tr><td>Access Control Rule: User Roles</td><td>Allow or reject access to the fields and directives based on the user having a certain role</td></tr>
+<tr><td>Access Control Rule: User Capabilities</td><td>Allow or reject access to the fields and directives based on the user having a certain capability</td></tr>
+<tr><th colspan="2"><br/>Versioning</th></tr>
+<tr><td><a href="docs/en/modules/field-deprecation.md">Field Deprecation</a></td><td>Deprecate fields, and explain how to replace them, through a user interface</td></tr>
+<tr><th colspan="2"><br/>User Interface</th></tr>
+<tr><td><a href="docs/en/modules/low-level-persisted-query-editing.md">Low-Level Persisted Query Editing</a></td><td>Have access to schema-configuration low-level directives when editing GraphQL queries in the admin</td></tr>
+<tr><td><a href="docs/en/modules/excerpt-as-description.md">Excerpt as Description</a></td><td>Provide a description of the different entities (Custom Endpoints, Persisted Queries, and others) through their excerpt</td></tr>
+<tr><th colspan="2"><br/>Performance</th></tr>
+<tr><td><a href="docs/en/modules/cache-control.md">Cache Control</a></td><td>Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query</td></tr>
+<tr><td><a href="docs/en/modules/configuration-cache.md">Configuration Cache</a></td><td>Cache the generated application configuration to disk</td></tr>
+<tr><td><a href="docs/en/modules/schema-cache.md">Schema Cache</a></td><td>Cache the generated schema to disk</td></tr>
+<tr><th colspan="2"><br/>Operational</th></tr>
+<tr><td><a href="docs/en/modules/multiple-query-execution.md">Multiple Query Execution</a></td><td>Execute multiple GraphQL queries in a single operation</td></tr>
+<tr><td><a href="docs/en/modules/remove-if-null-directive.md">Remove if Null</a></td><td>Addition of `@removeIfNull` directive, to remove an output from the response if it is `null`</td></tr>
+<tr><td><a href="docs/en/modules/proactive-feedback.md">Proactive Feedback</a></td><td>Usage of the top-level entry `extensions` to send deprecations, warnings, logs, notices and traces in the response to the query</td></tr>
+<tr><th colspan="2"><br/>Plugin Management</th></tr>
+<tr><td><a href="docs/en/modules/schema-editing-access.md">Schema Editing Access</a></td><td>Grant access to users other than admins to edit the GraphQL schema</td></tr>
+<tr><th colspan="2"><br/>Clients</th></tr>
+<tr><td><a href="docs/en/modules/graphiql-for-single-endpoint.md">GraphiQL for Single Endpoint</a></td><td>Make a public GraphiQL client available under <code>/graphiql/</code>, to execute queries against the single endpoint. It requires pretty permalinks enabled</td></tr>
+<tr><td><a href="docs/en/modules/interactive-schema-for-single-endpoint.md">Interactive Schema for Single Endpoint</a></td><td>Make a public Interactive Schema client available under <code>/schema/</code>, to visualize the schema accessible through the single endpoint. It requires pretty permalinks enabled</td></tr>
+<tr><td><a href="docs/en/modules/graphiql-for-custom-endpoints.md">GraphiQL for Custom Endpoints</a></td><td>Enable custom endpoints to be attached their own GraphiQL client, to execute queries against them</td></tr>
+<tr><td><a href="docs/en/modules/interactive-schema-for-custom-endpoints.md">Interactive Schema for Custom Endpoints</a></td><td>Enable custom endpoints to be attached their own Interactive schema client, to visualize the custom schema subset</td></tr>
+<tr><td><a href="docs/en/modules/graphiql-explorer.md">GraphiQL Explorer</a></td><td>Add the Explorer widget to the GraphiQL client when creating Persisted Queries, to simplify coding the query (by point-and-clicking on the fields)</td></tr>
+<tr><th colspan="2"><br/>Schema Type</th></tr>
+<tr><td><a href="docs/en/modules/schema-customposts.md">Schema Custom Posts</a></td><td>Base functionality for all custom posts</td></tr>
+<tr><td><a href="docs/en/modules/schema-generic-customposts.md">Schema Generic Custom Posts</a></td><td>Query any custom post type (added to the schema or not), through a generic type <code>GenericCustomPost</code></td></tr>
+<tr><td>Schema Posts</td><td>Query posts, through type <code>Post</code> added to the schema</td></tr>
+<tr><td>Schema Pages</td><td>Query pages, through type <code>Page</code> added to the schema</td></tr>
+<tr><td>Schema Users</td><td>Query users, through type <code>User</code> added to the schema</td></tr>
+<tr><td>Schema User Roles</td><td>Query user roles, through type <code>UserRole</code> added to the schema</td></tr>
+<tr><td>Schema Comments</td><td>Query comments, through type <code>Comment</code> added to the schema</td></tr>
+<tr><td>Schema Tags</td><td>Base functionality for all tags</td></tr>
+<tr><td>Schema Post Tags</td><td>Query post tags, through type <code>PostTag</code> added to the schema</td></tr>
+<tr><td>Schema Media</td><td>Query media elements, through type <code>Media</code> added to the schema</td></tr>
+</tbody>
+</table>
 
-### Schema Configuration
-
-| Module | Description |
-| --- | --- |
-| [Schema Configuration](docs/en/modules/schema-configuration.md) | Customize the schema accessible to different Custom Endpoints and Persisted Queries, by applying a custom configuration (involving namespacing, access control, cache control, and others) to the grand schema |
-| [Schema Namespacing](docs/en/modules/schema-namespacing.md) | Automatically namespace types and interfaces with a vendor/project name, to avoid naming collisions |
-| [Public/Private Schema](docs/en/modules/public-private-schema.md) | Enable to communicate the existence of some field from the schema to certain users only (private mode) or to everyone (public mode). If disabled, fields are always available to everyone (public mode) |
-
-### Access Control
-
-| Module | Description |
-| --- | --- |
-| [Access Control](docs/en/modules/access-control.md) | Set-up rules to define who can access the different fields and directives from a schema |
-| Access Control Rule: Disable Access | Remove access to the fields and directives |
-| Access Control Rule: User State | Allow or reject access to the fields and directives based on the user being logged-in or not |
-| Access Control Rule: User Roles | Allow or reject access to the fields and directives based on the user having a certain role |
-| Access Control Rule: User Capabilities | Allow or reject access to the fields and directives based on the user having a certain capability |
-
-### Versioning
-
-| Module | Description |
-| --- | --- |
-| [Field Deprecation](docs/en/modules/field-deprecation.md) | Deprecate fields, and explain how to replace them, through a user interface |
-
-### User Interface
-
-| Module | Description |
-| --- | --- |
-| [Low-Level Persisted Query Editing](docs/en/modules/low-level-persisted-query-editing.md) | Have access to schema-configuration low-level directives when editing GraphQL queries in the admin |
-| [Excerpt as Description](docs/en/modules/excerpt-as-description.md) | Provide a description of the different entities (Custom Endpoints, Persisted Queries, and others) through their excerpt |
-
-### Performance
-
-| Module | Description |
-| --- | --- |
-| [Cache Control](docs/en/modules/cache-control.md) | Provide HTTP Caching for Persisted Queries, sending the Cache-Control header with a max-age value calculated from all fields in the query |
-| [Configuration Cache](docs/en/modules/configuration-cache.md) | Cache the generated application configuration to disk |
-| [Schema Cache](docs/en/modules/schema-cache.md) | Cache the generated schema to disk |
-
-### Operational
-
-| Module | Description |
-| --- | --- |
-| [Multiple Query Execution](docs/en/modules/multiple-query-execution.md) | Execute multiple GraphQL queries in a single operation |
-| [Remove if Null](docs/en/modules/remove-if-null-directive.md) | Addition of `@removeIfNull` directive, to remove an output from the response if it is `null` |
-| [Proactive Feedback](docs/en/modules/proactive-feedback.md) | Usage of the top-level entry `extensions` to send deprecations, warnings, logs, notices and traces in the response to the query |
-
-### Plugin Management
-
-| Module | Description |
-| --- | --- |
-| [Schema Editing Access](docs/en/modules/schema-editing-access.md) | Grant access to users other than admins to edit the GraphQL schema |
-
-### Clients
-
-| Module | Description |
-| --- | --- |
-| [GraphiQL for Single Endpoint](docs/en/modules/graphiql-for-single-endpoint.md) | Make a public GraphiQL client available under <code>/graphiql/</code>, to execute queries against the single endpoint. It requires pretty permalinks enabled |
-| [Interactive Schema for Single Endpoint](docs/en/modules/interactive-schema-for-single-endpoint.md) | Make a public Interactive Schema client available under <code>/schema/</code>, to visualize the schema accessible through the single endpoint. It requires pretty permalinks enabled |
-| [GraphiQL for Custom Endpoints](docs/en/modules/graphiql-for-custom-endpoints.md) | Enable custom endpoints to be attached their own GraphiQL client, to execute queries against them |
-| [Interactive Schema for Custom Endpoints](docs/en/modules/interactive-schema-for-custom-endpoints.md) | Enable custom endpoints to be attached their own Interactive schema client, to visualize the custom schema subset |
-| [GraphiQL Explorer](docs/en/modules/graphiql-explorer.md) | Add the Explorer widget to the GraphiQL client when creating Persisted Queries, to simplify coding the query (by point-and-clicking on the fields) |
-
-### Schema Type
-
-| Module | Description |
-| --- | --- |
-| [Schema Custom Posts](docs/en/modules/schema-customposts.md) | Base functionality for all custom posts |
-| [Schema Generic Custom Posts](docs/en/modules/schema-generic-customposts.md) | Query any custom post type (added to the schema or not), through a generic type <code>GenericCustomPost</code> |
-| Schema Posts | Query posts, through type <code>Post</code> added to the schema |
-| Schema Pages | Query pages, through type <code>Page</code> added to the schema |
-| Schema Users | Query users, through type <code>User</code> added to the schema |
-| Schema User Roles | Query user roles, through type <code>UserRole</code> added to the schema |
-| Schema Comments | Query comments, through type <code>Comment</code> added to the schema |
-| Schema Tags | Base functionality for all tags |
-| Schema Post Tags | Query post tags, through type <code>PostTag</code> added to the schema |
-| Schema Media | Query media elements, through type <code>Media</code> added to the schema |
 
 ## Development
 
