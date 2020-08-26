@@ -4,6 +4,12 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 0.4.0 - DATE
+
+### Fixed
+
+- `is_admin()` or not affects the configuration, so this value must be accounted for when generating the cache
+
 ## 0.3.0 - 2020-08-24
 
 ### Added
