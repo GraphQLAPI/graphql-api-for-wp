@@ -6,9 +6,12 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ## 0.4.0 - DATE
 
+### Added
+
 ### Fixed
 
 - `is_admin()` or not affects the configuration, so this value must be accounted for when generating the cache
+- Logic for `options.php` is not executed when WP core or other plugins save their own settings
 
 ## 0.3.0 - 2020-08-24
 

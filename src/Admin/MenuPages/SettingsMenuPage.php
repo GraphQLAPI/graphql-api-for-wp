@@ -18,6 +18,7 @@ class SettingsMenuPage extends AbstractMenuPage
 {
     use GraphQLAPIMenuPageTrait;
 
+    public const FORM_ORIGIN = 'form-origin';
     public const SETTINGS_FIELD = 'graphql-api-settings';
 
     public function getMenuPageSlug(): string
@@ -273,6 +274,8 @@ class SettingsMenuPage extends AbstractMenuPage
             <?php endif; ?>
 
             <form method="post" action="options.php">
+                <!-- Artificial input as flag that the form belongs to this plugin -->
+                <input type="hidden" name="<?php echo self::FORM_ORIGIN ?>" value="<?php echo self::SETTINGS_FIELD ?>" />
                 <!-- Panels -->
                 <?php
                 $sectionClass = $printWithTabs ? 'tab-content' : '';

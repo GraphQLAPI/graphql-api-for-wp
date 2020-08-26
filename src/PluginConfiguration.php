@@ -98,12 +98,19 @@ class PluginConfiguration
      * adds the rewrite with the new slug, which will be persisted on
      * flushing the rewrite rules
      *
+     * Hidden input "form-origin" is used to only execute for this plugin,
+     * since options.php is used everywhere, including WP core and other plugins.
+     * Otherwise, it may thrown an exception!
+     *
      * @return mixed
      */
     protected static function maybeOverrideValueFromForm($value, string $module, string $option)
     {
         global $pagenow;
-        if ($pagenow == 'options.php') {
+        if ($pagenow == 'options.php'
+            && isset($_REQUEST[SettingsMenuPage::FORM_ORIGIN])
+            && $_REQUEST[SettingsMenuPage::FORM_ORIGIN] == SettingsMenuPage::SETTINGS_FIELD
+        ) {
             $value = self::getNormalizedOptionValues();
             // Return the specific value to this module/option
             $moduleRegistry = ModuleRegistryFacade::getInstance();
