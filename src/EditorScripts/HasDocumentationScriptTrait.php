@@ -17,6 +17,18 @@ use GraphQLAPI\GraphQLAPI\General\DocumentationConstants;
 trait HasDocumentationScriptTrait
 {
     /**
+     * Docs are bundled as chunks by webpack, and loaded lazily
+     * The `publicPath` property for `config.output` must be provided
+     * pointing to the generated chunks folder, otherwise it is
+     * by default resolved as /wp-admin/..., producing a 404.
+     *
+     * The public path will be set under global variable `__webpack_public_path__` in JS
+     *
+     * @see https://v4.webpack.js.org/guides/public-path/#on-the-fly
+     */
+    abstract protected function getScriptPublicPath(): string;
+
+    /**
      * Pass localized data to the block
      *
      * @return array
@@ -32,6 +44,7 @@ trait HasDocumentationScriptTrait
         if ($defaultLang = $this->getDefaultLanguage()) {
             $data[DocumentationConstants::DEFAULT_LANG] = $defaultLang;
         }
+        $data['publicPath'] = $this->getScriptPublicPath();
         return $data;
     }
 

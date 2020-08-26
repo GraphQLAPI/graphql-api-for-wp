@@ -42,6 +42,21 @@ abstract class AbstractEditorScript extends AbstractScript
     }
 
     /**
+     * Docs are bundled as chunks by webpack, and loaded lazily
+     * The `publicPath` property for `config.output` must be provided
+     * pointing to the generated chunks folder, otherwise it is
+     * by default resolved as /wp-admin/..., producing a 404.
+     *
+     * The public path will be set under global variable `__webpack_public_path__` in JS
+     *
+     * @see https://v4.webpack.js.org/guides/public-path/#on-the-fly
+     */
+    protected function getScriptPublicPath(): string
+    {
+        return $this->getScriptDirURL() . 'build/';
+    }
+
+    /**
      * Where is the script stored
      *
      * @return string
