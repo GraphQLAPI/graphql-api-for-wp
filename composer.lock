@@ -228,12 +228,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/api.git",
-                "reference": "ee1a829dd2ffef0f46ddec678478bb5630b293b3"
+                "reference": "050a47b556799c75bff63a75b646f3220a03f5c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/api/zipball/ee1a829dd2ffef0f46ddec678478bb5630b293b3",
-                "reference": "ee1a829dd2ffef0f46ddec678478bb5630b293b3",
+                "url": "https://api.github.com/repos/getpop/api/zipball/050a47b556799c75bff63a75b646f3220a03f5c7",
+                "reference": "050a47b556799c75bff63a75b646f3220a03f5c7",
                 "shasum": ""
             },
             "require": {
@@ -278,7 +278,7 @@
                 "api",
                 "pop"
             ],
-            "time": "2020-08-18T01:05:26+00:00"
+            "time": "2020-08-26T08:32:16+00:00"
         },
         {
             "name": "getpop/api-clients",
@@ -8876,16 +8876,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.38",
+            "version": "0.12.39",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "ad606c5f1c641b465b739e79a3a0f1a5a57cf1b4"
+                "reference": "f970cab80f0a681019dc669bf8c72905845dadaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/ad606c5f1c641b465b739e79a3a0f1a5a57cf1b4",
-                "reference": "ad606c5f1c641b465b739e79a3a0f1a5a57cf1b4",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f970cab80f0a681019dc669bf8c72905845dadaa",
+                "reference": "f970cab80f0a681019dc669bf8c72905845dadaa",
                 "shasum": ""
             },
             "require": {
@@ -8928,7 +8928,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-19T08:13:30+00:00"
+            "time": "2020-08-24T21:34:53+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -10303,16 +10303,16 @@
         },
         {
             "name": "szepeviktor/phpstan-wordpress",
-            "version": "v0.6.2",
+            "version": "v0.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/szepeviktor/phpstan-wordpress.git",
-                "reference": "f621f7d6e7cd6c649c41d77092d4f869a837beed"
+                "reference": "d3ff2a9c0f3c336f352061524253c79ccc5ae30f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/f621f7d6e7cd6c649c41d77092d4f869a837beed",
-                "reference": "f621f7d6e7cd6c649c41d77092d4f869a837beed",
+                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/d3ff2a9c0f3c336f352061524253c79ccc5ae30f",
+                "reference": "d3ff2a9c0f3c336f352061524253c79ccc5ae30f",
                 "shasum": ""
             },
             "require": {
@@ -10359,7 +10359,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2020-07-01T02:05:01+00:00"
+            "time": "2020-08-21T09:36:29+00:00"
         },
         {
             "name": "theseer/tokenizer",
