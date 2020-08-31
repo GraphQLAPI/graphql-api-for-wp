@@ -348,7 +348,8 @@ abstract class AbstractBlock
 
         /**
          * Register the documentation (from under folder "docs/"), for the locale and the default language
-         * IMPORTANT: Uncomment for webpack v5, to not duplicate the content of the docs inside build/index.js
+         * @todo Maybe uncomment for webpack v5, to not duplicate the content of the docs inside build/index.js
+         * @see https://github.com/GraphQLAPI/graphql-api-for-wp/issues/1
          */
         // $this->initDocumentationScripts();
     }
