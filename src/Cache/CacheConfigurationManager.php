@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Cache;
 
-use GraphQLAPI\GraphQLAPI\Settings\Options;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
-use GraphQLAPI\GraphQLAPI\Plugin;
+use GraphQLAPI\GraphQLAPI\Cache\CacheConfigurationManagerInterface;
 
 /**
  * Inject configuration to the cache
@@ -21,13 +20,11 @@ class CacheConfigurationManager implements CacheConfigurationManagerInterface
      * items will be stored
      *
      * @see https://symfony.com/doc/current/components/cache/adapters/filesystem_adapter.html
-     *
-     * @return string
      */
     public function getNamespace(): string
     {
         // (Needed for development) Don't share cache among plugin versions
-        $timestamp = '_v' . Plugin::VERSION;
+        $timestamp = '_v' . \GRAPHQL_API_VERSION;
         // The timestamp from when last saving settings/modules to the DB
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
         $timestamp .= '_' . $userSettingsManager->getTimestamp();
