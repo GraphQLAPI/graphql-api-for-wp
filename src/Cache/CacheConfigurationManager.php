@@ -6,6 +6,7 @@ namespace GraphQLAPI\GraphQLAPI\Cache;
 
 use GraphQLAPI\GraphQLAPI\Settings\Options;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
+use GraphQLAPI\GraphQLAPI\Plugin;
 
 /**
  * Inject configuration to the cache
@@ -25,9 +26,11 @@ class CacheConfigurationManager implements CacheConfigurationManagerInterface
      */
     public function getNamespace(): string
     {
+        // (Needed for development) Don't share cache among plugin versions
+        $timestamp = '_v' . Plugin::VERSION;
         // The timestamp from when last saving settings/modules to the DB
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
-        $timestamp = '_' . $userSettingsManager->getTimestamp();
+        $timestamp .= '_' . $userSettingsManager->getTimestamp();
         // admin/non-admin screens have different services enabled
         if (\is_admin()) {
             $timestamp .= '_admin';

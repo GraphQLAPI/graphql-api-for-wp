@@ -37,6 +37,11 @@ class Plugin
     public const NAMESPACE = __NAMESPACE__;
 
     /**
+     * Plugin's version
+     */
+    public const VERSION = \GRAPHQL_API_VERSION;
+
+    /**
      * Plugin set-up, executed immediately when loading the plugin.
      * There are three stages for this plugin, and for each extension plugin:
      * `setup`, `initialize` and `boot`.
