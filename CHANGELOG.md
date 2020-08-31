@@ -4,6 +4,12 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 0.4.2 - 2020-08-31
+
+### Fixed
+
+- Add the plugin version to the cache timestamp, to avoid configuration caching conflicts when developing the plugin (whenever this happens, upgrading the version solves the issue)
+
 ## 0.4.1 - 2020-08-26
 
 ### Fixed
