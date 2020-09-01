@@ -20,11 +20,10 @@
 # - Upload the .zip file as an artifact to the action (this step is possibly optional)
 # - Upload the .zip file as a release, for download
 ####################################################################################
-name: Generate Installable Plugin, Downgrade to PHP 7.2, and Upload as Release Asset
-on: push
-# on:
-#   release:
-#     types: [published]
+name: Generate Installable Plugin and Upload as Release Asset
+on:
+  release:
+    types: [published]
 jobs:
   build:
     name: Upload Release Asset
@@ -49,9 +48,9 @@ jobs:
         with:
             name: graphql-api
             path: build/graphql-api.zip
-    #   - name: Upload to release
-    #     uses: JasonEtco/upload-to-release@master
-    #     with:
-    #       args: build/graphql-api.zip application/zip
-    #     env:
-    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload to release
+        uses: JasonEtco/upload-to-release@master
+        with:
+          args: build/graphql-api.zip application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
