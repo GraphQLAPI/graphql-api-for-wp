@@ -158,7 +158,8 @@ trait HasMarkdownDocumentationModuleResolverTrait
 
             // Create the tabs
             $panelTabs = '<h2 class="nav-tab-wrapper">';
-            for ($i = 0; $i < count($headers); $i++) {
+            $headersCount = count($headers);
+            for ($i = 0; $i < $headersCount; $i++) {
                 $isFirstTab = $i == 0;
                 $panelTabs .= sprintf(
                     '<a href="#doc-panel-%s" class="nav-tab %s">%s</a>',
