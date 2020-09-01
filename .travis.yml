@@ -37,12 +37,6 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-## Commented out until version 1.0 (version 0.1.. doesn't follow semver)
-# matrix:
-#   include:
-#     - php: 7.3
-#       env: 'COMPOSER_FLAGS="--prefer-stable --prefer-lowest"'
-
 before_script:
     # For PHP 7.2 replace PHP version constraint from 7.4 to 7.2, and remove PHPUnit
     - if [[ "$DOWNGRADE_CODE" == "true" ]]; then composer require php:~7.2 --no-update --no-scripts; fi
