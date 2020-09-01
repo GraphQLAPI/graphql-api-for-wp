@@ -17,27 +17,19 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
 {
     /**
      * Keep a map of all namespaced type names to their resolver classes
-     *
-     * @var array
      */
     protected ?array $namespacedTypeNameClasses = null;
     /**
      * Keep a map of all namespaced field interface names to their resolver classes
-     *
-     * @var array
      */
     protected ?array $namespacedFieldInterfaceNameClasses = null;
     /**
      * Keep a map of all directives names to their resolver classes
-     *
-     * @var array
      */
     protected ?array $directiveNameClasses = null;
 
     /**
      * Lazy load and return the `$namespacedTypeNameClasses` array
-     *
-     * @return array
      */
     protected function getNamespacedTypeNameClasses(): array
     {
@@ -49,8 +41,6 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
 
     /**
      * Lazy load and return the `$namespacedTypeNameClasses` array
-     *
-     * @return array
      */
     protected function getNamespacedFieldInterfaceNameClasses(): array
     {
@@ -62,8 +52,6 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
 
     /**
      * Initialize the `$namespacedTypeNameClasses` array
-     *
-     * @return void
      */
     protected function initNamespacedTypeNameClasses(): void
     {
@@ -81,8 +69,6 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
 
     /**
      * Initialize the `$namespacedTypeNameClasses` array
-     *
-     * @return void
      */
     protected function initNamespacedFieldInterfaceNameClasses(): void
     {
@@ -100,8 +86,6 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
 
     /**
      * Lazy load and return the `$directiveNameClasses` array
-     *
-     * @return array
      */
     protected function getDirectiveNameClasses(): array
     {
@@ -138,9 +122,7 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
      * - If the field involves an interface, the entry can be many, 1 for each type
      * implementing the interface
      *
-     * @param string $selectedField
      * @param mixed $value
-     * @return array
      */
     protected function getEntriesFromField(string $selectedField, $value): array
     {
@@ -175,7 +157,6 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
      * It returns an array of arrays
      *
      * @param mixed $value
-     * @return array|null
      */
     protected function getEntriesFromDirective(string $selectedDirective, $value): ?array
     {
