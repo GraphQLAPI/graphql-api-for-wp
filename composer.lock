@@ -658,16 +658,16 @@
         },
         {
             "name": "getpop/definitions",
-            "version": "0.1.11",
+            "version": "0.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/definitions.git",
-                "reference": "27be4940d0c1926497857a23a21e1b2b16f4cbed"
+                "reference": "62007c77e273494e07b2a37dee0bd22a35e1bd99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/definitions/zipball/27be4940d0c1926497857a23a21e1b2b16f4cbed",
-                "reference": "27be4940d0c1926497857a23a21e1b2b16f4cbed",
+                "url": "https://api.github.com/repos/getpop/definitions/zipball/62007c77e273494e07b2a37dee0bd22a35e1bd99",
+                "reference": "62007c77e273494e07b2a37dee0bd22a35e1bd99",
                 "shasum": ""
             },
             "require": {
@@ -708,7 +708,7 @@
                 "definitions",
                 "pop"
             ],
-            "time": "2020-09-01T07:16:53+00:00"
+            "time": "2020-09-01T10:39:46+00:00"
         },
         {
             "name": "getpop/engine",
@@ -1478,16 +1478,16 @@
         },
         {
             "name": "getpop/root",
-            "version": "0.2.17",
+            "version": "0.2.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/root.git",
-                "reference": "c205230b7d4722739dd11d772f978ac124c63fb8"
+                "reference": "365fa08eefee733669bfbe719898b96f4157a250"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/root/zipball/c205230b7d4722739dd11d772f978ac124c63fb8",
-                "reference": "c205230b7d4722739dd11d772f978ac124c63fb8",
+                "url": "https://api.github.com/repos/getpop/root/zipball/365fa08eefee733669bfbe719898b96f4157a250",
+                "reference": "365fa08eefee733669bfbe719898b96f4157a250",
                 "shasum": ""
             },
             "require": {
@@ -1531,7 +1531,7 @@
                 "pop",
                 "root"
             ],
-            "time": "2020-09-01T04:15:31+00:00"
+            "time": "2020-09-01T10:39:55+00:00"
         },
         {
             "name": "getpop/routing",
