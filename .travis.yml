@@ -49,8 +49,7 @@ script:
   - if [[ "$DOWNGRADE_CODE" == "true" ]]; then php --version; fi
 
 after_script:
-  # Tests only on PHP 7.4
-  - if [[ "$DOWNGRADE_CODE" != "true" ]]; then wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
+  - wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover
 
 notifications:
   email:
