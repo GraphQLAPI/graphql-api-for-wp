@@ -89,7 +89,6 @@ class PluginManagementFunctionalityModuleResolver extends AbstractFunctionalityM
     public function getSettings(string $module): array
     {
         $moduleSettings = parent::getSettings($module);
-        $moduleRegistry = ModuleRegistryFacade::getInstance();
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if ($module == self::SCHEMA_EDITING_ACCESS) {
             /**
