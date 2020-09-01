@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cc2eeed070d646eeb56937058f60b4d2",
+    "content-hash": "0a3ff1e444f371f935b02a6b1c2a63cd",
     "packages": [
         {
             "name": "brain/cortex",
@@ -8835,20 +8835,20 @@
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "5.5.0",
+            "version": "5.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "d8a952dd4aa7f7d4d8be6fa145840fde4e248450"
+                "reference": "0973abd5c01ecce0b60bc1c81a6dd072827de930"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/d8a952dd4aa7f7d4d8be6fa145840fde4e248450",
-                "reference": "d8a952dd4aa7f7d4d8be6fa145840fde4e248450",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/0973abd5c01ecce0b60bc1c81a6dd072827de930",
+                "reference": "0973abd5c01ecce0b60bc1c81a6dd072827de930",
                 "shasum": ""
             },
             "require": {
-                "johnpbloch/wordpress-core": "5.5.0",
+                "johnpbloch/wordpress-core": "5.5.1",
                 "johnpbloch/wordpress-core-installer": "^1.0 || ^2.0",
                 "php": ">=5.6.20"
             },
@@ -8870,20 +8870,20 @@
                 "cms",
                 "wordpress"
             ],
-            "time": "2020-08-11T18:47:19+00:00"
+            "time": "2020-09-01T19:07:41+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core",
-            "version": "5.5.0",
+            "version": "5.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "c49d46de4e4c8972b8ed2aebe3e850f4f218186f"
+                "reference": "fa5bcb1579eae33baef6c04355f8d6657e5bd349"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/c49d46de4e4c8972b8ed2aebe3e850f4f218186f",
-                "reference": "c49d46de4e4c8972b8ed2aebe3e850f4f218186f",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/fa5bcb1579eae33baef6c04355f8d6657e5bd349",
+                "reference": "fa5bcb1579eae33baef6c04355f8d6657e5bd349",
                 "shasum": ""
             },
             "require": {
@@ -8891,7 +8891,7 @@
                 "php": ">=5.6.20"
             },
             "provide": {
-                "wordpress/core-implementation": "5.5.0"
+                "wordpress/core-implementation": "5.5.1"
             },
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
@@ -8911,7 +8911,7 @@
                 "cms",
                 "wordpress"
             ],
-            "time": "2020-08-11T18:47:13+00:00"
+            "time": "2020-09-01T19:07:35+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -9263,16 +9263,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.9.1",
+            "version": "v4.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "88e519766fc58bd46b8265561fb79b54e2e00b28"
+                "reference": "aaee038b912e567780949787d5fe1977be11a778"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/88e519766fc58bd46b8265561fb79b54e2e00b28",
-                "reference": "88e519766fc58bd46b8265561fb79b54e2e00b28",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/aaee038b912e567780949787d5fe1977be11a778",
+                "reference": "aaee038b912e567780949787d5fe1977be11a778",
                 "shasum": ""
             },
             "require": {
@@ -9311,7 +9311,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2020-08-30T16:15:20+00:00"
+            "time": "2020-08-18T19:48:01+00:00"
         },
         {
             "name": "ondram/ci-detector",
@@ -10342,16 +10342,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "v0.7.65",
+            "version": "v0.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "ac4e73b72f42273e019a91fb98b32b0c87ab08dc"
+                "reference": "83e2db04d8cdb51d29972798e43d9968f214295a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/ac4e73b72f42273e019a91fb98b32b0c87ab08dc",
-                "reference": "ac4e73b72f42273e019a91fb98b32b0c87ab08dc",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/83e2db04d8cdb51d29972798e43d9968f214295a",
+                "reference": "83e2db04d8cdb51d29972798e43d9968f214295a",
                 "shasum": ""
             },
             "require": {
@@ -10360,12 +10360,12 @@
                 "doctrine/inflector": "^1.4|^2.0",
                 "ext-json": "*",
                 "jean85/pretty-package-versions": "^1.2",
-                "migrify/php-config-printer": "^0.3.30",
+                "migrify/php-config-printer": "^0.3.31",
                 "nette/robot-loader": "^3.2",
                 "nette/utils": "^3.1",
-                "nikic/php-parser": "^4.9",
+                "nikic/php-parser": "4.9.0",
                 "ondram/ci-detector": "^3.4",
-                "php": "^7.2.4",
+                "php": "^7.2.4|^8.0",
                 "phpstan/phpdoc-parser": "^0.4.9",
                 "phpstan/phpstan": "^0.12.38",
                 "phpstan/phpstan-phpunit": "^0.12.10",
@@ -10376,13 +10376,13 @@
                 "symfony/dependency-injection": "^4.4.8|^5.0.6",
                 "symfony/finder": "^4.4.8|^5.0.6",
                 "symfony/process": "^4.4.8|^5.0.6",
-                "symplify/auto-bind-parameter": "^8.2.9",
-                "symplify/autowire-array-parameter": "^8.2.9",
-                "symplify/console-color-diff": "^8.2.9",
-                "symplify/easy-testing": "^8.2.9",
-                "symplify/package-builder": "^8.2.9",
-                "symplify/set-config-resolver": "^8.2.9",
-                "symplify/smart-file-system": "^8.2.9",
+                "symplify/auto-bind-parameter": "^8.2.11",
+                "symplify/autowire-array-parameter": "^8.2.11",
+                "symplify/console-color-diff": "^8.2.11",
+                "symplify/easy-testing": "^8.2.11",
+                "symplify/package-builder": "^8.2.11",
+                "symplify/set-config-resolver": "^8.2.11",
+                "symplify/smart-file-system": "^8.2.11",
                 "tracy/tracy": "^2.7"
             },
             "replace": {
@@ -10391,19 +10391,19 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.16",
                 "johnkary/phpunit-speedtrap": "^3.2",
-                "migrify/config-transformer": "^0.3.30",
-                "migrify/easy-ci": "^0.3.30",
+                "migrify/config-transformer": "^0.3.31",
+                "migrify/easy-ci": "^0.3.31",
                 "nette/application": "^3.0",
                 "nette/forms": "^3.0",
                 "ocramius/package-versions": "^1.4|^1.5",
-                "phpunit/phpunit": "^8.5|^9.0",
+                "phpunit/phpunit": "^8.5|^9.2",
                 "psr/event-dispatcher": "^1.0",
                 "slam/phpstan-extensions": "^5.0",
-                "symplify/changelog-linker": "^8.2.9",
-                "symplify/easy-coding-standard": "^8.2.9",
-                "symplify/easy-testing": "^8.2.9",
-                "symplify/monorepo-builder": "^8.2.9",
-                "symplify/phpstan-extensions": "^8.2.9",
+                "symplify/changelog-linker": "^8.2.11",
+                "symplify/easy-coding-standard": "^8.2.11",
+                "symplify/easy-testing": "^8.2.11",
+                "symplify/monorepo-builder": "^8.2.11",
+                "symplify/phpstan-extensions": "^8.2.11",
                 "thecodingmachine/phpstan-strict-rules": "^0.12"
             },
             "bin": [
@@ -10440,9 +10440,7 @@
                     "Rector\\DynamicTypeAnalysis\\": "packages/dynamic-type-analysis/src",
                     "Rector\\DoctrineAnnotationGenerated\\": "packages/doctrine-annotation-generated/src",
                     "Rector\\FileSystemRector\\": "packages/file-system-rector/src",
-                    "Rector\\FrameworkMigration\\": "rules/framework-migration/src",
                     "Rector\\FamilyTree\\": "packages/family-tree/src",
-                    "Rector\\Guzzle\\": "rules/guzzle/src",
                     "Rector\\JMS\\": "rules/jms/src",
                     "Rector\\Laravel\\": "rules/laravel/src",
                     "Rector\\Legacy\\": "rules/legacy/src",
@@ -10454,6 +10452,7 @@
                     "Rector\\NodeCollector\\": "packages/node-collector/src",
                     "Rector\\Decouple\\": "rules/decouple/src",
                     "Rector\\NodeNameResolver\\": "packages/node-name-resolver/src",
+                    "Rector\\NodeNestingScope\\": "packages/node-nesting-scope/src",
                     "Rector\\NodeTypeResolver\\": "packages/node-type-resolver/src",
                     "Rector\\PhpAttribute\\": "packages/php-attribute/src",
                     "Rector\\PHPStanStaticTypeMapper\\": "packages/phpstan-static-type-mapper/src",
@@ -10469,7 +10468,6 @@
                     "Rector\\Php55\\": "rules/php55/src",
                     "Rector\\Php56\\": "rules/php56/src",
                     "Rector\\Php70\\": "rules/php70/src",
-                    "Rector\\Php\\": "rules/php/src",
                     "Rector\\Php71\\": "rules/php71/src",
                     "Rector\\Php72\\": "rules/php72/src",
                     "Rector\\Php73\\": "rules/php73/src",
@@ -10481,12 +10479,12 @@
                     "Rector\\Polyfill\\": "rules/polyfill/src",
                     "Rector\\Privatization\\": "rules/privatization/src",
                     "Rector\\RectorGenerator\\": "packages/rector-generator/src",
-                    "Rector\\Set\\": "packages/set/src",
                     "Rector\\RemovingStatic\\": "rules/removing-static/src",
                     "Rector\\Renaming\\": "rules/renaming/src",
                     "Rector\\Restoration\\": "rules/restoration/src",
+                    "Rector\\Set\\": "packages/set/src",
                     "Rector\\SOLID\\": "rules/solid/src",
-                    "Rector\\NodeNestingScope\\": "packages/node-nesting-scope/src",
+                    "Rector\\Transform\\": "rules/transform/src",
                     "Rector\\Sensio\\": "rules/sensio/src",
                     "Rector\\StaticTypeMapper\\": "packages/static-type-mapper/src",
                     "Rector\\StrictCodeQuality\\": "rules/strict-code-quality/src",
@@ -10504,10 +10502,8 @@
                     "Rector\\NetteKdyby\\": "rules/nette-kdyby/src",
                     "Rector\\NetteUtilsCodeQuality\\": "rules/nette-utils-code-quality/src",
                     "Rector\\NetteCodeQuality\\": "rules/nette-code-quality/src",
-                    "Rector\\Decomplex\\": "rules/decomplex/src",
                     "Rector\\Downgrade\\": "rules/downgrade/src",
-                    "Rector\\SymfonyPhpConfig\\": "rules/symfony-php-config/src",
-                    "Rector\\Injection\\": "rules/injection/src"
+                    "Rector\\SymfonyPhpConfig\\": "rules/symfony-php-config/src"
                 },
                 "files": [
                     "rules/symfony-php-config/functions/functions.php"
@@ -10543,7 +10539,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-08-20T13:37:13+00:00"
+            "time": "2020-09-01T20:04:49+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -12368,12 +12364,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/auto-bind-parameter.git",
-                "reference": "afabce1851a96b476f525be8ea40b640be10bf81"
+                "reference": "e3d024c4f044b34faee60499d91e7647523468ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/auto-bind-parameter/zipball/afabce1851a96b476f525be8ea40b640be10bf81",
-                "reference": "afabce1851a96b476f525be8ea40b640be10bf81",
+                "url": "https://api.github.com/repos/symplify/auto-bind-parameter/zipball/e3d024c4f044b34faee60499d91e7647523468ef",
+                "reference": "e3d024c4f044b34faee60499d91e7647523468ef",
                 "shasum": ""
             },
             "require": {
@@ -12416,12 +12412,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/autowire-array-parameter.git",
-                "reference": "cf06f8214442ed7ea97c1dcfcc4426dc56dca372"
+                "reference": "b8005ebbd48e26412998dd1ffe0924c85bbbc29e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/autowire-array-parameter/zipball/cf06f8214442ed7ea97c1dcfcc4426dc56dca372",
-                "reference": "cf06f8214442ed7ea97c1dcfcc4426dc56dca372",
+                "url": "https://api.github.com/repos/symplify/autowire-array-parameter/zipball/b8005ebbd48e26412998dd1ffe0924c85bbbc29e",
+                "reference": "b8005ebbd48e26412998dd1ffe0924c85bbbc29e",
                 "shasum": ""
             },
             "require": {
@@ -12463,12 +12459,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/console-color-diff.git",
-                "reference": "3a172ce287607fd0f2b6309941a58e92363e5065"
+                "reference": "e08342ef623067721a15cac3c6439ad38fac0b8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/console-color-diff/zipball/3a172ce287607fd0f2b6309941a58e92363e5065",
-                "reference": "3a172ce287607fd0f2b6309941a58e92363e5065",
+                "url": "https://api.github.com/repos/symplify/console-color-diff/zipball/e08342ef623067721a15cac3c6439ad38fac0b8b",
+                "reference": "e08342ef623067721a15cac3c6439ad38fac0b8b",
                 "shasum": ""
             },
             "require": {
@@ -12513,12 +12509,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/easy-testing.git",
-                "reference": "8f7905a36afcdb1bfba945efc8ad0d61f7a1d4d0"
+                "reference": "352c7667eb835fb09517067345c11d5b1fc49630"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/easy-testing/zipball/8f7905a36afcdb1bfba945efc8ad0d61f7a1d4d0",
-                "reference": "8f7905a36afcdb1bfba945efc8ad0d61f7a1d4d0",
+                "url": "https://api.github.com/repos/symplify/easy-testing/zipball/352c7667eb835fb09517067345c11d5b1fc49630",
+                "reference": "352c7667eb835fb09517067345c11d5b1fc49630",
                 "shasum": ""
             },
             "require": {
@@ -12561,12 +12557,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/package-builder.git",
-                "reference": "51d76dc668c89fb589621697cc46630048255c74"
+                "reference": "c69c6672cb7d1cd0813dfe04117f9611bad0af07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/package-builder/zipball/51d76dc668c89fb589621697cc46630048255c74",
-                "reference": "51d76dc668c89fb589621697cc46630048255c74",
+                "url": "https://api.github.com/repos/symplify/package-builder/zipball/c69c6672cb7d1cd0813dfe04117f9611bad0af07",
+                "reference": "c69c6672cb7d1cd0813dfe04117f9611bad0af07",
                 "shasum": ""
             },
             "require": {
@@ -12613,12 +12609,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/set-config-resolver.git",
-                "reference": "1115eb33b119dd2cfccf5083c25bee2235356de7"
+                "reference": "5a14e01b177d9f18123692f7e161bcecf6310bf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/set-config-resolver/zipball/1115eb33b119dd2cfccf5083c25bee2235356de7",
-                "reference": "1115eb33b119dd2cfccf5083c25bee2235356de7",
+                "url": "https://api.github.com/repos/symplify/set-config-resolver/zipball/5a14e01b177d9f18123692f7e161bcecf6310bf4",
+                "reference": "5a14e01b177d9f18123692f7e161bcecf6310bf4",
                 "shasum": ""
             },
             "require": {
@@ -12665,12 +12661,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/smart-file-system.git",
-                "reference": "c6b077db3b4c484f16217a05fc35d9fc4e2d7ea6"
+                "reference": "48bed19c952d063c14a24cf73f4924281779c573"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/smart-file-system/zipball/c6b077db3b4c484f16217a05fc35d9fc4e2d7ea6",
-                "reference": "c6b077db3b4c484f16217a05fc35d9fc4e2d7ea6",
+                "url": "https://api.github.com/repos/symplify/smart-file-system/zipball/48bed19c952d063c14a24cf73f4924281779c573",
+                "reference": "48bed19c952d063c14a24cf73f4924281779c573",
                 "shasum": ""
             },
             "require": {
