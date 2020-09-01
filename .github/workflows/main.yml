@@ -1,10 +1,17 @@
-# GitHub Action: whenever creating a new release of the source code,
-# also create a release of the installable plugin.
+####################################################################################
+# GitHub Action:
+# Whenever creating a new release of the source code,
+# also create a release of the installable plugin,
+# and downgrading it from PHP 7.4 to 7.2 to support more users.
+####################################################################################
 # Steps to execute:
 # - Checkout the source code
-# - Run "composer install" to download all dependencies under vendor/
+# - Run "composer install" for development, to install dependencies for Rector
+# - Run Rector to downgrade code from PHP 7.4 to 7.2
+# - Run "composer install" for production (required dependencies are already under vendor/)
 # - Create a .zip file, excluding:
 #   - All hidden files (.git, .gitignore, etc)
+#   - Rector file
 #   - All development files, ending in .dist
 #   - All composer files <= after installing dependencies, no need for them anymore
 #   - Markdown files concerning development
@@ -12,10 +19,12 @@
 #   - Folder dev-helpers/ <= not needed for the plugin
 # - Upload the .zip file as an artifact to the action (this step is possibly optional)
 # - Upload the .zip file as a release, for download
-name: Generate Installable Plugin, and Upload as Release Asset
-on:
-  release:
-    types: [published]
+####################################################################################
+name: Generate Installable Plugin, Downgrade to PHP 7.2, and Upload as Release Asset
+on: push
+# on:
+#   release:
+#     types: [published]
 jobs:
   build:
     name: Upload Release Asset
@@ -23,22 +32,26 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Build project
+      - name: Downgrade code for production (PHP 7.4 to 7.2)
+        run: |
+          composer install
+          vendor/bin/rector process
+      - name: Build project for production
         run: |
           composer install --no-dev --optimize-autoloader
           mkdir build
       - name: Create artifact
         uses: montudor/action-zip@v0.1.0
         with:
-          args: zip -X -r build/graphql-api.zip . -x *.git* node_modules/\* .* "*/\.*" CODE_OF_CONDUCT.md CONTRIBUTING.md ISSUE_TEMPLATE.md PULL_REQUEST_TEMPLATE.md *.dist composer.* dev-helpers** build**
+          args: zip -X -r build/graphql-api.zip . -x *.git* node_modules/\* .* "*/\.*" CODE_OF_CONDUCT.md CONTRIBUTING.md ISSUE_TEMPLATE.md PULL_REQUEST_TEMPLATE.md rector.php *.dist composer.* dev-helpers** build**
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
             name: graphql-api
             path: build/graphql-api.zip
-      - name: Upload to release
-        uses: JasonEtco/upload-to-release@master
-        with:
-          args: build/graphql-api.zip application/zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   - name: Upload to release
+    #     uses: JasonEtco/upload-to-release@master
+    #     with:
+    #       args: build/graphql-api.zip application/zip
+    #     env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
