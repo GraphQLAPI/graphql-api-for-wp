@@ -43,7 +43,7 @@ before_script:
     - if [[ "$DOWNGRADE_CODE" == "true" ]]; then composer remove phpunit/phpunit --dev --no-update --no-scripts; fi
     - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
     # For PHP 7.2 downgrade the code via Rector
-    - if [[ "$DOWNGRADE_CODE" == "true" ]]; then vendor/bin/rector process src; fi
+    - if [[ "$DOWNGRADE_CODE" == "true" ]]; then vendor/bin/rector process; fi
 
 script:
   # Tests only on PHP 7.4
