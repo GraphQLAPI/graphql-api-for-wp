@@ -154,7 +154,6 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
     public function getSettings(string $module): array
     {
         $moduleSettings = parent::getSettings($module);
-        $moduleRegistry = ModuleRegistryFacade::getInstance();
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if ($module == self::SINGLE_ENDPOINT) {
             $option = self::OPTION_PATH;
