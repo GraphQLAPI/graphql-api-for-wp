@@ -24,6 +24,9 @@ abstract class AbstractTableMenuPage extends AbstractMenuPage
 
     public function print(): void
     {
+        if (is_null($this->tableObject)) {
+            return;
+        }
         ?>
         <div class="wrap">
             <h1><?php echo $this->getHeader() ?></h1>
