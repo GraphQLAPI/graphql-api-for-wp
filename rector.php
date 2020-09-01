@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Rector\Core\Configuration\Option;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Rector\Set\ValueObject\SetList;
+use Rector\Downgrade\Rector\Property\DowngradeTypedPropertyRector;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     // get parameters
@@ -38,4 +39,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     // is your PHP version different from the one your refactor to? [default: your PHP version]
     $parameters->set(Option::PHP_VERSION_FEATURES, '7.2');
+
+    // Don't output the docBlocks when removing typed properties
+    $services = $containerConfigurator->services();
+    $services->set(DowngradeTypedPropertyRector::class)
+        ->call('configure', [[
+            DowngradeTypedPropertyRector::ADD_DOC_BLOCK => false,
+        ]]);
 };
