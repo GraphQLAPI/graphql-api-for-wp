@@ -11,7 +11,7 @@ use GraphQLAPI\GraphQLAPI\Admin\MenuPages\MenuPageInterface;
  */
 abstract class AbstractMenuPage implements MenuPageInterface
 {
-    protected $hookName;
+    protected ?string $hookName;
 
     public function setHookName(string $hookName): void
     {

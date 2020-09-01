@@ -15,9 +15,9 @@ class ModuleListTableAction extends AbstractListTableAction
     public const ACTION_DISABLE = 'disable';
     public const INPUT_BULK_ACTION_IDS = 'bulk-action-items';
 
-    private $processed = false;
-    private $mutatedModuleIDs = [];
-    private $mutatedEnabled = false;
+    private bool $processed = false;
+    private array $mutatedModuleIDs = [];
+    private bool $mutatedEnabled = false;
 
     /**
      * Please notice that creatin a new instance carries side effects

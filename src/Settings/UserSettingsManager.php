@@ -14,7 +14,7 @@ class UserSettingsManager implements UserSettingsManagerInterface
      *
      * @var array
      */
-    protected $options = [];
+    protected array $options = [];
 
     /**
      * Timestamp of latest executed write to DB, concerning plugin activation,

@@ -20,19 +20,19 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
      *
      * @var array
      */
-    protected $namespacedTypeNameClasses;
+    protected ?array $namespacedTypeNameClasses = null;
     /**
      * Keep a map of all namespaced field interface names to their resolver classes
      *
      * @var array
      */
-    protected $namespacedFieldInterfaceNameClasses;
+    protected ?array $namespacedFieldInterfaceNameClasses = null;
     /**
      * Keep a map of all directives names to their resolver classes
      *
      * @var array
      */
-    protected $directiveNameClasses;
+    protected ?array $directiveNameClasses = null;
 
     /**
      * Lazy load and return the `$namespacedTypeNameClasses` array

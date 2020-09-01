@@ -8,7 +8,7 @@ use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolverInterface;
 
 class ModuleTypeRegistry implements ModuleTypeRegistryInterface
 {
-    protected $moduleTypeResolvers = [];
+    protected array $moduleTypeResolvers = [];
 
     public function addModuleTypeResolver(ModuleTypeResolverInterface $moduleTypeResolver): void
     {

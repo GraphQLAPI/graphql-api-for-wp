@@ -9,7 +9,8 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverInterface;
 
 class ModuleRegistry implements ModuleRegistryInterface
 {
-    protected $moduleResolvers = [];
+    protected array $moduleResolvers = [];
+
     public function addModuleResolver(ModuleResolverInterface $moduleResolver): void
     {
         foreach ($moduleResolver::getModulesToResolve() as $module) {
