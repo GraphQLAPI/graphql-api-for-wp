@@ -107,7 +107,6 @@ GraphQL API is extensible, and ships with the following modules (organized by ca
 </tbody>
 </table>
 
-
 ## Development
 
 Clone repo, and then install Composer dependencies, by running:
@@ -206,6 +205,27 @@ This method requires the code for the component to be divided into 2 separate pa
 
 - A CMS-agnostic package, containing the business code and generic contracts, but without using any WordPress code (eg: [posts](https://github.com/PoPSchema/posts))
 - A CMS-specific package, containing the implementation of the contracts for WordPress (eg: [posts-wp](https://github.com/PoPSchema/posts-wp))
+
+## PHP versions
+
+Allowed PHP code:
+
+- PHP 7.2
+- Typed properties from PHP 7.4
+
+The code can be downgraded from PHP 7.4 to PHP 7.2 to run in production:
+
+| | Development | Production |
+| --- | --- | --- |
+| **Min PHP version** | 7.4 | 7.2 (After removing typed properties) |
+
+### Downgrading PHP code
+
+Dry run to downgrade the code, via [Rector](https://github.com/rectorphp/rector):
+
+```bash
+composer downgrade-code
+```
 
 ## Resources
 

@@ -11,7 +11,7 @@ use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
  */
 abstract class AbstractMenu
 {
-    protected $menuPageObjects;
+    protected array $menuPageObjects;
 
     public function __construct()
     {

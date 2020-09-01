@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\Tables;
 
+use WP_List_Table;
+
 /**
  * Module Table
  */
-abstract class AbstractItemListTable extends \WP_List_Table
+abstract class AbstractItemListTable extends WP_List_Table
 {
-    protected $itemsPerPageOptionName = '';
-    protected $defaultItemsPerPage = 10;
+    protected string $itemsPerPageOptionName = '';
+    protected int $defaultItemsPerPage = 10;
 
     public function setItemsPerPageOptionName(string $itemsPerPageOptionName): void
     {

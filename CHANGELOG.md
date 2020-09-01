@@ -4,6 +4,12 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 0.5.0 - 2020-09-01
+
+### Added
+
+- Code now supports typed properties from PHP 7.4, and it uses Rector to convert it to PHP 7.2 when generating the plugin for production
+
 ## 0.4.2 - 2020-08-31
 
 ### Fixed

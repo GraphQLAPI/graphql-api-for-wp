@@ -8,10 +8,6 @@ parameters:
         -
             message: '#^Unreachable statement - code above always terminates\.$#'
             path: src/Blocks/GraphiQLBlock.php
-        -
-            message: '#^Call to function is_null\(\) with array will always evaluate to false\.$#'
-            path: src/SchemaConfigurators/AbstractGraphQLQueryConfigurator.php
-            count: 3
         # This error happens because of bug in PHPStan: https://github.com/phpstan/phpstan/issues/3132
         -
             message: '#^Parameter \#1 \$module of method GraphQLAPI\\GraphQLAPI\\Registries\\ModuleRegistryInterface::isModuleEnabled\(\) expects string, array\<int, class-string\> given\.$#'

@@ -18,7 +18,7 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
 {
     public const HOOK_ACL_RULE_BLOCK_CLASS_MODULES = __CLASS__ . ':acl-url-block-class:modules';
 
-    protected $aclRuleBlockNameModules;
+    protected ?array $aclRuleBlockNameModules = null;
 
     // protected function doInit(): void
     // {
