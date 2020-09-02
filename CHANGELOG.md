@@ -4,6 +4,12 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 0.6.0 - DATE
+
+### Added
+
+- Upgraded PHPStan to level 8
+
 ## 0.5.0 - 2020-09-01
 
 ### Added
