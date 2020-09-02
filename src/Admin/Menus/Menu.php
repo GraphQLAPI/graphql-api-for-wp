@@ -11,6 +11,7 @@ use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphiQLMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\MenuPageInterface;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphQLVoyagerMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModuleDocumentationMenuPage;
@@ -112,14 +113,21 @@ class Menu extends AbstractMenu
 
         $instanceManager = InstanceManagerFacade::getInstance();
         $menuPageClass = $this->getModuleMenuPageClass();
+        /**
+         * @var MenuPageInterface
+         */
         $modulesMenuPage = $instanceManager->getInstance($menuPageClass);
+        /**
+         * @var callable
+         */
+        $callable = [$modulesMenuPage, 'print'];
         if ($hookName = \add_submenu_page(
             self::NAME,
             __('Modules', 'graphql-api'),
             __('Modules', 'graphql-api'),
             'manage_options',
-            $modulesMenuPage->getScreenId(),
-            [$modulesMenuPage, 'print']
+            $modulesMenuPage->getScreenID(),
+            $callable
         )
         ) {
             $modulesMenuPage->setHookName($hookName);
