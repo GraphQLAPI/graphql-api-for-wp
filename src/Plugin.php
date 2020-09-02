@@ -6,15 +6,22 @@ namespace GraphQLAPI\GraphQLAPI;
 
 use PoP\Engine\ComponentLoader;
 use GraphQLAPI\GraphQLAPI\PluginConfiguration;
+use GraphQLAPI\GraphQLAPI\Blocks\AbstractBlock;
+use GraphQLAPI\GraphQLAPI\Admin\Menus\AbstractMenu;
+use GraphQLAPI\GraphQLAPI\PostTypes\AbstractPostType;
+use GraphQLAPI\GraphQLAPI\Taxonomies\AbstractTaxonomy;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLEndpointPostType;
+use GraphQLAPI\GraphQLAPI\EditorScripts\AbstractEditorScript;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLPersistedQueryPostType;
 use GraphQLAPI\GraphQLAPI\Admin\TableActions\ModuleListTableAction;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLCacheControlListPostType;
+use GraphQLAPI\GraphQLAPI\EndpointResolvers\AbstractEndpointResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLAccessControlListPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
@@ -183,15 +190,19 @@ class Plugin
              */
             $menuServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\Admin\\Menus');
             foreach ($menuServiceClasses as $serviceClass) {
-                $instanceManager->getInstance($serviceClass)->initialize();
+                /**
+                 * @var AbstractMenu
+                 */
+                $service = $instanceManager->getInstance($serviceClass);
+                $service->initialize();
             }
             $endpointResolverServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\Admin\\EndpointResolvers');
             foreach ($endpointResolverServiceClasses as $serviceClass) {
-                $instanceManager->getInstance($serviceClass)->initialize();
-            }
-            $developmentServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\Admin\\Development');
-            foreach ($developmentServiceClasses as $serviceClass) {
-                $instanceManager->getInstance($serviceClass)->initialize();
+                /**
+                 * @var AbstractEndpointResolver
+                 */
+                $service = $instanceManager->getInstance($serviceClass);
+                $service->initialize();
             }
         }
 
@@ -200,7 +211,11 @@ class Plugin
          */
         $taxonomyServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\Taxonomies');
         foreach ($taxonomyServiceClasses as $serviceClass) {
-            $instanceManager->getInstance($serviceClass)->initialize();
+            /**
+             * @var AbstractTaxonomy
+             */
+            $service = $instanceManager->getInstance($serviceClass);
+            $service->initialize();
         }
         /**
          * Initialize Post Types manually to control in what order they are added to the menu
@@ -216,7 +231,11 @@ class Plugin
         foreach ($postTypeServiceClassModules as $serviceClass => $module) {
             // Check that the corresponding module is enabled
             if ($moduleRegistry->isModuleEnabled($module)) {
-                $instanceManager->getInstance($serviceClass)->initialize();
+                /**
+                 * @var AbstractPostType
+                 */
+                $service = $instanceManager->getInstance($serviceClass);
+                $service->initialize();
             }
         }
         /**
@@ -226,7 +245,11 @@ class Plugin
         if ($moduleRegistry->isModuleEnabled(UserInterfaceFunctionalityModuleResolver::WELCOME_GUIDES)) {
             $editorScriptServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\EditorScripts');
             foreach ($editorScriptServiceClasses as $serviceClass) {
-                $instanceManager->getInstance($serviceClass)->initialize();
+                /**
+                 * @var AbstractEditorScript
+                 */
+                $service = $instanceManager->getInstance($serviceClass);
+                $service->initialize();
             }
         }
         /**
@@ -235,7 +258,11 @@ class Plugin
          */
         $blockServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\Blocks', false);
         foreach ($blockServiceClasses as $serviceClass) {
-            $instanceManager->getInstance($serviceClass)->initialize();
+            /**
+             * @var AbstractBlock
+             */
+            $service = $instanceManager->getInstance($serviceClass);
+            $service->initialize();
         }
         /**
          * Access Control Nested Blocks
@@ -249,7 +276,11 @@ class Plugin
         ];
         foreach ($accessControlRuleBlockServiceClassModules as $serviceClass => $module) {
             if ($moduleRegistry->isModuleEnabled($module)) {
-                $instanceManager->getInstance($serviceClass)->initialize();
+                /**
+                 * @var AbstractBlock
+                 */
+                $service = $instanceManager->getInstance($serviceClass);
+                $service->initialize();
             }
         }
         /**
@@ -257,7 +288,11 @@ class Plugin
          */
         $blockCategoryServiceClasses = ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\BlockCategories');
         foreach ($blockCategoryServiceClasses as $serviceClass) {
-            $instanceManager->getInstance($serviceClass)->initialize();
+            /**
+             * @var AbstractBlockCategory
+             */
+            $service = $instanceManager->getInstance($serviceClass);
+            $service->initialize();
         }
     }
 
