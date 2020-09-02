@@ -447,10 +447,15 @@ class ModuleListTable extends AbstractItemListTable
     /**
      * Classnames to add to the row for the item
      *
-     * @param array<string, mixed> $item The current item
+     * @param object $item The current item
      */
     protected function getTableStyleRowClassnames($item): string
     {
+        /**
+         * Cast object so PHPStan doesn't throw error
+         * @var array<string, mixed>
+         */
+        $item = $item;
         return sprintf(
             'module-%s',
             $item['module-type']
@@ -476,7 +481,7 @@ class ModuleListTable extends AbstractItemListTable
         if ($this->usePluginTableStyle()) {
             $classnames = sprintf(
                 '%s %s',
-                $this->getTableStyleRowClassnames($arrayItem),
+                $this->getTableStyleRowClassnames($item),
                 $arrayItem['is-enabled'] ? 'active' : 'inactive'
             );
             echo sprintf(
