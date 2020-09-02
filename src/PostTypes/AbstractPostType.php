@@ -151,8 +151,13 @@ abstract class AbstractPostType
     {
         switch ($column) {
             case 'description':
+                /**
+                 * @var WP_Post|null
+                 */
                 $post = \get_post($post_id);
-                echo CPTUtils::getCustomPostDescription($post);
+                if (!is_null($post)) {
+                    echo CPTUtils::getCustomPostDescription($post);
+                }
                 break;
         }
     }
@@ -468,7 +473,9 @@ abstract class AbstractPostType
     {
         if (!empty($this->getGutenbergTemplate()) && $this->lockGutenbergTemplate()) {
             $post_type_object = \get_post_type_object($this->getPostType());
-            $post_type_object->template_lock = 'all';
+            if (!is_null($post_type_object)) {
+                $post_type_object->template_lock = 'all';
+            }
         }
     }
 

@@ -75,7 +75,7 @@ class GraphQLQueryPostTypeHelpers
             if ($inheritQuery) {
                 $graphQLQueryPost = \get_post($graphQLQueryPost->post_parent);
                 // If it's trashed, then do not use
-                if ($graphQLQueryPost->post_status == 'trash') {
+                if (!is_null($graphQLQueryPost) && $graphQLQueryPost->post_status == 'trash') {
                     $graphQLQueryPost = null;
                 }
             } else {

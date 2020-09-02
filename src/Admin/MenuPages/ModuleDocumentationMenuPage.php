@@ -7,6 +7,7 @@ namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
+use InvalidArgumentException;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 /**
@@ -35,18 +36,25 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
         parse_str($_SERVER['REQUEST_URI'], $vars);
         $module = urldecode($vars[RequestParams::MODULE]);
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        $moduleResolver = $moduleRegistry->getModuleResolver($module);
-        if (is_null($moduleResolver)) {
+        try {
+            $moduleResolver = $moduleRegistry->getModuleResolver($module);
+        } catch (InvalidArgumentException $e) {
             _e(sprintf(
-                \__('Ops, module \'%s\' does not exist', 'graphql-api'),
-                $module
+                '<p>%s</p>',
+                sprintf(
+                    \__('Oops, module \'%s\' does not exist', 'graphql-api'),
+                    $module
+                )
             ));
             return;
         }
         if (!$moduleResolver->hasDocumentation($module)) {
             _e(sprintf(
-                \__('Ops, module \'%s\' has no documentation', 'graphql-api'),
-                $moduleResolver->getName($module)
+                '<p>%s</p>',
+                sprintf(
+                    \__('Oops, module \'%s\' has no documentation', 'graphql-api'),
+                    $moduleResolver->getName($module)
+                )
             ));
             return;
         }

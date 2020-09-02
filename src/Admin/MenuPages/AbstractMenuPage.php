@@ -54,11 +54,14 @@ abstract class AbstractMenuPage implements MenuPageInterface
     {
         $screenID = $this->getScreenID();
         // Check we are on the specific screen
-        $currentScreen = \get_current_screen()->id;
+        $currentScreen = \get_current_screen();
+        if (is_null($currentScreen)) {
+            return false;
+        }
         // If it is the top level page, the current screen is prepended with "toplevel_page_"
         // If not, the current screen is prepended with the section name
         // Then, check that the screen ends with the requested screen ID
-        return substr($currentScreen, -1 * strlen($screenID)) == $screenID;
+        return substr($currentScreen->id, -1 * strlen($screenID)) == $screenID;
     }
 
     public function getScreenID(): string

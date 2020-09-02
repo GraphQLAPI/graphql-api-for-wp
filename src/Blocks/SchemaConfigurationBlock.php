@@ -87,22 +87,24 @@ EOF;
             $schemaConfigurationContent = \__('Inherit from parent', 'graphql-api');
         } elseif ($schemaConfigurationID > 0) {
             $schemaConfigurationObject = \get_post($schemaConfigurationID);
-            $schemaConfigurationDescription = CPTUtils::getCustomPostDescription($schemaConfigurationObject);
-            $permalink = \get_permalink($schemaConfigurationObject->ID);
-            $schemaConfigurationContent = ($permalink ?
-                \sprintf(
-                    '<code><a href="%s">%s</a></code>',
-                    $permalink,
-                    BlockRenderingHelpers::getCustomPostTitle($schemaConfigurationObject)
-                ) :
-                \sprintf(
-                    '<code>%s</code>',
-                    BlockRenderingHelpers::getCustomPostTitle($schemaConfigurationObject)
-                )
-            ) . ($schemaConfigurationDescription ?
-                '<br/><small>' . $schemaConfigurationDescription . '</small>'
-                : ''
-            );
+            if (!is_null($schemaConfigurationObject)) {
+                $schemaConfigurationDescription = CPTUtils::getCustomPostDescription($schemaConfigurationObject);
+                $permalink = \get_permalink($schemaConfigurationObject->ID);
+                $schemaConfigurationContent = ($permalink ?
+                    \sprintf(
+                        '<code><a href="%s">%s</a></code>',
+                        $permalink,
+                        BlockRenderingHelpers::getCustomPostTitle($schemaConfigurationObject)
+                    ) :
+                    \sprintf(
+                        '<code>%s</code>',
+                        BlockRenderingHelpers::getCustomPostTitle($schemaConfigurationObject)
+                    )
+                ) . ($schemaConfigurationDescription ?
+                    '<br/><small>' . $schemaConfigurationDescription . '</small>'
+                    : ''
+                );
+            }
         }
         $className = $this->getBlockClassName();
         return sprintf(

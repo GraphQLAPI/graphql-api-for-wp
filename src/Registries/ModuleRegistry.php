@@ -72,9 +72,6 @@ class ModuleRegistry implements ModuleRegistryInterface
     public function isModuleEnabled(string $module): bool
     {
         $moduleResolver = $this->getModuleResolver($module);
-        if (is_null($moduleResolver)) {
-            return false;
-        }
         // Check that all requirements are satisfied
         if (!$moduleResolver->areRequirementsSatisfied($module)) {
             return false;
@@ -106,9 +103,6 @@ class ModuleRegistry implements ModuleRegistryInterface
     protected function areDependedModulesEnabled(string $module): bool
     {
         $moduleResolver = $this->getModuleResolver($module);
-        if (is_null($moduleResolver)) {
-            return false;
-        }
         // Check that all depended-upon modules are enabled
         $dependedModuleLists = $moduleResolver->getDependedModuleLists($module);
         /**
@@ -156,9 +150,6 @@ class ModuleRegistry implements ModuleRegistryInterface
     public function canModuleBeEnabled(string $module): bool
     {
         $moduleResolver = $this->getModuleResolver($module);
-        if (is_null($moduleResolver)) {
-            return false;
-        }
         // Check that all requirements are satisfied
         if (!$moduleResolver->areRequirementsSatisfied($module)) {
             return false;

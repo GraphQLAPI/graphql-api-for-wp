@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Registries;
 
+use InvalidArgumentException;
 use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolverInterface;
 
 class ModuleTypeRegistry implements ModuleTypeRegistryInterface
@@ -20,8 +21,17 @@ class ModuleTypeRegistry implements ModuleTypeRegistryInterface
         }
     }
 
-    public function getModuleTypeResolver(string $module): ?ModuleTypeResolverInterface
+    /**
+     * @throws InvalidArgumentException If module does not exist
+     */
+    public function getModuleTypeResolver(string $moduleType): ModuleTypeResolverInterface
     {
-        return $this->moduleTypeResolvers[$module];
+        if (!isset($this->moduleTypeResolvers[$moduleType])) {
+            throw new InvalidArgumentException(sprintf(
+                \__('Module type \'%s\' does not exist', 'graphql-api'),
+                $moduleType
+            ));
+        }
+        return $this->moduleTypeResolvers[$moduleType];
     }
 }

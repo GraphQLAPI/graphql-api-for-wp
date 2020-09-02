@@ -24,6 +24,7 @@ use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfigurat
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\FieldDeprecationGraphQLQueryConfigurator;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
+use \WP_Post;
 
 abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfiguratorInterface
 {
@@ -96,8 +97,11 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
                 return null;
             }
             // Return the schema configuration from the parent, or null if no parent exists
+            /**
+             * @var WP_Post|null
+             */
             $customPost = \get_post($customPostID);
-            if ($customPost->post_parent) {
+            if (!is_null($customPost) && $customPost->post_parent) {
                 return $this->getSchemaConfigurationID($customPost->post_parent);
             }
             return null;

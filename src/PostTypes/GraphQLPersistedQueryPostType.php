@@ -275,10 +275,14 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
      */
     protected function doURLParamsOverrideGraphQLVariables($postOrID): bool
     {
+        $default = true;
         $optionsBlockDataItem = $this->getOptionsBlockDataItem($postOrID);
+        if (is_null($optionsBlockDataItem)) {
+            return $default;
+        }
 
         // `true` is the default option in Gutenberg, so it's not saved to the DB!
-        return $optionsBlockDataItem['attrs'][PersistedQueryOptionsBlock::ATTRIBUTE_NAME_ACCEPT_VARIABLES_AS_URL_PARAMS] ?? true;
+        return $optionsBlockDataItem['attrs'][PersistedQueryOptionsBlock::ATTRIBUTE_NAME_ACCEPT_VARIABLES_AS_URL_PARAMS] ?? $default;
     }
 
     /**

@@ -192,7 +192,7 @@ trait HasMarkdownDocumentationModuleResolverTrait
     protected function embedVideos(string $htmlContent): string
     {
         // Identify videos from Vimeo/Youtube
-        return preg_replace_callback(
+        return (string)preg_replace_callback(
             '/<p>(.*?)<a href="https:\/\/(vimeo.com|youtube.com|youtu.be)\/(.*?)">(.*?)<\/a>\.?<\/p>/',
             function ($matches) {
                 global $wp_embed;
@@ -271,7 +271,7 @@ trait HasMarkdownDocumentationModuleResolverTrait
             $tag,
             $attr
         );
-        return preg_replace_callback(
+        return (string)preg_replace_callback(
             $regex,
             function ($matches) use ($pathURL, $attr) {
                 // If the element has an absolute route, then no need

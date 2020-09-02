@@ -82,13 +82,13 @@ trait HasDocumentationScriptTrait
     /**
      * Register the documentation (from under folder "docs/"), for the locale and the default language
      *
-     * @param string[]|null $dependencies
+     * @param string[] $dependencies
      */
     protected function registerDocumentationScripts(
         string $scriptName,
         string $url,
-        ?array $dependencies = [],
-        ?string $version = null
+        array $dependencies = [],
+        string $version = ''
     ): void {
         if ($defaultLang = $this->getDefaultLanguage()) {
             \wp_register_script(

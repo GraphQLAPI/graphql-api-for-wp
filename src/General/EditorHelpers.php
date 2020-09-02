@@ -40,7 +40,9 @@ class EditorHelpers
             }
             if (!is_null($post_id)) {
                 $post = \get_post($post_id);
-                $typenow = $post->post_type;
+                if (!is_null($post)) {
+                    $typenow = $post->post_type;
+                }
             }
         }
         return $typenow;

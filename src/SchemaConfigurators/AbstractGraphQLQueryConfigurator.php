@@ -44,7 +44,7 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
         if (is_null($this->namespacedTypeNameClasses)) {
             $this->initNamespacedTypeNameClasses();
         }
-        return $this->namespacedTypeNameClasses;
+        return (array)$this->namespacedTypeNameClasses;
     }
 
     /**
@@ -57,7 +57,7 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
         if (is_null($this->namespacedFieldInterfaceNameClasses)) {
             $this->initNamespacedFieldInterfaceNameClasses();
         }
-        return $this->namespacedFieldInterfaceNameClasses;
+        return (array)$this->namespacedFieldInterfaceNameClasses;
     }
 
     /**
@@ -110,7 +110,7 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
         if (is_null($this->directiveNameClasses)) {
             $this->initDirectiveNameClasses();
         }
-        return $this->directiveNameClasses;
+        return (array)$this->directiveNameClasses;
     }
     /**
      * Initialize the `$directiveNameClasses` array
