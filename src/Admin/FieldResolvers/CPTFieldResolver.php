@@ -154,17 +154,15 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
     }
 
     /**
-     * @param object $resultItem
      * @param array<string, mixed> $fieldArgs
      * @param array<string, mixed>|null $variables
      * @param array<string, mixed>|null $expressions
      * @param array<string, mixed> $options
-     *
      * @return mixed
      */
     public function resolveValue(
         TypeResolverInterface $typeResolver,
-        $resultItem,
+        object $resultItem,
         string $fieldName,
         array $fieldArgs = [],
         ?array $variables = null,
