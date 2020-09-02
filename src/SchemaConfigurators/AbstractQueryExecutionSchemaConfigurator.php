@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
 use PoP\AccessControl\Schema\SchemaModes;
+use GraphQLAPI\GraphQLAPI\Blocks\AbstractBlock;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock;
@@ -68,9 +69,13 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     protected function getSchemaConfigurationID(int $customPostID): ?int
     {
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var AbstractBlock
+         */
+        $block = $instanceManager->getInstance(SchemaConfigurationBlock::class);
         $schemaConfigurationBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $customPostID,
-            $instanceManager->getInstance(SchemaConfigurationBlock::class)
+            $block
         );
         // If there was no schema configuration, then the default one has been selected
         // It is not saved in the DB, because it has been set as the default value in
@@ -138,9 +143,13 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         }
 
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var AbstractBlock
+         */
+        $block = $instanceManager->getInstance(SchemaConfigOptionsBlock::class);
         $schemaConfigOptionsBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $schemaConfigurationID,
-            $instanceManager->getInstance(SchemaConfigOptionsBlock::class)
+            $block
         );
         if (!is_null($schemaConfigOptionsBlockDataItem)) {
             /**
@@ -184,9 +193,13 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         }
 
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var AbstractBlock
+         */
+        $block = $instanceManager->getInstance(SchemaConfigOptionsBlock::class);
         $schemaConfigOptionsBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $schemaConfigurationID,
-            $instanceManager->getInstance(SchemaConfigOptionsBlock::class)
+            $block
         );
         if (!is_null($schemaConfigOptionsBlockDataItem)) {
             /**
@@ -230,9 +243,13 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             return;
         }
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var AbstractBlock
+         */
+        $block = $instanceManager->getInstance(SchemaConfigAccessControlListBlock::class);
         $schemaConfigACLBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $schemaConfigurationID,
-            $instanceManager->getInstance(SchemaConfigAccessControlListBlock::class)
+            $block
         );
         if (!is_null($schemaConfigACLBlockDataItem)) {
             if ($accessControlLists = $schemaConfigACLBlockDataItem['attrs'][SchemaConfigAccessControlListBlock::ATTRIBUTE_NAME_ACCESS_CONTROL_LISTS]) {
@@ -256,9 +273,13 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             return;
         }
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var AbstractBlock
+         */
+        $block = $instanceManager->getInstance(SchemaConfigFieldDeprecationListBlock::class);
         $schemaConfigFDLBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $schemaConfigurationID,
-            $instanceManager->getInstance(SchemaConfigFieldDeprecationListBlock::class)
+            $block
         );
         if (!is_null($schemaConfigFDLBlockDataItem)) {
             if ($fieldDeprecationLists = $schemaConfigFDLBlockDataItem['attrs'][SchemaConfigFieldDeprecationListBlock::ATTRIBUTE_NAME_FIELD_DEPRECATION_LISTS]) {

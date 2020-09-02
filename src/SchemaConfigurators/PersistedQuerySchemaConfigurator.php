@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
+use GraphQLAPI\GraphQLAPI\Blocks\AbstractBlock;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
@@ -50,9 +51,13 @@ class PersistedQuerySchemaConfigurator extends AbstractQueryExecutionSchemaConfi
             return;
         }
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var AbstractBlock
+         */
+        $block = $instanceManager->getInstance(SchemaConfigCacheControlListBlock::class);
         $schemaConfigCCLBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $schemaConfigurationID,
-            $instanceManager->getInstance(SchemaConfigCacheControlListBlock::class)
+            $block
         );
         if (!is_null($schemaConfigCCLBlockDataItem)) {
             if ($cacheControlLists = $schemaConfigCCLBlockDataItem['attrs'][SchemaConfigCacheControlListBlock::ATTRIBUTE_NAME_CACHE_CONTROL_LISTS]) {

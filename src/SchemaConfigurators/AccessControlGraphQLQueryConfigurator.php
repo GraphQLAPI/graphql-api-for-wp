@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
 use PoP\ComponentModel\Misc\GeneralUtils;
+use GraphQLAPI\GraphQLAPI\Blocks\AbstractBlock;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractControlBlock;
@@ -55,6 +56,9 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
             $aclRuleBlockClassModules = $this->getACLRuleBlockNameClasses();
             $this->aclRuleBlockNameModules = [];
             foreach ($aclRuleBlockClassModules as $blockClass => $module) {
+                /**
+                 * @var AbstractBlock
+                 */
                 $block = $instanceManager->getInstance($blockClass);
                 $this->aclRuleBlockNameModules[$block->getBlockFullName()] = $module;
             }
@@ -86,9 +90,13 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
         }
 
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var AbstractBlock
+         */
+        $block = $instanceManager->getInstance(AccessControlBlock::class);
         $aclBlockItems = BlockHelpers::getBlocksOfTypeFromCustomPost(
             $aclPostID,
-            $instanceManager->getInstance(AccessControlBlock::class)
+            $block
         );
         $accessControlManager = AccessControlManagerFacade::getInstance();
         // The "Access Control" type contains the fields/directives

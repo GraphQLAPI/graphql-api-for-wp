@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
 use PoP\ComponentModel\Misc\GeneralUtils;
+use GraphQLAPI\GraphQLAPI\Blocks\AbstractBlock;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use GraphQLAPI\GraphQLAPI\Blocks\CacheControlBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractControlBlock;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\CacheControl\Facades\CacheControlManagerFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AbstractGraphQLQueryConfigurator;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PerformanceFunctionalityModuleResolver;
 
 class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigurator
@@ -35,9 +37,13 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
         }
 
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var AbstractBlock
+         */
+        $block = $instanceManager->getInstance(CacheControlBlock::class);
         $cclBlockItems = BlockHelpers::getBlocksOfTypeFromCustomPost(
             $cclPostID,
-            $instanceManager->getInstance(CacheControlBlock::class)
+            $block
         );
         $cacheControlManager = CacheControlManagerFacade::getInstance();
         // The "Cache Control" type contains the fields/directives and the max-age
