@@ -47,7 +47,11 @@ class PersistedQueryOptionsBlock extends AbstractQueryExecutionOptionsBlock
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
         $instanceManager = InstanceManagerFacade::getInstance();
-        return $instanceManager->getInstance(PersistedQueryBlockCategory::class);
+        /**
+         * @var PersistedQueryBlockCategory
+         */
+        $blockCategory = $instanceManager->getInstance(PersistedQueryBlockCategory::class);
+        return $blockCategory;
     }
 
     /**

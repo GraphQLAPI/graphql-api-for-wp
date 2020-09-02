@@ -29,7 +29,11 @@ class GraphiQLBlock extends AbstractBlock
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
         $instanceManager = InstanceManagerFacade::getInstance();
-        return $instanceManager->getInstance(PersistedQueryBlockCategory::class);
+        /**
+         * @var PersistedQueryBlockCategory
+         */
+        $blockCategory = $instanceManager->getInstance(PersistedQueryBlockCategory::class);
+        return $blockCategory;
     }
 
     protected function isDynamicBlock(): bool

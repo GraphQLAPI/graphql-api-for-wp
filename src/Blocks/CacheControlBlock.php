@@ -27,7 +27,11 @@ class CacheControlBlock extends AbstractControlBlock
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
         $instanceManager = InstanceManagerFacade::getInstance();
-        return $instanceManager->getInstance(CacheControlBlockCategory::class);
+        /**
+         * @var CacheControlBlockCategory
+         */
+        $blockCategory = $instanceManager->getInstance(CacheControlBlockCategory::class);
+        return $blockCategory;
     }
 
     protected function registerCommonStyleCSS(): bool

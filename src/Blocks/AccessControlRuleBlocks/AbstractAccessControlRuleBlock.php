@@ -20,6 +20,10 @@ abstract class AbstractAccessControlRuleBlock extends AbstractBlock
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
         $instanceManager = InstanceManagerFacade::getInstance();
-        return $instanceManager->getInstance(AccessControlBlockCategory::class);
+        /**
+         * @var AccessControlBlockCategory
+         */
+        $blockCategory = $instanceManager->getInstance(AccessControlBlockCategory::class);
+        return $blockCategory;
     }
 }

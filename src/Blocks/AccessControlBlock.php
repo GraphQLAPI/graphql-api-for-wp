@@ -31,7 +31,11 @@ class AccessControlBlock extends AbstractControlBlock
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
         $instanceManager = InstanceManagerFacade::getInstance();
-        return $instanceManager->getInstance(AccessControlBlockCategory::class);
+        /**
+         * @var AccessControlBlockCategory
+         */
+        $blockCategory = $instanceManager->getInstance(AccessControlBlockCategory::class);
+        return $blockCategory;
     }
 
     protected function registerEditorCSS(): bool

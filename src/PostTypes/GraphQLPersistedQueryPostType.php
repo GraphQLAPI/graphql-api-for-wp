@@ -261,7 +261,11 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
     protected function getQueryExecutionOptionsBlock(): AbstractQueryExecutionOptionsBlock
     {
         $instanceManager = InstanceManagerFacade::getInstance();
-        return $instanceManager->getInstance(PersistedQueryOptionsBlock::class);
+        /**
+         * @var PersistedQueryOptionsBlock
+         */
+        $block = $instanceManager->getInstance(PersistedQueryOptionsBlock::class);
+        return $block;
     }
 
     /**

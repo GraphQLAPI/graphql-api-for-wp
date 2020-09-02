@@ -30,7 +30,11 @@ class EndpointOptionsBlock extends AbstractQueryExecutionOptionsBlock
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
         $instanceManager = InstanceManagerFacade::getInstance();
-        return $instanceManager->getInstance(EndpointBlockCategory::class);
+        /**
+         * @var EndpointBlockCategory
+         */
+        $blockCategory = $instanceManager->getInstance(EndpointBlockCategory::class);
+        return $blockCategory;
     }
 
     /**

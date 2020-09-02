@@ -35,7 +35,11 @@ class SchemaConfigurationBlock extends AbstractBlock
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
         $instanceManager = InstanceManagerFacade::getInstance();
-        return $instanceManager->getInstance(QueryExecutionBlockCategory::class);
+        /**
+         * @var QueryExecutionBlockCategory
+         */
+        $blockCategory = $instanceManager->getInstance(QueryExecutionBlockCategory::class);
+        return $blockCategory;
     }
 
     protected function isDynamicBlock(): bool

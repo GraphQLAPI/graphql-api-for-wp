@@ -23,7 +23,11 @@ abstract class AbstractSchemaConfigPostListBlock extends AbstractBlock
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
         $instanceManager = InstanceManagerFacade::getInstance();
-        return $instanceManager->getInstance(SchemaConfigurationBlockCategory::class);
+        /**
+         * @var SchemaConfigurationBlockCategory
+         */
+        $blockCategory = $instanceManager->getInstance(SchemaConfigurationBlockCategory::class);
+        return $blockCategory;
     }
 
     abstract protected function getAttributeName(): string;

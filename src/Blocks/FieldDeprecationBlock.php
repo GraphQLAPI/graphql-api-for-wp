@@ -27,7 +27,11 @@ class FieldDeprecationBlock extends AbstractControlBlock
     protected function getBlockCategory(): ?AbstractBlockCategory
     {
         $instanceManager = InstanceManagerFacade::getInstance();
-        return $instanceManager->getInstance(FieldDeprecationBlockCategory::class);
+        /**
+         * @var FieldDeprecationBlockCategory
+         */
+        $blockCategory = $instanceManager->getInstance(FieldDeprecationBlockCategory::class);
+        return $blockCategory;
     }
 
     protected function disableDirectives(): bool
