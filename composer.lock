@@ -603,12 +603,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/component-model.git",
-                "reference": "593d8de4b3f72b7c7eda8589887e60dbfaf58f31"
+                "reference": "b2a5d290d4b3e6ead3ab00c900e39e2f0b595d75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/component-model/zipball/593d8de4b3f72b7c7eda8589887e60dbfaf58f31",
-                "reference": "593d8de4b3f72b7c7eda8589887e60dbfaf58f31",
+                "url": "https://api.github.com/repos/getpop/component-model/zipball/b2a5d290d4b3e6ead3ab00c900e39e2f0b595d75",
+                "reference": "b2a5d290d4b3e6ead3ab00c900e39e2f0b595d75",
                 "shasum": ""
             },
             "require": {
@@ -654,7 +654,7 @@
                 "component-model",
                 "pop"
             ],
-            "time": "2020-09-02T09:23:00+00:00"
+            "time": "2020-09-02T11:44:11+00:00"
         },
         {
             "name": "getpop/definitions",
