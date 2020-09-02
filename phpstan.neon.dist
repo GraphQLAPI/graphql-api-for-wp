@@ -16,9 +16,12 @@ parameters:
         -
             message: '#^Parameter \#1 \$str of function trim expects string, null given\.$#'
             path: src/Scripts/GraphQLByPoPScriptTrait.php
+        -
+            message: '#^Cannot access an offset on array<string>\|bool\|string\.$#'
+            path: src/PostTypes/AbstractPostType.php
     bootstrapFiles:
         - graphql-api.php
-    level: 6
+    level: 7
     paths:
         - src/
         - tests/
