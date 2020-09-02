@@ -86,7 +86,11 @@ abstract class AbstractTableMenuPage extends AbstractMenuPage
          * Instantiate the table object
          */
         $instanceManager = InstanceManagerFacade::getInstance();
-        $this->tableObject = $instanceManager->getInstance($this->getTableClass());
+        /**
+         * @var AbstractItemListTable
+         */
+        $tableObject = $instanceManager->getInstance($this->getTableClass());
+        $this->tableObject = $tableObject;
         /**
          * Set properties
          */
