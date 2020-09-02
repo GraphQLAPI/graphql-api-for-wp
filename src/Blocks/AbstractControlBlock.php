@@ -59,6 +59,11 @@ abstract class AbstractControlBlock extends AbstractBlock
                  * */
                 $groupFieldsUnderTypeForPrint = ComponentConfiguration::groupFieldsUnderTypeForPrint();
                 if ($groupFieldsUnderTypeForPrint) {
+                    /**
+                     * Cast object so PHPStan doesn't throw error
+                     * @var array<string,array>
+                     */
+                    $typeFieldsForPrint = $typeFieldsForPrint;
                     $fieldTypeContent = '';
                     foreach ($typeFieldsForPrint as $typeName => $fields) {
                         $fieldTypeContent .= sprintf(
@@ -71,6 +76,11 @@ abstract class AbstractControlBlock extends AbstractBlock
                         );
                     }
                 } else {
+                    /**
+                     * Cast object so PHPStan doesn't throw error
+                     * @var string[];
+                     */
+                    $typeFieldsForPrint = $typeFieldsForPrint;
                     $fieldTypeContent = sprintf(
                         '<ul><li>%s</li></ul>',
                         implode(

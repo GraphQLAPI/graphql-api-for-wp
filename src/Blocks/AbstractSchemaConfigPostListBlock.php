@@ -10,6 +10,7 @@ use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
 use GraphQLAPI\GraphQLAPI\BlockCategories\SchemaConfigurationBlockCategory;
 use GraphQLAPI\GraphQLAPI\General\CPTUtils;
+use WP_Post;
 
 abstract class AbstractSchemaConfigPostListBlock extends AbstractBlock
 {
@@ -52,6 +53,9 @@ abstract class AbstractSchemaConfigPostListBlock extends AbstractBlock
 EOF;
         $postContentElems = $foundPostListIDs = [];
         if ($postListIDs = $attributes[$this->getAttributeName()]) {
+            /**
+             * @var WP_Post[]
+             */
             $postObjects = \get_posts([
                 'include' => $postListIDs,
                 'posts_per_page' => -1,

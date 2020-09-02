@@ -296,7 +296,8 @@ abstract class AbstractBlock
                 $blockRegistrationName . '-block-editor',
                 $url . $editor_css,
                 array(),
-                filemtime("$dir/$editor_css")
+                // Cast object so PHPStan doesn't throw error
+                (string)filemtime("$dir/$editor_css")
             );
             $blockConfiguration['editor_style'] = $blockRegistrationName . '-block-editor';
         }
@@ -310,7 +311,8 @@ abstract class AbstractBlock
                 $blockRegistrationName . '-block',
                 $url . $style_css,
                 array(),
-                filemtime("$dir/$style_css")
+                // Cast object so PHPStan doesn't throw error
+                (string)filemtime("$dir/$style_css")
             );
             $blockConfiguration['style'] = $blockRegistrationName . '-block';
         }

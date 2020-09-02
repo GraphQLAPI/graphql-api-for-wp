@@ -144,7 +144,10 @@ class SettingsMenuPage extends AbstractMenuPage
             $moduleResolver = $moduleRegistry->getModuleResolver($module);
             foreach ($item['settings'] as $itemSetting) {
                 $type = $itemSetting[Properties::TYPE];
-                $name = $itemSetting[Properties::NAME];
+                /**
+                 * Cast type so PHPStan doesn't throw error
+                 */
+                $name = (string)$itemSetting[Properties::NAME];
                 $option = $itemSetting[Properties::INPUT];
                 /**
                  * If the input is empty, replace with the default

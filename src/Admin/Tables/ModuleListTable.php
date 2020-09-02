@@ -176,6 +176,11 @@ class ModuleListTable extends AbstractItemListTable
      */
     protected function column_default($item, $column_name)
     {
+        /**
+         * Cast object so PHPStan doesn't throw error
+         * @var array<string, mixed>
+         */
+        $item = $item;
         switch ($column_name) {
             case 'desc':
                 $actions = [];
@@ -280,6 +285,11 @@ class ModuleListTable extends AbstractItemListTable
      */
     protected function column_cb($item)
     {
+        /**
+         * Cast object so PHPStan doesn't throw error
+         * @var array<string, mixed>
+         */
+        $item = $item;
         return sprintf(
             '<input type="checkbox" name="%s[]" value="%s" />',
             ModuleListTableAction::INPUT_BULK_ACTION_IDS,
@@ -437,7 +447,7 @@ class ModuleListTable extends AbstractItemListTable
     /**
      * Classnames to add to the row for the item
      *
-     * @param object $item The current item
+     * @param array<string, mixed> $item The current item
      */
     protected function getTableStyleRowClassnames($item): string
     {
@@ -458,11 +468,16 @@ class ModuleListTable extends AbstractItemListTable
      */
     public function single_row($item)
     {
+        /**
+         * Cast object so PHPStan doesn't throw error
+         * @var array<string, mixed>
+         */
+        $arrayItem = $item;
         if ($this->usePluginTableStyle()) {
             $classnames = sprintf(
                 '%s %s',
-                $this->getTableStyleRowClassnames($item),
-                $item['is-enabled'] ? 'active' : 'inactive'
+                $this->getTableStyleRowClassnames($arrayItem),
+                $arrayItem['is-enabled'] ? 'active' : 'inactive'
             );
             echo sprintf(
                 '<tr class="%s">',
