@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Registries;
 
+use InvalidArgumentException;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverInterface;
 
 interface ModuleRegistryInterface
@@ -17,7 +18,10 @@ interface ModuleRegistryInterface
         bool $onlyHasSettings = false,
         bool $onlyVisible = true
     ): array;
-    public function getModuleResolver(string $module): ?ModuleResolverInterface;
+    /**
+     * @throws InvalidArgumentException If module does not exist
+     */
+    public function getModuleResolver(string $module): ModuleResolverInterface;
     public function isModuleEnabled(string $module): bool;
     /**
      * If a module was disabled by the user, then the user can enable it.

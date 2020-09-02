@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Registries;
 
+use InvalidArgumentException;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverInterface;
 
@@ -55,8 +56,17 @@ class ModuleRegistry implements ModuleRegistryInterface
         }
         return $modules;
     }
-    public function getModuleResolver(string $module): ?ModuleResolverInterface
+    /**
+     * @throws InvalidArgumentException If module does not exist
+     */
+    public function getModuleResolver(string $module): ModuleResolverInterface
     {
+        if (!isset($this->moduleResolvers[$module])) {
+            throw new InvalidArgumentException(sprintf(
+                \__('Module \'%s\' does not exist', 'graphql-api'),
+                $module
+            ));
+        }
         return $this->moduleResolvers[$module];
     }
     public function isModuleEnabled(string $module): bool
