@@ -228,12 +228,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/api.git",
-                "reference": "e9b1dd07c47abeac26444f84e232296c8928a106"
+                "reference": "5f38b106e83948c0d8b89667f927b9fa263b49c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/api/zipball/e9b1dd07c47abeac26444f84e232296c8928a106",
-                "reference": "e9b1dd07c47abeac26444f84e232296c8928a106",
+                "url": "https://api.github.com/repos/getpop/api/zipball/5f38b106e83948c0d8b89667f927b9fa263b49c7",
+                "reference": "5f38b106e83948c0d8b89667f927b9fa263b49c7",
                 "shasum": ""
             },
             "require": {
@@ -278,7 +278,7 @@
                 "api",
                 "pop"
             ],
-            "time": "2020-09-02T04:45:46+00:00"
+            "time": "2020-09-02T09:07:28+00:00"
         },
         {
             "name": "getpop/api-clients",
@@ -603,12 +603,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/component-model.git",
-                "reference": "4560412eff5a685bb4cc7b2d8bfbb1894ff444d4"
+                "reference": "593d8de4b3f72b7c7eda8589887e60dbfaf58f31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/component-model/zipball/4560412eff5a685bb4cc7b2d8bfbb1894ff444d4",
-                "reference": "4560412eff5a685bb4cc7b2d8bfbb1894ff444d4",
+                "url": "https://api.github.com/repos/getpop/component-model/zipball/593d8de4b3f72b7c7eda8589887e60dbfaf58f31",
+                "reference": "593d8de4b3f72b7c7eda8589887e60dbfaf58f31",
                 "shasum": ""
             },
             "require": {
@@ -654,7 +654,7 @@
                 "component-model",
                 "pop"
             ],
-            "time": "2020-09-02T05:59:28+00:00"
+            "time": "2020-09-02T09:23:00+00:00"
         },
         {
             "name": "getpop/definitions",
@@ -716,12 +716,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/engine.git",
-                "reference": "f4be784c3508613b23ae4d8133fd592bb074d228"
+                "reference": "a8444df37c7f22cf24b1ff6b334fdc8e79b0ba69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/engine/zipball/f4be784c3508613b23ae4d8133fd592bb074d228",
-                "reference": "f4be784c3508613b23ae4d8133fd592bb074d228",
+                "url": "https://api.github.com/repos/getpop/engine/zipball/a8444df37c7f22cf24b1ff6b334fdc8e79b0ba69",
+                "reference": "a8444df37c7f22cf24b1ff6b334fdc8e79b0ba69",
                 "shasum": ""
             },
             "require": {
@@ -770,7 +770,7 @@
                 "engine",
                 "pop"
             ],
-            "time": "2020-09-02T05:35:51+00:00"
+            "time": "2020-09-02T09:07:23+00:00"
         },
         {
             "name": "getpop/engine-wp",
@@ -2025,12 +2025,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "33acfc909a34eea21c8ad800e1356e942533a2a2"
+                "reference": "46400d5ed5de8bb9a348ea952664aa16ccfb49af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/33acfc909a34eea21c8ad800e1356e942533a2a2",
-                "reference": "33acfc909a34eea21c8ad800e1356e942533a2a2",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/46400d5ed5de8bb9a348ea952664aa16ccfb49af",
+                "reference": "46400d5ed5de8bb9a348ea952664aa16ccfb49af",
                 "shasum": ""
             },
             "require": {
@@ -2075,7 +2075,7 @@
                 "pop",
                 "server"
             ],
-            "time": "2020-09-02T05:37:25+00:00"
+            "time": "2020-09-02T09:08:35+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2462,12 +2462,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/basic-directives.git",
-                "reference": "b7e677e6aa62ea1c314e532eaf679a5534bf9b0a"
+                "reference": "466e6e0915cbe4e86429354f4bc9b7adb5e0ddc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/basic-directives/zipball/b7e677e6aa62ea1c314e532eaf679a5534bf9b0a",
-                "reference": "b7e677e6aa62ea1c314e532eaf679a5534bf9b0a",
+                "url": "https://api.github.com/repos/PoPSchema/basic-directives/zipball/466e6e0915cbe4e86429354f4bc9b7adb5e0ddc3",
+                "reference": "466e6e0915cbe4e86429354f4bc9b7adb5e0ddc3",
                 "shasum": ""
             },
             "require": {
@@ -2508,7 +2508,7 @@
                 "basic-directives",
                 "pop"
             ],
-            "time": "2020-09-01T22:44:09+00:00"
+            "time": "2020-09-02T09:08:29+00:00"
         },
         {
             "name": "pop-schema/commentmeta",
@@ -2626,12 +2626,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/comments.git",
-                "reference": "9fff0d98f168e289ccf1e0e3808beb19a400f40f"
+                "reference": "b612051a6360672f1f928e0c630040c411f2f1a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/comments/zipball/9fff0d98f168e289ccf1e0e3808beb19a400f40f",
-                "reference": "9fff0d98f168e289ccf1e0e3808beb19a400f40f",
+                "url": "https://api.github.com/repos/PoPSchema/comments/zipball/b612051a6360672f1f928e0c630040c411f2f1a1",
+                "reference": "b612051a6360672f1f928e0c630040c411f2f1a1",
                 "shasum": ""
             },
             "require": {
@@ -2672,7 +2672,7 @@
                 "comments",
                 "pop"
             ],
-            "time": "2020-09-02T05:37:14+00:00"
+            "time": "2020-09-02T09:08:22+00:00"
         },
         {
             "name": "pop-schema/comments-wp",
@@ -2735,12 +2735,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/custompostmedia.git",
-                "reference": "701545417a6f748d5d8d0e15791d48816b9b3aaa"
+                "reference": "6c24be486e8932511d9339789723c9f5d0642531"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/custompostmedia/zipball/701545417a6f748d5d8d0e15791d48816b9b3aaa",
-                "reference": "701545417a6f748d5d8d0e15791d48816b9b3aaa",
+                "url": "https://api.github.com/repos/PoPSchema/custompostmedia/zipball/6c24be486e8932511d9339789723c9f5d0642531",
+                "reference": "6c24be486e8932511d9339789723c9f5d0642531",
                 "shasum": ""
             },
             "require": {
@@ -2783,7 +2783,7 @@
                 "custompostmedia",
                 "pop"
             ],
-            "time": "2020-09-02T04:42:58+00:00"
+            "time": "2020-09-02T09:08:17+00:00"
         },
         {
             "name": "pop-schema/custompostmedia-wp",
@@ -2957,12 +2957,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/customposts.git",
-                "reference": "dd83829fbdf178325b78b5df0265fe939f9df010"
+                "reference": "ef3664d691bfe51449e1c44fce13217a9df7f4e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/customposts/zipball/dd83829fbdf178325b78b5df0265fe939f9df010",
-                "reference": "dd83829fbdf178325b78b5df0265fe939f9df010",
+                "url": "https://api.github.com/repos/PoPSchema/customposts/zipball/ef3664d691bfe51449e1c44fce13217a9df7f4e3",
+                "reference": "ef3664d691bfe51449e1c44fce13217a9df7f4e3",
                 "shasum": ""
             },
             "require": {
@@ -3003,7 +3003,7 @@
                 "customposts",
                 "pop"
             ],
-            "time": "2020-09-02T05:37:08+00:00"
+            "time": "2020-09-02T09:08:10+00:00"
         },
         {
             "name": "pop-schema/customposts-wp",
@@ -3119,12 +3119,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/media.git",
-                "reference": "dd77635daa240a51deda7424674e89b922c22af9"
+                "reference": "40811a6f5f59d8fec1633c0c05a8c75aa3a5c2bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/media/zipball/dd77635daa240a51deda7424674e89b922c22af9",
-                "reference": "dd77635daa240a51deda7424674e89b922c22af9",
+                "url": "https://api.github.com/repos/PoPSchema/media/zipball/40811a6f5f59d8fec1633c0c05a8c75aa3a5c2bf",
+                "reference": "40811a6f5f59d8fec1633c0c05a8c75aa3a5c2bf",
                 "shasum": ""
             },
             "require": {
@@ -3170,7 +3170,7 @@
                 "media",
                 "pop"
             ],
-            "time": "2020-09-02T05:36:47+00:00"
+            "time": "2020-09-02T09:07:52+00:00"
         },
         {
             "name": "pop-schema/media-wp",
@@ -6261,12 +6261,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/users.git",
-                "reference": "c157600b00901ea74cc87187f55fc2e3242fe656"
+                "reference": "457ccecd34e4ece1b0c6f5e2fe223c43201b0a40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/users/zipball/c157600b00901ea74cc87187f55fc2e3242fe656",
-                "reference": "c157600b00901ea74cc87187f55fc2e3242fe656",
+                "url": "https://api.github.com/repos/PoPSchema/users/zipball/457ccecd34e4ece1b0c6f5e2fe223c43201b0a40",
+                "reference": "457ccecd34e4ece1b0c6f5e2fe223c43201b0a40",
                 "shasum": ""
             },
             "require": {
@@ -6315,7 +6315,7 @@
                 "Users",
                 "pop"
             ],
-            "time": "2020-09-02T05:36:03+00:00"
+            "time": "2020-09-02T09:23:07+00:00"
         },
         {
             "name": "pop-schema/users-wp",
@@ -6610,16 +6610,16 @@
         },
         {
             "name": "symfony/cache",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache.git",
-                "reference": "8881660a6c6975153ba6007c5ca42f247753d1a8"
+                "reference": "f45591fff4ecb08825c41f5b7ec51218510301c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/8881660a6c6975153ba6007c5ca42f247753d1a8",
-                "reference": "8881660a6c6975153ba6007c5ca42f247753d1a8",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/f45591fff4ecb08825c41f5b7ec51218510301c8",
+                "reference": "f45591fff4ecb08825c41f5b7ec51218510301c8",
                 "shasum": ""
             },
             "require": {
@@ -6699,7 +6699,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-23T09:22:13+00:00"
+            "time": "2020-08-31T16:52:20+00:00"
         },
         {
             "name": "symfony/cache-contracts",
@@ -6779,7 +6779,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -6857,16 +6857,16 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "54bbe10ed0aae7eb38484eb4656442c02509e0e0"
+                "reference": "384c2601e5a6228d60b041911d63f010e0885ffb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/54bbe10ed0aae7eb38484eb4656442c02509e0e0",
-                "reference": "54bbe10ed0aae7eb38484eb4656442c02509e0e0",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/384c2601e5a6228d60b041911d63f010e0885ffb",
+                "reference": "384c2601e5a6228d60b041911d63f010e0885ffb",
                 "shasum": ""
             },
             "require": {
@@ -6940,7 +6940,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-17T09:56:45+00:00"
+            "time": "2020-09-01T17:42:15+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -7008,7 +7008,7 @@
         },
         {
             "name": "symfony/dotenv",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dotenv.git",
@@ -7079,7 +7079,7 @@
         },
         {
             "name": "symfony/expression-language",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/expression-language.git",
@@ -7145,7 +7145,7 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -7209,7 +7209,7 @@
         },
         {
             "name": "symfony/inflector",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/inflector.git",
@@ -7909,7 +7909,7 @@
         },
         {
             "name": "symfony/property-access",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-access.git",
@@ -8066,7 +8066,7 @@
         },
         {
             "name": "symfony/string",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
@@ -8151,7 +8151,7 @@
         },
         {
             "name": "symfony/var-exporter",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-exporter.git",
@@ -8226,7 +8226,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -11494,16 +11494,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "1f601a29fd7591a0316bffbc0d7550a5953c6c1c"
+                "reference": "b39fd99b9297b67fb7633b7d8083957a97e1e727"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/1f601a29fd7591a0316bffbc0d7550a5953c6c1c",
-                "reference": "1f601a29fd7591a0316bffbc0d7550a5953c6c1c",
+                "url": "https://api.github.com/repos/symfony/console/zipball/b39fd99b9297b67fb7633b7d8083957a97e1e727",
+                "reference": "b39fd99b9297b67fb7633b7d8083957a97e1e727",
                 "shasum": ""
             },
             "require": {
@@ -11581,11 +11581,11 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-17T07:39:58+00:00"
+            "time": "2020-09-02T07:07:21+00:00"
         },
         {
             "name": "symfony/debug",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
@@ -11656,7 +11656,7 @@
         },
         {
             "name": "symfony/error-handler",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/error-handler.git",
@@ -11727,7 +11727,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -11887,7 +11887,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -11950,7 +11950,7 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
@@ -12025,16 +12025,16 @@
         },
         {
             "name": "symfony/http-kernel",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "f93f6b3e52a590749994cc23d8fb879472ceb76c"
+                "reference": "2bb7b90ecdc79813c0bf237b7ff20e79062b5188"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/f93f6b3e52a590749994cc23d8fb879472ceb76c",
-                "reference": "f93f6b3e52a590749994cc23d8fb879472ceb76c",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/2bb7b90ecdc79813c0bf237b7ff20e79062b5188",
+                "reference": "2bb7b90ecdc79813c0bf237b7ff20e79062b5188",
                 "shasum": ""
             },
             "require": {
@@ -12126,7 +12126,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-31T06:09:42+00:00"
+            "time": "2020-09-02T08:09:29+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
@@ -12206,7 +12206,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -12270,7 +12270,7 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v5.1.4",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
