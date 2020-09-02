@@ -128,13 +128,12 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
     }
 
     /**
-     * @param object $resultItem
      * @param array<string, mixed> $fieldArgs
      * @return array<string, mixed>
      */
     protected function getQuery(
         TypeResolverInterface $typeResolver,
-        $resultItem,
+        object $resultItem,
         string $fieldName,
         array $fieldArgs = []
     ): array {
