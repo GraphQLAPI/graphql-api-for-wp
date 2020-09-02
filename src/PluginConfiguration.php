@@ -89,6 +89,9 @@ class PluginConfiguration
     {
         if (is_null(self::$normalizedOptionValuesCache)) {
             $instanceManager = InstanceManagerFacade::getInstance();
+            /**
+             * @var SettingsMenuPage
+             */
             $settingsMenuPage = $instanceManager->getInstance(SettingsMenuPage::class);
             // Obtain the values from the POST and normalize them
             $value = $_POST[SettingsMenuPage::SETTINGS_FIELD];

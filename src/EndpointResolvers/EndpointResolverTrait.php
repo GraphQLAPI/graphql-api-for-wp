@@ -131,6 +131,9 @@ trait EndpointResolverTrait
         ) = QueryExecutionHelpers::extractRequestedGraphQLQueryPayload();
         // Add the query into $vars
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var VarsHooks
+         */
         $graphQLAPIRequestHookSet = $instanceManager->getInstance(VarsHooks::class);
         $graphQLAPIRequestHookSet->addGraphQLQueryToVars($vars, $graphQLQuery, $operationName);
     }

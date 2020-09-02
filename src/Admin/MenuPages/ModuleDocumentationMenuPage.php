@@ -19,6 +19,9 @@ class ModuleDocumentationMenuPage extends AbstractMenuPage
     public function getMenuPageSlug(): string
     {
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var ModulesMenuPage
+         */
         $modulesMenuPage = $instanceManager->getInstance(ModulesMenuPage::class);
         return $modulesMenuPage->getMenuPageSlug();
     }

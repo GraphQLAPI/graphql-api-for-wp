@@ -272,6 +272,9 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
         $moduleRegistry = ModuleRegistryFacade::getInstance();
         if ($moduleRegistry->isModuleEnabled(SchemaConfigurationFunctionalityModuleResolver::SCHEMA_CONFIGURATION)) {
             $instanceManager = InstanceManagerFacade::getInstance();
+            /**
+             * @var SchemaConfigurationBlock
+             */
             $schemaConfigurationBlock = $instanceManager->getInstance(SchemaConfigurationBlock::class);
             $template[] = [$schemaConfigurationBlock->getBlockFullName()];
         }

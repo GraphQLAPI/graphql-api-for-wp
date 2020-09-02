@@ -181,6 +181,9 @@ class ModuleListTable extends AbstractItemListTable
                 $actions = [];
                 // If it has, add a link to the documentation
                 $instanceManager = InstanceManagerFacade::getInstance();
+                /**
+                 * @var ModulesMenuPage
+                 */
                 $modulesMenuPage = $instanceManager->getInstance(ModulesMenuPage::class);
                 if ($item['has-docs']) {
                     $url = \admin_url(sprintf(
@@ -320,6 +323,9 @@ class ModuleListTable extends AbstractItemListTable
             // Maybe add settings links
             if ($item['has-settings']) {
                 $instanceManager = InstanceManagerFacade::getInstance();
+                /**
+                 * @var SettingsMenuPage
+                 */
                 $settingsMenuPage = $instanceManager->getInstance(SettingsMenuPage::class);
                 $actions['settings'] = \sprintf(
                     '<a href="%s">%s</a>',
@@ -481,6 +487,9 @@ class ModuleListTable extends AbstractItemListTable
 
         /** Process bulk or single action */
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var ModuleListTableAction
+         */
         $tableAction = $instanceManager->getInstance(ModuleListTableAction::class);
         $tableAction->maybeProcessAction();
 

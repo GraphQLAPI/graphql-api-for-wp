@@ -152,6 +152,9 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
         // If enabled by module, add the Schema Configuration block to the locked Gutenberg template
         $this->maybeAddSchemaConfigurationBlock($template);
 
+        /**
+         * @var PersistedQueryOptionsBlock
+         */
         $persistedQueryOptionsBlock = $instanceManager->getInstance(PersistedQueryOptionsBlock::class);
         $template[] = [$persistedQueryOptionsBlock->getBlockFullName()];
         return $template;
