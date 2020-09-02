@@ -16,8 +16,8 @@ trait WithTypeFieldControlBlockTrait
      * Convert the typeFields from the format saved in the post: "typeNamespacedName.fieldName",
      * to the one suitable for printing on the page, to show the user: "typeName/fieldName"
      *
-     * @param array $typeFields
-     * @return array
+     * @param string[] $typeFields
+     * @return string[]|array<string,array>
      */
     public function getTypeFieldsForPrint(array $typeFields): array
     {

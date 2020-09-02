@@ -17,19 +17,24 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
 {
     /**
      * Keep a map of all namespaced type names to their resolver classes
+     * @var array<string, array>|null
      */
     protected ?array $namespacedTypeNameClasses = null;
     /**
      * Keep a map of all namespaced field interface names to their resolver classes
+     * @var array<string, array>|null
      */
     protected ?array $namespacedFieldInterfaceNameClasses = null;
     /**
      * Keep a map of all directives names to their resolver classes
+     * @var array<string, array>|null
      */
     protected ?array $directiveNameClasses = null;
 
     /**
      * Lazy load and return the `$namespacedTypeNameClasses` array
+     *
+     * @return array<string, array>
      */
     protected function getNamespacedTypeNameClasses(): array
     {
@@ -41,6 +46,8 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
 
     /**
      * Lazy load and return the `$namespacedTypeNameClasses` array
+     *
+     * @return array<string, array>
      */
     protected function getNamespacedFieldInterfaceNameClasses(): array
     {
@@ -86,6 +93,8 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
 
     /**
      * Lazy load and return the `$directiveNameClasses` array
+     *
+     * @return array<string, array>
      */
     protected function getDirectiveNameClasses(): array
     {
@@ -123,6 +132,7 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
      * implementing the interface
      *
      * @param mixed $value
+     * @return array<array> The list of entries, where an entry is an array [$typeResolverClass, $field, $value]
      */
     protected function getEntriesFromField(string $selectedField, $value): array
     {
@@ -157,6 +167,7 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
      * It returns an array of arrays
      *
      * @param mixed $value
+     * @return array<array> The list of entries, where an entry is an array [$directiveResolverClass, $value]
      */
     protected function getEntriesFromDirective(string $selectedDirective, $value): ?array
     {

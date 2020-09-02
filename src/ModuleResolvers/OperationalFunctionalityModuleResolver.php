@@ -16,6 +16,9 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
     public const REMOVE_IF_NULL_DIRECTIVE = Plugin::NAMESPACE . '\remove-if-null-directive';
     public const PROACTIVE_FEEDBACK = Plugin::NAMESPACE . '\proactive-feedback';
 
+    /**
+     * @return string[]
+     */
     public static function getModulesToResolve(): array
     {
         return [
@@ -33,6 +36,9 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
         return ModuleTypeResolver::OPERATIONAL;
     }
 
+    /**
+     * @return array<array> List of entries that must be satisfied, each entry is an array where at least 1 module must be satisfied
+     */
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {

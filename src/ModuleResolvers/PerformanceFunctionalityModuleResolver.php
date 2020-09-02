@@ -28,6 +28,9 @@ class PerformanceFunctionalityModuleResolver extends AbstractFunctionalityModule
      */
     public const OPTION_MAX_AGE = 'max-age';
 
+    /**
+     * @return string[]
+     */
     public static function getModulesToResolve(): array
     {
         return [
@@ -43,6 +46,9 @@ class PerformanceFunctionalityModuleResolver extends AbstractFunctionalityModule
         return ModuleTypeResolver::PERFORMANCE;
     }
 
+    /**
+     * @return array<array> List of entries that must be satisfied, each entry is an array where at least 1 module must be satisfied
+     */
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {
@@ -96,8 +102,7 @@ class PerformanceFunctionalityModuleResolver extends AbstractFunctionalityModule
     /**
      * Array with the inputs to show as settings for the module
      *
-     * @param string $module
-     * @return array
+     * @return array<array> List of settings for the module, each entry is an array with property => value
      */
     public function getSettings(string $module): array
     {

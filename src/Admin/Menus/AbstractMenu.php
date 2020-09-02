@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\Menus;
 
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\MenuPageInterface;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 /**
@@ -11,6 +12,9 @@ use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
  */
 abstract class AbstractMenu
 {
+    /**
+     * @var array<MenuPageInterface>
+     */
     protected array $menuPageObjects;
 
     public function __construct()
@@ -24,8 +28,11 @@ abstract class AbstractMenu
         );
     }
 
-    abstract public static function getName();
+    abstract public static function getName(): string;
 
+    /**
+     * @return string[]
+     */
     protected function getMenuPageClasses(): array
     {
         return [];

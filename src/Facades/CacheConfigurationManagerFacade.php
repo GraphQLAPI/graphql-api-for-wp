@@ -17,7 +17,7 @@ use GraphQLAPI\GraphQLAPI\Cache\CacheConfigurationManagerInterface;
  */
 class CacheConfigurationManagerFacade
 {
-    private static $instance;
+    private static ?CacheConfigurationManagerInterface $instance = null;
 
     public static function getInstance(): CacheConfigurationManagerInterface
     {

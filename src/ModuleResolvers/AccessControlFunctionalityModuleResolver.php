@@ -21,6 +21,9 @@ class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModu
     public const ACCESS_CONTROL_RULE_USER_ROLES = Plugin::NAMESPACE . '\access-control-rule-user-roles';
     public const ACCESS_CONTROL_RULE_USER_CAPABILITIES = Plugin::NAMESPACE . '\access-control-rule-user-capabilities';
 
+    /**
+     * @return string[]
+     */
     public static function getModulesToResolve(): array
     {
         return [
@@ -40,6 +43,9 @@ class AccessControlFunctionalityModuleResolver extends AbstractFunctionalityModu
         return ModuleTypeResolver::ACCESS_CONTROL;
     }
 
+    /**
+     * @return array<array> List of entries that must be satisfied, each entry is an array where at least 1 module must be satisfied
+     */
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {

@@ -57,7 +57,7 @@ class GraphQLCacheControlListPostType extends AbstractPostType
     /**
      * Gutenberg templates to lock down the Custom Post Type to
      *
-     * @return array
+     * @return array<array> Every element is an array with template name in first pos, and attributes then
      */
     protected function getGutenbergTemplate(): array
     {

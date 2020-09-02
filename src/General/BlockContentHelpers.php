@@ -14,7 +14,7 @@ class BlockContentHelpers
     /**
      * Extract the GraphiQL block attributes from the post
      *
-     * @return null|array an array of 2 items: [$query, $variables], or null if the post contains 0 or more than 1 block
+     * @return null|array<mixed> An array of 2 items: [$query, $variables], or null if the post contains 0 or more than 1 block
      */
     public static function getSingleGraphiQLBlockAttributesFromPost(WP_Post $post): ?array
     {
@@ -37,7 +37,7 @@ class BlockContentHelpers
     /**
      * Extract the Persisted Query Options block attributes from the post
      *
-     * @return null|array an array of 1 item: [$inheritQuery], or null if the post contains 0 or more than 1 block
+     * @return null|array<mixed> an array of 1 item: [$inheritQuery], or null if the post contains 0 or more than 1 block
      */
     public static function getSinglePersistedQueryOptionsBlockAttributesFromPost(WP_Post $post): ?array
     {

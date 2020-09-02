@@ -12,6 +12,7 @@ abstract class AbstractIndividualControlGraphQLQueryConfigurator extends Abstrac
      * It returns a single array (or null)
      *
      * @param mixed|null $value
+     * @return array<array> The list of entries, where an entry is an array
      */
     protected function getIndividualControlEntriesFromField(string $selectedField, $value, ?string $schemaMode): array
     {
@@ -30,6 +31,7 @@ abstract class AbstractIndividualControlGraphQLQueryConfigurator extends Abstrac
      * It returns an array of arrays (or null)
      *
      * @param mixed $value
+     * @return array<array> The list of entries, where an entry is an array
      */
     protected function getIndividualControlEntriesFromDirective(string $selectedDirective, $value, ?string $schemaMode): ?array
     {

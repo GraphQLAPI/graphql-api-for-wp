@@ -21,7 +21,7 @@ abstract class AbstractEditorScript extends AbstractScript
     /**
      * Pass localized data to the block
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function getLocalizedData(): array
     {
@@ -69,7 +69,7 @@ abstract class AbstractEditorScript extends AbstractScript
     /**
      * Post types for which to register the script
      *
-     * @return array
+     * @return string[]
      */
     protected function getAllowedPostTypes(): array
     {

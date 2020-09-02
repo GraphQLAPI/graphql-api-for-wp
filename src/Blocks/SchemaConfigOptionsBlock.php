@@ -43,6 +43,9 @@ class SchemaConfigOptionsBlock extends AbstractOptionsBlock
         return true;
     }
 
+    /**
+     * @param array<string, mixed> $attributes
+     */
     public function renderBlock(array $attributes, string $content): string
     {
         // Append "-front" because this style must be used only on the client, not on the admin
@@ -102,7 +105,7 @@ EOT;
     /**
      * Pass localized data to the block
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function getLocalizedData(): array
     {

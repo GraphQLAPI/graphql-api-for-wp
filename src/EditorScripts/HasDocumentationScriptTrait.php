@@ -31,7 +31,7 @@ trait HasDocumentationScriptTrait
     /**
      * Pass localized data to the block
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function getDocsLocalizedData(): array
     {
@@ -68,7 +68,7 @@ trait HasDocumentationScriptTrait
     /**
      * In what languages is the documentation available
      *
-     * @return array
+     * @return string[]
      */
     protected function getDocLanguages(): array
     {
@@ -81,6 +81,8 @@ trait HasDocumentationScriptTrait
 
     /**
      * Register the documentation (from under folder "docs/"), for the locale and the default language
+     *
+     * @param string[]|null $dependencies
      */
     protected function registerDocumentationScripts(
         string $scriptName,

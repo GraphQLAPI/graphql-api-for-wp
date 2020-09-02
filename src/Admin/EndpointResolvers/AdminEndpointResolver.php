@@ -20,6 +20,8 @@ class AdminEndpointResolver extends AbstractEndpointResolver
 
     /**
      * Provide the query to execute and its variables
+     *
+     * @return mixed[] Array of 2 elements: [query, variables]
      */
     protected function getGraphQLQueryAndVariables(?WP_Post $graphQLQueryPost): array
     {

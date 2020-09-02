@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\Hooks;
 
 use PoP\Engine\Hooks\AbstractHookSet;
-use PoP\ComponentModel\ModelInstance\ModelInstance;
 
 class ApplicationStateHooks extends AbstractHookSet
 {
@@ -23,6 +22,9 @@ class ApplicationStateHooks extends AbstractHookSet
     }
     /**
      * Admin and non-admin have different schemas
+     *
+     * @param string[] $components
+     * @return string[]
      */
     public function addComponent(array $components): array
     {

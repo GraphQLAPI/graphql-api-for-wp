@@ -24,6 +24,9 @@ class ACLRuleBlockHooks extends AbstractHookSet
 
     /**
      * Add the modules to check if an ACL Rule Block is enabled or not
+     *
+     * @param array<string, string> $blockClassModules
+     * @return array<string, string>
      */
     public function getACLRuleBlockClassModules(array $blockClassModules): array
     {

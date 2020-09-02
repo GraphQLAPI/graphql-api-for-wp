@@ -25,8 +25,6 @@ abstract class AbstractMenuPage implements MenuPageInterface
 
     /**
      * Initialize menu page. Function to override
-     *
-     * @return void
      */
     public function initialize(): void
     {

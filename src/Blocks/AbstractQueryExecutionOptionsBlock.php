@@ -16,6 +16,9 @@ abstract class AbstractQueryExecutionOptionsBlock extends AbstractOptionsBlock
         return true;
     }
 
+    /**
+     * @param array<string, mixed> $attributes
+     */
     public function renderBlock(array $attributes, string $content): string
     {
         // Append "-front" because this style must be used only on the client, not on the admin
@@ -35,14 +38,16 @@ EOT;
         );
     }
 
+    /**
+     * @param array<string, mixed> $attributes
+     */
     protected function getBlockContent(array $attributes, string $content): string
     {
-        $labels = $this->getBooleanLabels();
         $blockContentPlaceholder = '<p><strong>%s</strong> %s</p>';
         return sprintf(
             $blockContentPlaceholder,
             \__('Enabled:', 'graphql-api'),
-            $labels[$attributes[self::ATTRIBUTE_NAME_IS_ENABLED] ?? true]
+            $this->getBooleanLabel($attributes[self::ATTRIBUTE_NAME_IS_ENABLED] ?? true)
         );
     }
 }

@@ -16,6 +16,9 @@ class UserInterfaceFunctionalityModuleResolver extends AbstractFunctionalityModu
     public const LOW_LEVEL_PERSISTED_QUERY_EDITING = Plugin::NAMESPACE . '\low-level-persisted-query-editing';
     public const WELCOME_GUIDES = Plugin::NAMESPACE . '\welcome-guides';
 
+    /**
+     * @return string[]
+     */
     public static function getModulesToResolve(): array
     {
         return [
@@ -33,6 +36,9 @@ class UserInterfaceFunctionalityModuleResolver extends AbstractFunctionalityModu
         return ModuleTypeResolver::USER_INTERFACE;
     }
 
+    /**
+     * @return array<array> List of entries that must be satisfied, each entry is an array where at least 1 module must be satisfied
+     */
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {

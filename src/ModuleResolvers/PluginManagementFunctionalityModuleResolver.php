@@ -22,6 +22,9 @@ class PluginManagementFunctionalityModuleResolver extends AbstractFunctionalityM
      */
     public const OPTION_EDITING_ACCESS_SCHEME = 'editing-access-scheme';
 
+    /**
+     * @return string[]
+     */
     public static function getModulesToResolve(): array
     {
         return [
@@ -83,8 +86,7 @@ class PluginManagementFunctionalityModuleResolver extends AbstractFunctionalityM
     /**
      * Array with the inputs to show as settings for the module
      *
-     * @param string $module
-     * @return array
+     * @return array<array> List of settings for the module, each entry is an array with property => value
      */
     public function getSettings(string $module): array
     {

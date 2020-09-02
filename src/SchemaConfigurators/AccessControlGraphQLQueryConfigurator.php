@@ -18,6 +18,9 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
 {
     public const HOOK_ACL_RULE_BLOCK_CLASS_MODULES = __CLASS__ . ':acl-url-block-class:modules';
 
+    /**
+     * @var array<string, string>|null
+     */
     protected ?array $aclRuleBlockNameModules = null;
 
     // protected function doInit(): void
@@ -28,11 +31,10 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
     /**
      * Obtain the modules enabling/disabling each ACL rule block, through a hook
      *
-     * @return array
+     * @return array<string, string> Pairings of blockClass => module
      */
     protected function getACLRuleBlockNameClasses(): array
     {
-        // Pairings of blockClass => module
         return \apply_filters(
             self::HOOK_ACL_RULE_BLOCK_CLASS_MODULES,
             []
@@ -42,7 +44,7 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
     /**
      * Obtain the modules enabling/disabling each ACL rule block, through a hook
      *
-     * @return array
+     * @return array<string, string>
      */
     protected function getACLRuleBlockNameModules(): array
     {

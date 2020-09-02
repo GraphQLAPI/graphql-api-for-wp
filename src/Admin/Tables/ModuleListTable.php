@@ -42,7 +42,7 @@ class ModuleListTable extends AbstractItemListTable
     /**
      * Return all the items to display on the table
      *
-     * @return array
+     * @return array<array> Each item is an array of prop => value
      */
     public function getAllItems(): array
     {
@@ -92,7 +92,7 @@ class ModuleListTable extends AbstractItemListTable
     /**
      * Gets the list of views available on this table.
      *
-     * @return array
+     * @return array<string, string>
      * phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
      */
     protected function get_views()
@@ -287,7 +287,7 @@ class ModuleListTable extends AbstractItemListTable
     /**
      * Method for name column
      *
-     * @param array $item an array of DB data
+     * @param array<string, string> $item an array of DB data
      *
      * @return string
      * phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
@@ -365,7 +365,7 @@ class ModuleListTable extends AbstractItemListTable
     /**
      *  Associative array of columns
      *
-     * @return array
+     * @return array<string, string>
      * phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
      */
     public function get_columns()
@@ -390,7 +390,7 @@ class ModuleListTable extends AbstractItemListTable
     /**
      * Returns an associative array containing the bulk action
      *
-     * @return array
+     * @return array<string, string>
      * phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
      */
     public function get_bulk_actions()
@@ -447,6 +447,7 @@ class ModuleListTable extends AbstractItemListTable
      * @since 3.1.0
      *
      * @param object $item The current item
+     * @return void
      * phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
      */
     public function single_row($item)
@@ -471,6 +472,7 @@ class ModuleListTable extends AbstractItemListTable
     /**
      * Handles data query and filter, sorting, and pagination.
      *
+     * @return void
      * phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
      */
     public function prepare_items()

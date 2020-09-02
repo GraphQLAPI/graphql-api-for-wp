@@ -18,6 +18,7 @@ parameters:
             path: src/Scripts/GraphQLByPoPScriptTrait.php
     bootstrapFiles:
         - graphql-api.php
-    level: 5
+    level: 6
     paths:
         - src/
+        - tests/

@@ -17,7 +17,7 @@ class UserAuthorization
     /**
      * The different ways to grant access to the schema editor
      *
-     * @return array
+     * @return string[]
      */
     public static function getAccessSchemes(): array
     {

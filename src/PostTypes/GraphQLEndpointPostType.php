@@ -66,6 +66,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
      * @param string $name_uc Singular name uppercase
      * @param string $names_uc Plural name uppercase
      * @param string $names_lc Plural name lowercase
+     * @return array<string, string>
      */
     protected function getPostTypeLabels(string $name_uc, string $names_uc, string $names_lc): array
     {
@@ -90,6 +91,8 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Taxonomies
+     *
+     * @return string[]
      */
     protected function getTaxonomies(): array
     {
@@ -108,6 +111,8 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Gutenberg templates to lock down the Custom Post Type to
+     *
+     * @return array<array> Every element is an array with template name in first pos, and attributes then
      */
     protected function getGutenbergTemplate(): array
     {
@@ -148,6 +153,8 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Provide the query to execute and its variables
+     *
+     * @return mixed[] Array of 2 elements: [query, variables]
      */
     protected function getGraphQLQueryAndVariables(?WP_Post $graphQLQueryPost): array
     {
@@ -230,6 +237,8 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Read the options block and check the value of attribute "isGraphiQLEnabled"
+     *
+     * @param WP_Post|int $postOrID
      */
     protected function isGraphiQLEnabled($postOrID): bool
     {
@@ -254,6 +263,8 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
 
     /**
      * Read the options block and check the value of attribute "isVoyagerEnabled"
+     *
+     * @param WP_Post|int $postOrID
      */
     protected function isVoyagerEnabled($postOrID): bool
     {
@@ -279,7 +290,8 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     /**
      * Get actions to add for this CPT
      *
-     * @param \WP_Post $post
+     * @param WP_Post $post
+     * @return array<string, string>
      */
     protected function getPostTypeTableActions($post): array
     {

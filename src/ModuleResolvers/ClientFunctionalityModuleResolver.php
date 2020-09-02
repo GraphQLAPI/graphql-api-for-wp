@@ -26,6 +26,9 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
     public const INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\interactive-schema-for-custom-endpoints';
     public const GRAPHIQL_EXPLORER = Plugin::NAMESPACE . '\graphiql-explorer';
 
+    /**
+     * @return string[]
+     */
     public static function getModulesToResolve(): array
     {
         return [
@@ -45,6 +48,9 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
         return ModuleTypeResolver::CLIENT;
     }
 
+    /**
+     * @return array<array> List of entries that must be satisfied, each entry is an array where at least 1 module must be satisfied
+     */
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {
@@ -143,8 +149,7 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
     /**
      * Array with the inputs to show as settings for the module
      *
-     * @param string $module
-     * @return array
+    * @return array<array> List of settings for the module, each entry is an array with property => value
      */
     public function getSettings(string $module): array
     {

@@ -53,6 +53,9 @@ class FieldDeprecationBlock extends AbstractControlBlock
     {
         return \__('Deprecation reason:', 'graphql-api');
     }
+    /**
+     * @param array<string, mixed> $attributes
+     */
     protected function getBlockContent(array $attributes, string $content): string
     {
         $blockContentPlaceholder = <<<EOF

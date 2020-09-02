@@ -46,7 +46,7 @@ class SchemaConfigurationBlock extends AbstractBlock
     /**
      * Pass localized data to the block
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function getLocalizedData(): array
     {
@@ -59,6 +59,9 @@ class SchemaConfigurationBlock extends AbstractBlock
         );
     }
 
+    /**
+     * @param array<string, mixed> $attributes
+     */
     public function renderBlock(array $attributes, string $content): string
     {
         /**

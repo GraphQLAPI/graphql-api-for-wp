@@ -40,7 +40,7 @@ class GraphiQLBlock extends AbstractBlock
     /**
      * Pass localized data to the block
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function getLocalizedData(): array
     {
@@ -103,6 +103,9 @@ class GraphiQLBlock extends AbstractBlock
 EOT;
     }
 
+    /**
+     * @param array<string, mixed> $attributes
+     */
     public function renderBlock(array $attributes, string $content): string
     {
         $content = sprintf(

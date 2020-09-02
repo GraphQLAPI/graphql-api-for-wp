@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class GeneralUtilsTest extends TestCase
 {
-    public function testDashesToCamelCase()
+    public function testDashesToCamelCase(): void
     {
         $this->assertSame(
             'graphqlApiSchemaConfigOptions',

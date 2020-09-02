@@ -32,6 +32,9 @@ abstract class AbstractSchemaConfigPostListBlock extends AbstractBlock
 
     abstract protected function getHeader(): string;
 
+    /**
+     * @param array<string, mixed> $attributes
+     */
     public function renderBlock(array $attributes, string $content): string
     {
         /**

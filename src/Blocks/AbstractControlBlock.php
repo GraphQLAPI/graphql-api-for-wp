@@ -40,6 +40,9 @@ abstract class AbstractControlBlock extends AbstractBlock
         return 'alignwide';
     }
 
+    /**
+     * @param array<string, mixed> $attributes
+     */
     public function renderBlock(array $attributes, string $content): string
     {
         // Append "-front" because this style must be used only on the client, not on the admin
@@ -146,5 +149,8 @@ EOT;
     {
         return \__('Configuration:', 'graphql-api');
     }
+    /**
+     * @param array<string, mixed> $attributes
+     */
     abstract protected function getBlockContent(array $attributes, string $content): string;
 }

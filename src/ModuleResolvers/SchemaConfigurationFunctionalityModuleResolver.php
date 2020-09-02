@@ -34,6 +34,9 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
      */
     public const OPTION_VALUE_NO_VALUE_ID = 0;
 
+    /**
+     * @return string[]
+     */
     public static function getModulesToResolve(): array
     {
         return [
@@ -51,6 +54,9 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
         return ModuleTypeResolver::SCHEMA_CONFIGURATION;
     }
 
+    /**
+     * @return array<array> List of entries that must be satisfied, each entry is an array where at least 1 module must be satisfied
+     */
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {
@@ -136,8 +142,7 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
     /**
      * Array with the inputs to show as settings for the module
      *
-     * @param string $module
-     * @return array
+     * @return array<array> List of settings for the module, each entry is an array with property => value
      */
     public function getSettings(string $module): array
     {

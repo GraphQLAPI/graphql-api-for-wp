@@ -16,6 +16,9 @@ abstract class AbstractItemListAccessControlRuleBlock extends AbstractAccessCont
         return true;
     }
 
+    /**
+     * @param array<string, mixed> $attributes
+     */
     public function renderBlock(array $attributes, string $content): string
     {
         $blockContentPlaceholder = <<<EOF

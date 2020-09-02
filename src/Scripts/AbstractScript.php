@@ -58,6 +58,8 @@ abstract class AbstractScript
 
     /**
      * Pass localized data to the block
+     *
+     * @return array<string, mixed>
      */
     protected function getLocalizedData(): array
     {
@@ -82,6 +84,8 @@ abstract class AbstractScript
 
     /**
      * Dependencies to load before the script
+     *
+     * @return string[]
      */
     protected function getScriptDependencies(): array
     {
@@ -90,6 +94,8 @@ abstract class AbstractScript
 
     /**
      * Dependencies to load before the style
+     *
+     * @return string[]
      */
     protected function getStyleDependencies(): array
     {

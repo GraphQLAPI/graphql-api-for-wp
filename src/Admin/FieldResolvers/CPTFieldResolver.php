@@ -29,11 +29,19 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
      */
     public const QUERY_OPTION_ALLOW_QUERYING_PRIVATE_CPTS = 'allow-querying-private-cpts';
 
+    /**
+     * @return string[]
+     */
     public static function getClassesToAttachTo(): array
     {
-        return array(RootTypeResolver::class);
+        return [
+            RootTypeResolver::class,
+        ];
     }
 
+    /**
+     * @return string[]
+     */
     public static function getFieldNamesToResolve(): array
     {
         return [
@@ -80,6 +88,9 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getSchemaFieldArgs(TypeResolverInterface $typeResolver, string $fieldName): array
     {
         $schemaFieldArgs = parent::getSchemaFieldArgs($typeResolver, $fieldName);
@@ -116,6 +127,11 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         return parent::enableOrderedSchemaFieldArgs($typeResolver, $fieldName);
     }
 
+    /**
+     * @param object $resultItem
+     * @param array<string, mixed> $fieldArgs
+     * @return array<string, mixed>
+     */
     protected function getQuery(
         TypeResolverInterface $typeResolver,
         $resultItem,
@@ -138,6 +154,15 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         return [];
     }
 
+    /**
+     * @param object $resultItem
+     * @param array<string, mixed> $fieldArgs
+     * @param array<string, mixed>|null $variables
+     * @param array<string, mixed>|null $expressions
+     * @param array<string, mixed> $options
+     *
+     * @return mixed
+     */
     public function resolveValue(
         TypeResolverInterface $typeResolver,
         $resultItem,
@@ -188,6 +213,9 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         );
     }
 
+    /**
+     * @param array<string, mixed> $fieldArgs
+     */
     public function resolveFieldTypeResolverClass(
         TypeResolverInterface $typeResolver,
         string $fieldName,

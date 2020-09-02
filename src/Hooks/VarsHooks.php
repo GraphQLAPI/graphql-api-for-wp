@@ -32,8 +32,10 @@ class VarsHooks extends AbstractHookSet
      * Examples of not allowed URLs:
      * - /single-endpoint/?scheme=api&datastructure=graphql <= single endpoint disabled
      * - /posts/?scheme=api
+     *
+     * @param array<array> $vars_in_array
      */
-    public function maybeRemoveVars($vars_in_array)
+    public function maybeRemoveVars(array $vars_in_array): void
     {
         $vars = &$vars_in_array[0];
         if ($vars['scheme'] == APISchemes::API) {

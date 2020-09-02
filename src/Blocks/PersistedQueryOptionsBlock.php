@@ -50,21 +50,23 @@ class PersistedQueryOptionsBlock extends AbstractQueryExecutionOptionsBlock
         return $instanceManager->getInstance(PersistedQueryBlockCategory::class);
     }
 
+    /**
+     * @param array<string, mixed> $attributes
+     */
     protected function getBlockContent(array $attributes, string $content): string
     {
         $blockContent = parent::getBlockContent($attributes, $content);
 
-        $labels = $this->getBooleanLabels();
         $blockContentPlaceholder = '<p><strong>%s</strong> %s</p>';
         $blockContent .= sprintf(
             $blockContentPlaceholder,
             \__('Accept variables as URL params:', 'graphql-api'),
-            $labels[$attributes[self::ATTRIBUTE_NAME_ACCEPT_VARIABLES_AS_URL_PARAMS] ?? true]
+            $this->getBooleanLabel($attributes[self::ATTRIBUTE_NAME_ACCEPT_VARIABLES_AS_URL_PARAMS] ?? true)
         );
         $blockContent .= sprintf(
             $blockContentPlaceholder,
             \__('Inherit query from ancestor(s):', 'graphql-api'),
-            $labels[$attributes[self::ATTRIBUTE_NAME_INHERIT_QUERY] ?? false]
+            $this->getBooleanLabel($attributes[self::ATTRIBUTE_NAME_INHERIT_QUERY] ?? false)
         );
 
         return $blockContent;

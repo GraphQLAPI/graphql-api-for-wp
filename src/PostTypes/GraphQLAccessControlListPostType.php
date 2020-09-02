@@ -59,7 +59,7 @@ class GraphQLAccessControlListPostType extends AbstractPostType
     /**
      * Gutenberg templates for the Custom Post Type
      *
-     * @return array
+     * @return array<array> Every element is an array with template name in first pos, and attributes then
      */
     protected function getGutenbergTemplate(): array
     {
@@ -72,6 +72,8 @@ class GraphQLAccessControlListPostType extends AbstractPostType
 
     /**
      * Use both the Access Control block and all of its nested blocks
+     *
+     * @return string[] The list of block names
      */
     protected function getGutenbergBlocksForCustomPostType(): array
     {

@@ -26,7 +26,7 @@ class GraphQLQueryPostTypeHelpers
      *
      * @param \WP_Post $graphQLQueryPost The post to extract the attributes from
      * @param bool $inheritAttributes Indicate if to fetch attributes (query/variables) from ancestor posts
-     * @return array array with 2 elements: [$graphQLQuery, $graphQLVariables]
+     * @return mixed[] Array with 2 elements: [$graphQLQuery, $graphQLVariables]
      */
     public static function getGraphQLQueryPostAttributes(?WP_Post $graphQLQueryPost, bool $inheritAttributes): array
     {

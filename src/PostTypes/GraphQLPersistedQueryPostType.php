@@ -78,7 +78,7 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
      * @param string $name_uc Singular name uppercase
      * @param string $names_uc Plural name uppercase
      * @param string $names_lc Plural name lowercase
-     * @return array
+     * @return array<string, string>
      */
     protected function getPostTypeLabels(string $name_uc, string $names_uc, string $names_lc): array
     {
@@ -106,7 +106,7 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
     /**
      * Taxonomies
      *
-     * @return array
+     * @return string[]
      */
     protected function getTaxonomies(): array
     {
@@ -117,8 +117,6 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
 
     /**
      * Hierarchical
-     *
-     * @return bool
      */
     protected function isHierarchical(): bool
     {
@@ -138,7 +136,7 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
     /**
      * Gutenberg templates to lock down the Custom Post Type to
      *
-     * @return array
+     * @return array<array> Every element is an array with template name in first pos, and attributes then
      */
     protected function getGutenbergTemplate(): array
     {
@@ -241,7 +239,7 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
     /**
      * Provide the query to execute and its variables
      *
-     * @return array
+     * @return mixed[] Array with 2 elements: [$graphQLQuery, $graphQLVariables]
      */
     protected function getGraphQLQueryAndVariables(?WP_Post $graphQLQueryPost): array
     {
@@ -260,7 +258,7 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
     /**
      * Indicate if the GraphQL variables must override the URL params
      *
-     * @return boolean
+     * @param WP_Post|int $postOrID
      */
     protected function doURLParamsOverrideGraphQLVariables($postOrID): bool
     {
@@ -273,9 +271,9 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
     /**
      * Check if requesting the single post of this CPT and, in this case, set the request with the needed API params
      *
-     * @return void
+     * @param array<array> $vars_in_array
      */
-    public function addGraphQLVars($vars_in_array): void
+    public function addGraphQLVars(array $vars_in_array): void
     {
         if (\is_singular($this->getPostType())) {
             // Check if it is enabled, by configuration

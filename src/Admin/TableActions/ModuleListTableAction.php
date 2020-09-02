@@ -16,6 +16,9 @@ class ModuleListTableAction extends AbstractListTableAction
     public const INPUT_BULK_ACTION_IDS = 'bulk-action-items';
 
     private bool $processed = false;
+    /**
+     * @var string[]
+     */
     private array $mutatedModuleIDs = [];
     private bool $mutatedEnabled = false;
 
@@ -146,6 +149,8 @@ class ModuleListTableAction extends AbstractListTableAction
 
     /**
      * Enable or Disable a list of modules
+     *
+     * @param string[] $moduleIDs
      */
     protected function setModulesEnabledValue(array $moduleIDs, bool $isEnabled): void
     {
@@ -175,6 +180,9 @@ class ModuleListTableAction extends AbstractListTableAction
         );
     }
 
+    /**
+     * @return string[]
+     */
     public function getActions(): array
     {
         return [

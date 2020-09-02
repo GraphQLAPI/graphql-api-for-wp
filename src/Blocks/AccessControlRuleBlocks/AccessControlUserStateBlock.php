@@ -24,6 +24,9 @@ class AccessControlUserStateBlock extends AbstractAccessControlRuleBlock
         return true;
     }
 
+    /**
+     * @param array<string, mixed> $attributes
+     */
     public function renderBlock(array $attributes, string $content): string
     {
         $label = $attributes[self::ATTRIBUTE_NAME_VALUE] == UserStates::IN ?

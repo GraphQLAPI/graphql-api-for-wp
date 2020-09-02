@@ -56,6 +56,9 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
      */
     public const HOOK_GENERIC_CUSTOMPOST_TYPES = __CLASS__ . ':generic-custompost-types';
 
+    /**
+     * @return string[]
+     */
     public static function getModulesToResolve(): array
     {
         return [
@@ -72,6 +75,9 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
         ];
     }
 
+    /**
+     * @return array<array> List of entries that must be satisfied, each entry is an array where at least 1 module must be satisfied
+     */
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {
@@ -288,8 +294,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
     /**
      * Array with the inputs to show as settings for the module
      *
-     * @param string $module
-     * @return array
+     * @return array<array> List of settings for the module, each entry is an array with property => value
      */
     public function getSettings(string $module): array
     {

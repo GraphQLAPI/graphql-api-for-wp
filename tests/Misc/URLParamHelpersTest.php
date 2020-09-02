@@ -7,7 +7,7 @@ use GraphQLAPI\GraphQLAPI\General\URLParamHelpers;
 
 class URLParamHelpersTest extends TestCase
 {
-    public function testEncodeURIComponent()
+    public function testEncodeURIComponent(): void
     {
         /**
          * Inputs taken from Mozilla documentation for `encodeURIComponent`

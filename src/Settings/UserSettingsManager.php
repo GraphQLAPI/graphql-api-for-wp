@@ -12,7 +12,7 @@ class UserSettingsManager implements UserSettingsManagerInterface
     /**
      * Cache the values in memory
      *
-     * @var array
+     * @var array<string, array>
      */
     protected array $options = [];
 
@@ -83,6 +83,9 @@ class UserSettingsManager implements UserSettingsManagerInterface
         $this->storeTimestamp();
     }
 
+    /**
+     * @param array<string, bool> $moduleIDValues
+     */
     public function setModulesEnabled(array $moduleIDValues): void
     {
         $this->storeItems(Options::MODULES, $moduleIDValues);
@@ -117,13 +120,15 @@ class UserSettingsManager implements UserSettingsManagerInterface
     protected function maybeLoadOptions(string $optionName): void
     {
         // Lazy load the options
-        if (!isset($this->options[$optionName]) || is_null($this->options[$optionName])) {
+        if (!isset($this->options[$optionName])) {
             $this->options[$optionName] = \get_option($optionName, []);
         }
     }
 
     /**
      * Store the options in the DB
+     *
+     * @param mixed $value
      */
     protected function storeItem(string $optionName, string $item, $value): void
     {
@@ -132,6 +137,8 @@ class UserSettingsManager implements UserSettingsManagerInterface
 
     /**
      * Store the options in the DB
+     *
+     * @param array<string, mixed> $itemValues
      */
     protected function storeItems(string $optionName, array $itemValues): void
     {

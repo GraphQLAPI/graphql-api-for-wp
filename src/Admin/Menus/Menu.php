@@ -24,11 +24,14 @@ class Menu extends AbstractMenu
 {
     public const NAME = 'graphql_api';
 
-    public static function getName()
+    public static function getName(): string
     {
         return static::NAME;
     }
 
+    /**
+     * @return string[]
+     */
     protected function getMenuPageClasses(): array
     {
         return [

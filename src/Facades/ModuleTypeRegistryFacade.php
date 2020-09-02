@@ -16,7 +16,7 @@ use GraphQLAPI\GraphQLAPI\Registries\ModuleTypeRegistryInterface;
  */
 class ModuleTypeRegistryFacade
 {
-    private static $instance;
+    private static ?ModuleTypeRegistryInterface $instance = null;
 
     public static function getInstance(): ModuleTypeRegistryInterface
     {

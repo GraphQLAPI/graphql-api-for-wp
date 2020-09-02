@@ -119,6 +119,10 @@ abstract class AbstractPostType
         return false;
     }
 
+    /**
+     * @param array<string, string> $columns
+     * @return array<string, string>
+     */
     public function setTableColumns(array $columns): array
     {
         // Add the description column after the title
@@ -143,7 +147,7 @@ abstract class AbstractPostType
     }
 
     // Add the data to the custom columns for the book post type:
-    public function resolveCustomColumn($column, $post_id): void
+    public function resolveCustomColumn(string $column, int $post_id): void
     {
         switch ($column) {
             case 'description':
@@ -157,9 +161,9 @@ abstract class AbstractPostType
      * Add extra actions to the Custom Post Type list
      *
      * @see https://developer.wordpress.org/reference/hooks/post_row_actions/
-     * @param Array $actions
-     * @param Object $post
-     * @return array
+     * @param array<string, string> $actions
+     * @param WP_Post $post
+     * @return array<string, string>
      */
     public function maybeAddPostTypeTableActions(array $actions, $post): array
     {
@@ -175,8 +179,8 @@ abstract class AbstractPostType
     /**
      * Get actions to add for this CPT
      *
-     * @param Object $post
-     * @return array
+     * @param WP_Post $post
+     * @return array<string, string>
      */
     protected function getPostTypeTableActions($post): array
     {
@@ -332,7 +336,7 @@ abstract class AbstractPostType
     /**
      * Arguments for registering the post type
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function getPostTypeArgs(): array
     {
@@ -394,7 +398,7 @@ abstract class AbstractPostType
      * @param string $name_uc Singular name uppercase
      * @param string $names_uc Plural name uppercase
      * @param string $names_lc Plural name lowercase
-     * @return array
+     * @return array<string, string>
      */
     protected function getPostTypeLabels(string $name_uc, string $names_uc, string $names_lc): array
     {
@@ -447,7 +451,7 @@ abstract class AbstractPostType
     /**
      * Taxonomies
      *
-     * @return array
+     * @return string[]
      */
     protected function getTaxonomies(): array
     {
@@ -471,7 +475,8 @@ abstract class AbstractPostType
     /**
      * Restrict the Gutenberg blocks available for this Custom Post Type
      *
-     * @return array|bool
+     * @param string[]|bool $allowedBlocks The list of blocks, or `true` for all of them
+     * @return string[]|bool The list of blocks, or `true` for all of them
      */
     public function allowGutenbergBlocksForCustomPostType($allowedBlocks, WP_Post $post)
     {
@@ -545,6 +550,8 @@ abstract class AbstractPostType
 
     /**
      * By default, if providing a template, then restrict the CPT to the blocks involved in the template
+     *
+     * @return string[] The list of block names
      */
     protected function getGutenbergBlocksForCustomPostType(): array
     {
@@ -578,7 +585,7 @@ abstract class AbstractPostType
     /**
      * Gutenberg templates to lock down the Custom Post Type to
      *
-     * @return array
+     * @return array<array> Every element is an array with template name in first pos, and attributes then
      */
     protected function getGutenbergTemplate(): array
     {

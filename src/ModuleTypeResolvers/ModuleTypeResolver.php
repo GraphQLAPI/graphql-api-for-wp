@@ -24,6 +24,9 @@ class ModuleTypeResolver extends AbstractModuleTypeResolver
     public const USER_INTERFACE = Plugin::NAMESPACE . '\user-interface';
     public const VERSIONING = Plugin::NAMESPACE . '\versioning';
 
+    /**
+     * @return string[]
+     */
     public static function getModuleTypesToResolve(): array
     {
         return [

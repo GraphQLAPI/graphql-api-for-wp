@@ -5,20 +5,22 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\General;
 
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractBlock;
+use WP_Post;
 
 class BlockHelpers
 {
     /**
      * After parsing a post, cache its blocks
      *
-     * @var array
+     * @var array<int, array>
      */
-    protected static $blockCache = [];
+    protected static array $blockCache = [];
 
     /**
      * Extract the blocks from the post
      *
-     * @param \WP_Post|int $configurationPostOrID
+     * @param WP_Post|int $configurationPostOrID
+     * @return array<string, mixed> The block stores its data as property => value
      */
     public static function getBlocksFromCustomPost(
         $configurationPostOrID
@@ -28,12 +30,7 @@ class BlockHelpers
             $configurationPostID = $configurationPost->ID;
         } else {
             $configurationPostID = $configurationPostOrID;
-            // Only fetch the object if blocks not yet cached
-            if (!isset(self::$blockCache[$configurationPostID])) {
-                $configurationPost = \get_post($configurationPostID);
-            } else {
-                $configurationPost = self::$blockCache[$configurationPostID];
-            }
+            $configurationPost = \get_post($configurationPostID);
         }
         // If there's either no post or ID, then that object doesn't exist (or maybe it's draft or trashed)
         if (!$configurationPost || !$configurationPostID) {
@@ -58,7 +55,8 @@ class BlockHelpers
     /**
      * Read the configuration post, and extract the configuration, contained through the specified block
      *
-     * @param \WP_Post|int $configurationPostOrID
+     * @param WP_Post|int $configurationPostOrID
+     * @return array<array> A list of block data, each as an array
      */
     public static function getBlocksOfTypeFromCustomPost(
         $configurationPostOrID,
@@ -80,7 +78,8 @@ class BlockHelpers
      * Read the single block of a certain type, contained in the post.
      * If there are more than 1, or none, return null
      *
-     * @param \WP_Post|int $configurationPostOrID
+     * @param WP_Post|int $configurationPostOrID
+     * @return array<string, mixed>|null Data inside the block is saved as key (string) => value
      */
     public static function getSingleBlockOfTypeFromCustomPost(
         $configurationPostOrID,

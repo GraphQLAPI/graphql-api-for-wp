@@ -26,6 +26,9 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
      */
     public const OPTION_PATH = 'path';
 
+    /**
+     * @return string[]
+     */
     public static function getModulesToResolve(): array
     {
         return [
@@ -45,6 +48,9 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
         return ModuleTypeResolver::ENDPOINT;
     }
 
+    /**
+     * @return array<array> List of entries that must be satisfied, each entry is an array where at least 1 module must be satisfied
+     */
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {
@@ -148,8 +154,7 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
     /**
      * Array with the inputs to show as settings for the module
      *
-     * @param string $module
-     * @return array
+    * @return array<array> List of settings for the module, each entry is an array with property => value
      */
     public function getSettings(string $module): array
     {

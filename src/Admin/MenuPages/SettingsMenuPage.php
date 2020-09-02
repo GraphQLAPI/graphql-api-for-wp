@@ -132,8 +132,8 @@ class SettingsMenuPage extends AbstractMenuPage
      * - If the input is empty, replace with the default
      * - Convert from string to int/bool
      *
-     * @param array $value
-     * @return array
+     * @param array<string, string> $value All values submitted, each under its optionName as key
+     * @return array<string, mixed> Normalized values
      */
     public function normalizeSettings(array $value): array
     {
@@ -182,7 +182,7 @@ class SettingsMenuPage extends AbstractMenuPage
     /**
      * Return all the modules with settings
      *
-     * @return array
+     * @return array<array> Each item is an array of prop => value
      */
     protected function getAllItems(): array
     {
@@ -348,8 +348,7 @@ class SettingsMenuPage extends AbstractMenuPage
     /**
      * Display a checkbox field.
      *
-     * @param array $itemSetting
-     * @return void
+     * @param array<string, mixed> $itemSetting
      */
     protected function printCheckboxField(string $module, array $itemSetting): void
     {
@@ -367,8 +366,7 @@ class SettingsMenuPage extends AbstractMenuPage
     /**
      * Display an input field.
      *
-     * @param array $itemSetting
-     * @return void
+     * @param array<string, mixed> $itemSetting
      */
     protected function printInputField(string $module, array $itemSetting): void
     {
@@ -392,8 +390,7 @@ class SettingsMenuPage extends AbstractMenuPage
     /**
      * Display a select field.
      *
-     * @param array $itemSetting
-     * @return void
+     * @param array<string, mixed> $itemSetting
      */
     protected function printSelectField(string $module, array $itemSetting): void
     {

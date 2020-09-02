@@ -17,7 +17,7 @@ use GraphQLAPI\GraphQLAPI\Settings\UserSettingsManagerInterface;
  */
 class UserSettingsManagerFacade
 {
-    private static $instance;
+    private static ?UserSettingsManagerInterface $instance = null;
 
     public static function getInstance(): UserSettingsManagerInterface
     {

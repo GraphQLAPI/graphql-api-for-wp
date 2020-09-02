@@ -9,11 +9,14 @@ namespace GraphQLAPI\GraphQLAPI\Blocks;
  */
 abstract class AbstractOptionsBlock extends AbstractBlock
 {
-    protected function getBooleanLabels(): array
+    /**
+     * Given a bool, return its label for rendering
+     */
+    protected function getBooleanLabel(bool $value): string
     {
-        return [
-            true =>  \__('✅ Yes', 'graphql-api'),
-            false =>  __('❌ No', 'graphql-api'),
-        ];
+        if ($value) {
+            return \__('✅ Yes', 'graphql-api');
+        }
+        return \__('❌ No', 'graphql-api');
     }
 }

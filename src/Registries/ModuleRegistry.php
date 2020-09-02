@@ -9,6 +9,9 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverInterface;
 
 class ModuleRegistry implements ModuleRegistryInterface
 {
+    /**
+     * @var array<string, ModuleResolverInterface>
+     */
     protected array $moduleResolvers = [];
 
     public function addModuleResolver(ModuleResolverInterface $moduleResolver): void
@@ -17,6 +20,9 @@ class ModuleRegistry implements ModuleRegistryInterface
             $this->moduleResolvers[$module] = $moduleResolver;
         }
     }
+    /**
+     * @return string[]
+     */
     public function getAllModules(
         bool $onlyEnabled = false,
         bool $onlyHasSettings = false,

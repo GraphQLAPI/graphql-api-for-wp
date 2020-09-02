@@ -28,7 +28,7 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModule
  */
 class ModuleRegistryFacade
 {
-    private static $instance;
+    private static ?ModuleRegistryInterface $instance = null;
 
     public static function getInstance(): ModuleRegistryInterface
     {

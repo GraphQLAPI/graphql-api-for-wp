@@ -33,25 +33,27 @@ class EndpointOptionsBlock extends AbstractQueryExecutionOptionsBlock
         return $instanceManager->getInstance(EndpointBlockCategory::class);
     }
 
+    /**
+     * @param array<string, mixed> $attributes
+     */
     protected function getBlockContent(array $attributes, string $content): string
     {
         $blockContent = parent::getBlockContent($attributes, $content);
         $moduleRegistry = ModuleRegistryFacade::getInstance();
 
-        $labels = $this->getBooleanLabels();
         $blockContentPlaceholder = '<p><strong>%s</strong> %s</p>';
         if ($moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::GRAPHIQL_FOR_CUSTOM_ENDPOINTS)) {
             $blockContent .= sprintf(
                 $blockContentPlaceholder,
                 \__('Expose GraphiQL client?', 'graphql-api'),
-                $labels[$attributes[self::ATTRIBUTE_NAME_IS_GRAPHIQL_ENABLED] ?? true]
+                $this->getBooleanLabel($attributes[self::ATTRIBUTE_NAME_IS_GRAPHIQL_ENABLED] ?? true)
             );
         }
         if ($moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_CUSTOM_ENDPOINTS)) {
             $blockContent .= sprintf(
                 $blockContentPlaceholder,
                 \__('Expose the Interactive Schema client?', 'graphql-api'),
-                $labels[$attributes[self::ATTRIBUTE_NAME_IS_VOYAGER_ENABLED] ?? true]
+                $this->getBooleanLabel($attributes[self::ATTRIBUTE_NAME_IS_VOYAGER_ENABLED] ?? true)
             );
         }
 
@@ -61,7 +63,7 @@ class EndpointOptionsBlock extends AbstractQueryExecutionOptionsBlock
     /**
      * Pass localized data to the block
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function getLocalizedData(): array
     {

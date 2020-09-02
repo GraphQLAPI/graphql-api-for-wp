@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\EndpointResolvers;
 
 use WP_Post;
+use WP_Query;
 use PoP\Routing\RouteNatures;
 use PoP\API\Schema\QueryInputs;
 use GraphQLByPoP\GraphQLRequest\Hooks\VarsHooks;
@@ -50,7 +51,7 @@ trait EndpointResolverTrait
     /**
      * Assign the single endpoint by setting it as the Home nature
      */
-    public function getNature($nature, $query)
+    public function getNature(string $nature, WP_Query $query): string
     {
         return RouteNatures::HOME;
     }
@@ -58,14 +59,14 @@ trait EndpointResolverTrait
     /**
      * Provide the query to execute and its variables
      *
-     * @return array Array of 2 elements: [query, variables]
+     * @return mixed[] Array of 2 elements: [query, variables]
      */
     abstract protected function getGraphQLQueryAndVariables(?WP_Post $graphQLQueryPost): array;
 
     /**
      * Indicate if the GraphQL variables must override the URL params
      *
-     * @return boolean
+     * @param WP_Post|int $postOrID
      */
     protected function doURLParamsOverrideGraphQLVariables($postOrID): bool
     {
@@ -75,9 +76,9 @@ trait EndpointResolverTrait
     /**
      * Check if requesting the single post of this CPT and, in this case, set the request with the needed API params
      *
-     * @return void
+     * @param array<array> $vars_in_array
      */
-    public function addGraphQLVars($vars_in_array): void
+    public function addGraphQLVars(array $vars_in_array): void
     {
         /**
          * Remove any query passed through the request, to avoid users executing

@@ -68,6 +68,8 @@ abstract class AbstractBlock
     }
     /**
      * Produce the HTML for dynamic blocks
+     *
+     * @param array<string, mixed> $attributes
      */
     public function renderBlock(array $attributes, string $content): string
     {
@@ -160,7 +162,7 @@ abstract class AbstractBlock
     /**
      * Pass localized data to the block
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function getLocalizedData(): array
     {
@@ -195,7 +197,7 @@ abstract class AbstractBlock
     /**
      * Post types for which to register the script
      *
-     * @return array
+     * @return string[]
      */
     protected function getAllowedPostTypes(): array
     {
@@ -208,7 +210,7 @@ abstract class AbstractBlock
     /**
      * Dependencies to load before the block
      *
-     * @return array
+     * @return string[]
      */
     protected function getBlockDependencies(): array
     {

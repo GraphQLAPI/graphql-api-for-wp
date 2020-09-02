@@ -12,13 +12,13 @@ class ComponentConfiguration
 {
     use ComponentConfigurationTrait;
 
-    // private static $getModuleURLBase;
-    private static $groupFieldsUnderTypeForPrint;
-    private static $getEmptyLabel;
-    private static $getSettingsValueLabel;
-    private static $getCustomEndpointSlugBase;
-    private static $getPersistedQuerySlugBase;
-    private static $getEditingAccessScheme;
+    // private static string $getModuleURLBase;
+    private static bool $groupFieldsUnderTypeForPrint = false;
+    private static string $getEmptyLabel = '';
+    private static string $getSettingsValueLabel = '';
+    private static ?string $getCustomEndpointSlugBase = null;
+    private static ?string $getPersistedQuerySlugBase = null;
+    private static ?string $getEditingAccessScheme = null;
 
     // /**
     //  * URL base for the module, pointing to graphql-api.com

@@ -15,6 +15,9 @@ class VersioningFunctionalityModuleResolver extends AbstractFunctionalityModuleR
 
     public const FIELD_DEPRECATION = Plugin::NAMESPACE . '\field-deprecation';
 
+    /**
+     * @return string[]
+     */
     public static function getModulesToResolve(): array
     {
         return [
@@ -30,6 +33,9 @@ class VersioningFunctionalityModuleResolver extends AbstractFunctionalityModuleR
         return ModuleTypeResolver::VERSIONING;
     }
 
+    /**
+     * @return array<array> List of entries that must be satisfied, each entry is an array where at least 1 module must be satisfied
+     */
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {

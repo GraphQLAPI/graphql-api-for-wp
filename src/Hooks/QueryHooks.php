@@ -29,11 +29,11 @@ class QueryHooks extends AbstractHookSet
     /**
      * Remove querying private CPTs
      *
-     * @param array $query
-     * @param array $options
-     * @return array
+     * @param array<string, mixed> $query
+     * @param array<string, mixed> $options
+     * @return array<string, mixed>
      */
-    public function convertCustomPostsQuery($query, array $options): array
+    public function convertCustomPostsQuery(array $query, array $options): array
     {
         // Hooks must be active only when resolving the query into IDs,
         // and not when resolving IDs into object, since there we don't have `$options`

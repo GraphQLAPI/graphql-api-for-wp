@@ -15,6 +15,7 @@ use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\EndpointResolvers\EndpointResolverTrait;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
+use WP_Query;
 
 abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 {
@@ -54,7 +55,8 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
      * Get actions to add for this CPT
      * "View" action must be attached ?view=source, and the view link is called "Execute"
      *
-     * @param \WP_Post $post
+     * @param WP_Post $post
+     * @return array<string, string>
      */
     protected function getPostTypeTableActions($post): array
     {
@@ -182,7 +184,7 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
     /**
      * Assign the single endpoint by setting it as the Home nature
      */
-    public function getNature($nature, $query)
+    public function getNature(string $nature, WP_Query $query): string
     {
         if ($query->is_singular($this->getPostType())) {
             return $this->getUpstreamNature($nature, $query);
@@ -195,6 +197,8 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 
     /**
      * Read the options block and check the value of attribute "isEnabled"
+     *
+     * @param WP_Post|int $postOrID
      */
     protected function isOptionsBlockValueOn($postOrID, string $attribute, bool $default): bool
     {
@@ -210,6 +214,8 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 
     /**
      * Read the options block and check the value of attribute "isEnabled"
+     *
+     * @param WP_Post|int $postOrID
      */
     protected function isEnabled($postOrID): bool
     {
@@ -221,6 +227,10 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
         );
     }
 
+    /**
+     * @param WP_Post|int $postOrID
+     * @return array<string, mixed>|null Data inside the block is saved as key (string) => value
+     */
     protected function getOptionsBlockDataItem($postOrID): ?array
     {
         return BlockHelpers::getSingleBlockOfTypeFromCustomPost(
@@ -231,6 +241,8 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 
     /**
      * Indicate if the GraphQL variables must override the URL params
+     *
+     * @param WP_Post|int $postOrID
      */
     protected function doURLParamsOverrideGraphQLVariables($postOrID): bool
     {
@@ -239,8 +251,10 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 
     /**
      * Check if requesting the single post of this CPT and, in this case, set the request with the needed API params
+     *
+     * @param array<array> $vars_in_array
      */
-    public function addGraphQLVars($vars_in_array): void
+    public function addGraphQLVars(array $vars_in_array): void
     {
         $vars = &$vars_in_array[0];
         if (\is_singular($this->getPostType()) && $this->isEnabled($vars['routing-state']['queried-object-id'])) {
@@ -250,6 +264,8 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
 
     /**
      * If enabled by module, add the Schema Configuration block to the locked Gutenberg template
+     *
+     * @param array<array> $template Every element is an array with template name in first pos, and attributes then
      */
     protected function maybeAddSchemaConfigurationBlock(array &$template): void
     {

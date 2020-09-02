@@ -23,6 +23,9 @@ class AccessControlDisableAccessBlock extends AbstractAccessControlRuleBlock
         return true;
     }
 
+    /**
+     * @param array<string, mixed> $attributes
+     */
     public function renderBlock(array $attributes, string $content): string
     {
         return sprintf(

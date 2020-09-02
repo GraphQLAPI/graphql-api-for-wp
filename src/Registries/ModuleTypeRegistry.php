@@ -8,6 +8,9 @@ use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolverInterface;
 
 class ModuleTypeRegistry implements ModuleTypeRegistryInterface
 {
+    /**
+     * @var array<string, ModuleTypeResolverInterface>
+     */
     protected array $moduleTypeResolvers = [];
 
     public function addModuleTypeResolver(ModuleTypeResolverInterface $moduleTypeResolver): void

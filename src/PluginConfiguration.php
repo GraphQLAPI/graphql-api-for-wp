@@ -64,7 +64,12 @@ use GraphQLByPoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointF
  */
 class PluginConfiguration
 {
-    protected static $normalizedOptionValuesCache;
+    /**
+     * Cache the options after normalizing them
+     *
+     * @var array<string, mixed>|null
+     */
+    protected static ?array $normalizedOptionValuesCache = null;
 
     /**
      * Initialize all configuration
@@ -78,7 +83,7 @@ class PluginConfiguration
     /**
      * Get the values from the form submitted to options.php, and normalize them
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected static function getNormalizedOptionValues(): array
     {
@@ -102,6 +107,7 @@ class PluginConfiguration
      * since options.php is used everywhere, including WP core and other plugins.
      * Otherwise, it may thrown an exception!
      *
+     * @param mixed $value
      * @return mixed
      */
     protected static function maybeOverrideValueFromForm($value, string $module, string $option)
@@ -513,7 +519,7 @@ class PluginConfiguration
     /**
      * Provide the configuration for all components required in the plugin
      *
-     * @return array
+     * @return array<string, array> [key]: Component class, [value]: Configuration
      */
     public static function getComponentClassConfiguration(): array
     {
@@ -526,7 +532,7 @@ class PluginConfiguration
     /**
      * Add the fixed configuration for all components required in the plugin
      *
-     * @return void
+     * @param array<string, array> $componentClassConfiguration [key]: Component class, [value]: Configuration
      */
     protected static function addPredefinedComponentClassConfiguration(array &$componentClassConfiguration): void
     {
@@ -587,7 +593,7 @@ class PluginConfiguration
     /**
      * Add configuration values if modules are enabled or disabled
      *
-     * @return void
+     * @param array<string, array> $componentClassConfiguration [key]: Component class, [value]: Configuration
      */
     protected static function addBasedOnModuleEnabledStateComponentClassConfiguration(array &$componentClassConfiguration): void
     {
@@ -640,7 +646,7 @@ class PluginConfiguration
      * Provide the classes of the components whose
      * schema initialization must be skipped
      *
-     * @return array
+     * @return string[]
      */
     public static function getSkippingSchemaComponentClasses(): array
     {

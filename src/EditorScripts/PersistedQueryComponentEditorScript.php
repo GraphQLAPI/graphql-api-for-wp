@@ -46,7 +46,7 @@ class PersistedQueryComponentEditorScript extends AbstractEditorScript
     /**
      * In what languages is the documentation available
      *
-     * @return array
+     * @return string[]
      */
     protected function getDocLanguages(): array
     {
@@ -61,7 +61,7 @@ class PersistedQueryComponentEditorScript extends AbstractEditorScript
     /**
      * Post types for which to register the script
      *
-     * @return array
+     * @return string[]
      */
     protected function getAllowedPostTypes(): array
     {

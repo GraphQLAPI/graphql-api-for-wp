@@ -24,6 +24,9 @@ class CacheFunctionalityModuleResolver extends AbstractCacheFunctionalityModuleR
     public const CONFIGURATION_CACHE = Plugin::NAMESPACE . '\configuration-cache';
     public const SCHEMA_CACHE = Plugin::NAMESPACE . '\schema-cache';
 
+    /**
+     * @return string[]
+     */
     public static function getModulesToResolve(): array
     {
         return [
@@ -40,6 +43,9 @@ class CacheFunctionalityModuleResolver extends AbstractCacheFunctionalityModuleR
         return ModuleTypeResolver::PERFORMANCE;
     }
 
+    /**
+     * @return array<array> List of entries that must be satisfied, each entry is an array where at least 1 module must be satisfied
+     */
     public function getDependedModuleLists(string $module): array
     {
         switch ($module) {
