@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
+use GraphQLAPI\GraphQLAPI\Admin\Tables\AbstractItemListTable;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use WP_List_Table;
 
 /**
  * Table menu page
  */
 abstract class AbstractTableMenuPage extends AbstractMenuPage
 {
-    protected ?WP_List_Table $tableObject;
+    protected ?AbstractItemListTable $tableObject;
 
     abstract protected function getHeader(): string;
 

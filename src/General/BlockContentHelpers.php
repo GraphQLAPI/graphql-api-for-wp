@@ -20,9 +20,13 @@ class BlockContentHelpers
     {
         // There must be only one block of type GraphiQL. Fetch it
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var GraphiQLBlock
+         */
+        $block = $instanceManager->getInstance(GraphiQLBlock::class);
         $graphiQLBlock = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $post,
-            $instanceManager->getInstance(GraphiQLBlock::class)
+            $block
         );
         // If there is either 0 or more than 1, return nothing
         if (is_null($graphiQLBlock)) {
@@ -43,16 +47,20 @@ class BlockContentHelpers
     {
         // There must be only one block of type PersistedQueryOptionsBlock. Fetch it
         $instanceManager = InstanceManagerFacade::getInstance();
-        $block = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
+        /**
+         * @var PersistedQueryOptionsBlock
+         */
+        $block = $instanceManager->getInstance(PersistedQueryOptionsBlock::class);
+        $persistedQueryOptionsBlock = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $post,
-            $instanceManager->getInstance(PersistedQueryOptionsBlock::class)
+            $block
         );
         // If there is either 0 or more than 1, return nothing
-        if (is_null($block)) {
+        if (is_null($persistedQueryOptionsBlock)) {
             return null;
         }
         return [
-            $block['attrs'][PersistedQueryOptionsBlock::ATTRIBUTE_NAME_INHERIT_QUERY],
+            $persistedQueryOptionsBlock['attrs'][PersistedQueryOptionsBlock::ATTRIBUTE_NAME_INHERIT_QUERY],
         ];
     }
 }

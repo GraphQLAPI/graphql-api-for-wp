@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Admin\Menus;
 
-use GraphQLAPI\GraphQLAPI\Admin\MenuPages\MenuPageInterface;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 /**
@@ -13,7 +13,7 @@ use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 abstract class AbstractMenu
 {
     /**
-     * @var array<MenuPageInterface>
+     * @var array<AbstractMenuPage>
      */
     protected array $menuPageObjects;
 

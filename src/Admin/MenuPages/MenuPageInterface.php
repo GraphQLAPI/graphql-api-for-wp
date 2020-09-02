@@ -10,10 +10,6 @@ namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 interface MenuPageInterface
 {
     /**
-     * Initialize menu page. Function to override
-     */
-    public function initialize(): void;
-    /**
      * Print the menu page HTML content
      *
      * @return void
