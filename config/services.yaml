@@ -12,10 +12,6 @@ services:
         resource: '../src/Admin/EndpointResolvers/*'
         public: true
 
-    GraphQLAPI\GraphQLAPI\Admin\Development\:
-        resource: '../src/Admin/Development/*'
-        public: true
-
     GraphQLAPI\GraphQLAPI\Taxonomies\:
         resource: '../src/Taxonomies/*'
         public: true
