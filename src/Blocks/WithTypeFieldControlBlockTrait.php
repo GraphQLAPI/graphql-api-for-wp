@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Blocks;
 
-use GraphQLAPI\GraphQLAPI\General\BlockConstants;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
+use GraphQLAPI\GraphQLAPI\General\BlockConstants;
+use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Facades\Registries\FieldInterfaceRegistryFacade;
@@ -29,6 +30,9 @@ trait WithTypeFieldControlBlockTrait
         $typeResolverClasses = $typeRegistry->getTypeResolverClasses();
         $namespacedTypeNameNames = [];
         foreach ($typeResolverClasses as $typeResolverClass) {
+            /**
+             * @var TypeResolverInterface
+             */
             $typeResolver = $instanceManager->getInstance($typeResolverClass);
             $typeResolverNamespacedName = $typeResolver->getNamespacedTypeName();
             $namespacedTypeNameNames[$typeResolverNamespacedName] = $typeResolver->getMaybeNamespacedTypeName();
@@ -37,6 +41,9 @@ trait WithTypeFieldControlBlockTrait
         $fieldInterfaceResolverClasses = $fieldInterfaceRegistry->getFieldInterfaceResolverClasses();
         $namespacedFieldInterfaceNameClasses = [];
         foreach ($fieldInterfaceResolverClasses as $fieldInterfaceResolverClass) {
+            /**
+             * @var FieldInterfaceResolverInterface
+             */
             $fieldInterfaceResolver = $instanceManager->getInstance($fieldInterfaceResolverClass);
             $fieldInterfaceResolverNamespacedName = $fieldInterfaceResolver->getNamespacedInterfaceName();
             $namespacedFieldInterfaceNameClasses[$fieldInterfaceResolverNamespacedName] = $fieldInterfaceResolver->getMaybeNamespacedInterfaceName();

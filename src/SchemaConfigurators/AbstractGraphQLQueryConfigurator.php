@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
 use GraphQLAPI\GraphQLAPI\General\BlockConstants;
+use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\Facades\Registries\TypeRegistryFacade;
-use PoP\ComponentModel\Facades\Registries\FieldInterfaceRegistryFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Facades\Registries\DirectiveRegistryFacade;
+use PoP\ComponentModel\DirectiveResolvers\DirectiveResolverInterface;
+use PoP\ComponentModel\Facades\Registries\FieldInterfaceRegistryFacade;
+use PoP\ComponentModel\FieldInterfaceResolvers\FieldInterfaceResolverInterface;
 
 /**
  * Base class for configuring the persisted GraphQL query before its execution
@@ -68,6 +71,9 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
         $typeResolverClasses = $typeRegistry->getTypeResolverClasses();
         $this->namespacedTypeNameClasses = [];
         foreach ($typeResolverClasses as $typeResolverClass) {
+            /**
+             * @var TypeResolverInterface
+             */
             $typeResolver = $instanceManager->getInstance($typeResolverClass);
             $typeResolverNamespacedName = $typeResolver->getNamespacedTypeName();
             $this->namespacedTypeNameClasses[$typeResolverNamespacedName] = $typeResolverClass;
@@ -85,6 +91,9 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
         $fieldInterfaceResolverClasses = $fieldInterfaceRegistry->getFieldInterfaceResolverClasses();
         $this->namespacedFieldInterfaceNameClasses = [];
         foreach ($fieldInterfaceResolverClasses as $fieldInterfaceResolverClass) {
+            /**
+             * @var FieldInterfaceResolverInterface
+             */
             $fieldInterfaceResolver = $instanceManager->getInstance($fieldInterfaceResolverClass);
             $fieldInterfaceResolverNamespacedName = $fieldInterfaceResolver->getNamespacedInterfaceName();
             $this->namespacedFieldInterfaceNameClasses[$fieldInterfaceResolverNamespacedName] = $fieldInterfaceResolverClass;
@@ -116,6 +125,9 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
         // then the mapping goes from name to list of resolvers
         $this->directiveNameClasses = [];
         foreach ($directiveResolverClasses as $directiveResolverClass) {
+            /**
+             * @var DirectiveResolverInterface
+             */
             $directiveResolver = $instanceManager->getInstance($directiveResolverClass);
             $directiveResolverName = $directiveResolver->getDirectiveName();
             $this->directiveNameClasses[$directiveResolverName][] = $directiveResolverClass;
