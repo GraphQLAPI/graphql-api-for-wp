@@ -73,6 +73,9 @@ class GraphQLFieldDeprecationListPostType extends AbstractPostType
     protected function getGutenbergTemplate(): array
     {
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var FieldDeprecationBlock
+         */
         $fieldDeprecationBlock = $instanceManager->getInstance(FieldDeprecationBlock::class);
         return [
             [$fieldDeprecationBlock->getBlockFullName()],

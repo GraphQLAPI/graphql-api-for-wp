@@ -91,7 +91,7 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
 
         $instanceManager = InstanceManagerFacade::getInstance();
         /**
-         * @var AbstractBlock
+         * @var AccessControlBlock
          */
         $block = $instanceManager->getInstance(AccessControlBlock::class);
         $aclBlockItems = BlockHelpers::getBlocksOfTypeFromCustomPost(

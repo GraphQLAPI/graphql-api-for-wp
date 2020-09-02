@@ -143,6 +143,9 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
         $template = parent::getGutenbergTemplate();
 
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var GraphiQLBlock
+         */
         $graphiQLBlock = $instanceManager->getInstance(GraphiQLBlock::class);
         $template[] = [$graphiQLBlock->getBlockFullName()];
 
@@ -190,6 +193,9 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
          */
         if ($graphQLQueryPost->post_parent) {
             $instanceManager = InstanceManagerFacade::getInstance();
+            /**
+             * @var GraphiQLBlock
+             */
             $graphiQLBlock = $instanceManager->getInstance(GraphiQLBlock::class);
 
             // Check if the user is authorized to see the content

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
 use PoP\AccessControl\Schema\SchemaModes;
-use GraphQLAPI\GraphQLAPI\Blocks\AbstractBlock;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock;
@@ -70,7 +69,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
     {
         $instanceManager = InstanceManagerFacade::getInstance();
         /**
-         * @var AbstractBlock
+         * @var SchemaConfigurationBlock
          */
         $block = $instanceManager->getInstance(SchemaConfigurationBlock::class);
         $schemaConfigurationBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
@@ -144,7 +143,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
 
         $instanceManager = InstanceManagerFacade::getInstance();
         /**
-         * @var AbstractBlock
+         * @var SchemaConfigOptionsBlock
          */
         $block = $instanceManager->getInstance(SchemaConfigOptionsBlock::class);
         $schemaConfigOptionsBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
@@ -194,7 +193,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
 
         $instanceManager = InstanceManagerFacade::getInstance();
         /**
-         * @var AbstractBlock
+         * @var SchemaConfigOptionsBlock
          */
         $block = $instanceManager->getInstance(SchemaConfigOptionsBlock::class);
         $schemaConfigOptionsBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
@@ -244,7 +243,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         }
         $instanceManager = InstanceManagerFacade::getInstance();
         /**
-         * @var AbstractBlock
+         * @var SchemaConfigAccessControlListBlock
          */
         $block = $instanceManager->getInstance(SchemaConfigAccessControlListBlock::class);
         $schemaConfigACLBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
@@ -274,7 +273,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
         }
         $instanceManager = InstanceManagerFacade::getInstance();
         /**
-         * @var AbstractBlock
+         * @var SchemaConfigFieldDeprecationListBlock
          */
         $block = $instanceManager->getInstance(SchemaConfigFieldDeprecationListBlock::class);
         $schemaConfigFDLBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(

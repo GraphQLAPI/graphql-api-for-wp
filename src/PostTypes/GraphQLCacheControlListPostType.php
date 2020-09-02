@@ -62,6 +62,9 @@ class GraphQLCacheControlListPostType extends AbstractPostType
     protected function getGutenbergTemplate(): array
     {
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var CacheControlBlock
+         */
         $cacheControlBlock = $instanceManager->getInstance(CacheControlBlock::class);
         return [
             [$cacheControlBlock->getBlockFullName()],

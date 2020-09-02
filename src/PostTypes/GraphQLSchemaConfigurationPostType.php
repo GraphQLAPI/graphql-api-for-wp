@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
+use GraphQLAPI\GraphQLAPI\Blocks\AbstractBlock;
 use GraphQLAPI\GraphQLAPI\PostTypes\AbstractPostType;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock;
@@ -91,11 +92,17 @@ class GraphQLSchemaConfigurationPostType extends AbstractPostType
         ];
         foreach ($blockClassModules as $blockClass => $module) {
             if ($moduleRegistry->isModuleEnabled($module)) {
+                /**
+                 * @var AbstractBlock
+                 */
                 $block = $instanceManager->getInstance($blockClass);
                 $template[] = [$block->getBlockFullName()];
             }
         }
         // Add the Configuration block always
+        /**
+         * @var SchemaConfigOptionsBlock
+         */
         $schemaConfigOptionsBlock = $instanceManager->getInstance(SchemaConfigOptionsBlock::class);
         $template[] = [$schemaConfigOptionsBlock->getBlockFullName()];
         return $template;

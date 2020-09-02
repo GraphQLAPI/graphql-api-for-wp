@@ -11,10 +11,11 @@ use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Blocks\EndpointOptionsBlock;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Taxonomies\GraphQLQueryTaxonomy;
-use GraphQLByPoP\GraphQLRequest\Execution\QueryExecutionHelpers;
+use GraphQLByPoP\GraphQLClientsForWP\Clients\AbstractClient;
 use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointVoyagerClient;
 use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointGraphiQLClient;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use GraphQLByPoP\GraphQLRequest\Execution\QueryExecutionHelpers;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
 use GraphQLAPI\GraphQLAPI\PostTypes\AbstractGraphQLQueryExecutionPostType;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
@@ -122,6 +123,9 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
         $this->maybeAddSchemaConfigurationBlock($template);
 
         $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var EndpointOptionsBlock
+         */
         $endpointOptionsBlock = $instanceManager->getInstance(EndpointOptionsBlock::class);
         $template[] = [$endpointOptionsBlock->getBlockFullName()];
         return $template;
@@ -167,7 +171,11 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     protected function getQueryExecutionOptionsBlock(): AbstractQueryExecutionOptionsBlock
     {
         $instanceManager = InstanceManagerFacade::getInstance();
-        return $instanceManager->getInstance(EndpointOptionsBlock::class);
+        /**
+         * @var EndpointOptionsBlock
+         */
+        $block = $instanceManager->getInstance(EndpointOptionsBlock::class);
+        return $block;
     }
 
     /**
@@ -229,6 +237,9 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
                 RequestParams::VIEW_SCHEMA => CustomEndpointVoyagerClient::class,
             ];
             $instanceManager = InstanceManagerFacade::getInstance();
+            /**
+             * @var AbstractClient
+             */
             $client = $instanceManager->getInstance($clientClasses[$view]);
             echo $client->getClientHTML();
             die;
