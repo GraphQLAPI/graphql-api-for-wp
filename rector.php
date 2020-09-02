@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Rector\Core\Configuration\Option;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Rector\Set\ValueObject\SetList;
-use Rector\Downgrade\Rector\Property\DowngradeTypedPropertyRector;
+// use Rector\Downgrade\Rector\Property\DowngradeTypedPropertyRector;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     // get parameters
