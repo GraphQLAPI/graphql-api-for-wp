@@ -222,7 +222,7 @@ Allowed PHP code, in this package and dependencies:
 | 7.4 | Typed properties | ✅ |
 | 8.0 | functions `str_contains`, `str_ends_with` and `str_starts_with` | ✅ |
 | 7.4 | Arrow functions | ⏳[#4125](https://github.com/rectorphp/rector/issues/4125) |
-| 7.4 | Null coalescing assignment operator `??=` | ⏳[#4124](https://github.com/rectorphp/rector/issues/4124) |
+| 7.4 | Null coalescing assignment operator | ⏳[#4124](https://github.com/rectorphp/rector/issues/4124) |
 | 8.0 | `mixed` type | ⏳[#4122](https://github.com/rectorphp/rector/issues/4122) |
 | 8.0 | `static` return type | ⏳[#4123](https://github.com/rectorphp/rector/issues/4123) |
 | 8.0 | Type unions | ⏳[#4062](https://github.com/rectorphp/rector/issues/4062) |
