@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a3ff1e444f371f935b02a6b1c2a63cd",
+    "content-hash": "b4f281985e6f3c191d2a57119cb08137",
     "packages": [
         {
             "name": "brain/cortex",
@@ -9785,16 +9785,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.41",
+            "version": "0.12.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "75140de614eeaf67c4ccdce94d970aba8fb7c528"
+                "reference": "7c43b7c2d5ca6554f6231e82e342a710163ac5f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/75140de614eeaf67c4ccdce94d970aba8fb7c528",
-                "reference": "75140de614eeaf67c4ccdce94d970aba8fb7c528",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/7c43b7c2d5ca6554f6231e82e342a710163ac5f4",
+                "reference": "7c43b7c2d5ca6554f6231e82e342a710163ac5f4",
                 "shasum": ""
             },
             "require": {
@@ -9837,7 +9837,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-02T10:59:46+00:00"
+            "time": "2020-09-02T13:14:53+00:00"
         },
         {
             "name": "phpstan/phpstan-phpunit",
@@ -9897,16 +9897,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.1.6",
+            "version": "9.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "d25b24b1cd14772bde4d75daeb393dc17db9f6e6"
+                "reference": "2ef92bec3186a827faf7362ff92ae4e8ec2e49d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/d25b24b1cd14772bde4d75daeb393dc17db9f6e6",
-                "reference": "d25b24b1cd14772bde4d75daeb393dc17db9f6e6",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/2ef92bec3186a827faf7362ff92ae4e8ec2e49d2",
+                "reference": "2ef92bec3186a827faf7362ff92ae4e8ec2e49d2",
                 "shasum": ""
             },
             "require": {
@@ -9966,7 +9966,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-08-31T06:31:46+00:00"
+            "time": "2020-09-03T07:09:19+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -10342,16 +10342,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "v0.8.2",
+            "version": "dev-Downgrade-Object-Type",
             "source": {
                 "type": "git",
-                "url": "https://github.com/rectorphp/rector.git",
-                "reference": "83e2db04d8cdb51d29972798e43d9968f214295a"
+                "url": "https://github.com/leoloso/rector.git",
+                "reference": "4ca8148453f3f8fd7187c3415b65c38a4adbd753"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/83e2db04d8cdb51d29972798e43d9968f214295a",
-                "reference": "83e2db04d8cdb51d29972798e43d9968f214295a",
+                "url": "https://api.github.com/repos/leoloso/rector/zipball/4ca8148453f3f8fd7187c3415b65c38a4adbd753",
+                "reference": "4ca8148453f3f8fd7187c3415b65c38a4adbd753",
                 "shasum": ""
             },
             "require": {
@@ -10376,14 +10376,15 @@
                 "symfony/dependency-injection": "^4.4.8|^5.0.6",
                 "symfony/finder": "^4.4.8|^5.0.6",
                 "symfony/process": "^4.4.8|^5.0.6",
-                "symplify/auto-bind-parameter": "^8.2.11",
-                "symplify/autowire-array-parameter": "^8.2.11",
-                "symplify/console-color-diff": "^8.2.11",
-                "symplify/easy-testing": "^8.2.11",
-                "symplify/package-builder": "^8.2.11",
-                "symplify/set-config-resolver": "^8.2.11",
-                "symplify/smart-file-system": "^8.2.11",
-                "tracy/tracy": "^2.7"
+                "symplify/auto-bind-parameter": "^8.2.20",
+                "symplify/autowire-array-parameter": "^8.2.20",
+                "symplify/console-color-diff": "^8.2.20",
+                "symplify/easy-testing": "^8.2.20",
+                "symplify/package-builder": "^8.2.20",
+                "symplify/set-config-resolver": "^8.2.20",
+                "symplify/smart-file-system": "^8.2.20",
+                "tracy/tracy": "^2.7",
+                "webmozart/assert": "^1.0"
             },
             "replace": {
                 "rector/rector-prefixed": "self.version"
@@ -10399,11 +10400,11 @@
                 "phpunit/phpunit": "^8.5|^9.2",
                 "psr/event-dispatcher": "^1.0",
                 "slam/phpstan-extensions": "^5.0",
-                "symplify/changelog-linker": "^8.2.11",
-                "symplify/easy-coding-standard": "^8.2.11",
-                "symplify/easy-testing": "^8.2.11",
-                "symplify/monorepo-builder": "^8.2.11",
-                "symplify/phpstan-extensions": "^8.2.11",
+                "symplify/changelog-linker": "^8.2.20",
+                "symplify/easy-coding-standard": "^8.2.20",
+                "symplify/easy-testing": "^8.2.20",
+                "symplify/monorepo-builder": "^8.2.20",
+                "symplify/phpstan-extensions": "^8.2.20",
                 "thecodingmachine/phpstan-strict-rules": "^0.12"
             },
             "bin": [
@@ -10509,7 +10510,152 @@
                     "rules/symfony-php-config/functions/functions.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Rector\\Architecture\\Tests\\": "rules/architecture/tests",
+                    "Rector\\Autodiscovery\\Tests\\": "rules/autodiscovery/tests",
+                    "Rector\\BetterPhpDocParser\\Tests\\": "packages/better-php-doc-parser/tests",
+                    "Rector\\CakePHP\\Tests\\": "rules/cakephp/tests",
+                    "Rector\\CodeQuality\\Tests\\": "rules/code-quality/tests",
+                    "Rector\\Caching\\Tests\\": "packages/caching/tests",
+                    "Rector\\CodingStyle\\Tests\\": "rules/coding-style/tests",
+                    "Rector\\Core\\Tests\\": "tests",
+                    "Rector\\Decouple\\Tests\\": "rules/decouple/tests",
+                    "Rector\\DeadCode\\Tests\\": "rules/dead-code/tests",
+                    "Rector\\DoctrineCodeQuality\\Tests\\": "rules/doctrine-code-quality/tests",
+                    "Rector\\DoctrineGedmoToKnplabs\\Tests\\": "rules/doctrine-gedmo-to-knplabs/tests",
+                    "Rector\\Doctrine\\Tests\\": "rules/doctrine/tests",
+                    "Rector\\DynamicTypeAnalysis\\Tests\\": "packages/dynamic-type-analysis/tests",
+                    "Rector\\Generic\\Tests\\": "rules/generic/tests",
+                    "Rector\\JMS\\Tests\\": "rules/jms/tests",
+                    "Rector\\Laravel\\Tests\\": "rules/laravel/tests",
+                    "Rector\\Legacy\\Tests\\": "rules/legacy/tests",
+                    "Rector\\RectorGenerator\\Tests\\": "packages/rector-generator/tests",
+                    "Rector\\MagicDisclosure\\Tests\\": "rules/magic-disclosure/tests",
+                    "Rector\\MysqlToMysqli\\Tests\\": "rules/mysql-to-mysqli/tests",
+                    "Rector\\NetteTesterToPHPUnit\\Tests\\": "rules/nette-tester-to-phpunit/tests",
+                    "Rector\\NetteToSymfony\\Tests\\": "rules/nette-to-symfony/tests",
+                    "Rector\\Nette\\Tests\\": "rules/nette/tests",
+                    "Rector\\NodeTypeResolver\\Tests\\": "packages/node-type-resolver/tests",
+                    "Rector\\PHPStanExtensions\\": "utils/phpstan-extensions/src",
+                    "Rector\\PHPStanExtensions\\Tests\\": "utils/phpstan-extensions/tests",
+                    "Rector\\PHPStan\\Tests\\": "rules/phpstan/tests",
+                    "Rector\\PHPUnitSymfony\\Tests\\": "rules/phpunit-symfony/tests",
+                    "Rector\\PHPUnit\\Tests\\": "rules/phpunit/tests",
+                    "Rector\\PSR4\\Tests\\": "rules/psr4/tests",
+                    "Rector\\Phalcon\\Tests\\": "rules/phalcon/tests",
+                    "Rector\\Php52\\Tests\\": "rules/php52/tests",
+                    "Rector\\Php53\\Tests\\": "rules/php53/tests",
+                    "Rector\\Php54\\Tests\\": "rules/php54/tests",
+                    "Rector\\Php55\\Tests\\": "rules/php55/tests",
+                    "Rector\\Php56\\Tests\\": "rules/php56/tests",
+                    "Rector\\Php70\\Tests\\": "rules/php70/tests",
+                    "Rector\\Php71\\Tests\\": "rules/php71/tests",
+                    "Rector\\Php72\\Tests\\": "rules/php72/tests",
+                    "Rector\\Php73\\Tests\\": "rules/php73/tests",
+                    "Rector\\Php74\\Tests\\": "rules/php74/tests",
+                    "Rector\\Php80\\Tests\\": "rules/php80/tests",
+                    "Rector\\PHPOffice\\Tests\\": "rules/php-office/tests",
+                    "Rector\\PhpDeglobalize\\Tests\\": "rules/php-deglobalize/tests",
+                    "Rector\\PhpSpecToPHPUnit\\Tests\\": "rules/php-spec-to-phpunit/tests",
+                    "Rector\\Polyfill\\Tests\\": "rules/polyfill/tests",
+                    "Rector\\Privatization\\Tests\\": "rules/privatization/tests",
+                    "Rector\\RemovingStatic\\Tests\\": "rules/removing-static/tests",
+                    "Rector\\Renaming\\Tests\\": "rules/renaming/tests",
+                    "Rector\\Restoration\\Tests\\": "rules/restoration/tests",
+                    "Rector\\SOLID\\Tests\\": "rules/solid/tests",
+                    "Rector\\Sensio\\Tests\\": "rules/sensio/tests",
+                    "Rector\\StrictCodeQuality\\Tests\\": "rules/strict-code-quality/tests",
+                    "Rector\\SymfonyCodeQuality\\Tests\\": "rules/symfony-code-quality/tests",
+                    "Rector\\SymfonyPHPUnit\\Tests\\": "rules/symfony-phpunit/tests",
+                    "Rector\\Symfony\\Tests\\": "rules/symfony/tests",
+                    "Rector\\Transform\\Tests\\": "rules/transform/tests",
+                    "Rector\\Twig\\Tests\\": "rules/twig/tests",
+                    "Rector\\TypeDeclaration\\Tests\\": "rules/type-declaration/tests",
+                    "Rector\\Utils\\DocumentationGenerator\\": "utils/documentation-generator/src",
+                    "Rector\\Utils\\ProjectValidator\\": "utils/project-validator/src",
+                    "Rector\\Utils\\DoctrineAnnotationParserSyncer\\": "utils/doctrine-annotation-parser-syncer/src",
+                    "Rector\\Utils\\PHPStanAttributeTypeSyncer\\": "utils/phpstan-attribute-type-syncer/src",
+                    "Rector\\Utils\\PHPStanStaticTypeMapperChecker\\": "utils/phpstan-static-type-mapper-checker/src",
+                    "Rector\\Performance\\Tests\\": "rules/performance/tests",
+                    "Rector\\Naming\\Tests\\": "rules/naming/tests",
+                    "Rector\\Order\\Tests\\": "rules/order/tests",
+                    "Rector\\MockeryToProphecy\\Tests\\": "rules/mockery-to-prophecy/tests",
+                    "Rector\\MockistaToMockery\\Tests\\": "rules/mockista-to-mockery/tests",
+                    "Rector\\Compiler\\Tests\\": "compiler/tests",
+                    "Rector\\NetteKdyby\\Tests\\": "rules/nette-kdyby/tests",
+                    "Rector\\NetteUtilsCodeQuality\\Tests\\": "rules/nette-utils-code-quality/tests",
+                    "Rector\\NetteCodeQuality\\Tests\\": "rules/nette-code-quality/tests",
+                    "Rector\\Downgrade\\Tests\\": "rules/downgrade/tests",
+                    "Rector\\SymfonyPhpConfig\\Tests\\": "rules/symfony-php-config/tests",
+                    "Rector\\PHPStanStaticTypeMapper\\Tests\\": "packages/phpstan-static-type-mapper/tests"
+                },
+                "classmap": [
+                    "rules/cakephp/tests/Rector/Name/ImplicitShortClassNameUseStatementRector/Source",
+                    "rules/symfony/tests/Rector/MethodCall/ContainerGetToConstructorInjectionRector/Source",
+                    "rules/autodiscovery/tests/Rector/FileSystem/MoveInterfacesToContractNamespaceDirectoryRector/Expected",
+                    "rules/autodiscovery/tests/Rector/FileSystem/MoveServicesBySuffixToDirectoryRector/Expected",
+                    "rules/cakephp/tests/Rector/Expression/AppUsesStaticCallToUseStatementRector/Source",
+                    "tests/Source",
+                    "rules/psr4/tests/Rector/MultipleClassFileToPsr4ClassesRector/Source",
+                    "rules/generic/tests/Rector/Name/PseudoNamespaceToNamespaceRector/Source"
+                ],
+                "files": [
+                    "rules/transform/tests/Rector/FuncCall/FuncCallToMethodCallRector/Source/some_view_function.php",
+                    "rules/coding-style/tests/Rector/Throw_/AnnotateThrowablesRector/Source/i_throw_an_exception.func.php",
+                    "rules/dead-code/tests/Rector/MethodCall/RemoveDefaultArgumentValueRector/Source/UserDefined.php",
+                    "rules/type-declaration/tests/Rector/Property/CompleteVarDocTypePropertyRector/Source/EventDispatcher.php",
+                    "rules/type-declaration/tests/Rector/FunctionLike/ReturnTypeDeclarationRector/Source/MyBar.php",
+                    "rules/renaming/tests/Rector/Name/RenameClassRector/Source/SomeInterface.php",
+                    "rules/renaming/tests/Rector/Name/RenameClassRector/Source/ClassImportingSameName.php",
+                    "rules/renaming/tests/Rector/Name/RenameClassRector/Source/Twig_Extension_Sandbox.php",
+                    "rules/renaming/tests/Rector/Name/RenameClassRector/Source/TwigFilter.php",
+                    "rules/renaming/tests/Rector/Name/RenameClassRector/Source/Manual_Twig_Filter.php",
+                    "rules/generic/tests/Rector/Name/PseudoNamespaceToNamespaceRector/Source/ChangeMeAnotherNamespace.php",
+                    "rules/coding-style/tests/Rector/Namespace_/ImportFullyQualifiedNamesRector/Source/Foo.php",
+                    "rules/coding-style/tests/Rector/Namespace_/ImportFullyQualifiedNamesRector/Source/Function_/count.php",
+                    "rules/coding-style/tests/Rector/Namespace_/ImportFullyQualifiedNamesRector/Source/AnotherClass.php",
+                    "rules/coding-style/tests/Rector/Namespace_/ImportFullyQualifiedNamesRector/Source/YetAnotherClass.php",
+                    "rules/solid/tests/Rector/ClassMethod/UseInterfaceOverImplementationInConstructorRector/Source/Coconut.php",
+                    "stubs/Nette/Localization/ITranslation.php"
+                ]
+            },
+            "scripts": {
+                "complete-check": [
+                    "@check-cs",
+                    "@phpstan",
+                    "@docs",
+                    "phpunit"
+                ],
+                "check-cs": [
+                    "vendor/bin/ecs check --ansi"
+                ],
+                "fix-cs": [
+                    "vendor/bin/ecs check --fix --ansi"
+                ],
+                "phpstan": [
+                    "vendor/bin/phpstan analyse --ansi --error-format symplify",
+                    "vendor/bin/phpstan analyse config/set --ansi --error-format symplify"
+                ],
+                "phpstan-config": [
+                    "vendor/bin/phpstan analyse config/set --ansi --error-format symplify"
+                ],
+                "changelog": [
+                    "vendor/bin/changelog-linker dump-merges --in-categories --ansi",
+                    "vendor/bin/changelog-linker link --ansi",
+                    "vendor/bin/changelog-linker cleanup --ansi"
+                ],
+                "docs": [
+                    "bin/rector dump-rectors > docs/rector_rules_overview.md",
+                    "bin/rector dump-nodes > docs/nodes_overview.md"
+                ],
+                "rector-ci": [
+                    "bin/rector process --config rector-ci.php --dry-run --ansi"
+                ],
+                "rector": [
+                    "bin/rector process --config rector-ci.php --ansi"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -10533,13 +10679,16 @@
                 "instant refactoring",
                 "instant upgrades"
             ],
+            "support": {
+                "source": "https://github.com/leoloso/rector/tree/Downgrade-Object-Type"
+            },
             "funding": [
                 {
-                    "url": "https://github.com/tomasvotruba",
-                    "type": "github"
+                    "type": "github",
+                    "url": "https://github.com/tomasvotruba"
                 }
             ],
-            "time": "2020-09-01T20:04:49+00:00"
+            "time": "2020-09-03T08:56:19+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -12360,16 +12509,16 @@
         },
         {
             "name": "symplify/auto-bind-parameter",
-            "version": "8.2.19",
+            "version": "8.2.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/auto-bind-parameter.git",
-                "reference": "cdcc9c5e1d97ac7c7a541010660d518c9d3556bc"
+                "reference": "7c65a269a8030fe35912513c69d451f3b32d4990"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/auto-bind-parameter/zipball/cdcc9c5e1d97ac7c7a541010660d518c9d3556bc",
-                "reference": "cdcc9c5e1d97ac7c7a541010660d518c9d3556bc",
+                "url": "https://api.github.com/repos/symplify/auto-bind-parameter/zipball/7c65a269a8030fe35912513c69d451f3b32d4990",
+                "reference": "7c65a269a8030fe35912513c69d451f3b32d4990",
                 "shasum": ""
             },
             "require": {
@@ -12380,7 +12529,7 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.5|^9.0",
-                "symplify/package-builder": "^8.2.19"
+                "symplify/package-builder": "^8.2.21"
             },
             "type": "library",
             "extra": {
@@ -12404,27 +12553,27 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-01T22:37:54+00:00"
+            "time": "2020-09-02T20:45:10+00:00"
         },
         {
             "name": "symplify/autowire-array-parameter",
-            "version": "8.2.19",
+            "version": "8.2.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/autowire-array-parameter.git",
-                "reference": "2852382e0a50a40d278763cc96dcf4165fc7daab"
+                "reference": "a09e5b1c53cf5d079218153fc798ac3215f8f03d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/autowire-array-parameter/zipball/2852382e0a50a40d278763cc96dcf4165fc7daab",
-                "reference": "2852382e0a50a40d278763cc96dcf4165fc7daab",
+                "url": "https://api.github.com/repos/symplify/autowire-array-parameter/zipball/a09e5b1c53cf5d079218153fc798ac3215f8f03d",
+                "reference": "a09e5b1c53cf5d079218153fc798ac3215f8f03d",
                 "shasum": ""
             },
             "require": {
                 "nette/utils": "^3.0",
                 "php": "^7.2|^8.0",
                 "symfony/dependency-injection": "^4.4|^5.0",
-                "symplify/package-builder": "^8.2.19"
+                "symplify/package-builder": "^8.2.21"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.5|^9.0"
@@ -12451,20 +12600,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-01T22:37:54+00:00"
+            "time": "2020-09-02T20:45:10+00:00"
         },
         {
             "name": "symplify/console-color-diff",
-            "version": "8.2.19",
+            "version": "8.2.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/console-color-diff.git",
-                "reference": "0ec2a390b0142b518ad485623cfd7c158fcc900b"
+                "reference": "cf3372061cfbb44d0d9afa5c3c60d8802b2ab777"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/console-color-diff/zipball/0ec2a390b0142b518ad485623cfd7c158fcc900b",
-                "reference": "0ec2a390b0142b518ad485623cfd7c158fcc900b",
+                "url": "https://api.github.com/repos/symplify/console-color-diff/zipball/cf3372061cfbb44d0d9afa5c3c60d8802b2ab777",
+                "reference": "cf3372061cfbb44d0d9afa5c3c60d8802b2ab777",
                 "shasum": ""
             },
             "require": {
@@ -12474,7 +12623,7 @@
                 "symfony/console": "^4.4|^5.0",
                 "symfony/dependency-injection": "^4.4|^5.0",
                 "symfony/http-kernel": "^4.4|^5.0",
-                "symplify/package-builder": "^8.2.19"
+                "symplify/package-builder": "^8.2.21"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.5|^9.0"
@@ -12501,28 +12650,28 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-01T22:37:54+00:00"
+            "time": "2020-09-02T20:45:10+00:00"
         },
         {
             "name": "symplify/easy-testing",
-            "version": "8.2.19",
+            "version": "8.2.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/easy-testing.git",
-                "reference": "075b90c02d3ceb28216cb45bc1d7321a24c0f4e5"
+                "reference": "e5725b537ab2d3f649d458b82c5d18b293590a17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/easy-testing/zipball/075b90c02d3ceb28216cb45bc1d7321a24c0f4e5",
-                "reference": "075b90c02d3ceb28216cb45bc1d7321a24c0f4e5",
+                "url": "https://api.github.com/repos/symplify/easy-testing/zipball/e5725b537ab2d3f649d458b82c5d18b293590a17",
+                "reference": "e5725b537ab2d3f649d458b82c5d18b293590a17",
                 "shasum": ""
             },
             "require": {
                 "nette/utils": "^3.0",
                 "php": "^7.2|^8.0",
                 "symfony/finder": "^4.4|^5.0",
-                "symplify/package-builder": "^8.2.19",
-                "symplify/smart-file-system": "^8.2.19"
+                "symplify/package-builder": "^8.2.21",
+                "symplify/smart-file-system": "^8.2.21"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.5|^9.0"
@@ -12549,20 +12698,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-01T22:37:54+00:00"
+            "time": "2020-09-02T20:45:10+00:00"
         },
         {
             "name": "symplify/package-builder",
-            "version": "8.2.19",
+            "version": "8.2.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/package-builder.git",
-                "reference": "52a94de625efafd237f71569368eed200dc51bc4"
+                "reference": "06f5c2dd99ceb5494b2f9e5aae39b30e1378eb3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/package-builder/zipball/52a94de625efafd237f71569368eed200dc51bc4",
-                "reference": "52a94de625efafd237f71569368eed200dc51bc4",
+                "url": "https://api.github.com/repos/symplify/package-builder/zipball/06f5c2dd99ceb5494b2f9e5aae39b30e1378eb3d",
+                "reference": "06f5c2dd99ceb5494b2f9e5aae39b30e1378eb3d",
                 "shasum": ""
             },
             "require": {
@@ -12605,16 +12754,16 @@
         },
         {
             "name": "symplify/set-config-resolver",
-            "version": "8.2.19",
+            "version": "8.2.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/set-config-resolver.git",
-                "reference": "bb0d53c9d0517771e8602bbfa161436ae74ccd1f"
+                "reference": "7d14b079c9d8322500b0f63cf588f7248882782e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/set-config-resolver/zipball/bb0d53c9d0517771e8602bbfa161436ae74ccd1f",
-                "reference": "bb0d53c9d0517771e8602bbfa161436ae74ccd1f",
+                "url": "https://api.github.com/repos/symplify/set-config-resolver/zipball/7d14b079c9d8322500b0f63cf588f7248882782e",
+                "reference": "7d14b079c9d8322500b0f63cf588f7248882782e",
                 "shasum": ""
             },
             "require": {
@@ -12626,7 +12775,7 @@
                 "symfony/filesystem": "^4.4|^5.0",
                 "symfony/finder": "^4.4|^5.0",
                 "symfony/yaml": "^4.4|^5.0",
-                "symplify/smart-file-system": "^8.2.19"
+                "symplify/smart-file-system": "^8.2.21"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.5|^9.0"
@@ -12653,20 +12802,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-01T22:37:54+00:00"
+            "time": "2020-09-02T20:45:10+00:00"
         },
         {
             "name": "symplify/smart-file-system",
-            "version": "8.2.19",
+            "version": "8.2.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/smart-file-system.git",
-                "reference": "88cd3e6dc19daae8a8e1d8cc4aac284c6310b86d"
+                "reference": "60c99a20056de6e7c045b9c7e3a65e552c054d2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/smart-file-system/zipball/88cd3e6dc19daae8a8e1d8cc4aac284c6310b86d",
-                "reference": "88cd3e6dc19daae8a8e1d8cc4aac284c6310b86d",
+                "url": "https://api.github.com/repos/symplify/smart-file-system/zipball/60c99a20056de6e7c045b9c7e3a65e552c054d2e",
+                "reference": "60c99a20056de6e7c045b9c7e3a65e552c054d2e",
                 "shasum": ""
             },
             "require": {
@@ -12955,7 +13104,8 @@
         "pop-schema/user-roles-wp": 20,
         "pop-schema/user-state-wp": 20,
         "pop-schema/usermeta-wp": 20,
-        "pop-schema/users-wp": 20
+        "pop-schema/users-wp": 20,
+        "rector/rector": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
