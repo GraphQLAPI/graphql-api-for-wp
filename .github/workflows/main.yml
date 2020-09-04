@@ -2,12 +2,12 @@
 # GitHub Action:
 # Whenever creating a new release of the source code,
 # also create a release of the installable plugin,
-# and downgrading it from PHP 7.4 to 7.2 to support more users.
+# and downgrading it from PHP 7.4 to 7.1 to support more users.
 ####################################################################################
 # Steps to execute:
 # - Checkout the source code
 # - Run "composer install" for development, to install dependencies for Rector
-# - Run Rector to downgrade code from PHP 7.4 to 7.2
+# - Run Rector to downgrade code from PHP 7.4 to 7.1
 # - Run "composer install" for production (required dependencies are already under vendor/)
 # - Create a .zip file, excluding:
 #   - All hidden files (.git, .gitignore, etc)
@@ -31,7 +31,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Downgrade code for production (PHP 7.4 to 7.2)
+      - name: Downgrade code for production (PHP 7.4 to 7.1)
         run: |
           composer install
           vendor/bin/rector process
