@@ -220,10 +220,11 @@ Allowed PHP code, in this package and dependencies:
 | 7.1 | Everything |
 | 7.2 | `object` type |
 | 7.4 | Typed properties |
-| 8.0 | `mixed` type |
-| 8.0 | `static` return type |
 | 8.0 | functions `str_contains`, `str_ends_with` and `str_starts_with` |
-| 8.0 | Type unions ([coming soon](https://github.com/rectorphp/rector/issues/4062)) |
+
+<!-- | 8.0 | `mixed` type |
+| 8.0 | `static` return type |
+| 8.0 | Type unions ([coming soon](https://github.com/rectorphp/rector/issues/4062)) | -->
 
 ### Downgrading PHP code from v7.4 to v7.1
 
