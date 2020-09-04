@@ -215,16 +215,17 @@ Requirements:
 
 Allowed PHP code, in this package and dependencies:
 
-| PHP Version | Features |
-| --- | --- |
-| 7.1 | Everything |
-| 7.2 | `object` type |
-| 7.4 | Typed properties |
-| 8.0 | functions `str_contains`, `str_ends_with` and `str_starts_with` |
-
-<!-- | 8.0 | `mixed` type |
-| 8.0 | `static` return type |
-| 8.0 | Type unions ([coming soon](https://github.com/rectorphp/rector/issues/4062)) | -->
+| PHP Version | Features | Supported? | 
+| --- | --- | --- |
+| 7.1 | Everything | ✅ |
+| 7.2 | `object` type | ✅ |
+| 7.4 | Typed properties | ✅ |
+| 8.0 | functions `str_contains`, `str_ends_with` and `str_starts_with` | ✅ |
+| 7.4 | Arrow functions | ⏳[#4125](https://github.com/rectorphp/rector/issues/4125) |
+| 7.4 | Null coalescing assignment operator | ⏳[#4124](https://github.com/rectorphp/rector/issues/4124) |
+| 8.0 | `mixed` type | ⏳[#4122](https://github.com/rectorphp/rector/issues/4122) |
+| 8.0 | `static` return type | ⏳[#4123](https://github.com/rectorphp/rector/issues/4123) |
+| 8.0 | Type unions | ⏳[#4062](https://github.com/rectorphp/rector/issues/4062) |
 
 ### Downgrading PHP code from v7.4 to v7.1
 
