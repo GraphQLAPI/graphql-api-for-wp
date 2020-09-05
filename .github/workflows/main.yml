@@ -31,7 +31,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Downgrade code for production (PHP 7.4 to 7.1)
+      - name: Downgrade code for production (to PHP 7.1)
         run: |
           composer install
           vendor/bin/rector process
