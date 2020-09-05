@@ -662,12 +662,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/definitions.git",
-                "reference": "127b6e29677572325c73c82b5428f725739b752f"
+                "reference": "47a73287bb0d3644a07840d64c0e9ccb6345196f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/definitions/zipball/127b6e29677572325c73c82b5428f725739b752f",
-                "reference": "127b6e29677572325c73c82b5428f725739b752f",
+                "url": "https://api.github.com/repos/getpop/definitions/zipball/47a73287bb0d3644a07840d64c0e9ccb6345196f",
+                "reference": "47a73287bb0d3644a07840d64c0e9ccb6345196f",
                 "shasum": ""
             },
             "require": {
@@ -677,7 +677,7 @@
             "require-dev": {
                 "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": ">=9.3",
-                "rector/rector": "dev-master#71682d2b52edd8d0f36fe822e077c7f05a8311f4",
+                "rector/rector": "dev-fix-inconsistent-remove-object-param",
                 "squizlabs/php_codesniffer": "^3.0"
             },
             "type": "library",
@@ -708,7 +708,7 @@
                 "definitions",
                 "pop"
             ],
-            "time": "2020-09-05T00:24:46+00:00"
+            "time": "2020-09-05T03:57:42+00:00"
         },
         {
             "name": "getpop/engine",
@@ -1482,12 +1482,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/root.git",
-                "reference": "64fee73ecd2f4df37ced698949890c7b6b1f0c75"
+                "reference": "1a2f6435f96ca23cc4d31ed089d3fe56482e315a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/root/zipball/64fee73ecd2f4df37ced698949890c7b6b1f0c75",
-                "reference": "64fee73ecd2f4df37ced698949890c7b6b1f0c75",
+                "url": "https://api.github.com/repos/getpop/root/zipball/1a2f6435f96ca23cc4d31ed089d3fe56482e315a",
+                "reference": "1a2f6435f96ca23cc4d31ed089d3fe56482e315a",
                 "shasum": ""
             },
             "require": {
@@ -1500,7 +1500,7 @@
             "require-dev": {
                 "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": ">=9.3",
-                "rector/rector": "dev-master#71682d2b52edd8d0f36fe822e077c7f05a8311f4",
+                "rector/rector": "dev-fix-inconsistent-remove-object-param",
                 "squizlabs/php_codesniffer": "^3.0"
             },
             "type": "library",
@@ -1534,7 +1534,7 @@
                 "pop",
                 "root"
             ],
-            "time": "2020-09-04T23:57:51+00:00"
+            "time": "2020-09-05T03:57:17+00:00"
         },
         {
             "name": "getpop/routing",
@@ -10348,12 +10348,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/leoloso/rector.git",
-                "reference": "6234b8d1800a7903ba614e1dd0df2e695f9a2766"
+                "reference": "118691728cc0bce62437628cdcb8f4ed84e4f2ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leoloso/rector/zipball/6234b8d1800a7903ba614e1dd0df2e695f9a2766",
-                "reference": "6234b8d1800a7903ba614e1dd0df2e695f9a2766",
+                "url": "https://api.github.com/repos/leoloso/rector/zipball/118691728cc0bce62437628cdcb8f4ed84e4f2ae",
+                "reference": "118691728cc0bce62437628cdcb8f4ed84e4f2ae",
                 "shasum": ""
             },
             "require": {
@@ -10690,7 +10690,7 @@
                     "url": "https://github.com/tomasvotruba"
                 }
             ],
-            "time": "2020-09-05T03:50:04+00:00"
+            "time": "2020-09-05T04:00:15+00:00"
         },
         {
             "name": "sebastian/cli-parser",
