@@ -213,27 +213,36 @@ Requirements:
 - PHP 7.4+ for development
 - PHP 7.1+ for production (through release [`graphql-api.zip`](https://github.com/GraphQLAPI/graphql-api/releases/download/v0.5.0/graphql-api.zip))
 
-Allowed PHP code, in this package and dependencies:
+### Supported PHP features
 
-| PHP Version | Features | Supported? | 
+In this package and its dependencies:
+
+| PHP Version | Features |
+| --- | --- |
+| 7.1 | Everything |
+| 7.2 | `object` type |
+| 7.2 | **Functions:**<br/>[`spl_object_id`](https://php.net/spl_object_id) |
+| 7.2 | **Constants:**<br/>[`PHP_FLOAT_*`](https://php.net/reserved.constants#constant.php-float-dig)<br/>[`PHP_OS_FAMILY`](https://php.net/reserved.constants#constant.php-os-family) |
+| 7.3 | **Functions:**<br/>[`array_key_first`](https://php.net/array_key_first)<br/>[`array_key_last`](https://php.net/array_key_last)<br/>[`hrtime`](https://php.net/function.hrtime)<br/>[`is_countable`](https://php.net/is_countable) |
+| 7.3 | **Exceptions:**<br/>[`JsonException`](https://php.net/JsonException) |
+| 7.4 | Typed properties |
+| 7.4 | **Functions:**<br/>[`get_mangled_object_vars`](https://php.net/get_mangled_object_vars)<br/>[`mb_str_split`](https://php.net/mb_str_split)<br/>[`password_algos`](https://php.net/password_algos) |
+| 8.0 | **Interfaces:**<br/>`Stringable` |
+| 8.0 | **Classes:**<br/>`ValueError`<br/>`UnhandledMatchError` |
+| 8.0 | **Constants:**<br/>`FILTER_VALIDATE_BOOL` |
+| 8.0 | **Functions:**<br/>[`fdiv`](https://php.net/fdiv)<br/>[`get_debug_type`](https://php.net/get_debug_type)<br/>[`preg_last_error_msg`](https://php.net/preg_last_error_msg)<br/>[`str_contains`](https://php.net/str_contains)<br/>[`str_starts_with`](https://php.net/str_starts_with)<br/>[`str_ends_with`](https://php.net/str_ends_with)<br/>[`get_resource_id`](https://php.net/get_resource_id) |
+
+### Planned PHP features
+
+In this package and its dependencies:
+
+| PHP Version | Features | Issue | 
 | --- | --- | --- |
-| 7.1 | Everything | ✅ |
-| 7.2 | `object` type | ✅ |
-| 7.2 | **Functions:**<br/>[`spl_object_id`](https://php.net/spl_object_id) | ✅ |
-| 7.2 | **Constants:**<br/>[`PHP_FLOAT_*`](https://php.net/reserved.constants#constant.php-float-dig)<br/>[`PHP_OS_FAMILY`](https://php.net/reserved.constants#constant.php-os-family) | ✅ |
-| 7.3 | **Functions:**<br/>[`array_key_first`](https://php.net/array_key_first)<br/>[`array_key_last`](https://php.net/array_key_last)<br/>[`hrtime`](https://php.net/function.hrtime)<br/>[`is_countable`](https://php.net/is_countable) | ✅ |
-| 7.3 | **Exceptions:**<br/>[`JsonException`](https://php.net/JsonException) | ✅ |
-| 7.4 | Typed properties | ✅ |
-| 7.4 | **Functions:**<br/>[`get_mangled_object_vars`](https://php.net/get_mangled_object_vars)<br/>[`mb_str_split`](https://php.net/mb_str_split)<br/>[`password_algos`](https://php.net/password_algos) | ✅ |
-| 8.0 | **Interfaces:**<br/>`Stringable` | ✅ |
-| 8.0 | **Classes:**<br/>`ValueError`<br/>`UnhandledMatchError` | ✅ |
-| 8.0 | **Constants:**<br/>`FILTER_VALIDATE_BOOL` | ✅ |
-| 8.0 | **Functions:**<br/>[`fdiv`](https://php.net/fdiv)<br/>[`get_debug_type`](https://php.net/get_debug_type)<br/>[`preg_last_error_msg`](https://php.net/preg_last_error_msg)<br/>[`str_contains`](https://php.net/str_contains)<br/>[`str_starts_with`](https://php.net/str_starts_with)<br/>[`str_ends_with`](https://php.net/str_ends_with)<br/>[`get_resource_id`](https://php.net/get_resource_id) | ✅ |
-| 7.4 | Arrow functions | ⏳[#4125](https://github.com/rectorphp/rector/issues/4125) |
-| 7.4 | Null coalescing assignment operator `??=` | ⏳[#4124](https://github.com/rectorphp/rector/issues/4124) |
-| 8.0 | `mixed` type | ⏳[#4122](https://github.com/rectorphp/rector/issues/4122) |
-| 8.0 | `static` return type | ⏳[#4123](https://github.com/rectorphp/rector/issues/4123) |
-| 8.0 | Type unions | ⏳[#4062](https://github.com/rectorphp/rector/issues/4062) |
+| 7.4 | Arrow functions | [#4125](https://github.com/rectorphp/rector/issues/4125) |
+| 7.4 | Null coalescing assignment operator `??=` | [#4124](https://github.com/rectorphp/rector/issues/4124) |
+| 8.0 | `mixed` type | [#4122](https://github.com/rectorphp/rector/issues/4122) |
+| 8.0 | `static` return type | [#4123](https://github.com/rectorphp/rector/issues/4123) |
+| 8.0 | Type unions | [#4062](https://github.com/rectorphp/rector/issues/4062) |
 
 ### Downgrading PHP code from v7.4 to v7.1
 
