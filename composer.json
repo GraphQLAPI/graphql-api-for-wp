@@ -57,7 +57,8 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/leoloso/rector"
+            "url": "https://github.com/leoloso/rector",
+            "no-api": true
         },
         {
             "type": "composer",
