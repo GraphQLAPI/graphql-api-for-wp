@@ -23,7 +23,7 @@ Please read the author's [introduction to the GraphQL API for WordPress](https:/
 
 ## Requirements
 
-WordPress 5.4 or above, PHP 7.2.5 or above.
+WordPress 5.4 or above, PHP 7.4+ for development, PHP 7.1+ for production.
 
 ## Install
 
@@ -208,20 +208,28 @@ This method requires the code for the component to be divided into 2 separate pa
 
 ## PHP versions
 
-Allowed PHP code:
+Requirements:
 
-- PHP 7.2
-- Typed properties from PHP 7.4
+- PHP 7.4+ for development
+- PHP 7.1+ for production (through release [`graphql-api.zip`](https://github.com/GraphQLAPI/graphql-api/releases/download/v0.5.0/graphql-api.zip))
 
-The code can be downgraded from PHP 7.4 to PHP 7.2 to run in production:
+Allowed PHP code, in this package and dependencies:
 
-| | Development | Production |
+| PHP Version | Features | Supported? | 
 | --- | --- | --- |
-| **Min PHP version** | 7.4 | 7.2 (After removing typed properties) |
+| 7.1 | Everything | ✅ |
+| 7.2 | `object` type | ✅ |
+| 7.4 | Typed properties | ✅ |
+| 8.0 | functions `str_contains`, `str_ends_with` and `str_starts_with` | ✅ |
+| 7.4 | Arrow functions | ⏳[#4125](https://github.com/rectorphp/rector/issues/4125) |
+| 7.4 | Null coalescing assignment operator `??=` | ⏳[#4124](https://github.com/rectorphp/rector/issues/4124) |
+| 8.0 | `mixed` type | ⏳[#4122](https://github.com/rectorphp/rector/issues/4122) |
+| 8.0 | `static` return type | ⏳[#4123](https://github.com/rectorphp/rector/issues/4123) |
+| 8.0 | Type unions | ⏳[#4062](https://github.com/rectorphp/rector/issues/4062) |
 
-### Downgrading PHP code
+### Downgrading PHP code from v7.4 to v7.1
 
-Dry run to downgrade the code, via [Rector](https://github.com/rectorphp/rector):
+Via [Rector](https://github.com/rectorphp/rector) (dry-run mode):
 
 ```bash
 composer downgrade-code

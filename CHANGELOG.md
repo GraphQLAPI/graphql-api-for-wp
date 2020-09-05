@@ -9,6 +9,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ### Added
 
 - Upgraded PHPStan to level 8
+- Plugin for production can run with PHP 7.1
 
 ## 0.5.0 - 2020-09-01
 

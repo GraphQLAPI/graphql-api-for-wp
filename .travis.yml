@@ -1,10 +1,10 @@
 ########################################################################
 # This pipeline is executed on PHP 7.4:
 # - required for development
-# - required to run Rector, to generate the PHP 7.2-compatible code for production
+# - required to run Rector, to generate the PHP 7.1-compatible code for production
 #
-# It uses the Build Environment "Xenial", because it has PHP 7.2 preinstalled,
-# so we can switch from the global PHP 7.4 to local PHP 7.2 through `phpenv`
+# It uses the Build Environment "Xenial", because it has PHP 7.1 preinstalled,
+# so we can switch from the global PHP 7.4 to local PHP 7.1 through `phpenv`
 #
 # There are 2 parallel executions, with env variable:
 # 1. DOWNGRADE_CODE="true"
@@ -13,7 +13,7 @@
 # When DOWNGRADE_CODE is "false", it is the standard testing pipeline:
 # Execute PHPCS, PHPUnit and PHPStan to check there are no issues, and generate report.
 #
-# When DOWNGRADE_CODE is "true", it tests the conversion of the PHP code version 7.4 to 7.2:
+# When DOWNGRADE_CODE is "true", it tests the conversion of the PHP code version 7.4 to 7.1:
 # - Run Rector to downgrade the code
 # - Run PHPStan. If it exits with no errors, then downgrading the code works well.
 ########################################################################
@@ -33,16 +33,17 @@ cache:
     - $HOME/.composer/cache
 
 before_script:
+    - composer selfupdate
     - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
-    # Downgrade the code to PHP 7.2 via Rector
+    # Downgrade the code to PHP 7.1 via Rector
     - if [[ "$DOWNGRADE_CODE" == "true" ]]; then vendor/bin/rector process; fi
 
 script:
   # Tests only on PHP 7.4
   - if [[ "$DOWNGRADE_CODE" != "true" ]]; then vendor/bin/phpcs -n --standard=psr2 src/; fi
   - if [[ "$DOWNGRADE_CODE" != "true" ]]; then vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover; fi
-  # Switch to PHP 7.2 to test if downgraded code works, then up again to 7.4
-  - if [[ "$DOWNGRADE_CODE" == "true" ]]; then phpenv local 7.2; fi
+  # Switch to PHP 7.1 to test if downgraded code works, then up again to 7.4
+  - if [[ "$DOWNGRADE_CODE" == "true" ]]; then phpenv local 7.1; fi
   - if [[ "$DOWNGRADE_CODE" == "true" ]]; then php --version; fi
   - vendor/bin/phpstan analyse -c phpstan.neon.dist src
   - if [[ "$DOWNGRADE_CODE" == "true" ]]; then phpenv local 7.4; fi
