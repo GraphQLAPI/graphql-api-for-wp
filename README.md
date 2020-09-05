@@ -221,16 +221,16 @@ In this package and its dependencies:
 | --- | --- |
 | 7.1 | Everything |
 | 7.2 | [`object` type](https://www.php.net/manual/en/migration72.new-features.php#migration72.new-features.object-type) |
-| 7.2 | **Functions:**<br/>[`spl_object_id`](https://php.net/spl_object_id)<br/>[`utf8_encode`](https://php.net/utf8_encode)<br/>[`utf8_decode`](https://php.net/utf8_decode) |
-| 7.2 | **Constants:**<br/>[`PHP_FLOAT_*`](https://php.net/reserved.constants#constant.php-float-dig)<br/>[`PHP_OS_FAMILY`](https://php.net/reserved.constants#constant.php-os-family) |
-| 7.3 | **Functions:**<br/>[`array_key_first`](https://php.net/array_key_first)<br/>[`array_key_last`](https://php.net/array_key_last)<br/>[`hrtime`](https://php.net/function.hrtime)<br/>[`is_countable`](https://php.net/is_countable) |
-| 7.3 | **Exceptions:**<br/>[`JsonException`](https://php.net/JsonException) |
+| 7.2 | Functions:<ul><li>[`spl_object_id`](https://php.net/spl_object_id)</li><li>[`utf8_encode`](https://php.net/utf8_encode)</li><li>[`utf8_decode`](https://php.net/utf8_decode)</li></ul> |
+| 7.2 | Constants:<ul><li>[`PHP_FLOAT_*`](https://php.net/reserved.constants#constant.php-float-dig)</li><li>[`PHP_OS_FAMILY`](https://php.net/reserved.constants#constant.php-os-family)</li></ul> |
+| 7.3 | Functions:<ul><li>[`array_key_first`](https://php.net/array_key_first)</li><li>[`array_key_last`](https://php.net/array_key_last)</li><li>[`hrtime`](https://php.net/function.hrtime)</li><li>[`is_countable`](https://php.net/is_countable)</li></ul> |
+| 7.3 | Exceptions:<ul><li>[`JsonException`](https://php.net/JsonException)</li></ul> |
 | 7.4 | [Typed properties](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.typed-properties) |
-| 7.4 | **Functions:**<br/>[`get_mangled_object_vars`](https://php.net/get_mangled_object_vars)<br/>[`mb_str_split`](https://php.net/mb_str_split)<br/>[`password_algos`](https://php.net/password_algos) |
-| 8.0 | **Interfaces:**<br/>`Stringable` |
-| 8.0 | **Classes:**<br/>`ValueError`<br/>`UnhandledMatchError` |
-| 8.0 | **Constants:**<br/>`FILTER_VALIDATE_BOOL` |
-| 8.0 | **Functions:**<br/>[`fdiv`](https://php.net/fdiv)<br/>[`get_debug_type`](https://php.net/get_debug_type)<br/>[`preg_last_error_msg`](https://php.net/preg_last_error_msg)<br/>[`str_contains`](https://php.net/str_contains)<br/>[`str_starts_with`](https://php.net/str_starts_with)<br/>[`str_ends_with`](https://php.net/str_ends_with)<br/>[`get_resource_id`](https://php.net/get_resource_id) |
+| 7.4 | Functions:<ul><li>[`get_mangled_object_vars`](https://php.net/get_mangled_object_vars)</li><li>[`mb_str_split`](https://php.net/mb_str_split)</li><li>[`password_algos`](https://php.net/password_algos)</li></ul> |
+| 8.0 | Interfaces:<ul><li>`Stringable`</li></ul> |
+| 8.0 | Classes:<ul><li>`ValueError`</li><li>`UnhandledMatchError`</li></ul> |
+| 8.0 | Constants:<ul><li>`FILTER_VALIDATE_BOOL`</li></ul> |
+| 8.0 | Functions:<ul><li>[`fdiv`](https://php.net/fdiv)</li><li>[`get_debug_type`](https://php.net/get_debug_type)</li><li>[`preg_last_error_msg`](https://php.net/preg_last_error_msg)</li><li>[`str_contains`](https://php.net/str_contains)</li><li>[`str_starts_with`](https://php.net/str_starts_with)</li><li>[`str_ends_with`](https://php.net/str_ends_with)</li><li>[`get_resource_id`](https://php.net/get_resource_id)</li></ul> |
 
 ### Planned PHP features
 
