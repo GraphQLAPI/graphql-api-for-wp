@@ -215,8 +215,6 @@ Requirements:
 
 ### Supported PHP features
 
-In this package and its dependencies:
-
 | PHP Version | Features |
 | --- | --- |
 | 7.1 | Everything |
@@ -227,9 +225,7 @@ In this package and its dependencies:
 
 ### Planned PHP features
 
-In this package and its dependencies:
-
-| PHP Version | Features | Issue | 
+| PHP Version | Feature | Issue | 
 | --- | --- | --- |
 | 7.4 | [Arrow functions](https://www.php.net/manual/en/functions.arrow.php) | [#4125](https://github.com/rectorphp/rector/issues/4125) |
 | 7.4 | [Null coalescing assignment operator `??=`](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.null-coalescing-assignment-operator) | [#4124](https://github.com/rectorphp/rector/issues/4124) |
