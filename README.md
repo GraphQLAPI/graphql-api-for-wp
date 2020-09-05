@@ -220,7 +220,10 @@ Allowed PHP code, in this package and dependencies:
 | 7.1 | Everything | ✅ |
 | 7.2 | `object` type | ✅ |
 | 7.4 | Typed properties | ✅ |
-| 8.0 | functions `str_contains`, `str_ends_with` and `str_starts_with` | ✅ |
+| 8.0 | **Interfaces:**<br/>`Stringable` | ✅ |
+| 8.0 | **Classes:**<br/>`ValueError`<br/>`UnhandledMatchError` | ✅ |
+| 8.0 | **Constants:**<br/>`FILTER_VALIDATE_BOOL` | ✅ |
+| 8.0 | **Functions:**<br/>[`fdiv`](https://php.net/fdiv)<br/>[`get_debug_type`](https://php.net/get_debug_type)<br/>[`preg_last_error_msg`](https://php.net/preg_last_error_msg)<br/>[`str_contains`](https://php.net/str_contains)<br/>[`str_starts_with`](https://php.net/str_starts_with)<br/>[`str_ends_with`](https://php.net/str_ends_with)<br/>[`get_resource_id`](https://php.net/get_resource_id) | ✅ |
 | 7.4 | Arrow functions | ⏳[#4125](https://github.com/rectorphp/rector/issues/4125) |
 | 7.4 | Null coalescing assignment operator `??=` | ⏳[#4124](https://github.com/rectorphp/rector/issues/4124) |
 | 8.0 | `mixed` type | ⏳[#4122](https://github.com/rectorphp/rector/issues/4122) |
