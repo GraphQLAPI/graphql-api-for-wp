@@ -49,12 +49,16 @@
     "require-dev": {
         "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": ">=9.3",
-        "rector/rector": "dev-master#71682d2b52edd8d0f36fe822e077c7f05a8311f4",
+        "rector/rector": "dev-fix-inconsistent-remove-object-param",
         "squizlabs/php_codesniffer": "^3.0",
         "szepeviktor/phpstan-wordpress": "^0.6.2",
         "johnpbloch/wordpress": ">=5.5"
     },
     "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/leoloso/rector"
+        },
         {
             "type": "composer",
             "url": "https://wpackagist.org"
