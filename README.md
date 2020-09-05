@@ -233,7 +233,7 @@ Requirements:
 | 8.0 | `static` return type | [#4123](https://github.com/rectorphp/rector/issues/4123) |
 | 8.0 | Type unions | [#4062](https://github.com/rectorphp/rector/issues/4062) |
 
-### Downgrading PHP code from v7.4 to v7.1
+### Downgrading code to PHP 7.1
 
 Via [Rector](https://github.com/rectorphp/rector) (dry-run mode):
 
