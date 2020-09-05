@@ -19,9 +19,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     // paths to refactor; solid alternative to CLI arguments
     $parameters->set(Option::PATHS, [
         __DIR__ . '/src',
-        __DIR__ . '/vendor/getpop',
-        __DIR__ . '/vendor/pop-schema',
-        __DIR__ . '/vendor/graphql-by-pop',
+        __DIR__ . '/vendor/getpop/*/src',
+        __DIR__ . '/vendor/pop-schema/*/src',
+        __DIR__ . '/vendor/graphql-by-pop/*/src',
     ]);
 
     // is there a file you need to skip?
