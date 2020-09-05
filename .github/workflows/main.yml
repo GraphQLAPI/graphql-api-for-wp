@@ -26,7 +26,7 @@ on:
     types: [published]
 jobs:
   build:
-    name: Upload Release Asset
+    name: Build, Downgrade and Upload Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
