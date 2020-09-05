@@ -221,7 +221,7 @@ In this package and its dependencies:
 | --- | --- |
 | 7.1 | Everything |
 | 7.2 | [`object` type](https://www.php.net/manual/en/migration72.new-features.php#migration72.new-features.object-type) |
-| 7.2 | **Functions:**<br/>[`spl_object_id`](https://php.net/spl_object_id) |
+| 7.2 | **Functions:**<br/>[`spl_object_id`](https://php.net/spl_object_id)<br/>[`utf8_encode`](https://php.net/utf8_encode)<br/>[`utf8_decode`](https://php.net/utf8_decode) |
 | 7.2 | **Constants:**<br/>[`PHP_FLOAT_*`](https://php.net/reserved.constants#constant.php-float-dig)<br/>[`PHP_OS_FAMILY`](https://php.net/reserved.constants#constant.php-os-family) |
 | 7.3 | **Functions:**<br/>[`array_key_first`](https://php.net/array_key_first)<br/>[`array_key_last`](https://php.net/array_key_last)<br/>[`hrtime`](https://php.net/function.hrtime)<br/>[`is_countable`](https://php.net/is_countable) |
 | 7.3 | **Exceptions:**<br/>[`JsonException`](https://php.net/JsonException) |
