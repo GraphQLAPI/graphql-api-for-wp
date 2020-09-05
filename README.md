@@ -220,12 +220,12 @@ In this package and its dependencies:
 | PHP Version | Features |
 | --- | --- |
 | 7.1 | Everything |
-| 7.2 | `object` type |
+| 7.2 | [`object` type](https://www.php.net/manual/en/migration72.new-features.php#migration72.new-features.object-type) |
 | 7.2 | **Functions:**<br/>[`spl_object_id`](https://php.net/spl_object_id) |
 | 7.2 | **Constants:**<br/>[`PHP_FLOAT_*`](https://php.net/reserved.constants#constant.php-float-dig)<br/>[`PHP_OS_FAMILY`](https://php.net/reserved.constants#constant.php-os-family) |
 | 7.3 | **Functions:**<br/>[`array_key_first`](https://php.net/array_key_first)<br/>[`array_key_last`](https://php.net/array_key_last)<br/>[`hrtime`](https://php.net/function.hrtime)<br/>[`is_countable`](https://php.net/is_countable) |
 | 7.3 | **Exceptions:**<br/>[`JsonException`](https://php.net/JsonException) |
-| 7.4 | Typed properties |
+| 7.4 | [Typed properties](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.typed-properties) |
 | 7.4 | **Functions:**<br/>[`get_mangled_object_vars`](https://php.net/get_mangled_object_vars)<br/>[`mb_str_split`](https://php.net/mb_str_split)<br/>[`password_algos`](https://php.net/password_algos) |
 | 8.0 | **Interfaces:**<br/>`Stringable` |
 | 8.0 | **Classes:**<br/>`ValueError`<br/>`UnhandledMatchError` |
@@ -238,8 +238,8 @@ In this package and its dependencies:
 
 | PHP Version | Features | Issue | 
 | --- | --- | --- |
-| 7.4 | Arrow functions | [#4125](https://github.com/rectorphp/rector/issues/4125) |
-| 7.4 | Null coalescing assignment operator `??=` | [#4124](https://github.com/rectorphp/rector/issues/4124) |
+| 7.4 | [Arrow functions](https://www.php.net/manual/en/functions.arrow.php) | [#4125](https://github.com/rectorphp/rector/issues/4125) |
+| 7.4 | [Null coalescing assignment operator `??=`](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.null-coalescing-assignment-operator) | [#4124](https://github.com/rectorphp/rector/issues/4124) |
 | 8.0 | `mixed` type | [#4122](https://github.com/rectorphp/rector/issues/4122) |
 | 8.0 | `static` return type | [#4123](https://github.com/rectorphp/rector/issues/4123) |
 | 8.0 | Type unions | [#4062](https://github.com/rectorphp/rector/issues/4062) |
