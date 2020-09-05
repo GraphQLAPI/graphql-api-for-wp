@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1e93e98c2995d120edefab17b25af1b",
+    "content-hash": "e91b5beb3380bcbb8ebfa5eb1aeaac08",
     "packages": [
         {
             "name": "brain/cortex",
@@ -662,12 +662,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/definitions.git",
-                "reference": "47a73287bb0d3644a07840d64c0e9ccb6345196f"
+                "reference": "39431d39c5f0be5c3f0eaf72623ab7b1152a4e67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/definitions/zipball/47a73287bb0d3644a07840d64c0e9ccb6345196f",
-                "reference": "47a73287bb0d3644a07840d64c0e9ccb6345196f",
+                "url": "https://api.github.com/repos/getpop/definitions/zipball/39431d39c5f0be5c3f0eaf72623ab7b1152a4e67",
+                "reference": "39431d39c5f0be5c3f0eaf72623ab7b1152a4e67",
                 "shasum": ""
             },
             "require": {
@@ -708,7 +708,7 @@
                 "definitions",
                 "pop"
             ],
-            "time": "2020-09-05T03:57:42+00:00"
+            "time": "2020-09-05T05:40:54+00:00"
         },
         {
             "name": "getpop/engine",
@@ -1482,12 +1482,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/root.git",
-                "reference": "1a2f6435f96ca23cc4d31ed089d3fe56482e315a"
+                "reference": "ccfa9b8cd1f4080b2b890133c3a0492fa98fe67b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/root/zipball/1a2f6435f96ca23cc4d31ed089d3fe56482e315a",
-                "reference": "1a2f6435f96ca23cc4d31ed089d3fe56482e315a",
+                "url": "https://api.github.com/repos/getpop/root/zipball/ccfa9b8cd1f4080b2b890133c3a0492fa98fe67b",
+                "reference": "ccfa9b8cd1f4080b2b890133c3a0492fa98fe67b",
                 "shasum": ""
             },
             "require": {
@@ -1534,7 +1534,7 @@
                 "pop",
                 "root"
             ],
-            "time": "2020-09-05T03:57:17+00:00"
+            "time": "2020-09-05T06:27:19+00:00"
         },
         {
             "name": "getpop/routing",
@@ -10347,7 +10347,7 @@
             "version": "dev-fix-inconsistent-remove-object-param",
             "source": {
                 "type": "git",
-                "url": "https://github.com/leoloso/rector.git",
+                "url": "https://github.com/leoloso/rector",
                 "reference": "118691728cc0bce62437628cdcb8f4ed84e4f2ae"
             },
             "dist": {
