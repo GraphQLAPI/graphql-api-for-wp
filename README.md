@@ -219,7 +219,12 @@ Allowed PHP code, in this package and dependencies:
 | --- | --- | --- |
 | 7.1 | Everything | ✅ |
 | 7.2 | `object` type | ✅ |
+| 7.2 | **Functions:**<br/>[`spl_object_id`](https://php.net/spl_object_id) | ✅ |
+| 7.2 | **Constants:**<br/>[`PHP_FLOAT_*`](https://php.net/reserved.constants#constant.php-float-dig)<br/>[`PHP_OS_FAMILY`](https://php.net/reserved.constants#constant.php-os-family) | ✅ |
+| 7.3 | **Functions:**<br/>[`array_key_first`](https://php.net/array_key_first)<br/>[`array_key_last`](https://php.net/array_key_last)<br/>[`hrtime`](https://php.net/function.hrtime)<br/>[`is_countable`](https://php.net/is_countable) | ✅ |
+| 7.3 | **Exceptions:**<br/>[`JsonException`](https://php.net/JsonException) | ✅ |
 | 7.4 | Typed properties | ✅ |
+| 7.4 | **Functions:**<br/>[`get_mangled_object_vars`](https://php.net/get_mangled_object_vars)<br/>[`mb_str_split`](https://php.net/mb_str_split)<br/>[`password_algos`](https://php.net/password_algos) | ✅ |
 | 8.0 | **Interfaces:**<br/>`Stringable` | ✅ |
 | 8.0 | **Classes:**<br/>`ValueError`<br/>`UnhandledMatchError` | ✅ |
 | 8.0 | **Constants:**<br/>`FILTER_VALIDATE_BOOL` | ✅ |
