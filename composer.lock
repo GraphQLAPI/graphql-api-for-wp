@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2811fdb6da8a0375a72b839378e39462",
+    "content-hash": "d1e93e98c2995d120edefab17b25af1b",
     "packages": [
         {
             "name": "brain/cortex",
@@ -662,12 +662,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/definitions.git",
-                "reference": "6f5052ca78fb57fadbf1a38e997d6036be30d9e3"
+                "reference": "127b6e29677572325c73c82b5428f725739b752f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/definitions/zipball/6f5052ca78fb57fadbf1a38e997d6036be30d9e3",
-                "reference": "6f5052ca78fb57fadbf1a38e997d6036be30d9e3",
+                "url": "https://api.github.com/repos/getpop/definitions/zipball/127b6e29677572325c73c82b5428f725739b752f",
+                "reference": "127b6e29677572325c73c82b5428f725739b752f",
                 "shasum": ""
             },
             "require": {
@@ -708,7 +708,7 @@
                 "definitions",
                 "pop"
             ],
-            "time": "2020-09-04T23:57:37+00:00"
+            "time": "2020-09-05T00:24:46+00:00"
         },
         {
             "name": "getpop/engine",
@@ -10344,16 +10344,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "dev-master",
+            "version": "dev-fix-inconsistent-remove-object-param",
             "source": {
                 "type": "git",
-                "url": "https://github.com/rectorphp/rector.git",
-                "reference": "71682d2b52edd8d0f36fe822e077c7f05a8311f4"
+                "url": "https://github.com/leoloso/rector.git",
+                "reference": "6234b8d1800a7903ba614e1dd0df2e695f9a2766"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/71682d2b52edd8d0f36fe822e077c7f05a8311f4",
-                "reference": "71682d2b52edd8d0f36fe822e077c7f05a8311f4",
+                "url": "https://api.github.com/repos/leoloso/rector/zipball/6234b8d1800a7903ba614e1dd0df2e695f9a2766",
+                "reference": "6234b8d1800a7903ba614e1dd0df2e695f9a2766",
                 "shasum": ""
             },
             "require": {
@@ -10512,7 +10512,152 @@
                     "rules/symfony-php-config/functions/functions.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Rector\\Architecture\\Tests\\": "rules/architecture/tests",
+                    "Rector\\Autodiscovery\\Tests\\": "rules/autodiscovery/tests",
+                    "Rector\\BetterPhpDocParser\\Tests\\": "packages/better-php-doc-parser/tests",
+                    "Rector\\CakePHP\\Tests\\": "rules/cakephp/tests",
+                    "Rector\\CodeQuality\\Tests\\": "rules/code-quality/tests",
+                    "Rector\\Caching\\Tests\\": "packages/caching/tests",
+                    "Rector\\CodingStyle\\Tests\\": "rules/coding-style/tests",
+                    "Rector\\Core\\Tests\\": "tests",
+                    "Rector\\Decouple\\Tests\\": "rules/decouple/tests",
+                    "Rector\\DeadCode\\Tests\\": "rules/dead-code/tests",
+                    "Rector\\DoctrineCodeQuality\\Tests\\": "rules/doctrine-code-quality/tests",
+                    "Rector\\DoctrineGedmoToKnplabs\\Tests\\": "rules/doctrine-gedmo-to-knplabs/tests",
+                    "Rector\\Doctrine\\Tests\\": "rules/doctrine/tests",
+                    "Rector\\DynamicTypeAnalysis\\Tests\\": "packages/dynamic-type-analysis/tests",
+                    "Rector\\Generic\\Tests\\": "rules/generic/tests",
+                    "Rector\\JMS\\Tests\\": "rules/jms/tests",
+                    "Rector\\Laravel\\Tests\\": "rules/laravel/tests",
+                    "Rector\\Legacy\\Tests\\": "rules/legacy/tests",
+                    "Rector\\RectorGenerator\\Tests\\": "packages/rector-generator/tests",
+                    "Rector\\MagicDisclosure\\Tests\\": "rules/magic-disclosure/tests",
+                    "Rector\\MysqlToMysqli\\Tests\\": "rules/mysql-to-mysqli/tests",
+                    "Rector\\NetteTesterToPHPUnit\\Tests\\": "rules/nette-tester-to-phpunit/tests",
+                    "Rector\\NetteToSymfony\\Tests\\": "rules/nette-to-symfony/tests",
+                    "Rector\\Nette\\Tests\\": "rules/nette/tests",
+                    "Rector\\NodeTypeResolver\\Tests\\": "packages/node-type-resolver/tests",
+                    "Rector\\PHPStanExtensions\\": "utils/phpstan-extensions/src",
+                    "Rector\\PHPStanExtensions\\Tests\\": "utils/phpstan-extensions/tests",
+                    "Rector\\PHPStan\\Tests\\": "rules/phpstan/tests",
+                    "Rector\\PHPUnitSymfony\\Tests\\": "rules/phpunit-symfony/tests",
+                    "Rector\\PHPUnit\\Tests\\": "rules/phpunit/tests",
+                    "Rector\\PSR4\\Tests\\": "rules/psr4/tests",
+                    "Rector\\Phalcon\\Tests\\": "rules/phalcon/tests",
+                    "Rector\\Php52\\Tests\\": "rules/php52/tests",
+                    "Rector\\Php53\\Tests\\": "rules/php53/tests",
+                    "Rector\\Php54\\Tests\\": "rules/php54/tests",
+                    "Rector\\Php55\\Tests\\": "rules/php55/tests",
+                    "Rector\\Php56\\Tests\\": "rules/php56/tests",
+                    "Rector\\Php70\\Tests\\": "rules/php70/tests",
+                    "Rector\\Php71\\Tests\\": "rules/php71/tests",
+                    "Rector\\Php72\\Tests\\": "rules/php72/tests",
+                    "Rector\\Php73\\Tests\\": "rules/php73/tests",
+                    "Rector\\Php74\\Tests\\": "rules/php74/tests",
+                    "Rector\\Php80\\Tests\\": "rules/php80/tests",
+                    "Rector\\PHPOffice\\Tests\\": "rules/php-office/tests",
+                    "Rector\\PhpDeglobalize\\Tests\\": "rules/php-deglobalize/tests",
+                    "Rector\\PhpSpecToPHPUnit\\Tests\\": "rules/php-spec-to-phpunit/tests",
+                    "Rector\\Polyfill\\Tests\\": "rules/polyfill/tests",
+                    "Rector\\Privatization\\Tests\\": "rules/privatization/tests",
+                    "Rector\\RemovingStatic\\Tests\\": "rules/removing-static/tests",
+                    "Rector\\Renaming\\Tests\\": "rules/renaming/tests",
+                    "Rector\\Restoration\\Tests\\": "rules/restoration/tests",
+                    "Rector\\SOLID\\Tests\\": "rules/solid/tests",
+                    "Rector\\Sensio\\Tests\\": "rules/sensio/tests",
+                    "Rector\\StrictCodeQuality\\Tests\\": "rules/strict-code-quality/tests",
+                    "Rector\\SymfonyCodeQuality\\Tests\\": "rules/symfony-code-quality/tests",
+                    "Rector\\SymfonyPHPUnit\\Tests\\": "rules/symfony-phpunit/tests",
+                    "Rector\\Symfony\\Tests\\": "rules/symfony/tests",
+                    "Rector\\Transform\\Tests\\": "rules/transform/tests",
+                    "Rector\\Twig\\Tests\\": "rules/twig/tests",
+                    "Rector\\TypeDeclaration\\Tests\\": "rules/type-declaration/tests",
+                    "Rector\\Utils\\DocumentationGenerator\\": "utils/documentation-generator/src",
+                    "Rector\\Utils\\ProjectValidator\\": "utils/project-validator/src",
+                    "Rector\\Utils\\DoctrineAnnotationParserSyncer\\": "utils/doctrine-annotation-parser-syncer/src",
+                    "Rector\\Utils\\PHPStanAttributeTypeSyncer\\": "utils/phpstan-attribute-type-syncer/src",
+                    "Rector\\Utils\\PHPStanStaticTypeMapperChecker\\": "utils/phpstan-static-type-mapper-checker/src",
+                    "Rector\\Performance\\Tests\\": "rules/performance/tests",
+                    "Rector\\Naming\\Tests\\": "rules/naming/tests",
+                    "Rector\\Order\\Tests\\": "rules/order/tests",
+                    "Rector\\MockeryToProphecy\\Tests\\": "rules/mockery-to-prophecy/tests",
+                    "Rector\\MockistaToMockery\\Tests\\": "rules/mockista-to-mockery/tests",
+                    "Rector\\Compiler\\Tests\\": "compiler/tests",
+                    "Rector\\NetteKdyby\\Tests\\": "rules/nette-kdyby/tests",
+                    "Rector\\NetteUtilsCodeQuality\\Tests\\": "rules/nette-utils-code-quality/tests",
+                    "Rector\\NetteCodeQuality\\Tests\\": "rules/nette-code-quality/tests",
+                    "Rector\\Downgrade\\Tests\\": "rules/downgrade/tests",
+                    "Rector\\SymfonyPhpConfig\\Tests\\": "rules/symfony-php-config/tests",
+                    "Rector\\PHPStanStaticTypeMapper\\Tests\\": "packages/phpstan-static-type-mapper/tests"
+                },
+                "classmap": [
+                    "rules/cakephp/tests/Rector/Name/ImplicitShortClassNameUseStatementRector/Source",
+                    "rules/symfony/tests/Rector/MethodCall/ContainerGetToConstructorInjectionRector/Source",
+                    "rules/autodiscovery/tests/Rector/FileSystem/MoveInterfacesToContractNamespaceDirectoryRector/Expected",
+                    "rules/autodiscovery/tests/Rector/FileSystem/MoveServicesBySuffixToDirectoryRector/Expected",
+                    "rules/cakephp/tests/Rector/Expression/AppUsesStaticCallToUseStatementRector/Source",
+                    "tests/Source",
+                    "rules/psr4/tests/Rector/MultipleClassFileToPsr4ClassesRector/Source",
+                    "rules/generic/tests/Rector/Name/PseudoNamespaceToNamespaceRector/Source"
+                ],
+                "files": [
+                    "rules/transform/tests/Rector/FuncCall/FuncCallToMethodCallRector/Source/some_view_function.php",
+                    "rules/coding-style/tests/Rector/Throw_/AnnotateThrowablesRector/Source/i_throw_an_exception.func.php",
+                    "rules/dead-code/tests/Rector/MethodCall/RemoveDefaultArgumentValueRector/Source/UserDefined.php",
+                    "rules/type-declaration/tests/Rector/Property/CompleteVarDocTypePropertyRector/Source/EventDispatcher.php",
+                    "rules/type-declaration/tests/Rector/FunctionLike/ReturnTypeDeclarationRector/Source/MyBar.php",
+                    "rules/renaming/tests/Rector/Name/RenameClassRector/Source/SomeInterface.php",
+                    "rules/renaming/tests/Rector/Name/RenameClassRector/Source/ClassImportingSameName.php",
+                    "rules/renaming/tests/Rector/Name/RenameClassRector/Source/Twig_Extension_Sandbox.php",
+                    "rules/renaming/tests/Rector/Name/RenameClassRector/Source/TwigFilter.php",
+                    "rules/renaming/tests/Rector/Name/RenameClassRector/Source/Manual_Twig_Filter.php",
+                    "rules/generic/tests/Rector/Name/PseudoNamespaceToNamespaceRector/Source/ChangeMeAnotherNamespace.php",
+                    "rules/coding-style/tests/Rector/Namespace_/ImportFullyQualifiedNamesRector/Source/Foo.php",
+                    "rules/coding-style/tests/Rector/Namespace_/ImportFullyQualifiedNamesRector/Source/Function_/count.php",
+                    "rules/coding-style/tests/Rector/Namespace_/ImportFullyQualifiedNamesRector/Source/AnotherClass.php",
+                    "rules/coding-style/tests/Rector/Namespace_/ImportFullyQualifiedNamesRector/Source/YetAnotherClass.php",
+                    "rules/solid/tests/Rector/ClassMethod/UseInterfaceOverImplementationInConstructorRector/Source/Coconut.php",
+                    "stubs/Nette/Localization/ITranslation.php"
+                ]
+            },
+            "scripts": {
+                "complete-check": [
+                    "@check-cs",
+                    "@phpstan",
+                    "@docs",
+                    "phpunit"
+                ],
+                "check-cs": [
+                    "vendor/bin/ecs check --ansi"
+                ],
+                "fix-cs": [
+                    "vendor/bin/ecs check --fix --ansi"
+                ],
+                "phpstan": [
+                    "vendor/bin/phpstan analyse --ansi --error-format symplify",
+                    "vendor/bin/phpstan analyse config/set --ansi --error-format symplify"
+                ],
+                "phpstan-config": [
+                    "vendor/bin/phpstan analyse config/set --ansi --error-format symplify"
+                ],
+                "changelog": [
+                    "vendor/bin/changelog-linker dump-merges --in-categories --ansi",
+                    "vendor/bin/changelog-linker link --ansi",
+                    "vendor/bin/changelog-linker cleanup --ansi"
+                ],
+                "docs": [
+                    "bin/rector dump-rectors > docs/rector_rules_overview.md",
+                    "bin/rector dump-nodes > docs/nodes_overview.md"
+                ],
+                "rector-ci": [
+                    "bin/rector process --config rector-ci.php --dry-run --ansi"
+                ],
+                "rector": [
+                    "bin/rector process --config rector-ci.php --ansi"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -10536,13 +10681,16 @@
                 "instant refactoring",
                 "instant upgrades"
             ],
+            "support": {
+                "source": "https://github.com/leoloso/rector/tree/fix-inconsistent-remove-object-param"
+            },
             "funding": [
                 {
-                    "url": "https://github.com/tomasvotruba",
-                    "type": "github"
+                    "type": "github",
+                    "url": "https://github.com/tomasvotruba"
                 }
             ],
-            "time": "2020-09-04T09:57:12+00:00"
+            "time": "2020-09-05T03:50:04+00:00"
         },
         {
             "name": "sebastian/cli-parser",
