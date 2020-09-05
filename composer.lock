@@ -662,12 +662,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/definitions.git",
-                "reference": "39431d39c5f0be5c3f0eaf72623ab7b1152a4e67"
+                "reference": "e06aaa7ab4e192cdadfd4a100c8a1de19ca4d4d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/definitions/zipball/39431d39c5f0be5c3f0eaf72623ab7b1152a4e67",
-                "reference": "39431d39c5f0be5c3f0eaf72623ab7b1152a4e67",
+                "url": "https://api.github.com/repos/getpop/definitions/zipball/e06aaa7ab4e192cdadfd4a100c8a1de19ca4d4d9",
+                "reference": "e06aaa7ab4e192cdadfd4a100c8a1de19ca4d4d9",
                 "shasum": ""
             },
             "require": {
@@ -677,7 +677,7 @@
             "require-dev": {
                 "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": ">=9.3",
-                "rector/rector": "dev-fix-inconsistent-remove-object-param",
+                "rector/rector": "dev-master#0deb805a3124e60b042939f52acbc5c66abdde42",
                 "squizlabs/php_codesniffer": "^3.0"
             },
             "type": "library",
@@ -708,7 +708,7 @@
                 "definitions",
                 "pop"
             ],
-            "time": "2020-09-05T05:40:54+00:00"
+            "time": "2020-09-05T11:18:57+00:00"
         },
         {
             "name": "getpop/engine",
@@ -1482,12 +1482,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/root.git",
-                "reference": "d6f5ad013cc61ab05b01cf25f379561c2c50b169"
+                "reference": "df3df406af4defb7111a636ede86349e653a348a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/root/zipball/d6f5ad013cc61ab05b01cf25f379561c2c50b169",
-                "reference": "d6f5ad013cc61ab05b01cf25f379561c2c50b169",
+                "url": "https://api.github.com/repos/getpop/root/zipball/df3df406af4defb7111a636ede86349e653a348a",
+                "reference": "df3df406af4defb7111a636ede86349e653a348a",
                 "shasum": ""
             },
             "require": {
@@ -1504,7 +1504,7 @@
             "require-dev": {
                 "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": ">=9.3",
-                "rector/rector": "dev-fix-inconsistent-remove-object-param",
+                "rector/rector": "dev-master#0deb805a3124e60b042939f52acbc5c66abdde42",
                 "squizlabs/php_codesniffer": "^3.0"
             },
             "type": "library",
@@ -1535,7 +1535,7 @@
                 "pop",
                 "root"
             ],
-            "time": "2020-09-05T07:36:06+00:00"
+            "time": "2020-09-05T11:19:03+00:00"
         },
         {
             "name": "getpop/routing",
