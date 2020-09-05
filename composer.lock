@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e91b5beb3380bcbb8ebfa5eb1aeaac08",
+    "content-hash": "b671bb7a3f5864107c1f7bbbf089f6b0",
     "packages": [
         {
             "name": "brain/cortex",
@@ -1482,12 +1482,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/root.git",
-                "reference": "3433546b717872ca5c50f0ff6d641a59ca68ce63"
+                "reference": "d6f5ad013cc61ab05b01cf25f379561c2c50b169"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/root/zipball/3433546b717872ca5c50f0ff6d641a59ca68ce63",
-                "reference": "3433546b717872ca5c50f0ff6d641a59ca68ce63",
+                "url": "https://api.github.com/repos/getpop/root/zipball/d6f5ad013cc61ab05b01cf25f379561c2c50b169",
+                "reference": "d6f5ad013cc61ab05b01cf25f379561c2c50b169",
                 "shasum": ""
             },
             "require": {
@@ -1495,6 +1495,9 @@
                 "symfony/config": "^4.3",
                 "symfony/dependency-injection": "^4.3",
                 "symfony/dotenv": "^4.3",
+                "symfony/polyfill-php72": "^1.18",
+                "symfony/polyfill-php73": "^1.18",
+                "symfony/polyfill-php74": "^1.18",
                 "symfony/polyfill-php80": "^1.18",
                 "symfony/yaml": "^4.3"
             },
@@ -1532,7 +1535,7 @@
                 "pop",
                 "root"
             ],
-            "time": "2020-09-05T07:20:36+00:00"
+            "time": "2020-09-05T07:36:06+00:00"
         },
         {
             "name": "getpop/routing",
@@ -7829,6 +7832,159 @@
             "time": "2020-07-14T12:35:20+00:00"
         },
         {
+            "name": "symfony/polyfill-php73",
+            "version": "v1.18.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-php73.git",
+                "reference": "fffa1a52a023e782cdcc221d781fe1ec8f87fcca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/fffa1a52a023e782cdcc221d781fe1ec8f87fcca",
+                "reference": "fffa1a52a023e782cdcc221d781fe1ec8f87fcca",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.18-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php73\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ],
+                "classmap": [
+                    "Resources/stubs"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-07-14T12:35:20+00:00"
+        },
+        {
+            "name": "symfony/polyfill-php74",
+            "version": "v1.18.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-php74.git",
+                "reference": "3e894c7976e4b96b43817e4927787a25a97883e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-php74/zipball/3e894c7976e4b96b43817e4927787a25a97883e7",
+                "reference": "3e894c7976e4b96b43817e4927787a25a97883e7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.18-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php74\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ion Bazan",
+                    "email": "ion.bazan@gmail.com"
+                },
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 7.4+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-07-14T12:35:20+00:00"
+        },
+        {
             "name": "symfony/polyfill-php80",
             "version": "v1.18.1",
             "source": {
@@ -10342,16 +10498,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "dev-fix-inconsistent-remove-object-param",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/leoloso/rector",
-                "reference": "118691728cc0bce62437628cdcb8f4ed84e4f2ae"
+                "url": "https://github.com/rectorphp/rector.git",
+                "reference": "0deb805a3124e60b042939f52acbc5c66abdde42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leoloso/rector/zipball/118691728cc0bce62437628cdcb8f4ed84e4f2ae",
-                "reference": "118691728cc0bce62437628cdcb8f4ed84e4f2ae",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/0deb805a3124e60b042939f52acbc5c66abdde42",
+                "reference": "0deb805a3124e60b042939f52acbc5c66abdde42",
                 "shasum": ""
             },
             "require": {
@@ -10510,152 +10666,7 @@
                     "rules/symfony-php-config/functions/functions.php"
                 ]
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Rector\\Architecture\\Tests\\": "rules/architecture/tests",
-                    "Rector\\Autodiscovery\\Tests\\": "rules/autodiscovery/tests",
-                    "Rector\\BetterPhpDocParser\\Tests\\": "packages/better-php-doc-parser/tests",
-                    "Rector\\CakePHP\\Tests\\": "rules/cakephp/tests",
-                    "Rector\\CodeQuality\\Tests\\": "rules/code-quality/tests",
-                    "Rector\\Caching\\Tests\\": "packages/caching/tests",
-                    "Rector\\CodingStyle\\Tests\\": "rules/coding-style/tests",
-                    "Rector\\Core\\Tests\\": "tests",
-                    "Rector\\Decouple\\Tests\\": "rules/decouple/tests",
-                    "Rector\\DeadCode\\Tests\\": "rules/dead-code/tests",
-                    "Rector\\DoctrineCodeQuality\\Tests\\": "rules/doctrine-code-quality/tests",
-                    "Rector\\DoctrineGedmoToKnplabs\\Tests\\": "rules/doctrine-gedmo-to-knplabs/tests",
-                    "Rector\\Doctrine\\Tests\\": "rules/doctrine/tests",
-                    "Rector\\DynamicTypeAnalysis\\Tests\\": "packages/dynamic-type-analysis/tests",
-                    "Rector\\Generic\\Tests\\": "rules/generic/tests",
-                    "Rector\\JMS\\Tests\\": "rules/jms/tests",
-                    "Rector\\Laravel\\Tests\\": "rules/laravel/tests",
-                    "Rector\\Legacy\\Tests\\": "rules/legacy/tests",
-                    "Rector\\RectorGenerator\\Tests\\": "packages/rector-generator/tests",
-                    "Rector\\MagicDisclosure\\Tests\\": "rules/magic-disclosure/tests",
-                    "Rector\\MysqlToMysqli\\Tests\\": "rules/mysql-to-mysqli/tests",
-                    "Rector\\NetteTesterToPHPUnit\\Tests\\": "rules/nette-tester-to-phpunit/tests",
-                    "Rector\\NetteToSymfony\\Tests\\": "rules/nette-to-symfony/tests",
-                    "Rector\\Nette\\Tests\\": "rules/nette/tests",
-                    "Rector\\NodeTypeResolver\\Tests\\": "packages/node-type-resolver/tests",
-                    "Rector\\PHPStanExtensions\\": "utils/phpstan-extensions/src",
-                    "Rector\\PHPStanExtensions\\Tests\\": "utils/phpstan-extensions/tests",
-                    "Rector\\PHPStan\\Tests\\": "rules/phpstan/tests",
-                    "Rector\\PHPUnitSymfony\\Tests\\": "rules/phpunit-symfony/tests",
-                    "Rector\\PHPUnit\\Tests\\": "rules/phpunit/tests",
-                    "Rector\\PSR4\\Tests\\": "rules/psr4/tests",
-                    "Rector\\Phalcon\\Tests\\": "rules/phalcon/tests",
-                    "Rector\\Php52\\Tests\\": "rules/php52/tests",
-                    "Rector\\Php53\\Tests\\": "rules/php53/tests",
-                    "Rector\\Php54\\Tests\\": "rules/php54/tests",
-                    "Rector\\Php55\\Tests\\": "rules/php55/tests",
-                    "Rector\\Php56\\Tests\\": "rules/php56/tests",
-                    "Rector\\Php70\\Tests\\": "rules/php70/tests",
-                    "Rector\\Php71\\Tests\\": "rules/php71/tests",
-                    "Rector\\Php72\\Tests\\": "rules/php72/tests",
-                    "Rector\\Php73\\Tests\\": "rules/php73/tests",
-                    "Rector\\Php74\\Tests\\": "rules/php74/tests",
-                    "Rector\\Php80\\Tests\\": "rules/php80/tests",
-                    "Rector\\PHPOffice\\Tests\\": "rules/php-office/tests",
-                    "Rector\\PhpDeglobalize\\Tests\\": "rules/php-deglobalize/tests",
-                    "Rector\\PhpSpecToPHPUnit\\Tests\\": "rules/php-spec-to-phpunit/tests",
-                    "Rector\\Polyfill\\Tests\\": "rules/polyfill/tests",
-                    "Rector\\Privatization\\Tests\\": "rules/privatization/tests",
-                    "Rector\\RemovingStatic\\Tests\\": "rules/removing-static/tests",
-                    "Rector\\Renaming\\Tests\\": "rules/renaming/tests",
-                    "Rector\\Restoration\\Tests\\": "rules/restoration/tests",
-                    "Rector\\SOLID\\Tests\\": "rules/solid/tests",
-                    "Rector\\Sensio\\Tests\\": "rules/sensio/tests",
-                    "Rector\\StrictCodeQuality\\Tests\\": "rules/strict-code-quality/tests",
-                    "Rector\\SymfonyCodeQuality\\Tests\\": "rules/symfony-code-quality/tests",
-                    "Rector\\SymfonyPHPUnit\\Tests\\": "rules/symfony-phpunit/tests",
-                    "Rector\\Symfony\\Tests\\": "rules/symfony/tests",
-                    "Rector\\Transform\\Tests\\": "rules/transform/tests",
-                    "Rector\\Twig\\Tests\\": "rules/twig/tests",
-                    "Rector\\TypeDeclaration\\Tests\\": "rules/type-declaration/tests",
-                    "Rector\\Utils\\DocumentationGenerator\\": "utils/documentation-generator/src",
-                    "Rector\\Utils\\ProjectValidator\\": "utils/project-validator/src",
-                    "Rector\\Utils\\DoctrineAnnotationParserSyncer\\": "utils/doctrine-annotation-parser-syncer/src",
-                    "Rector\\Utils\\PHPStanAttributeTypeSyncer\\": "utils/phpstan-attribute-type-syncer/src",
-                    "Rector\\Utils\\PHPStanStaticTypeMapperChecker\\": "utils/phpstan-static-type-mapper-checker/src",
-                    "Rector\\Performance\\Tests\\": "rules/performance/tests",
-                    "Rector\\Naming\\Tests\\": "rules/naming/tests",
-                    "Rector\\Order\\Tests\\": "rules/order/tests",
-                    "Rector\\MockeryToProphecy\\Tests\\": "rules/mockery-to-prophecy/tests",
-                    "Rector\\MockistaToMockery\\Tests\\": "rules/mockista-to-mockery/tests",
-                    "Rector\\Compiler\\Tests\\": "compiler/tests",
-                    "Rector\\NetteKdyby\\Tests\\": "rules/nette-kdyby/tests",
-                    "Rector\\NetteUtilsCodeQuality\\Tests\\": "rules/nette-utils-code-quality/tests",
-                    "Rector\\NetteCodeQuality\\Tests\\": "rules/nette-code-quality/tests",
-                    "Rector\\Downgrade\\Tests\\": "rules/downgrade/tests",
-                    "Rector\\SymfonyPhpConfig\\Tests\\": "rules/symfony-php-config/tests",
-                    "Rector\\PHPStanStaticTypeMapper\\Tests\\": "packages/phpstan-static-type-mapper/tests"
-                },
-                "classmap": [
-                    "rules/cakephp/tests/Rector/Name/ImplicitShortClassNameUseStatementRector/Source",
-                    "rules/symfony/tests/Rector/MethodCall/ContainerGetToConstructorInjectionRector/Source",
-                    "rules/autodiscovery/tests/Rector/FileSystem/MoveInterfacesToContractNamespaceDirectoryRector/Expected",
-                    "rules/autodiscovery/tests/Rector/FileSystem/MoveServicesBySuffixToDirectoryRector/Expected",
-                    "rules/cakephp/tests/Rector/Expression/AppUsesStaticCallToUseStatementRector/Source",
-                    "tests/Source",
-                    "rules/psr4/tests/Rector/MultipleClassFileToPsr4ClassesRector/Source",
-                    "rules/generic/tests/Rector/Name/PseudoNamespaceToNamespaceRector/Source"
-                ],
-                "files": [
-                    "rules/transform/tests/Rector/FuncCall/FuncCallToMethodCallRector/Source/some_view_function.php",
-                    "rules/coding-style/tests/Rector/Throw_/AnnotateThrowablesRector/Source/i_throw_an_exception.func.php",
-                    "rules/dead-code/tests/Rector/MethodCall/RemoveDefaultArgumentValueRector/Source/UserDefined.php",
-                    "rules/type-declaration/tests/Rector/Property/CompleteVarDocTypePropertyRector/Source/EventDispatcher.php",
-                    "rules/type-declaration/tests/Rector/FunctionLike/ReturnTypeDeclarationRector/Source/MyBar.php",
-                    "rules/renaming/tests/Rector/Name/RenameClassRector/Source/SomeInterface.php",
-                    "rules/renaming/tests/Rector/Name/RenameClassRector/Source/ClassImportingSameName.php",
-                    "rules/renaming/tests/Rector/Name/RenameClassRector/Source/Twig_Extension_Sandbox.php",
-                    "rules/renaming/tests/Rector/Name/RenameClassRector/Source/TwigFilter.php",
-                    "rules/renaming/tests/Rector/Name/RenameClassRector/Source/Manual_Twig_Filter.php",
-                    "rules/generic/tests/Rector/Name/PseudoNamespaceToNamespaceRector/Source/ChangeMeAnotherNamespace.php",
-                    "rules/coding-style/tests/Rector/Namespace_/ImportFullyQualifiedNamesRector/Source/Foo.php",
-                    "rules/coding-style/tests/Rector/Namespace_/ImportFullyQualifiedNamesRector/Source/Function_/count.php",
-                    "rules/coding-style/tests/Rector/Namespace_/ImportFullyQualifiedNamesRector/Source/AnotherClass.php",
-                    "rules/coding-style/tests/Rector/Namespace_/ImportFullyQualifiedNamesRector/Source/YetAnotherClass.php",
-                    "rules/solid/tests/Rector/ClassMethod/UseInterfaceOverImplementationInConstructorRector/Source/Coconut.php",
-                    "stubs/Nette/Localization/ITranslation.php"
-                ]
-            },
-            "scripts": {
-                "complete-check": [
-                    "@check-cs",
-                    "@phpstan",
-                    "@docs",
-                    "phpunit"
-                ],
-                "check-cs": [
-                    "vendor/bin/ecs check --ansi"
-                ],
-                "fix-cs": [
-                    "vendor/bin/ecs check --fix --ansi"
-                ],
-                "phpstan": [
-                    "vendor/bin/phpstan analyse --ansi --error-format symplify",
-                    "vendor/bin/phpstan analyse config/set --ansi --error-format symplify"
-                ],
-                "phpstan-config": [
-                    "vendor/bin/phpstan analyse config/set --ansi --error-format symplify"
-                ],
-                "changelog": [
-                    "vendor/bin/changelog-linker dump-merges --in-categories --ansi",
-                    "vendor/bin/changelog-linker link --ansi",
-                    "vendor/bin/changelog-linker cleanup --ansi"
-                ],
-                "docs": [
-                    "bin/rector dump-rectors > docs/rector_rules_overview.md",
-                    "bin/rector dump-nodes > docs/nodes_overview.md"
-                ],
-                "rector-ci": [
-                    "bin/rector process --config rector-ci.php --dry-run --ansi"
-                ],
-                "rector": [
-                    "bin/rector process --config rector-ci.php --ansi"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -10679,16 +10690,13 @@
                 "instant refactoring",
                 "instant upgrades"
             ],
-            "support": {
-                "source": "https://github.com/leoloso/rector/tree/fix-inconsistent-remove-object-param"
-            },
             "funding": [
                 {
-                    "type": "github",
-                    "url": "https://github.com/tomasvotruba"
+                    "url": "https://github.com/tomasvotruba",
+                    "type": "github"
                 }
             ],
-            "time": "2020-09-05T04:00:15+00:00"
+            "time": "2020-09-05T10:34:38+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -12276,82 +12284,6 @@
                 }
             ],
             "time": "2020-09-02T08:09:29+00:00"
-        },
-        {
-            "name": "symfony/polyfill-php73",
-            "version": "v1.18.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "fffa1a52a023e782cdcc221d781fe1ec8f87fcca"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/fffa1a52a023e782cdcc221d781fe1ec8f87fcca",
-                "reference": "fffa1a52a023e782cdcc221d781fe1ec8f87fcca",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.18-dev"
-                },
-                "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php73\\": ""
-                },
-                "files": [
-                    "bootstrap.php"
-                ],
-                "classmap": [
-                    "Resources/stubs"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-07-14T12:35:20+00:00"
         },
         {
             "name": "symfony/process",
