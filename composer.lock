@@ -1482,12 +1482,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/root.git",
-                "reference": "ccfa9b8cd1f4080b2b890133c3a0492fa98fe67b"
+                "reference": "3433546b717872ca5c50f0ff6d641a59ca68ce63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/root/zipball/ccfa9b8cd1f4080b2b890133c3a0492fa98fe67b",
-                "reference": "ccfa9b8cd1f4080b2b890133c3a0492fa98fe67b",
+                "url": "https://api.github.com/repos/getpop/root/zipball/3433546b717872ca5c50f0ff6d641a59ca68ce63",
+                "reference": "3433546b717872ca5c50f0ff6d641a59ca68ce63",
                 "shasum": ""
             },
             "require": {
@@ -1495,6 +1495,7 @@
                 "symfony/config": "^4.3",
                 "symfony/dependency-injection": "^4.3",
                 "symfony/dotenv": "^4.3",
+                "symfony/polyfill-php80": "^1.18",
                 "symfony/yaml": "^4.3"
             },
             "require-dev": {
@@ -1512,10 +1513,7 @@
             "autoload": {
                 "psr-4": {
                     "PoP\\Root\\": "src"
-                },
-                "files": [
-                    "lib/backporting/php80.php"
-                ]
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1534,7 +1532,7 @@
                 "pop",
                 "root"
             ],
-            "time": "2020-09-05T06:27:19+00:00"
+            "time": "2020-09-05T07:20:36+00:00"
         },
         {
             "name": "getpop/routing",
