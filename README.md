@@ -117,7 +117,9 @@ $ cd graphql-api
 $ composer install
 ```
 
-### Launch a development environment with `wp-env`
+<!-- @todo Uncomment when wp-env supports setting PHP version to 7.4 -->
+<!-- @see https://github.com/WordPress/gutenberg/issues/25175 -->
+<!-- ### Launch a development environment with `wp-env`
 
 Launch a WordPress environment with the GraphQL API plugin activated through [`wp-env`](https://www.npmjs.com/package/@wordpress/env).
 
@@ -141,12 +143,6 @@ wp-env start
 
 > Please notice: The first time using `wp-env`, this process may take a long time (half an hour or even more). To see what is happening, execute with the `--debug` option: `wp-env start --debug`
 
-<!-- The first time, change the permalink structure to use pretty permalinks:
-
-```bash
-wp-env run cli wp rewrite structure '/%postname%/'
-``` -->
-
 The site will be available under `http://localhost:6666`.
 
 To access the wp-admin, under `http://localhost:6666/wp-admin/`:
@@ -158,7 +154,7 @@ To enable pretty permalinks, run:
 
 ```bash
 wp-env run cli wp rewrite structure '/%postname%/'
-```
+``` -->
 
 ### Pulling code
 
