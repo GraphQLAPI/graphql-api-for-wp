@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1ea3be99a19d5bf3ff1d1f5306472e09",
+    "content-hash": "b671bb7a3f5864107c1f7bbbf089f6b0",
     "packages": [
         {
             "name": "brain/cortex",
@@ -8955,21 +8955,21 @@
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "5.4.0",
+            "version": "5.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "6cec3b5d82e24c3fa565d725925afb63f116c584"
+                "reference": "0973abd5c01ecce0b60bc1c81a6dd072827de930"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/6cec3b5d82e24c3fa565d725925afb63f116c584",
-                "reference": "6cec3b5d82e24c3fa565d725925afb63f116c584",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/0973abd5c01ecce0b60bc1c81a6dd072827de930",
+                "reference": "0973abd5c01ecce0b60bc1c81a6dd072827de930",
                 "shasum": ""
             },
             "require": {
-                "johnpbloch/wordpress-core": "5.4.0",
-                "johnpbloch/wordpress-core-installer": "^1.0",
+                "johnpbloch/wordpress-core": "5.5.1",
+                "johnpbloch/wordpress-core-installer": "^1.0 || ^2.0",
                 "php": ">=5.6.20"
             },
             "type": "package",
@@ -8990,27 +8990,28 @@
                 "cms",
                 "wordpress"
             ],
-            "time": "2020-03-31T20:17:18+00:00"
+            "time": "2020-09-01T19:07:41+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core",
-            "version": "5.4.0",
+            "version": "5.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "9a9941fcad81015507e6d03801aebc51296baf37"
+                "reference": "fa5bcb1579eae33baef6c04355f8d6657e5bd349"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/9a9941fcad81015507e6d03801aebc51296baf37",
-                "reference": "9a9941fcad81015507e6d03801aebc51296baf37",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/fa5bcb1579eae33baef6c04355f8d6657e5bd349",
+                "reference": "fa5bcb1579eae33baef6c04355f8d6657e5bd349",
                 "shasum": ""
             },
             "require": {
+                "ext-json": "*",
                 "php": ">=5.6.20"
             },
             "provide": {
-                "wordpress/core-implementation": "5.4.0"
+                "wordpress/core-implementation": "5.5.1"
             },
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
@@ -9030,31 +9031,32 @@
                 "cms",
                 "wordpress"
             ],
-            "time": "2020-03-31T20:17:13+00:00"
+            "time": "2020-09-01T19:07:35+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
-            "version": "1.0.2",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core-installer.git",
-                "reference": "fd12f5cfe27223b92b0f4bbc097059eb23cc56c4"
+                "reference": "237faae9a60a4a2e1d45dce1a5836ffa616de63e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core-installer/zipball/fd12f5cfe27223b92b0f4bbc097059eb23cc56c4",
-                "reference": "fd12f5cfe27223b92b0f4bbc097059eb23cc56c4",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core-installer/zipball/237faae9a60a4a2e1d45dce1a5836ffa616de63e",
+                "reference": "237faae9a60a4a2e1d45dce1a5836ffa616de63e",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0"
+                "composer-plugin-api": "^1.0 || ^2.0",
+                "php": ">=5.6.0"
             },
             "conflict": {
                 "composer/installers": "<1.0.6"
             },
             "require-dev": {
-                "composer/composer": "^1.0",
-                "phpunit/phpunit": ">=4.8.35"
+                "composer/composer": "^1.0 || ^2.0",
+                "phpunit/phpunit": ">=5.7.27"
             },
             "type": "composer-plugin",
             "extra": {
@@ -9079,7 +9081,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2018-11-09T20:10:38+00:00"
+            "time": "2020-04-16T21:44:57+00:00"
         },
         {
             "name": "migrify/migrify-kernel",
