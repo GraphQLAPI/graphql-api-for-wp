@@ -7,6 +7,7 @@ build:
                 override: [php-scrutinizer-run]
             dependencies:
                 before:
+                    - composer self-update 1.10.10
                     - composer require --dev johnpbloch/wordpress
     environment:
         php:
