@@ -246,7 +246,7 @@ For technical information on how the GraphQL server works, check out [GraphQL by
 
 ## Roadmap
 
-The list of features to be supported, in the expected order of implementation, is [in this project](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/1).
+The list of features to be supported, in the expected order of implementation, is in [this project](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/1).
 
 ## Sponsorship
 
