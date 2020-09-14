@@ -244,6 +244,10 @@ The following videos show several features:
 
 For technical information on how the GraphQL server works, check out [GraphQL by PoP's documentation](https://graphql-by-pop.com/docs/getting-started/intro.html) and [resources](https://graphql-by-pop.com/resources/) (these are still a work in progress).
 
+## Roadmap
+
+The list of features to be supported, in the expected order of implementation, is [in this project](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/1).
+
 ## Sponsorship
 
 [Leonardo Losoviz](https://leoloso.com), author and maintainer of the GraphQL API for WordPress, is relying on sponsorship to [fund his continuous work on the project](https://github.com/sponsors/leoloso).
