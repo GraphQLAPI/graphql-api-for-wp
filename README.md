@@ -254,6 +254,8 @@ The list of features to be supported, in the expected order of implementation, i
 
 Please [browse the list of sponsorable requested features](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2). If you can benefit from them, be welcome to up-vote (👍) them, and to [sponsor Leonardo](https://github.com/sponsors/leoloso) on any of the available 3 tiers ❤️ .
 
+<p align="center"><figure><img src=".github/assets/jun-e-leo.jpg"><figcaption>Leo and wife</figcaption></figure></p>
+
 ## Standards
 
 [PSR-1](https://www.php-fig.org/psr/psr-1), [PSR-4](https://www.php-fig.org/psr/psr-4) and [PSR-12](https://www.php-fig.org/psr/psr-12).
