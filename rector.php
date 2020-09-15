@@ -33,7 +33,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     // here we can define, what sets of rules will be applied
     $parameters->set(Option::SETS, [
-        SetList::DOWNGRADE
+        SetList::DOWNGRADE_PHP74,
+        SetList::DOWNGRADE_PHP72,
     ]);
 
     // is your PHP version different from the one your refactor to? [default: your PHP version]
