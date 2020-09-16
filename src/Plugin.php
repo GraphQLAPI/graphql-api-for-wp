@@ -320,7 +320,13 @@ class Plugin
         // First, unregister the post type, so the rules are no longer in memory.
         $instanceManager = InstanceManagerFacade::getInstance();
         $postTypeObjects = array_map(
-            fn ($serviceClass) => $instanceManager->getInstance($serviceClass),
+            function ($serviceClass) use ($instanceManager): AbstractPostType {
+                /**
+                 * @var AbstractPostType
+                 */
+                $postTypeObject = $instanceManager->getInstance($serviceClass);
+                return $postTypeObject;
+            },
             ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\PostTypes')
         );
         foreach ($postTypeObjects as $postTypeObject) {

@@ -21,7 +21,13 @@ abstract class AbstractMenu
     {
         $instanceManager = InstanceManagerFacade::getInstance();
         $this->menuPageObjects = array_map(
-            fn ($menuPageClass) => $instanceManager->getInstance($menuPageClass),
+            function ($menuPageClass) use ($instanceManager): AbstractMenuPage {
+                /**
+                 * @var AbstractMenuPage
+                 */
+                $menuPageObject = $instanceManager->getInstance($menuPageClass);
+                return $menuPageObject;
+            },
             $this->getMenuPageClasses()
         );
     }
