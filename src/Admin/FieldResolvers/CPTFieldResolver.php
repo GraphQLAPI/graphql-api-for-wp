@@ -106,9 +106,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
                 // Remove the "customPostTypes" field argument
                 $schemaFieldArgs = array_filter(
                     $schemaFieldArgs,
-                    function ($schemaFieldArg) {
-                        return $schemaFieldArg[SchemaDefinition::ARGNAME_NAME] != 'customPostTypes';
-                    }
+                    fn ($schemaFieldArg) => $schemaFieldArg[SchemaDefinition::ARGNAME_NAME] != 'customPostTypes'
                 );
                 break;
         }

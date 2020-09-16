@@ -215,9 +215,7 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
                 AccessControlFunctionalityModuleResolver::ACCESS_CONTROL,
             ];
             $whereModuleNames = array_map(
-                function ($whereModule) use ($moduleRegistry) {
-                    return '▹ ' . $moduleRegistry->getModuleResolver($whereModule)->getName($whereModule);
-                },
+                fn ($whereModule) => '▹ ' . $moduleRegistry->getModuleResolver($whereModule)->getName($whereModule),
                 $whereModules
             );
             $option = self::OPTION_MODE;

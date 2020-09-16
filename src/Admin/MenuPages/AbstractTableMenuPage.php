@@ -108,9 +108,7 @@ abstract class AbstractTableMenuPage extends AbstractMenuPage
              */
             \add_filter(
                 'set-screen-option',
-                function ($status, $option, $value) {
-                    return $value;
-                },
+                fn ($status, $option, $value) => $value,
                 10,
                 3
             );

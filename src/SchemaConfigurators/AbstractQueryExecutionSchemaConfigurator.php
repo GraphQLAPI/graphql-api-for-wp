@@ -176,9 +176,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             );
             \add_filter(
                 $hookName,
-                function () use ($useNamespacing) {
-                    return $useNamespacing == SchemaConfigOptionsBlock::ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED;
-                },
+                fn () => $useNamespacing == SchemaConfigOptionsBlock::ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED,
                 PHP_INT_MAX
             );
         }
@@ -226,9 +224,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             );
             \add_filter(
                 $hookName,
-                function () use ($defaultSchemaMode) {
-                    return $defaultSchemaMode == SchemaModes::PRIVATE_SCHEMA_MODE;
-                },
+                fn () => $defaultSchemaMode == SchemaModes::PRIVATE_SCHEMA_MODE,
                 PHP_INT_MAX
             );
         }

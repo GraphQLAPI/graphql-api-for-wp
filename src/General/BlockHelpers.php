@@ -68,9 +68,7 @@ class BlockHelpers
         $blockFullName = $block->getBlockFullName();
         return array_values(array_filter(
             $blocks,
-            function ($block) use ($blockFullName) {
-                return $block['blockName'] == $blockFullName;
-            }
+            fn ($block) => $block['blockName'] == $blockFullName
         ));
     }
 

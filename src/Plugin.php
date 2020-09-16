@@ -320,9 +320,7 @@ class Plugin
         // First, unregister the post type, so the rules are no longer in memory.
         $instanceManager = InstanceManagerFacade::getInstance();
         $postTypeObjects = array_map(
-            function ($serviceClass) use ($instanceManager) {
-                return $instanceManager->getInstance($serviceClass);
-            },
+            fn ($serviceClass) => $instanceManager->getInstance($serviceClass),
             ContainerBuilderUtils::getServiceClassesUnderNamespace(__NAMESPACE__ . '\\PostTypes')
         );
         foreach ($postTypeObjects as $postTypeObject) {

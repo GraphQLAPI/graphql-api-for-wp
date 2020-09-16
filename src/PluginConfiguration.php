@@ -193,13 +193,11 @@ class PluginConfiguration
                 'envVariable' => GraphQLEndpointForWPEnvironment::GRAPHQL_API_ENDPOINT,
                 'module' => EndpointFunctionalityModuleResolver::SINGLE_ENDPOINT,
                 'option' => EndpointFunctionalityModuleResolver::OPTION_PATH,
-                'callback' => function ($value) {
-                    return self::getURLPathSettingValue(
-                        $value,
-                        EndpointFunctionalityModuleResolver::SINGLE_ENDPOINT,
-                        EndpointFunctionalityModuleResolver::OPTION_PATH
-                    );
-                },
+                'callback' => fn ($value) => self::getURLPathSettingValue(
+                    $value,
+                    EndpointFunctionalityModuleResolver::SINGLE_ENDPOINT,
+                    EndpointFunctionalityModuleResolver::OPTION_PATH
+                ),
                 'condition' => 'any',
             ],
             // Custom Endpoint path
@@ -208,13 +206,11 @@ class PluginConfiguration
                 'envVariable' => Environment::ENDPOINT_SLUG_BASE,
                 'module' => EndpointFunctionalityModuleResolver::CUSTOM_ENDPOINTS,
                 'option' => EndpointFunctionalityModuleResolver::OPTION_PATH,
-                'callback' => function ($value) {
-                    return self::getCPTPermalinkBasePathSettingValue(
-                        $value,
-                        EndpointFunctionalityModuleResolver::CUSTOM_ENDPOINTS,
-                        EndpointFunctionalityModuleResolver::OPTION_PATH
-                    );
-                },
+                'callback' => fn ($value) => self::getCPTPermalinkBasePathSettingValue(
+                    $value,
+                    EndpointFunctionalityModuleResolver::CUSTOM_ENDPOINTS,
+                    EndpointFunctionalityModuleResolver::OPTION_PATH
+                ),
                 'condition' => 'any',
             ],
             // Persisted Query path
@@ -223,13 +219,11 @@ class PluginConfiguration
                 'envVariable' => Environment::PERSISTED_QUERY_SLUG_BASE,
                 'module' => EndpointFunctionalityModuleResolver::PERSISTED_QUERIES,
                 'option' => EndpointFunctionalityModuleResolver::OPTION_PATH,
-                'callback' => function ($value) {
-                    return self::getCPTPermalinkBasePathSettingValue(
-                        $value,
-                        EndpointFunctionalityModuleResolver::PERSISTED_QUERIES,
-                        EndpointFunctionalityModuleResolver::OPTION_PATH
-                    );
-                },
+                'callback' => fn ($value) => self::getCPTPermalinkBasePathSettingValue(
+                    $value,
+                    EndpointFunctionalityModuleResolver::PERSISTED_QUERIES,
+                    EndpointFunctionalityModuleResolver::OPTION_PATH
+                ),
                 'condition' => 'any',
             ],
             // GraphiQL client slug
@@ -238,13 +232,11 @@ class PluginConfiguration
                 'envVariable' => GraphQLClientsForWPEnvironment::GRAPHIQL_CLIENT_ENDPOINT,
                 'module' => ClientFunctionalityModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
                 'option' => EndpointFunctionalityModuleResolver::OPTION_PATH,
-                'callback' => function ($value) {
-                    return self::getURLPathSettingValue(
-                        $value,
-                        ClientFunctionalityModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
-                        EndpointFunctionalityModuleResolver::OPTION_PATH
-                    );
-                },
+                'callback' => fn ($value) => self::getURLPathSettingValue(
+                    $value,
+                    ClientFunctionalityModuleResolver::GRAPHIQL_FOR_SINGLE_ENDPOINT,
+                    EndpointFunctionalityModuleResolver::OPTION_PATH
+                ),
                 'condition' => 'any',
             ],
             // Voyager client slug
@@ -253,13 +245,11 @@ class PluginConfiguration
                 'envVariable' => GraphQLClientsForWPEnvironment::VOYAGER_CLIENT_ENDPOINT,
                 'module' => ClientFunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
                 'option' => EndpointFunctionalityModuleResolver::OPTION_PATH,
-                'callback' => function ($value) {
-                    return self::getURLPathSettingValue(
-                        $value,
-                        ClientFunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
-                        EndpointFunctionalityModuleResolver::OPTION_PATH
-                    );
-                },
+                'callback' => fn ($value) => self::getURLPathSettingValue(
+                    $value,
+                    ClientFunctionalityModuleResolver::INTERACTIVE_SCHEMA_FOR_SINGLE_ENDPOINT,
+                    EndpointFunctionalityModuleResolver::OPTION_PATH
+                ),
                 'condition' => 'any',
             ],
             // Use private schema mode?
@@ -268,10 +258,8 @@ class PluginConfiguration
                 'envVariable' => AccessControlEnvironment::USE_PRIVATE_SCHEMA_MODE,
                 'module' => SchemaConfigurationFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA,
                 'option' => SchemaConfigurationFunctionalityModuleResolver::OPTION_MODE,
-                'callback' => function ($value) {
-                    // It is stored as string "private" in DB, and must be passed as bool `true` to component
-                    return $value == SchemaModes::PRIVATE_SCHEMA_MODE;
-                },
+                // It is stored as string "private" in DB, and must be passed as bool `true` to component
+                'callback' => fn ($value) => $value == SchemaModes::PRIVATE_SCHEMA_MODE,
             ],
             // Enable individual access control for the schema mode?
             [
@@ -279,13 +267,9 @@ class PluginConfiguration
                 'envVariable' => AccessControlEnvironment::ENABLE_INDIVIDUAL_CONTROL_FOR_PUBLIC_PRIVATE_SCHEMA_MODE,
                 'module' => SchemaConfigurationFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA,
                 'option' => SchemaConfigurationFunctionalityModuleResolver::OPTION_ENABLE_GRANULAR,
-                'callback' => function ($value) use ($moduleRegistry) {
-                    // Also make sure that the module is enabled.
-                    // Otherwise set the value in `false`, to override a potential `true` in the Settings
-                    return
-                        $moduleRegistry->isModuleEnabled(SchemaConfigurationFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA)
-                        && $value;
-                },
+                // Also make sure that the module is enabled.
+                // Otherwise set the value in `false`, to override a potential `true` in the Settings
+                'callback' => fn ($value) => $moduleRegistry->isModuleEnabled(SchemaConfigurationFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA) && $value,
                 'condition' => 'any',
             ],
             // Use namespacing?
@@ -580,6 +564,10 @@ class PluginConfiguration
         $componentClassConfiguration[\GraphQLByPoP\GraphQLServer\Component::class] = [
             \GraphQLByPoP\GraphQLServer\Environment::ENABLE_PROACTIVE_FEEDBACK => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::PROACTIVE_FEEDBACK),
         ];
+        // // Enable Embeddable Fields?
+        // $componentClassConfiguration[\PoP\API\Component::class] = [
+        //     \PoP\API\Environment::ENABLE_EMBEDDABLE_FIELDS => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::EMBEDDABLE_FIELDS),
+        // ];
     }
 
     /**
@@ -692,9 +680,7 @@ class PluginConfiguration
         ];
         $skipSchemaModuleComponentClasses = array_filter(
             $maybeSkipSchemaModuleComponentClasses,
-            function ($module) use ($moduleRegistry) {
-                return !$moduleRegistry->isModuleEnabled($module);
-            },
+            fn ($module) => !$moduleRegistry->isModuleEnabled($module),
             ARRAY_FILTER_USE_KEY
         );
         return GeneralUtils::arrayFlatten(

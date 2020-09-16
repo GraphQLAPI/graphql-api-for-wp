@@ -96,9 +96,7 @@ class Component extends AbstractComponent
         );
         \add_filter(
             $hookName,
-            function () {
-                return true;
-            },
+            fn () => true,
             PHP_INT_MAX,
             1
         );
