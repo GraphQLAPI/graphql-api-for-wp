@@ -37,6 +37,7 @@ jobs:
         run: |
           composer install
           vendor/bin/rector process
+          sed -i 's/Requires PHP: 7.4/Requires PHP: 7.1/' graphql-api.php
       - name: Build project for production
         run: |
           composer install --no-dev --optimize-autoloader
