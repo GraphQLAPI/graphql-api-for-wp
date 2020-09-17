@@ -23,11 +23,13 @@ Please read the author's [introduction to the GraphQL API for WordPress](https:/
 
 ## Requirements
 
-WordPress 5.4 or above, PHP 7.4+ for development, PHP 7.1+ for production.
+- WordPress 5.4 or above
+- PHP 7.4+ for development
+- PHP 7.1+ for production
 
 ## Install
 
-Download [the latest release of the plugin](https://github.com/GraphQLAPI/graphql-api/releases/download/v0.5.0/graphql-api.zip) as a .zip file.
+Download [the latest release of the plugin][latest-release-url] as a .zip file.
 
 Then, in the WordPress admin:
 
@@ -207,7 +209,7 @@ This method requires the code for the component to be divided into 2 separate pa
 Requirements:
 
 - PHP 7.4+ for development
-- PHP 7.1+ for production (through release [`graphql-api.zip`](https://github.com/GraphQLAPI/graphql-api/releases/download/v0.5.0/graphql-api.zip))
+- PHP 7.1+ for production (through release [`graphql-api.zip`][latest-release-url])
 
 ### Supported PHP features
 
@@ -315,3 +317,5 @@ GPLv2 or later. Please see [License File](LICENSE.md) for more information.
 [link-downloads]: https://GitHub.com/GraphQLAPI/graphql-api-for-wp/releases/
 [link-contributors]: ../../contributors
 [link-author]: https://github.com/leoloso
+
+[latest-release-url]: https://github.com/GraphQLAPI/graphql-api/releases/download/v0.5.0/graphql-api.zip
