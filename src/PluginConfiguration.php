@@ -564,10 +564,10 @@ class PluginConfiguration
         $componentClassConfiguration[\GraphQLByPoP\GraphQLServer\Component::class] = [
             \GraphQLByPoP\GraphQLServer\Environment::ENABLE_PROACTIVE_FEEDBACK => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::PROACTIVE_FEEDBACK),
         ];
-        // // Enable Embeddable Fields?
-        // $componentClassConfiguration[\PoP\API\Component::class] = [
-        //     \PoP\API\Environment::ENABLE_EMBEDDABLE_FIELDS => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::EMBEDDABLE_FIELDS),
-        // ];
+        // Enable Embeddable Fields?
+        $componentClassConfiguration[\PoP\API\Component::class] = [
+            \PoP\API\Environment::ENABLE_EMBEDDABLE_FIELDS => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::EMBEDDABLE_FIELDS),
+        ];
     }
 
     /**

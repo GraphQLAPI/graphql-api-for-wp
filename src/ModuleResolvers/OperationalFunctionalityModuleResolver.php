@@ -15,6 +15,7 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
     public const MULTIPLE_QUERY_EXECUTION = Plugin::NAMESPACE . '\multiple-query-execution';
     public const REMOVE_IF_NULL_DIRECTIVE = Plugin::NAMESPACE . '\remove-if-null-directive';
     public const PROACTIVE_FEEDBACK = Plugin::NAMESPACE . '\proactive-feedback';
+    public const EMBEDDABLE_FIELDS = Plugin::NAMESPACE . '\embeddable-fields';
 
     /**
      * @return string[]
@@ -25,6 +26,7 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
             self::MULTIPLE_QUERY_EXECUTION,
             self::REMOVE_IF_NULL_DIRECTIVE,
             self::PROACTIVE_FEEDBACK,
+            self::EMBEDDABLE_FIELDS,
         ];
     }
 
@@ -52,6 +54,7 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
                 ];
             case self::REMOVE_IF_NULL_DIRECTIVE:
             case self::PROACTIVE_FEEDBACK:
+            case self::EMBEDDABLE_FIELDS:
                 return [];
         }
         return parent::getDependedModuleLists($module);
@@ -63,6 +66,7 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
             self::MULTIPLE_QUERY_EXECUTION => \__('Multiple Query Execution', 'graphql-api'),
             self::REMOVE_IF_NULL_DIRECTIVE => \__('Remove if Null', 'graphql-api'),
             self::PROACTIVE_FEEDBACK => \__('Proactive Feedback', 'graphql-api'),
+            self::EMBEDDABLE_FIELDS => \__('Embeddable Fields', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
     }
@@ -76,6 +80,8 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
                 return \__('Addition of <code>@removeIfNull</code> directive, to remove an output from the response if it is <code>null</code>', 'graphql-api');
             case self::PROACTIVE_FEEDBACK:
                 return \__('Usage of the top-level entry <code>extensions</code> to send deprecations, warnings, logs, notices and traces in the response to the query', 'graphql-api');
+            case self::EMBEDDABLE_FIELDS:
+                return \__('Embed the value of field into the argument of another field, via notation <code>{{ field }}</code>', 'graphql-api');
         }
         return parent::getDescription($module);
     }
@@ -85,6 +91,7 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
         switch ($module) {
             case self::MULTIPLE_QUERY_EXECUTION:
             case self::REMOVE_IF_NULL_DIRECTIVE:
+            case self::EMBEDDABLE_FIELDS:
                 return false;
         }
         return parent::isEnabledByDefault($module);
