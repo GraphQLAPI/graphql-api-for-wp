@@ -31,6 +31,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Set env
+        run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
       - name: Downgrade code for production (to PHP 7.1)
         run: |
           composer install
@@ -54,3 +56,13 @@ jobs:
           args: build/graphql-api.zip application/zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Duplicate asset for GitHub Updater
+        # @see https://github.com/afragen/github-updater/wiki/Settings#release-assets
+        run: cp build/graphql-api.zip build/graphql-api-for-wp-${{ env.RELEASE_VERSION }}.zip
+      - name: Upload duplicate to release
+        uses: JasonEtco/upload-to-release@master
+        with:
+          args: build/graphql-api-for-wp-${{ env.RELEASE_VERSION }}.zip application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
