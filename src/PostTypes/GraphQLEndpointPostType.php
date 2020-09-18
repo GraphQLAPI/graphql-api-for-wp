@@ -14,6 +14,7 @@ use GraphQLAPI\GraphQLAPI\Taxonomies\GraphQLQueryTaxonomy;
 use GraphQLByPoP\GraphQLClientsForWP\Clients\AbstractClient;
 use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointVoyagerClient;
 use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointGraphiQLClient;
+use GraphQLAPI\GraphQLAPI\Clients\CustomEndpointGraphiQLWithExplorerClient;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLByPoP\GraphQLRequest\Execution\QueryExecutionHelpers;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
@@ -231,9 +232,14 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
                 && $this->isVoyagerEnabled($post)
             )
         ) {
+            $moduleRegistry = ModuleRegistryFacade::getInstance();
+            $useGraphiQLExplorer = $moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::GRAPHIQL_EXPLORER);
             // Print the HTML directly from the client
+            $graphiQLClientClass = $useGraphiQLExplorer ?
+                CustomEndpointGraphiQLWithExplorerClient::class :
+                CustomEndpointGraphiQLClient::class;
             $clientClasses = [
-                RequestParams::VIEW_GRAPHIQL => CustomEndpointGraphiQLClient::class,
+                RequestParams::VIEW_GRAPHIQL => $graphiQLClientClass,
                 RequestParams::VIEW_SCHEMA => CustomEndpointVoyagerClient::class,
             ];
             $instanceManager = InstanceManagerFacade::getInstance();
