@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Clients;
 
-use GraphQLByPoP\GraphQLClientsForWP\Clients\GraphiQLWithExplorerClient;
-
-class CustomEndpointGraphiQLWithExplorerClient extends GraphiQLWithExplorerClient
+class GraphiQLClient extends \GraphQLByPoP\GraphQLClientsForWP\Clients\GraphiQLClient
 {
-    use CustomEndpointClientTrait, CustomEndpointGraphiQLClientTrait;
+    use SingleEndpointGraphiQLClientTrait;
 
     /**
      * Use GraphiQL Explorer for this screen?

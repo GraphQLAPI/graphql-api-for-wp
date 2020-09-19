@@ -7,6 +7,7 @@ namespace GraphQLAPI\GraphQLAPI\Admin\MenuPages;
 use GraphQLAPI\GraphQLAPI\General\EndpointHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
+use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Clients\AdminGraphiQLWithExplorerClient;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\EnqueueReactMenuPageTrait;
@@ -23,7 +24,13 @@ class GraphiQLMenuPage extends AbstractMenuPage
     protected function useGraphiQLExplorer(): bool
     {
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        return $moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::GRAPHIQL_EXPLORER);
+        $userSettingsManager = UserSettingsManagerFacade::getInstance();
+        return
+            $moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::GRAPHIQL_EXPLORER)
+            && $userSettingsManager->getSetting(
+                ClientFunctionalityModuleResolver::GRAPHIQL_EXPLORER,
+                ClientFunctionalityModuleResolver::OPTION_USE_GRAPHIQL_EXPLORER_IN_ADMIN_CLIENT
+            );
     }
 
     protected function getGraphiQLWithExplorerClientHTML(): string

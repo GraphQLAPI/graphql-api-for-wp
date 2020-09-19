@@ -608,6 +608,11 @@ class PluginConfiguration
                 'envVariable' => \GraphQLByPoP\GraphQLClientsForWP\Environment::DISABLE_VOYAGER_CLIENT_ENDPOINT,
                 'callback' => [self::class, 'opposite'],
             ],
+            [
+                'module' => ClientFunctionalityModuleResolver::GRAPHIQL_EXPLORER,
+                'class' => \GraphQLByPoP\GraphQLClientsForWP\Component::class,
+                'envVariable' => \GraphQLByPoP\GraphQLClientsForWP\Environment::USE_GRAPHIQL_EXPLORER,
+            ],
             // Cache the component model configuration
             [
                 'module' => CacheFunctionalityModuleResolver::CONFIGURATION_CACHE,

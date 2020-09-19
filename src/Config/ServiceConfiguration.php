@@ -10,6 +10,7 @@ use PoP\Root\Component\PHPServiceConfigurationTrait;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
+use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\Overrides\GraphiQLWithExplorerBlock;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use PoPSchema\UserRolesAccessControl\Services\AccessControlGroups as UserRolesAccessControlGroups;
@@ -27,6 +28,7 @@ class ServiceConfiguration
     {
         self::configureAccessControl();
         self::configureOverridingBlocks();
+        self::overrideServiceClasses();
     }
 
     /**
@@ -34,7 +36,7 @@ class ServiceConfiguration
      *
      * @return void
      */
-    protected static function configureAccessControl()
+    protected static function configureAccessControl(): void
     {
         $schemaEditorAccessCapability = UserAuthorization::getSchemaEditorAccessCapability();
         $capabilities = [$schemaEditorAccessCapability];
@@ -55,11 +57,15 @@ class ServiceConfiguration
      *
      * @return void
      */
-    protected static function configureOverridingBlocks()
+    protected static function configureOverridingBlocks(): void
     {
         // Maybe use GraphiQL with Explorer
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        if ($moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::GRAPHIQL_EXPLORER)) {
+        $userSettingsManager = UserSettingsManagerFacade::getInstance();
+        if ($moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::GRAPHIQL_EXPLORER) && $userSettingsManager->getSetting(
+            ClientFunctionalityModuleResolver::GRAPHIQL_EXPLORER,
+            ClientFunctionalityModuleResolver::OPTION_USE_GRAPHIQL_EXPLORER_IN_ADMIN_PERSISTED_QUERIES
+        )) {
             ContainerBuilderUtils::injectValuesIntoService(
                 'instance_manager',
                 'overrideClass',
@@ -67,5 +73,24 @@ class ServiceConfiguration
                 GraphiQLWithExplorerBlock::class
             );
         }
+    }
+
+    /**
+     * Override service classes
+     */
+    protected static function overrideServiceClasses(): void
+    {
+        ContainerBuilderUtils::injectValuesIntoService(
+            'instance_manager',
+            'overrideClass',
+            \GraphQLByPoP\GraphQLClientsForWP\Clients\GraphiQLClient::class,
+            \GraphQLAPI\GraphQLAPI\Clients\GraphiQLClient::class
+        );
+        ContainerBuilderUtils::injectValuesIntoService(
+            'instance_manager',
+            'overrideClass',
+            \GraphQLByPoP\GraphQLClientsForWP\Clients\GraphiQLWithExplorerClient::class,
+            \GraphQLAPI\GraphQLAPI\Clients\GraphiQLWithExplorerClient::class
+        );
     }
 }
