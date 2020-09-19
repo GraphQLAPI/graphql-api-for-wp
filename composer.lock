@@ -1810,13 +1810,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/GraphQLByPoP/graphql-clients-for-wp.git",
-                "reference": "4014e64a3a57d0751b3281d1c60269eb01fb36f1"
+                "url": "git@github.com:GraphQLByPoP/graphql-clients-for-wp.git",
+                "reference": "3a410e181a70d2ccbcf02ecec5b6dca30d91742d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-clients-for-wp/zipball/4014e64a3a57d0751b3281d1c60269eb01fb36f1",
-                "reference": "4014e64a3a57d0751b3281d1c60269eb01fb36f1",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-clients-for-wp/zipball/3a410e181a70d2ccbcf02ecec5b6dca30d91742d",
+                "reference": "3a410e181a70d2ccbcf02ecec5b6dca30d91742d",
                 "shasum": ""
             },
             "require": {
@@ -1862,7 +1862,7 @@
                 "GraphQLByPoP",
                 "graphql-clients-for-wp"
             ],
-            "time": "2020-09-18T14:18:18+00:00"
+            "time": "2020-09-19T06:28:46+00:00"
         },
         {
             "name": "graphql-by-pop/graphql-endpoint-for-wp",
@@ -9215,16 +9215,16 @@
         },
         {
             "name": "migrify/migrify-kernel",
-            "version": "0.3.39",
+            "version": "0.3.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/migrify/migrify-kernel.git",
-                "reference": "7f3b999f7833b81290f17f199293bc06252f696b"
+                "reference": "aaa564e0ce456f83b1c40fe25818d2486f0aded3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/migrify/migrify-kernel/zipball/7f3b999f7833b81290f17f199293bc06252f696b",
-                "reference": "7f3b999f7833b81290f17f199293bc06252f696b",
+                "url": "https://api.github.com/repos/migrify/migrify-kernel/zipball/aaa564e0ce456f83b1c40fe25818d2486f0aded3",
+                "reference": "aaa564e0ce456f83b1c40fe25818d2486f0aded3",
                 "shasum": ""
             },
             "require": {
@@ -9250,24 +9250,24 @@
                 "MIT"
             ],
             "description": "Kernel for small CLI applications",
-            "time": "2020-09-08T22:45:23+00:00"
+            "time": "2020-09-18T14:09:38+00:00"
         },
         {
             "name": "migrify/php-config-printer",
-            "version": "0.3.39",
+            "version": "0.3.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/migrify/php-config-printer.git",
-                "reference": "973ec7b594dd782316a93a0c0d6419058016ea27"
+                "reference": "5698d256daa8543ad1ecf272110b04e546ada5a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/migrify/php-config-printer/zipball/973ec7b594dd782316a93a0c0d6419058016ea27",
-                "reference": "973ec7b594dd782316a93a0c0d6419058016ea27",
+                "url": "https://api.github.com/repos/migrify/php-config-printer/zipball/5698d256daa8543ad1ecf272110b04e546ada5a5",
+                "reference": "5698d256daa8543ad1ecf272110b04e546ada5a5",
                 "shasum": ""
             },
             "require": {
-                "migrify/migrify-kernel": "^0.3.39",
+                "migrify/migrify-kernel": "^0.3.41",
                 "nette/utils": "^3.1",
                 "nikic/php-parser": "^4.9",
                 "php": ">=7.2",
@@ -9288,7 +9288,7 @@
                 "MIT"
             ],
             "description": "Print Symfony services array with configuration to to plain PHP file format thanks to this simple php-parser wrapper",
-            "time": "2020-09-13T19:41:46+00:00"
+            "time": "2020-09-18T15:38:01+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -10183,16 +10183,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.1.10",
+            "version": "9.1.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "5134e2a65ec48e2f7126d12f1503a9889c660bdf"
+                "reference": "c9394cb9d07ecfa9351b96f2e296bad473195f4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/5134e2a65ec48e2f7126d12f1503a9889c660bdf",
-                "reference": "5134e2a65ec48e2f7126d12f1503a9889c660bdf",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c9394cb9d07ecfa9351b96f2e296bad473195f4d",
+                "reference": "c9394cb9d07ecfa9351b96f2e296bad473195f4d",
                 "shasum": ""
             },
             "require": {
@@ -10252,7 +10252,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-18T05:25:29+00:00"
+            "time": "2020-09-19T05:29:17+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
