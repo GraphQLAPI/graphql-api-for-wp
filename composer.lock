@@ -1810,13 +1810,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:GraphQLByPoP/graphql-clients-for-wp.git",
-                "reference": "3a410e181a70d2ccbcf02ecec5b6dca30d91742d"
+                "url": "https://github.com/GraphQLByPoP/graphql-clients-for-wp.git",
+                "reference": "b2472b33c249df621de30485eebc62572334b848"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-clients-for-wp/zipball/3a410e181a70d2ccbcf02ecec5b6dca30d91742d",
-                "reference": "3a410e181a70d2ccbcf02ecec5b6dca30d91742d",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-clients-for-wp/zipball/b2472b33c249df621de30485eebc62572334b848",
+                "reference": "b2472b33c249df621de30485eebc62572334b848",
                 "shasum": ""
             },
             "require": {
@@ -1862,7 +1862,7 @@
                 "GraphQLByPoP",
                 "graphql-clients-for-wp"
             ],
-            "time": "2020-09-19T06:28:46+00:00"
+            "time": "2020-09-19T06:38:26+00:00"
         },
         {
             "name": "graphql-by-pop/graphql-endpoint-for-wp",
@@ -10632,12 +10632,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "e0cb8c228b472809c5f793deb557c3b5505ac1f0"
+                "reference": "52ccfc05270ec4e2cd039818017cde89ac9768da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/e0cb8c228b472809c5f793deb557c3b5505ac1f0",
-                "reference": "e0cb8c228b472809c5f793deb557c3b5505ac1f0",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/52ccfc05270ec4e2cd039818017cde89ac9768da",
+                "reference": "52ccfc05270ec4e2cd039818017cde89ac9768da",
                 "shasum": ""
             },
             "require": {
@@ -10828,7 +10828,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-18T14:06:24+00:00"
+            "time": "2020-09-19T09:27:29+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -12577,12 +12577,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/autowire-array-parameter.git",
-                "reference": "ab6ec021f6d132501417b50925a11372635ca738"
+                "reference": "c8b50fb00627129117976d8c148dd57e7d3e0508"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/autowire-array-parameter/zipball/ab6ec021f6d132501417b50925a11372635ca738",
-                "reference": "ab6ec021f6d132501417b50925a11372635ca738",
+                "url": "https://api.github.com/repos/symplify/autowire-array-parameter/zipball/c8b50fb00627129117976d8c148dd57e7d3e0508",
+                "reference": "c8b50fb00627129117976d8c148dd57e7d3e0508",
                 "shasum": ""
             },
             "require": {
@@ -12624,12 +12624,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/console-color-diff.git",
-                "reference": "fee0b96b3eac77bc12d30a982e8f70dfb76325a4"
+                "reference": "53b165b11671bdbd0abeace1c39eee5cdcde1e96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/console-color-diff/zipball/fee0b96b3eac77bc12d30a982e8f70dfb76325a4",
-                "reference": "fee0b96b3eac77bc12d30a982e8f70dfb76325a4",
+                "url": "https://api.github.com/repos/symplify/console-color-diff/zipball/53b165b11671bdbd0abeace1c39eee5cdcde1e96",
+                "reference": "53b165b11671bdbd0abeace1c39eee5cdcde1e96",
                 "shasum": ""
             },
             "require": {
@@ -12674,12 +12674,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/easy-testing.git",
-                "reference": "a89b2896fa62d0279cca1d581c5802ad644af591"
+                "reference": "e8ed6817fb66b8806adc112bf656cbdf35655aef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/easy-testing/zipball/a89b2896fa62d0279cca1d581c5802ad644af591",
-                "reference": "a89b2896fa62d0279cca1d581c5802ad644af591",
+                "url": "https://api.github.com/repos/symplify/easy-testing/zipball/e8ed6817fb66b8806adc112bf656cbdf35655aef",
+                "reference": "e8ed6817fb66b8806adc112bf656cbdf35655aef",
                 "shasum": ""
             },
             "require": {
@@ -12722,12 +12722,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/package-builder.git",
-                "reference": "dcbbddcda25af6d9337eeccc7d99586b5195ec5d"
+                "reference": "01c3d581b411bd8fd23b0fdc3703d1f32cfef5b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/package-builder/zipball/dcbbddcda25af6d9337eeccc7d99586b5195ec5d",
-                "reference": "dcbbddcda25af6d9337eeccc7d99586b5195ec5d",
+                "url": "https://api.github.com/repos/symplify/package-builder/zipball/01c3d581b411bd8fd23b0fdc3703d1f32cfef5b3",
+                "reference": "01c3d581b411bd8fd23b0fdc3703d1f32cfef5b3",
                 "shasum": ""
             },
             "require": {
@@ -12774,12 +12774,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/set-config-resolver.git",
-                "reference": "be6837573de34afc9f1028a5df3409885d626115"
+                "reference": "5d3b935e66087b8900cb7e743fed76b13f0e2b4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/set-config-resolver/zipball/be6837573de34afc9f1028a5df3409885d626115",
-                "reference": "be6837573de34afc9f1028a5df3409885d626115",
+                "url": "https://api.github.com/repos/symplify/set-config-resolver/zipball/5d3b935e66087b8900cb7e743fed76b13f0e2b4c",
+                "reference": "5d3b935e66087b8900cb7e743fed76b13f0e2b4c",
                 "shasum": ""
             },
             "require": {
@@ -12826,12 +12826,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/smart-file-system.git",
-                "reference": "75a99108234bf82a6ff72e82a2f14048d6facaa6"
+                "reference": "92bc2c4ea7ca39af7075bea12ae846c8e3645bb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/smart-file-system/zipball/75a99108234bf82a6ff72e82a2f14048d6facaa6",
-                "reference": "75a99108234bf82a6ff72e82a2f14048d6facaa6",
+                "url": "https://api.github.com/repos/symplify/smart-file-system/zipball/92bc2c4ea7ca39af7075bea12ae846c8e3645bb6",
+                "reference": "92bc2c4ea7ca39af7075bea12ae846c8e3645bb6",
                 "shasum": ""
             },
             "require": {
