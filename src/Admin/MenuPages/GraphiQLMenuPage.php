@@ -52,7 +52,17 @@ class GraphiQLMenuPage extends AbstractMenuPage
             // Extract the HTML inside <body>
             $matches = [];
             preg_match('/<body([^>]+)?>(.*?)<\/body>/s', $htmlContent, $matches);
-            echo $matches[2];
+            $bodyHTMLContent = $matches[2];
+            // Remove all JS/CSS assets, since they are enqueued
+            $bodyHTMLContent = preg_replace(
+                [
+                    '/<link[^>]*>(.*)<\/link>"/s',
+                    '/<script[^>]*>(.*)<\/script>/s',
+                ],
+                '',
+                $bodyHTMLContent
+            );
+            echo $bodyHTMLContent;
         }
     }
 
@@ -92,8 +102,12 @@ class GraphiQLMenuPage extends AbstractMenuPage
             \GRAPHQL_API_VERSION
         );
 
-        // JS: execute them all in the footer
-        $this->enqueueReactAssets(true);
+        // Common settings to both clients
+        $scriptSettings = array(
+            'nonce' => \wp_create_nonce('wp_rest'),
+            'defaultQuery' => $this->getDefaultQuery(),
+            'response' => $this->getResponse(),
+        );
 
         if (!$useGraphiQLExplorer) {
             \wp_enqueue_style(
@@ -102,6 +116,10 @@ class GraphiQLMenuPage extends AbstractMenuPage
                 array(),
                 \GRAPHQL_API_VERSION
             );
+
+            // JS: execute them all in the footer
+            $this->enqueueReactAssets(true);
+
             \wp_enqueue_script(
                 'graphql-api-graphiql',
                 \GRAPHQL_API_URL . 'assets/js/vendors/graphiql.min.js',
@@ -121,21 +139,17 @@ class GraphiQLMenuPage extends AbstractMenuPage
             \wp_localize_script(
                 'graphql-api-graphiql-client',
                 'graphQLByPoPGraphiQLSettings',
-                array(
-                    'nonce' => \wp_create_nonce('wp_rest'),
-                    'endpoint' => EndpointHelpers::getAdminGraphQLEndpoint(),
-                    'defaultQuery' => $this->getDefaultQuery(),
-                    'response' => $this->getResponse(),
+                array_merge(
+                    ['endpoint' => EndpointHelpers::getAdminGraphQLEndpoint()],
+                    $scriptSettings
                 )
             );
         } else {
             // Print the HTML from the Client
             $htmlContent = $this->getGraphiQLWithExplorerClientHTML();
-            // Extract the JS/CSS assets from the <head>
+            // Extract the JS/CSS assets, from either the <head> or the <head>
             $matches = [];
-            preg_match('/<head([^>]+)?>(.*?)<\/head>/s', $htmlContent, $matches);
-            $headHTMLContent = $matches[2];
-            preg_match_all('/<link[^>]+href="([^">]+)"/s', $headHTMLContent, $matches);
+            preg_match_all('/<link[^>]+href="([^">]+)"/s', $htmlContent, $matches);
             $cssFileURLs = $matches[1];
             foreach ($cssFileURLs as $index => $cssFileURL) {
                 \wp_enqueue_style(
@@ -145,7 +159,7 @@ class GraphiQLMenuPage extends AbstractMenuPage
                     \GRAPHQL_API_VERSION
                 );
             }
-            preg_match_all('/<script[^>]+src="([^">]+)"/s', $headHTMLContent, $matches);
+            preg_match_all('/<script[^>]+src="([^">]+)"/s', $htmlContent, $matches);
             $jsFileURLs = $matches[1];
             foreach ($jsFileURLs as $index => $jsFileURL) {
                 \wp_enqueue_script(
@@ -163,6 +177,14 @@ class GraphiQLMenuPage extends AbstractMenuPage
                 \GRAPHQL_API_URL . 'assets/css/graphiql-with-explorer-client.css',
                 array(),
                 \GRAPHQL_API_VERSION
+            );
+
+            // Load data into the script. Because no script is enqueued since it is
+            // in the body, then localize it to React
+            \wp_localize_script(
+                'graphql-api-graphiql-with-explorer-0',
+                'graphiQLWithExplorerClientForWP',
+                $scriptSettings
             );
         }
     }
