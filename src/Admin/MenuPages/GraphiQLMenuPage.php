@@ -51,8 +51,8 @@ class GraphiQLMenuPage extends AbstractMenuPage
             $htmlContent = $this->getGraphiQLWithExplorerClientHTML();
             // Extract the HTML inside <body>
             $matches = [];
-            preg_match('/<body>(.*?)<\/body>/', $htmlContent, $matches);
-            echo $matches[1];
+            preg_match('/<body([^>]+)?>(.*?)<\/body>/s', $htmlContent, $matches);
+            echo $matches[2];
         }
     }
 
@@ -133,9 +133,9 @@ class GraphiQLMenuPage extends AbstractMenuPage
             $htmlContent = $this->getGraphiQLWithExplorerClientHTML();
             // Extract the JS/CSS assets from the <head>
             $matches = [];
-            preg_match('/<head>(.*?)<\/head>/', $htmlContent, $matches);
-            $headHTMLContent = $matches[1];
-            preg_match_all('/<link[^>]+href="([^">]+)"/', $headHTMLContent, $matches);
+            preg_match('/<head([^>]+)?>(.*?)<\/head>/s', $htmlContent, $matches);
+            $headHTMLContent = $matches[2];
+            preg_match_all('/<link[^>]+href="([^">]+)"/s', $headHTMLContent, $matches);
             $cssFileURLs = $matches[1];
             foreach ($cssFileURLs as $index => $cssFileURL) {
                 \wp_enqueue_style(
@@ -145,7 +145,7 @@ class GraphiQLMenuPage extends AbstractMenuPage
                     \GRAPHQL_API_VERSION
                 );
             }
-            preg_match_all('/<script[^>]+src="([^">]+)"/', $headHTMLContent, $matches);
+            preg_match_all('/<script[^>]+src="([^">]+)"/s', $headHTMLContent, $matches);
             $jsFileURLs = $matches[1];
             foreach ($jsFileURLs as $index => $jsFileURL) {
                 \wp_enqueue_script(
