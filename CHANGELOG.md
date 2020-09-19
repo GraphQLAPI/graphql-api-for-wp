@@ -10,8 +10,9 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 - Upgraded PHPStan to level 8
 - Plugin for production can run with PHP 7.1
-- Added module "Embeddable Fields"
+- Added Embeddable Fields (#41)
 - Support for GitHub Updater (#53)
+- Use the GraphiQL Explorer in the public clients (#23)
 
 ## 0.5.0 - 2020-09-01
 
