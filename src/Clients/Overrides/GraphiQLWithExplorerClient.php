@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GraphQLAPI\GraphQLAPI\Clients;
+namespace GraphQLAPI\GraphQLAPI\Clients\Overrides;
 
 class GraphiQLWithExplorerClient extends \GraphQLByPoP\GraphQLClientsForWP\Clients\GraphiQLWithExplorerClient
 {

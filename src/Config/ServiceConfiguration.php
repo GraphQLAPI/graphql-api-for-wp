@@ -84,13 +84,13 @@ class ServiceConfiguration
             'instance_manager',
             'overrideClass',
             \GraphQLByPoP\GraphQLClientsForWP\Clients\GraphiQLClient::class,
-            \GraphQLAPI\GraphQLAPI\Clients\GraphiQLClient::class
+            \GraphQLAPI\GraphQLAPI\Clients\Overrides\GraphiQLClient::class
         );
         ContainerBuilderUtils::injectValuesIntoService(
             'instance_manager',
             'overrideClass',
             \GraphQLByPoP\GraphQLClientsForWP\Clients\GraphiQLWithExplorerClient::class,
-            \GraphQLAPI\GraphQLAPI\Clients\GraphiQLWithExplorerClient::class
+            \GraphQLAPI\GraphQLAPI\Clients\Overrides\GraphiQLWithExplorerClient::class
         );
     }
 }
