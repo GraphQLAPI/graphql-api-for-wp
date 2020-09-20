@@ -8,7 +8,7 @@
 <!-- [![GitHub release][ico-release]][link-release] -->
 <!-- [![Github all releases][ico-downloads]][link-downloads] -->
 
-Transform your WordPress site into a GraphQL server.
+Transform your WordPress site into a modern GraphQL server.
 
 This plugin is the implementation for WordPress of [GraphQL by PoP](https://graphql-by-pop.com/), a CMS-agnostic GraphQL server in PHP.
 
