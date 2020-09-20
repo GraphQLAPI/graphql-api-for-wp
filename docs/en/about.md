@@ -16,7 +16,7 @@
 
 ## Funding
 
-Please consider sponsoring Leonardo Losoviz's ongoing work on this plugin.
+Development on the plugin is funded via Leonardo Losoviz's GitHub sponsors.
 
 [Sponsor Leonardo Losoviz ❤️](https://github.com/sponsors/leoloso/)
 
