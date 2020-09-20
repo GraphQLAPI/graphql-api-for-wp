@@ -18,7 +18,7 @@
 
 Development on the plugin is funded via Leonardo Losoviz's GitHub sponsors.
 
-<a class="btn" href="https://github.com/sponsors/leoloso/">Sponsor Leonardo Losoviz ❤️</a>
+**[Sponsor Leonardo Losoviz ❤️](https://github.com/sponsors/leoloso/)**
 
 These are the sponsorship tiers and their benefits.
 
@@ -35,7 +35,7 @@ Sponsors also get access to instructional videos, on topics such as:
 - Improving performance
 - Evolving the schema
 
-<a class="btn" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false">Sponsor Leonardo Losoviz at u$d 14/m ❤️</a>
+**[Sponsor Leonardo Losoviz at u$d 14/m ❤️](https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false)**
 
 ### Support @ u$d 70/m
 
@@ -46,10 +46,10 @@ Sponsors get personal support, via Slack:
 - Receiving tips for improving performance
 - Getting your questions replied
 
-<a class="btn" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41769&preview=false">Sponsor Leonardo Losoviz at u$d 70/m ❤️</a>
+**[Sponsor Leonardo Losoviz at u$d 70/m ❤️](https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41769&preview=false)**
 
 ### Corporate sponsors @ u$d 700/m
 
 Sponsors have their logo displayed in the Sponsors section on the project's `README`, and can select a requested feature from the [sponsorware project](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2) to be implemented and made open source immediately.
 
-<a class="btn" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false">Sponsor Leonardo Losoviz at u$d 700/m ❤️</a>
+**[Sponsor Leonardo Losoviz at u$d 700/m ❤️](https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false)**
