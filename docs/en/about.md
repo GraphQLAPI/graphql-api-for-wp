@@ -22,24 +22,28 @@ Development on the plugin is funded via Leonardo Losoviz's GitHub sponsors.
 
 These are the sponsorship tiers and their benefits.
 
-### New features + Instructional videos @ u$d 14/m
+<!-- ### New features + Instructional videos @ u$d 14/m -->
+### New features @ u$d 14/m
 
-New features are made available following the _sponsorware_ model.
+Get access to all the new features from the [sponsorware project](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2):
 
-In the [sponsorware project](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2) are the requested features. Whenever Leo gets 10 new sponsors, development on the most up-voted (👍) feature starts. The new feature becomes immediately available to the sponsors via a private GitHub repo, and is integrated into the plugin once Leo gets 50 new sponsors.
+- Complete GraphQL schema
+- Additional access control rules
+- Integrations with popular plugins (WooCommerce, Gravity Forms, Easy Digital Downloads, and others)
+- Many others
 
-Sponsors also get access to instructional videos, on topics such as:
+<!-- Also get access to instructional videos, on topics such as:
 
 - How to create a GraphQL schema
 - Strategies for caching
 - Improving performance
-- Evolving the schema
+- Evolving the schema -->
 
 **[Sponsor Leonardo Losoviz at u$d 14/m ❤️](https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false)**
 
 ### Support @ u$d 70/m
 
-Sponsors get personal support, via Slack:
+Get personal support, via Slack:
 
 - Troubleshooting of any problem related to the plugin
 - Learning how to create your GraphQL schema
@@ -50,6 +54,6 @@ Sponsors get personal support, via Slack:
 
 ### Corporate sponsors @ u$d 700/m
 
-Sponsors have their logo displayed in the Sponsors section on the project's `README`, and can select a requested feature from the [sponsorware project](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2) to be implemented and made open source immediately.
+Have your company logo displayed in the Sponsors section on the project's `README`, and select a requested feature from the [sponsorware project](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2) to be implemented and integrated into the plugin immediately.
 
 **[Sponsor Leonardo Losoviz at u$d 700/m ❤️](https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false)**
