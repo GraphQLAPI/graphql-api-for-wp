@@ -25,7 +25,7 @@ These are the sponsorship tiers and their benefits.
 <!-- ### New features + Instructional videos @ u$d 14/m -->
 ### New features @ u$d 14/m
 
-Get access to all the new features from the [sponsorware project](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2):
+Get access to the new features from the [sponsorware project](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2), as they are implemented:
 
 - Complete GraphQL schema
 - Additional access control rules
