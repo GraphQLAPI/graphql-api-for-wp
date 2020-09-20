@@ -24,7 +24,7 @@ These are the sponsorship tiers and their benefits.
 
 ### New features @ u$d 14/m
 
-Get access to the new features from the [sponsorware project](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2), as they are implemented:
+Get access to the [sponsorship-based features](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2):
 
 - Complete GraphQL schema
 - Additional access control rules
@@ -46,6 +46,6 @@ Get access to personal support, via Slack:
 
 ### Corporate sponsors @ u$d 700/m
 
-Have your company logo displayed in the Sponsors section on the project's `README`, and select a requested feature from the [sponsorware project](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2) to be implemented and integrated into the plugin immediately.
+Have your company logo displayed in the Sponsors section on the project's `README`, and select a [sponsorship-based feature](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2) to be implemented and integrated into the plugin immediately.
 
 **[Sponsor Leonardo Losoviz at u$d 700/m ❤️](https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false)**
