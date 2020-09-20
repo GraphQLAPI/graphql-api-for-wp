@@ -257,7 +257,7 @@ The list of features to be supported, in the expected order of implementation, i
 
 Please [browse the list of sponsorable requested features](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2). If you can benefit from them, be welcome to up-vote (👍) them, and to [sponsor Leonardo](https://github.com/sponsors/leoloso) on any of the available 3 tiers ❤️ .
 
-![Leo and wife](.github/assets/jun-e-leo.jpg)<br/>_Leo and wife_
+![Leo and wife](docs/images/jun-e-leo.jpg)<br/>_Leo and wife_
 
 ## Standards
 
