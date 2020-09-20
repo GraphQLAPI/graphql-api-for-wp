@@ -22,7 +22,6 @@ Development on the plugin is funded via Leonardo Losoviz's GitHub sponsors.
 
 These are the sponsorship tiers and their benefits.
 
-<!-- ### New features + Instructional videos @ u$d 14/m -->
 ### New features @ u$d 14/m
 
 Get access to the new features from the [sponsorware project](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2), as they are implemented:
@@ -32,23 +31,16 @@ Get access to the new features from the [sponsorware project](https://github.com
 - Integrations with popular plugins (WooCommerce, Gravity Forms, Easy Digital Downloads, and others)
 - Many others
 
-<!-- Also get access to instructional videos, on topics such as:
-
-- How to create a GraphQL schema
-- Strategies for caching
-- Improving performance
-- Evolving the schema -->
-
 **[Sponsor Leonardo Losoviz at u$d 14/m ❤️](https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false)**
 
 ### Support @ u$d 70/m
 
-Get personal support, via Slack:
+Get access to personal support, via Slack:
 
-- Troubleshooting of any problem related to the plugin
-- Learning how to create your GraphQL schema
-- Receiving tips for improving performance
-- Getting your questions replied
+- Extending the GraphQL schema
+- Improving performance
+- Troubleshooting
+- Answering your questions
 
 **[Sponsor Leonardo Losoviz at u$d 70/m ❤️](https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41769&preview=false)**
 
