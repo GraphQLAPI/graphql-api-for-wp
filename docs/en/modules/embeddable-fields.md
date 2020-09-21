@@ -16,12 +16,22 @@ Embedding fields offers several advantages:
 
 ## Examples
 
+Compose a string containing the values from several fields:
+
+```graphql
+query {
+  posts {
+    description: echo(value: "'{{ title }}' was posted on {{ date }}")
+  }
+}
+```
+
 Change the title of the post, depending on the post having comments or not:
 
 ```graphql
 query {
   posts {
-    title: echo(value: "({{ commentCount }}) {{ title }} - posted on {{ date(format: \"d/m/Y\")}}") @include(if: "{{ hasComments }}")
+    title: echo(value: "({{ commentCount }}) {{ title }} - posted on {{ date }}") @include(if: "{{ hasComments }}")
     title @skip(if: "{{ hasComments }}")
   }
 }
