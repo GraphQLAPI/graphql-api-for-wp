@@ -54,7 +54,12 @@ class ModuleDocumentationMenuPage extends AbstractDocsMenuPage
                 )
             );
         }
-        if (!$moduleResolver->hasDocumentation($module)) {
+        $hasDocumentation = $moduleResolver->hasDocumentation($module);
+        $documentation = '';
+        if ($hasDocumentation) {
+            $documentation = $moduleResolver->getDocumentation($module);
+        }
+        if (!$hasDocumentation || $documentation === null) {
             return sprintf(
                 '<p>%s</p>',
                 sprintf(
@@ -63,6 +68,6 @@ class ModuleDocumentationMenuPage extends AbstractDocsMenuPage
                 )
             );
         }
-        return $moduleResolver->getDocumentation($module);
+        return $documentation;
     }
 }

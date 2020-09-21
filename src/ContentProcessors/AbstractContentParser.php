@@ -40,6 +40,12 @@ abstract class AbstractContentParser implements ContentParserInterface
             }
         }
         $fileContent = file_get_contents($file);
+        if ($fileContent === false) {
+            throw new InvalidArgumentException(sprintf(
+                \__('File \'%s\' is corrupted', 'graphql-api'),
+                $file
+            ));
+        }
         $htmlContent = $this->getHTMLContent($fileContent);
         $pathURL = \trailingslashit($this->getDefaultFileURL()). $relativePathDir;
         return $this->processHTMLContent($htmlContent, $pathURL, $options);
@@ -47,9 +53,6 @@ abstract class AbstractContentParser implements ContentParserInterface
 
     /**
      * Where the markdown file localized to the user's language is stored
-     *
-     * @param string $module
-     * @return string
      */
     public function getLocalizedFileDir(): string
     {
@@ -59,9 +62,6 @@ abstract class AbstractContentParser implements ContentParserInterface
     /**
      * Where the default markdown file (for if the localized language is not available) is stored
      * Default language for documentation: English
-     *
-     * @param string $module
-     * @return string
      */
     public function getDefaultFileDir(): string
     {
@@ -77,11 +77,7 @@ abstract class AbstractContentParser implements ContentParserInterface
     }
 
     /**
-     * Undocumented function
-     *
-     * @param string $module
-     * @param string $lang
-     * @return string
+     * Path where to find the local images
      */
     protected function getFileDir(string $lang): string
     {
@@ -112,6 +108,8 @@ abstract class AbstractContentParser implements ContentParserInterface
      * - Add the path to the images and anchors
      * - Add classes to HTML elements
      * - Append video embeds
+     *
+     * @param array<string, mixed> $options
      */
     protected function processHTMLContent(string $htmlContent, string $pathURL, array $options = []): string
     {
