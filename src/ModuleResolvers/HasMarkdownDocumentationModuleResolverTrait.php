@@ -50,8 +50,8 @@ trait HasMarkdownDocumentationModuleResolverTrait
             $markdownContentParser = MarkdownContentParserFacade::getInstance();
             try {
                 return $markdownContentParser->getContent(
-                    'modules',
                     $markdownFilename,
+                    'modules',
                     [
                         ContentParserOptions::TAB_CONTENT => true,
                     ]

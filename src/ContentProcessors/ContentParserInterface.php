@@ -13,8 +13,8 @@ interface ContentParserInterface
      * @param array<string, mixed> $options
      */
     public function getContent(
-        string $relativePathDir,
         string $filename,
+        string $relativePathDir = '',
         array $options = []
     ): string;
 

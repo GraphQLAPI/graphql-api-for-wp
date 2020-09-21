@@ -15,12 +15,14 @@ abstract class AbstractContentParser implements ContentParserInterface
      * @param string $relativePathDir Dir relative to the /docs/${lang}/ folder
      */
     public function getContent(
-        string $relativePathDir,
         string $filename,
+        string $relativePathDir = '',
         array $options = []
     ): string {
         // Make sure the relative path ends with "/"
-        $relativePathDir = \trailingslashit($relativePathDir);
+        if ($relativePathDir) {
+            $relativePathDir = \trailingslashit($relativePathDir);
+        }
         $localizeFile = \trailingslashit($this->getLocalizedFileDir()) . $relativePathDir . $filename;
         if (file_exists($localizeFile)) {
             // First check if the localized version exists
