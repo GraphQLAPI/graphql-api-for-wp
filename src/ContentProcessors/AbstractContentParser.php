@@ -252,6 +252,7 @@ abstract class AbstractContentParser implements ContentParserInterface
                     ],
                     RequestUtils::getRequestedFullURL()
                 );
+                /** @var string */
                 $link = str_replace(
                     "href=\"{$matches[1]}.md\"",
                     "href=\"{$elementURL}\"",
@@ -260,6 +261,7 @@ abstract class AbstractContentParser implements ContentParserInterface
                 // Must also add some classnames
                 $classnames = 'thickbox open-plugin-details-modal';
                 // 1. If there are classes already
+                /** @var string */
                 $replacedLink = preg_replace_callback(
                     '/ class="(.*?)"/',
                     function (array $matches) use ($classnames): string {
