@@ -15,4 +15,5 @@ class RequestParams
     public const TAB = 'tab';
     public const TAB_DOCS = 'docs';
     public const MODULE = 'module';
+    public const DOC = 'doc';
 }

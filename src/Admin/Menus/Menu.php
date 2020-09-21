@@ -15,6 +15,7 @@ use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphiQLMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphQLVoyagerMenuPage;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ReleaseNotesAboutMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModuleDocumentationMenuPage;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use GraphQLByPoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
@@ -41,7 +42,7 @@ class Menu extends AbstractMenu
             GraphQLVoyagerMenuPage::class,
             SettingsMenuPage::class,
             $this->getModuleMenuPageClass(),
-            AboutMenuPage::class,
+            $this->getAboutMenuPageClass(),
         ];
     }
 
@@ -98,8 +99,6 @@ class Menu extends AbstractMenu
     /**
      * Either the Modules menu page, or the Module Documentation menu page,
      * based on parameter ?tab="docs" or not
-     *
-     * @return string
      */
     protected function getModuleMenuPageClass(): string
     {
@@ -107,6 +106,18 @@ class Menu extends AbstractMenu
             ($_GET[RequestParams::TAB] == RequestParams::TAB_DOCS) ?
             ModuleDocumentationMenuPage::class :
             ModulesMenuPage::class;
+    }
+
+    /**
+     * Either the About menu page, or the Release Notes menu page,
+     * based on parameter ?tab="docs" or not
+     */
+    protected function getAboutMenuPageClass(): string
+    {
+        return
+            ($_GET[RequestParams::TAB] == RequestParams::TAB_DOCS) ?
+            ReleaseNotesAboutMenuPage::class :
+            AboutMenuPage::class;
     }
 
     public function addMenuPagesBottom(): void
@@ -172,10 +183,11 @@ class Menu extends AbstractMenu
             ];
         }
 
+        $aboutPageClass = $this->getAboutMenuPageClass();
         /**
-         * @var AboutMenuPage
+         * @var AbstractMenuPage
          */
-        $aboutMenuPage = $instanceManager->getInstance(AboutMenuPage::class);
+        $aboutMenuPage = $instanceManager->getInstance($aboutPageClass);
         if ($hookName = \add_submenu_page(
             self::NAME,
             __('About', 'graphql-api'),
