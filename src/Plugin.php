@@ -7,11 +7,13 @@ namespace GraphQLAPI\GraphQLAPI;
 use PoP\Engine\ComponentLoader;
 use GraphQLAPI\GraphQLAPI\PluginConfiguration;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractBlock;
+use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\Admin\Menus\AbstractMenu;
 use GraphQLAPI\GraphQLAPI\PostTypes\AbstractPostType;
 use GraphQLAPI\GraphQLAPI\Taxonomies\AbstractTaxonomy;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AboutMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLEndpointPostType;
@@ -42,6 +44,11 @@ class Plugin
      * Plugin's namespace
      */
     public const NAMESPACE = __NAMESPACE__;
+
+    /**
+     * Transient to indicate if plugin was just updated
+     */
+    public const TRANSIENT_PLUGIN_UPDATED = 'graphql-api-plugin-updated';
 
     /**
      * Plugin set-up, executed immediately when loading the plugin.
@@ -100,7 +107,25 @@ class Plugin
                     // Required logic after plugin is activated
                     \flush_rewrite_rules();
                 }
+
+                // On updates only: Show a link to view the new version's release notes
+                // Check if there is a transient indicating that the plugin was updated
+                if (\get_transient(self::TRANSIENT_PLUGIN_UPDATED)) {
+                    delete_transient(self::TRANSIENT_PLUGIN_UPDATED);
+                    $this->showReleaseNotesInAdminNotice();
+                }
             }
+        );
+        /**
+         * On updates only: Show a link to view the new version's release notes
+         *
+         * @see https://codex.wordpress.org/Plugin_API/Action_Reference/upgrader_process_complete
+         */
+        add_action(
+            'upgrader_process_complete',
+            [$this, 'checkIsPluginUpgraded'],
+            10,
+            2
         );
 
         /**
@@ -111,6 +136,80 @@ class Plugin
          */
         \add_action('plugins_loaded', [$this, 'initialize'], 5);
         \add_action('plugins_loaded', [$this, 'boot'], 15);
+    }
+
+    /**
+     * This function runs when WordPress completes its upgrade process
+     * It iterates through each plugin updated to see if ours is included
+     * @param array $upgrader_object
+     * @param array $options
+     * @see https://codex.wordpress.org/Plugin_API/Action_Reference/upgrader_process_complete
+     */
+    protected function checkIsPluginUpgraded($upgrader_object, $options): void
+    {
+        // If an update has taken place and the updated type is plugins and the plugins element exists
+        if ($options['action'] == 'update'
+            && $options['type'] == 'plugin'
+            && isset($options['plugins'])
+            && in_array(\GRAPHQL_API_BASE_NAME, $options['plugins'])
+        ) {
+            // Set a transient to record that the plugin has just been updated
+            set_transient(self::TRANSIENT_PLUGIN_UPDATED, 1);
+        }
+    }
+
+    /**
+     * Add a notice with a link to the latest release note,
+     * to open in a modal window
+     */
+    protected function showReleaseNotesInAdminNotice(): void
+    {
+        // Load the assets to open in a modal
+        \add_action('admin_enqueue_scripts', function () {
+            /**
+             * Hack to open the modal thickbox iframe with the documentation
+             */
+            \wp_enqueue_style(
+                'thickbox'
+            );
+            \wp_enqueue_script(
+                'plugin-install'
+            );
+        });
+        // Add the admin notice
+        \add_action('admin_notices', function () {
+            $instanceManager = InstanceManagerFacade::getInstance();
+            /**
+             * @var AboutMenuPage
+             */
+            $aboutMenuPage = $instanceManager->getInstance(AboutMenuPage::class);
+            // Calculate the minor release version.
+            // Eg: if current version is 0.6.3, minor version is 0.6
+            $versionParts = explode('.', \GRAPHQL_API_VERSION);
+            $minorReleaseVersion = $versionParts[0] . '.' . $versionParts[1];
+            $url = \admin_url(sprintf(
+                'admin.php?page=%s&%s=%s&%s=%s&TB_iframe=true',
+                $aboutMenuPage->getScreenID(),
+                RequestParams::TAB,
+                RequestParams::TAB_DOCS,
+                RequestParams::DOC,
+                sprintf(
+                    'release-notes/%s.md',
+                    $minorReleaseVersion
+                )
+            ));
+            _e(sprintf(
+                '<div class="notice notice-success is-dismissible">' .
+                '<p>%s</p>' .
+                '</div>',
+                sprintf(
+                    __('Plugin <strong>GraphQL API for WordPress</strong> has been updated to version <code>%s</code>. <a href="%s" class="%s">Check out what\'s new</a>.', 'graphql-api'),
+                    \GRAPHQL_API_VERSION,
+                    $url,
+                    'thickbox open-plugin-details-modal'
+                )
+            ));
+        });
     }
 
     /**
@@ -171,8 +270,6 @@ class Plugin
     /**
      * Plugin initialization, executed on hook "plugins_loaded"
      * to wait for all extensions to be loaded
-     *
-     * @return void
      */
     public function boot(): void
     {

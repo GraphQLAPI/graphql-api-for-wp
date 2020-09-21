@@ -46,6 +46,7 @@ define('GRAPHQL_API_VERSION', '0.5.0');
 define('GRAPHQL_API_PLUGIN_FILE', __FILE__);
 define('GRAPHQL_API_DIR', dirname(__FILE__));
 define('GRAPHQL_API_URL', plugin_dir_url(__FILE__));
+define('GRAPHQL_API_BASE_NAME', plugin_basename(__FILE__));
 
 // Load Composer’s autoloader
 require_once(__DIR__ . '/vendor/autoload.php');
