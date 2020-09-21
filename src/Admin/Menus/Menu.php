@@ -8,6 +8,7 @@ use GraphQLAPI\GraphQLAPI\General\RequestParams;
 use GraphQLAPI\GraphQLAPI\Admin\Menus\AbstractMenu;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AboutMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphiQLMenuPage;
@@ -40,6 +41,7 @@ class Menu extends AbstractMenu
             GraphQLVoyagerMenuPage::class,
             SettingsMenuPage::class,
             $this->getModuleMenuPageClass(),
+            AboutMenuPage::class,
         ];
     }
 
@@ -168,6 +170,22 @@ class Menu extends AbstractMenu
                 'read',
                 home_url($clientPath),
             ];
+        }
+
+        /**
+         * @var AboutMenuPage
+         */
+        $aboutMenuPage = $instanceManager->getInstance(AboutMenuPage::class);
+        if ($hookName = \add_submenu_page(
+            self::NAME,
+            __('About', 'graphql-api'),
+            __('About', 'graphql-api'),
+            'read',
+            $aboutMenuPage->getScreenID(),
+            [$aboutMenuPage, 'print']
+        )
+        ) {
+            $aboutMenuPage->setHookName($hookName);
         }
 
         // $schemaEditorAccessCapability = UserAuthorization::getSchemaEditorAccessCapability();
