@@ -16,7 +16,7 @@ use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
  */
 class SettingsMenuPage extends AbstractMenuPage
 {
-    use GraphQLAPIMenuPageTrait;
+    use GraphQLAPIMenuPageTrait, UseTabpanelMenuPageTrait;
 
     public const FORM_ORIGIN = 'form-origin';
     public const SETTINGS_FIELD = 'graphql-api-settings';
@@ -319,19 +319,7 @@ class SettingsMenuPage extends AbstractMenuPage
         parent::enqueueAssets();
 
         if ($this->printWithTabs()) {
-            \wp_enqueue_style(
-                'graphql-api-tabpanel',
-                \GRAPHQL_API_URL . 'assets/css/tabpanel.css',
-                array(),
-                \GRAPHQL_API_VERSION
-            );
-
-            \wp_enqueue_script(
-                'graphql-api-tabpanel',
-                \GRAPHQL_API_URL . 'assets/js/tabpanel.js',
-                array('jquery'),
-                \GRAPHQL_API_VERSION
-            );
+            $this->enqueueTabpanelAssets();
         }
     }
 

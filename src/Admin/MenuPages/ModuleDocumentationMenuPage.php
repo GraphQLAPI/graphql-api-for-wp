@@ -24,6 +24,16 @@ class ModuleDocumentationMenuPage extends AbstractDocsMenuPage
         return $modulesMenuPage->getMenuPageSlug();
     }
 
+    protected function openInModalWindow(): bool
+    {
+        return true;
+    }
+
+    protected function useTabpanelForContent(): bool
+    {
+        return true;
+    }
+
     protected function getContentToPrint(): string
     {
         // This is crazy: passing ?module=Foo\Bar\module,

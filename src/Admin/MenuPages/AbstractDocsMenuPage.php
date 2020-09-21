@@ -11,20 +11,44 @@ use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
  */
 abstract class AbstractDocsMenuPage extends AbstractMenuPage
 {
-    use GraphQLAPIMenuPageTrait;
+    use GraphQLAPIMenuPageTrait, OpenInModalMenuPageTrait, UseTabpanelMenuPageTrait;
 
     public function print(): void
     {
         ?>
         <div
-            class="modal-window-content-wrapper"
+            class="<?php echo implode(' ', $this->getDivClasses()) ?>"
         >
             <?php echo $this->getContentToPrint() ?>
         </div>
         <?php
     }
 
+    /**
+     * Classes to add to the output <div>
+     *
+     * @return string[]
+     */
+    protected function getDivClasses(): array
+    {
+        $classes = [];
+        if ($this->openInModalWindow()) {
+            $classes[] = 'modal-window-content-wrapper';
+        }
+        return $classes;
+    }
+
     abstract protected function getContentToPrint(): string;
+
+    protected function openInModalWindow(): bool
+    {
+        return false;
+    }
+
+    protected function useTabpanelForContent(): bool
+    {
+        return false;
+    }
 
     /**
      * Enqueue the required assets and initialize the localized scripts
@@ -36,38 +60,17 @@ abstract class AbstractDocsMenuPage extends AbstractMenuPage
         parent::enqueueAssets();
 
         /**
-         * Hide the menus
+         * Add styles to open the page in a modal
          */
-        \wp_enqueue_style(
-            'graphql-api-hide-admin-bar',
-            \GRAPHQL_API_URL . 'assets/css/hide-admin-bar.css',
-            array(),
-            \GRAPHQL_API_VERSION
-        );
-        /**
-         * Styles for content within the modal window
-         */
-        \wp_enqueue_style(
-            'graphql-api-modal-window-content',
-            \GRAPHQL_API_URL . 'assets/css/modal-window-content.css',
-            array(),
-            \GRAPHQL_API_VERSION
-        );
+        if ($this->openInModalWindow()) {
+            $this->enqueueModalAssets();
+        }
 
         /**
-         * Add tabs to the documentation
+         * Add styles/scripts to use a tabpanel
          */
-        \wp_enqueue_style(
-            'graphql-api-tabpanel',
-            \GRAPHQL_API_URL . 'assets/css/tabpanel.css',
-            array(),
-            \GRAPHQL_API_VERSION
-        );
-        \wp_enqueue_script(
-            'graphql-api-tabpanel',
-            \GRAPHQL_API_URL . 'assets/js/tabpanel.js',
-            array('jquery'),
-            \GRAPHQL_API_VERSION
-        );
+        if ($this->useTabpanelForContent()) {
+            $this->enqueueTabpanelAssets();
+        }
     }
 }
