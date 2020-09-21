@@ -247,7 +247,7 @@ abstract class AbstractContentParser implements ContentParserInterface
                 $elementURL = \add_query_arg(
                     [
                         RequestParams::TAB => RequestParams::TAB_DOCS,
-                        RequestParams::DOC => $matches[1] . '.md',
+                        RequestParams::DOC => $matches[1],
                         'TB_iframe' => 'true',
                     ],
                     RequestUtils::getRequestedFullURL()

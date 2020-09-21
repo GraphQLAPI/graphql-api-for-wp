@@ -20,7 +20,7 @@ abstract class AbstractDocAboutMenuPage extends AbstractDocsMenuPage
 
     protected function getContentToPrint(): string
     {
-        $doc = $_REQUEST[RequestParams::DOC];
+        $doc = $_REQUEST[RequestParams::DOC] . '.md';
         $markdownContentParser = MarkdownContentParserFacade::getInstance();
         try {
             return $markdownContentParser->getContent($doc);

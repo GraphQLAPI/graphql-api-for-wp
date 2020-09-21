@@ -163,7 +163,7 @@ class Plugin
             // Set a transient to record that the plugin has just been updated
             // The value is the plugin's current version when the upgrade happens,
             // i.e. the version to be replaced
-            set_transient(self::TRANSIENT_PLUGIN_UPDATED, \GRAPHQL_API_VERSION);
+            \set_transient(self::TRANSIENT_PLUGIN_UPDATED, \GRAPHQL_API_VERSION);
         }
     }
 
@@ -202,7 +202,7 @@ class Plugin
                 RequestParams::TAB_DOCS,
                 RequestParams::DOC,
                 sprintf(
-                    'release-notes/%s.md',
+                    'release-notes/%s',
                     $minorReleaseVersion
                 )
             ));
