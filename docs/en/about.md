@@ -8,8 +8,6 @@ Development on the plugin is funded via [Leonardo Losoviz](https://leoloso.com)'
 
 <a class="button button-secondary button-hero" href="https://github.com/sponsors/leoloso/">Become a sponsor to Leonardo Losoviz ❤️</a>
 
-<br/>
-
 These are the sponsorship tiers and their benefits.
 
 ---
@@ -23,7 +21,7 @@ Get access to the [sponsorship-based features](https://github.com/GraphQLAPI/gra
 ✅ Integrations with popular plugins (WooCommerce, Gravity Forms, Easy Digital Downloads, and others)<br/>
 ✅ Many others<br/>
 
-<a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false">Sponsor Leonardo Losoviz at u$d 14/m ❤️</a>
+<a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false">👉🏻 Sponsor Leonardo Losoviz at u$d 14/m ❤️</a>
 
 ---
 
@@ -36,7 +34,7 @@ Previous tier + Get access to personal support, via Slack:
 ✅ Troubleshooting<br/>
 ✅ Answering your questions<br/>
 
-<a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41769&preview=false">Sponsor Leonardo Losoviz at u$d 70/m ❤️</a>
+<a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41769&preview=false">👉🏻 Sponsor Leonardo Losoviz at u$d 70/m ❤️</a>
 
 ---
 
@@ -44,13 +42,19 @@ Previous tier + Get access to personal support, via Slack:
 
 Previous tier + Have your company logo displayed in the Sponsors section on the project's `README`, and select a [sponsorship-based feature](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2) to be implemented and integrated into the plugin immediately.
 
-<a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false">Sponsor Leonardo Losoviz at u$d 700/m ❤️</a>
+<a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false">👉🏻 Sponsor Leonardo Losoviz at u$d 700/m ❤️</a>
 
 <br/>
 
 ![Leonardo Losoviz and wife](../images/jun-e-leo.jpg)<br/>_Leonardo Losoviz and wife_
 
+## Support
+
+Access to the Slack workspace: [graphql-api.slack.com](https://graphql-api.slack.com) (for sponsors of the "personal support" tier) 
+
 ## Release Notes
+
+New features released on each version:
 
 👉🏽 [0.6](release-notes/0.6.md) (current version)
 
