@@ -13,6 +13,7 @@ abstract class AbstractContentParser implements ContentParserInterface
      * Parse the file's Markdown into HTML Content
      *
      * @param string $relativePathDir Dir relative to the /docs/${lang}/ folder
+     * @throws InvalidArgumentException When the file is not found
      */
     public function getContent(
         string $filename,
