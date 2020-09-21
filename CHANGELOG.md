@@ -13,6 +13,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Added Embeddable Fields (#41)
 - Support for GitHub Updater (#53)
 - Use the GraphiQL Explorer in the public clients (#23)
+- About page
 
 ## 0.5.0 - 2020-09-01
 
