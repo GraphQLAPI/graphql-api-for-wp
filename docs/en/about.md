@@ -10,43 +10,58 @@ Development on the plugin is funded via [Leonardo Losoviz](https://leoloso.com)'
 
 These are the sponsorship tiers and their benefits.
 
----
-
-### New features @ u$d 14/m
-
-Get access to the [sponsorship-based features](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2):
-
+<table class="wp-list-table widefat striped">
+<thead>
+<tr>
+<th width="33%"><strong>New features @ u$d 14/m</strong></th>
+<th width="33%"><strong>Support @ u$d 70/m</strong></th>
+<th width="34%"><strong>Corporate sponsors @ u$d 700/m</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p>
+Get access to the <a href="https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2">sponsorship-based features</a>:
+</p>
+<p>
 ✅ Complete GraphQL schema<br/>
 ✅ Additional access control rules<br/>
 ✅ Integrations with popular plugins (WooCommerce, Gravity Forms, Easy Digital Downloads, and others)<br/>
-✅ Many others<br/>
+✅ Many others
+</p>
 
-<a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false">👉🏻 Sponsor Leonardo Losoviz at u$d 14/m ❤️</a>
+</td><td>
 
----
-
-### Support @ u$d 70/m
-
-Previous tier + Get access to personal support, via Slack:
-
+<p>
+Previous tier + Get access to personal support:
+</p>
+<p>
 ✅ Extending the GraphQL schema<br/>
 ✅ Improving performance<br/>
 ✅ Troubleshooting<br/>
-✅ Answering your questions<br/>
+✅ Answering your questions
+</p>
 
-<a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41769&preview=false">👉🏻 Sponsor Leonardo Losoviz at u$d 70/m ❤️</a>
+</td><td>
 
----
+<p>
+Previous tier + Have your company logo displayed in the Sponsors section on the project's <code>README</code>, and select a <a href="https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2">sponsorship-based feature</a> to be implemented and integrated into the plugin immediately.
+</p>
 
-### Corporate sponsors @ u$d 700/m
+</td>
+</tr>
+<tr>
 
-Previous tier + Have your company logo displayed in the Sponsors section on the project's `README`, and select a [sponsorship-based feature](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2) to be implemented and integrated into the plugin immediately.
+<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false">👉🏻 Sponsor Leo at u$d 14/m ❤️</a></td>
+<td><a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41769&preview=false">👉🏻 Sponsor Leo at u$d 70/m ❤️</a></td>
+<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false">👉🏻 Sponsor Leo at u$d 700/m ❤️</a></td>
 
-<a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false">👉🏻 Sponsor Leonardo Losoviz at u$d 700/m ❤️</a>
+</tr>
+</tbody>
+</table>
 
-<br/>
-
-![Leonardo Losoviz and wife](../images/jun-e-leo.jpg)<br/>_Leonardo Losoviz and wife_
+<!-- ![Leonardo Losoviz and wife](../images/jun-e-leo.jpg)<br/>_Leonardo Losoviz and wife_ -->
 
 ## Support
 
