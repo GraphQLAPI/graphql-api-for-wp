@@ -110,9 +110,16 @@ class Plugin
 
                 // On updates only: Show a link to view the new version's release notes
                 // Check if there is a transient indicating that the plugin was updated
-                if (\get_transient(self::TRANSIENT_PLUGIN_UPDATED)) {
+                $pluginUpdatedTransient = \get_transient(self::TRANSIENT_PLUGIN_UPDATED);
+                if ($pluginUpdatedTransient) {
                     delete_transient(self::TRANSIENT_PLUGIN_UPDATED);
-                    $this->showReleaseNotesInAdminNotice();
+                    // If updating either MAJOR or MINOR versions, show admin notice
+                    // No need for PATCH versions
+                    $currentMinorReleaseVersion = $this->getMinorReleaseVersion(\GRAPHQL_API_VERSION);
+                    $previousMinorReleaseVersion = $this->getMinorReleaseVersion($pluginUpdatedTransient);
+                    if ($currentMinorReleaseVersion != $previousMinorReleaseVersion) {
+                        $this->showReleaseNotesInAdminNotice();
+                    }
                 }
             }
         );
@@ -154,7 +161,9 @@ class Plugin
             && in_array(\GRAPHQL_API_BASE_NAME, $options['plugins'])
         ) {
             // Set a transient to record that the plugin has just been updated
-            set_transient(self::TRANSIENT_PLUGIN_UPDATED, 1);
+            // The value is the plugin's current version when the upgrade happens,
+            // i.e. the version to be replaced
+            set_transient(self::TRANSIENT_PLUGIN_UPDATED, \GRAPHQL_API_VERSION);
         }
     }
 
@@ -185,8 +194,7 @@ class Plugin
             $aboutMenuPage = $instanceManager->getInstance(AboutMenuPage::class);
             // Calculate the minor release version.
             // Eg: if current version is 0.6.3, minor version is 0.6
-            $versionParts = explode('.', \GRAPHQL_API_VERSION);
-            $minorReleaseVersion = $versionParts[0] . '.' . $versionParts[1];
+            $minorReleaseVersion = $this->getMinorReleaseVersion(\GRAPHQL_API_VERSION);
             $url = \admin_url(sprintf(
                 'admin.php?page=%s&%s=%s&%s=%s&TB_iframe=true',
                 $aboutMenuPage->getScreenID(),
@@ -210,6 +218,16 @@ class Plugin
                 )
             ));
         });
+    }
+
+    /**
+     * Given a version in semver (MAJOR.MINOR.PATCH),
+     * return the minor version (MAJOR.MINOR)
+     */
+    protected function getMinorReleaseVersion(string $version): string
+    {
+        $versionParts = explode('.', $version);
+        return $versionParts[0] . '.' . $versionParts[1];
     }
 
     /**
