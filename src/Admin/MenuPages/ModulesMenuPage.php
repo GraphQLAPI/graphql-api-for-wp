@@ -12,7 +12,7 @@ use GraphQLAPI\GraphQLAPI\Admin\Tables\ModuleListTable;
  */
 class ModulesMenuPage extends AbstractTableMenuPage
 {
-    use GraphQLAPIMenuPageTrait;
+    use GraphQLAPIMenuPageTrait, OpenInModalTriggerMenuPageTrait;
 
     public const SCREEN_OPTION_NAME = 'graphql_api_modules_per_page';
 
@@ -52,22 +52,12 @@ class ModulesMenuPage extends AbstractTableMenuPage
     // }
 
     /**
-     * Enqueue the required assets and initialize the localized scripts
-     *
-     * @return void
+     * Enqueue the required assets
      */
     protected function enqueueAssets(): void
     {
         parent::enqueueAssets();
 
-        /**
-         * Hack to open the modal thickbox iframe with the documentation
-         */
-        \wp_enqueue_style(
-            'thickbox'
-        );
-        \wp_enqueue_script(
-            'plugin-install'
-        );
+        $this->enqueueModalTriggerAssets();
     }
 }

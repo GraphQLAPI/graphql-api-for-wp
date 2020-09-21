@@ -13,6 +13,8 @@ use GraphQLAPI\GraphQLAPI\Facades\ContentProcessors\MarkdownContentParserFacade;
  */
 class AboutMenuPage extends AbstractDocsMenuPage
 {
+    use OpenInModalTriggerMenuPageTrait;
+
     public function getMenuPageSlug(): string
     {
         return 'about';
@@ -34,5 +36,15 @@ class AboutMenuPage extends AbstractDocsMenuPage
                 \__('Oops, there was a problem loading the page', 'graphql-api')
             );
         }
+    }
+
+    /**
+     * Enqueue the required assets
+     */
+    protected function enqueueAssets(): void
+    {
+        parent::enqueueAssets();
+
+        $this->enqueueModalTriggerAssets();
     }
 }
