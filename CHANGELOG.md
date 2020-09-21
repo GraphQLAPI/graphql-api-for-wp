@@ -14,6 +14,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Support for GitHub Updater (#53)
 - Use the GraphiQL Explorer in the public clients (#23)
 - About page
+- After updating plugin, show an admin notice with link to Release notes
 
 ## 0.5.0 - 2020-09-01
 
