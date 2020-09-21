@@ -39,3 +39,7 @@ services:
     GraphQLAPI\GraphQLAPI\Clients\:
         resource: '../src/Clients/*'
         public: true
+
+    markdown_content_parser:
+        class: '\GraphQLAPI\GraphQLAPI\ContentProcessors\MarkdownContentParser'
+        public: true
