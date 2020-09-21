@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\ContentProcessors;
 
 use InvalidArgumentException;
+use PoP\ComponentModel\Misc\RequestUtils;
 use GraphQLAPI\GraphQLAPI\General\LocaleUtils;
+use GraphQLAPI\GraphQLAPI\General\RequestParams;
 
 abstract class AbstractContentParser implements ContentParserInterface
 {
@@ -118,6 +120,7 @@ abstract class AbstractContentParser implements ContentParserInterface
             [
                 ContentParserOptions::APPEND_PATH_URL_TO_IMAGES => true,
                 ContentParserOptions::APPEND_PATH_URL_TO_ANCHORS => true,
+                ContentParserOptions::SUPPORT_MARKDOWN_LINKS => true,
                 ContentParserOptions::ADD_CLASSES => true,
                 ContentParserOptions::EMBED_VIDEOS => true,
                 ContentParserOptions::TAB_CONTENT => false,
@@ -127,6 +130,10 @@ abstract class AbstractContentParser implements ContentParserInterface
         // Add the path to the images
         if ($options[ContentParserOptions::APPEND_PATH_URL_TO_IMAGES]) {
             $htmlContent = $this->appendPathURLToImages($pathURL, $htmlContent);
+        }
+        // Convert Markdown links: execute before appending path to anchors
+        if ($options[ContentParserOptions::SUPPORT_MARKDOWN_LINKS]) {
+            $htmlContent = $this->convertMarkdownLinks($htmlContent);
         }
         // Add the path to the anchors
         if ($options[ContentParserOptions::APPEND_PATH_URL_TO_ANCHORS]) {
@@ -212,6 +219,70 @@ abstract class AbstractContentParser implements ContentParserInterface
                 . '</div>';
         }
         return $htmlContent;
+    }
+
+    /**
+     * Is the anchor pointing to an URL?
+     */
+    protected function isAbsoluteURL(string $href): bool
+    {
+        return \str_starts_with($href, 'http://') || \str_starts_with($href, 'https://');
+    }
+
+    /**
+     * Whenever a link points to a .md file, convert it
+     * so it works also within the plugin
+     */
+    protected function convertMarkdownLinks(string $htmlContent): string
+    {
+        return (string)preg_replace_callback(
+            '/<a.*href="(.*?)\.md".*?>/',
+            function (array $matches): string {
+                // If the element has an absolute route, then no need
+                if ($this->isAbsoluteURL($matches[1])) {
+                    return $matches[0];
+                }
+                // The URL is the current one, plus attr to open the .md file
+                // in a modal window
+                $elementURL = \add_query_arg(
+                    [
+                        RequestParams::TAB => RequestParams::TAB_DOCS,
+                        RequestParams::DOC => $matches[1] . '.md',
+                        'TB_iframe' => 'true',
+                    ],
+                    RequestUtils::getRequestedFullURL()
+                );
+                $link = str_replace(
+                    "href=\"{$matches[1]}.md\"",
+                    "href=\"{$elementURL}\"",
+                    $matches[0]
+                );
+                // Must also add some classnames
+                $classnames = 'thickbox open-plugin-details-modal';
+                // 1. If there are classes already
+                $replacedLink = preg_replace_callback(
+                    '/ class="(.*?)"/',
+                    function (array $matches) use ($classnames): string {
+                        return str_replace(
+                            " class=\"{$matches[1]}\"",
+                            " class=\"{$matches[1]} {$classnames}\"",
+                            $matches[0]
+                        );
+                    },
+                    $link
+                );
+                // 2. If there were no classes
+                if ($replacedLink == $link) {
+                    $replacedLink = str_replace(
+                        "<a ",
+                        "<a class=\"{$classnames}\" ",
+                        $link
+                    );
+                }
+                return $replacedLink;
+            },
+            $htmlContent
+        );
     }
 
     /**
@@ -309,9 +380,7 @@ abstract class AbstractContentParser implements ContentParserInterface
             $regex,
             function ($matches) use ($pathURL, $attr) {
                 // If the element has an absolute route, then no need
-                if (substr($matches[1], 0, strlen('http://')) == 'http://'
-                    || substr($matches[1], 0, strlen('https://')) == 'https://'
-                ) {
+                if ($this->isAbsoluteURL($matches[1])) {
                     return $matches[0];
                 }
                 $elementURL = \trailingslashit($pathURL) . $matches[1];
