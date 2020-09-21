@@ -4,6 +4,8 @@ Resolve a field within an argument for another field from the same type, using s
 
 It can also be used within directive arguments.
 
+To make it convenient to use, field `echo(value: String): String` is also added on every type of the schema.
+
 ## When to use
 
 Embedding fields offers several advantages:
@@ -13,6 +15,17 @@ Embedding fields offers several advantages:
 - Executing functionality by configuration, through the [IFTTT module](https://github.com/GraphQLAPI/graphql-api-for-wp/issues/27)
 
 ## Examples
+
+Change the title of the post, depending on the post having comments or not:
+
+```graphql
+query {
+  posts {
+    title: echo(value: "({{ commentCount }}) {{ title }} - posted on {{ date(format: \"d/m/Y\")}}") @include(if: "{{ hasComments }}")
+    title @skip(if: "{{ hasComments }}")
+  }
+}
+```
 
 Retrieve the posts containing the user's email:
 
@@ -25,17 +38,6 @@ query {
       title
       content
     }
-  }
-}
-```
-
-If the post has comments, add them to the title (field `echo` below is a global field, so it's not exposed under the type):
-
-```graphql
-query {
-  posts {
-    title: echo(value: "({{ commentCount }}) {{ title }}") @include(if: "{{ hasComments }}")
-    title @skip(if: "{{ hasComments }}")
   }
 }
 ```
