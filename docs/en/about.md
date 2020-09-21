@@ -46,16 +46,16 @@ Previous tier + Get access to personal support:
 </td><td>
 
 <p>
-Previous tier + Have your company logo displayed in the Sponsors section on the project's <code>README</code>, and select a <a href="https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2">sponsorship-based feature</a> to be implemented and integrated into the plugin immediately.
+Previous tier + Have your company logo displayed in the Sponsors section on the project's <code>README</code>, and select a <a href="https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2">sponsorship-based feature</a> to be implemented and integrated into the plugin immediately
 </p>
 
 </td>
 </tr>
 <tr>
 
-<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false">👉🏽 Sponsor Leo at u$d 14/m ❤️</a></td>
-<td><a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41769&preview=false">👉🏻 Sponsor Leo at u$d 70/m ❤️</a></td>
-<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false">👉🏽 Sponsor Leo at u$d 700/m ❤️</a></td>
+<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false">👉🏽 Become a sponsor at u$d 14/m</a></td>
+<td><a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41769&preview=false">👉🏻 Become a sponsor at u$d 70/m</a></td>
+<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false">👉🏽 Become a sponsor at u$d 700/m</a></td>
 
 </tr>
 </tbody>
