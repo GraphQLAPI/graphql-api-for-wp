@@ -22,13 +22,13 @@ These are the sponsorship tiers and their benefits.
 <tr>
 <td>
 <p>
-Get access to the <a href="https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2">sponsorship-based features</a>:
+Get access to the <a href="https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2">sponsorship-based features</a>, as soon as they are implemented:
 </p>
 <p>
 ✅ Complete GraphQL schema<br/>
 ✅ Additional access control rules<br/>
-✅ Integrations with popular plugins (WooCommerce, Gravity Forms, Easy Digital Downloads, and others)<br/>
-✅ Many others
+✅ Integrations with popular plugins<br/>
+✅ <a href="https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2">Many others</a>
 </p>
 
 </td><td>
@@ -53,9 +53,9 @@ Previous tier + Have your company logo displayed in the Sponsors section on the 
 </tr>
 <tr>
 
-<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false">👉🏻 Sponsor Leo at u$d 14/m ❤️</a></td>
+<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false">👉🏽 Sponsor Leo at u$d 14/m ❤️</a></td>
 <td><a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41769&preview=false">👉🏻 Sponsor Leo at u$d 70/m ❤️</a></td>
-<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false">👉🏻 Sponsor Leo at u$d 700/m ❤️</a></td>
+<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false">👉🏽 Sponsor Leo at u$d 700/m ❤️</a></td>
 
 </tr>
 </tbody>
@@ -65,7 +65,7 @@ Previous tier + Have your company logo displayed in the Sponsors section on the 
 
 ## Support
 
-Access to the Slack workspace: [graphql-api.slack.com](https://graphql-api.slack.com) (for sponsors of the "personal support" tier) 
+Access to the Slack workspace: [graphql-api.slack.com](https://graphql-api.slack.com) (for sponsors of the "Support" tier) 
 
 ## Release Notes
 
