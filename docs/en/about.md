@@ -4,7 +4,7 @@ The GraphQL API for WordPress is open source software: [github.com/GraphQLAPI/gr
 
 ## Funding
 
-Development on the plugin is funded via [Leonardo Losoviz](https://leoloso.com)'s GitHub sponsors.
+Development on the plugin is funded via [Leonardo Losoviz](https://leoloso.com)' GitHub sponsors.
 
 <a class="button button-secondary button-hero" href="https://github.com/sponsors/leoloso/">Become a sponsor to Leonardo Losoviz ❤️</a>
 
