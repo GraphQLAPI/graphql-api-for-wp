@@ -37,7 +37,7 @@ use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserStateB
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlDisableAccessBlock;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserCapabilitiesBlock;
-
+use WP_Upgrader;
 class Plugin
 {
     /**
@@ -140,12 +140,12 @@ class Plugin
 
     /**
      * This function runs when WordPress completes its upgrade process
-     * It iterates through each plugin updated to see if ours is included
-     * @param array $upgrader_object
-     * @param array $options
+     * If this plugin is updated, it sets a transient flag
+     *
+     * @param array<string, mixed> $options
      * @see https://codex.wordpress.org/Plugin_API/Action_Reference/upgrader_process_complete
      */
-    protected function checkIsPluginUpgraded($upgrader_object, $options): void
+    protected function checkIsPluginUpgraded(WP_Upgrader $upgrader_object, array $options): void
     {
         // If an update has taken place and the updated type is plugins and the plugins element exists
         if ($options['action'] == 'update'
