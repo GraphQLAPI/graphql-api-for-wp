@@ -6,7 +6,7 @@ The GraphQL API for WordPress is open source software: [github.com/GraphQLAPI/gr
 
 Development on the plugin is funded via [Leonardo Losoviz](https://leoloso.com)'s GitHub sponsors.
 
-**[Sponsor Leonardo Losoviz ❤️](https://github.com/sponsors/leoloso/)**
+<a class="button button-secondary button-hero" href="https://github.com/sponsors/leoloso/">Become a sponsor to Leonardo Losoviz ❤️</a>
 
 <br/>
 
@@ -23,32 +23,32 @@ Get access to the [sponsorship-based features](https://github.com/GraphQLAPI/gra
 ✅ Integrations with popular plugins (WooCommerce, Gravity Forms, Easy Digital Downloads, and others)<br/>
 ✅ Many others<br/>
 
-**[Sponsor Leonardo Losoviz at u$d 14/m ❤️](https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false)**
+<a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false">Sponsor Leonardo Losoviz at u$d 14/m ❤️</a>
 
 ---
 
 ### Support @ u$d 70/m
 
-Get access to personal support, via Slack:
+Previous tier + Get access to personal support, via Slack:
 
 ✅ Extending the GraphQL schema<br/>
 ✅ Improving performance<br/>
 ✅ Troubleshooting<br/>
 ✅ Answering your questions<br/>
 
-**[Sponsor Leonardo Losoviz at u$d 70/m ❤️](https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41769&preview=false)**
+<a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41769&preview=false">Sponsor Leonardo Losoviz at u$d 70/m ❤️</a>
 
 ---
 
 ### Corporate sponsors @ u$d 700/m
 
-Have your company logo displayed in the Sponsors section on the project's `README`, and select a [sponsorship-based feature](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2) to be implemented and integrated into the plugin immediately.
+Previous tier + Have your company logo displayed in the Sponsors section on the project's `README`, and select a [sponsorship-based feature](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2) to be implemented and integrated into the plugin immediately.
 
-**[Sponsor Leonardo Losoviz at u$d 700/m ❤️](https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false)**
+<a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false">Sponsor Leonardo Losoviz at u$d 700/m ❤️</a>
 
----
+<br/>
 
-![Leo and wife](../images/jun-e-leo.jpg)<br/>_Leo and wife_
+![Leonardo Losoviz and wife](../images/jun-e-leo.jpg)<br/>_Leonardo Losoviz and wife_
 
 ## Release Notes
 
