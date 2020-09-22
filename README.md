@@ -10,6 +10,8 @@
 
 Transform your WordPress site into a modern GraphQL server.
 
+![The interactive schema visualizer](docs/images/interactive-schema.png)
+
 This plugin is the implementation for WordPress of [GraphQL by PoP](https://graphql-by-pop.com/), a CMS-agnostic GraphQL server in PHP.
 
 ## Why
@@ -29,6 +31,16 @@ Please read the author's [introduction to the GraphQL API for WordPress](https:/
 
 ## Install
 
+_Ready for production?_
+
+This plugin requires 3rd party dependencies, but they have not been scoped yet (see [issue #9](https://github.com/GraphQLAPI/graphql-api/issues/9)). So please install this plugin in a development environment first, to make sure there are no conflicts with the other plugins installed in the site.
+
+<!-- If any problem arises, either installing or running the plugin, please [create a new issue](https://github.com/GraphQLAPI/graphql-api/issues/new). -->
+
+<!-- After installed, there will be a new "GraphQL API" section on the menu: -->
+
+### Upload
+
 Download [the latest release of the plugin][latest-release-url] as a .zip file.
 
 Then, in the WordPress admin:
@@ -39,15 +51,49 @@ Then, in the WordPress admin:
 - Click on `Install Now` (it may take a few minutes)
 - Once installed, click on `Activate`
 
-After installed, there will be a new "GraphQL API" section on the menu:
+### Composer
 
-![The interactive schema visualizer](docs/images/interactive-schema.png)
+Add the following configuration to your `composer.json`:
 
-### Ready for production?
+```json
+{
+    "require": {
+        "GraphQLAPI/graphql-api-for-wp": "^0"
+    },
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "GraphQLAPI/graphql-api-for-wp",
+                "type": "wordpress-plugin",
+                "version": "0",
+                "require": {
+                    "composer/installers": "^1"
+                }
+            }
+        }
+    ],
+    "extra": {
+        "installer-paths": {
+            "wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            "wp-content/themes/{$name}/": [
+                "type:wordpress-theme"
+            ]
+        }
+    }
+}
+```
 
-This plugin requires 3rd party dependencies, but they have not been scoped yet (see [issue #9](https://github.com/GraphQLAPI/graphql-api/issues/9)). So please install this plugin in a development environment first, to make sure there are no conflicts with the other plugins installed in the site.
+### WP-CLI
 
-If any problem arises, either installing or running the plugin, please [create a new issue](https://github.com/GraphQLAPI/graphql-api/issues/new).
+To install via [WP-CLI](http://wp-cli.org/), execute this command:
+
+```bash
+wp plugin install --activate https://github.com/GraphQLAPI/graphql-api/releases/download/v0.5.0/graphql-api.zip
+```
 
 ## Modules
 
