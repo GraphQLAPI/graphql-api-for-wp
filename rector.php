@@ -10,12 +10,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     // get parameters
     $parameters = $containerConfigurator->parameters();
 
-    // Rector relies on autoload setup of your project; Composer autoload is included by default; to add more:
-    $parameters->set(Option::AUTOLOAD_PATHS, [
-        // full directory
-        __DIR__ . '/vendor/wordpress/wordpress',
-    ]);
-
     // paths to refactor; solid alternative to CLI arguments
     $parameters->set(Option::PATHS, [
         __DIR__ . '/src',
@@ -41,4 +35,25 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     // is your PHP version different from the one your refactor to? [default: your PHP version]
     $parameters->set(Option::PHP_VERSION_FEATURES, '7.1');
+
+    // Rector relies on autoload setup of your project; Composer autoload is included by default; to add more:
+    $parameters->set(Option::AUTOLOAD_PATHS, [
+        // full directory
+        __DIR__ . '/vendor/wordpress/wordpress',
+    ]);
+
+    /**
+     * This constant is defined in wp-load.php, but never loaded.
+     * It is read when resolving class WP_Upgrader in Plugin.php.
+     * Define it here again, or otherwise Rector fails with message:
+     *
+     * "PHP Warning:  Use of undefined constant ABSPATH -
+     * assumed 'ABSPATH' (this will throw an Error in a future version of PHP)
+     * in .../graphql-api-for-wp/vendor/wordpress/wordpress/wp-admin/includes/class-wp-upgrader.php
+     * on line 13"
+     */
+    /** Define ABSPATH as this file's directory */
+    if (!defined('ABSPATH')) {
+        define('ABSPATH', __DIR__ . '/vendor/wordpress/wordpress/');
+    }
 };
