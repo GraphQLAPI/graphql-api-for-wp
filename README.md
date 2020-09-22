@@ -161,7 +161,7 @@ GraphQL API is extensible, and ships with the following modules (organized by ca
 Clone repo, and then install Composer dependencies, by running:
 
 ```bash
-$ git clone https://github.com/GraphQLAPI/graphql-api.git
+$ git clone https://github.com/GraphQLAPI/graphql-api-for-wp.git
 $ cd graphql-api
 $ composer install
 ```
