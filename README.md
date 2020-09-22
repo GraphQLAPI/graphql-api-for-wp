@@ -301,10 +301,6 @@ The following videos show several features:
 
 For technical information on how the GraphQL server works, check out [GraphQL by PoP's documentation](https://graphql-by-pop.com/docs/getting-started/intro.html) and [resources](https://graphql-by-pop.com/resources/) (these are still a work in progress).
 
-## Release notes
-
-- [0.6](docs/en/release-notes/0.6.md)
-
 ## Feature Roadmap
 
 - [Baseline features](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/1)
@@ -323,6 +319,10 @@ Ongoing development for this project is funded via [Leonardo Losoviz](https://le
 ## Standards
 
 [PSR-1](https://www.php-fig.org/psr/psr-1), [PSR-4](https://www.php-fig.org/psr/psr-4) and [PSR-12](https://www.php-fig.org/psr/psr-12).
+
+## Release notes
+
+- [0.6](docs/en/release-notes/0.6.md)
 
 ## Change log
 
