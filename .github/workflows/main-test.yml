@@ -47,17 +47,17 @@ jobs:
         uses: montudor/action-zip@v0.1.0
         with:
           args: zip -X -r build/graphql-api.zip . -x *.git* node_modules/\* .* "*/\.*" CODE_OF_CONDUCT.md CONTRIBUTING.md ISSUE_TEMPLATE.md PULL_REQUEST_TEMPLATE.md rector.php *.dist composer.* dev-helpers** build**
-    #   - name: Upload artifact
-    #     uses: actions/upload-artifact@v2
-    #     with:
-    #         name: graphql-api
-    #         path: build/graphql-api.zip
-      - name: Upload to release
-        uses: JasonEtco/upload-to-release@master
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
         with:
-          args: build/graphql-api.zip application/zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            name: graphql-api
+            path: build/graphql-api.zip
+    #   - name: Upload to release
+    #     uses: JasonEtco/upload-to-release@master
+    #     with:
+    #       args: build/graphql-api.zip application/zip
+    #     env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     #   - name: Duplicate asset for GitHub Updater
     #     # @see https://github.com/afragen/github-updater/wiki/Settings#release-assets
     #     run: cp build/graphql-api.zip build/graphql-api-for-wp-${{ env.RELEASE_VERSION }}.zip
