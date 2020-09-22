@@ -17,15 +17,12 @@ jobs:
       script:
         - vendor/bin/phpcs -n --standard=PSR2 src/
       after_script: skip
-
     - name: "PHPStan"
       script:
         - vendor/bin/phpstan analyse src/
       after_script: skip
-
-    - name: "PHP 7.1"
-      install:
-        - travis_retry composer update --no-interaction --prefer-dist
+    - name: "Downgraded code"
+      script:
         - vendor/bin/rector process
         - phpenv local 7.1
         - php --version
