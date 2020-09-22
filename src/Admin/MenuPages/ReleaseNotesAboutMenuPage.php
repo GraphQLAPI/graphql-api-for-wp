@@ -20,4 +20,9 @@ class ReleaseNotesAboutMenuPage extends AbstractDocAboutMenuPage
         $modulesMenuPage = $instanceManager->getInstance(AboutMenuPage::class);
         return $modulesMenuPage->getMenuPageSlug();
     }
+
+    protected function getRelativePathDir(): string
+    {
+        return 'release-notes';
+    }
 }

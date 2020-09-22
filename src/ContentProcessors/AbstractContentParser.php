@@ -26,13 +26,13 @@ abstract class AbstractContentParser implements ContentParserInterface
         if ($relativePathDir) {
             $relativePathDir = \trailingslashit($relativePathDir);
         }
-        $localizeFile = \trailingslashit($this->getLocalizedFileDir()) . $relativePathDir . $filename;
+        $localizeFile = \trailingslashit($this->getLocalizedFileDir()) . $filename;
         if (file_exists($localizeFile)) {
             // First check if the localized version exists
             $file = $localizeFile;
         } else {
             // Otherwise, use the default language version
-            $file = \trailingslashit($this->getDefaultFileDir()) . $relativePathDir . $filename;
+            $file = \trailingslashit($this->getDefaultFileDir()) . $filename;
             // Make sure this file exists
             if (!file_exists($file)) {
                 throw new InvalidArgumentException(sprintf(

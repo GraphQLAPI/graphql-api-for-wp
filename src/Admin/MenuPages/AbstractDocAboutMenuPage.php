@@ -34,6 +34,11 @@ abstract class AbstractDocAboutMenuPage extends AbstractDocsMenuPage
         );
     }
 
+    protected function getRelativePathDir(): string
+    {
+        return '';
+    }
+
     protected function getContentToPrint(): string
     {
         // Enable "/" in the filename
@@ -48,7 +53,7 @@ abstract class AbstractDocAboutMenuPage extends AbstractDocsMenuPage
         );
         $markdownContentParser = MarkdownContentParserFacade::getInstance();
         try {
-            return $markdownContentParser->getContent($doc);
+            return $markdownContentParser->getContent($doc, $this->getRelativePathDir());
         } catch (InvalidArgumentException $e) {
             return sprintf(
                 '<p>%s</p>',
