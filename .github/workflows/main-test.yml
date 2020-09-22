@@ -1,0 +1,70 @@
+####################################################################################
+# GitHub Action:
+# Whenever creating a new release of the source code,
+# also create a release of the installable plugin,
+# and downgrading it from PHP 7.4 to 7.1 to support more users.
+####################################################################################
+# Steps to execute:
+# - Checkout the source code
+# - Run "composer install" for development, to install dependencies for Rector
+# - Run Rector to downgrade code from PHP 7.4 to 7.1
+# - Run "composer install" for production (required dependencies are already under vendor/)
+# - Create a .zip file, excluding:
+#   - All hidden files (.git, .gitignore, etc)
+#   - Rector file
+#   - All development files, ending in .dist
+#   - All composer files <= after installing dependencies, no need for them anymore
+#   - Markdown files concerning development
+#   - Folder build/ <= created only to store the .zip file
+#   - Folder dev-helpers/ <= not needed for the plugin
+# - Upload the .zip file as an artifact to the action (this step is possibly optional)
+# - Upload the .zip file as a release, for download
+####################################################################################
+name: Test that sed works ok
+# on:
+#   release:
+#     types: [published]
+on: push
+jobs:
+  build:
+    name: Build, Downgrade and Upload Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set env
+        run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
+      - name: Downgrade code for production (to PHP 7.1)
+        run: |
+          composer install
+          vendor/bin/rector process
+          sed -i 's/Requires PHP: 7.4/Requires PHP: 7.1/' graphql-api.php
+      - name: Build project for production
+        run: |
+          composer install --no-dev --optimize-autoloader
+          mkdir build
+      - name: Create artifact
+        uses: montudor/action-zip@v0.1.0
+        with:
+          args: zip -X -r build/graphql-api.zip . -x *.git* node_modules/\* .* "*/\.*" CODE_OF_CONDUCT.md CONTRIBUTING.md ISSUE_TEMPLATE.md PULL_REQUEST_TEMPLATE.md rector.php *.dist composer.* dev-helpers** build**
+    #   - name: Upload artifact
+    #     uses: actions/upload-artifact@v2
+    #     with:
+    #         name: graphql-api
+    #         path: build/graphql-api.zip
+      - name: Upload to release
+        uses: JasonEtco/upload-to-release@master
+        with:
+          args: build/graphql-api.zip application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   - name: Duplicate asset for GitHub Updater
+    #     # @see https://github.com/afragen/github-updater/wiki/Settings#release-assets
+    #     run: cp build/graphql-api.zip build/graphql-api-for-wp-${{ env.RELEASE_VERSION }}.zip
+    #   - name: Upload duplicate to release
+    #     uses: JasonEtco/upload-to-release@master
+    #     with:
+    #       args: build/graphql-api-for-wp-${{ env.RELEASE_VERSION }}.zip application/zip
+    #     env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
