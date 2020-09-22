@@ -153,7 +153,7 @@ class Plugin
      * @param array<string, mixed> $options
      * @see https://codex.wordpress.org/Plugin_API/Action_Reference/upgrader_process_complete
      */
-    protected function checkIsPluginUpgraded(WP_Upgrader $upgrader_object, array $options): void
+    public function checkIsPluginUpgraded(WP_Upgrader $upgrader_object, array $options): void
     {
         // If an update has taken place and the updated type is plugins and the plugins element exists
         if ($options['action'] == 'update'
