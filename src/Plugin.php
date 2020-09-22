@@ -155,12 +155,18 @@ class Plugin
      */
     public function checkIsPluginUpgraded(WP_Upgrader $upgrader_object, array $options): void
     {
-        // If an update has taken place and the updated type is plugins and the plugins element exists
-        if ($options['action'] == 'update'
-            && $options['type'] == 'plugin'
-            && isset($options['plugins'])
-            && in_array(\GRAPHQL_API_BASE_NAME, $options['plugins'])
-        ) {
+        // If an update has taken place and the updated type is plugins and the plugins element exists,
+        // or an install of a new version of the plugin
+        if ($options['type'] == 'plugin' && (
+            (
+                $options['action'] == 'update'
+                && isset($options['plugins'])
+                && in_array(\GRAPHQL_API_BASE_NAME, $options['plugins'])
+            ) || (
+                $options['action'] == 'install'
+                && $upgrader_object->result['destination_name'] == \GRAPHQL_API_PLUGIN_NAME
+            )
+        )) {
             // Set a transient to record that the plugin has just been updated
             // The value is the plugin's current version when the upgrade happens,
             // i.e. the version to be replaced
