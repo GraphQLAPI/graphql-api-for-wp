@@ -69,7 +69,7 @@ Add the following configuration to your `composer.json`:
                 "type": "wordpress-plugin",
                 "version": "0",
                 "dist": {
-                    "url": "https://github.com/GraphQLAPI/graphql-api/releases/download/v0.5.0/graphql-api.zip",
+                    "url": "https://github.com/GraphQLAPI/graphql-api-for-wp/releases/latest/download/graphql-api.zip",
                     "type": "zip"
                 },
                 "require": {
@@ -96,7 +96,7 @@ Add the following configuration to your `composer.json`:
 To install via [WP-CLI](http://wp-cli.org/), execute this command:
 
 ```bash
-wp plugin install --activate https://github.com/GraphQLAPI/graphql-api/releases/download/v0.5.0/graphql-api.zip
+wp plugin install --activate https://github.com/GraphQLAPI/graphql-api-for-wp/releases/latest/download/graphql-api.zip
 ```
 
 ## Modules
@@ -372,4 +372,4 @@ GPLv2 or later. Please see [License File](LICENSE.md) for more information.
 [link-contributors]: ../../contributors
 [link-author]: https://github.com/leoloso
 
-[latest-release-url]: https://github.com/GraphQLAPI/graphql-api/releases/download/v0.5.0/graphql-api.zip
+[latest-release-url]: https://github.com/GraphQLAPI/graphql-api-for-wp/releases/latest/download/graphql-api.zip
