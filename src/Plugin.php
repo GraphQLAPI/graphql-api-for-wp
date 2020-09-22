@@ -37,7 +37,6 @@ use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserStateB
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlDisableAccessBlock;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserCapabilitiesBlock;
-use WP_Upgrader;
 
 class Plugin
 {
@@ -153,12 +152,20 @@ class Plugin
 
     /**
      * This function runs when WordPress completes its upgrade process
-     * If this plugin is updated, it sets a transient flag
+     * If this plugin is updated, it sets a transient flag.
+     *
+     * Use `object` as param type for $upgrader_object, instead of the
+     * more specific `WP_Upgrader`, because Rector fails with it:
+     *
+     * "PHP Warning:  Use of undefined constant ABSPATH -
+     * assumed 'ABSPATH' (this will throw an Error in a future version of PHP)
+     * in /home/travis/build/GraphQLAPI/graphql-api-for-wp/vendor/wordpress/wordpress/wp-admin/includes/class-wp-upgrader.php
+     * on line 13"
      *
      * @param array<string, mixed> $options
      * @see https://codex.wordpress.org/Plugin_API/Action_Reference/upgrader_process_complete
      */
-    public function checkIsPluginUpgraded(WP_Upgrader $upgrader_object, array $options): void
+    public function checkIsPluginUpgraded(object $upgrader_object, array $options): void
     {
         // If an update has taken place and the updated type is plugins and the plugins element exists,
         // or an install of a new version of the plugin
