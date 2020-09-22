@@ -13,7 +13,7 @@
 language: php
 os:
   - linux
-dist: xenial
+dist: bionic
 
 cache:
   directories:
@@ -24,6 +24,10 @@ php:
 
 jobs:
   include:
+    # FIXME TravisCI should run the default job
+    - name: "Tests"
+      script:
+        - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
     - name: "PHPCS"
       script:
         - vendor/bin/phpcs -n --standard=PSR2 src/
