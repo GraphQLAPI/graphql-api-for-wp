@@ -112,7 +112,6 @@ class GraphiQLMenuPage extends AbstractMenuPage
         // Common settings to both clients
         $scriptSettings = array(
             'nonce' => \wp_create_nonce('wp_rest'),
-            'defaultQuery' => $this->getDefaultQuery(),
             'response' => $this->getResponse(),
         );
 
@@ -147,7 +146,10 @@ class GraphiQLMenuPage extends AbstractMenuPage
                 'graphql-api-graphiql-client',
                 'graphQLByPoPGraphiQLSettings',
                 array_merge(
-                    ['endpoint' => EndpointHelpers::getAdminGraphQLEndpoint()],
+                    [
+                        'defaultQuery' => $this->getDefaultQuery(),
+                        'endpoint' => EndpointHelpers::getAdminGraphQLEndpoint(),
+                    ],
                     $scriptSettings
                 )
             );
