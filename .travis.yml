@@ -22,24 +22,6 @@ cache:
 php:
   - 7.4
 
-jobs:
-  include:
-    - name: "PHPCS"
-      script:
-        - vendor/bin/phpcs -n --standard=PSR2 src/
-      after_script: skip
-    - name: "PHPStan"
-      script:
-        - vendor/bin/phpstan analyse -c phpstan.neon.dist src/
-      after_script: skip
-    - name: "Downgraded code"
-      script:
-        - vendor/bin/rector process
-        - phpenv local 7.1
-        - php --version
-        - vendor/bin/phpstan analyse -c phpstan.neon.dist src/
-      after_script: skip
-
 install:
   - travis_retry composer update --no-interaction --prefer-dist
 
