@@ -102,24 +102,29 @@ class Plugin
             'admin_init',
             function () use ($isPluginJustActivatedOptionName): void {
                 // If the flag is there, it's the first screen after activating the plugin
-                if (\is_admin() && \get_option($isPluginJustActivatedOptionName) == true) {
-                    // Delete the flag
-                    \delete_option($isPluginJustActivatedOptionName);
-                    // Required logic after plugin is activated
-                    \flush_rewrite_rules();
-                }
+                if (\is_admin()) {
+                    $isPluginJustActivated = \get_option($isPluginJustActivatedOptionName) == true;
+                    if ($isPluginJustActivated) {
+                        // Delete the flag
+                        \delete_option($isPluginJustActivatedOptionName);
+                        // Required logic after plugin is activated
+                        \flush_rewrite_rules();
+                    }
 
-                // On updates only: Show a link to view the new version's release notes
-                // Check if there is a transient indicating that the plugin was updated
-                $pluginUpdatedTransient = \get_transient(self::TRANSIENT_PLUGIN_UPDATED);
-                if ($pluginUpdatedTransient) {
-                    delete_transient(self::TRANSIENT_PLUGIN_UPDATED);
-                    // If updating either MAJOR or MINOR versions, show admin notice
-                    // No need for PATCH versions
-                    $currentMinorReleaseVersion = $this->getMinorReleaseVersion(\GRAPHQL_API_VERSION);
-                    $previousMinorReleaseVersion = $this->getMinorReleaseVersion($pluginUpdatedTransient);
-                    if ($currentMinorReleaseVersion != $previousMinorReleaseVersion) {
-                        $this->showReleaseNotesInAdminNotice();
+                    // On updates only: Show a link to view the new version's release notes
+                    if (!\wp_doing_ajax()) {
+                        // Check if there is a transient indicating that the plugin was updated
+                        $pluginUpdatedTransient = \get_transient(self::TRANSIENT_PLUGIN_UPDATED);
+                        if ($pluginUpdatedTransient) {
+                            delete_transient(self::TRANSIENT_PLUGIN_UPDATED);
+                            // If updating either MAJOR or MINOR versions, show admin notice
+                            // No need for PATCH versions
+                            $currentMinorReleaseVersion = $this->getMinorReleaseVersion(\GRAPHQL_API_VERSION);
+                            $previousMinorReleaseVersion = $this->getMinorReleaseVersion($pluginUpdatedTransient);
+                            if ($currentMinorReleaseVersion != $previousMinorReleaseVersion) {
+                                $this->showReleaseNotesInAdminNotice();
+                            }
+                        }
                     }
                 }
             }
