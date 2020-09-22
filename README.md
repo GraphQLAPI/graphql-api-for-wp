@@ -58,14 +58,14 @@ Add the following configuration to your `composer.json`:
 ```json
 {
     "require": {
-        "GraphQLAPI/graphql-api-for-wp": "^0"
+        "graphql-api/graphql-api-for-wp": "^0"
     },
     "minimum-stability": "dev",
     "repositories": [
         {
             "type": "package",
             "package": {
-                "name": "GraphQLAPI/graphql-api-for-wp",
+                "name": "graphql-api/graphql-api-for-wp",
                 "type": "wordpress-plugin",
                 "version": "0",
                 "dist": {
@@ -98,6 +98,10 @@ To install via [WP-CLI](http://wp-cli.org/), execute this command:
 ```bash
 wp plugin install --activate https://github.com/GraphQLAPI/graphql-api-for-wp/releases/latest/download/graphql-api.zip
 ```
+
+## Update
+
+This plugin support automatic updating via the [GitHub Updater](https://github.com/afragen/github-updater).
 
 ## Modules
 
