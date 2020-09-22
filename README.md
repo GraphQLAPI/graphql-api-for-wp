@@ -293,17 +293,20 @@ The following videos show several features:
 
 For technical information on how the GraphQL server works, check out [GraphQL by PoP's documentation](https://graphql-by-pop.com/docs/getting-started/intro.html) and [resources](https://graphql-by-pop.com/resources/) (these are still a work in progress).
 
-## Roadmap
+## Feature Roadmap
 
-The list of features to be supported, in the expected order of implementation, is in [this project](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/1).
+- [Baseline features](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/1)
+- [Sponsored features](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2)
 
 ## Sponsorship
 
-[Leonardo Losoviz](https://leoloso.com), author and maintainer of the GraphQL API for WordPress, is relying on sponsorship to [fund his continuous work on the project](https://github.com/sponsors/leoloso).
+Ongoing development for this project is funded via [Leonardo Losoviz](https://leoloso.com)'s GitHub sponsors:
 
-Please [browse the list of sponsorable requested features](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2). If you can benefit from them, be welcome to up-vote (👍) them, and to [sponsor Leonardo](https://github.com/sponsors/leoloso) on any of the available 3 tiers ❤️ .
+[Become a sponsor to Leonardo Losoviz ❤️](https://github.com/sponsors/leoloso).
 
-![Leo and wife](docs/images/jun-e-leo.jpg)<br/>_Leo and wife_
+<!-- Please [browse the list of sponsorable requested features](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2). If you can benefit from them, be welcome to up-vote (👍) them, and to [sponsor Leonardo](https://github.com/sponsors/leoloso) on any of the available 3 tiers ❤️ .
+
+![Leo and wife](docs/images/jun-e-leo.jpg)<br/>_Leo and wife_ -->
 
 ## Standards
 
