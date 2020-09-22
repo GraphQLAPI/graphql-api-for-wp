@@ -58,7 +58,7 @@ Add the following configuration to your `composer.json`:
 ```json
 {
     "require": {
-        "graphql-api/graphql-api-for-wp": "^0"
+        "graphql-api/graphql-api-for-wp": "^0.1"
     },
     "minimum-stability": "dev",
     "repositories": [
@@ -67,7 +67,7 @@ Add the following configuration to your `composer.json`:
             "package": {
                 "name": "graphql-api/graphql-api-for-wp",
                 "type": "wordpress-plugin",
-                "version": "0",
+                "version": "0.1.0",
                 "dist": {
                     "url": "https://github.com/GraphQLAPI/graphql-api-for-wp/releases/latest/download/graphql-api.zip",
                     "type": "zip"
