@@ -162,6 +162,10 @@ class Plugin
     {
         // If an update has taken place and the updated type is plugins and the plugins element exists,
         // or an install of a new version of the plugin
+        $destinationName = null;
+        if (is_array($upgrader_object->result)) {
+            $destinationName = $upgrader_object->result['destination_name'];
+        }
         if ($options['type'] == 'plugin' && (
             (
                 $options['action'] == 'update'
@@ -169,7 +173,7 @@ class Plugin
                 && in_array(\GRAPHQL_API_BASE_NAME, $options['plugins'])
             ) || (
                 $options['action'] == 'install'
-                && $upgrader_object->result['destination_name'] == \GRAPHQL_API_PLUGIN_NAME
+                && $destinationName == \GRAPHQL_API_PLUGIN_NAME
             )
         )) {
             // Set a transient to record that the plugin has just been updated
