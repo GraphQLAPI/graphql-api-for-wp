@@ -4,6 +4,18 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 0.6.2 - 2020-09-22
+
+### Fixed
+
+- Set the right version in plugin main file
+
+## 0.6.1 - 2020-09-22
+
+### Fixed
+
+- Made GraphiQL client in admin show the default GraphQL query
+
 ## 0.6.0 - 2020-09-22
 
 ### Added
