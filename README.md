@@ -68,6 +68,10 @@ Add the following configuration to your `composer.json`:
                 "name": "GraphQLAPI/graphql-api-for-wp",
                 "type": "wordpress-plugin",
                 "version": "0",
+                "dist": {
+                    "url": "https://github.com/GraphQLAPI/graphql-api/releases/download/v0.5.0/graphql-api.zip",
+                    "type": "zip"
+                },
                 "require": {
                     "composer/installers": "^1"
                 }
