@@ -301,6 +301,10 @@ The following videos show several features:
 
 For technical information on how the GraphQL server works, check out [GraphQL by PoP's documentation](https://graphql-by-pop.com/docs/getting-started/intro.html) and [resources](https://graphql-by-pop.com/resources/) (these are still a work in progress).
 
+## Release notes
+
+- [0.6](docs/en/release-notes/0.6.md)
+
 ## Feature Roadmap
 
 - [Baseline features](https://github.com/GraphQLAPI/graphql-api-for-wp/projects/1)
