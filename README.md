@@ -289,7 +289,9 @@ composer downgrade-code
 
 ## Resources
 
-The following videos show several features:
+### Videos
+
+The following videos demonstrate several features:
 
 - [Persisted queries](https://vimeo.com/413503547)
 - [Custom endpoints](https://vimeo.com/413503485)
@@ -299,7 +301,31 @@ The following videos show several features:
 - [Field deprecation](https://vimeo.com/413503110)
 - [Query inheritance](https://vimeo.com/413503010)
 
-For technical information on how the GraphQL server works, check out [GraphQL by PoP's documentation](https://graphql-by-pop.com/docs/getting-started/intro.html) and [resources](https://graphql-by-pop.com/resources/) (these are still a work in progress).
+### GraphQL by PoP documentation
+
+GraphQL API for WordPress is powered by the CMS-agnostic GraphQL server [GraphQL by PoP](https://graphql-by-pop.com).
+
+For technical information on how it works, check out [its documentation](https://graphql-by-pop.com/docs/getting-started/intro.html).
+
+These articles explain the concepts, design and implementation of GraphQL by PoP:
+
+1. [Designing a GraphQL server for optimal performance](https://blog.logrocket.com/designing-graphql-server-optimal-performance/)
+2. [Simplifying the GraphQL data model](https://blog.logrocket.com/simplifying-the-graphql-data-model/)
+3. [Schema-first vs code-first development in GraphQL](https://blog.logrocket.com/code-first-vs-schema-first-development-graphql/)
+4. [Speeding-up changes to the GraphQL schema](https://blog.logrocket.com/speeding-up-changes-to-the-graphql-schema/)
+5. [Versioning fields in GraphQL](https://blog.logrocket.com/versioning-fields-graphql/)
+6. [GraphQL directives are underrated](https://blog.logrocket.com/graphql-directives-are-underrated/)
+7. [Treating GraphQL directives as middleware](https://blog.logrocket.com/treating-graphql-directives-as-middleware/) 
+8. [Creating an @export GraphQL directive](https://blog.logrocket.com/creating-an-export-graphql-directive/)
+9. [Adding directives to the schema in code-first GraphQL servers](https://blog.logrocket.com/adding-directives-schema-code-first-graphql-servers/)
+
+### Gutenberg
+
+These articles explain the integration with Gutenberg (the WordPress editor).
+
+🎩 [Adding a Custom Welcome Guide to the WordPress Block Editor](https://css-tricks.com/adding-a-custom-welcome-guide-to-the-wordpress-block-editor/)
+
+🎩 [Using Markdown and Localization in the WordPress Block Editor](https://css-tricks.com/using-markdown-and-localization-in-the-wordpress-block-editor/)
 
 ## Feature Roadmap
 
