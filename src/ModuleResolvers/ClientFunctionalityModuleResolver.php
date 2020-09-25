@@ -29,10 +29,10 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
     /**
      * Setting options
      */
-    public const OPTION_USE_GRAPHIQL_EXPLORER_IN_ADMIN_CLIENT = 'graphiql-use-explorer-in-admin-client';
-    public const OPTION_USE_GRAPHIQL_EXPLORER_IN_ADMIN_PERSISTED_QUERIES = 'graphiql-use-explorer-in-admin-persisted-queries';
-    public const OPTION_USE_GRAPHIQL_EXPLORER_IN_PUBLIC_CLIENT_FOR_SINGLE_ENDPOINT = 'graphiql-use-explorer-in-public-client-for-single-endpoint';
-    public const OPTION_USE_GRAPHIQL_EXPLORER_IN_PUBLIC_CLIENT_FOR_CUSTOM_ENDPOINTS = 'graphiql-use-explorer-in-public-client-for-custom-endpoints';
+    public const OPTION_USE_IN_ADMIN_CLIENT = 'use-in-admin-client';
+    public const OPTION_USE_IN_ADMIN_PERSISTED_QUERIES = 'use-in-admin-persisted-queries';
+    public const OPTION_USE_IN_PUBLIC_CLIENT_FOR_SINGLE_ENDPOINT = 'use-in-public-client-for-single-endpoint';
+    public const OPTION_USE_IN_PUBLIC_CLIENT_FOR_CUSTOM_ENDPOINTS = 'use-in-public-client-for-custom-endpoints';
 
     /**
      * @return string[]
@@ -147,10 +147,10 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
                 EndpointFunctionalityModuleResolver::OPTION_PATH => '/schema/',
             ],
             self::GRAPHIQL_EXPLORER => [
-                self::OPTION_USE_GRAPHIQL_EXPLORER_IN_ADMIN_CLIENT => true,
-                self::OPTION_USE_GRAPHIQL_EXPLORER_IN_ADMIN_PERSISTED_QUERIES => true,
-                self::OPTION_USE_GRAPHIQL_EXPLORER_IN_PUBLIC_CLIENT_FOR_SINGLE_ENDPOINT => true,
-                self::OPTION_USE_GRAPHIQL_EXPLORER_IN_PUBLIC_CLIENT_FOR_CUSTOM_ENDPOINTS => true,
+                self::OPTION_USE_IN_ADMIN_CLIENT => true,
+                self::OPTION_USE_IN_ADMIN_PERSISTED_QUERIES => true,
+                self::OPTION_USE_IN_PUBLIC_CLIENT_FOR_SINGLE_ENDPOINT => true,
+                self::OPTION_USE_IN_PUBLIC_CLIENT_FOR_CUSTOM_ENDPOINTS => true,
             ],
         ];
         return $defaultValues[$module][$option];
@@ -191,7 +191,7 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
                 Properties::TYPE => Properties::TYPE_STRING,
             ];
         } elseif ($module == self::GRAPHIQL_EXPLORER) {
-            $option = self::OPTION_USE_GRAPHIQL_EXPLORER_IN_ADMIN_CLIENT;
+            $option = self::OPTION_USE_IN_ADMIN_CLIENT;
             $moduleSettings[] = [
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
@@ -203,7 +203,7 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
                 Properties::TYPE => Properties::TYPE_BOOL,
             ];
             if ($moduleRegistry->isModuleEnabled(EndpointFunctionalityModuleResolver::PERSISTED_QUERIES)) {
-                $option = self::OPTION_USE_GRAPHIQL_EXPLORER_IN_ADMIN_PERSISTED_QUERIES;
+                $option = self::OPTION_USE_IN_ADMIN_PERSISTED_QUERIES;
                 $moduleSettings[] = [
                     Properties::INPUT => $option,
                     Properties::NAME => $this->getSettingOptionName(
@@ -216,7 +216,7 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
                 ];
             }
             if ($moduleRegistry->isModuleEnabled(self::GRAPHIQL_FOR_SINGLE_ENDPOINT)) {
-                $option = self::OPTION_USE_GRAPHIQL_EXPLORER_IN_PUBLIC_CLIENT_FOR_SINGLE_ENDPOINT;
+                $option = self::OPTION_USE_IN_PUBLIC_CLIENT_FOR_SINGLE_ENDPOINT;
                 $moduleSettings[] = [
                     Properties::INPUT => $option,
                     Properties::NAME => $this->getSettingOptionName(
@@ -229,7 +229,7 @@ class ClientFunctionalityModuleResolver extends AbstractFunctionalityModuleResol
                 ];
             }
             if ($moduleRegistry->isModuleEnabled(self::GRAPHIQL_FOR_CUSTOM_ENDPOINTS)) {
-                $option = self::OPTION_USE_GRAPHIQL_EXPLORER_IN_PUBLIC_CLIENT_FOR_CUSTOM_ENDPOINTS;
+                $option = self::OPTION_USE_IN_PUBLIC_CLIENT_FOR_CUSTOM_ENDPOINTS;
                 $moduleSettings[] = [
                     Properties::INPUT => $option,
                     Properties::NAME => $this->getSettingOptionName(
