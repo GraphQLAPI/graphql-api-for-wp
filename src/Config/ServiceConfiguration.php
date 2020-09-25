@@ -64,7 +64,7 @@ class ServiceConfiguration
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
         if ($moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::GRAPHIQL_EXPLORER) && $userSettingsManager->getSetting(
             ClientFunctionalityModuleResolver::GRAPHIQL_EXPLORER,
-            ClientFunctionalityModuleResolver::OPTION_USE_GRAPHIQL_EXPLORER_IN_ADMIN_PERSISTED_QUERIES
+            ClientFunctionalityModuleResolver::OPTION_USE_IN_ADMIN_PERSISTED_QUERIES
         )) {
             ContainerBuilderUtils::injectValuesIntoService(
                 'instance_manager',

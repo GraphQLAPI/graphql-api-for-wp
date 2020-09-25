@@ -237,7 +237,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
             $userSettingsManager = UserSettingsManagerFacade::getInstance();
             $useGraphiQLExplorer = $moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::GRAPHIQL_EXPLORER) && $userSettingsManager->getSetting(
                 ClientFunctionalityModuleResolver::GRAPHIQL_EXPLORER,
-                ClientFunctionalityModuleResolver::OPTION_USE_GRAPHIQL_EXPLORER_IN_PUBLIC_CLIENT_FOR_CUSTOM_ENDPOINTS
+                ClientFunctionalityModuleResolver::OPTION_USE_IN_PUBLIC_CLIENT_FOR_CUSTOM_ENDPOINTS
             );
             // Print the HTML directly from the client
             $graphiQLClientClass = $useGraphiQLExplorer ?

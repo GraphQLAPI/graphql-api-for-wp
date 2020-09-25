@@ -29,7 +29,7 @@ class GraphiQLMenuPage extends AbstractMenuPage
             $moduleRegistry->isModuleEnabled(ClientFunctionalityModuleResolver::GRAPHIQL_EXPLORER)
             && $userSettingsManager->getSetting(
                 ClientFunctionalityModuleResolver::GRAPHIQL_EXPLORER,
-                ClientFunctionalityModuleResolver::OPTION_USE_GRAPHIQL_EXPLORER_IN_ADMIN_CLIENT
+                ClientFunctionalityModuleResolver::OPTION_USE_IN_ADMIN_CLIENT
             );
     }
 

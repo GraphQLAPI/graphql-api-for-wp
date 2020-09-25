@@ -17,7 +17,7 @@ trait SingleEndpointGraphiQLClientTrait
         $userSettingsManager = UserSettingsManagerFacade::getInstance();
         return $userSettingsManager->getSetting(
             ClientFunctionalityModuleResolver::GRAPHIQL_EXPLORER,
-            ClientFunctionalityModuleResolver::OPTION_USE_GRAPHIQL_EXPLORER_IN_PUBLIC_CLIENT_FOR_SINGLE_ENDPOINT
+            ClientFunctionalityModuleResolver::OPTION_USE_IN_PUBLIC_CLIENT_FOR_SINGLE_ENDPOINT
         );
     }
 }
