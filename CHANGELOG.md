@@ -4,6 +4,15 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 0.6.3 - 2020-09-25
+
+### Fixed
+
+- No need to duplicate asset for GitHub Updater
+- Renamed verbose options for the GraphiQL Explorer settings (if any option had been disabled using `v0.6.2` or below, the form needs to be submitted again, to use the new option names)
+- Store plugin version to detect updates (plugin can be updated in many ways, eg: using Composer, so using hook "upgrader_process_complete" doesn't always work)
+- Added option to disable admin notice in settings, and link in the admin notice
+
 ## 0.6.2 - 2020-09-22
 
 ### Fixed
