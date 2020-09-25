@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI;
 
-use WP_Upgrader;
 use PoP\Engine\ComponentLoader;
 use GraphQLAPI\GraphQLAPI\PluginConfiguration;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractBlock;
@@ -49,9 +48,10 @@ class Plugin
     public const NAMESPACE = __NAMESPACE__;
 
     /**
-     * Transient to indicate if plugin was just updated
+     * Store the plugin version in the Options table, to track when
+     * the plugin is installed/updated
      */
-    public const TRANSIENT_PLUGIN_UPDATED = 'graphql-api-plugin-updated';
+    public const OPTION_PLUGIN_VERSION = 'graphql-api-plugin-version';
 
     /**
      * Plugin set-up, executed immediately when loading the plugin.
@@ -90,26 +90,26 @@ class Plugin
          *
          * @see https://developer.wordpress.org/reference/functions/register_activation_hook/#process-flow
          */
-        $isPluginJustActivatedOptionName = 'graphql-api-activated-plugin';
         \register_activation_hook(
             \GRAPHQL_API_PLUGIN_FILE,
-            function () use ($isPluginJustActivatedOptionName): void {
-                // Flag to indicate that the plugin has been activated
-                \add_option($isPluginJustActivatedOptionName, true);
+            function (): void {
+                // By removing the option (in case it already exists from a previously-installed version),
+                // the next request will know the plugin was just installed
+                \update_option(self::OPTION_PLUGIN_VERSION, false);
                 // This is the proper activation logic
                 $this->activate();
             }
         );
         \add_action(
             'admin_init',
-            function () use ($isPluginJustActivatedOptionName): void {
-                // If the flag is there, it's the first screen after activating the plugin
-                $isPluginJustActivated = \get_option($isPluginJustActivatedOptionName) == true;
+            function (): void {
+                // If there is no version stored, it's the first screen after activating the plugin
+                $isPluginJustActivated = \get_option(self::OPTION_PLUGIN_VERSION) === false;
                 if (!$isPluginJustActivated) {
                     return;
                 }
-                // Delete the flag
-                \delete_option($isPluginJustActivatedOptionName);
+                // Update to the current version
+                \update_option(self::OPTION_PLUGIN_VERSION, \GRAPHQL_API_VERSION);
                 // Required logic after plugin is activated
                 \flush_rewrite_rules();
             }
@@ -119,18 +119,21 @@ class Plugin
          */
         \add_action(
             'admin_init',
-            function () use ($isPluginJustActivatedOptionName): void {
-                // On updates only: Show a link to view the new version's release notes
+            function (): void {
+                // Do not execute when doing Ajax, since we can't show the one-time
+                // admin notice to the user then
                 if (\wp_doing_ajax()) {
                     return;
                 }
-                // Check if there is a transient indicating that the plugin was updated
-                $pluginUpdatedTransient = \get_transient(self::TRANSIENT_PLUGIN_UPDATED);
-                if (!$pluginUpdatedTransient) {
+                // Check if the plugin has been updated: if the stored version in the DB
+                // and the current plugin's version are different
+                $storedVersion = \get_option(self::OPTION_PLUGIN_VERSION, \GRAPHQL_API_VERSION);
+                if ($storedVersion == \GRAPHQL_API_VERSION) {
                     return;
                 }
-                delete_transient(self::TRANSIENT_PLUGIN_UPDATED);
-                // Only if not disabled by the user
+                // Update to the current version
+                \update_option(self::OPTION_PLUGIN_VERSION, \GRAPHQL_API_VERSION);
+                // Admin notice: Check if it is enabled
                 $userSettingsManager = UserSettingsManagerFacade::getInstance();
                 if (!$userSettingsManager->getSetting(
                     PluginManagementFunctionalityModuleResolver::GENERAL,
@@ -138,26 +141,15 @@ class Plugin
                 )) {
                     return;
                 }
-                // If updating either MAJOR or MINOR versions, show admin notice. No need for PATCH versions
+                // Show admin notice only when updating MAJOR or MINOR versions. No need for PATCH versions
                 $currentMinorReleaseVersion = $this->getMinorReleaseVersion(\GRAPHQL_API_VERSION);
-                $previousMinorReleaseVersion = $this->getMinorReleaseVersion($pluginUpdatedTransient);
+                $previousMinorReleaseVersion = $this->getMinorReleaseVersion($storedVersion);
                 if ($currentMinorReleaseVersion == $previousMinorReleaseVersion) {
                     return;
                 }
                 // All checks passed, show the release notes
                 $this->showReleaseNotesInAdminNotice();
             }
-        );
-        /**
-         * On updates only: Show a link to view the new version's release notes
-         *
-         * @see https://codex.wordpress.org/Plugin_API/Action_Reference/upgrader_process_complete
-         */
-        add_action(
-            'upgrader_process_complete',
-            [$this, 'checkIsPluginUpgraded'],
-            10,
-            2
         );
 
         /**
@@ -168,38 +160,6 @@ class Plugin
          */
         \add_action('plugins_loaded', [$this, 'initialize'], 5);
         \add_action('plugins_loaded', [$this, 'boot'], 15);
-    }
-
-    /**
-     * This function runs when WordPress completes its upgrade process
-     * If this plugin is updated, it sets a transient flag
-     *
-     * @param array<string, mixed> $options
-     * @see https://codex.wordpress.org/Plugin_API/Action_Reference/upgrader_process_complete
-     */
-    public function checkIsPluginUpgraded(WP_Upgrader $upgrader_object, array $options): void
-    {
-        // If an update has taken place and the updated type is plugins and the plugins element exists,
-        // or an install of a new version of the plugin
-        $destinationName = null;
-        if (is_array($upgrader_object->result)) {
-            $destinationName = $upgrader_object->result['destination_name'];
-        }
-        if ($options['type'] == 'plugin' && (
-            (
-                $options['action'] == 'update'
-                && isset($options['plugins'])
-                && in_array(\GRAPHQL_API_BASE_NAME, $options['plugins'])
-            ) || (
-                $options['action'] == 'install'
-                && $destinationName == \GRAPHQL_API_PLUGIN_NAME
-            )
-        )) {
-            // Set a transient to record that the plugin has just been updated
-            // The value is the plugin's current version when the upgrade happens,
-            // i.e. the version to be replaced
-            \set_transient(self::TRANSIENT_PLUGIN_UPDATED, \GRAPHQL_API_VERSION);
-        }
     }
 
     /**
