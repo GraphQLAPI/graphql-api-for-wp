@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI;
 
+use WP_Upgrader;
 use PoP\Engine\ComponentLoader;
 use GraphQLAPI\GraphQLAPI\PluginConfiguration;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractBlock;
@@ -15,6 +16,7 @@ use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AboutMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLEndpointPostType;
 use GraphQLAPI\GraphQLAPI\EditorScripts\AbstractEditorScript;
@@ -34,10 +36,10 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolv
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\UserInterfaceFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserRolesBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserStateBlock;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\PluginManagementFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlDisableAccessBlock;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Blocks\AccessControlRuleBlocks\AccessControlUserCapabilitiesBlock;
-use WP_Upgrader;
 
 class Plugin
 {
@@ -102,31 +104,48 @@ class Plugin
             'admin_init',
             function () use ($isPluginJustActivatedOptionName): void {
                 // If the flag is there, it's the first screen after activating the plugin
-                if (\is_admin()) {
-                    $isPluginJustActivated = \get_option($isPluginJustActivatedOptionName) == true;
-                    if ($isPluginJustActivated) {
-                        // Delete the flag
-                        \delete_option($isPluginJustActivatedOptionName);
-                        // Required logic after plugin is activated
-                        \flush_rewrite_rules();
-                    }
-
-                    // On updates only: Show a link to view the new version's release notes
-                    if (!\wp_doing_ajax()) {
-                        // Check if there is a transient indicating that the plugin was updated
-                        $pluginUpdatedTransient = \get_transient(self::TRANSIENT_PLUGIN_UPDATED);
-                        if ($pluginUpdatedTransient) {
-                            delete_transient(self::TRANSIENT_PLUGIN_UPDATED);
-                            // If updating either MAJOR or MINOR versions, show admin notice
-                            // No need for PATCH versions
-                            $currentMinorReleaseVersion = $this->getMinorReleaseVersion(\GRAPHQL_API_VERSION);
-                            $previousMinorReleaseVersion = $this->getMinorReleaseVersion($pluginUpdatedTransient);
-                            if ($currentMinorReleaseVersion != $previousMinorReleaseVersion) {
-                                $this->showReleaseNotesInAdminNotice();
-                            }
-                        }
-                    }
+                $isPluginJustActivated = \get_option($isPluginJustActivatedOptionName) == true;
+                if (!$isPluginJustActivated) {
+                    return;
                 }
+                // Delete the flag
+                \delete_option($isPluginJustActivatedOptionName);
+                // Required logic after plugin is activated
+                \flush_rewrite_rules();
+            }
+        );
+        /**
+         * Show an admin notice with a link to the latest release notes
+         */
+        \add_action(
+            'admin_init',
+            function () use ($isPluginJustActivatedOptionName): void {
+                // On updates only: Show a link to view the new version's release notes
+                if (\wp_doing_ajax()) {
+                    return;
+                }
+                // Check if there is a transient indicating that the plugin was updated
+                $pluginUpdatedTransient = \get_transient(self::TRANSIENT_PLUGIN_UPDATED);
+                if (!$pluginUpdatedTransient) {
+                    return;
+                }
+                delete_transient(self::TRANSIENT_PLUGIN_UPDATED);
+                // Only if not disabled by the user
+                $userSettingsManager = UserSettingsManagerFacade::getInstance();
+                if (!$userSettingsManager->getSetting(
+                    PluginManagementFunctionalityModuleResolver::GENERAL,
+                    PluginManagementFunctionalityModuleResolver::OPTION_ADD_RELEASE_NOTES_ADMIN_NOTICE
+                )) {
+                    return;
+                }
+                // If updating either MAJOR or MINOR versions, show admin notice. No need for PATCH versions
+                $currentMinorReleaseVersion = $this->getMinorReleaseVersion(\GRAPHQL_API_VERSION);
+                $previousMinorReleaseVersion = $this->getMinorReleaseVersion($pluginUpdatedTransient);
+                if ($currentMinorReleaseVersion == $previousMinorReleaseVersion) {
+                    return;
+                }
+                // All checks passed, show the release notes
+                $this->showReleaseNotesInAdminNotice();
             }
         );
         /**
@@ -211,7 +230,7 @@ class Plugin
             // Calculate the minor release version.
             // Eg: if current version is 0.6.3, minor version is 0.6
             $minorReleaseVersion = $this->getMinorReleaseVersion(\GRAPHQL_API_VERSION);
-            $url = \admin_url(sprintf(
+            $releaseNotesURL = \admin_url(sprintf(
                 'admin.php?page=%s&%s=%s&%s=%s&TB_iframe=true',
                 $aboutMenuPage->getScreenID(),
                 RequestParams::TAB,
@@ -222,15 +241,28 @@ class Plugin
                     $minorReleaseVersion
                 )
             ));
+            /**
+             * @var SettingsMenuPage
+             */
+            $settingsMenuPage = $instanceManager->getInstance(SettingsMenuPage::class);
+            $moduleRegistry = ModuleRegistryFacade::getInstance();
+            $generalSettingsURL = \admin_url(sprintf(
+                'admin.php?page=%s&tab=%s',
+                $settingsMenuPage->getScreenID(),
+                $moduleRegistry
+                    ->getModuleResolver(PluginManagementFunctionalityModuleResolver::GENERAL)
+                    ->getID(PluginManagementFunctionalityModuleResolver::GENERAL)
+            ));
             _e(sprintf(
                 '<div class="notice notice-success is-dismissible">' .
                 '<p>%s</p>' .
                 '</div>',
                 sprintf(
-                    __('Plugin <strong>GraphQL API for WordPress</strong> has been updated to version <code>%s</code>. <a href="%s" class="%s">Check out what\'s new</a>.', 'graphql-api'),
+                    __('Plugin <strong>GraphQL API for WordPress</strong> has been updated to version <code>%s</code>. <strong><a href="%s" class="%s">Check out what\'s new</a></strong> | <a href="%s">Disable this admin notice in the Settings</a>', 'graphql-api'),
                     \GRAPHQL_API_VERSION,
-                    $url,
-                    'thickbox open-plugin-details-modal'
+                    $releaseNotesURL,
+                    'thickbox open-plugin-details-modal',
+                    $generalSettingsURL
                 )
             ));
         });
