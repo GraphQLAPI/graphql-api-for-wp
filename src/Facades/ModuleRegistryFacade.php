@@ -36,6 +36,7 @@ class ModuleRegistryFacade
             // Instantiate
             self::$instance = new ModuleRegistry();
             // Add the ModuleResolvers
+            self::$instance->addModuleResolver(new PluginManagementFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new EndpointFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new SchemaConfigurationFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new AccessControlFunctionalityModuleResolver());
@@ -44,7 +45,6 @@ class ModuleRegistryFacade
             self::$instance->addModuleResolver(new PerformanceFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new CacheFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new OperationalFunctionalityModuleResolver());
-            self::$instance->addModuleResolver(new PluginManagementFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new ClientFunctionalityModuleResolver());
             self::$instance->addModuleResolver(new SchemaTypeModuleResolver());
         }
