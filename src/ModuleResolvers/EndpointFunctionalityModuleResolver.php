@@ -14,7 +14,6 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
 {
     use ModuleResolverTrait;
 
-    // public const MAIN = Plugin::NAMESPACE . '\main';
     public const SINGLE_ENDPOINT = Plugin::NAMESPACE . '\single-endpoint';
     public const PERSISTED_QUERIES = Plugin::NAMESPACE . '\persisted-queries';
     public const CUSTOM_ENDPOINTS = Plugin::NAMESPACE . '\custom-endpoints';
@@ -31,7 +30,6 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
     public static function getModulesToResolve(): array
     {
         return [
-            // self::MAIN,
             self::SINGLE_ENDPOINT,
             self::PERSISTED_QUERIES,
             self::CUSTOM_ENDPOINTS,
@@ -68,28 +66,9 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
         return parent::getDependedModuleLists($module);
     }
 
-    // public function canBeDisabled(string $module): bool
-    // {
-    //     switch ($module) {
-    //         case self::MAIN:
-    //             return false;
-    //     }
-    //     return parent::canBeDisabled($module);
-    // }
-
-    // public function isHidden(string $module): bool
-    // {
-    //     switch ($module) {
-    //         case self::MAIN:
-    //             return true;
-    //     }
-    //     return parent::isHidden($module);
-    // }
-
     public function getName(string $module): string
     {
         $names = [
-            // self::MAIN => \__('Main', 'graphql-api'),
             self::SINGLE_ENDPOINT => \__('Single Endpoint', 'graphql-api'),
             self::PERSISTED_QUERIES => \__('Persisted Queries', 'graphql-api'),
             self::CUSTOM_ENDPOINTS => \__('Custom Endpoints', 'graphql-api'),
@@ -101,8 +80,6 @@ class EndpointFunctionalityModuleResolver extends AbstractFunctionalityModuleRes
     public function getDescription(string $module): string
     {
         switch ($module) {
-            // case self::MAIN:
-            //     return \__('Artificial module for defining the main settings', 'graphql-api');
             case self::SINGLE_ENDPOINT:
                 return \sprintf(
                     \__('Expose a single GraphQL endpoint under <code>%s</code>, with unrestricted access', 'graphql-api'),
