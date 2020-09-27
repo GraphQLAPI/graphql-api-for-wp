@@ -4,6 +4,12 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 0.6.4 - DATE
+
+### Fixed
+
+- Renamed field `echo` as `echoStr` to avoid conflict with global field `echo`
+
 ## 0.6.3 - 2020-09-25
 
 ### Fixed
