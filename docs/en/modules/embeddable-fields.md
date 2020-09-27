@@ -4,7 +4,7 @@ Resolve a field within an argument for another field from the same type, using s
 
 It can also be used within directive arguments.
 
-To make it convenient to use, field `echo(value: String): String` is also added on every type of the schema.
+To make it convenient to use, field `echoStr(value: String): String` is also added on every type of the schema.
 
 ## When to use
 
@@ -21,7 +21,7 @@ Compose a string containing the values from several fields:
 ```graphql
 query {
   posts {
-    description: echo(value: "'{{ title }}' was posted on {{ date }}")
+    description: echoStr(value: "'{{ title }}' was posted on {{ date }}")
   }
 }
 ```
@@ -31,7 +31,7 @@ Change the title of the post, depending on the post having comments or not:
 ```graphql
 query {
   posts {
-    title: echo(value: "({{ commentCount }}) {{ title }} - posted on {{ date }}") @include(if: "{{ hasComments }}")
+    title: echoStr(value: "({{ commentCount }}) {{ title }} - posted on {{ date }}") @include(if: "{{ hasComments }}")
     title @skip(if: "{{ hasComments }}")
   }
 }
