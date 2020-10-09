@@ -30,6 +30,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         // @todo Uncomment when PHP 8.0 released
         // SetList::DOWNGRADE_PHP80,
         SetList::DOWNGRADE_PHP74,
+        SetList::DOWNGRADE_PHP73,
         SetList::DOWNGRADE_PHP72,
     ]);
 
