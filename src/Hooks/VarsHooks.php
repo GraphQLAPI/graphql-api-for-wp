@@ -37,7 +37,7 @@ class VarsHooks extends AbstractHookSet
      */
     public function maybeRemoveVars(array $vars_in_array): void
     {
-        $vars = &$vars_in_array[0];
+        [&$vars] = $vars_in_array;
         if ($vars['scheme'] == APISchemes::API) {
             $moduleRegistry = ModuleRegistryFacade::getInstance();
             // By setting explicit allowed datastructures, we avoid the empty one

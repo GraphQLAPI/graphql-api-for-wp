@@ -258,7 +258,7 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
      */
     public function addGraphQLVars(array $vars_in_array): void
     {
-        $vars = &$vars_in_array[0];
+        [&$vars] = $vars_in_array;
         if (\is_singular($this->getPostType()) && $this->isEnabled($vars['routing-state']['queried-object-id'])) {
             $this->upstreamAddGraphQLVars($vars_in_array);
         }

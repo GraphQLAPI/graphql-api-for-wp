@@ -294,7 +294,7 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
     {
         if (\is_singular($this->getPostType())) {
             // Check if it is enabled, by configuration
-            $vars = &$vars_in_array[0];
+            [&$vars] = $vars_in_array;
             if (!$this->isEnabled($vars['routing-state']['queried-object-id'])) {
                 return;
             }

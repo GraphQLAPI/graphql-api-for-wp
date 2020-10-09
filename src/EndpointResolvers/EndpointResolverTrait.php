@@ -91,7 +91,7 @@ trait EndpointResolverTrait
 
         // Indicate it is an API, of type GraphQL. Just by doing is, class
         // \GraphQLByPoP\GraphQLRequest\Hooks\VarsHooks will process the GraphQL request
-        $vars = &$vars_in_array[0];
+        [&$vars] = $vars_in_array;
         $vars['scheme'] = APISchemes::API;
         $vars['datastructure'] = GraphQLDataStructureFormatter::getName();
 
