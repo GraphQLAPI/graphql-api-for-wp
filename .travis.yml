@@ -8,7 +8,7 @@
 # 3. PHPStan on PHP 7.4
 # 4. Run Rector to generate the PHP 7.1-compatible code for production
 #    then PHPStan on PHP 7.1
-######################################################################## 
+########################################################################
 
 language: php
 os:
@@ -36,12 +36,12 @@ jobs:
       script:
         - vendor/bin/phpstan analyse -c phpstan.neon.dist src/
       after_script: skip
-    - name: "Downgraded code"
+    - name: "Test downgraded code"
       script:
         - vendor/bin/rector process
         - phpenv local 7.1
         - php --version
-        - vendor/bin/phpstan analyse -c phpstan.neon.dist src/
+        - vendor/bin/phpstan analyse src/ --level 0
       after_script: skip
 
 install:
