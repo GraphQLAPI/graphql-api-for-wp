@@ -9,6 +9,9 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ### Fixed
 
 - Renamed field `echo` as `echoStr` to avoid conflict with global field `echo`
+
+### Enhancement (for development)
+
 - Use newly downgradable PHP 7.4 and 7.3 features (list reference assignment, array spread, `_` in numeric literal)
 
 ## 0.6.3 - 2020-09-25
