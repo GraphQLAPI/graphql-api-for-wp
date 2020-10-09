@@ -4,11 +4,12 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## 0.6.4 - DATE
+## 0.6.4 - 2020-10-09
 
 ### Fixed
 
 - Renamed field `echo` as `echoStr` to avoid conflict with global field `echo`
+- Use newly downgradable PHP 7.4 and 7.3 features (list reference assignment, array spread, `_` in numeric literal)
 
 ## 0.6.3 - 2020-09-25
 
