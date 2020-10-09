@@ -243,12 +243,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/api.git",
-                "reference": "30fe4d4d7dd456f7be2318ecb11b19d7cbd12580"
+                "reference": "5819e86c6de9638026d25d09a98bc791b8505b02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/api/zipball/30fe4d4d7dd456f7be2318ecb11b19d7cbd12580",
-                "reference": "30fe4d4d7dd456f7be2318ecb11b19d7cbd12580",
+                "url": "https://api.github.com/repos/getpop/api/zipball/5819e86c6de9638026d25d09a98bc791b8505b02",
+                "reference": "5819e86c6de9638026d25d09a98bc791b8505b02",
                 "shasum": ""
             },
             "require": {
@@ -294,7 +294,7 @@
                 "api",
                 "pop"
             ],
-            "time": "2020-10-09T10:57:16+00:00"
+            "time": "2020-10-09T12:31:06+00:00"
         },
         {
             "name": "getpop/api-clients",
@@ -741,12 +741,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/engine.git",
-                "reference": "e61f54bd4b5095d49b9a749c10fb901d59e1b48e"
+                "reference": "40ec94a5c5a9c1d5439c238cf8914531fd96aa7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/engine/zipball/e61f54bd4b5095d49b9a749c10fb901d59e1b48e",
-                "reference": "e61f54bd4b5095d49b9a749c10fb901d59e1b48e",
+                "url": "https://api.github.com/repos/getpop/engine/zipball/40ec94a5c5a9c1d5439c238cf8914531fd96aa7c",
+                "reference": "40ec94a5c5a9c1d5439c238cf8914531fd96aa7c",
                 "shasum": ""
             },
             "require": {
@@ -796,7 +796,7 @@
                 "engine",
                 "pop"
             ],
-            "time": "2020-10-09T10:58:35+00:00"
+            "time": "2020-10-09T12:31:11+00:00"
         },
         {
             "name": "getpop/engine-wp",
@@ -2030,12 +2030,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-request.git",
-                "reference": "0eb083cf787193e195011830c6ffce20d3c4ac8e"
+                "reference": "a380af457b0829b64a07decaab7b10239c17ee55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-request/zipball/0eb083cf787193e195011830c6ffce20d3c4ac8e",
-                "reference": "0eb083cf787193e195011830c6ffce20d3c4ac8e",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-request/zipball/a380af457b0829b64a07decaab7b10239c17ee55",
+                "reference": "a380af457b0829b64a07decaab7b10239c17ee55",
                 "shasum": ""
             },
             "require": {
@@ -2076,7 +2076,7 @@
                 "graphql-request",
                 "pop"
             ],
-            "time": "2020-10-09T10:56:31+00:00"
+            "time": "2020-10-09T12:31:02+00:00"
         },
         {
             "name": "graphql-by-pop/graphql-server",
@@ -2084,12 +2084,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "e1cfcafce48ac7c26d4b4e44b94577c9505e675b"
+                "reference": "d4ee79b91ebaf6afd1ba50242a22cf08a7496ce7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/e1cfcafce48ac7c26d4b4e44b94577c9505e675b",
-                "reference": "e1cfcafce48ac7c26d4b4e44b94577c9505e675b",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/d4ee79b91ebaf6afd1ba50242a22cf08a7496ce7",
+                "reference": "d4ee79b91ebaf6afd1ba50242a22cf08a7496ce7",
                 "shasum": ""
             },
             "require": {
@@ -2141,7 +2141,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-10-09T10:56:37+00:00"
+            "time": "2020-10-09T12:31:04+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -6121,12 +6121,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/user-state.git",
-                "reference": "a42d158d9d6b9da3dce522acba716e9bde5712d9"
+                "reference": "f96c90a4753f76fcb2f34a4f8dda8e2c53c38196"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/user-state/zipball/a42d158d9d6b9da3dce522acba716e9bde5712d9",
-                "reference": "a42d158d9d6b9da3dce522acba716e9bde5712d9",
+                "url": "https://api.github.com/repos/PoPSchema/user-state/zipball/f96c90a4753f76fcb2f34a4f8dda8e2c53c38196",
+                "reference": "f96c90a4753f76fcb2f34a4f8dda8e2c53c38196",
                 "shasum": ""
             },
             "require": {
@@ -6167,7 +6167,7 @@
                 "pop",
                 "user-state"
             ],
-            "time": "2020-10-09T11:03:13+00:00"
+            "time": "2020-10-09T12:34:31+00:00"
         },
         {
             "name": "pop-schema/user-state-access-control",
