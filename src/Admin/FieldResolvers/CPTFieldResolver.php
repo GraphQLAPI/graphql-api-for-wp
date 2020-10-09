@@ -99,10 +99,10 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
             case 'cacheControlLists':
             case 'fieldDeprecationLists':
             case 'schemaConfigurations':
-                $schemaFieldArgs = array_merge(
-                    $schemaFieldArgs,
-                    $this->getFieldArgumentsSchemaDefinitions($typeResolver, $fieldName)
-                );
+                $schemaFieldArgs = [
+                    ...$schemaFieldArgs,
+                    ...$this->getFieldArgumentsSchemaDefinitions($typeResolver, $fieldName)
+                ];
                 // Remove the "customPostTypes" field argument
                 $schemaFieldArgs = array_filter(
                     $schemaFieldArgs,

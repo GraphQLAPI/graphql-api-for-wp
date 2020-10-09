@@ -145,13 +145,11 @@ class GraphiQLMenuPage extends AbstractMenuPage
             \wp_localize_script(
                 'graphql-api-graphiql-client',
                 'graphQLByPoPGraphiQLSettings',
-                array_merge(
-                    [
-                        'defaultQuery' => $this->getDefaultQuery(),
-                        'endpoint' => EndpointHelpers::getAdminGraphQLEndpoint(),
-                    ],
-                    $scriptSettings
-                )
+                [
+                    'defaultQuery' => $this->getDefaultQuery(),
+                    'endpoint' => EndpointHelpers::getAdminGraphQLEndpoint(),
+                    ...$scriptSettings
+                ]
             );
         } else {
             // Print the HTML from the Client

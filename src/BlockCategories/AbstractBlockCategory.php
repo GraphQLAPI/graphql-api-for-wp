@@ -55,15 +55,13 @@ abstract class AbstractBlockCategory
          * If specified CPTs, register the category only for them
          */
         if (empty($this->getPostTypes()) || in_array($post->post_type, $this->getPostTypes())) {
-            return array_merge(
-                $categories,
+            return [
+                ...$categories,
                 [
-                    [
-                        'slug' => $this->getBlockCategorySlug(),
-                        'title' => $this->getBlockCategoryTitle(),
-                    ],
-                ]
-            );
+                    'slug' => $this->getBlockCategorySlug(),
+                    'title' => $this->getBlockCategoryTitle(),
+                ],
+            ];
         }
 
         return $categories;
