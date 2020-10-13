@@ -6,16 +6,17 @@ The GraphQL API for WordPress is open source software: [github.com/GraphQLAPI/gr
 
 Development on the plugin is funded via [Leonardo Losoviz](https://leoloso.com)' GitHub sponsors.
 
-<a class="button button-secondary button-hero" href="https://github.com/sponsors/leoloso/">Become a sponsor to Leonardo Losoviz ❤️</a>
+<a class="button button-primary button-hero" href="https://github.com/sponsors/leoloso/">👉🏻 Become a sponsor to Leonardo Losoviz ❤️</a>
 
 These are the sponsorship tiers and their benefits.
 
 <table class="wp-list-table widefat striped">
 <thead>
 <tr>
-<th width="33%"><strong>New features @ u$d 14/m</strong></th>
-<th width="33%"><strong>Support @ u$d 70/m</strong></th>
-<th width="34%"><strong>Corporate sponsors @ u$d 700/m</strong></th>
+<th width="25%"><strong>New features @ u$d 14/m</strong></th>
+<th width="25%"><strong>Support @ u$d 70/m</strong></th>
+<th width="25%"><strong>Platinum sponsor @ u$d 700/m</strong></th>
+<th width="25%"><strong>Integration with your project @ u$d 1400/m</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -46,16 +47,23 @@ Previous tier + Get access to personal support:
 </td><td>
 
 <p>
-Previous tier + Have your company logo displayed in the Sponsors section on the project's <code>README</code>, and select a <a href="https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2">sponsorship-based feature</a> to be implemented and integrated into the plugin immediately
+Previous tier + Have your company logo displayed in the <a href="https://github.com/GraphQLAPI/graphql-api-for-wp#sponsors">project's Sponsors section</a>, and select a <a href="https://github.com/GraphQLAPI/graphql-api-for-wp/projects/2">sponsorship-based feature</a> to be implemented and integrated into the plugin immediately
+</p>
+
+</td><td>
+
+<p>
+Previous tier + The selected feature can concern an integration with your own open source project, and include me working on your repo, if needed.
 </p>
 
 </td>
 </tr>
 <tr>
 
-<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false">👉🏽 Become a sponsor at u$d 14/m</a></td>
-<td><a class="button button-primary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41769&preview=false">👉🏻 Become a sponsor at u$d 70/m</a></td>
-<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false">👉🏽 Become a sponsor at u$d 700/m</a></td>
+<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41767&preview=false">👉🏽 Sponsor at u$d 14/m</a></td>
+<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41769&preview=false">👉🏽 Sponsor at u$d 70/m</a></td>
+<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=41770&preview=false">👉🏽 Sponsor at u$d 700/m</a></td>
+<td><a class="button button-secondary" href="https://github.com/sponsors/leoloso/sponsorships?sponsor=leoloso&tier_id=44538&preview=false">👉🏽 Sponsor at u$d 1400/m</a></td>
 
 </tr>
 </tbody>
