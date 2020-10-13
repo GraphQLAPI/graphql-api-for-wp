@@ -349,7 +349,7 @@ Ongoing development for this project is funded via [Leonardo Losoviz](https://le
 
 ## Sponsors
 
-<a href="https://getrector.org/"><img src="assets/img/rector-logo.svg" width="75" alt="Rector" title="Rector"></a>
+<a href="https://getrector.org/"><img src="assets/img/rector-logo.svg" width="150" alt="Rector" title="Rector"></a>
 
 ## Standards
 
