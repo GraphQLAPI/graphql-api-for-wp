@@ -1,5 +1,5 @@
 .phpunit.result.cache
-composer.local.json
+composer*.local.json
 vendor/
 bin/
 # Root folder build/ is ignored, but not blocks/**/build/
