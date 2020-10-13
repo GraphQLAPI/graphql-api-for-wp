@@ -347,6 +347,10 @@ Ongoing development for this project is funded via [Leonardo Losoviz](https://le
 
 ![Leo and wife](docs/images/jun-e-leo.jpg)<br/>_Leo and wife_ -->
 
+## Sponsors
+
+<a href="https://getrector.org/"><img src="assets/img/rector-logo.svg" width="75" alt="Rector" title="Rector"></a>
+
 ## Standards
 
 [PSR-1](https://www.php-fig.org/psr/psr-1), [PSR-4](https://www.php-fig.org/psr/psr-4) and [PSR-12](https://www.php-fig.org/psr/psr-12).
