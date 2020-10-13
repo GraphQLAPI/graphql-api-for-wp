@@ -1,8 +1,6 @@
 includes:
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
-    # Errors in production (downgraded via Rector) may not show up in development. So avoid throwing errors
-    reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         -
             message: '#^Access to an undefined property WP_Post_Type::\$template_lock\.$#'
@@ -10,10 +8,6 @@ parameters:
         -
             message: '#^Unreachable statement - code above always terminates\.$#'
             path: src/Blocks/GraphiQLBlock.php
-        # This error happens because of bug in PHPStan: https://github.com/phpstan/phpstan/issues/3132
-        -
-            message: '#^Parameter \#1 \$module of method GraphQLAPI\\GraphQLAPI\\Registries\\ModuleRegistryInterface::isModuleEnabled\(\) expects string, array\<int, class-string\> given\.$#'
-            path: src/PluginConfiguration.php
         # This error seems to be some bug from PHPStan, since param #1 is a string when run in context of WP
         -
             message: '#^Parameter \#1 \$str of function trim expects string, null given\.$#'
