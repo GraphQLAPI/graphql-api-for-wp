@@ -4,6 +4,12 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 0.6.5 - DATE
+
+### Added
+
+- New sponsorship tier in the About page
+
 ## 0.6.4 - 2020-10-09
 
 ### Fixed
