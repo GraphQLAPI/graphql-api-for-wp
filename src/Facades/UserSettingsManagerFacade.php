@@ -7,8 +7,6 @@ namespace GraphQLAPI\GraphQLAPI\Facades;
 use GraphQLAPI\GraphQLAPI\Settings\UserSettingsManager;
 use GraphQLAPI\GraphQLAPI\Settings\UserSettingsManagerInterface;
 
-// use PoP\Root\Container\ContainerBuilderFactory;
-
 /**
  * Obtain an instance of the UserSettingsManager.
  * Manage the instance internally instead of using the ContainerBuilder,
@@ -26,9 +24,4 @@ class UserSettingsManagerFacade
         }
         return self::$instance;
     }
-
-    // public static function getInstance(): UserSettingsManagerInterface
-    // {
-    //     return ContainerBuilderFactory::getInstance()->get('user_settings_manager');
-    // }
 }

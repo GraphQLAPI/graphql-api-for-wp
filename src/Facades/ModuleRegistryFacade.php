@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Facades;
 
-// use PoP\Root\Container\ContainerBuilderFactory;
-
 use GraphQLAPI\GraphQLAPI\Registries\ModuleRegistry;
 use GraphQLAPI\GraphQLAPI\Registries\ModuleRegistryInterface;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaTypeModuleResolver;
@@ -50,9 +48,4 @@ class ModuleRegistryFacade
         }
         return self::$instance;
     }
-
-    // public static function getInstance(): ModuleRegistryInterface
-    // {
-    //     return ContainerBuilderFactory::getInstance()->get('module_registry');
-    // }
 }
