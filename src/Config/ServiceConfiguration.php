@@ -10,7 +10,9 @@ use PoP\Root\Component\PHPServiceConfigurationTrait;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
+use PoP\ComponentModel\Instances\InstanceManagerInterface;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
+use PoP\AccessControl\Services\AccessControlManagerInterface;
 use GraphQLAPI\GraphQLAPI\Blocks\Overrides\GraphiQLWithExplorerBlock;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use PoPSchema\UserRolesAccessControl\Services\AccessControlGroups as UserRolesAccessControlGroups;
@@ -41,7 +43,7 @@ class ServiceConfiguration
         $schemaEditorAccessCapability = UserAuthorization::getSchemaEditorAccessCapability();
         $capabilities = [$schemaEditorAccessCapability];
         ContainerBuilderUtils::injectValuesIntoService(
-            'access_control_manager',
+            AccessControlManagerInterface::class,
             'addEntriesForFields',
             UserRolesAccessControlGroups::CAPABILITIES,
             [
@@ -67,7 +69,7 @@ class ServiceConfiguration
             ClientFunctionalityModuleResolver::OPTION_USE_IN_ADMIN_PERSISTED_QUERIES
         )) {
             ContainerBuilderUtils::injectValuesIntoService(
-                'instance_manager',
+                InstanceManagerInterface::class,
                 'overrideClass',
                 GraphiQLBlock::class,
                 GraphiQLWithExplorerBlock::class
@@ -81,13 +83,13 @@ class ServiceConfiguration
     protected static function overrideServiceClasses(): void
     {
         ContainerBuilderUtils::injectValuesIntoService(
-            'instance_manager',
+            InstanceManagerInterface::class,
             'overrideClass',
             \GraphQLByPoP\GraphQLClientsForWP\Clients\GraphiQLClient::class,
             \GraphQLAPI\GraphQLAPI\Clients\Overrides\GraphiQLClient::class
         );
         ContainerBuilderUtils::injectValuesIntoService(
-            'instance_manager',
+            InstanceManagerInterface::class,
             'overrideClass',
             \GraphQLByPoP\GraphQLClientsForWP\Clients\GraphiQLWithExplorerClient::class,
             \GraphQLAPI\GraphQLAPI\Clients\Overrides\GraphiQLWithExplorerClient::class
