@@ -10,6 +10,10 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 - New sponsorship tier in the About page
 
+### Fixed
+
+- Bug: array unpacking can't be used with string keys
+
 ## 0.6.4 - 2020-10-09
 
 ### Fixed
