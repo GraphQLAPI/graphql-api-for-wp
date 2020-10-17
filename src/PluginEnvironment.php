@@ -27,8 +27,8 @@ class PluginEnvironment
      */
     protected static function getValueFromEnvironmentOrWPConfig(string $envVariable)
     {
-        if (isset($_ENV[$envVariable])) {
-            return $_ENV[$envVariable];
+        if (getenv($envVariable) !== false) {
+            return getenv($envVariable);
         }
 
         if (PluginConfigurationHelpers::isWPConfigConstantDefined($envVariable)) {

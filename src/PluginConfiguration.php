@@ -409,7 +409,7 @@ class PluginConfiguration
             // If the environment value has been defined, or the constant in wp-config.php,
             // then do nothing, since they have priority
             $envVariable = $mapping['envVariable'];
-            if (isset($_ENV[$envVariable]) || PluginConfigurationHelpers::isWPConfigConstantDefined($envVariable)) {
+            if (getenv($envVariable) !== false || PluginConfigurationHelpers::isWPConfigConstantDefined($envVariable)) {
                 continue;
             }
             $hookName = ComponentConfigurationHelpers::getHookName(
@@ -479,7 +479,7 @@ class PluginConfiguration
             $envVariable = $mapping['envVariable'];
 
             // If the environment value has been defined, then do nothing, since it has priority
-            if (isset($_ENV[$envVariable])) {
+            if (getenv($envVariable) !== false) {
                 continue;
             }
             $hookName = ComponentConfigurationHelpers::getHookName(
