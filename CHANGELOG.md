@@ -12,7 +12,8 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Fixed
 
-- Bug: array unpacking can't be used with string keys
+- Array unpacking can't be used with string keys
+- Filtering of generic custom posts when passing non whitelisted CPT
 
 ## 0.6.4 - 2020-10-09
 
