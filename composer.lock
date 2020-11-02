@@ -4126,12 +4126,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/migrate-customposts.git",
-                "reference": "b5fd6220e950ae6bf6e6604311f3791398c8e400"
+                "reference": "8df804ae0b43e0645ac7035898cfcc00d6239611"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/migrate-customposts/zipball/b5fd6220e950ae6bf6e6604311f3791398c8e400",
-                "reference": "b5fd6220e950ae6bf6e6604311f3791398c8e400",
+                "url": "https://api.github.com/repos/PoPSchema/migrate-customposts/zipball/8df804ae0b43e0645ac7035898cfcc00d6239611",
+                "reference": "8df804ae0b43e0645ac7035898cfcc00d6239611",
                 "shasum": ""
             },
             "require": {
@@ -4165,7 +4165,7 @@
                 "issues": "https://github.com/PoPSchema/migrate-customposts/issues",
                 "source": "https://github.com/PoPSchema/migrate-customposts/tree/master"
             },
-            "time": "2020-09-02T03:57:03+00:00"
+            "time": "2020-11-02T09:05:12+00:00"
         },
         {
             "name": "pop-schema/migrate-customposts-wp",
