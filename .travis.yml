@@ -39,7 +39,10 @@ jobs:
     - name: "Test downgraded code"
       script:
         - vendor/bin/rector process
+        # Avoid Composer v2 platform checks (composer.json requires PHP 7.4, but we run 7.1 below)
         - composer config platform-check false
+        # Regenerating the autoload files will remove vendor/composer/platform_check.php, otherwise executing phpstan on 7.1 fails
+        - composer dumpautoload
         - phpenv local 7.1
         - php --version
         - vendor/bin/phpstan analyse src/ --level 0
