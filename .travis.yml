@@ -45,7 +45,7 @@ jobs:
       after_script: skip
 
 install:
-  - travis_retry composer update --no-interaction --prefer-dist
+  - travis_retry composer install --no-interaction --prefer-dist
 
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
