@@ -39,9 +39,9 @@ jobs:
     - name: "Test downgraded code"
       script:
         - vendor/bin/rector process
+        - composer config platform-check false
         - phpenv local 7.1
         - php --version
-        - composer config platform-check false
         - vendor/bin/phpstan analyse src/ --level 0
       after_script: skip
 
