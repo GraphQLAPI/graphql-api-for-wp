@@ -43,7 +43,8 @@
         "pop-schema/user-state-wp": "dev-master",
         "pop-schema/usermeta-wp": "dev-master",
         "pop-schema/users-wp": "dev-master",
-        "symfony/expression-language": "^5.1"
+        "symfony/expression-language": "^5.1",
+        "wikimedia/composer-merge-plugin": "dev-feature/composer-v2"
     },
     "require-dev": {
         "phpstan/phpstan": "^0.12",
@@ -57,6 +58,10 @@
         {
             "type": "composer",
             "url": "https://wpackagist.org"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/mcaskill/composer-merge-plugin.git"
         }
     ],
     "autoload": {
@@ -80,6 +85,18 @@
         "wordpress-install-dir": "vendor/wordpress/wordpress",
         "branch-alias": {
             "dev-master": "1.0-dev"
+        },
+        "merge-plugin": {
+            "include": [
+                "composer.local.json"
+            ],
+            "recurse": true,
+            "replace": false,
+            "ignore-duplicates": false,
+            "merge-dev": true,
+            "merge-extra": false,
+            "merge-extra-deep": false,
+            "merge-scripts": false
         }
     },
     "config": {
