@@ -4,7 +4,7 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## 0.6.5 - DATE
+## 0.7.0 - DATE
 
 ### Added
 
