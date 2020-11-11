@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8863a0c6d1fa4f78d390068f0216932e",
+    "content-hash": "44c383c2dfd9a1216a055ebfe5144f59",
     "packages": [
         {
             "name": "brain/cortex",
@@ -261,12 +261,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/api.git",
-                "reference": "82c89d863e3a62e2fe2aab1aebc5671165d3029f"
+                "reference": "a329e6a0bb8233ab22e0586b31849af687e2248a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/api/zipball/82c89d863e3a62e2fe2aab1aebc5671165d3029f",
-                "reference": "82c89d863e3a62e2fe2aab1aebc5671165d3029f",
+                "url": "https://api.github.com/repos/getpop/api/zipball/a329e6a0bb8233ab22e0586b31849af687e2248a",
+                "reference": "a329e6a0bb8233ab22e0586b31849af687e2248a",
                 "shasum": ""
             },
             "require": {
@@ -317,7 +317,7 @@
                 "issues": "https://github.com/getpop/api/issues",
                 "source": "https://github.com/getpop/api/tree/master"
             },
-            "time": "2020-11-04T09:40:27+00:00"
+            "time": "2020-11-10T07:53:39+00:00"
         },
         {
             "name": "getpop/api-clients",
@@ -680,12 +680,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/component-model.git",
-                "reference": "e44ddfd89eacd63d2f1e91f395772e6d5f5d1321"
+                "reference": "5eb8fc1497a9d02005c9f552442ac38662d09a06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/component-model/zipball/e44ddfd89eacd63d2f1e91f395772e6d5f5d1321",
-                "reference": "e44ddfd89eacd63d2f1e91f395772e6d5f5d1321",
+                "url": "https://api.github.com/repos/getpop/component-model/zipball/5eb8fc1497a9d02005c9f552442ac38662d09a06",
+                "reference": "5eb8fc1497a9d02005c9f552442ac38662d09a06",
                 "shasum": ""
             },
             "require": {
@@ -737,7 +737,7 @@
                 "issues": "https://github.com/getpop/component-model/issues",
                 "source": "https://github.com/getpop/component-model/tree/master"
             },
-            "time": "2020-11-09T13:50:25+00:00"
+            "time": "2020-11-10T08:44:54+00:00"
         },
         {
             "name": "getpop/definitions",
@@ -804,12 +804,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/engine.git",
-                "reference": "da7b32d74e76be35e49dc907d13b56f67cb04376"
+                "reference": "9f6b5dcb2af458389a88469714705933386acfd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/engine/zipball/da7b32d74e76be35e49dc907d13b56f67cb04376",
-                "reference": "da7b32d74e76be35e49dc907d13b56f67cb04376",
+                "url": "https://api.github.com/repos/getpop/engine/zipball/9f6b5dcb2af458389a88469714705933386acfd5",
+                "reference": "9f6b5dcb2af458389a88469714705933386acfd5",
                 "shasum": ""
             },
             "require": {
@@ -862,7 +862,7 @@
                 "issues": "https://github.com/getpop/engine/issues",
                 "source": "https://github.com/getpop/engine/tree/master"
             },
-            "time": "2020-11-09T13:44:43+00:00"
+            "time": "2020-11-10T07:54:17+00:00"
         },
         {
             "name": "getpop/engine-wp",
@@ -2269,12 +2269,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "1079638e5c4b7b3ea0de6f2d054041cb7f7c4dfd"
+                "reference": "e9b0b88ace8d13023f13a99460c84bf45a5edbe0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/1079638e5c4b7b3ea0de6f2d054041cb7f7c4dfd",
-                "reference": "1079638e5c4b7b3ea0de6f2d054041cb7f7c4dfd",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/e9b0b88ace8d13023f13a99460c84bf45a5edbe0",
+                "reference": "e9b0b88ace8d13023f13a99460c84bf45a5edbe0",
                 "shasum": ""
             },
             "require": {
@@ -2331,7 +2331,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-04T09:16:22+00:00"
+            "time": "2020-11-10T04:15:08+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2697,12 +2697,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/basic-directives.git",
-                "reference": "f9cfd617ee0ee8799de77157a48fb115fd141257"
+                "reference": "1cb79f2c2b888a850da58fdad8d37c4b94f5f9a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/basic-directives/zipball/f9cfd617ee0ee8799de77157a48fb115fd141257",
-                "reference": "f9cfd617ee0ee8799de77157a48fb115fd141257",
+                "url": "https://api.github.com/repos/PoPSchema/basic-directives/zipball/1cb79f2c2b888a850da58fdad8d37c4b94f5f9a0",
+                "reference": "1cb79f2c2b888a850da58fdad8d37c4b94f5f9a0",
                 "shasum": ""
             },
             "require": {
@@ -2749,7 +2749,7 @@
                 "issues": "https://github.com/PoPSchema/basic-directives/issues",
                 "source": "https://github.com/PoPSchema/basic-directives/tree/master"
             },
-            "time": "2020-10-19T07:55:15+00:00"
+            "time": "2020-11-10T07:52:53+00:00"
         },
         {
             "name": "pop-schema/commentmeta",
@@ -2881,12 +2881,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/comments.git",
-                "reference": "970be08b7ba95887b3c9ea3f0508aa6ddece590c"
+                "reference": "d4dded01eaf9def89c53331b0b839e722495c779"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/comments/zipball/970be08b7ba95887b3c9ea3f0508aa6ddece590c",
-                "reference": "970be08b7ba95887b3c9ea3f0508aa6ddece590c",
+                "url": "https://api.github.com/repos/PoPSchema/comments/zipball/d4dded01eaf9def89c53331b0b839e722495c779",
+                "reference": "d4dded01eaf9def89c53331b0b839e722495c779",
                 "shasum": ""
             },
             "require": {
@@ -2933,7 +2933,7 @@
                 "issues": "https://github.com/PoPSchema/comments/issues",
                 "source": "https://github.com/PoPSchema/comments/tree/master"
             },
-            "time": "2020-11-04T09:16:16+00:00"
+            "time": "2020-11-10T07:53:08+00:00"
         },
         {
             "name": "pop-schema/comments-wp",
@@ -2997,6 +2997,129 @@
                 "source": "https://github.com/PoPSchema/comments-wp/tree/master"
             },
             "time": "2020-10-19T07:56:39+00:00"
+        },
+        {
+            "name": "pop-schema/custompost-mutations",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PoPSchema/custompost-mutations.git",
+                "reference": "48f1f92443e6b45dc89b716544658b723ce27ed8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PoPSchema/custompost-mutations/zipball/48f1f92443e6b45dc89b716544658b723ce27ed8",
+                "reference": "48f1f92443e6b45dc89b716544658b723ce27ed8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.4",
+                "pop-schema/customposts": "dev-master",
+                "pop-schema/user-state": "dev-master"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": ">=9.3",
+                "rector/rector": "^0.8.17",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoPSchema\\CustomPostMutations\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "Adds support for custom post mutations",
+            "homepage": "https://github.com/PoPSchema/custompost-mutations",
+            "keywords": [
+                "custompost-mutations",
+                "pop"
+            ],
+            "support": {
+                "issues": "https://github.com/PoPSchema/custompost-mutations/issues",
+                "source": "https://github.com/PoPSchema/custompost-mutations/tree/master"
+            },
+            "time": "2020-11-11T07:09:45+00:00"
+        },
+        {
+            "name": "pop-schema/custompost-mutations-wp",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PoPSchema/custompost-mutations-wp.git",
+                "reference": "ea2dc98c85b9789c39479dc21b8f3ed3bfa3c8fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PoPSchema/custompost-mutations-wp/zipball/ea2dc98c85b9789c39479dc21b8f3ed3bfa3c8fb",
+                "reference": "ea2dc98c85b9789c39479dc21b8f3ed3bfa3c8fb",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.4",
+                "pop-schema/custompost-mutations": "dev-master",
+                "pop-schema/customposts-wp": "dev-master",
+                "pop-schema/user-state-wp": "dev-master"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": ">=5.5",
+                "phpunit/phpunit": ">=9.3",
+                "rector/rector": "^0.8.17",
+                "squizlabs/php_codesniffer": "^3.0",
+                "szepeviktor/phpstan-wordpress": "^0.6.2"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "wordpress-install-dir": "vendor/wordpress/wordpress",
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoPSchema\\CustomPostMutationsWP\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "Implementation for WordPress of contracts from package \"Custom Post Mutations\"",
+            "homepage": "https://github.com/PoPSchema/custompost-mutations-wp",
+            "keywords": [
+                "custompost-mutations-wp",
+                "pop"
+            ],
+            "support": {
+                "issues": "https://github.com/PoPSchema/custompost-mutations-wp/issues",
+                "source": "https://github.com/PoPSchema/custompost-mutations-wp/tree/master"
+            },
+            "time": "2020-11-09T11:23:06+00:00"
         },
         {
             "name": "pop-schema/custompostmedia",
@@ -3254,12 +3377,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/customposts.git",
-                "reference": "f11af44d7f9f9454d274a1b3b5e6f1fdf2fd3e5f"
+                "reference": "31d48ee3636117c03111738f5ca90d8c05b17e07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/customposts/zipball/f11af44d7f9f9454d274a1b3b5e6f1fdf2fd3e5f",
-                "reference": "f11af44d7f9f9454d274a1b3b5e6f1fdf2fd3e5f",
+                "url": "https://api.github.com/repos/PoPSchema/customposts/zipball/31d48ee3636117c03111738f5ca90d8c05b17e07",
+                "reference": "31d48ee3636117c03111738f5ca90d8c05b17e07",
                 "shasum": ""
             },
             "require": {
@@ -3306,7 +3429,7 @@
                 "issues": "https://github.com/PoPSchema/customposts/issues",
                 "source": "https://github.com/PoPSchema/customposts/tree/master"
             },
-            "time": "2020-10-19T07:57:29+00:00"
+            "time": "2020-11-10T07:53:13+00:00"
         },
         {
             "name": "pop-schema/customposts-wp",
@@ -5515,6 +5638,66 @@
                 "source": "https://github.com/PoPSchema/pages-wp/tree/master"
             },
             "time": "2020-10-19T07:59:55+00:00"
+        },
+        {
+            "name": "pop-schema/post-mutations",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PoPSchema/post-mutations.git",
+                "reference": "ad00382d5ca27f1ce719c48759d38eb66cb8d2c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PoPSchema/post-mutations/zipball/ad00382d5ca27f1ce719c48759d38eb66cb8d2c2",
+                "reference": "ad00382d5ca27f1ce719c48759d38eb66cb8d2c2",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.4",
+                "pop-schema/custompost-mutations": "dev-master",
+                "pop-schema/posts": "dev-master"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": ">=9.3",
+                "rector/rector": "^0.8.17",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoPSchema\\PostMutations\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "Adds support for post mutations",
+            "homepage": "https://github.com/PoPSchema/post-mutations",
+            "keywords": [
+                "pop",
+                "post-mutations"
+            ],
+            "support": {
+                "issues": "https://github.com/PoPSchema/post-mutations/issues",
+                "source": "https://github.com/PoPSchema/post-mutations/tree/master"
+            },
+            "time": "2020-11-11T07:14:06+00:00"
         },
         {
             "name": "pop-schema/post-tags",
@@ -9426,36 +9609,31 @@
         },
         {
             "name": "doctrine/instantiator",
-            "version": "1.3.1",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "f350df0268e904597e3bd9c4685c53e0e333feea"
+                "reference": "d56bf6102915de5702778fe20f2de3b2fe570b5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/f350df0268e904597e3bd9c4685c53e0e333feea",
-                "reference": "f350df0268e904597e3bd9c4685c53e0e333feea",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/d56bf6102915de5702778fe20f2de3b2fe570b5b",
+                "reference": "d56bf6102915de5702778fe20f2de3b2fe570b5b",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^6.0",
+                "doctrine/coding-standard": "^8.0",
                 "ext-pdo": "*",
                 "ext-phar": "*",
-                "phpbench/phpbench": "^0.13",
-                "phpstan/phpstan-phpunit": "^0.11",
-                "phpstan/phpstan-shim": "^0.11",
-                "phpunit/phpunit": "^7.0"
+                "phpbench/phpbench": "^0.13 || 1.0.0-alpha2",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-phpunit": "^0.12",
+                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
@@ -9469,7 +9647,7 @@
                 {
                     "name": "Marco Pivetta",
                     "email": "ocramius@gmail.com",
-                    "homepage": "http://ocramius.github.com/"
+                    "homepage": "https://ocramius.github.io/"
                 }
             ],
             "description": "A small, lightweight utility to instantiate objects in PHP without invoking their constructors",
@@ -9480,7 +9658,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/instantiator/issues",
-                "source": "https://github.com/doctrine/instantiator/tree/1.3.x"
+                "source": "https://github.com/doctrine/instantiator/tree/1.4.0"
             },
             "funding": [
                 {
@@ -9496,7 +9674,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-29T17:27:14+00:00"
+            "time": "2020-11-10T18:47:58+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -11141,16 +11319,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.4.2",
+            "version": "9.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "3866b2eeeed21b1b099c4bc0b7a1690ac6fd5baa"
+                "reference": "9fa359ff5ddaa5eb2be2bedb08a6a5787a5807ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3866b2eeeed21b1b099c4bc0b7a1690ac6fd5baa",
-                "reference": "3866b2eeeed21b1b099c4bc0b7a1690ac6fd5baa",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9fa359ff5ddaa5eb2be2bedb08a6a5787a5807ab",
+                "reference": "9fa359ff5ddaa5eb2be2bedb08a6a5787a5807ab",
                 "shasum": ""
             },
             "require": {
@@ -11228,7 +11406,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.4.2"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.4.3"
             },
             "funding": [
                 {
@@ -11240,7 +11418,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-10-19T09:23:29+00:00"
+            "time": "2020-11-10T12:53:30+00:00"
         },
         {
             "name": "psr/simple-cache",
@@ -14088,6 +14266,8 @@
         "pop-schema/user-state-wp": 20,
         "pop-schema/usermeta-wp": 20,
         "pop-schema/users-wp": 20,
+        "pop-schema/custompost-mutations-wp": 20,
+        "pop-schema/post-mutations": 20,
         "wikimedia/composer-merge-plugin": 20
     },
     "prefer-stable": true,

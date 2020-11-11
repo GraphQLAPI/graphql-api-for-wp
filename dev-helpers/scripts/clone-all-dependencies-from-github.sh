@@ -62,6 +62,8 @@ git clone git@github.com:PoPSchema/commentmeta-wp.git #https://github.com/PoPSch
 git clone git@github.com:PoPSchema/commentmeta.git #https://github.com/PoPSchema/commentmeta.git
 git clone git@github.com:PoPSchema/comments-wp.git #https://github.com/PoPSchema/comments-wp.git
 git clone git@github.com:PoPSchema/comments.git #https://github.com/PoPSchema/comments.git
+git clone git@github.com:PoPSchema/custompost-mutations-wp.git #https://github.com/PoPSchema/custompost-mutations-wp.git
+git clone git@github.com:PoPSchema/custompost-mutations.git #https://github.com/PoPSchema/custompost-mutations.git
 git clone git@github.com:PoPSchema/custompostmedia-wp.git #https://github.com/PoPSchema/custompostmedia-wp.git
 git clone git@github.com:PoPSchema/custompostmedia.git #https://github.com/PoPSchema/custompostmedia.git
 git clone git@github.com:PoPSchema/custompostmeta-wp.git #https://github.com/PoPSchema/custompostmeta-wp.git
@@ -111,6 +113,7 @@ git clone git@github.com:PoPSchema/migrate-users-wp.git #https://github.com/PoPS
 git clone git@github.com:PoPSchema/migrate-users.git #https://github.com/PoPSchema/migrate-users.git
 git clone git@github.com:PoPSchema/pages-wp.git #https://github.com/PoPSchema/pages-wp.git
 git clone git@github.com:PoPSchema/pages.git #https://github.com/PoPSchema/pages.git
+git clone git@github.com:PoPSchema/post-mutations.git #https://github.com/PoPSchema/post-mutations.git
 git clone git@github.com:PoPSchema/post-tags-wp.git #https://github.com/PoPSchema/post-tags-wp.git
 git clone git@github.com:PoPSchema/post-tags.git #https://github.com/PoPSchema/post-tags.git
 git clone git@github.com:PoPSchema/posts-wp.git #https://github.com/PoPSchema/posts-wp.git

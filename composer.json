@@ -43,6 +43,8 @@
         "pop-schema/user-state-wp": "dev-master",
         "pop-schema/usermeta-wp": "dev-master",
         "pop-schema/users-wp": "dev-master",
+        "pop-schema/custompost-mutations-wp": "dev-master",
+        "pop-schema/post-mutations": "dev-master",
         "symfony/expression-language": "^5.1"
     },
     "require-dev": {

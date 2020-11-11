@@ -50,6 +50,8 @@ class Component extends AbstractComponent
             \PoPSchema\UserRolesWP\Component::class,
             \PoPSchema\UserStateWP\Component::class,
             \PoPSchema\UserMetaWP\Component::class,
+            \PoPSchema\CustomPostMutationsWP\Component::class,
+            \PoPSchema\PostMutations\Component::class,
             \PoPSchema\BasicDirectives\Component::class,
             \GraphQLByPoP\GraphQLClientsForWP\Component::class,
             \GraphQLByPoP\GraphQLEndpointForWP\Component::class,
