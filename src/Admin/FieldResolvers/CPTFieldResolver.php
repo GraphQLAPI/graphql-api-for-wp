@@ -142,7 +142,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
             case 'schemaConfigurations':
                 $query = [
                     'limit' => -1,
-                    'custom-post-status' => [
+                    'status' => [
                         Status::PUBLISHED,
                     ],
                 ];
@@ -183,7 +183,7 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
                     'fieldDeprecationLists' => GraphQLFieldDeprecationListPostType::POST_TYPE,
                     'schemaConfigurations' => GraphQLSchemaConfigurationPostType::POST_TYPE,
                 ];
-                $query['custom-post-types'] = [
+                $query['custompost-types'] = [
                     $customPostTypes[$fieldName],
                 ];
                 $options = [
