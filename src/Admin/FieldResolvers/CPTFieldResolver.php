@@ -208,13 +208,9 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
         );
     }
 
-    /**
-     * @param array<string, mixed> $fieldArgs
-     */
     public function resolveFieldTypeResolverClass(
         TypeResolverInterface $typeResolver,
-        string $fieldName,
-        array $fieldArgs = []
+        string $fieldName
     ): ?string {
         switch ($fieldName) {
             case 'accessControlLists':
@@ -224,6 +220,6 @@ class CPTFieldResolver extends AbstractQueryableFieldResolver
                 return CustomPostTypeResolver::class;
         }
 
-        return parent::resolveFieldTypeResolverClass($typeResolver, $fieldName, $fieldArgs);
+        return parent::resolveFieldTypeResolverClass($typeResolver, $fieldName);
     }
 }
