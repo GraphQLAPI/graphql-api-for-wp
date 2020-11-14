@@ -8,22 +8,23 @@ use GraphQLAPI\GraphQLAPI\Plugin;
 use PoPSchema\Pages\TypeResolvers\PageTypeResolver;
 use PoPSchema\Posts\TypeResolvers\PostTypeResolver;
 use PoPSchema\Users\TypeResolvers\UserTypeResolver;
+use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 use PoPSchema\Media\TypeResolvers\MediaTypeResolver;
 use PoPSchema\Comments\TypeResolvers\CommentTypeResolver;
 use PoPSchema\PostTags\TypeResolvers\PostTagTypeResolver;
-use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
-use PoPSchema\UserRolesWP\TypeResolvers\UserRoleTypeResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLEndpointPostType;
+use PoPSchema\UserRolesWP\TypeResolvers\UserRoleTypeResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
-use PoPSchema\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLPersistedQueryPostType;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLCacheControlListPostType;
+use PoPSchema\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLAccessControlListPostType;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\AbstractSchemaTypeModuleResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLSchemaConfigurationPostType;
-use PoPSchema\GenericCustomPosts\TypeResolvers\GenericCustomPostTypeResolver;
 use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLFieldDeprecationListPostType;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\AbstractSchemaTypeModuleResolver;
+use PoPSchema\GenericCustomPosts\TypeResolvers\GenericCustomPostTypeResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\OperationalFunctionalityModuleResolver;
 
 class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
 {
@@ -41,6 +42,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
     public const SCHEMA_MEDIA = Plugin::NAMESPACE . '\schema-media';
     public const SCHEMA_TAGS = Plugin::NAMESPACE . '\schema-tags';
     public const SCHEMA_POST_TAGS = Plugin::NAMESPACE . '\schema-post-tags';
+    public const SCHEMA_CUSTOMPOST_MUTATIONS = Plugin::NAMESPACE . '\schema-custompost-mutations';
 
     /**
      * Setting options
@@ -72,6 +74,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
             self::SCHEMA_TAGS,
             self::SCHEMA_POST_TAGS,
             self::SCHEMA_MEDIA,
+            self::SCHEMA_CUSTOMPOST_MUTATIONS,
         ];
     }
 
@@ -116,6 +119,15 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
                         self::SCHEMA_TAGS,
                     ],
                 ];
+            case self::SCHEMA_CUSTOMPOST_MUTATIONS:
+                return [
+                    [
+                        self::SCHEMA_CUSTOMPOSTS,
+                    ],
+                    [
+                        OperationalFunctionalityModuleResolver::MUTATIONS,
+                    ],
+                ];
         }
         return parent::getDependedModuleLists($module);
     }
@@ -133,6 +145,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
             self::SCHEMA_TAGS => \__('Schema Tags', 'graphql-api'),
             self::SCHEMA_POST_TAGS => \__('Schema Post Tags', 'graphql-api'),
             self::SCHEMA_CUSTOMPOSTS => \__('Schema Custom Posts', 'graphql-api'),
+            self::SCHEMA_CUSTOMPOST_MUTATIONS => \__('Schema Custom Post Mutations', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
     }
@@ -191,6 +204,8 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
                 return \__('Base functionality for all custom posts', 'graphql-api');
             case self::SCHEMA_TAGS:
                 return \__('Base functionality for all tags', 'graphql-api');
+            case self::SCHEMA_CUSTOMPOST_MUTATIONS:
+                return \__('Execute mutations on custom posts', 'graphql-api');
         }
         return parent::getDescription($module);
     }
@@ -209,6 +224,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
             case self::SCHEMA_TAGS:
             case self::SCHEMA_POST_TAGS:
             case self::SCHEMA_MEDIA:
+            case self::SCHEMA_CUSTOMPOST_MUTATIONS:
                 return false;
         }
         return $this->upstreamHasDocumentation($module);
