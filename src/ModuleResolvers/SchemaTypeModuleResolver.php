@@ -43,6 +43,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
     public const SCHEMA_TAGS = Plugin::NAMESPACE . '\schema-tags';
     public const SCHEMA_POST_TAGS = Plugin::NAMESPACE . '\schema-post-tags';
     public const SCHEMA_CUSTOMPOST_MUTATIONS = Plugin::NAMESPACE . '\schema-custompost-mutations';
+    public const SCHEMA_POST_MUTATIONS = Plugin::NAMESPACE . '\schema-post-mutations';
 
     /**
      * Setting options
@@ -75,6 +76,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
             self::SCHEMA_POST_TAGS,
             self::SCHEMA_MEDIA,
             self::SCHEMA_CUSTOMPOST_MUTATIONS,
+            self::SCHEMA_POST_MUTATIONS,
         ];
     }
 
@@ -122,10 +124,19 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
             case self::SCHEMA_CUSTOMPOST_MUTATIONS:
                 return [
                     [
-                        self::SCHEMA_CUSTOMPOSTS,
+                        OperationalFunctionalityModuleResolver::MUTATIONS,
                     ],
                     [
-                        OperationalFunctionalityModuleResolver::MUTATIONS,
+                        self::SCHEMA_CUSTOMPOSTS,
+                    ],
+                ];
+            case self::SCHEMA_POST_MUTATIONS:
+                return [
+                    [
+                        self::SCHEMA_POSTS,
+                    ],
+                    [
+                        self::SCHEMA_CUSTOMPOST_MUTATIONS,
                     ],
                 ];
         }
@@ -146,6 +157,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
             self::SCHEMA_POST_TAGS => \__('Schema Post Tags', 'graphql-api'),
             self::SCHEMA_CUSTOMPOSTS => \__('Schema Custom Posts', 'graphql-api'),
             self::SCHEMA_CUSTOMPOST_MUTATIONS => \__('Schema Custom Post Mutations', 'graphql-api'),
+            self::SCHEMA_POST_MUTATIONS => \__('Schema Post Mutations', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
     }
@@ -205,7 +217,12 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
             case self::SCHEMA_TAGS:
                 return \__('Base functionality for all tags', 'graphql-api');
             case self::SCHEMA_CUSTOMPOST_MUTATIONS:
-                return \__('Execute mutations on custom posts', 'graphql-api');
+                return \__('Base functionality to mutate custom posts', 'graphql-api');
+            case self::SCHEMA_POST_MUTATIONS:
+                return sprintf(
+                    \__('Execute mutations on %1$s', 'graphql-api'),
+                    \__('posts', 'graphql-api')
+                );
         }
         return parent::getDescription($module);
     }
@@ -225,6 +242,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
             case self::SCHEMA_POST_TAGS:
             case self::SCHEMA_MEDIA:
             case self::SCHEMA_CUSTOMPOST_MUTATIONS:
+            case self::SCHEMA_POST_MUTATIONS:
                 return false;
         }
         return $this->upstreamHasDocumentation($module);
