@@ -568,6 +568,14 @@ class PluginConfiguration
         $componentClassConfiguration[\PoP\API\Component::class] = [
             \PoP\API\Environment::ENABLE_EMBEDDABLE_FIELDS => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::EMBEDDABLE_FIELDS),
         ];
+        // Enable Mutations?
+        $componentClassConfiguration[\PoP\API\Component::class] = [
+            \PoP\API\Environment::ENABLE_MUTATIONS => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::MUTATIONS),
+        ];
+        // Enable Nested Mutations?
+        $componentClassConfiguration[\GraphQLByPoP\GraphQLServer\Component::class] = [
+            \GraphQLByPoP\GraphQLServer\Environment::ENABLE_NESTED_MUTATIONS => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::NESTED_MUTATIONS),
+        ];
     }
 
     /**
@@ -681,6 +689,9 @@ class PluginConfiguration
             ],
             SchemaTypeModuleResolver::SCHEMA_POST_TAGS => [
                 \PoPSchema\PostTags\Component::class,
+            ],
+            SchemaTypeModuleResolver::SCHEMA_POST_MUTATIONS => [
+                \PoPSchema\PostMutations\Component::class,
             ],
         ];
         $skipSchemaModuleComponentClasses = array_filter(
