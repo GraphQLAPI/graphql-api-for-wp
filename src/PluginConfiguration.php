@@ -523,22 +523,24 @@ class PluginConfiguration
      */
     protected static function addPredefinedComponentClassConfiguration(array &$componentClassConfiguration): void
     {
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
         $componentClassConfiguration[\PoP\Engine\Component::class] = [
             \PoP\Engine\Environment::ADD_MANDATORY_CACHE_CONTROL_DIRECTIVE => false,
         ];
         $componentClassConfiguration[\GraphQLByPoP\GraphQLClientsForWP\Component::class] = [
             \GraphQLByPoP\GraphQLClientsForWP\Environment::GRAPHQL_CLIENTS_COMPONENT_URL => \GRAPHQL_API_URL . 'vendor/graphql-by-pop/graphql-clients-for-wp',
         ];
-        // Disable the Native endpoint
         $componentClassConfiguration[\PoP\APIEndpointsForWP\Component::class] = [
+            // Disable the Native endpoint
             \PoP\APIEndpointsForWP\Environment::DISABLE_NATIVE_API_ENDPOINT => true,
         ];
-        // Disable processing ?query=...
         $componentClassConfiguration[\GraphQLByPoP\GraphQLRequest\Component::class] = [
+            // Disable processing ?query=...
             \GraphQLByPoP\GraphQLRequest\Environment::DISABLE_GRAPHQL_API_FOR_POP => true,
+            // Enable Multiple Query Execution?
+            \GraphQLByPoP\GraphQLRequest\Environment::ENABLE_MULTIPLE_QUERY_EXECUTION => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::MULTIPLE_QUERY_EXECUTION),
         ];
         // Cache the container
-        $moduleRegistry = ModuleRegistryFacade::getInstance();
         if ($moduleRegistry->isModuleEnabled(CacheFunctionalityModuleResolver::CONFIGURATION_CACHE)) {
             $cacheConfigurationManager = CacheConfigurationManagerFacade::getInstance();
             $componentClassConfiguration[\PoP\Root\Component::class] = [
@@ -546,35 +548,21 @@ class PluginConfiguration
                 \PoP\Root\Environment::CONTAINER_CONFIGURATION_CACHE_NAMESPACE => $cacheConfigurationManager->getNamespace(),
             ];
         }
-        // Expose the "self" field when doing Low Level Query Editing
-        if ($moduleRegistry->isModuleEnabled(UserInterfaceFunctionalityModuleResolver::LOW_LEVEL_PERSISTED_QUERY_EDITING)) {
-            $componentClassConfiguration[\GraphQLByPoP\GraphQLServer\Component::class] = [
-                \GraphQLByPoP\GraphQLServer\Environment::ADD_SELF_FIELD_FOR_ROOT_TYPE_TO_SCHEMA => true,
-            ];
-        }
-        // Enable Multiple Query Execution?
-        $componentClassConfiguration[\GraphQLByPoP\GraphQLRequest\Component::class] = [
-            \GraphQLByPoP\GraphQLRequest\Environment::ENABLE_MULTIPLE_QUERY_EXECUTION => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::MULTIPLE_QUERY_EXECUTION),
-        ];
-        // Enable @removeIfNull?
         $componentClassConfiguration[\GraphQLByPoP\GraphQLServer\Component::class] = [
+            // Expose the "self" field when doing Low Level Query Editing
+            \GraphQLByPoP\GraphQLServer\Environment::ADD_SELF_FIELD_FOR_ROOT_TYPE_TO_SCHEMA => $moduleRegistry->isModuleEnabled(UserInterfaceFunctionalityModuleResolver::LOW_LEVEL_PERSISTED_QUERY_EDITING),
+            // Enable @removeIfNull?
             \GraphQLByPoP\GraphQLServer\Environment::ENABLE_REMOVE_IF_NULL_DIRECTIVE => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::REMOVE_IF_NULL_DIRECTIVE),
-        ];
-        // Enable Proactive Feedback?
-        $componentClassConfiguration[\GraphQLByPoP\GraphQLServer\Component::class] = [
+            // Enable Proactive Feedback?
             \GraphQLByPoP\GraphQLServer\Environment::ENABLE_PROACTIVE_FEEDBACK => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::PROACTIVE_FEEDBACK),
-        ];
-        // Enable Embeddable Fields?
-        $componentClassConfiguration[\PoP\API\Component::class] = [
-            \PoP\API\Environment::ENABLE_EMBEDDABLE_FIELDS => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::EMBEDDABLE_FIELDS),
-        ];
-        // Enable Mutations?
-        $componentClassConfiguration[\PoP\API\Component::class] = [
-            \PoP\API\Environment::ENABLE_MUTATIONS => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::MUTATIONS),
-        ];
-        // Enable Nested Mutations?
-        $componentClassConfiguration[\GraphQLByPoP\GraphQLServer\Component::class] = [
+            // Enable Nested Mutations?
             \GraphQLByPoP\GraphQLServer\Environment::ENABLE_NESTED_MUTATIONS => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::NESTED_MUTATIONS),
+        ];
+        $componentClassConfiguration[\PoP\API\Component::class] = [
+            // Enable Embeddable Fields?
+            \PoP\API\Environment::ENABLE_EMBEDDABLE_FIELDS => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::EMBEDDABLE_FIELDS),
+            // Enable Mutations?
+            \PoP\API\Environment::ENABLE_MUTATIONS => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::MUTATIONS),
         ];
     }
 
