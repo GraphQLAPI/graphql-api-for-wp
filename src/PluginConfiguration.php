@@ -681,6 +681,9 @@ class PluginConfiguration
             SchemaTypeModuleResolver::SCHEMA_POST_MUTATIONS => [
                 \PoPSchema\PostMutations\Component::class,
             ],
+            SchemaTypeModuleResolver::SCHEMA_CUSTOMPOSTMEDIA_MUTATIONS => [
+                \PoPSchema\CustomPostMediaMutations\Component::class,
+            ],
         ];
         $skipSchemaModuleComponentClasses = array_filter(
             $maybeSkipSchemaModuleComponentClasses,
