@@ -680,12 +680,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/component-model.git",
-                "reference": "517ca656d64e76c6a04eff1f2e894ddca8461418"
+                "reference": "43ac0d69625b3ae5daa38a419f5103f2dbf5b2be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/component-model/zipball/517ca656d64e76c6a04eff1f2e894ddca8461418",
-                "reference": "517ca656d64e76c6a04eff1f2e894ddca8461418",
+                "url": "https://api.github.com/repos/getpop/component-model/zipball/43ac0d69625b3ae5daa38a419f5103f2dbf5b2be",
+                "reference": "43ac0d69625b3ae5daa38a419f5103f2dbf5b2be",
                 "shasum": ""
             },
             "require": {
@@ -737,7 +737,7 @@
                 "issues": "https://github.com/getpop/component-model/issues",
                 "source": "https://github.com/getpop/component-model/tree/master"
             },
-            "time": "2020-11-14T04:59:12+00:00"
+            "time": "2020-11-16T07:42:48+00:00"
         },
         {
             "name": "getpop/definitions",
@@ -3189,12 +3189,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/custompostmedia-mutations.git",
-                "reference": "2de007acfccdfd13682a7d610d346ea8c6b78175"
+                "reference": "38cef01d491f9eb879d50b174d86e0d00f76c38c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/custompostmedia-mutations/zipball/2de007acfccdfd13682a7d610d346ea8c6b78175",
-                "reference": "2de007acfccdfd13682a7d610d346ea8c6b78175",
+                "url": "https://api.github.com/repos/PoPSchema/custompostmedia-mutations/zipball/38cef01d491f9eb879d50b174d86e0d00f76c38c",
+                "reference": "38cef01d491f9eb879d50b174d86e0d00f76c38c",
                 "shasum": ""
             },
             "require": {
@@ -3241,7 +3241,7 @@
                 "issues": "https://github.com/PoPSchema/custompostmedia-mutations/issues",
                 "source": "https://github.com/PoPSchema/custompostmedia-mutations/tree/master"
             },
-            "time": "2020-11-16T06:55:58+00:00"
+            "time": "2020-11-16T07:45:43+00:00"
         },
         {
             "name": "pop-schema/custompostmedia-mutations-wp",
@@ -5769,12 +5769,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/post-mutations.git",
-                "reference": "98f9a73fd7cd78b5d0f380cc45ba110f53808b4f"
+                "reference": "b69663115ef21a98221ee48d530c260d02c4e260"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/post-mutations/zipball/98f9a73fd7cd78b5d0f380cc45ba110f53808b4f",
-                "reference": "98f9a73fd7cd78b5d0f380cc45ba110f53808b4f",
+                "url": "https://api.github.com/repos/PoPSchema/post-mutations/zipball/b69663115ef21a98221ee48d530c260d02c4e260",
+                "reference": "b69663115ef21a98221ee48d530c260d02c4e260",
                 "shasum": ""
             },
             "require": {
@@ -5821,7 +5821,7 @@
                 "issues": "https://github.com/PoPSchema/post-mutations/issues",
                 "source": "https://github.com/PoPSchema/post-mutations/tree/master"
             },
-            "time": "2020-11-13T11:12:53+00:00"
+            "time": "2020-11-16T07:43:16+00:00"
         },
         {
             "name": "pop-schema/post-tags",
