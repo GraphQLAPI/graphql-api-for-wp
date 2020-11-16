@@ -113,6 +113,7 @@ git clone git@github.com:PoPSchema/migrate-users-wp.git #https://github.com/PoPS
 git clone git@github.com:PoPSchema/migrate-users.git #https://github.com/PoPSchema/migrate-users.git
 git clone git@github.com:PoPSchema/pages-wp.git #https://github.com/PoPSchema/pages-wp.git
 git clone git@github.com:PoPSchema/pages.git #https://github.com/PoPSchema/pages.git
+git clone git@github.com:PoPSchema/custompostmedia-mutations.git #https://github.com/PoPSchema/custompostmedia-mutations.git
 git clone git@github.com:PoPSchema/post-mutations.git #https://github.com/PoPSchema/post-mutations.git
 git clone git@github.com:PoPSchema/post-tags-wp.git #https://github.com/PoPSchema/post-tags-wp.git
 git clone git@github.com:PoPSchema/post-tags.git #https://github.com/PoPSchema/post-tags.git
