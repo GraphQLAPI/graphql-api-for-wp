@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "44c383c2dfd9a1216a055ebfe5144f59",
+    "content-hash": "b2e69dcd599e1a20665d2da801bb57a2",
     "packages": [
         {
             "name": "brain/cortex",
@@ -3184,6 +3184,130 @@
             "time": "2020-11-13T11:11:24+00:00"
         },
         {
+            "name": "pop-schema/custompostmedia-mutations",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PoPSchema/custompostmedia-mutations.git",
+                "reference": "2de007acfccdfd13682a7d610d346ea8c6b78175"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PoPSchema/custompostmedia-mutations/zipball/2de007acfccdfd13682a7d610d346ea8c6b78175",
+                "reference": "2de007acfccdfd13682a7d610d346ea8c6b78175",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.4",
+                "pop-schema/custompost-mutations": "dev-master",
+                "pop-schema/custompostmedia": "dev-master"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": ">=9.3",
+                "rector/rector": "^0.8.17",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoPSchema\\CustomPostMediaMutations\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "Integrates media with custom post mutations",
+            "homepage": "https://github.com/PoPSchema/custompostmedia-mutations",
+            "keywords": [
+                "custompostmedia-mutations",
+                "pop"
+            ],
+            "support": {
+                "issues": "https://github.com/PoPSchema/custompostmedia-mutations/issues",
+                "source": "https://github.com/PoPSchema/custompostmedia-mutations/tree/master"
+            },
+            "time": "2020-11-16T06:55:58+00:00"
+        },
+        {
+            "name": "pop-schema/custompostmedia-mutations-wp",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PoPSchema/custompostmedia-mutations-wp.git",
+                "reference": "3ff6ce2a1a18bafa017cbdd0c5d4ee19876873d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PoPSchema/custompostmedia-mutations-wp/zipball/3ff6ce2a1a18bafa017cbdd0c5d4ee19876873d9",
+                "reference": "3ff6ce2a1a18bafa017cbdd0c5d4ee19876873d9",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.4",
+                "pop-schema/custompostmedia-mutations": "dev-master",
+                "pop-schema/customposts-wp": "dev-master",
+                "pop-schema/media-wp": "dev-master",
+                "pop-schema/user-state-wp": "dev-master"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": ">=5.5",
+                "phpunit/phpunit": ">=9.3",
+                "rector/rector": "^0.8.17",
+                "squizlabs/php_codesniffer": "^3.0",
+                "szepeviktor/phpstan-wordpress": "^0.6.2"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "wordpress-install-dir": "vendor/wordpress/wordpress",
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoPSchema\\CustomPostMediaMutationsWP\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "Implementation for WordPress of contracts from package \"Custom Post Media Mutations\"",
+            "homepage": "https://github.com/PoPSchema/custompostmedia-mutations-wp",
+            "keywords": [
+                "custompostmedia-mutations-wp",
+                "pop"
+            ],
+            "support": {
+                "issues": "https://github.com/PoPSchema/custompostmedia-mutations-wp/issues",
+                "source": "https://github.com/PoPSchema/custompostmedia-mutations-wp/tree/master"
+            },
+            "time": "2020-11-16T06:52:44+00:00"
+        },
+        {
             "name": "pop-schema/custompostmedia-wp",
             "version": "dev-master",
             "source": {
@@ -3559,12 +3683,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/media.git",
-                "reference": "23d7da360d2d53ca1f13dc1789a0ff0ff40597f6"
+                "reference": "88e63f6b1625ab91e2fe3c5aad0750ec041b8ad0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/media/zipball/23d7da360d2d53ca1f13dc1789a0ff0ff40597f6",
-                "reference": "23d7da360d2d53ca1f13dc1789a0ff0ff40597f6",
+                "url": "https://api.github.com/repos/PoPSchema/media/zipball/88e63f6b1625ab91e2fe3c5aad0750ec041b8ad0",
+                "reference": "88e63f6b1625ab91e2fe3c5aad0750ec041b8ad0",
                 "shasum": ""
             },
             "require": {
@@ -3616,7 +3740,7 @@
                 "issues": "https://github.com/PoPSchema/media/issues",
                 "source": "https://github.com/PoPSchema/media/tree/master"
             },
-            "time": "2020-11-13T11:12:14+00:00"
+            "time": "2020-11-16T04:55:22+00:00"
         },
         {
             "name": "pop-schema/media-wp",
@@ -9961,16 +10085,16 @@
         },
         {
             "name": "migrify/migrify-kernel",
-            "version": "0.3.52",
+            "version": "0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/migrify/migrify-kernel.git",
-                "reference": "79c8015edeaeafc7d7d27ff0f528ab6165e5d10c"
+                "reference": "679ef17540401c30b28257786ee94fda464a5a8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/migrify/migrify-kernel/zipball/79c8015edeaeafc7d7d27ff0f528ab6165e5d10c",
-                "reference": "79c8015edeaeafc7d7d27ff0f528ab6165e5d10c",
+                "url": "https://api.github.com/repos/migrify/migrify-kernel/zipball/679ef17540401c30b28257786ee94fda464a5a8b",
+                "reference": "679ef17540401c30b28257786ee94fda464a5a8b",
                 "shasum": ""
             },
             "require": {
@@ -9978,9 +10102,9 @@
                 "symfony/console": "^4.4|^5.1",
                 "symfony/dependency-injection": "^4.4|^5.1",
                 "symfony/http-kernel": "^4.4|^5.1",
-                "symplify/autowire-array-parameter": "^8.3.46",
-                "symplify/package-builder": "^8.3.46",
-                "symplify/smart-file-system": "^8.3.46"
+                "symplify/autowire-array-parameter": "^8.3.46|^9.0",
+                "symplify/package-builder": "^8.3.46|^9.0",
+                "symplify/smart-file-system": "^8.3.46|^9.0"
             },
             "require-dev": {
                 "tracy/tracy": "^2.7"
@@ -9998,26 +10122,26 @@
             "description": "Kernel for small CLI applications",
             "support": {
                 "issues": "https://github.com/migrify/migrify-kernel/issues",
-                "source": "https://github.com/migrify/migrify-kernel/tree/0.3.52"
+                "source": "https://github.com/migrify/migrify-kernel/tree/0.4.1"
             },
-            "time": "2020-10-25T12:09:47+00:00"
+            "time": "2020-11-14T20:12:17+00:00"
         },
         {
             "name": "migrify/php-config-printer",
-            "version": "0.3.52",
+            "version": "0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/migrify/php-config-printer.git",
-                "reference": "1c840c83cfa8b738ab20e229e8254177d38df068"
+                "reference": "1b02193704b412b83ddc83d067c78c32c2772f1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/migrify/php-config-printer/zipball/1c840c83cfa8b738ab20e229e8254177d38df068",
-                "reference": "1c840c83cfa8b738ab20e229e8254177d38df068",
+                "url": "https://api.github.com/repos/migrify/php-config-printer/zipball/1b02193704b412b83ddc83d067c78c32c2772f1e",
+                "reference": "1b02193704b412b83ddc83d067c78c32c2772f1e",
                 "shasum": ""
             },
             "require": {
-                "migrify/migrify-kernel": "^0.3.52",
+                "migrify/migrify-kernel": "^0.4.1",
                 "nette/utils": "^3.1",
                 "nikic/php-parser": "^4.9",
                 "php": ">=7.2",
@@ -10025,7 +10149,7 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.5|^9.0",
-                "symplify/easy-testing": "^8.3.46"
+                "symplify/easy-testing": "^8.3.46|^9.0"
             },
             "type": "library",
             "autoload": {
@@ -10040,9 +10164,9 @@
             "description": "Print Symfony services array with configuration to to plain PHP file format thanks to this simple php-parser wrapper",
             "support": {
                 "issues": "https://github.com/migrify/php-config-printer/issues",
-                "source": "https://github.com/migrify/php-config-printer/tree/0.3.52"
+                "source": "https://github.com/migrify/php-config-printer/tree/0.4.1"
             },
-            "time": "2020-10-30T10:33:25+00:00"
+            "time": "2020-11-15T11:32:00+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -10881,16 +11005,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.54",
+            "version": "0.12.55",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "45c7b999a4b7dd9ac5558bdaaf23dcebbef88223"
+                "reference": "4382b2b2059ec7e5135d07685ec1e3e16ae32d16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/45c7b999a4b7dd9ac5558bdaaf23dcebbef88223",
-                "reference": "45c7b999a4b7dd9ac5558bdaaf23dcebbef88223",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/4382b2b2059ec7e5135d07685ec1e3e16ae32d16",
+                "reference": "4382b2b2059ec7e5135d07685ec1e3e16ae32d16",
                 "shasum": ""
             },
             "require": {
@@ -10921,7 +11045,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.54"
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.55"
             },
             "funding": [
                 {
@@ -10937,7 +11061,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-11-05T13:36:26+00:00"
+            "time": "2020-11-14T10:20:35+00:00"
         },
         {
             "name": "phpstan/phpstan-phpunit",
@@ -11473,16 +11597,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "0.8.50",
+            "version": "0.8.56",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "cf298105f05970f50efb6e8a5c9d1b06f44737af"
+                "reference": "03e6aa474bb958aeff430813a757f46b7eb0d33c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/cf298105f05970f50efb6e8a5c9d1b06f44737af",
-                "reference": "cf298105f05970f50efb6e8a5c9d1b06f44737af",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/03e6aa474bb958aeff430813a757f46b7eb0d33c",
+                "reference": "03e6aa474bb958aeff430813a757f46b7eb0d33c",
                 "shasum": ""
             },
             "require": {
@@ -11491,7 +11615,7 @@
                 "doctrine/inflector": "^1.4|^2.0",
                 "ext-json": "*",
                 "jean85/pretty-package-versions": "^1.5.1",
-                "migrify/php-config-printer": "^0.3.52",
+                "migrify/php-config-printer": "^0.4",
                 "nette/robot-loader": "^3.2",
                 "nette/utils": "^3.1",
                 "nikic/php-parser": "4.10.2",
@@ -11508,13 +11632,13 @@
                 "symfony/finder": "^4.4.8|^5.1",
                 "symfony/http-kernel": "^4.4.8|^5.1",
                 "symfony/process": "^4.4.8|^5.1",
-                "symplify/autowire-array-parameter": "8.3.48",
-                "symplify/composer-json-manipulator": "8.3.48",
-                "symplify/console-color-diff": "8.3.48",
-                "symplify/easy-testing": "8.3.48",
-                "symplify/package-builder": "8.3.48",
-                "symplify/set-config-resolver": "8.3.48",
-                "symplify/smart-file-system": "8.3.48",
+                "symplify/autowire-array-parameter": "^8.3.48",
+                "symplify/composer-json-manipulator": "^8.3.48",
+                "symplify/console-color-diff": "^8.3.48",
+                "symplify/easy-testing": "^8.3.48",
+                "symplify/package-builder": "^8.3.48",
+                "symplify/set-config-resolver": "^8.3.48",
+                "symplify/smart-file-system": "^8.3.48",
                 "webmozart/assert": "^1.9"
             },
             "replace": {
@@ -11525,7 +11649,7 @@
             "require-dev": {
                 "cweagans/composer-patches": "^1.7",
                 "friendsofphp/php-cs-fixer": "^2.16",
-                "migrify/vendor-patches": "^0.3.52",
+                "migrify/vendor-patches": "^0.4",
                 "nette/application": "^3.0",
                 "nette/di": "^3.0",
                 "nette/forms": "^3.0",
@@ -11533,11 +11657,11 @@
                 "php-parallel-lint/php-parallel-lint": "^1.2",
                 "phpunit/phpunit": "^8.5|^9.2",
                 "psr/event-dispatcher": "^1.0",
-                "symplify/changelog-linker": "8.3.48",
-                "symplify/easy-coding-standard": "8.3.48",
-                "symplify/easy-testing": "8.3.48",
-                "symplify/monorepo-builder": "8.3.48",
-                "symplify/phpstan-extensions": "8.3.48",
+                "symplify/changelog-linker": "^8.3.48",
+                "symplify/easy-coding-standard": "^8.3.48",
+                "symplify/easy-testing": "^8.3.48",
+                "symplify/monorepo-builder": "^8.3.48",
+                "symplify/phpstan-extensions": "^8.3.48",
                 "tracy/tracy": "^2.7"
             },
             "bin": [
@@ -11681,7 +11805,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.8.50"
+                "source": "https://github.com/rectorphp/rector/tree/0.8.56"
             },
             "funding": [
                 {
@@ -11689,7 +11813,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-13T17:37:01+00:00"
+            "time": "2020-11-15T15:57:03+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -14268,6 +14392,7 @@
         "pop-schema/usermeta-wp": 20,
         "pop-schema/users-wp": 20,
         "pop-schema/custompost-mutations-wp": 20,
+        "pop-schema/custompostmedia-mutations-wp": 20,
         "pop-schema/post-mutations": 20,
         "wikimedia/composer-merge-plugin": 20
     },
