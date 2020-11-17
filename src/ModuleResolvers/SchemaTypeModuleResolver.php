@@ -45,6 +45,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
     public const SCHEMA_CUSTOMPOST_MUTATIONS = Plugin::NAMESPACE . '\schema-custompost-mutations';
     public const SCHEMA_POST_MUTATIONS = Plugin::NAMESPACE . '\schema-post-mutations';
     public const SCHEMA_CUSTOMPOSTMEDIA_MUTATIONS = Plugin::NAMESPACE . '\schema-custompostmedia-mutations';
+    public const SCHEMA_COMMENT_MUTATIONS = Plugin::NAMESPACE . '\schema-comment-mutations';
 
     /**
      * Setting options
@@ -79,6 +80,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
             self::SCHEMA_CUSTOMPOST_MUTATIONS,
             self::SCHEMA_POST_MUTATIONS,
             self::SCHEMA_CUSTOMPOSTMEDIA_MUTATIONS,
+            self::SCHEMA_COMMENT_MUTATIONS,
         ];
     }
 
@@ -150,6 +152,15 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
                         self::SCHEMA_CUSTOMPOST_MUTATIONS,
                     ],
                 ];
+            case self::SCHEMA_COMMENT_MUTATIONS:
+                return [
+                    [
+                        OperationalFunctionalityModuleResolver::MUTATIONS,
+                    ],
+                    [
+                        self::SCHEMA_COMMENTS,
+                    ],
+                ];
         }
         return parent::getDependedModuleLists($module);
     }
@@ -170,6 +181,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
             self::SCHEMA_CUSTOMPOST_MUTATIONS => \__('Schema Custom Post Mutations', 'graphql-api'),
             self::SCHEMA_POST_MUTATIONS => \__('Schema Post Mutations', 'graphql-api'),
             self::SCHEMA_CUSTOMPOSTMEDIA_MUTATIONS => \__('Schema Custom Post Media Mutations', 'graphql-api'),
+            self::SCHEMA_COMMENT_MUTATIONS => \__('Schema Comment Mutations', 'graphql-api'),
         ];
         return $names[$module] ?? $module;
     }
@@ -237,6 +249,8 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
                 );
             case self::SCHEMA_CUSTOMPOSTMEDIA_MUTATIONS:
                 return \__('Execute mutations concerning media items on custom posts', 'graphql-api');
+            case self::SCHEMA_COMMENT_MUTATIONS:
+                return \__('Create comments', 'graphql-api');
         }
         return parent::getDescription($module);
     }
@@ -258,6 +272,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
             case self::SCHEMA_CUSTOMPOST_MUTATIONS:
             case self::SCHEMA_POST_MUTATIONS:
             case self::SCHEMA_CUSTOMPOSTMEDIA_MUTATIONS:
+            case self::SCHEMA_COMMENT_MUTATIONS:
                 return false;
         }
         return $this->upstreamHasDocumentation($module);
