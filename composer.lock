@@ -3127,12 +3127,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/custompost-mutations.git",
-                "reference": "a5407694c5e401c6ba6d8783c40a2efa92a300dd"
+                "reference": "a25e37b9ab0a0424a414e984e1c639ed4f67c8ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/custompost-mutations/zipball/a5407694c5e401c6ba6d8783c40a2efa92a300dd",
-                "reference": "a5407694c5e401c6ba6d8783c40a2efa92a300dd",
+                "url": "https://api.github.com/repos/PoPSchema/custompost-mutations/zipball/a25e37b9ab0a0424a414e984e1c639ed4f67c8ce",
+                "reference": "a25e37b9ab0a0424a414e984e1c639ed4f67c8ce",
                 "shasum": ""
             },
             "require": {
@@ -3179,7 +3179,7 @@
                 "issues": "https://github.com/PoPSchema/custompost-mutations/issues",
                 "source": "https://github.com/PoPSchema/custompost-mutations/tree/master"
             },
-            "time": "2020-11-17T13:38:41+00:00"
+            "time": "2020-11-17T14:42:52+00:00"
         },
         {
             "name": "pop-schema/custompost-mutations-wp",
@@ -5892,12 +5892,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/post-mutations.git",
-                "reference": "d7c1e63dcd5149f11d5c93b19ceead9d5a3a47f7"
+                "reference": "fdbc7e0838418afb06a64519a316c16cb95dc9a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/post-mutations/zipball/d7c1e63dcd5149f11d5c93b19ceead9d5a3a47f7",
-                "reference": "d7c1e63dcd5149f11d5c93b19ceead9d5a3a47f7",
+                "url": "https://api.github.com/repos/PoPSchema/post-mutations/zipball/fdbc7e0838418afb06a64519a316c16cb95dc9a9",
+                "reference": "fdbc7e0838418afb06a64519a316c16cb95dc9a9",
                 "shasum": ""
             },
             "require": {
@@ -5944,7 +5944,7 @@
                 "issues": "https://github.com/PoPSchema/post-mutations/issues",
                 "source": "https://github.com/PoPSchema/post-mutations/tree/master"
             },
-            "time": "2020-11-17T08:17:42+00:00"
+            "time": "2020-11-17T15:46:59+00:00"
         },
         {
             "name": "pop-schema/post-tags",
