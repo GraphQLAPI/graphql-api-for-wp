@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b2e69dcd599e1a20665d2da801bb57a2",
+    "content-hash": "1de016b8ed1eaded55a6eb097760aa59",
     "packages": [
         {
             "name": "brain/cortex",
@@ -2752,6 +2752,129 @@
             "time": "2020-11-10T07:52:53+00:00"
         },
         {
+            "name": "pop-schema/comment-mutations",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PoPSchema/comment-mutations.git",
+                "reference": "a4592206a5dbd48f1c477348d195090932d149bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PoPSchema/comment-mutations/zipball/a4592206a5dbd48f1c477348d195090932d149bc",
+                "reference": "a4592206a5dbd48f1c477348d195090932d149bc",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.4",
+                "pop-schema/comments": "dev-master",
+                "pop-schema/user-state": "dev-master"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": ">=9.3",
+                "rector/rector": "^0.8.17",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoPSchema\\CommentMutations\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "Adds support for comment mutations",
+            "homepage": "https://github.com/PoPSchema/comment-mutations",
+            "keywords": [
+                "comment-mutations",
+                "pop"
+            ],
+            "support": {
+                "issues": "https://github.com/PoPSchema/comment-mutations/issues",
+                "source": "https://github.com/PoPSchema/comment-mutations/tree/master"
+            },
+            "time": "2020-11-17T13:43:50+00:00"
+        },
+        {
+            "name": "pop-schema/comment-mutations-wp",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PoPSchema/comment-mutations-wp.git",
+                "reference": "ee92a4af2bf74ad2e8bbcf2bcc21373106a8c290"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PoPSchema/comment-mutations-wp/zipball/ee92a4af2bf74ad2e8bbcf2bcc21373106a8c290",
+                "reference": "ee92a4af2bf74ad2e8bbcf2bcc21373106a8c290",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.4",
+                "pop-schema/comment-mutations": "dev-master",
+                "pop-schema/comments-wp": "dev-master",
+                "pop-schema/user-state-wp": "dev-master"
+            },
+            "require-dev": {
+                "johnpbloch/wordpress": ">=5.5",
+                "phpunit/phpunit": ">=9.3",
+                "rector/rector": "^0.8.17",
+                "squizlabs/php_codesniffer": "^3.0",
+                "szepeviktor/phpstan-wordpress": "^0.6.2"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "wordpress-install-dir": "vendor/wordpress/wordpress",
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PoPSchema\\CommentMutationsWP\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Losoviz",
+                    "email": "leo@getpop.org",
+                    "homepage": "https://getpop.org"
+                }
+            ],
+            "description": "Implementation for WordPress of contracts from package \"Comment Mutations\"",
+            "homepage": "https://github.com/PoPSchema/comment-mutations-wp",
+            "keywords": [
+                "comment-mutations-wp",
+                "pop"
+            ],
+            "support": {
+                "issues": "https://github.com/PoPSchema/comment-mutations-wp/issues",
+                "source": "https://github.com/PoPSchema/comment-mutations-wp/tree/master"
+            },
+            "time": "2020-11-17T13:38:23+00:00"
+        },
+        {
             "name": "pop-schema/commentmeta",
             "version": "dev-master",
             "source": {
@@ -3004,12 +3127,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/custompost-mutations.git",
-                "reference": "6ee73cdcbcbbceb8ef843fbff6d03579cf178d95"
+                "reference": "a5407694c5e401c6ba6d8783c40a2efa92a300dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/custompost-mutations/zipball/6ee73cdcbcbbceb8ef843fbff6d03579cf178d95",
-                "reference": "6ee73cdcbcbbceb8ef843fbff6d03579cf178d95",
+                "url": "https://api.github.com/repos/PoPSchema/custompost-mutations/zipball/a5407694c5e401c6ba6d8783c40a2efa92a300dd",
+                "reference": "a5407694c5e401c6ba6d8783c40a2efa92a300dd",
                 "shasum": ""
             },
             "require": {
@@ -3056,7 +3179,7 @@
                 "issues": "https://github.com/PoPSchema/custompost-mutations/issues",
                 "source": "https://github.com/PoPSchema/custompost-mutations/tree/master"
             },
-            "time": "2020-11-17T06:48:22+00:00"
+            "time": "2020-11-17T13:38:41+00:00"
         },
         {
             "name": "pop-schema/custompost-mutations-wp",
@@ -4089,12 +4212,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/migrate-comments.git",
-                "reference": "51b14d23e14c2b9d0f3c45d397ebb258d342038c"
+                "reference": "4e7b78f99446646c509b5298e73549ddc6555ee0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/migrate-comments/zipball/51b14d23e14c2b9d0f3c45d397ebb258d342038c",
-                "reference": "51b14d23e14c2b9d0f3c45d397ebb258d342038c",
+                "url": "https://api.github.com/repos/PoPSchema/migrate-comments/zipball/4e7b78f99446646c509b5298e73549ddc6555ee0",
+                "reference": "4e7b78f99446646c509b5298e73549ddc6555ee0",
                 "shasum": ""
             },
             "require": {
@@ -4128,7 +4251,7 @@
                 "issues": "https://github.com/PoPSchema/migrate-comments/issues",
                 "source": "https://github.com/PoPSchema/migrate-comments/tree/master"
             },
-            "time": "2020-11-04T08:17:36+00:00"
+            "time": "2020-11-17T13:39:04+00:00"
         },
         {
             "name": "pop-schema/migrate-comments-wp",
@@ -4136,12 +4259,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/migrate-comments-wp.git",
-                "reference": "569e709fcb13e9148f11a11dcf63ac0748fbe37a"
+                "reference": "3ef36bb1b727decf7be671ee4431242bb933224d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/migrate-comments-wp/zipball/569e709fcb13e9148f11a11dcf63ac0748fbe37a",
-                "reference": "569e709fcb13e9148f11a11dcf63ac0748fbe37a",
+                "url": "https://api.github.com/repos/PoPSchema/migrate-comments-wp/zipball/3ef36bb1b727decf7be671ee4431242bb933224d",
+                "reference": "3ef36bb1b727decf7be671ee4431242bb933224d",
                 "shasum": ""
             },
             "require": {
@@ -4175,7 +4298,7 @@
                 "issues": "https://github.com/PoPSchema/migrate-comments-wp/issues",
                 "source": "https://github.com/PoPSchema/migrate-comments-wp/tree/master"
             },
-            "time": "2020-09-01T22:14:36+00:00"
+            "time": "2020-11-17T13:39:00+00:00"
         },
         {
             "name": "pop-schema/migrate-custompostmedia",
@@ -5769,12 +5892,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/post-mutations.git",
-                "reference": "b8db168bd8f22849229395ec865e301c051a40ac"
+                "reference": "d7c1e63dcd5149f11d5c93b19ceead9d5a3a47f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/post-mutations/zipball/b8db168bd8f22849229395ec865e301c051a40ac",
-                "reference": "b8db168bd8f22849229395ec865e301c051a40ac",
+                "url": "https://api.github.com/repos/PoPSchema/post-mutations/zipball/d7c1e63dcd5149f11d5c93b19ceead9d5a3a47f7",
+                "reference": "d7c1e63dcd5149f11d5c93b19ceead9d5a3a47f7",
                 "shasum": ""
             },
             "require": {
@@ -5821,7 +5944,7 @@
                 "issues": "https://github.com/PoPSchema/post-mutations/issues",
                 "source": "https://github.com/PoPSchema/post-mutations/tree/master"
             },
-            "time": "2020-11-17T06:05:08+00:00"
+            "time": "2020-11-17T08:17:42+00:00"
         },
         {
             "name": "pop-schema/post-tags",
@@ -10085,7 +10208,7 @@
         },
         {
             "name": "migrify/migrify-kernel",
-            "version": "0.4.1",
+            "version": "0.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/migrify/migrify-kernel.git",
@@ -10122,26 +10245,26 @@
             "description": "Kernel for small CLI applications",
             "support": {
                 "issues": "https://github.com/migrify/migrify-kernel/issues",
-                "source": "https://github.com/migrify/migrify-kernel/tree/0.4.1"
+                "source": "https://github.com/migrify/migrify-kernel/tree/0.4.2"
             },
             "time": "2020-11-14T20:12:17+00:00"
         },
         {
             "name": "migrify/php-config-printer",
-            "version": "0.4.1",
+            "version": "0.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/migrify/php-config-printer.git",
-                "reference": "1b02193704b412b83ddc83d067c78c32c2772f1e"
+                "reference": "a7d9d21cb34050aa808ccd35d2bedcd484fe1220"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/migrify/php-config-printer/zipball/1b02193704b412b83ddc83d067c78c32c2772f1e",
-                "reference": "1b02193704b412b83ddc83d067c78c32c2772f1e",
+                "url": "https://api.github.com/repos/migrify/php-config-printer/zipball/a7d9d21cb34050aa808ccd35d2bedcd484fe1220",
+                "reference": "a7d9d21cb34050aa808ccd35d2bedcd484fe1220",
                 "shasum": ""
             },
             "require": {
-                "migrify/migrify-kernel": "^0.4.1",
+                "migrify/migrify-kernel": "^0.4.2",
                 "nette/utils": "^3.1",
                 "nikic/php-parser": "^4.9",
                 "php": ">=7.2",
@@ -10164,9 +10287,9 @@
             "description": "Print Symfony services array with configuration to to plain PHP file format thanks to this simple php-parser wrapper",
             "support": {
                 "issues": "https://github.com/migrify/php-config-printer/issues",
-                "source": "https://github.com/migrify/php-config-printer/tree/0.4.1"
+                "source": "https://github.com/migrify/php-config-printer/tree/0.4.2"
             },
-            "time": "2020-11-15T11:32:00+00:00"
+            "time": "2020-11-17T12:04:46+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -14394,6 +14517,7 @@
         "pop-schema/custompost-mutations-wp": 20,
         "pop-schema/custompostmedia-mutations-wp": 20,
         "pop-schema/post-mutations": 20,
+        "pop-schema/comment-mutations-wp": 20,
         "wikimedia/composer-merge-plugin": 20
     },
     "prefer-stable": true,
