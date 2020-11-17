@@ -7,6 +7,7 @@ namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 use GraphQLAPI\GraphQLAPI\Plugin;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolver;
+use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 
 class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
@@ -18,6 +19,11 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
     public const EMBEDDABLE_FIELDS = Plugin::NAMESPACE . '\embeddable-fields';
     public const MUTATIONS = Plugin::NAMESPACE . '\mutations';
     public const NESTED_MUTATIONS = Plugin::NAMESPACE . '\nested-mutations';
+
+    /**
+     * Setting options
+     */
+    public const OPTION_DISABLE_REDUNDANT_MUTATION_FIELDS_IN_ROOT_TYPE = 'disable-redundant-mutation-fields-in-root-type';
 
     /**
      * @return string[]
@@ -113,5 +119,47 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
                 return false;
         }
         return parent::isEnabledByDefault($module);
+    }
+
+    /**
+     * Default value for an option set by the module
+     *
+     * @param string $module
+     * @param string $option
+     * @return mixed Anything the setting might be: an array|string|bool|int|null
+     */
+    public function getSettingsDefaultValue(string $module, string $option)
+    {
+        $defaultValues = [
+            self::NESTED_MUTATIONS => [
+                self::OPTION_DISABLE_REDUNDANT_MUTATION_FIELDS_IN_ROOT_TYPE => false,
+            ],
+        ];
+        return $defaultValues[$module][$option];
+    }
+
+    /**
+     * Array with the inputs to show as settings for the module
+     *
+     * @return array<array> List of settings for the module, each entry is an array with property => value
+     */
+    public function getSettings(string $module): array
+    {
+        $moduleSettings = parent::getSettings($module);
+        // Do the if one by one, so that the SELECT do not get evaluated unless needed
+        if ($module == self::NESTED_MUTATIONS) {
+            $option = self::OPTION_DISABLE_REDUNDANT_MUTATION_FIELDS_IN_ROOT_TYPE;
+            $moduleSettings[] = [
+                Properties::INPUT => $option,
+                Properties::NAME => $this->getSettingOptionName(
+                    $module,
+                    $option
+                ),
+                Properties::TITLE => \__('Disable redundant mutation fields in the root type?', 'graphql-api'),
+                Properties::DESCRIPTION => \__('With nested mutations, operations can be executed on an entity type, and the equivalent operation in the root type can be considered redundant, and removed from the schema. For instance, field <code>Root.updatePost</code> can be removed when <code>Post.update</code> is available', 'graphql-api'),
+                Properties::TYPE => Properties::TYPE_BOOL,
+            ];
+        }
+        return $moduleSettings;
     }
 }

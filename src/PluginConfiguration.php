@@ -21,6 +21,7 @@ use PoP\CacheControl\Environment as CacheControlEnvironment;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
+use PoP\Engine\Environment as EngineEnvironment;
 use PoPSchema\CustomPosts\Environment as CustomPostsEnvironment;
 use GraphQLAPI\GraphQLAPI\Facades\CacheConfigurationManagerFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaTypeModuleResolver;
@@ -42,6 +43,7 @@ use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfigurat
 use GraphQLByPoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PluginManagementFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
+use PoP\Engine\ComponentConfiguration as EngineComponentConfiguration;
 use PoPSchema\CustomPosts\ComponentConfiguration as CustomPostsComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
 use PoPSchema\GenericCustomPosts\ComponentConfiguration as GenericCustomPostsComponentConfiguration;
@@ -278,6 +280,13 @@ class PluginConfiguration
                 'envVariable' => ComponentModelEnvironment::NAMESPACE_TYPES_AND_INTERFACES,
                 'module' => SchemaConfigurationFunctionalityModuleResolver::SCHEMA_NAMESPACING,
                 'option' => SchemaConfigurationFunctionalityModuleResolver::OPTION_USE_NAMESPACING,
+            ],
+            // Disable redundant mutation fields in the root type?
+            [
+                'class' => EngineComponentConfiguration::class,
+                'envVariable' => EngineEnvironment::DISABLE_REDUNDANT_ROOT_TYPE_MUTATION_FIELDS,
+                'module' => OperationalFunctionalityModuleResolver::NESTED_MUTATIONS,
+                'option' => OperationalFunctionalityModuleResolver::OPTION_DISABLE_REDUNDANT_MUTATION_FIELDS_IN_ROOT_TYPE,
             ],
             // Cache-Control default max-age
             [
