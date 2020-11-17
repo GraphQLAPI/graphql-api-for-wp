@@ -804,12 +804,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/engine.git",
-                "reference": "f95bfad337d3e3d9362398b1e427e1a5b5b9f508"
+                "reference": "944be1b65be23431cbf7948b27624c7104d3aa2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/engine/zipball/f95bfad337d3e3d9362398b1e427e1a5b5b9f508",
-                "reference": "f95bfad337d3e3d9362398b1e427e1a5b5b9f508",
+                "url": "https://api.github.com/repos/getpop/engine/zipball/944be1b65be23431cbf7948b27624c7104d3aa2e",
+                "reference": "944be1b65be23431cbf7948b27624c7104d3aa2e",
                 "shasum": ""
             },
             "require": {
@@ -862,7 +862,7 @@
                 "issues": "https://github.com/getpop/engine/issues",
                 "source": "https://github.com/getpop/engine/tree/master"
             },
-            "time": "2020-11-13T08:59:03+00:00"
+            "time": "2020-11-17T06:05:17+00:00"
         },
         {
             "name": "getpop/engine-wp",
@@ -3004,12 +3004,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/custompost-mutations.git",
-                "reference": "07477a471ee8c4e568acfe619c4d946b27ea54e5"
+                "reference": "6ee73cdcbcbbceb8ef843fbff6d03579cf178d95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/custompost-mutations/zipball/07477a471ee8c4e568acfe619c4d946b27ea54e5",
-                "reference": "07477a471ee8c4e568acfe619c4d946b27ea54e5",
+                "url": "https://api.github.com/repos/PoPSchema/custompost-mutations/zipball/6ee73cdcbcbbceb8ef843fbff6d03579cf178d95",
+                "reference": "6ee73cdcbcbbceb8ef843fbff6d03579cf178d95",
                 "shasum": ""
             },
             "require": {
@@ -3056,7 +3056,7 @@
                 "issues": "https://github.com/PoPSchema/custompost-mutations/issues",
                 "source": "https://github.com/PoPSchema/custompost-mutations/tree/master"
             },
-            "time": "2020-11-16T11:02:11+00:00"
+            "time": "2020-11-17T06:48:22+00:00"
         },
         {
             "name": "pop-schema/custompost-mutations-wp",
@@ -3189,12 +3189,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/custompostmedia-mutations.git",
-                "reference": "68e6eb78f99633dd7fd51cf52d386ce4e1cf1b1d"
+                "reference": "caaeb9bc6832332dd0ba9cb5ddf4e0d4868a2cce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/custompostmedia-mutations/zipball/68e6eb78f99633dd7fd51cf52d386ce4e1cf1b1d",
-                "reference": "68e6eb78f99633dd7fd51cf52d386ce4e1cf1b1d",
+                "url": "https://api.github.com/repos/PoPSchema/custompostmedia-mutations/zipball/caaeb9bc6832332dd0ba9cb5ddf4e0d4868a2cce",
+                "reference": "caaeb9bc6832332dd0ba9cb5ddf4e0d4868a2cce",
                 "shasum": ""
             },
             "require": {
@@ -3241,7 +3241,7 @@
                 "issues": "https://github.com/PoPSchema/custompostmedia-mutations/issues",
                 "source": "https://github.com/PoPSchema/custompostmedia-mutations/tree/master"
             },
-            "time": "2020-11-16T09:53:47+00:00"
+            "time": "2020-11-17T06:12:51+00:00"
         },
         {
             "name": "pop-schema/custompostmedia-mutations-wp",
@@ -3249,18 +3249,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/custompostmedia-mutations-wp.git",
-                "reference": "3ff6ce2a1a18bafa017cbdd0c5d4ee19876873d9"
+                "reference": "d8a6ca9680629afd922988d69a7d9ca5851d3749"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/custompostmedia-mutations-wp/zipball/3ff6ce2a1a18bafa017cbdd0c5d4ee19876873d9",
-                "reference": "3ff6ce2a1a18bafa017cbdd0c5d4ee19876873d9",
+                "url": "https://api.github.com/repos/PoPSchema/custompostmedia-mutations-wp/zipball/d8a6ca9680629afd922988d69a7d9ca5851d3749",
+                "reference": "d8a6ca9680629afd922988d69a7d9ca5851d3749",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.4",
+                "pop-schema/custompost-mutations-wp": "dev-master",
                 "pop-schema/custompostmedia-mutations": "dev-master",
-                "pop-schema/customposts-wp": "dev-master",
                 "pop-schema/media-wp": "dev-master",
                 "pop-schema/user-state-wp": "dev-master"
             },
@@ -3305,7 +3305,7 @@
                 "issues": "https://github.com/PoPSchema/custompostmedia-mutations-wp/issues",
                 "source": "https://github.com/PoPSchema/custompostmedia-mutations-wp/tree/master"
             },
-            "time": "2020-11-16T06:52:44+00:00"
+            "time": "2020-11-17T07:00:05+00:00"
         },
         {
             "name": "pop-schema/custompostmedia-wp",
@@ -5769,12 +5769,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/post-mutations.git",
-                "reference": "241a83a433e7eb11e8ff950fff17cba45f7165e1"
+                "reference": "b8db168bd8f22849229395ec865e301c051a40ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/post-mutations/zipball/241a83a433e7eb11e8ff950fff17cba45f7165e1",
-                "reference": "241a83a433e7eb11e8ff950fff17cba45f7165e1",
+                "url": "https://api.github.com/repos/PoPSchema/post-mutations/zipball/b8db168bd8f22849229395ec865e301c051a40ac",
+                "reference": "b8db168bd8f22849229395ec865e301c051a40ac",
                 "shasum": ""
             },
             "require": {
@@ -5821,7 +5821,7 @@
                 "issues": "https://github.com/PoPSchema/post-mutations/issues",
                 "source": "https://github.com/PoPSchema/post-mutations/tree/master"
             },
-            "time": "2020-11-16T10:50:16+00:00"
+            "time": "2020-11-17T06:05:08+00:00"
         },
         {
             "name": "pop-schema/post-tags",
@@ -11005,16 +11005,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.55",
+            "version": "0.12.56",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "4382b2b2059ec7e5135d07685ec1e3e16ae32d16"
+                "reference": "007fd5d700c41e1bb27795fae15a2383f8fa4ba1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/4382b2b2059ec7e5135d07685ec1e3e16ae32d16",
-                "reference": "4382b2b2059ec7e5135d07685ec1e3e16ae32d16",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/007fd5d700c41e1bb27795fae15a2383f8fa4ba1",
+                "reference": "007fd5d700c41e1bb27795fae15a2383f8fa4ba1",
                 "shasum": ""
             },
             "require": {
@@ -11045,7 +11045,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.55"
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.56"
             },
             "funding": [
                 {
@@ -11061,7 +11061,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-11-14T10:20:35+00:00"
+            "time": "2020-11-16T22:59:18+00:00"
         },
         {
             "name": "phpstan/phpstan-phpunit",
