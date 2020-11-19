@@ -7262,12 +7262,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/user-state-mutations-wp.git",
-                "reference": "61d3b189efbcb86e1cc0f7b0cd737d8aab1052f5"
+                "reference": "1b17c960dd14dd9c1e1792aca23397ffa60825c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/user-state-mutations-wp/zipball/61d3b189efbcb86e1cc0f7b0cd737d8aab1052f5",
-                "reference": "61d3b189efbcb86e1cc0f7b0cd737d8aab1052f5",
+                "url": "https://api.github.com/repos/PoPSchema/user-state-mutations-wp/zipball/1b17c960dd14dd9c1e1792aca23397ffa60825c7",
+                "reference": "1b17c960dd14dd9c1e1792aca23397ffa60825c7",
                 "shasum": ""
             },
             "require": {
@@ -7316,7 +7316,7 @@
                 "issues": "https://github.com/PoPSchema/user-state-mutations-wp/issues",
                 "source": "https://github.com/PoPSchema/user-state-mutations-wp/tree/master"
             },
-            "time": "2020-11-19T15:14:08+00:00"
+            "time": "2020-11-19T15:46:35+00:00"
         },
         {
             "name": "pop-schema/user-state-wp",
