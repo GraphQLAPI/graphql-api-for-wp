@@ -687,6 +687,9 @@ class PluginConfiguration
             SchemaTypeModuleResolver::SCHEMA_POST_TAGS => [
                 \PoPSchema\PostTags\Component::class,
             ],
+            SchemaTypeModuleResolver::SCHEMA_USER_STATE_MUTATIONS => [
+                \PoPSchema\UserStateMutations\Component::class,
+            ],
             SchemaTypeModuleResolver::SCHEMA_POST_MUTATIONS => [
                 \PoPSchema\PostMutations\Component::class,
             ],

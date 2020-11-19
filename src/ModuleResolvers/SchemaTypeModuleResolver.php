@@ -42,6 +42,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
     public const SCHEMA_MEDIA = Plugin::NAMESPACE . '\schema-media';
     public const SCHEMA_TAGS = Plugin::NAMESPACE . '\schema-tags';
     public const SCHEMA_POST_TAGS = Plugin::NAMESPACE . '\schema-post-tags';
+    public const SCHEMA_USER_STATE_MUTATIONS = Plugin::NAMESPACE . '\schema-user-state-mutations';
     public const SCHEMA_CUSTOMPOST_MUTATIONS = Plugin::NAMESPACE . '\schema-custompost-mutations';
     public const SCHEMA_POST_MUTATIONS = Plugin::NAMESPACE . '\schema-post-mutations';
     public const SCHEMA_CUSTOMPOSTMEDIA_MUTATIONS = Plugin::NAMESPACE . '\schema-custompostmedia-mutations';
@@ -77,6 +78,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
             self::SCHEMA_TAGS,
             self::SCHEMA_POST_TAGS,
             self::SCHEMA_MEDIA,
+            self::SCHEMA_USER_STATE_MUTATIONS,
             self::SCHEMA_CUSTOMPOST_MUTATIONS,
             self::SCHEMA_POST_MUTATIONS,
             self::SCHEMA_CUSTOMPOSTMEDIA_MUTATIONS,
@@ -125,10 +127,16 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
                         self::SCHEMA_TAGS,
                     ],
                 ];
-            case self::SCHEMA_CUSTOMPOST_MUTATIONS:
+            case self::SCHEMA_USER_STATE_MUTATIONS:
                 return [
                     [
                         OperationalFunctionalityModuleResolver::MUTATIONS,
+                    ],
+                ];
+            case self::SCHEMA_CUSTOMPOST_MUTATIONS:
+                return [
+                    [
+                        self::SCHEMA_USER_STATE_MUTATIONS,
                     ],
                     [
                         self::SCHEMA_CUSTOMPOSTS,
@@ -155,7 +163,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
             case self::SCHEMA_COMMENT_MUTATIONS:
                 return [
                     [
-                        OperationalFunctionalityModuleResolver::MUTATIONS,
+                        self::SCHEMA_USER_STATE_MUTATIONS,
                     ],
                     [
                         self::SCHEMA_COMMENTS,
@@ -178,6 +186,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
             self::SCHEMA_TAGS => \__('Schema Tags', 'graphql-api'),
             self::SCHEMA_POST_TAGS => \__('Schema Post Tags', 'graphql-api'),
             self::SCHEMA_CUSTOMPOSTS => \__('Schema Custom Posts', 'graphql-api'),
+            self::SCHEMA_USER_STATE_MUTATIONS => \__('Schema User State Mutations', 'graphql-api'),
             self::SCHEMA_CUSTOMPOST_MUTATIONS => \__('Schema Custom Post Mutations', 'graphql-api'),
             self::SCHEMA_POST_MUTATIONS => \__('Schema Post Mutations', 'graphql-api'),
             self::SCHEMA_CUSTOMPOSTMEDIA_MUTATIONS => \__('Schema Custom Post Media Mutations', 'graphql-api'),
@@ -240,6 +249,8 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
                 return \__('Base functionality for all custom posts', 'graphql-api');
             case self::SCHEMA_TAGS:
                 return \__('Base functionality for all tags', 'graphql-api');
+            case self::SCHEMA_USER_STATE_MUTATIONS:
+                return \__('Have the user log-in and modify data', 'graphql-api');
             case self::SCHEMA_CUSTOMPOST_MUTATIONS:
                 return \__('Base functionality to mutate custom posts', 'graphql-api');
             case self::SCHEMA_POST_MUTATIONS:
