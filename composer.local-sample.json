@@ -84,6 +84,8 @@
             "PoPSchema\\UserStateAccessControl\\": "../../graphql-api-components/pop-schema/user-state-access-control/src",
             "PoPSchema\\UserStateWP\\": "../../graphql-api-components/pop-schema/user-state-wp/src",
             "PoPSchema\\UsersWP\\": "../../graphql-api-components/pop-schema/users-wp/src",
+            "PoPSchema\\UserStateMutations\\": "../../graphql-api-components/pop-schema/user-state-mutations/src",
+            "PoPSchema\\UserStateMutationsWP\\": "../../graphql-api-components/pop-schema/user-state-mutations-wp/src",
             "Youshido\\GraphQL\\": "../../graphql-api-components/graphql-by-pop/graphql-parser/src"
         }
     }

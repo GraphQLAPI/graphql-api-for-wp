@@ -54,6 +54,7 @@ class Component extends AbstractComponent
             \PoPSchema\PostMutations\Component::class,
             \PoPSchema\CustomPostMediaMutationsWP\Component::class,
             \PoPSchema\CommentMutationsWP\Component::class,
+            \PoPSchema\UserStateMutationsWP\Component::class,
             \PoPSchema\BasicDirectives\Component::class,
             \GraphQLByPoP\GraphQLClientsForWP\Component::class,
             \GraphQLByPoP\GraphQLEndpointForWP\Component::class,
