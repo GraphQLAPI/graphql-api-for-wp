@@ -261,12 +261,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/api.git",
-                "reference": "55ca134fa37f684d8dba1a44ac156bfc82dd013d"
+                "reference": "93509a99ff53f572b1d36c7dc00e5738b1db8071"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/api/zipball/55ca134fa37f684d8dba1a44ac156bfc82dd013d",
-                "reference": "55ca134fa37f684d8dba1a44ac156bfc82dd013d",
+                "url": "https://api.github.com/repos/getpop/api/zipball/93509a99ff53f572b1d36c7dc00e5738b1db8071",
+                "reference": "93509a99ff53f572b1d36c7dc00e5738b1db8071",
                 "shasum": ""
             },
             "require": {
@@ -317,7 +317,7 @@
                 "issues": "https://github.com/getpop/api/issues",
                 "source": "https://github.com/getpop/api/tree/master"
             },
-            "time": "2020-11-18T09:12:26+00:00"
+            "time": "2020-11-20T18:07:00+00:00"
         },
         {
             "name": "getpop/api-clients",
@@ -804,12 +804,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/engine.git",
-                "reference": "eac9d8cd970edfaa510202812fb570062c0636ec"
+                "reference": "453b194554e0f20a11063adbfcf05d88edce862c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/engine/zipball/eac9d8cd970edfaa510202812fb570062c0636ec",
-                "reference": "eac9d8cd970edfaa510202812fb570062c0636ec",
+                "url": "https://api.github.com/repos/getpop/engine/zipball/453b194554e0f20a11063adbfcf05d88edce862c",
+                "reference": "453b194554e0f20a11063adbfcf05d88edce862c",
                 "shasum": ""
             },
             "require": {
@@ -862,7 +862,7 @@
                 "issues": "https://github.com/getpop/engine/issues",
                 "source": "https://github.com/getpop/engine/tree/master"
             },
-            "time": "2020-11-19T15:18:34+00:00"
+            "time": "2020-11-20T18:38:55+00:00"
         },
         {
             "name": "getpop/engine-wp",
@@ -1657,12 +1657,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/root.git",
-                "reference": "312360a77f0e9d1e749ba2f946fc60883cfe3235"
+                "reference": "dd1c85a1239dbff4957172d06519356a6153919c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/root/zipball/312360a77f0e9d1e749ba2f946fc60883cfe3235",
-                "reference": "312360a77f0e9d1e749ba2f946fc60883cfe3235",
+                "url": "https://api.github.com/repos/getpop/root/zipball/dd1c85a1239dbff4957172d06519356a6153919c",
+                "reference": "dd1c85a1239dbff4957172d06519356a6153919c",
                 "shasum": ""
             },
             "require": {
@@ -1715,7 +1715,7 @@
                 "issues": "https://github.com/getpop/root/issues",
                 "source": "https://github.com/getpop/root/tree/master"
             },
-            "time": "2020-11-04T08:32:48+00:00"
+            "time": "2020-11-20T16:10:31+00:00"
         },
         {
             "name": "getpop/routing",
@@ -1972,12 +1972,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-clients-for-wp.git",
-                "reference": "d734f84a4e2596f55e7271d8a470a7ea389f43e8"
+                "reference": "8e6865d6f29e9e1832754efd2a968c472daeedd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-clients-for-wp/zipball/d734f84a4e2596f55e7271d8a470a7ea389f43e8",
-                "reference": "d734f84a4e2596f55e7271d8a470a7ea389f43e8",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-clients-for-wp/zipball/8e6865d6f29e9e1832754efd2a968c472daeedd6",
+                "reference": "8e6865d6f29e9e1832754efd2a968c472daeedd6",
                 "shasum": ""
             },
             "require": {
@@ -2028,7 +2028,7 @@
                 "issues": "https://github.com/GraphQLByPoP/graphql-clients-for-wp/issues",
                 "source": "https://github.com/GraphQLByPoP/graphql-clients-for-wp/tree/master"
             },
-            "time": "2020-10-19T07:54:27+00:00"
+            "time": "2020-11-20T14:42:39+00:00"
         },
         {
             "name": "graphql-by-pop/graphql-endpoint-for-wp",
@@ -2269,12 +2269,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "268456e9e8773e2577279da09171e558a1529ffb"
+                "reference": "ed5d9f6d6dd707d05cb71cd91e8ff73203be1d0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/268456e9e8773e2577279da09171e558a1529ffb",
-                "reference": "268456e9e8773e2577279da09171e558a1529ffb",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/ed5d9f6d6dd707d05cb71cd91e8ff73203be1d0f",
+                "reference": "ed5d9f6d6dd707d05cb71cd91e8ff73203be1d0f",
                 "shasum": ""
             },
             "require": {
@@ -2331,7 +2331,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-13T14:35:08+00:00"
+            "time": "2020-11-20T18:38:36+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2757,18 +2757,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/comment-mutations.git",
-                "reference": "4f16d84abf4040ca32812f66d302515349862851"
+                "reference": "a5e1b03a8ca3f7723d990ba6d63c19b7f32c8c8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/comment-mutations/zipball/4f16d84abf4040ca32812f66d302515349862851",
-                "reference": "4f16d84abf4040ca32812f66d302515349862851",
+                "url": "https://api.github.com/repos/PoPSchema/comment-mutations/zipball/a5e1b03a8ca3f7723d990ba6d63c19b7f32c8c8d",
+                "reference": "a5e1b03a8ca3f7723d990ba6d63c19b7f32c8c8d",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.4",
                 "pop-schema/comments": "dev-master",
-                "pop-schema/user-state": "dev-master"
+                "pop-schema/user-state-mutations": "dev-master"
             },
             "require-dev": {
                 "phpstan/phpstan": "^0.12",
@@ -2809,7 +2809,7 @@
                 "issues": "https://github.com/PoPSchema/comment-mutations/issues",
                 "source": "https://github.com/PoPSchema/comment-mutations/tree/master"
             },
-            "time": "2020-11-18T04:02:23+00:00"
+            "time": "2020-11-20T11:35:02+00:00"
         },
         {
             "name": "pop-schema/comment-mutations-wp",
@@ -3127,18 +3127,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/custompost-mutations.git",
-                "reference": "b61c571cd678bfaa152e0530cee8993cc040eadd"
+                "reference": "09e612d853056acdb9d9d7a06473a47810f45bfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/custompost-mutations/zipball/b61c571cd678bfaa152e0530cee8993cc040eadd",
-                "reference": "b61c571cd678bfaa152e0530cee8993cc040eadd",
+                "url": "https://api.github.com/repos/PoPSchema/custompost-mutations/zipball/09e612d853056acdb9d9d7a06473a47810f45bfd",
+                "reference": "09e612d853056acdb9d9d7a06473a47810f45bfd",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.4",
                 "pop-schema/customposts": "dev-master",
-                "pop-schema/user-state": "dev-master"
+                "pop-schema/user-roles": "dev-master",
+                "pop-schema/user-state-mutations": "dev-master"
             },
             "require-dev": {
                 "phpstan/phpstan": "^0.12",
@@ -3179,7 +3180,7 @@
                 "issues": "https://github.com/PoPSchema/custompost-mutations/issues",
                 "source": "https://github.com/PoPSchema/custompost-mutations/tree/master"
             },
-            "time": "2020-11-19T15:19:01+00:00"
+            "time": "2020-11-20T10:40:42+00:00"
         },
         {
             "name": "pop-schema/custompost-mutations-wp",
@@ -3187,18 +3188,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/custompost-mutations-wp.git",
-                "reference": "d5597c097d417422f2798a7c287e8fa4c296177f"
+                "reference": "2be7f287007b5958d4de6ca3ed085ea472e278f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/custompost-mutations-wp/zipball/d5597c097d417422f2798a7c287e8fa4c296177f",
-                "reference": "d5597c097d417422f2798a7c287e8fa4c296177f",
+                "url": "https://api.github.com/repos/PoPSchema/custompost-mutations-wp/zipball/2be7f287007b5958d4de6ca3ed085ea472e278f2",
+                "reference": "2be7f287007b5958d4de6ca3ed085ea472e278f2",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.4",
                 "pop-schema/custompost-mutations": "dev-master",
                 "pop-schema/customposts-wp": "dev-master",
+                "pop-schema/user-roles-wp": "dev-master",
                 "pop-schema/user-state-wp": "dev-master"
             },
             "require-dev": {
@@ -3242,7 +3244,7 @@
                 "issues": "https://github.com/PoPSchema/custompost-mutations-wp/issues",
                 "source": "https://github.com/PoPSchema/custompost-mutations-wp/tree/master"
             },
-            "time": "2020-11-11T07:33:42+00:00"
+            "time": "2020-11-20T10:39:45+00:00"
         },
         {
             "name": "pop-schema/custompostmedia",
@@ -3312,12 +3314,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/custompostmedia-mutations.git",
-                "reference": "cf62f78016848d63c5a5e8eeb8839e7750712ed6"
+                "reference": "aa80b4e6f08caa6de4957c4ca9cbe13c1cb3a99b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/custompostmedia-mutations/zipball/cf62f78016848d63c5a5e8eeb8839e7750712ed6",
-                "reference": "cf62f78016848d63c5a5e8eeb8839e7750712ed6",
+                "url": "https://api.github.com/repos/PoPSchema/custompostmedia-mutations/zipball/aa80b4e6f08caa6de4957c4ca9cbe13c1cb3a99b",
+                "reference": "aa80b4e6f08caa6de4957c4ca9cbe13c1cb3a99b",
                 "shasum": ""
             },
             "require": {
@@ -3364,7 +3366,7 @@
                 "issues": "https://github.com/PoPSchema/custompostmedia-mutations/issues",
                 "source": "https://github.com/PoPSchema/custompostmedia-mutations/tree/master"
             },
-            "time": "2020-11-18T04:02:28+00:00"
+            "time": "2020-11-20T08:09:34+00:00"
         },
         {
             "name": "pop-schema/custompostmedia-mutations-wp",
@@ -6891,12 +6893,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/user-roles.git",
-                "reference": "9b4544d427afd034b70dc59429be194bbd3d3792"
+                "reference": "6baa7f4024dcb62a2626aed44bc73e69caaf69f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/user-roles/zipball/9b4544d427afd034b70dc59429be194bbd3d3792",
-                "reference": "9b4544d427afd034b70dc59429be194bbd3d3792",
+                "url": "https://api.github.com/repos/PoPSchema/user-roles/zipball/6baa7f4024dcb62a2626aed44bc73e69caaf69f7",
+                "reference": "6baa7f4024dcb62a2626aed44bc73e69caaf69f7",
                 "shasum": ""
             },
             "require": {
@@ -6942,7 +6944,7 @@
                 "issues": "https://github.com/PoPSchema/user-roles/issues",
                 "source": "https://github.com/PoPSchema/user-roles/tree/master"
             },
-            "time": "2020-10-19T08:03:22+00:00"
+            "time": "2020-11-20T09:01:27+00:00"
         },
         {
             "name": "pop-schema/user-roles-access-control",
@@ -7014,12 +7016,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/user-roles-wp.git",
-                "reference": "5d5422398425dabb647a3fd7c46f78ae3cef6b19"
+                "reference": "9fa149b85993d5fa73186891578b5521e5236e35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/user-roles-wp/zipball/5d5422398425dabb647a3fd7c46f78ae3cef6b19",
-                "reference": "5d5422398425dabb647a3fd7c46f78ae3cef6b19",
+                "url": "https://api.github.com/repos/PoPSchema/user-roles-wp/zipball/9fa149b85993d5fa73186891578b5521e5236e35",
+                "reference": "9fa149b85993d5fa73186891578b5521e5236e35",
                 "shasum": ""
             },
             "require": {
@@ -7072,7 +7074,7 @@
                 "issues": "https://github.com/PoPSchema/user-roles-wp/issues",
                 "source": "https://github.com/PoPSchema/user-roles-wp/tree/master"
             },
-            "time": "2020-11-13T11:13:26+00:00"
+            "time": "2020-11-20T09:02:27+00:00"
         },
         {
             "name": "pop-schema/user-state",
@@ -7203,12 +7205,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PoPSchema/user-state-mutations.git",
-                "reference": "93db488e0d28e649c87f55ff633d87891f89d989"
+                "reference": "95abfb37c154dc6fe400b54f7772ca38342c0747"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PoPSchema/user-state-mutations/zipball/93db488e0d28e649c87f55ff633d87891f89d989",
-                "reference": "93db488e0d28e649c87f55ff633d87891f89d989",
+                "url": "https://api.github.com/repos/PoPSchema/user-state-mutations/zipball/95abfb37c154dc6fe400b54f7772ca38342c0747",
+                "reference": "95abfb37c154dc6fe400b54f7772ca38342c0747",
                 "shasum": ""
             },
             "require": {
@@ -7254,7 +7256,7 @@
                 "issues": "https://github.com/PoPSchema/user-state-mutations/issues",
                 "source": "https://github.com/PoPSchema/user-state-mutations/tree/master"
             },
-            "time": "2020-11-19T15:19:38+00:00"
+            "time": "2020-11-20T09:10:41+00:00"
         },
         {
             "name": "pop-schema/user-state-mutations-wp",
@@ -14557,12 +14559,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mcaskill/composer-merge-plugin.git",
-                "reference": "9c465e25d6b8036fb2de003cdce521fc9876e81b"
+                "reference": "a8c5a89c6057c6861c79f232ef0b311dc2ec4aa6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mcaskill/composer-merge-plugin/zipball/9c465e25d6b8036fb2de003cdce521fc9876e81b",
-                "reference": "9c465e25d6b8036fb2de003cdce521fc9876e81b",
+                "url": "https://api.github.com/repos/mcaskill/composer-merge-plugin/zipball/a8c5a89c6057c6861c79f232ef0b311dc2ec4aa6",
+                "reference": "a8c5a89c6057c6861c79f232ef0b311dc2ec4aa6",
                 "shasum": ""
             },
             "require": {
@@ -14608,7 +14610,7 @@
             "support": {
                 "source": "https://github.com/mcaskill/composer-merge-plugin/tree/feature/composer-v2"
             },
-            "time": "2020-10-27T03:40:15+00:00"
+            "time": "2020-11-20T15:38:00+00:00"
         }
     ],
     "aliases": [],
