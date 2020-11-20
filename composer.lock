@@ -2269,12 +2269,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "ed5d9f6d6dd707d05cb71cd91e8ff73203be1d0f"
+                "reference": "ece4d883a7e720ebb51f07b84efa94c0bbaa243c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/ed5d9f6d6dd707d05cb71cd91e8ff73203be1d0f",
-                "reference": "ed5d9f6d6dd707d05cb71cd91e8ff73203be1d0f",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/ece4d883a7e720ebb51f07b84efa94c0bbaa243c",
+                "reference": "ece4d883a7e720ebb51f07b84efa94c0bbaa243c",
                 "shasum": ""
             },
             "require": {
@@ -2331,7 +2331,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-20T18:38:36+00:00"
+            "time": "2020-11-20T18:59:52+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
