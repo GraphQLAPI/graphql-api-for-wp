@@ -51,6 +51,7 @@ use PoPSchema\GenericCustomPosts\ComponentConfiguration as GenericCustomPostsCom
 use GraphQLByPoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 use GraphQLByPoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
 use \GraphQLByPoP\GraphQLServer\Environment as GraphQLServerEnvironment;
+use \GraphQLByPoP\GraphQLServer\ComponentConfiguration as GraphQLServerComponentConfiguration;
 
 /**
  * Sets the configuration in all the PoP components.
@@ -282,6 +283,14 @@ class PluginConfiguration
                 'envVariable' => ComponentModelEnvironment::NAMESPACE_TYPES_AND_INTERFACES,
                 'module' => SchemaConfigurationFunctionalityModuleResolver::SCHEMA_NAMESPACING,
                 'option' => SchemaConfigurationFunctionalityModuleResolver::OPTION_USE_NAMESPACING,
+            ],
+            // Enable nested mutations?
+            [
+                'class' => GraphQLServerComponentConfiguration::class,
+                'envVariable' => GraphQLServerEnvironment::ENABLE_NESTED_MUTATIONS,
+                'module' => OperationalFunctionalityModuleResolver::NESTED_MUTATIONS,
+                'option' => OperationalFunctionalityModuleResolver::OPTION_SCHEME,
+                'callback' => fn ($value) => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::NESTED_MUTATIONS) && $value != MutationSchemes::STANDARD,
             ],
             // Disable redundant mutation fields in the root type?
             [
@@ -536,7 +545,6 @@ class PluginConfiguration
     protected static function addPredefinedComponentClassConfiguration(array &$componentClassConfiguration): void
     {
         $moduleRegistry = ModuleRegistryFacade::getInstance();
-        $userSettingsManager = UserSettingsManagerFacade::getInstance();
         $componentClassConfiguration[\PoP\Engine\Component::class] = [
             \PoP\Engine\Environment::ADD_MANDATORY_CACHE_CONTROL_DIRECTIVE => false,
         ];
@@ -568,13 +576,6 @@ class PluginConfiguration
             GraphQLServerEnvironment::ENABLE_REMOVE_IF_NULL_DIRECTIVE => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::REMOVE_IF_NULL_DIRECTIVE),
             // Enable Proactive Feedback?
             GraphQLServerEnvironment::ENABLE_PROACTIVE_FEEDBACK => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::PROACTIVE_FEEDBACK),
-            // Enable Nested Mutations?
-            GraphQLServerEnvironment::ENABLE_NESTED_MUTATIONS =>
-                $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::NESTED_MUTATIONS)
-                && $userSettingsManager->getSetting(
-                    OperationalFunctionalityModuleResolver::NESTED_MUTATIONS,
-                    OperationalFunctionalityModuleResolver::OPTION_SCHEME
-                ) != MutationSchemes::STANDARD,
         ];
         $componentClassConfiguration[\PoP\API\Component::class] = [
             // Enable Embeddable Fields?
