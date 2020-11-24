@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\ModuleResolvers;
 
 use GraphQLAPI\GraphQLAPI\Plugin;
+use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
+use GraphQLByPoP\GraphQLServer\Configuration\MutationSchemes;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverTrait;
 use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\ModuleTypeResolver;
-use GraphQLAPI\GraphQLAPI\ModuleSettings\Properties;
 
 class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModuleResolver
 {
@@ -23,7 +24,7 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
     /**
      * Setting options
      */
-    public const OPTION_DISABLE_REDUNDANT_MUTATION_FIELDS_IN_ROOT_TYPE = 'disable-redundant-mutation-fields-in-root-type';
+    public const OPTION_SCHEME = 'disable-redundant-mutation-fields-in-root-type';
 
     /**
      * @return string[]
@@ -132,7 +133,7 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
     {
         $defaultValues = [
             self::NESTED_MUTATIONS => [
-                self::OPTION_DISABLE_REDUNDANT_MUTATION_FIELDS_IN_ROOT_TYPE => false,
+                self::OPTION_SCHEME => MutationSchemes::NESTED_WITH_REDUNDANT_ROOT_FIELDS,
             ],
         ];
         return $defaultValues[$module][$option];
@@ -148,16 +149,21 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
         $moduleSettings = parent::getSettings($module);
         // Do the if one by one, so that the SELECT do not get evaluated unless needed
         if ($module == self::NESTED_MUTATIONS) {
-            $option = self::OPTION_DISABLE_REDUNDANT_MUTATION_FIELDS_IN_ROOT_TYPE;
+            $option = self::OPTION_SCHEME;
             $moduleSettings[] = [
                 Properties::INPUT => $option,
                 Properties::NAME => $this->getSettingOptionName(
                     $module,
                     $option
                 ),
-                Properties::TITLE => \__('Disable redundant mutation fields in the root type?', 'graphql-api'),
-                Properties::DESCRIPTION => \__('With nested mutations, operations can be executed on an entity type, and the equivalent operation in the root type can be considered redundant, and removed from the schema. For instance, field <code>Root.updatePost</code> can be removed when <code>Post.update</code> is available', 'graphql-api'),
-                Properties::TYPE => Properties::TYPE_BOOL,
+                Properties::TITLE => \__('Mutation Scheme', 'graphql-api'),
+                Properties::DESCRIPTION => \__('With nested mutations, a mutation operation in the root type may be considered redundant, so it could be removed from the schema.<br/>For instance, if mutation field <code>Post.update</code> is available, mutation field <code>Root.updatePost</code> could be removed', 'graphql-api'),
+                Properties::TYPE => Properties::TYPE_STRING,
+                Properties::POSSIBLE_VALUES => [
+                    MutationSchemes::STANDARD => \__('Do not enable nested mutations', 'graphql-api'),
+                    MutationSchemes::NESTED_WITH_REDUNDANT_ROOT_FIELDS => \__('Enable nested mutations, keeping all mutation fields in the root', 'graphql-api'),
+                    MutationSchemes::NESTED_WITHOUT_REDUNDANT_ROOT_FIELDS => \__('Enable nested mutations, removing the redundant mutation fields from the root', 'graphql-api'),
+                ],
             ];
         }
         return $moduleSettings;

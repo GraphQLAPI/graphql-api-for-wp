@@ -8,6 +8,7 @@ use PoP\APIEndpoints\EndpointUtils;
 use GraphQLAPI\GraphQLAPI\Environment;
 use PoP\AccessControl\Schema\SchemaModes;
 use PoP\ComponentModel\Misc\GeneralUtils;
+use PoP\Engine\Environment as EngineEnvironment;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use PoPSchema\Tags\Environment as TagsEnvironment;
 use PoPSchema\Pages\Environment as PagesEnvironment;
@@ -18,13 +19,14 @@ use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SettingsMenuPage;
 use GraphQLAPI\GraphQLAPI\Config\PluginConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use PoP\CacheControl\Environment as CacheControlEnvironment;
+use GraphQLByPoP\GraphQLServer\Configuration\MutationSchemes;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
-use PoP\Engine\Environment as EngineEnvironment;
 use PoPSchema\CustomPosts\Environment as CustomPostsEnvironment;
 use GraphQLAPI\GraphQLAPI\Facades\CacheConfigurationManagerFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaTypeModuleResolver;
+use PoP\Engine\ComponentConfiguration as EngineComponentConfiguration;
 use PoPSchema\Tags\ComponentConfiguration as TagsComponentConfiguration;
 use PoPSchema\Pages\ComponentConfiguration as PagesComponentConfiguration;
 use PoPSchema\Posts\ComponentConfiguration as PostsComponentConfiguration;
@@ -43,12 +45,12 @@ use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfigurat
 use GraphQLByPoP\GraphQLEndpointForWP\Environment as GraphQLEndpointForWPEnvironment;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PluginManagementFunctionalityModuleResolver;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
-use PoP\Engine\ComponentConfiguration as EngineComponentConfiguration;
 use PoPSchema\CustomPosts\ComponentConfiguration as CustomPostsComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
 use PoPSchema\GenericCustomPosts\ComponentConfiguration as GenericCustomPostsComponentConfiguration;
 use GraphQLByPoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsForWPComponentConfiguration;
 use GraphQLByPoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
+use \GraphQLByPoP\GraphQLServer\Environment as GraphQLServerEnvironment;
 
 /**
  * Sets the configuration in all the PoP components.
@@ -281,12 +283,21 @@ class PluginConfiguration
                 'module' => SchemaConfigurationFunctionalityModuleResolver::SCHEMA_NAMESPACING,
                 'option' => SchemaConfigurationFunctionalityModuleResolver::OPTION_USE_NAMESPACING,
             ],
+            // Enable nested mutations?
+            [
+                'class' => GraphQLServerComponentConfiguration::class,
+                'envVariable' => GraphQLServerEnvironment::ENABLE_NESTED_MUTATIONS,
+                'module' => OperationalFunctionalityModuleResolver::NESTED_MUTATIONS,
+                'option' => OperationalFunctionalityModuleResolver::OPTION_SCHEME,
+                'callback' => fn ($value) => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::NESTED_MUTATIONS) && $value != MutationSchemes::STANDARD,
+            ],
             // Disable redundant mutation fields in the root type?
             [
                 'class' => EngineComponentConfiguration::class,
                 'envVariable' => EngineEnvironment::DISABLE_REDUNDANT_ROOT_TYPE_MUTATION_FIELDS,
                 'module' => OperationalFunctionalityModuleResolver::NESTED_MUTATIONS,
-                'option' => OperationalFunctionalityModuleResolver::OPTION_DISABLE_REDUNDANT_MUTATION_FIELDS_IN_ROOT_TYPE,
+                'option' => OperationalFunctionalityModuleResolver::OPTION_SCHEME,
+                'callback' => fn ($value) => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::NESTED_MUTATIONS) && $value == MutationSchemes::NESTED_WITHOUT_REDUNDANT_ROOT_FIELDS,
             ],
             // Cache-Control default max-age
             [
@@ -559,13 +570,11 @@ class PluginConfiguration
         }
         $componentClassConfiguration[\GraphQLByPoP\GraphQLServer\Component::class] = [
             // Expose the "self" field when doing Low Level Query Editing
-            \GraphQLByPoP\GraphQLServer\Environment::ADD_SELF_FIELD_FOR_ROOT_TYPE_TO_SCHEMA => $moduleRegistry->isModuleEnabled(UserInterfaceFunctionalityModuleResolver::LOW_LEVEL_PERSISTED_QUERY_EDITING),
+            GraphQLServerEnvironment::ADD_SELF_FIELD_FOR_ROOT_TYPE_TO_SCHEMA => $moduleRegistry->isModuleEnabled(UserInterfaceFunctionalityModuleResolver::LOW_LEVEL_PERSISTED_QUERY_EDITING),
             // Enable @removeIfNull?
-            \GraphQLByPoP\GraphQLServer\Environment::ENABLE_REMOVE_IF_NULL_DIRECTIVE => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::REMOVE_IF_NULL_DIRECTIVE),
+            GraphQLServerEnvironment::ENABLE_REMOVE_IF_NULL_DIRECTIVE => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::REMOVE_IF_NULL_DIRECTIVE),
             // Enable Proactive Feedback?
-            \GraphQLByPoP\GraphQLServer\Environment::ENABLE_PROACTIVE_FEEDBACK => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::PROACTIVE_FEEDBACK),
-            // Enable Nested Mutations?
-            \GraphQLByPoP\GraphQLServer\Environment::ENABLE_NESTED_MUTATIONS => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::NESTED_MUTATIONS),
+            GraphQLServerEnvironment::ENABLE_PROACTIVE_FEEDBACK => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::PROACTIVE_FEEDBACK),
         ];
         $componentClassConfiguration[\PoP\API\Component::class] = [
             // Enable Embeddable Fields?
