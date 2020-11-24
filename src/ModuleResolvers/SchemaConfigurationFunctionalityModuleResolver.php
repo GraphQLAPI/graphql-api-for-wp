@@ -158,7 +158,7 @@ class SchemaConfigurationFunctionalityModuleResolver extends AbstractFunctionali
             ];
             foreach ($maybeWhereModules as $maybeWhereModule) {
                 if ($moduleRegistry->isModuleEnabled($maybeWhereModule)) {
-                    $whereModules[] = '▹ ' . $this->getName($maybeWhereModule);
+                    $whereModules[] = '▹ ' . $moduleRegistry->getModuleResolver($maybeWhereModule)->getName($maybeWhereModule);
                 }
             }
             // Build all the possible values by fetching all the Schema Configuration posts
