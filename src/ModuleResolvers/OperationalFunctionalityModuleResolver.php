@@ -156,7 +156,7 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
                     $module,
                     $option
                 ),
-                Properties::TITLE => \__('Mutation Scheme', 'graphql-api'),
+                Properties::TITLE => \__('Default Mutation Scheme', 'graphql-api'),
                 Properties::DESCRIPTION => \__('With nested mutations, a mutation operation in the root type may be considered redundant, so it could be removed from the schema.<br/>For instance, if mutation field <code>Post.update</code> is available, mutation field <code>Root.updatePost</code> could be removed', 'graphql-api'),
                 Properties::TYPE => Properties::TYPE_STRING,
                 Properties::POSSIBLE_VALUES => [
