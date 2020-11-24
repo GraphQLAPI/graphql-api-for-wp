@@ -502,12 +502,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/api-graphql.git",
-                "reference": "7141d7050e946d40c975b169dbf730fbda2ef290"
+                "reference": "071c98584a05d3ee0221f53036a862a2774c8bce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/api-graphql/zipball/7141d7050e946d40c975b169dbf730fbda2ef290",
-                "reference": "7141d7050e946d40c975b169dbf730fbda2ef290",
+                "url": "https://api.github.com/repos/getpop/api-graphql/zipball/071c98584a05d3ee0221f53036a862a2774c8bce",
+                "reference": "071c98584a05d3ee0221f53036a862a2774c8bce",
                 "shasum": ""
             },
             "require": {
@@ -554,7 +554,7 @@
                 "issues": "https://github.com/getpop/api-graphql/issues",
                 "source": "https://github.com/getpop/api-graphql/tree/master"
             },
-            "time": "2020-10-19T07:55:39+00:00"
+            "time": "2020-11-24T04:08:41+00:00"
         },
         {
             "name": "getpop/api-mirrorquery",
@@ -680,12 +680,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/component-model.git",
-                "reference": "876f801fd7691abaa6a379f645b0e5f8dd68559a"
+                "reference": "6b47c86324a9374c10f9c6ca01a9bc167aad3f01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/component-model/zipball/876f801fd7691abaa6a379f645b0e5f8dd68559a",
-                "reference": "876f801fd7691abaa6a379f645b0e5f8dd68559a",
+                "url": "https://api.github.com/repos/getpop/component-model/zipball/6b47c86324a9374c10f9c6ca01a9bc167aad3f01",
+                "reference": "6b47c86324a9374c10f9c6ca01a9bc167aad3f01",
                 "shasum": ""
             },
             "require": {
@@ -737,7 +737,7 @@
                 "issues": "https://github.com/getpop/component-model/issues",
                 "source": "https://github.com/getpop/component-model/tree/master"
             },
-            "time": "2020-11-21T06:55:31+00:00"
+            "time": "2020-11-24T04:02:41+00:00"
         },
         {
             "name": "getpop/definitions",
@@ -1393,12 +1393,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/migrate-component-model.git",
-                "reference": "cf3de94cc5138834b6d1c379c749d0a7159163a0"
+                "reference": "b7a18ad35bbefa0bed989ca25ee1c1714a520fb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-component-model/zipball/cf3de94cc5138834b6d1c379c749d0a7159163a0",
-                "reference": "cf3de94cc5138834b6d1c379c749d0a7159163a0",
+                "url": "https://api.github.com/repos/getpop/migrate-component-model/zipball/b7a18ad35bbefa0bed989ca25ee1c1714a520fb8",
+                "reference": "b7a18ad35bbefa0bed989ca25ee1c1714a520fb8",
                 "shasum": ""
             },
             "require": {
@@ -1432,7 +1432,7 @@
                 "issues": "https://github.com/getpop/migrate-component-model/issues",
                 "source": "https://github.com/getpop/migrate-component-model/tree/master"
             },
-            "time": "2020-11-19T15:18:53+00:00"
+            "time": "2020-11-23T07:05:58+00:00"
         },
         {
             "name": "getpop/migrate-engine",
@@ -10412,6 +10412,7 @@
                 "issues": "https://github.com/migrify/php-config-printer/issues",
                 "source": "https://github.com/migrify/php-config-printer/tree/0.4.2"
             },
+            "abandoned": "symplify/php-config-printer",
             "time": "2020-11-17T12:04:46+00:00"
         },
         {
@@ -11251,16 +11252,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.56",
+            "version": "0.12.57",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "007fd5d700c41e1bb27795fae15a2383f8fa4ba1"
+                "reference": "f9909d1d0c44b4cbaf72babcf80e8f14d6fdd55b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/007fd5d700c41e1bb27795fae15a2383f8fa4ba1",
-                "reference": "007fd5d700c41e1bb27795fae15a2383f8fa4ba1",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f9909d1d0c44b4cbaf72babcf80e8f14d6fdd55b",
+                "reference": "f9909d1d0c44b4cbaf72babcf80e8f14d6fdd55b",
                 "shasum": ""
             },
             "require": {
@@ -11291,7 +11292,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.56"
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.57"
             },
             "funding": [
                 {
@@ -11307,7 +11308,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-11-16T22:59:18+00:00"
+            "time": "2020-11-21T12:53:28+00:00"
         },
         {
             "name": "phpstan/phpstan-phpunit",
