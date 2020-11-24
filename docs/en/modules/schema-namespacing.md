@@ -6,15 +6,15 @@ Namespacing the schema avoids naming conflicts, which happens when different own
 
 ## How it works
 
-In the namespaced schema, type `Post` becomes `PoP_ComponentModel_Post` and interface `CustomPost` becomes `PoP_ComponentModel_CustomPost` (following that the PHP package where this functionality was implemented has owner `"PoP"` and name `"ComponentModel"`).
+In the namespaced schema, type `Post` becomes `PoPSchema_Posts_Post`, interface `IsCustomPost` becomes `PoPSchema_CustomPosts_IsCustomPost`, and so on.
 
 While the schema normally looks like this:
 
-<a href="../../images/normal-interactive-schema.jpg" target="_blank">![Interactive schema](../../images/normal-interactive-schema.jpg)</a>
+<a href="../../images/normal-interactive-schema.png" target="_blank">![Interactive schema](../../images/normal-interactive-schema.png)</a>
 
 ...its namespaced version looks like this:
 
-<a href="../../images/namespaced-interactive-schema.jpg" target="_blank">![Namespaced interactive schema](../../images/namespaced-interactive-schema.jpg)</a>
+<a href="../../images/namespaced-interactive-schema.png" target="_blank">![Namespaced interactive schema](../../images/namespaced-interactive-schema.png)</a>
 
 ## How to use
 
