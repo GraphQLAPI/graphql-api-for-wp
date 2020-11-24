@@ -4,27 +4,33 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\SchemaConfigurators;
 
+use \WP_Post;
 use PoP\AccessControl\Schema\SchemaModes;
 use GraphQLAPI\GraphQLAPI\General\BlockHelpers;
+use PoP\Engine\Environment as EngineEnvironment;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigurationBlock;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
+use GraphQLByPoP\GraphQLServer\Configuration\MutationSchemes;
 use PoP\AccessControl\Environment as AccessControlEnvironment;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\Environment as ComponentModelEnvironment;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigAccessControlListBlock;
+use PoP\Engine\ComponentConfiguration as EngineComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigFieldDeprecationListBlock;
+use GraphQLByPoP\GraphQLServer\Environment as GraphQLServerEnvironment;
 use PoP\ComponentModel\ComponentConfiguration\ComponentConfigurationHelpers;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\VersioningFunctionalityModuleResolver;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\OperationalFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\AccessControlFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\AccessControlGraphQLQueryConfigurator;
 use PoP\AccessControl\ComponentConfiguration as AccessControlComponentConfiguration;
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\FieldDeprecationGraphQLQueryConfigurator;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
-use \WP_Post;
+use GraphQLByPoP\GraphQLServer\ComponentConfiguration as GraphQLServerComponentConfiguration;
 
 abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfiguratorInterface
 {
@@ -126,11 +132,14 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
 
     /**
      * Apply all the settings defined in the Schema Configuration for:
+     * - Namespacing
+     * - Mutation Scheme
      * - Options
      */
     protected function executeSchemaConfigurationOptions(int $schemaConfigurationID): void
     {
         $this->executeSchemaConfigurationOptionsNamespacing($schemaConfigurationID);
+        $this->executeSchemaConfigurationOptionsMutationScheme($schemaConfigurationID);
         $this->executeSchemaConfigurationOptionsDefaultSchemaMode($schemaConfigurationID);
     }
 
@@ -177,6 +186,64 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             \add_filter(
                 $hookName,
                 fn () => $useNamespacing == SchemaConfigOptionsBlock::ATTRIBUTE_VALUE_USE_NAMESPACING_ENABLED,
+                PHP_INT_MAX
+            );
+        }
+    }
+
+    /**
+     * Apply the Mutation Scheme settings
+     */
+    protected function executeSchemaConfigurationOptionsMutationScheme(int $schemaConfigurationID): void
+    {
+        // Check if it enabled by module
+        $moduleRegistry = ModuleRegistryFacade::getInstance();
+        if (!$moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::NESTED_MUTATIONS)) {
+            return;
+        }
+
+        $instanceManager = InstanceManagerFacade::getInstance();
+        /**
+         * @var SchemaConfigOptionsBlock
+         */
+        $block = $instanceManager->getInstance(SchemaConfigOptionsBlock::class);
+        $schemaConfigOptionsBlockDataItem = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
+            $schemaConfigurationID,
+            $block
+        );
+        if (!is_null($schemaConfigOptionsBlockDataItem)) {
+            /**
+             * Default value (if not defined in DB): `default`. Then do nothing
+             */
+            $mutationScheme = $schemaConfigOptionsBlockDataItem['attrs'][SchemaConfigOptionsBlock::ATTRIBUTE_NAME_MUTATION_SCHEME];
+            // Only execute if it has value "standard", "nested" or "lean_nested".
+            // If "default", then the general settings will already take effect, so do nothing
+            // (And if any other unsupported value, also do nothing)
+            if (!in_array($mutationScheme, [
+                    MutationSchemes::STANDARD,
+                    MutationSchemes::NESTED_WITH_REDUNDANT_ROOT_FIELDS,
+                    MutationSchemes::NESTED_WITHOUT_REDUNDANT_ROOT_FIELDS,
+                ])
+            ) {
+                return;
+            }
+            // Define the settings value through a hook. Execute last so it overrides the default settings
+            $hookName = ComponentConfigurationHelpers::getHookName(
+                GraphQLServerComponentConfiguration::class,
+                GraphQLServerEnvironment::ENABLE_NESTED_MUTATIONS
+            );
+            \add_filter(
+                $hookName,
+                fn () => $mutationScheme != MutationSchemes::STANDARD,
+                PHP_INT_MAX
+            );
+            $hookName = ComponentConfigurationHelpers::getHookName(
+                EngineComponentConfiguration::class,
+                EngineEnvironment::DISABLE_REDUNDANT_ROOT_TYPE_MUTATION_FIELDS
+            );
+            \add_filter(
+                $hookName,
+                fn () => $mutationScheme == MutationSchemes::NESTED_WITHOUT_REDUNDANT_ROOT_FIELDS,
                 PHP_INT_MAX
             );
         }
