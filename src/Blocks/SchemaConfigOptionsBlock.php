@@ -8,9 +8,11 @@ use PoP\AccessControl\Schema\SchemaModes;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\GraphQLByPoPBlockTrait;
+use GraphQLByPoP\GraphQLServer\Configuration\MutationSchemes;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\BlockCategories\AbstractBlockCategory;
 use GraphQLAPI\GraphQLAPI\BlockCategories\SchemaConfigurationBlockCategory;
+use GraphQLAPI\GraphQLAPI\ModuleResolvers\OperationalFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\SchemaConfigurationFunctionalityModuleResolver;
 
 /**
@@ -21,6 +23,7 @@ class SchemaConfigOptionsBlock extends AbstractOptionsBlock
     use GraphQLByPoPBlockTrait;
 
     public const ATTRIBUTE_NAME_USE_NAMESPACING = 'useNamespacing';
+    public const ATTRIBUTE_NAME_MUTATION_SCHEME = 'mutationScheme';
     public const ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE = 'defaultSchemaMode';
 
     // public const ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT = 'default';
@@ -83,6 +86,19 @@ class SchemaConfigOptionsBlock extends AbstractOptionsBlock
             );
         }
 
+        if ($moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::NESTED_MUTATIONS)) {
+            $mutationSchemeLabels = [
+                MutationSchemes::STANDARD => \__('❌ Do not enable nested mutations', 'graphql-api'),
+                MutationSchemes::NESTED_WITH_REDUNDANT_ROOT_FIELDS => \__('✅ Nested mutations enabled, keeping all mutation fields in the root type', 'graphql-api'),
+                MutationSchemes::NESTED_WITHOUT_REDUNDANT_ROOT_FIELDS => \__('✳️ Nested mutations enabled, removing the redundant mutation fields from the root type', 'graphql-api'),
+            ];
+            $blockContent .= sprintf(
+                $blockContentPlaceholder,
+                \__('Mutation Scheme', 'graphql-api'),
+                $mutationSchemeLabels[$attributes[self::ATTRIBUTE_NAME_MUTATION_SCHEME]] ?? ComponentConfiguration::getSettingsValueLabel()
+            );
+        }
+
         // If all modules are disabled and there are not options...
         if ($blockContent == '') {
             $blockContent = sprintf(
@@ -119,6 +135,7 @@ EOT;
             [
                 'isPublicPrivateSchemaEnabled' => $moduleRegistry->isModuleEnabled(SchemaConfigurationFunctionalityModuleResolver::PUBLIC_PRIVATE_SCHEMA),
                 'isSchemaNamespacingEnabled' => $moduleRegistry->isModuleEnabled(SchemaConfigurationFunctionalityModuleResolver::SCHEMA_NAMESPACING),
+                'isNestedMutationsEnabled' => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::NESTED_MUTATIONS),
             ]
         );
     }

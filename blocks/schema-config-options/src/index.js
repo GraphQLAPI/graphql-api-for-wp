@@ -19,6 +19,9 @@ import EditBlock from './edit';
 import {
 	ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT,
 } from './namespacing-values';
+import {
+	ATTRIBUTE_VALUE_MUTATION_SCHEME_DEFAULT,
+} from './mutation-scheme-values';
 
 /**
  * Every block starts by registering a new block type definition.
@@ -64,6 +67,14 @@ registerBlockType( 'graphql-api/schema-config-options', {
 		useNamespacing: {
 			type: 'string',
 			default: ATTRIBUTE_VALUE_USE_NAMESPACING_DEFAULT,
+		},
+		/**
+		 * Same attribute name as defined in
+		 * GraphQLAPI\GraphQLAPI\Blocks\SchemaConfigOptionsBlock::ATTRIBUTE_NAME_MUTATION_SCHEME_DEFAULT
+		 */
+		mutationScheme: {
+			type: 'string',
+			default: ATTRIBUTE_VALUE_MUTATION_SCHEME_DEFAULT,
 		},
 		/**
 		 * Same attribute name as defined in
