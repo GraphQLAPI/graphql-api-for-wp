@@ -23,11 +23,12 @@ trait CustomEndpointClientTrait
          * instead of the actual server domain. So use the user-requested host
          */
         $fullURL = RequestUtils::getRequestedFullURL(true);
-        // Remove the ?view=..., and maybe add ?use_namespace=true
+        // Remove the ?view=...
         $endpointURL = \remove_query_arg(RequestParams::VIEW, $fullURL);
-        if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
-            $endpointURL = \add_query_arg(APIRequest::URLPARAM_USE_NAMESPACE, true, $endpointURL);
-        }
+        // // Maybe add ?use_namespace=true
+        // if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
+        //     $endpointURL = \add_query_arg(APIRequest::URLPARAM_USE_NAMESPACE, true, $endpointURL);
+        // }
         return $endpointURL;
     }
 }

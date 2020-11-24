@@ -49,9 +49,9 @@ class EndpointHelpers
             }
         }
         // If namespaced, add /?use_namespace=1 to the endpoint
-        if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
-            $endpoint = \add_query_arg(APIRequest::URLPARAM_USE_NAMESPACE, true, $endpoint);
-        }
+        // if (ComponentModelComponentConfiguration::namespaceTypesAndInterfaces()) {
+        //     $endpoint = \add_query_arg(APIRequest::URLPARAM_USE_NAMESPACE, true, $endpoint);
+        // }
         return $endpoint;
     }
 }
