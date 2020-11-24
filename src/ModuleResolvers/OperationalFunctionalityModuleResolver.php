@@ -24,7 +24,7 @@ class OperationalFunctionalityModuleResolver extends AbstractFunctionalityModule
     /**
      * Setting options
      */
-    public const OPTION_SCHEME = 'disable-redundant-mutation-fields-in-root-type';
+    public const OPTION_SCHEME = 'scheme';
 
     /**
      * @return string[]
