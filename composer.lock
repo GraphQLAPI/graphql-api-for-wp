@@ -261,12 +261,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/api.git",
-                "reference": "93509a99ff53f572b1d36c7dc00e5738b1db8071"
+                "reference": "5c0e241b03ae864d5a1e21a6414163d17b41c0ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/api/zipball/93509a99ff53f572b1d36c7dc00e5738b1db8071",
-                "reference": "93509a99ff53f572b1d36c7dc00e5738b1db8071",
+                "url": "https://api.github.com/repos/getpop/api/zipball/5c0e241b03ae864d5a1e21a6414163d17b41c0ba",
+                "reference": "5c0e241b03ae864d5a1e21a6414163d17b41c0ba",
                 "shasum": ""
             },
             "require": {
@@ -317,7 +317,7 @@
                 "issues": "https://github.com/getpop/api/issues",
                 "source": "https://github.com/getpop/api/tree/master"
             },
-            "time": "2020-11-20T18:07:00+00:00"
+            "time": "2020-11-24T15:04:40+00:00"
         },
         {
             "name": "getpop/api-clients",
@@ -325,12 +325,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/api-clients.git",
-                "reference": "e54f6f4925e7f5f4b6c7db8dd93b1b62f3fc25d2"
+                "reference": "2a2604f8879e04db1488ff60df28c90d293ab737"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/api-clients/zipball/e54f6f4925e7f5f4b6c7db8dd93b1b62f3fc25d2",
-                "reference": "e54f6f4925e7f5f4b6c7db8dd93b1b62f3fc25d2",
+                "url": "https://api.github.com/repos/getpop/api-clients/zipball/2a2604f8879e04db1488ff60df28c90d293ab737",
+                "reference": "2a2604f8879e04db1488ff60df28c90d293ab737",
                 "shasum": ""
             },
             "require": {
@@ -375,7 +375,7 @@
                 "issues": "https://github.com/getpop/api-clients/issues",
                 "source": "https://github.com/getpop/api-clients/tree/master"
             },
-            "time": "2020-10-09T17:48:05+00:00"
+            "time": "2020-11-24T14:42:23+00:00"
         },
         {
             "name": "getpop/api-endpoints",
