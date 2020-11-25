@@ -142,6 +142,8 @@ GraphQL API is extensible, and ships with the following modules (organized by ca
 <tr><td><a href="docs/en/modules/remove-if-null-directive.md">Remove if Null</a></td><td>Addition of <code>@removeIfNull</code> directive, to remove an output from the response if it is <code>null</code></td></tr>
 <tr><td><a href="docs/en/modules/proactive-feedback.md">Proactive Feedback</a></td><td>Usage of the top-level entry <code>extensions</code> to send deprecations, warnings, logs, notices and traces in the response to the query</td></tr>
 <tr><td><a href="docs/en/modules/embeddable-fields.md">Embeddable Fields</a></td><td>Resolve a field within an argument for another field from the same type, using syntax <code>{{ fieldName }}</code></td></tr>
+<tr><td><a href="docs/en/modules/mutations.md">Mutations</a></td><td>Modify data by executing mutations</td></tr>
+<tr><td><a href="docs/en/modules/nested-mutations.md">Nested Mutations</a></td><td>Execute mutations from any type in the schema, not only from the root</td></tr>
 <tr><th colspan="2"><br/>Plugin Management</th></tr>
 <tr><td><a href="docs/en/modules/schema-editing-access.md">Schema Editing Access</a></td><td>Grant access to users other than admins to edit the GraphQL schema</td></tr>
 <tr><th colspan="2"><br/>Clients</th></tr>
@@ -161,6 +163,11 @@ GraphQL API is extensible, and ships with the following modules (organized by ca
 <tr><td>Schema Tags</td><td>Base functionality for all tags</td></tr>
 <tr><td>Schema Post Tags</td><td>Query post tags, through type <code>PostTag</code> added to the schema</td></tr>
 <tr><td>Schema Media</td><td>Query media elements, through type <code>Media</code> added to the schema</td></tr>
+<tr><td><a href="docs/en/modules/schema-user-state-mutations.md">Schema User State Mutations</a></td><td>Have the user log-in and modify data</td></tr>
+<tr><td>Schema Custom Post Mutations</td><td>Base functionality to mutate custom posts</td></tr>
+<tr><td>Schema Post Mutations</td><td>Execute mutations on podyd</td></tr>
+<tr><td>Schema Custom Post Media Mutations</td><td>Execute mutations concerning media items on custom posts</td></tr>
+<tr><td>Schema Comment Mutations</td><td>Create comments</td></tr>
 </tbody>
 </table>
 
