@@ -8,7 +8,30 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Added
 
-- New sponsorship tier in the About page
+- Mutations and nested mutations ([#28](https://github.com/GraphQLAPI/graphql-api-for-wp/issues/28))
+- Mutations in the schema:
+  - `Root.createPost`
+  - `Root.updatePost`
+  - `CustomPost.update` (nested)
+  - `Root.setFeaturedImageforCustomPost`
+  - `Root.removeFeaturedImageforCustomPost`
+  - `CustomPost.setFeaturedImage` (nested)
+  - `CustomPost.removeFeaturedImage` (nested)
+  - `Root.addCommentToCustomPost`
+  - `Root.replyComment`
+  - `CustomPost.addComment` (nested)
+  - `Comment.reply` (nested)
+  - `Root.loginUser`
+  - `Root.logoutUser`
+
+### Updated
+
+- Sponsorship tiers in the About page
+
+### Fixed
+
+- Automatic namespacing: retrieve the namespace from the called class
+
 
 ### Fixed
 
