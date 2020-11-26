@@ -1,6 +1,10 @@
 # Mutations
 
-GraphQL mutations enable to modify data through the query, using the operation type `mutation`:
+GraphQL mutations enable to modify data (i.e. perform side-effect) through the query.
+
+## How to use
+
+The query must use the operation type `mutation`:
 
 ```graphql
 mutation {
@@ -10,7 +14,6 @@ mutation {
 }
 ```
 
-All available mutation fields are listed under the `MutationRoot` type:
+The available mutation fields are those under the `MutationRoot` type:
 
 <a href="../../images/schema-mutations.png" target="_blank">![Schema mutations](../../images/schema-mutations.png)</a>
-
