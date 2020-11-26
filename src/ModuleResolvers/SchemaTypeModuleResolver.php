@@ -250,7 +250,7 @@ class SchemaTypeModuleResolver extends AbstractSchemaTypeModuleResolver
             case self::SCHEMA_TAGS:
                 return \__('Base functionality for all tags', 'graphql-api');
             case self::SCHEMA_USER_STATE_MUTATIONS:
-                return \__('Have the user log-in and modify data', 'graphql-api');
+                return \__('Have the user log-in, and be able to perform mutations', 'graphql-api');
             case self::SCHEMA_CUSTOMPOST_MUTATIONS:
                 return \__('Base functionality to mutate custom posts', 'graphql-api');
             case self::SCHEMA_POST_MUTATIONS:
