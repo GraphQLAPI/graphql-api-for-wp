@@ -2210,12 +2210,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-request.git",
-                "reference": "1a48887ad953b485d7880985909ee0826cea7c84"
+                "reference": "6cd121b211c56356b1eef579f63e3aa6bb325548"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-request/zipball/1a48887ad953b485d7880985909ee0826cea7c84",
-                "reference": "1a48887ad953b485d7880985909ee0826cea7c84",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-request/zipball/6cd121b211c56356b1eef579f63e3aa6bb325548",
+                "reference": "6cd121b211c56356b1eef579f63e3aa6bb325548",
                 "shasum": ""
             },
             "require": {
@@ -2261,7 +2261,7 @@
                 "issues": "https://github.com/GraphQLByPoP/graphql-request/issues",
                 "source": "https://github.com/GraphQLByPoP/graphql-request/tree/master"
             },
-            "time": "2020-11-14T04:57:16+00:00"
+            "time": "2020-11-27T07:00:37+00:00"
         },
         {
             "name": "graphql-by-pop/graphql-server",
@@ -2269,12 +2269,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "d37dff58b07451e8ce0183863b080c334a9c4f19"
+                "reference": "21dfb47b2fab935017e9ee70271fec3cd5d95aa6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/d37dff58b07451e8ce0183863b080c334a9c4f19",
-                "reference": "d37dff58b07451e8ce0183863b080c334a9c4f19",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/21dfb47b2fab935017e9ee70271fec3cd5d95aa6",
+                "reference": "21dfb47b2fab935017e9ee70271fec3cd5d95aa6",
                 "shasum": ""
             },
             "require": {
@@ -2331,7 +2331,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-26T08:24:41+00:00"
+            "time": "2020-11-27T06:56:01+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -11376,16 +11376,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.2.3",
+            "version": "9.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "6b20e2055f7c29b56cb3870b3de7cc463d7add41"
+                "reference": "0a7f0acf9269c190fd982b5c04423feae986b6e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/6b20e2055f7c29b56cb3870b3de7cc463d7add41",
-                "reference": "6b20e2055f7c29b56cb3870b3de7cc463d7add41",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/0a7f0acf9269c190fd982b5c04423feae986b6e0",
+                "reference": "0a7f0acf9269c190fd982b5c04423feae986b6e0",
                 "shasum": ""
             },
             "require": {
@@ -11441,7 +11441,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.3"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.4"
             },
             "funding": [
                 {
@@ -11449,7 +11449,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-10-30T10:46:41+00:00"
+            "time": "2020-11-27T06:15:15+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
