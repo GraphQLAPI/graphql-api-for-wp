@@ -301,6 +301,7 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
             }
 
             $instanceManager = InstanceManagerFacade::getInstance();
+            /** @var GraphQLRequestVarsHooks */
             $graphQLAPIRequestHookSet = $instanceManager->getInstance(GraphQLRequestVarsHooks::class);
 
             // The Persisted Query is also standard GraphQL
