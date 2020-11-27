@@ -14,6 +14,7 @@ use GraphQLAPI\GraphQLAPI\Blocks\PersistedQueryOptionsBlock;
 use GraphQLAPI\GraphQLAPI\General\GraphQLQueryPostTypeHelpers;
 use GraphQLAPI\GraphQLAPI\Blocks\AbstractQueryExecutionOptionsBlock;
 use GraphQLAPI\GraphQLAPI\PostTypes\AbstractGraphQLQueryExecutionPostType;
+use GraphQLByPoP\GraphQLRequest\Hooks\VarsHooks as GraphQLRequestVarsHooks;
 use WP_Post;
 
 class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostType
@@ -299,13 +300,14 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
                 return;
             }
 
+            $instanceManager = InstanceManagerFacade::getInstance();
+            $graphQLAPIRequestHookSet = $instanceManager->getInstance(GraphQLRequestVarsHooks::class);
+
             // The Persisted Query is also standard GraphQL
-            $vars['standard-graphql'] = true;
+            $graphQLAPIRequestHookSet->setStandardGraphQLVars($vars);
 
             // Remove the VarsHooks from the GraphQLRequest, so it doesn't process the GraphQL query
             // Otherwise it will add error "The query in the body is empty"
-            $instanceManager = InstanceManagerFacade::getInstance();
-            $graphQLAPIRequestHookSet = $instanceManager->getInstance(\GraphQLByPoP\GraphQLRequest\Hooks\VarsHooks::class);
             /**
              * @var callable
              */
