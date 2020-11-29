@@ -9,6 +9,7 @@ use GraphQLAPI\GraphQLAPI\Admin\Menus\AbstractMenu;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AboutMenuPage;
+use GraphQLAPI\GraphQLAPI\Admin\MenuPages\SupportMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\ModulesMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\AbstractMenuPage;
 use GraphQLAPI\GraphQLAPI\Admin\MenuPages\GraphiQLMenuPage;
@@ -43,6 +44,7 @@ class Menu extends AbstractMenu
             SettingsMenuPage::class,
             $this->getModuleMenuPageClass(),
             $this->getAboutMenuPageClass(),
+            SupportMenuPage::class,
         ];
     }
 
@@ -183,21 +185,44 @@ class Menu extends AbstractMenu
             ];
         }
 
+        /**
+         * Only show the About page when actually loading it
+         * So it doesn't appear on the menu, but it's still available
+         * to display the release notes on the modal window
+         */
         $aboutPageClass = $this->getAboutMenuPageClass();
         /**
          * @var AbstractMenuPage
          */
         $aboutMenuPage = $instanceManager->getInstance($aboutPageClass);
+        if (isset($_GET['page']) && $_GET['page'] == $aboutMenuPage->getScreenID()) {
+            if ($hookName = \add_submenu_page(
+                self::NAME,
+                __('About', 'graphql-api'),
+                __('About', 'graphql-api'),
+                'read',
+                $aboutMenuPage->getScreenID(),
+                [$aboutMenuPage, 'print']
+            )
+            ) {
+                $aboutMenuPage->setHookName($hookName);
+            }
+        }
+
+        /**
+         * @var SupportMenuPage
+         */
+        $supportMenuPage = $instanceManager->getInstance(SupportMenuPage::class);
         if ($hookName = \add_submenu_page(
             self::NAME,
-            __('About', 'graphql-api'),
-            __('About', 'graphql-api'),
+            __('Support', 'graphql-api'),
+            __('Support', 'graphql-api'),
             'read',
-            $aboutMenuPage->getScreenID(),
-            [$aboutMenuPage, 'print']
+            $supportMenuPage->getScreenID(),
+            [$supportMenuPage, 'print']
         )
         ) {
-            $aboutMenuPage->setHookName($hookName);
+            $supportMenuPage->setHookName($hookName);
         }
 
         // $schemaEditorAccessCapability = UserAuthorization::getSchemaEditorAccessCapability();
