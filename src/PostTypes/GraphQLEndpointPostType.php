@@ -121,9 +121,6 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     {
         $template = parent::getGutenbergTemplate();
 
-        // If enabled by module, add the Schema Configuration block to the locked Gutenberg template
-        $this->maybeAddSchemaConfigurationBlock($template);
-
         $instanceManager = InstanceManagerFacade::getInstance();
         /**
          * @var EndpointOptionsBlock

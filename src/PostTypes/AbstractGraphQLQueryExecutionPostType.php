@@ -265,6 +265,21 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
     }
 
     /**
+     * Gutenberg templates to lock down the Custom Post Type to
+     *
+     * @return array<array> Every element is an array with template name in first pos, and attributes then
+     */
+    protected function getGutenbergTemplate(): array
+    {
+        $template = parent::getGutenbergTemplate();
+
+        // If enabled by module, add the Schema Configuration block to the locked Gutenberg template
+        $this->maybeAddSchemaConfigurationBlock($template);
+
+        return $template;
+    }
+
+    /**
      * If enabled by module, add the Schema Configuration block to the locked Gutenberg template
      *
      * @param array<array> $template Every element is an array with template name in first pos, and attributes then
