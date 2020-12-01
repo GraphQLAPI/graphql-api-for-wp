@@ -9,7 +9,7 @@ parameters:
             path: src/PostTypes/AbstractPostType.php
         -
             message: '#^Unreachable statement - code above always terminates\.$#'
-            path: src/Blocks/GraphiQLBlock.php
+            path: src/Blocks/AbstractGraphiQLBlock.php
         # This error happens because of bug in PHPStan: https://github.com/phpstan/phpstan/issues/3132
         -
             message: '#^Parameter \#1 \$module of method GraphQLAPI\\GraphQLAPI\\Registries\\ModuleRegistryInterface::isModuleEnabled\(\) expects string, array\<int, class-string\> given\.$#'
