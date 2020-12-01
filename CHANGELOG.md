@@ -31,10 +31,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ### Fixed
 
 - Automatic namespacing: retrieve the namespace from the called class
-
-
-### Fixed
-
+- GraphiQL in Persisted query editor: use schema from selected Schema configuration
 - Array unpacking can't be used with string keys
 - Filtering of generic custom posts when passing non whitelisted CPT
 
