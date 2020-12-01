@@ -17,7 +17,9 @@ class EditingPersistedQuerySchemaConfiguratorExecuter extends AbstractSchemaConf
     protected function getCustomPostID(): ?int
     {
         if (EndpointHelpers::isRequestingAdminGraphQLEndpoint()) {
-            return $_REQUEST[RequestParams::PERSISTED_QUERY_ID];
+            if ($customPostID = $_REQUEST[RequestParams::PERSISTED_QUERY_ID]) {
+                return (int)$customPostID;
+            }
         }
         return null;
     }
