@@ -8,7 +8,7 @@ use GraphQLAPI\GraphQLAPI\PostTypes\GraphQLEndpointPostType;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\EndpointSchemaConfigurator;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\SchemaConfiguratorInterface;
 
-class EndpointSchemaConfiguratorExecuter extends AbstractSchemaConfiguratorExecuter
+class EndpointSchemaConfiguratorExecuter extends AbstractLoadingCPTSchemaConfiguratorExecuter
 {
     protected function getPostType(): string
     {

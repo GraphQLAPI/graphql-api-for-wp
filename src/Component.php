@@ -18,6 +18,7 @@ use GraphQLAPI\GraphQLAPI\ModuleResolvers\PerformanceFunctionalityModuleResolver
 use PoP\ComponentModel\ComponentConfiguration as ComponentModelComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\SchemaConfiguratorExecuters\EndpointSchemaConfiguratorExecuter;
 use GraphQLAPI\GraphQLAPI\SchemaConfiguratorExecuters\PersistedQuerySchemaConfiguratorExecuter;
+use GraphQLAPI\GraphQLAPI\SchemaConfiguratorExecuters\EditingPersistedQuerySchemaConfiguratorExecuter;
 
 /**
  * Initialize component
@@ -145,5 +146,6 @@ class Component extends AbstractComponent
         // Configure the GraphQL query with Access/Cache Control Lists
         (new PersistedQuerySchemaConfiguratorExecuter())->init();
         (new EndpointSchemaConfiguratorExecuter())->init();
+        (new EditingPersistedQuerySchemaConfiguratorExecuter())->init();
     }
 }

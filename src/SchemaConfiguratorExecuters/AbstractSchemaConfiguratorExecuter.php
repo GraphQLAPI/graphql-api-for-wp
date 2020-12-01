@@ -4,35 +4,28 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\SchemaConfiguratorExecuters;
 
-use PoP\ComponentModel\State\ApplicationState;
 use GraphQLAPI\GraphQLAPI\SchemaConfigurators\SchemaConfiguratorInterface;
 
 abstract class AbstractSchemaConfiguratorExecuter
 {
     /**
-     * Initialize the configuration if vising the corresponding CPT
+     * Initialize the configuration if a certain condition is satisfied
      */
     public function init(): void
     {
-        if (\is_singular($this->getPostType())) {
-            // Watch out! If accessing $vars it triggers setting ComponentConfiguration vars,
-            // but we have not set the hooks yet!
-            // For instance for `namespaceTypesAndInterfaces()`,
-            // to be set in `executeSchemaConfigurationOptionsNamespacing()`
-            // Hence, code below was commented, and access the $post from the global variable
-            // $vars = ApplicationState::getVars();
-            // $postID = $vars['routing-state']['queried-object-id'];
-            global $post;
-            $postID = $post->ID;
+        if ($customPostID = $this->getCustomPostID()) {
             $schemaConfigurator = $this->getSchemaConfigurator();
-            $schemaConfigurator->executeSchemaConfiguration($postID);
+            $schemaConfigurator->executeSchemaConfiguration($customPostID);
         }
     }
 
-    abstract protected function getPostType(): string;
+    /**
+     * Provide the ID of the custom post containing the Schema Configuration block
+     */
+    abstract protected function getCustomPostID(): ?int;
 
     /**
-     * Function to override, to initialize the configuration of services before the execution of the GraphQL query
+     * Initialize the configuration of services before the execution of the GraphQL query
      */
     abstract protected function getSchemaConfigurator(): SchemaConfiguratorInterface;
 }
