@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GraphQLAPI\GraphQLAPI\Config;
 
 use PoP\Engine\TypeResolvers\RootTypeResolver;
-use GraphQLAPI\GraphQLAPI\Blocks\GraphiQLBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\PersistedQueryGraphiQLBlock;
 use PoP\Root\Component\PHPServiceConfigurationTrait;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\Facades\ModuleRegistryFacade;
@@ -13,7 +13,7 @@ use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use PoP\ComponentModel\Instances\InstanceManagerInterface;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use PoP\AccessControl\Services\AccessControlManagerInterface;
-use GraphQLAPI\GraphQLAPI\Blocks\Overrides\GraphiQLWithExplorerBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\Overrides\PersistedQueryGraphiQLWithExplorerBlock;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use PoPSchema\UserRolesAccessControl\Services\AccessControlGroups as UserRolesAccessControlGroups;
 
@@ -71,8 +71,8 @@ class ServiceConfiguration
             ContainerBuilderUtils::injectValuesIntoService(
                 InstanceManagerInterface::class,
                 'overrideClass',
-                GraphiQLBlock::class,
-                GraphiQLWithExplorerBlock::class
+                PersistedQueryGraphiQLBlock::class,
+                PersistedQueryGraphiQLWithExplorerBlock::class
             );
         }
     }

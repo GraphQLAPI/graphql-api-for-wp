@@ -14,7 +14,7 @@ use GraphQLAPI\GraphQLAPI\BlockCategories\PersistedQueryBlockCategory;
 /**
  * GraphiQL block
  */
-class GraphiQLBlock extends AbstractBlock
+abstract class AbstractGraphiQLBlock extends AbstractBlock
 {
     use GraphQLByPoPBlockTrait;
 
@@ -41,6 +41,11 @@ class GraphiQLBlock extends AbstractBlock
         return true;
     }
 
+    protected function getAdminGraphQLEndpoint(): string
+    {
+        return EndpointHelpers::getAdminGraphQLEndpoint(true);
+    }
+
     /**
      * Pass localized data to the block
      *
@@ -52,7 +57,7 @@ class GraphiQLBlock extends AbstractBlock
             parent::getLocalizedData(),
             [
                 'nonce' => \wp_create_nonce('wp_rest'),
-                'endpoint' => EndpointHelpers::getAdminGraphQLEndpoint(true),
+                'endpoint' => $this->getAdminGraphQLEndpoint(),
                 'defaultQuery' => $this->getDefaultQuery(),
             ]
         );

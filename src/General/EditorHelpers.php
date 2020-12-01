@@ -47,4 +47,27 @@ class EditorHelpers
         }
         return $typenow;
     }
+
+    /**
+     * Get the post ID currently being edited in the editor
+     */
+    public static function getEditingPostID(): ?int
+    {
+        if (!\is_admin()) {
+            return null;
+        }
+        global $pagenow;
+        if ($pagenow != 'post.php') {
+            return null;
+        }
+        $post_id = null;
+        if (isset($_GET['post']) && isset($_POST['post_ID']) && (int) $_GET['post'] !== (int) $_POST['post_ID']) {
+            // Do nothing
+        } elseif (isset($_GET['post'])) {
+            $post_id = (int) $_GET['post'];
+        } elseif (isset($_POST['post_ID'])) {
+            $post_id = (int) $_POST['post_ID'];
+        }
+        return $post_id;
+    }
 }

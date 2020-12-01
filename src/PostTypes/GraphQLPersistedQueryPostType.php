@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\PostTypes;
 
-use GraphQLAPI\GraphQLAPI\Blocks\GraphiQLBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\PersistedQueryGraphiQLBlock;
 use GraphQLAPI\GraphQLAPI\ComponentConfiguration;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorization;
 use GraphQLAPI\GraphQLAPI\General\BlockContentHelpers;
@@ -145,9 +145,9 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
 
         $instanceManager = InstanceManagerFacade::getInstance();
         /**
-         * @var GraphiQLBlock
+         * @var PersistedQueryGraphiQLBlock
          */
-        $graphiQLBlock = $instanceManager->getInstance(GraphiQLBlock::class);
+        $graphiQLBlock = $instanceManager->getInstance(PersistedQueryGraphiQLBlock::class);
         /**
          * Add before the SchemaConfiguration block
          */
@@ -198,9 +198,9 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
         if ($graphQLQueryPost->post_parent) {
             $instanceManager = InstanceManagerFacade::getInstance();
             /**
-             * @var GraphiQLBlock
+             * @var PersistedQueryGraphiQLBlock
              */
-            $graphiQLBlock = $instanceManager->getInstance(GraphiQLBlock::class);
+            $graphiQLBlock = $instanceManager->getInstance(PersistedQueryGraphiQLBlock::class);
 
             // Check if the user is authorized to see the content
             $ancestorContent = null;
@@ -223,8 +223,8 @@ class GraphQLPersistedQueryPostType extends AbstractGraphQLQueryExecutionPostTyp
                     }
                     // Render the block again, using the inherited attributes
                     $inheritedGraphQLBlockAttributes = [
-                        GraphiQLBlock::ATTRIBUTE_NAME_QUERY => $inheritedGraphQLQuery,
-                        GraphiQLBlock::ATTRIBUTE_NAME_VARIABLES => $inheritedGraphQLVariables,
+                        PersistedQueryGraphiQLBlock::ATTRIBUTE_NAME_QUERY => $inheritedGraphQLQuery,
+                        PersistedQueryGraphiQLBlock::ATTRIBUTE_NAME_VARIABLES => $inheritedGraphQLVariables,
                     ];
                     // Add the new rendering to the output, and a description for each
                     $ancestorContent = $graphiQLBlock->renderBlock($inheritedGraphQLBlockAttributes, '');

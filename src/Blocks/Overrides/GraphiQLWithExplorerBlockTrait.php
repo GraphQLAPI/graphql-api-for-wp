@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Blocks\Overrides;
 
-use GraphQLAPI\GraphQLAPI\Blocks\GraphiQLBlock;
-
 /**
  * GraphiQL with Explorer block
  */
-class GraphiQLWithExplorerBlock extends GraphiQLBlock
+trait GraphiQLWithExplorerBlockTrait
 {
  /**
      * Override the location of the script

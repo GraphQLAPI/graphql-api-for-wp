@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\General;
 
-use GraphQLAPI\GraphQLAPI\Blocks\GraphiQLBlock;
+use GraphQLAPI\GraphQLAPI\Blocks\AbstractGraphiQLBlock;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use GraphQLAPI\GraphQLAPI\Blocks\PersistedQueryOptionsBlock;
 use WP_Post;
@@ -21,9 +21,9 @@ class BlockContentHelpers
         // There must be only one block of type GraphiQL. Fetch it
         $instanceManager = InstanceManagerFacade::getInstance();
         /**
-         * @var GraphiQLBlock
+         * @var AbstractGraphiQLBlock
          */
-        $block = $instanceManager->getInstance(GraphiQLBlock::class);
+        $block = $instanceManager->getInstance(AbstractGraphiQLBlock::class);
         $graphiQLBlock = BlockHelpers::getSingleBlockOfTypeFromCustomPost(
             $post,
             $block
@@ -33,8 +33,8 @@ class BlockContentHelpers
             return null;
         }
         return [
-            $graphiQLBlock['attrs'][GraphiQLBlock::ATTRIBUTE_NAME_QUERY],
-            $graphiQLBlock['attrs'][GraphiQLBlock::ATTRIBUTE_NAME_VARIABLES]
+            $graphiQLBlock['attrs'][AbstractGraphiQLBlock::ATTRIBUTE_NAME_QUERY],
+            $graphiQLBlock['attrs'][AbstractGraphiQLBlock::ATTRIBUTE_NAME_VARIABLES]
         ];
     }
 

@@ -16,4 +16,5 @@ class RequestParams
     public const TAB_DOCS = 'docs';
     public const MODULE = 'module';
     public const DOC = 'doc';
+    public const PERSISTED_QUERY_ID = 'persisted_query_id';
 }
