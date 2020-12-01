@@ -12,21 +12,22 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Mutations in the schema:
   - `Root.createPost`
   - `Root.updatePost`
-  - `CustomPost.update` (nested)
   - `Root.setFeaturedImageforCustomPost`
   - `Root.removeFeaturedImageforCustomPost`
-  - `CustomPost.setFeaturedImage` (nested)
-  - `CustomPost.removeFeaturedImage` (nested)
   - `Root.addCommentToCustomPost`
   - `Root.replyComment`
-  - `CustomPost.addComment` (nested)
-  - `Comment.reply` (nested)
   - `Root.loginUser`
   - `Root.logoutUser`
+  - `CustomPost.update` (nested)
+  - `CustomPost.setFeaturedImage` (nested)
+  - `CustomPost.removeFeaturedImage` (nested)
+  - `CustomPost.addComment` (nested)
+  - `Comment.reply` (nested)
 
 ### Updated
 
-- Sponsorship tiers in the About page
+- Replaced the About page with the Support page
+- Images are referenced from the GitHub repo, and not packed within the plugin anymore
 
 ### Fixed
 
