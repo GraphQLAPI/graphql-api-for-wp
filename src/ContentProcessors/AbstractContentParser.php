@@ -8,9 +8,12 @@ use InvalidArgumentException;
 use PoP\ComponentModel\Misc\RequestUtils;
 use GraphQLAPI\GraphQLAPI\General\LocaleUtils;
 use GraphQLAPI\GraphQLAPI\General\RequestParams;
+use GraphQLAPI\GraphQLAPI\PluginConstants;
 
 abstract class AbstractContentParser implements ContentParserInterface
 {
+    public const PATH_URL_TO_DOCS = 'pathURLToDocs';
+
     /**
      * Parse the file's Markdown into HTML Content
      *
@@ -49,7 +52,9 @@ abstract class AbstractContentParser implements ContentParserInterface
             ));
         }
         $htmlContent = $this->getHTMLContent($fileContent);
-        $pathURL = \trailingslashit($this->getDefaultFileURL()). $relativePathDir;
+        $pathURL = \trailingslashit($this->getDefaultFileURL()) . $relativePathDir;
+        // Include the images from the GitHub repo
+        $options[self::PATH_URL_TO_DOCS] = PluginConstants::GITHUB_REPO_DOCS_PATH_URL . $relativePathDir;
         return $this->processHTMLContent($htmlContent, $pathURL, $options);
     }
 
@@ -129,7 +134,10 @@ abstract class AbstractContentParser implements ContentParserInterface
         );
         // Add the path to the images
         if ($options[ContentParserOptions::APPEND_PATH_URL_TO_IMAGES]) {
-            $htmlContent = $this->appendPathURLToImages($pathURL, $htmlContent);
+            // Enable to override the path for images, to read them from
+            // the GitHub repo and avoid including them in the plugin
+            $imagePathURL = $options[self::PATH_URL_TO_DOCS] ?? $pathURL;
+            $htmlContent = $this->appendPathURLToImages($imagePathURL, $htmlContent);
         }
         // Convert Markdown links: execute before appending path to anchors
         if ($options[ContentParserOptions::SUPPORT_MARKDOWN_LINKS]) {
