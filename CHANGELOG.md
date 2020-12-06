@@ -28,7 +28,9 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ### Updated
 
 - Replaced the About page with the Support page
-- Images are referenced from the GitHub repo, and not packed within the plugin anymore
+- Decreased the size of the plugin's `.zip` file:
+  - Images are referenced from the GitHub repo, and not packed within the plugin anymore
+  - Removed all `package-lock.json` files from the plugin
 
 ### Fixed
 
