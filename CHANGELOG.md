@@ -23,6 +23,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
   - `CustomPost.removeFeaturedImage` (nested)
   - `CustomPost.addComment` (nested)
   - `Comment.reply` (nested)
+- Support for PHP 8.0
 
 ### Updated
 
