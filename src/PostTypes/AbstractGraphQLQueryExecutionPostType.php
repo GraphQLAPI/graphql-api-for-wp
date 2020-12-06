@@ -30,7 +30,7 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
      */
     protected function isGraphQLQueryExecution(): bool
     {
-        return $_REQUEST[RequestParams::VIEW] != RequestParams::VIEW_SOURCE;
+        return ($_REQUEST[RequestParams::VIEW] ?? null) != RequestParams::VIEW_SOURCE;
     }
 
     /**

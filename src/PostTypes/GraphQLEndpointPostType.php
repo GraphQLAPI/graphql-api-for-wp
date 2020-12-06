@@ -184,7 +184,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     protected function isGraphQLQueryExecution(): bool
     {
         return !in_array(
-            $_REQUEST[RequestParams::VIEW],
+            $_REQUEST[RequestParams::VIEW] ?? null,
             [
                 RequestParams::VIEW_GRAPHIQL,
                 RequestParams::VIEW_SCHEMA,
@@ -198,7 +198,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
      */
     protected function doSomethingElse(): void
     {
-        if ($_REQUEST[RequestParams::VIEW] == RequestParams::VIEW_SOURCE) {
+        if (($_REQUEST[RequestParams::VIEW] ?? null) == RequestParams::VIEW_SOURCE) {
             parent::doSomethingElse();
         } else {
             /**
@@ -219,7 +219,7 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     {
         $vars = ApplicationState::getVars();
         $post = $vars['routing-state']['queried-object'];
-        $view = $_REQUEST[RequestParams::VIEW];
+        $view = $_REQUEST[RequestParams::VIEW] ?? '';
         // Read from the configuration if to expose the GraphiQL/Voyager client
         if ((
                 $view == RequestParams::VIEW_GRAPHIQL
