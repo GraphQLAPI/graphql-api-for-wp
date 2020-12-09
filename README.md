@@ -365,7 +365,8 @@ Ongoing development for this project is funded via [Leonardo Losoviz](https://le
 
 ## Release notes
 
-- [0.6](docs/en/release-notes/0.6.md)
+- [0.7](docs/en/release-notes/0.7.md)
+- [0.6](docs/en/release-notes/0.6.md) (current)
 
 ## Change log
 
