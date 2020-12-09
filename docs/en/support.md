@@ -4,6 +4,10 @@ Support concerning the plugin (troubleshooting, how to use it) and building a Gr
 
 ---
 
-**Access to the Slack workspace:**
+### By email
 
-<a class="button button-primary button-hero" href="https://graphql-api.slack.com" target="_blank">👉🏻 Go to GraphQL API in Slack</a>
+Send us your inquiry to [support@graphql-api.com](mailto:support@graphql-api.com)
+
+### By Slack
+
+Chat with us via the GraphQL API workspace in Slack: <a href="https://graphql-api.slack.com" target="_blank">graphql-api.slack.com</a>
