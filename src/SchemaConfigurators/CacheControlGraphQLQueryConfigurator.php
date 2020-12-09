@@ -47,10 +47,10 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
         $cacheControlManager = CacheControlManagerFacade::getInstance();
         // The "Cache Control" type contains the fields/directives and the max-age
         foreach ($cclBlockItems as $cclBlockItem) {
-            $maxAge = $cclBlockItem['attrs'][CacheControlBlock::ATTRIBUTE_NAME_CACHE_CONTROL_MAX_AGE];
+            $maxAge = $cclBlockItem['attrs'][CacheControlBlock::ATTRIBUTE_NAME_CACHE_CONTROL_MAX_AGE] ?? null;
             if (!is_null($maxAge) && $maxAge >= 0) {
                 // Extract the saved fields
-                if ($typeFields = $cclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS]) {
+                if ($typeFields = $cclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS] ?? null) {
                     if ($entriesForFields = GeneralUtils::arrayFlatten(
                         array_map(
                             fn ($selectedField) => $this->getEntriesFromField($selectedField, $maxAge),
@@ -64,7 +64,7 @@ class CacheControlGraphQLQueryConfigurator extends AbstractGraphQLQueryConfigura
                 }
 
                 // Extract the saved directives
-                if ($directives = $cclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_DIRECTIVES]) {
+                if ($directives = $cclBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_DIRECTIVES] ?? null) {
                     if ($entriesForDirectives = GeneralUtils::arrayFlatten(array_filter(
                         array_map(
                             fn ($selectedDirective) => $this->getEntriesFromDirective($selectedDirective, $maxAge),

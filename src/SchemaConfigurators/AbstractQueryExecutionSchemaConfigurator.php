@@ -318,7 +318,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             $block
         );
         if (!is_null($schemaConfigACLBlockDataItem)) {
-            if ($accessControlLists = $schemaConfigACLBlockDataItem['attrs'][SchemaConfigAccessControlListBlock::ATTRIBUTE_NAME_ACCESS_CONTROL_LISTS]) {
+            if ($accessControlLists = $schemaConfigACLBlockDataItem['attrs'][SchemaConfigAccessControlListBlock::ATTRIBUTE_NAME_ACCESS_CONTROL_LISTS] ?? null) {
                 $configurator = new AccessControlGraphQLQueryConfigurator();
                 foreach ($accessControlLists as $accessControlListID) {
                     $configurator->executeSchemaConfiguration($accessControlListID);
@@ -348,7 +348,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             $block
         );
         if (!is_null($schemaConfigFDLBlockDataItem)) {
-            if ($fieldDeprecationLists = $schemaConfigFDLBlockDataItem['attrs'][SchemaConfigFieldDeprecationListBlock::ATTRIBUTE_NAME_FIELD_DEPRECATION_LISTS]) {
+            if ($fieldDeprecationLists = $schemaConfigFDLBlockDataItem['attrs'][SchemaConfigFieldDeprecationListBlock::ATTRIBUTE_NAME_FIELD_DEPRECATION_LISTS] ?? null) {
                 $configurator = new FieldDeprecationGraphQLQueryConfigurator();
                 foreach ($fieldDeprecationLists as $fieldDeprecationListID) {
                     $configurator->executeSchemaConfiguration($fieldDeprecationListID);

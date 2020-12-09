@@ -59,7 +59,7 @@ class PersistedQuerySchemaConfigurator extends AbstractQueryExecutionSchemaConfi
             $block
         );
         if (!is_null($schemaConfigCCLBlockDataItem)) {
-            if ($cacheControlLists = $schemaConfigCCLBlockDataItem['attrs'][SchemaConfigCacheControlListBlock::ATTRIBUTE_NAME_CACHE_CONTROL_LISTS]) {
+            if ($cacheControlLists = $schemaConfigCCLBlockDataItem['attrs'][SchemaConfigCacheControlListBlock::ATTRIBUTE_NAME_CACHE_CONTROL_LISTS] ?? null) {
                 $configurator = new CacheControlGraphQLQueryConfigurator();
                 foreach ($cacheControlLists as $cacheControlListID) {
                     $configurator->executeSchemaConfiguration($cacheControlListID);

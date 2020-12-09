@@ -121,7 +121,7 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
 
                     // The value can be NULL, then it's the default mode
                     // In that case do nothing, since the default mode is already injected into GraphQL by PoP
-                    $schemaMode = $aclBlockItem['attrs'][AccessControlBlock::ATTRIBUTE_NAME_SCHEMA_MODE];
+                    $schemaMode = $aclBlockItem['attrs'][AccessControlBlock::ATTRIBUTE_NAME_SCHEMA_MODE] ?? null;
 
                     // Iterate all the nested blocks
                     foreach ($aclBlockItemNestedBlocks as $aclBlockItemNestedBlock) {

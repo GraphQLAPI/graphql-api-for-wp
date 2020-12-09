@@ -42,8 +42,8 @@ class FieldDeprecationGraphQLQueryConfigurator extends AbstractGraphQLQueryConfi
         );
         $hooksAPI = HooksAPIFacade::getInstance();
         foreach ($fdlBlockItems as $fdlBlockItem) {
-            if ($deprecationReason = $fdlBlockItem['attrs'][FieldDeprecationBlock::ATTRIBUTE_NAME_DEPRECATION_REASON]) {
-                if ($typeFields = $fdlBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS]) {
+            if ($deprecationReason = $fdlBlockItem['attrs'][FieldDeprecationBlock::ATTRIBUTE_NAME_DEPRECATION_REASON] ?? null) {
+                if ($typeFields = $fdlBlockItem['attrs'][AbstractControlBlock::ATTRIBUTE_NAME_TYPE_FIELDS] ?? null) {
                     // Add a hook to override the schema for the selected fields
                     foreach ($typeFields as $selectedField) {
                         $entriesFromField = $this->getEntriesFromField($selectedField, $deprecationReason);
