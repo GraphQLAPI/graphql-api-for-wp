@@ -67,7 +67,7 @@ class FieldDeprecationBlock extends AbstractControlBlock
             %s
         </div>
 EOF;
-        $deprecationReason = $attributes[self::ATTRIBUTE_NAME_DEPRECATION_REASON];
+        $deprecationReason = $attributes[self::ATTRIBUTE_NAME_DEPRECATION_REASON] ?? null;
         if (!$deprecationReason) {
             $deprecationReason = sprintf(
                 '<em>%s</em>',

@@ -26,7 +26,7 @@ abstract class AbstractItemListAccessControlRuleBlock extends AbstractAccessCont
             %s
         </div>
 EOF;
-        $values = $attributes[self::ATTRIBUTE_NAME_VALUE];
+        $values = $attributes[self::ATTRIBUTE_NAME_VALUE] ?? [];
         return sprintf(
             $blockContentPlaceholder,
             $this->getBlockClassName(),

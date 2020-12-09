@@ -81,7 +81,7 @@ class CacheControlBlock extends AbstractControlBlock
             %s
         </div>
 EOF;
-        $cacheControlMaxAge = $attributes[self::ATTRIBUTE_NAME_CACHE_CONTROL_MAX_AGE];
+        $cacheControlMaxAge = $attributes[self::ATTRIBUTE_NAME_CACHE_CONTROL_MAX_AGE] ?? null;
         if (is_null($cacheControlMaxAge) || $cacheControlMaxAge < 0) {
             $cacheControlMaxAgeText = sprintf(
                 '<em>%s</em>',

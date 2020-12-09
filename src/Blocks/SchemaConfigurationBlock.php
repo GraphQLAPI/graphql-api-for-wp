@@ -78,7 +78,7 @@ class SchemaConfigurationBlock extends AbstractBlock
         </div>
 EOF;
         $schemaConfigurationContent = '';
-        $schemaConfigurationID = $attributes[self::ATTRIBUTE_NAME_SCHEMA_CONFIGURATION];
+        $schemaConfigurationID = $attributes[self::ATTRIBUTE_NAME_SCHEMA_CONFIGURATION] ?? null;
         if ($schemaConfigurationID == self::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_DEFAULT) {
             $schemaConfigurationContent = \__('Default', 'graphql-api');
         } elseif ($schemaConfigurationID == self::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_NONE) {

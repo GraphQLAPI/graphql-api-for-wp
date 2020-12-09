@@ -121,8 +121,8 @@ abstract class AbstractGraphiQLBlock extends AbstractBlock
             '<div class="%s">',
             $this->getBlockClassName() . ' ' . $this->getAlignClass()
         );
-        $query = $attributes[self::ATTRIBUTE_NAME_QUERY];
-        $variables = $attributes[self::ATTRIBUTE_NAME_VARIABLES];
+        $query = $attributes[self::ATTRIBUTE_NAME_QUERY] ?? '';
+        $variables = $attributes[self::ATTRIBUTE_NAME_VARIABLES] ?? null;
         $content .= sprintf(
             '<p><strong>%s</strong></p>',
             \__('GraphQL Query:', 'graphql-api')

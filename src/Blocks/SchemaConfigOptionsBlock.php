@@ -70,7 +70,7 @@ class SchemaConfigOptionsBlock extends AbstractOptionsBlock
             $blockContent .= sprintf(
                 $blockContentPlaceholder,
                 \__('Public/Private Schema:', 'graphql-api'),
-                $schemaModeLabels[$attributes[self::ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE]] ?? ComponentConfiguration::getSettingsValueLabel()
+                $schemaModeLabels[$attributes[self::ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE] ?? ''] ?? ComponentConfiguration::getSettingsValueLabel()
             );
         }
 
@@ -82,7 +82,7 @@ class SchemaConfigOptionsBlock extends AbstractOptionsBlock
             $blockContent .= sprintf(
                 $blockContentPlaceholder,
                 \__('Use namespacing?', 'graphql-api'),
-                $useNamespacingLabels[$attributes[self::ATTRIBUTE_NAME_USE_NAMESPACING]] ?? ComponentConfiguration::getSettingsValueLabel()
+                $useNamespacingLabels[$attributes[self::ATTRIBUTE_NAME_USE_NAMESPACING] ?? ''] ?? ComponentConfiguration::getSettingsValueLabel()
             );
         }
 
@@ -95,7 +95,7 @@ class SchemaConfigOptionsBlock extends AbstractOptionsBlock
             $blockContent .= sprintf(
                 $blockContentPlaceholder,
                 \__('Mutation Scheme', 'graphql-api'),
-                $mutationSchemeLabels[$attributes[self::ATTRIBUTE_NAME_MUTATION_SCHEME]] ?? ComponentConfiguration::getSettingsValueLabel()
+                $mutationSchemeLabels[$attributes[self::ATTRIBUTE_NAME_MUTATION_SCHEME] ?? ''] ?? ComponentConfiguration::getSettingsValueLabel()
             );
         }
 

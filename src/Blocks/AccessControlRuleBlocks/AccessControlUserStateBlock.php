@@ -29,7 +29,7 @@ class AccessControlUserStateBlock extends AbstractAccessControlRuleBlock
      */
     public function renderBlock(array $attributes, string $content): string
     {
-        $label = $attributes[self::ATTRIBUTE_NAME_VALUE] == UserStates::IN ?
+        $label = isset($attributes[self::ATTRIBUTE_NAME_VALUE]) && $attributes[self::ATTRIBUTE_NAME_VALUE] == UserStates::IN ?
             __('Logged-in users', 'graphql-api') :
             __('Not logged-in users', 'graphql-api');
         return sprintf(
