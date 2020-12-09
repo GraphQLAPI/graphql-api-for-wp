@@ -22,14 +22,14 @@ class SupportMenuPage extends AbstractDocsMenuPage
 
     protected function useTabpanelForContent(): bool
     {
-        return true;
+        return false;
     }
 
     protected function getContentToPrint(): string
     {
         $markdownContentParser = MarkdownContentParserFacade::getInstance();
         try {
-            return $markdownContentParser->getContent('support.md', '', [ContentParserOptions::TAB_CONTENT => true]);
+            return $markdownContentParser->getContent('support.md', '', [ContentParserOptions::TAB_CONTENT => false]);
         } catch (InvalidArgumentException $e) {
             return sprintf(
                 '<p>%s</p>',
