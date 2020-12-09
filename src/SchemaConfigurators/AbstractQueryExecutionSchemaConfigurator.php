@@ -90,7 +90,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             return $this->getUserSettingSchemaConfigurationID();
         }
 
-        $schemaConfiguration = $schemaConfigurationBlockDataItem['attrs'][SchemaConfigurationBlock::ATTRIBUTE_NAME_SCHEMA_CONFIGURATION];
+        $schemaConfiguration = $schemaConfigurationBlockDataItem['attrs'][SchemaConfigurationBlock::ATTRIBUTE_NAME_SCHEMA_CONFIGURATION] ?? null;
         // Check if $schemaConfiguration is one of the meta options (default, none, inherit)
         if ($schemaConfiguration == SchemaConfigurationBlock::ATTRIBUTE_VALUE_SCHEMA_CONFIGURATION_NONE) {
             return null;
