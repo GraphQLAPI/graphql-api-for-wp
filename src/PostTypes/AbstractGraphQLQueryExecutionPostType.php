@@ -165,8 +165,11 @@ abstract class AbstractGraphQLQueryExecutionPostType extends AbstractPostType
          */
         if (\is_singular($this->getPostType())) {
             $vars = ApplicationState::getVars();
-            $post = $vars['routing-state']['queried-object'];
-            return $this->getGraphQLQuerySourceContent($content, $post);
+            $customPost = $vars['routing-state']['queried-object'];
+            // Make sure there is a post (eg: it has not been deleted)
+            if ($customPost !== null) {
+                return $this->getGraphQLQuerySourceContent($content, $customPost);
+            }
         }
         return $content;
     }

@@ -228,13 +228,16 @@ abstract class AbstractPostType
              * Add the excerpt (if not empty) as description of the GraphQL query
              */
             $vars = ApplicationState::getVars();
-            $post = $vars['routing-state']['queried-object'];
-            if ($excerpt = CPTUtils::getCustomPostDescription($post)) {
-                $content = \sprintf(
-                    \__('<p class="%s"><strong>Description: </strong>%s</p>'),
-                    $this->getAlignClass(),
-                    $excerpt
-                ) . $content;
+            $customPost = $vars['routing-state']['queried-object'];
+            // Make sure there is a post (eg: it has not been deleted)
+            if ($customPost !== null) {
+                if ($excerpt = CPTUtils::getCustomPostDescription($customPost)) {
+                    $content = \sprintf(
+                        \__('<p class="%s"><strong>Description: </strong>%s</p>'),
+                        $this->getAlignClass(),
+                        $excerpt
+                    ) . $content;
+                    }
             }
         }
         return $content;
