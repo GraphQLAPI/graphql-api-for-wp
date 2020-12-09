@@ -238,6 +238,14 @@ abstract class AbstractContentParser implements ContentParserInterface
     }
 
     /**
+     * Is the anchor pointing to an email?
+     */
+    protected function isMailto(string $href): bool
+    {
+        return \str_starts_with($href, 'mailto:');
+    }
+
+    /**
      * Whenever a link points to a .md file, convert it
      * so it works also within the plugin
      */
@@ -247,7 +255,7 @@ abstract class AbstractContentParser implements ContentParserInterface
             '/<a.*href="(.*?)\.md".*?>/',
             function (array $matches): string {
                 // If the element has an absolute route, then no need
-                if ($this->isAbsoluteURL($matches[1])) {
+                if ($this->isAbsoluteURL($matches[1]) || $this->isMailto($matches[1])) {
                     return $matches[0];
                 }
                 // The URL is the current one, plus attr to open the .md file
@@ -390,7 +398,7 @@ abstract class AbstractContentParser implements ContentParserInterface
             $regex,
             function ($matches) use ($pathURL, $attr) {
                 // If the element has an absolute route, then no need
-                if ($this->isAbsoluteURL($matches[1])) {
+                if ($this->isAbsoluteURL($matches[1]) || $this->isMailto($matches[1])) {
                     return $matches[0];
                 }
                 $elementURL = \trailingslashit($pathURL) . $matches[1];
