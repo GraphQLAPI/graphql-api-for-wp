@@ -237,7 +237,7 @@ abstract class AbstractPostType
                         $this->getAlignClass(),
                         $excerpt
                     ) . $content;
-                    }
+                }
             }
         }
         return $content;
