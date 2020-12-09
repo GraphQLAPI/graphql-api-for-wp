@@ -218,16 +218,20 @@ class GraphQLEndpointPostType extends AbstractGraphQLQueryExecutionPostType
     public function maybePrintClient(): void
     {
         $vars = ApplicationState::getVars();
-        $post = $vars['routing-state']['queried-object'];
+        $customPost = $vars['routing-state']['queried-object'];
+        // Make sure there is a post (eg: it has not been deleted)
+        if ($customPost === null) {
+            return;
+        }
         $view = $_REQUEST[RequestParams::VIEW] ?? '';
         // Read from the configuration if to expose the GraphiQL/Voyager client
         if ((
                 $view == RequestParams::VIEW_GRAPHIQL
-                && $this->isGraphiQLEnabled($post)
+                && $this->isGraphiQLEnabled($customPost)
             )
             || (
                 $view == RequestParams::VIEW_SCHEMA
-                && $this->isVoyagerEnabled($post)
+                && $this->isVoyagerEnabled($customPost)
             )
         ) {
             $moduleRegistry = ModuleRegistryFacade::getInstance();
