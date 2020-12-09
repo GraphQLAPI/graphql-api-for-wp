@@ -167,7 +167,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             /**
              * Default value (if not defined in DB): `default`. Then do nothing
              */
-            $useNamespacing = $schemaConfigOptionsBlockDataItem['attrs'][SchemaConfigOptionsBlock::ATTRIBUTE_NAME_USE_NAMESPACING];
+            $useNamespacing = $schemaConfigOptionsBlockDataItem['attrs'][SchemaConfigOptionsBlock::ATTRIBUTE_NAME_USE_NAMESPACING] ?? null;
             // Only execute if it has value "enabled" or "disabled".
             // If "default", then the general settings will already take effect, so do nothing
             // (And if any other unsupported value, also do nothing)
@@ -215,7 +215,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             /**
              * Default value (if not defined in DB): `default`. Then do nothing
              */
-            $mutationScheme = $schemaConfigOptionsBlockDataItem['attrs'][SchemaConfigOptionsBlock::ATTRIBUTE_NAME_MUTATION_SCHEME];
+            $mutationScheme = $schemaConfigOptionsBlockDataItem['attrs'][SchemaConfigOptionsBlock::ATTRIBUTE_NAME_MUTATION_SCHEME] ?? null;
             // Only execute if it has value "standard", "nested" or "lean_nested".
             // If "default", then the general settings will already take effect, so do nothing
             // (And if any other unsupported value, also do nothing)
@@ -273,7 +273,7 @@ abstract class AbstractQueryExecutionSchemaConfigurator implements SchemaConfigu
             /**
              * Default value (if not defined in DB): `default`. Then do nothing
              */
-            $defaultSchemaMode = $schemaConfigOptionsBlockDataItem['attrs'][SchemaConfigOptionsBlock::ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE];
+            $defaultSchemaMode = $schemaConfigOptionsBlockDataItem['attrs'][SchemaConfigOptionsBlock::ATTRIBUTE_NAME_DEFAULT_SCHEMA_MODE] ?? null;
             // Only execute if it has value "public" or "private".
             // If "default", then the general settings will already take effect, so do nothing
             // (And if any other unsupported value, also do nothing)

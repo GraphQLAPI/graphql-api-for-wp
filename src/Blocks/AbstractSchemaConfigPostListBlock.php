@@ -52,7 +52,7 @@ abstract class AbstractSchemaConfigPostListBlock extends AbstractBlock
         </div>
 EOF;
         $postContentElems = $foundPostListIDs = [];
-        if ($postListIDs = $attributes[$this->getAttributeName()]) {
+        if ($postListIDs = $attributes[$this->getAttributeName()] ?? []) {
             /**
              * @var WP_Post[]
              */

@@ -157,7 +157,7 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
         $maybeNamespacedFieldInterfaceName = $entry[0];
         $field = $entry[1];
         // From the type, obtain which resolver class processes it
-        if ($typeResolverClass = $namespacedTypeNameClasses[$maybeNamespacedTypeName]) {
+        if ($typeResolverClass = $namespacedTypeNameClasses[$maybeNamespacedTypeName] ?? null) {
             // Check `getConfigurationEntries` to understand format of each entry
             return [
                 [$typeResolverClass, $field, $value],
@@ -165,7 +165,7 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
         }
         // If it is an interface, add all the types implementing that interface!
         $namespacedFieldInterfaceNameClasses = $this->getNamespacedFieldInterfaceNameClasses();
-        if ($fieldInterfaceResolverClass = $namespacedFieldInterfaceNameClasses[$maybeNamespacedFieldInterfaceName]) {
+        if ($fieldInterfaceResolverClass = $namespacedFieldInterfaceNameClasses[$maybeNamespacedFieldInterfaceName] ?? null) {
             // Check `getConfigurationEntries` to understand format of each entry
             return [
                 [$fieldInterfaceResolverClass, $field, $value],
@@ -186,7 +186,7 @@ abstract class AbstractGraphQLQueryConfigurator implements SchemaConfiguratorInt
         $directiveNameClasses = $this->getDirectiveNameClasses();
         // Obtain the directive resolver class from the directive name.
         // If more than one resolver has the same directive name, add all of them
-        if ($selectedDirectiveResolverClasses = $directiveNameClasses[$selectedDirective]) {
+        if ($selectedDirectiveResolverClasses = $directiveNameClasses[$selectedDirective] ?? null) {
             $entriesForDirective = [];
             foreach ($selectedDirectiveResolverClasses as $directiveResolverClass) {
                 $entriesForDirective[] = [$directiveResolverClass, $value];
