@@ -133,30 +133,30 @@ abstract class AbstractContentParser implements ContentParserInterface
             $options
         );
         // Add the path to the images
-        if ($options[ContentParserOptions::APPEND_PATH_URL_TO_IMAGES]) {
+        if ($options[ContentParserOptions::APPEND_PATH_URL_TO_IMAGES] ?? null) {
             // Enable to override the path for images, to read them from
             // the GitHub repo and avoid including them in the plugin
             $imagePathURL = $options[self::PATH_URL_TO_DOCS] ?? $pathURL;
             $htmlContent = $this->appendPathURLToImages($imagePathURL, $htmlContent);
         }
         // Convert Markdown links: execute before appending path to anchors
-        if ($options[ContentParserOptions::SUPPORT_MARKDOWN_LINKS]) {
+        if ($options[ContentParserOptions::SUPPORT_MARKDOWN_LINKS] ?? null) {
             $htmlContent = $this->convertMarkdownLinks($htmlContent);
         }
         // Add the path to the anchors
-        if ($options[ContentParserOptions::APPEND_PATH_URL_TO_ANCHORS]) {
+        if ($options[ContentParserOptions::APPEND_PATH_URL_TO_ANCHORS] ?? null) {
             $htmlContent = $this->appendPathURLToAnchors($pathURL, $htmlContent);
         }
         // Add classes to HTML elements
-        if ($options[ContentParserOptions::ADD_CLASSES]) {
+        if ($options[ContentParserOptions::ADD_CLASSES] ?? null) {
             $htmlContent = $this->addClasses($htmlContent);
         }
         // Append video embeds
-        if ($options[ContentParserOptions::EMBED_VIDEOS]) {
+        if ($options[ContentParserOptions::EMBED_VIDEOS] ?? null) {
             $htmlContent = $this->embedVideos($htmlContent);
         }
         // Convert the <h2> into tabs
-        if ($options[ContentParserOptions::TAB_CONTENT]) {
+        if ($options[ContentParserOptions::TAB_CONTENT] ?? null) {
             $htmlContent = $this->tabContent($htmlContent);
         }
         return $htmlContent;
