@@ -24,7 +24,9 @@ class EndpointHelpers
     {
         return \is_admin()
             && 'POST' == $_SERVER['REQUEST_METHOD']
+            && isset($_GET['page'])
             && $_GET['page'] == Menu::getName()
+            && isset($_GET[RequestParams::ACTION])
             && $_GET[RequestParams::ACTION] == RequestParams::ACTION_EXECUTE_QUERY;
     }
 

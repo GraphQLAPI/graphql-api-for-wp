@@ -237,7 +237,8 @@ class SettingsMenuPage extends AbstractMenuPage
         // By default, focus on the first module
         $activeModuleID = $items[0]['id'];
         // If passing a tab, focus on that one, if the module exists
-        if ($tab = $_GET[RequestParams::TAB]) {
+        if (isset($_GET[RequestParams::TAB])) {
+            $tab = $_GET[RequestParams::TAB];
             $moduleIDs = array_map(
                 fn ($item) => $item['id'],
                 $items

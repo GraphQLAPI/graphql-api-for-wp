@@ -73,7 +73,7 @@ class ModuleListTableAction extends AbstractListTableAction
              */
             // See if executing any of the actions
             $actions = $this->getActions();
-            $isBulkAction = in_array($_POST['action'], $actions) || in_array($_POST['action2'], $actions);
+            $isBulkAction = in_array($_POST['action'] ?? null, $actions) || in_array($_POST['action2'] ?? null, $actions);
             $isSingleAction = in_array($this->currentAction(), $actions);
             if ($isBulkAction || $isSingleAction) {
                 $message = \__('Operation successful', 'graphql-api');
@@ -104,7 +104,7 @@ class ModuleListTableAction extends AbstractListTableAction
         $this->processed = true;
 
         $actions = $this->getActions();
-        $isBulkAction = in_array($_POST['action'], $actions) || in_array($_POST['action2'], $actions);
+        $isBulkAction = in_array($_POST['action'] ?? null, $actions) || in_array($_POST['action2'] ?? null, $actions);
         /**
          * The Bulk takes precedence, because it's executed as a POST on the current URL
          * Then, the URL can contain an ?action=... which was just executed,
@@ -114,9 +114,9 @@ class ModuleListTableAction extends AbstractListTableAction
             $moduleIDs = (array) \esc_sql($_POST[self::INPUT_BULK_ACTION_IDS] ?? []);
             if (!empty($moduleIDs)) {
                 // Enable or disable
-                if ($_POST['action'] == self::ACTION_ENABLE || $_POST['action2'] == self::ACTION_ENABLE) {
+                if ($_POST['action'] ?? null == self::ACTION_ENABLE || $_POST['action2'] ?? null == self::ACTION_ENABLE) {
                     $this->setModulesEnabledValue($moduleIDs, true);
-                } elseif ($_POST['action'] == self::ACTION_DISABLE || $_POST['action2'] == self::ACTION_DISABLE) {
+                } elseif ($_POST['action'] ?? null == self::ACTION_DISABLE || $_POST['action2'] ?? null == self::ACTION_DISABLE) {
                     $this->setModulesEnabledValue($moduleIDs, false);
                 }
             }
@@ -129,14 +129,14 @@ class ModuleListTableAction extends AbstractListTableAction
             if (!\wp_verify_nonce($nonce, 'graphql_api_enable_or_disable_module')) {
                 $noParamsCurrentURL = \admin_url(sprintf(
                     'admin.php?page=%s',
-                    $_GET['page']
+                    $_GET['page'] ?? ''
                 ));
                 \wp_die(sprintf(
                     __('This URL is either stale or not valid. Please <a href="%s">click here to reload the page</a>, and try again', 'graphql-api'),
                     $noParamsCurrentURL
                 ));
             }
-            if ($moduleID = $_GET['item']) {
+            if ($moduleID = $_GET['item'] ?? null) {
                 // Enable or disable
                 if (self::ACTION_ENABLE === $this->currentAction()) {
                     $this->setModulesEnabledValue([$moduleID], true);

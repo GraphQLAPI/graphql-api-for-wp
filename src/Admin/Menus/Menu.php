@@ -105,7 +105,7 @@ class Menu extends AbstractMenu
     protected function getModuleMenuPageClass(): string
     {
         return
-            ($_GET[RequestParams::TAB] == RequestParams::TAB_DOCS) ?
+            (isset($_GET[RequestParams::TAB]) && $_GET[RequestParams::TAB] == RequestParams::TAB_DOCS) ?
             ModuleDocumentationMenuPage::class :
             ModulesMenuPage::class;
     }
@@ -117,7 +117,7 @@ class Menu extends AbstractMenu
     protected function getAboutMenuPageClass(): string
     {
         return
-            ($_GET[RequestParams::TAB] == RequestParams::TAB_DOCS) ?
+            (isset($_GET[RequestParams::TAB]) && $_GET[RequestParams::TAB] == RequestParams::TAB_DOCS) ?
             ReleaseNotesAboutMenuPage::class :
             AboutMenuPage::class;
     }
