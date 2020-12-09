@@ -20,7 +20,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "~7.4",
+        "php": "^7.4|^8.0",
         "erusev/parsedown": "^1.7",
         "pop-schema/generic-customposts": "dev-master",
         "pop-schema/commentmeta-wp": "dev-master",
