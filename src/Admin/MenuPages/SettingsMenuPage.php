@@ -85,10 +85,10 @@ class SettingsMenuPage extends AbstractMenuPage
                     foreach ($item['settings'] as $itemSetting) {
                         \add_settings_field(
                             $itemSetting[Properties::NAME],
-                            $itemSetting[Properties::TITLE],
+                            $itemSetting[Properties::TITLE] ?? '',
                             function () use ($module, $itemSetting) {
-                                $type = $itemSetting[Properties::TYPE];
-                                $possibleValues = $itemSetting[Properties::POSSIBLE_VALUES];
+                                $type = $itemSetting[Properties::TYPE] ?? null;
+                                $possibleValues = $itemSetting[Properties::POSSIBLE_VALUES] ?? [];
                                 if (!empty($possibleValues)) {
                                     $this->printSelectField($module, $itemSetting);
                                 } elseif ($type == Properties::TYPE_BOOL) {
@@ -100,7 +100,7 @@ class SettingsMenuPage extends AbstractMenuPage
                             self::SETTINGS_FIELD,
                             $settingsFieldForModule,
                             [
-                                'label' => $itemSetting[Properties::DESCRIPTION],
+                                'label' => $itemSetting[Properties::DESCRIPTION] ?? '',
                                 'id' => $itemSetting[Properties::NAME],
                             ]
                         );
@@ -143,7 +143,7 @@ class SettingsMenuPage extends AbstractMenuPage
             $module = $item['module'];
             $moduleResolver = $moduleRegistry->getModuleResolver($module);
             foreach ($item['settings'] as $itemSetting) {
-                $type = $itemSetting[Properties::TYPE];
+                $type = $itemSetting[Properties::TYPE] ?? null;
                 /**
                  * Cast type so PHPStan doesn't throw error
                  */
@@ -167,7 +167,7 @@ class SettingsMenuPage extends AbstractMenuPage
                 } elseif ($type == Properties::TYPE_INT) {
                     $value[$name] = (int) $value[$name];
                     // If the value is below its minimum, reset to the default one
-                    $minNumber = $itemSetting[Properties::MIN_NUMBER];
+                    $minNumber = $itemSetting[Properties::MIN_NUMBER] ?? null;
                     if (!is_null($minNumber) && $value[$name] < $minNumber) {
                         $value[$name] = $moduleResolver->getSettingsDefaultValue($module, $option);
                     }
@@ -348,7 +348,7 @@ class SettingsMenuPage extends AbstractMenuPage
         ?>
             <label for="<?php echo $name; ?>">
                 <input type="checkbox" name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']'; ?>" id="<?php echo $name; ?>" value="1" <?php checked(1, $value); ?> />
-                <?php echo $itemSetting[Properties::DESCRIPTION]; ?>
+                <?php echo $itemSetting[Properties::DESCRIPTION] ?? ''; ?>
             </label>
         <?php
     }
@@ -363,11 +363,11 @@ class SettingsMenuPage extends AbstractMenuPage
         $name = $itemSetting[Properties::NAME];
         $input = $itemSetting[Properties::INPUT];
         $value = $this->getOptionValue($module, $input);
-        $label = $itemSetting[Properties::DESCRIPTION] ? '<br/>' . $itemSetting[Properties::DESCRIPTION] : '';
-        $isNumber = $itemSetting[Properties::TYPE] == Properties::TYPE_INT;
+        $label = isset($itemSetting[Properties::DESCRIPTION]) ? '<br/>' . $itemSetting[Properties::DESCRIPTION] : '';
+        $isNumber = isset($itemSetting[Properties::TYPE]) && $itemSetting[Properties::TYPE] == Properties::TYPE_INT;
         $minNumber = null;
         if ($isNumber) {
-            $minNumber = $itemSetting[Properties::MIN_NUMBER];
+            $minNumber = $itemSetting[Properties::MIN_NUMBER] ?? null;
         }
         ?>
             <label for="<?php echo $name; ?>">
@@ -392,9 +392,9 @@ class SettingsMenuPage extends AbstractMenuPage
         if (!is_array($value)) {
             $value = is_null($value) ? [] : [$value];
         }
-        $label = $itemSetting[Properties::DESCRIPTION] ? '<br/>' . $itemSetting[Properties::DESCRIPTION] : '';
+        $label = isset($itemSetting[Properties::DESCRIPTION]) ? '<br/>' . $itemSetting[Properties::DESCRIPTION] : '';
         $isMultiple = $itemSetting[Properties::IS_MULTIPLE] ?? false;
-        $possibleValues = $itemSetting[Properties::POSSIBLE_VALUES];
+        $possibleValues = $itemSetting[Properties::POSSIBLE_VALUES] ?? [];
         ?>
             <label for="<?php echo $name; ?>">
                 <select name="<?php echo self::SETTINGS_FIELD . '[' . $name . ']' . ($isMultiple ? '[]' : ''); ?>" id="<?php echo $name; ?>" <?php echo $isMultiple ? 'multiple="multiple"' : ''; ?>>
