@@ -125,10 +125,10 @@ class AccessControlGraphQLQueryConfigurator extends AbstractIndividualControlGra
 
                     // Iterate all the nested blocks
                     foreach ($aclBlockItemNestedBlocks as $aclBlockItemNestedBlock) {
-                        if ($accessControlGroup = $aclBlockItemNestedBlock['attrs'][AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_ACCESS_CONTROL_GROUP]) {
+                        if ($accessControlGroup = $aclBlockItemNestedBlock['attrs'][AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_ACCESS_CONTROL_GROUP] ?? null) {
                             // The value can be NULL, it depends on the actual nestedBlock
                             // (eg: Disable access doesn't have any, while Disable by role has the list of roles)
-                            $value = $aclBlockItemNestedBlock['attrs'][AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_VALUE];
+                            $value = $aclBlockItemNestedBlock['attrs'][AbstractAccessControlRuleBlock::ATTRIBUTE_NAME_VALUE] ?? null;
 
                             // Extract the saved fields
                             if ($entriesForFields = GeneralUtils::arrayFlatten(

@@ -33,8 +33,8 @@ class BlockContentHelpers
             return null;
         }
         return [
-            $graphiQLBlock['attrs'][PersistedQueryGraphiQLBlock::ATTRIBUTE_NAME_QUERY],
-            $graphiQLBlock['attrs'][PersistedQueryGraphiQLBlock::ATTRIBUTE_NAME_VARIABLES]
+            $graphiQLBlock['attrs'][PersistedQueryGraphiQLBlock::ATTRIBUTE_NAME_QUERY] ?? null,
+            $graphiQLBlock['attrs'][PersistedQueryGraphiQLBlock::ATTRIBUTE_NAME_VARIABLES] ?? null
         ];
     }
 
@@ -60,7 +60,7 @@ class BlockContentHelpers
             return null;
         }
         return [
-            $persistedQueryOptionsBlock['attrs'][PersistedQueryOptionsBlock::ATTRIBUTE_NAME_INHERIT_QUERY],
+            $persistedQueryOptionsBlock['attrs'][PersistedQueryOptionsBlock::ATTRIBUTE_NAME_INHERIT_QUERY] ?? false,
         ];
     }
 }
