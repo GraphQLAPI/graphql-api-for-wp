@@ -168,4 +168,6 @@
 .editor-styles-wrapper ul.multi-select-control__checklist p {
 	margin-bottom: 0;
 	font-style: normal;
+	// Fix style for cache control description, appearing under the label
+	margin-top: 0;
 }
