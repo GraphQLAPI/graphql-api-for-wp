@@ -212,7 +212,7 @@ To access the wp-admin, under `http://localhost:8088/wp-admin/`:
 - User: `admin`
 - Password: `password`
 
-Sometimes `wp-env` fails to active the plugin. If that's the case, go to Plugins, and activate "GraphQL API for WordPress"
+For some reason, `wp-env` may fail to automatically active the plugin. If that's the case, go to Plugins, and activate "GraphQL API for WordPress"
 
 To enable pretty permalinks, run:
 
