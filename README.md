@@ -177,15 +177,13 @@ Clone repo, and then install Composer dependencies, by running:
 
 ```bash
 $ git clone https://github.com/GraphQLAPI/graphql-api-for-wp.git
-$ cd graphql-api
+$ cd graphql-api-for-wp
 $ composer install
 ```
 
-<!-- @todo Uncomment when wp-env supports setting PHP version to 7.4 -->
-<!-- @see https://github.com/WordPress/gutenberg/issues/25175 -->
-<!-- ### Launch a development environment with `wp-env`
+### Launch a development environment with `wp-env`
 
-Launch a WordPress environment with the GraphQL API plugin activated through [`wp-env`](https://www.npmjs.com/package/@wordpress/env).
+Quickly launch a WordPress environment with the GraphQL API plugin activated through [`wp-env`](https://www.npmjs.com/package/@wordpress/env).
 
 [Prerequisites](https://www.npmjs.com/package/@wordpress/env#prerequisites):
 
@@ -205,20 +203,22 @@ To start a new WordPress instance with the GraphQL API plugin already installed 
 wp-env start
 ```
 
-> Please notice: The first time using `wp-env`, this process may take a long time (half an hour or even more). To see what is happening, execute with the `--debug` option: `wp-env start --debug`
+> Please notice: The first time using `wp-env`, this process may take a long time. To see what is happening, execute with the `--debug` option: `wp-env start --debug`
 
-The site will be available under `http://localhost:6666`.
+The site will be available under `http://localhost:8088`.
 
-To access the wp-admin, under `http://localhost:6666/wp-admin/`:
+To access the wp-admin, under `http://localhost:8088/wp-admin/`:
 
 - User: `admin`
 - Password: `password`
+
+Sometimes `wp-env` fails to active the plugin. If that's the case, go to Plugins, and activate "GraphQL API for WordPress"
 
 To enable pretty permalinks, run:
 
 ```bash
 wp-env run cli wp rewrite structure '/%postname%/'
-``` -->
+```
 
 ### Pulling code
 
