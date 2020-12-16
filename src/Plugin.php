@@ -54,6 +54,15 @@ class Plugin
     public const OPTION_PLUGIN_VERSION = 'graphql-api-plugin-version';
 
     /**
+     * Hook to initalize extension plugins
+     */
+    public const HOOK_INITIALIZE_EXTENSION_PLUGIN = __CLASS__ . ':initializeExtensionPlugin';
+    /**
+     * Hook to boot extension plugins
+     */
+    public const HOOK_BOOT_EXTENSION_PLUGIN = __CLASS__ . ':bootExtensionPlugin';
+
+    /**
      * Plugin set-up, executed immediately when loading the plugin.
      * There are three stages for this plugin, and for each extension plugin:
      * `setup`, `initialize` and `boot`.
@@ -160,6 +169,16 @@ class Plugin
          */
         \add_action('plugins_loaded', [$this, 'initialize'], 5);
         \add_action('plugins_loaded', [$this, 'boot'], 15);
+        /**
+         * Hooks to initialize/boot extension plugins, triggered
+         * after this main plugin is initialized/booted
+         */
+        \add_action('plugins_loaded', function () {
+            \do_action(self::HOOK_INITIALIZE_EXTENSION_PLUGIN);
+        }, 10);
+        \add_action('plugins_loaded', function () {
+            \do_action(self::HOOK_BOOT_EXTENSION_PLUGIN);
+        }, 20);
     }
 
     /**
