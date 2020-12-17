@@ -41,6 +41,7 @@ jobs:
 
       - name: Downgrade code for production (to PHP 7.1)
         run: |
+          composer config platform-check false
           composer install
           vendor/bin/rector process
           sed -i 's/Requires PHP: 7.4/Requires PHP: 7.1/' graphql-api.php
