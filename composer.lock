@@ -261,12 +261,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/api.git",
-                "reference": "16d7d4ff83919bf047caa9f389b371d4bb4b8bec"
+                "reference": "9a6c559b36f9a72c2f2a97c4a76607fcbf840c46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/api/zipball/16d7d4ff83919bf047caa9f389b371d4bb4b8bec",
-                "reference": "16d7d4ff83919bf047caa9f389b371d4bb4b8bec",
+                "url": "https://api.github.com/repos/getpop/api/zipball/9a6c559b36f9a72c2f2a97c4a76607fcbf840c46",
+                "reference": "9a6c559b36f9a72c2f2a97c4a76607fcbf840c46",
                 "shasum": ""
             },
             "require": {
@@ -317,7 +317,7 @@
                 "issues": "https://github.com/getpop/api/issues",
                 "source": "https://github.com/getpop/api/tree/master"
             },
-            "time": "2020-12-17T10:31:12+00:00"
+            "time": "2020-12-17T13:28:48+00:00"
         },
         {
             "name": "getpop/api-clients",
@@ -680,12 +680,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/component-model.git",
-                "reference": "292e5c60563fd6214015ee308e283560a602d13d"
+                "reference": "078e449768f6950d37a516c126efbbe8550bbfb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/component-model/zipball/292e5c60563fd6214015ee308e283560a602d13d",
-                "reference": "292e5c60563fd6214015ee308e283560a602d13d",
+                "url": "https://api.github.com/repos/getpop/component-model/zipball/078e449768f6950d37a516c126efbbe8550bbfb7",
+                "reference": "078e449768f6950d37a516c126efbbe8550bbfb7",
                 "shasum": ""
             },
             "require": {
@@ -737,7 +737,7 @@
                 "issues": "https://github.com/getpop/component-model/issues",
                 "source": "https://github.com/getpop/component-model/tree/master"
             },
-            "time": "2020-12-17T11:08:37+00:00"
+            "time": "2020-12-17T15:48:42+00:00"
         },
         {
             "name": "getpop/definitions",
@@ -2269,12 +2269,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "cad9fa21a89d88b00461bc53062c589ecb751698"
+                "reference": "0268884d0296ef5c4ff07fc310c83e8a4ccb7b75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/cad9fa21a89d88b00461bc53062c589ecb751698",
-                "reference": "cad9fa21a89d88b00461bc53062c589ecb751698",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/0268884d0296ef5c4ff07fc310c83e8a4ccb7b75",
+                "reference": "0268884d0296ef5c4ff07fc310c83e8a4ccb7b75",
                 "shasum": ""
             },
             "require": {
@@ -2331,7 +2331,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-17T13:15:37+00:00"
+            "time": "2020-12-17T13:28:41+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
