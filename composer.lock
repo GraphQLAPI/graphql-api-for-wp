@@ -201,12 +201,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/access-control.git",
-                "reference": "80605e36e2ffa61fb87263a8d6626f3e6f5545ad"
+                "reference": "3e2fd9450f60bcfe2d0068895ab3321890e23d5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/access-control/zipball/80605e36e2ffa61fb87263a8d6626f3e6f5545ad",
-                "reference": "80605e36e2ffa61fb87263a8d6626f3e6f5545ad",
+                "url": "https://api.github.com/repos/getpop/access-control/zipball/3e2fd9450f60bcfe2d0068895ab3321890e23d5b",
+                "reference": "3e2fd9450f60bcfe2d0068895ab3321890e23d5b",
                 "shasum": ""
             },
             "require": {
@@ -253,7 +253,7 @@
                 "issues": "https://github.com/getpop/access-control/issues",
                 "source": "https://github.com/getpop/access-control/tree/master"
             },
-            "time": "2020-12-09T09:46:45+00:00"
+            "time": "2020-12-17T10:49:49+00:00"
         },
         {
             "name": "getpop/api",
@@ -261,12 +261,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/api.git",
-                "reference": "218e1284309d8a4e2141fb9aa58c04e854902ccc"
+                "reference": "16d7d4ff83919bf047caa9f389b371d4bb4b8bec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/api/zipball/218e1284309d8a4e2141fb9aa58c04e854902ccc",
-                "reference": "218e1284309d8a4e2141fb9aa58c04e854902ccc",
+                "url": "https://api.github.com/repos/getpop/api/zipball/16d7d4ff83919bf047caa9f389b371d4bb4b8bec",
+                "reference": "16d7d4ff83919bf047caa9f389b371d4bb4b8bec",
                 "shasum": ""
             },
             "require": {
@@ -317,7 +317,7 @@
                 "issues": "https://github.com/getpop/api/issues",
                 "source": "https://github.com/getpop/api/tree/master"
             },
-            "time": "2020-12-09T09:46:50+00:00"
+            "time": "2020-12-17T10:31:12+00:00"
         },
         {
             "name": "getpop/api-clients",
@@ -680,12 +680,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/component-model.git",
-                "reference": "49cd07b6570021067b41cbdcb1c28f1e90988d17"
+                "reference": "292e5c60563fd6214015ee308e283560a602d13d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/component-model/zipball/49cd07b6570021067b41cbdcb1c28f1e90988d17",
-                "reference": "49cd07b6570021067b41cbdcb1c28f1e90988d17",
+                "url": "https://api.github.com/repos/getpop/component-model/zipball/292e5c60563fd6214015ee308e283560a602d13d",
+                "reference": "292e5c60563fd6214015ee308e283560a602d13d",
                 "shasum": ""
             },
             "require": {
@@ -737,7 +737,7 @@
                 "issues": "https://github.com/getpop/component-model/issues",
                 "source": "https://github.com/getpop/component-model/tree/master"
             },
-            "time": "2020-12-09T11:41:40+00:00"
+            "time": "2020-12-17T11:08:37+00:00"
         },
         {
             "name": "getpop/definitions",
@@ -935,12 +935,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/field-query.git",
-                "reference": "da516eadf4febfcf99897f6d664e9c5f680c6e87"
+                "reference": "f479db1ad38629593b1a81b4cb099735cba2c91f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/field-query/zipball/da516eadf4febfcf99897f6d664e9c5f680c6e87",
-                "reference": "da516eadf4febfcf99897f6d664e9c5f680c6e87",
+                "url": "https://api.github.com/repos/getpop/field-query/zipball/f479db1ad38629593b1a81b4cb099735cba2c91f",
+                "reference": "f479db1ad38629593b1a81b4cb099735cba2c91f",
                 "shasum": ""
             },
             "require": {
@@ -987,7 +987,7 @@
                 "issues": "https://github.com/getpop/field-query/issues",
                 "source": "https://github.com/getpop/field-query/tree/master"
             },
-            "time": "2020-12-09T07:30:29+00:00"
+            "time": "2020-12-17T10:48:45+00:00"
         },
         {
             "name": "getpop/guzzle-helpers",
@@ -1239,12 +1239,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/mandatory-directives-by-configuration.git",
-                "reference": "6da818a9bc57bd7e78c2e379ce8035cfde96831d"
+                "reference": "a3bac4fac6babd0be82304c92b81a2e81ee3efe3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/mandatory-directives-by-configuration/zipball/6da818a9bc57bd7e78c2e379ce8035cfde96831d",
-                "reference": "6da818a9bc57bd7e78c2e379ce8035cfde96831d",
+                "url": "https://api.github.com/repos/getpop/mandatory-directives-by-configuration/zipball/a3bac4fac6babd0be82304c92b81a2e81ee3efe3",
+                "reference": "a3bac4fac6babd0be82304c92b81a2e81ee3efe3",
                 "shasum": ""
             },
             "require": {
@@ -1290,7 +1290,7 @@
                 "issues": "https://github.com/getpop/mandatory-directives-by-configuration/issues",
                 "source": "https://github.com/getpop/mandatory-directives-by-configuration/tree/master"
             },
-            "time": "2020-12-09T09:47:36+00:00"
+            "time": "2020-12-17T10:48:55+00:00"
         },
         {
             "name": "getpop/migrate-api",
@@ -1440,12 +1440,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/migrate-engine.git",
-                "reference": "c55772a40d99649b1a0a136d1c22daac4ef86238"
+                "reference": "18d51bf1c03180c6f2a8d5ec1247db5576f92e57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/migrate-engine/zipball/c55772a40d99649b1a0a136d1c22daac4ef86238",
-                "reference": "c55772a40d99649b1a0a136d1c22daac4ef86238",
+                "url": "https://api.github.com/repos/getpop/migrate-engine/zipball/18d51bf1c03180c6f2a8d5ec1247db5576f92e57",
+                "reference": "18d51bf1c03180c6f2a8d5ec1247db5576f92e57",
                 "shasum": ""
             },
             "require": {
@@ -1484,7 +1484,7 @@
                 "issues": "https://github.com/getpop/migrate-engine/issues",
                 "source": "https://github.com/getpop/migrate-engine/tree/master"
             },
-            "time": "2020-11-19T15:13:08+00:00"
+            "time": "2020-12-17T10:49:05+00:00"
         },
         {
             "name": "getpop/migrate-engine-wp",
@@ -2269,12 +2269,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "0f76040d2f1058278a6ca1158f82f1a33bc43809"
+                "reference": "47cc385baf9868599e5119f04b3a09a3068dc5b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/0f76040d2f1058278a6ca1158f82f1a33bc43809",
-                "reference": "0f76040d2f1058278a6ca1158f82f1a33bc43809",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/47cc385baf9868599e5119f04b3a09a3068dc5b6",
+                "reference": "47cc385baf9868599e5119f04b3a09a3068dc5b6",
                 "shasum": ""
             },
             "require": {
@@ -2331,7 +2331,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-09T11:26:40+00:00"
+            "time": "2020-12-17T10:49:14+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
