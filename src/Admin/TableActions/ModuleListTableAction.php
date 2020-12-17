@@ -114,9 +114,9 @@ class ModuleListTableAction extends AbstractListTableAction
             $moduleIDs = (array) \esc_sql($_POST[self::INPUT_BULK_ACTION_IDS] ?? []);
             if (!empty($moduleIDs)) {
                 // Enable or disable
-                if ($_POST['action'] ?? null == self::ACTION_ENABLE || $_POST['action2'] ?? null == self::ACTION_ENABLE) {
+                if (($_POST['action'] ?? null) == self::ACTION_ENABLE || ($_POST['action2'] ?? null) == self::ACTION_ENABLE) {
                     $this->setModulesEnabledValue($moduleIDs, true);
-                } elseif ($_POST['action'] ?? null == self::ACTION_DISABLE || $_POST['action2'] ?? null == self::ACTION_DISABLE) {
+                } elseif (($_POST['action'] ?? null) == self::ACTION_DISABLE || ($_POST['action2'] ?? null) == self::ACTION_DISABLE) {
                     $this->setModulesEnabledValue($moduleIDs, false);
                 }
             }
