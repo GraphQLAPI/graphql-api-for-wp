@@ -58,7 +58,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-            name: graphql-api
+            name: generated-plugin
             path: build/graphql-api.zip
 
       - name: Upload to release
