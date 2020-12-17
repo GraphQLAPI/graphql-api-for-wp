@@ -261,12 +261,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/api.git",
-                "reference": "9a6c559b36f9a72c2f2a97c4a76607fcbf840c46"
+                "reference": "20da4bf91e2d2d55795334682d0e346bf10a527c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/api/zipball/9a6c559b36f9a72c2f2a97c4a76607fcbf840c46",
-                "reference": "9a6c559b36f9a72c2f2a97c4a76607fcbf840c46",
+                "url": "https://api.github.com/repos/getpop/api/zipball/20da4bf91e2d2d55795334682d0e346bf10a527c",
+                "reference": "20da4bf91e2d2d55795334682d0e346bf10a527c",
                 "shasum": ""
             },
             "require": {
@@ -317,7 +317,7 @@
                 "issues": "https://github.com/getpop/api/issues",
                 "source": "https://github.com/getpop/api/tree/master"
             },
-            "time": "2020-12-17T13:28:48+00:00"
+            "time": "2020-12-17T23:48:44+00:00"
         },
         {
             "name": "getpop/api-clients",
@@ -680,12 +680,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/component-model.git",
-                "reference": "1a0b1ed86e2897d5ba31400c1333f20b81c5886e"
+                "reference": "f627a86487277cbde3191b6b95b028c2a222c55e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/component-model/zipball/1a0b1ed86e2897d5ba31400c1333f20b81c5886e",
-                "reference": "1a0b1ed86e2897d5ba31400c1333f20b81c5886e",
+                "url": "https://api.github.com/repos/getpop/component-model/zipball/f627a86487277cbde3191b6b95b028c2a222c55e",
+                "reference": "f627a86487277cbde3191b6b95b028c2a222c55e",
                 "shasum": ""
             },
             "require": {
@@ -737,7 +737,7 @@
                 "issues": "https://github.com/getpop/component-model/issues",
                 "source": "https://github.com/getpop/component-model/tree/master"
             },
-            "time": "2020-12-17T17:02:02+00:00"
+            "time": "2020-12-17T23:48:50+00:00"
         },
         {
             "name": "getpop/definitions",
