@@ -680,12 +680,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/component-model.git",
-                "reference": "078e449768f6950d37a516c126efbbe8550bbfb7"
+                "reference": "1a0b1ed86e2897d5ba31400c1333f20b81c5886e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/component-model/zipball/078e449768f6950d37a516c126efbbe8550bbfb7",
-                "reference": "078e449768f6950d37a516c126efbbe8550bbfb7",
+                "url": "https://api.github.com/repos/getpop/component-model/zipball/1a0b1ed86e2897d5ba31400c1333f20b81c5886e",
+                "reference": "1a0b1ed86e2897d5ba31400c1333f20b81c5886e",
                 "shasum": ""
             },
             "require": {
@@ -737,7 +737,7 @@
                 "issues": "https://github.com/getpop/component-model/issues",
                 "source": "https://github.com/getpop/component-model/tree/master"
             },
-            "time": "2020-12-17T15:48:42+00:00"
+            "time": "2020-12-17T17:02:02+00:00"
         },
         {
             "name": "getpop/definitions",
@@ -2269,12 +2269,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "11f003f45f8933b2dd4fe0db89784246d76cccea"
+                "reference": "a59e4d9e4f1227b5e4854dd9c39bc01cc11fbbfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/11f003f45f8933b2dd4fe0db89784246d76cccea",
-                "reference": "11f003f45f8933b2dd4fe0db89784246d76cccea",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/a59e4d9e4f1227b5e4854dd9c39bc01cc11fbbfb",
+                "reference": "a59e4d9e4f1227b5e4854dd9c39bc01cc11fbbfb",
                 "shasum": ""
             },
             "require": {
@@ -2331,7 +2331,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-17T16:35:50+00:00"
+            "time": "2020-12-17T17:01:32+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
