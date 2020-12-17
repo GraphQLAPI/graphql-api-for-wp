@@ -51,6 +51,12 @@ Then, in the WordPress admin:
 - Click on `Install Now` (it may take a few minutes)
 - Once installed, click on `Activate`
 
+#### Timeout in Nginx?
+
+Nginx has a time limit to process the response from the PHP backend, and installing large WordPress plugins may exceed the default time limit.
+
+In case of getting "504 Gateway Timeout" error when installing the plugin, increase the timeout to `300` seconds in the Nginx config, as [explained here](https://wordpress.org/support/topic/504-gateway-time-out-504-gateway-time-out-nginx/#post-13423918).
+
 ### Composer
 
 Add the following configuration to your `composer.json`:
