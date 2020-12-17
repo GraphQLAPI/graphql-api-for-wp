@@ -138,7 +138,7 @@ class Plugin
                 // and the current plugin's version are different
                 // It could also be false from the first time we install the plugin
                 $storedVersion = \get_option(self::OPTION_PLUGIN_VERSION, \GRAPHQL_API_VERSION);
-                if ($storedVersion === false || $storedVersion == \GRAPHQL_API_VERSION) {
+                if (!$storedVersion || $storedVersion == \GRAPHQL_API_VERSION) {
                     return;
                 }
                 // Update to the current version
