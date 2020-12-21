@@ -586,8 +586,8 @@ class PluginConfiguration
 
         ];
         $componentClassConfiguration[\GraphQLByPoP\GraphQLQuery\Component::class] = [
-            // Enable Nested Directives?
-            GraphQLQueryEnvironment::ENABLE_NESTED_DIRECTIVES => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::NESTED_DIRECTIVES),
+            // Enable Composable Directives?
+            GraphQLQueryEnvironment::ENABLE_COMPOSABLE_DIRECTIVES => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::COMPOSABLE_DIRECTIVES),
 
         ];
     }
