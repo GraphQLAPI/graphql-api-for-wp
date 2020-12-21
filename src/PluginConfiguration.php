@@ -52,6 +52,7 @@ use GraphQLByPoP\GraphQLClientsForWP\ComponentConfiguration as GraphQLClientsFor
 use GraphQLByPoP\GraphQLEndpointForWP\ComponentConfiguration as GraphQLEndpointForWPComponentConfiguration;
 use \GraphQLByPoP\GraphQLServer\Environment as GraphQLServerEnvironment;
 use \GraphQLByPoP\GraphQLServer\ComponentConfiguration as GraphQLServerComponentConfiguration;
+use \GraphQLByPoP\GraphQLQuery\Environment as GraphQLQueryEnvironment;
 
 /**
  * Sets the configuration in all the PoP components.
@@ -582,6 +583,12 @@ class PluginConfiguration
             \PoP\API\Environment::ENABLE_EMBEDDABLE_FIELDS => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::EMBEDDABLE_FIELDS),
             // Enable Mutations?
             \PoP\API\Environment::ENABLE_MUTATIONS => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::MUTATIONS),
+
+        ];
+        $componentClassConfiguration[\GraphQLByPoP\GraphQLQuery\Component::class] = [
+            // Enable Nested Directives?
+            GraphQLQueryEnvironment::ENABLE_NESTED_DIRECTIVES => $moduleRegistry->isModuleEnabled(OperationalFunctionalityModuleResolver::NESTED_DIRECTIVES),
+
         ];
     }
 
