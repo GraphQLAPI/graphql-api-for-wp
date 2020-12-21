@@ -804,12 +804,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getpop/engine.git",
-                "reference": "ce445a96ef24dd54249b981438bf4f449e6d790c"
+                "reference": "0d986df36b85d8e771ce5edf91dfa794f6ffcb67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getpop/engine/zipball/ce445a96ef24dd54249b981438bf4f449e6d790c",
-                "reference": "ce445a96ef24dd54249b981438bf4f449e6d790c",
+                "url": "https://api.github.com/repos/getpop/engine/zipball/0d986df36b85d8e771ce5edf91dfa794f6ffcb67",
+                "reference": "0d986df36b85d8e771ce5edf91dfa794f6ffcb67",
                 "shasum": ""
             },
             "require": {
@@ -862,7 +862,7 @@
                 "issues": "https://github.com/getpop/engine/issues",
                 "source": "https://github.com/getpop/engine/tree/master"
             },
-            "time": "2020-12-21T06:45:38+00:00"
+            "time": "2020-12-21T08:08:02+00:00"
         },
         {
             "name": "getpop/engine-wp",
