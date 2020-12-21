@@ -4,6 +4,12 @@ All notable changes to `graphql-api` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 0.7.1 to 0.7.4 - 2020-12-17
+
+### Fixed
+
+- Compatibility with PHP 8.0
+
 ## 0.7.0 - 2020-12-17
 
 ### Added
