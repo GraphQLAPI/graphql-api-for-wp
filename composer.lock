@@ -2148,12 +2148,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-query.git",
-                "reference": "d2f5e4f90db3c50a9425ddda9c70652f8e8a73b3"
+                "reference": "95b52e55c5288ad9d0862e128ecd57a9b8b2b092"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-query/zipball/d2f5e4f90db3c50a9425ddda9c70652f8e8a73b3",
-                "reference": "d2f5e4f90db3c50a9425ddda9c70652f8e8a73b3",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-query/zipball/95b52e55c5288ad9d0862e128ecd57a9b8b2b092",
+                "reference": "95b52e55c5288ad9d0862e128ecd57a9b8b2b092",
                 "shasum": ""
             },
             "require": {
@@ -2202,7 +2202,7 @@
                 "issues": "https://github.com/GraphQLByPoP/graphql-query/issues",
                 "source": "https://github.com/GraphQLByPoP/graphql-query/tree/master"
             },
-            "time": "2020-12-21T06:46:47+00:00"
+            "time": "2020-12-21T07:37:46+00:00"
         },
         {
             "name": "graphql-by-pop/graphql-request",
@@ -2269,12 +2269,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GraphQLByPoP/graphql-server.git",
-                "reference": "ce4b017c12e5150eec099d6873358f89d11570a2"
+                "reference": "1137335d3e0a31dcfdb99712adf464b50b6489b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/ce4b017c12e5150eec099d6873358f89d11570a2",
-                "reference": "ce4b017c12e5150eec099d6873358f89d11570a2",
+                "url": "https://api.github.com/repos/GraphQLByPoP/graphql-server/zipball/1137335d3e0a31dcfdb99712adf464b50b6489b7",
+                "reference": "1137335d3e0a31dcfdb99712adf464b50b6489b7",
                 "shasum": ""
             },
             "require": {
@@ -2331,7 +2331,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-21T06:45:56+00:00"
+            "time": "2020-12-21T07:38:03+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
