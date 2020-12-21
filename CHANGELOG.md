@@ -8,7 +8,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Added
 
-- Nested directives
+- Composable directives
 
 ## 0.7.1 to 0.7.4 - 2020-12-17
 

@@ -32,7 +32,7 @@ For instance, `User.capabilities` returns `[String]` (an array of strings), and 
 }
 ```
 
-With nested directives, a directive can augment another directive to fill a gap.
+With composable directives, a directive can augment another directive to fill a gap.
 
 For instance, directive `@forEach` can iterate over an array of elements, and apply its nested directive on each of them. The query from above can be satisfied like this:
 
