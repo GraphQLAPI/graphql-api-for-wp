@@ -1,4 +1,4 @@
-# Nested Directives
+# Composable Directives
 
 Have a directive modify the behavior of another directives. It introduces a directive argument `nestedUnder` on each directive, to indicate which is its parent directive. This number is a negative integer, defining the the parent directive's relative position.
 
