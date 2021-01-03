@@ -19,7 +19,6 @@ This plugin is the implementation for WordPress of [GraphQL by PoP](https://grap
 Please read the author's [introduction to the GraphQL API for WordPress](https://leoloso.com/posts/introducing-the-graphql-api-for-wordpress/), which describes:
 
 - How does it compare with the existing solutions: WP REST API and WPGraphQL
-- Its most important features
 - An overview of all its features
 - Q&A
 
@@ -64,7 +63,7 @@ Add the following configuration to your `composer.json`:
 ```json
 {
     "require": {
-        "graphql-api/graphql-api-for-wp": "^0.1"
+        "graphql-api/graphql-api-for-wp": "^0.7.4"
     },
     "minimum-stability": "dev",
     "repositories": [
@@ -73,7 +72,7 @@ Add the following configuration to your `composer.json`:
             "package": {
                 "name": "graphql-api/graphql-api-for-wp",
                 "type": "wordpress-plugin",
-                "version": "0.1.0",
+                "version": "0.7.4",
                 "dist": {
                     "url": "https://github.com/GraphQLAPI/graphql-api-for-wp/releases/latest/download/graphql-api.zip",
                     "type": "zip"
@@ -105,9 +104,110 @@ To install via [WP-CLI](http://wp-cli.org/), execute this command:
 wp plugin install --activate https://github.com/GraphQLAPI/graphql-api-for-wp/releases/latest/download/graphql-api.zip
 ```
 
-## Update
+### GitHub Updater
 
 This plugin support automatic updating via the [GitHub Updater](https://github.com/afragen/github-updater).
+
+## Development
+
+The source code is hosted on the [PoP monorepo](https://github.com/leoloso/PoP), under [`GraphQLAPIForWP/plugins/graphql-api-for-wp`](https://github.com/leoloso/PoP/tree/master/layers/GraphQLAPIForWP/plugins/graphql-api-for-wp).
+
+To set it up:
+
+1. Clone the monorepo:
+
+```bash
+git clone https://github.com/leoloso/PoP.git && cd PoP
+```
+
+2. Install Composer dependencies:
+
+```bash
+cd layers/GraphQLAPIForWP/plugins/graphql-api-for-wp && composer install
+```
+
+### Using Lando
+
+Launch a server, with WordPress installed and the GraphQL API plugin activated, through [Lando](https://lando.dev/).
+
+The first time, to install the server, execute:
+
+```bash
+composer init-server
+```
+
+From then on, to start the server, execute:
+
+```bash
+composer start-server
+```
+
+The site will be available under `http://graphql-api-dev.lndo.site`.
+
+To access the [wp-admin](http://graphql-api-dev.lndo.site/wp-admin/):
+
+- User: `admin`
+- Password: `admin`
+
+#### Enable XDebug
+
+To enable debugging, update the following configuration in `.lando.yml`:
+
+```yaml
+config:
+  xdebug: true
+```
+
+And then rebuild the server:
+
+```bash
+composer rebuild-server
+```
+
+<!-- ### Pulling code
+
+Whenever pulling changes from this repo, install again the dependencies:
+
+```bash
+composer update
+``` -->
+
+### Gutenberg JS builds
+
+Compiled JavaScript code (such as all files under a block's `build/` folder) is added to the repo, but only as compiled for production, i.e. after running `npm run build`.
+
+Code compiled for development, i.e. after running `npm start`, cannot be commited/pushed to the repo.
+
+<!-- ### CMS-agnosticism
+
+Even though this plugin is already the implementation for WordPress, it is recommended to develop components following the [CMS-agnostic method employed by GraphQL by PoP](https://graphql-by-pop.com/docs/architecture/cms-agnosticism.html), so that they can benefit from architectural optimizations and future developments.
+
+In particular, support for serverless PHP (a feature which is [on the roadmap](https://graphql-by-pop.com/docs/roadmap/serverless-wordpress.html)) may require to decouple the codebase from WordPress.
+
+This method requires the code for the component to be divided into 2 separate packages:
+
+- A CMS-agnostic package, containing the business code and generic contracts, but without using any WordPress code (eg: [posts](https://github.com/PoPSchema/posts))
+- A CMS-specific package, containing the implementation of the contracts for WordPress (eg: [posts-wp](https://github.com/PoPSchema/posts-wp)) -->
+
+## PHP versions
+
+Requirements:
+
+- PHP 7.4+ for development
+- PHP 7.1+ for production (through release [`graphql-api.zip`][latest-release-url])
+
+### Supported PHP features
+
+| PHP Version | Features |
+| --- | --- |
+| 7.1 | Everything |
+| 7.2 | [`object` type](https://www.php.net/manual/en/migration72.new-features.php#migration72.new-features.object-type)<br/><br/>[parameter type widening](https://www.php.net/manual/en/migration72.new-features.php#migration72.new-features.param-type-widening)<br/><br/>Functions:<ul><li>[`spl_object_id`](https://php.net/spl_object_id)</li><li>[`utf8_encode`](https://php.net/utf8_encode)</li><li>[`utf8_decode`](https://php.net/utf8_decode)</li></ul>Constants:<ul><li>[`PHP_FLOAT_*`](https://php.net/reserved.constants#constant.php-float-dig)</li><li>[`PHP_OS_FAMILY`](https://php.net/reserved.constants#constant.php-os-family)</li></ul> |
+| 7.3 | [Reference assignments in `list()`/array destructuring](https://www.php.net/manual/en/migration73.new-features.php#migration73.new-features.core.destruct-reference) => `[&$a, [$b, &$c]] = $d`<br/>_Except inside `foreach` ([#4376](https://github.com/rectorphp/rector/issues/4376))_<br/><br/>[Flexible Heredoc and Nowdoc syntax](https://www.php.net/manual/en/migration73.new-features.php#migration73.new-features.core.heredoc)<br/><br/>[Trailing commans in functions calls](https://www.php.net/manual/en/migration73.new-features.php#migration73.new-features.core.trailing-commas)<br/><br/>[`set(raw)cookie` accepts $option argument](https://www.php.net/manual/en/migration73.other-changes.php#migration73.other-changes.core.setcookie)<br/><br/>Functions:<ul><li>[`array_key_first`](https://php.net/array_key_first)</li><li>[`array_key_last`](https://php.net/array_key_last)</li><li>[`hrtime`](https://php.net/function.hrtime)</li><li>[`is_countable`](https://php.net/is_countable)</li></ul>Exceptions:<ul><li>[`JsonException`](https://php.net/JsonException)</li></ul> |
+| 7.4 | [Typed properties](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.typed-properties)<br/><br/>[Arrow functions](https://www.php.net/manual/en/functions.arrow.php)<br/><br/>[Null coalescing assignment operator](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.null-coalescing-assignment-operator) => `??=`<br/><br/>[Unpacking inside arrays](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.unpack-inside-array) => `$nums = [3, 4]; $merged = [1, 2, ...$nums, 5];`<br/><br/>[Numeric literal separator](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.numeric-literal-separator) => `1_000_000`<br/><br/>[`strip_tags()` with array of tag names](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.standard.strip-tags) => `strip_tags($str, ['a', 'p'])`<br/><br/>[covariant return types and contravariant param types](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.type-variance)<br/><br/>Functions:<ul><li>[`get_mangled_object_vars`](https://php.net/get_mangled_object_vars)</li><li>[`mb_str_split`](https://php.net/mb_str_split)</li><li>[`password_algos`](https://php.net/password_algos)</li></ul> |
+<!-- @todo Uncomment when PHP 8.0 released -->
+<!--
+| 8.0 | [Union types](https://php.watch/versions/8.0/union-types)<br/><br/>[`mixed` pseudo type](https://php.watch/versions/8.0#mixed-type)<br/><br/>[`static` return type](https://wiki.php.net/rfc/static_return_type)<br/><br/>Interfaces:<ul><li>`Stringable`</li></ul>Classes:<ul><li>`ValueError`</li><li>`UnhandledMatchError`</li></ul>Constants:<ul><li>`FILTER_VALIDATE_BOOL`</li></ul>Functions:<ul><li>[`fdiv`](https://php.net/fdiv)</li><li>[`get_debug_type`](https://php.net/get_debug_type)</li><li>[`preg_last_error_msg`](https://php.net/preg_last_error_msg)</li><li>[`str_contains`](https://php.net/str_contains)</li><li>[`str_starts_with`](https://php.net/str_starts_with)</li><li>[`str_ends_with`](https://php.net/str_ends_with)</li><li>[`get_resource_id`](https://php.net/get_resource_id)</li></ul> |
+-->
 
 ## Modules
 
@@ -178,129 +278,6 @@ GraphQL API is extensible, and ships with the following modules (organized by ca
 </tbody>
 </table>
 
-## Development
-
-Clone repo, and then install Composer dependencies, by running:
-
-```bash
-$ git clone https://github.com/GraphQLAPI/graphql-api-for-wp.git
-$ cd graphql-api-for-wp
-$ composer install
-```
-
-### Launch a development environment with `wp-env`
-
-Quickly launch a WordPress environment with the GraphQL API plugin activated through [`wp-env`](https://www.npmjs.com/package/@wordpress/env).
-
-[Prerequisites](https://www.npmjs.com/package/@wordpress/env#prerequisites):
-
-- Node.js
-- npm
-- Docker
-
-To [install `wp-env`](https://www.npmjs.com/package/@wordpress/env#installation) globally, run in the terminal:
-
-```bash
-npm -g i @wordpress/env
-```
-
-To start a new WordPress instance with the GraphQL API plugin already installed and activated, execute in the root folder of the plugin (make sure Docker is running):
-
-```bash
-wp-env start
-```
-
-> Please notice: The first time using `wp-env`, this process may take a long time. To see what is happening, execute with the `--debug` option: `wp-env start --debug`
-
-The site will be available under `http://localhost:8088`.
-
-To access the wp-admin, under `http://localhost:8088/wp-admin/`:
-
-- User: `admin`
-- Password: `password`
-
-If for some reason `wp-env` fails to automatically activate the plugin, then go to Plugins => Installed Plugins in the menu, and activate "GraphQL API for WordPress".
-
-To enable pretty permalinks, run:
-
-```bash
-wp-env run cli wp rewrite structure '/%postname%/'
-```
-
-### Pulling code
-
-Whenever pulling changes from this repo, install again the dependencies:
-
-```bash
-composer install
-```
-
-### Pushing code
-
-Compiled JavaScript code (such as all files under a block's `build/` folder) is added to the repo, but only as compiled for production, i.e. after running `npm run build`.
-
-Code compiled for development, i.e. after running `npm start`, is not allowed in the repo.
-
-### Clone own dependencies
-
-GraphQL API is not a monorepo. Instead, every package lives under its own repo, and everything is managed and assembled together through Composer.
-
-File [`dev-helpers/scripts/clone-all-dependencies-from-github.sh`](https://github.com/GraphQLAPI/graphql-api/blob/master/dev-helpers/scripts/clone-all-dependencies-from-github.sh) contains the list of all own dependencies, ready to be cloned.
-
-For development, the GraphQL API plugin can use these local projects by overriding Composer's autoload `PSR-4` sources. To do so:
-
-- Duplicate file [`composer.local-sample.json`](https://github.com/GraphQLAPI/graphql-api/blob/master/composer.local-sample.json) as `composer.local.json`
-- Customize it with the paths to the folders
-
-This file will override any corresponding entry defined in `composer.json`.
-
-### PSR-4 Namespaces
-
-The package owner for this plugin is `GraphQLAPI`. In addition, there are 3 other package owners for all the required components, each as an organization in GitHub:
-
-- [GraphQLByPoP](https://github.com/GraphQLByPoP): components belonging to "GraphQL by PoP", the CMS-agnostic GraphQL server which powers the plugin
-- [PoPSchema](https://github.com/PoPSchema): components to add entities to the schema (types, field resolvers, directives)
-- [PoP](https://github.com/getpop): the core server-side component architecture, used by the server to load the graph data
-
-### CMS-agnosticism
-
-Even though this plugin is already the implementation for WordPress, it is recommended to develop components following the [CMS-agnostic method employed by GraphQL by PoP](https://graphql-by-pop.com/docs/architecture/cms-agnosticism.html), so that they can benefit from architectural optimizations and future developments.
-
-In particular, support for serverless PHP (a feature which is [on the roadmap](https://graphql-by-pop.com/docs/roadmap/serverless-wordpress.html)) may require to decouple the codebase from WordPress.
-
-This method requires the code for the component to be divided into 2 separate packages:
-
-- A CMS-agnostic package, containing the business code and generic contracts, but without using any WordPress code (eg: [posts](https://github.com/PoPSchema/posts))
-- A CMS-specific package, containing the implementation of the contracts for WordPress (eg: [posts-wp](https://github.com/PoPSchema/posts-wp))
-
-## PHP versions
-
-Requirements:
-
-- PHP 7.4+ for development
-- PHP 7.1+ for production (through release [`graphql-api.zip`][latest-release-url])
-
-### Supported PHP features
-
-| PHP Version | Features |
-| --- | --- |
-| 7.1 | Everything |
-| 7.2 | [`object` type](https://www.php.net/manual/en/migration72.new-features.php#migration72.new-features.object-type)<br/><br/>[parameter type widening](https://www.php.net/manual/en/migration72.new-features.php#migration72.new-features.param-type-widening)<br/><br/>Functions:<ul><li>[`spl_object_id`](https://php.net/spl_object_id)</li><li>[`utf8_encode`](https://php.net/utf8_encode)</li><li>[`utf8_decode`](https://php.net/utf8_decode)</li></ul>Constants:<ul><li>[`PHP_FLOAT_*`](https://php.net/reserved.constants#constant.php-float-dig)</li><li>[`PHP_OS_FAMILY`](https://php.net/reserved.constants#constant.php-os-family)</li></ul> |
-| 7.3 | [Reference assignments in `list()`/array destructuring](https://www.php.net/manual/en/migration73.new-features.php#migration73.new-features.core.destruct-reference) => `[&$a, [$b, &$c]] = $d`<br/>_Except inside `foreach` ([#4376](https://github.com/rectorphp/rector/issues/4376))_<br/><br/>[Flexible Heredoc and Nowdoc syntax](https://www.php.net/manual/en/migration73.new-features.php#migration73.new-features.core.heredoc)<br/><br/>[Trailing commans in functions calls](https://www.php.net/manual/en/migration73.new-features.php#migration73.new-features.core.trailing-commas)<br/><br/>[`set(raw)cookie` accepts $option argument](https://www.php.net/manual/en/migration73.other-changes.php#migration73.other-changes.core.setcookie)<br/><br/>Functions:<ul><li>[`array_key_first`](https://php.net/array_key_first)</li><li>[`array_key_last`](https://php.net/array_key_last)</li><li>[`hrtime`](https://php.net/function.hrtime)</li><li>[`is_countable`](https://php.net/is_countable)</li></ul>Exceptions:<ul><li>[`JsonException`](https://php.net/JsonException)</li></ul> |
-| 7.4 | [Typed properties](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.typed-properties)<br/><br/>[Arrow functions](https://www.php.net/manual/en/functions.arrow.php)<br/><br/>[Null coalescing assignment operator](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.null-coalescing-assignment-operator) => `??=`<br/><br/>[Unpacking inside arrays](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.unpack-inside-array) => `$nums = [3, 4]; $merged = [1, 2, ...$nums, 5];`<br/><br/>[Numeric literal separator](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.numeric-literal-separator) => `1_000_000`<br/><br/>[`strip_tags()` with array of tag names](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.standard.strip-tags) => `strip_tags($str, ['a', 'p'])`<br/><br/>[covariant return types and contravariant param types](https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.type-variance)<br/><br/>Functions:<ul><li>[`get_mangled_object_vars`](https://php.net/get_mangled_object_vars)</li><li>[`mb_str_split`](https://php.net/mb_str_split)</li><li>[`password_algos`](https://php.net/password_algos)</li></ul> |
-<!-- @todo Uncomment when PHP 8.0 released -->
-<!--
-| 8.0 | [Union types](https://php.watch/versions/8.0/union-types)<br/><br/>[`mixed` pseudo type](https://php.watch/versions/8.0#mixed-type)<br/><br/>[`static` return type](https://wiki.php.net/rfc/static_return_type)<br/><br/>Interfaces:<ul><li>`Stringable`</li></ul>Classes:<ul><li>`ValueError`</li><li>`UnhandledMatchError`</li></ul>Constants:<ul><li>`FILTER_VALIDATE_BOOL`</li></ul>Functions:<ul><li>[`fdiv`](https://php.net/fdiv)</li><li>[`get_debug_type`](https://php.net/get_debug_type)</li><li>[`preg_last_error_msg`](https://php.net/preg_last_error_msg)</li><li>[`str_contains`](https://php.net/str_contains)</li><li>[`str_starts_with`](https://php.net/str_starts_with)</li><li>[`str_ends_with`](https://php.net/str_ends_with)</li><li>[`get_resource_id`](https://php.net/get_resource_id)</li></ul> |
--->
-
-### Downgrading code to PHP 7.1
-
-Via [Rector](https://github.com/rectorphp/rector) (dry-run mode):
-
-```bash
-composer downgrade-code
-```
-
 ## Resources
 
 ### Videos
@@ -339,6 +316,7 @@ These articles explain the concepts, design and implementation of GraphQL by PoP
 7. [Treating GraphQL directives as middleware](https://blog.logrocket.com/treating-graphql-directives-as-middleware/) 
 8. [Creating an @export GraphQL directive](https://blog.logrocket.com/creating-an-export-graphql-directive/)
 9. [Adding directives to the schema in code-first GraphQL servers](https://blog.logrocket.com/adding-directives-schema-code-first-graphql-servers/)
+10. [Coding a GraphQL server in JavaScript vs. WordPress](https://blog.logrocket.com/coding-a-graphql-server-in-javascript-vs-wordpress/)
 
 ### Gutenberg
 
@@ -400,6 +378,14 @@ To run checks for level 0 (or any level from 0 to 8):
 ./vendor/bin/phpstan analyse -l 0 src tests
 ```
 
+## Downgrading code
+
+To visualize how [Rector](https://github.com/rectorphp/rector) will downgrade the code to PHP 7.1:
+
+```bash
+composer preview-code-downgrade
+```
+
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
@@ -429,7 +415,7 @@ GPLv2 or later. Please see [License File](LICENSE.md) for more information.
 [link-downloads]: https://GitHub.com/GraphQLAPI/graphql-api-for-wp/releases/
 [link-release]: https://GitHub.com/GraphQLAPI/graphql-api-for-wp/releases/
 [link-downloads]: https://GitHub.com/GraphQLAPI/graphql-api-for-wp/releases/
-[link-contributors]: ../../contributors
+[link-contributors]: ../../../../../../contributors
 [link-author]: https://github.com/leoloso
 
 [latest-release-url]: https://github.com/GraphQLAPI/graphql-api-for-wp/releases/latest/download/graphql-api.zip
