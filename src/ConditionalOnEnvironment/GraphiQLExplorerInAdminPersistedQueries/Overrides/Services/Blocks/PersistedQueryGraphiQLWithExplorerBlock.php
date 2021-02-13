@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GraphQLAPI\GraphQLAPI\Blocks\Overrides;
+namespace GraphQLAPI\GraphQLAPI\ConditionalOnEnvironment\GraphiQLExplorerInAdminPersistedQueries\Overrides\Services\Blocks;
 
 use GraphQLAPI\GraphQLAPI\Blocks\PersistedQueryGraphiQLBlock;
 
