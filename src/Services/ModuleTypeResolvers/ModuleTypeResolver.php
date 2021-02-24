@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GraphQLAPI\GraphQLAPI\ModuleTypeResolvers;
+namespace GraphQLAPI\GraphQLAPI\Services\ModuleTypeResolvers;
 
 use GraphQLAPI\GraphQLAPI\Plugin;
-use GraphQLAPI\GraphQLAPI\ModuleTypeResolvers\AbstractModuleTypeResolver;
+use GraphQLAPI\GraphQLAPI\Services\ModuleTypeResolvers\AbstractModuleTypeResolver;
 
 /**
  * All module types used in this plugin. Others can be registered by extensions
@@ -27,7 +27,7 @@ class ModuleTypeResolver extends AbstractModuleTypeResolver
     /**
      * @return string[]
      */
-    public static function getModuleTypesToResolve(): array
+    public function getModuleTypesToResolve(): array
     {
         return [
             self::ACCESS_CONTROL,

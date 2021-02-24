@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace GraphQLAPI\GraphQLAPI\Registries;
+namespace GraphQLAPI\GraphQLAPI\SystemServices\Registries;
 
 use InvalidArgumentException;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
-use GraphQLAPI\GraphQLAPI\ModuleResolvers\ModuleResolverInterface;
+use GraphQLAPI\GraphQLAPI\SystemServices\ModuleResolvers\ModuleResolverInterface;
 
 class ModuleRegistry implements ModuleRegistryInterface
 {
