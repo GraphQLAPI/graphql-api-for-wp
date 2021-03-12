@@ -146,10 +146,11 @@ jobs:
           args: unzip -qq build/graphql-api.zip -d build/downgraded-code
 
       - name: Publish to DIST repo
-        uses: symplify/github-action-monorepo-split@master
+        uses: symplify/monorepo-split-github-action@1.1
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
+          branch: 'master'
           package-directory: 'build/downgraded-code'
           split-repository-organization: 'GraphQLAPI'
           split-repository-name: 'graphql-api-for-wp-dist'
