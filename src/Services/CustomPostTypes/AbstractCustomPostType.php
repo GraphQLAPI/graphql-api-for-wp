@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\Services\CustomPostTypes;
 
-use Symfony\Contracts\Service\Attribute\Required;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\EndpointFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\UserInterfaceFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\Registries\ModuleRegistryInterface;
 use GraphQLAPI\GraphQLAPI\Security\UserAuthorizationInterface;
 use GraphQLAPI\GraphQLAPI\Services\Helpers\CPTUtils;
-use GraphQLAPI\GraphQLAPI\Services\Menus\AbstractMenu;
+use GraphQLAPI\GraphQLAPI\Services\Menus\MenuInterface;
 use GraphQLAPI\GraphQLAPI\Services\Menus\PluginMenu;
 use GraphQLAPI\GraphQLAPI\Settings\UserSettingsManagerInterface;
 use PoP\ComponentModel\Instances\InstanceManagerInterface;
 use PoP\ComponentModel\State\ApplicationState;
 use PoP\Root\Services\AbstractAutomaticallyInstantiatedService;
+use Symfony\Contracts\Service\Attribute\Required;
 use WP_Block_Editor_Context;
 use WP_Post;
 
@@ -27,6 +27,7 @@ abstract class AbstractCustomPostType extends AbstractAutomaticallyInstantiatedS
     protected ModuleRegistryInterface $moduleRegistry;
     protected UserAuthorizationInterface $userAuthorization;
     protected CPTUtils $cptUtils;
+    protected PluginMenu $pluginMenu;
 
     #[Required]
     public function autowireAbstractCustomPostType(
@@ -34,11 +35,13 @@ abstract class AbstractCustomPostType extends AbstractAutomaticallyInstantiatedS
         ModuleRegistryInterface $moduleRegistry,
         UserAuthorizationInterface $userAuthorization,
         CPTUtils $cptUtils,
+        PluginMenu $pluginMenu,
     ): void {
         $this->instanceManager = $instanceManager;
         $this->moduleRegistry = $moduleRegistry;
         $this->userAuthorization = $userAuthorization;
         $this->cptUtils = $cptUtils;
+        $this->pluginMenu = $pluginMenu;
         $this->userSettingsManager = UserSettingsManagerFacade::getInstance();
     }
     /**
@@ -443,16 +446,9 @@ abstract class AbstractCustomPostType extends AbstractAutomaticallyInstantiatedS
         return $postTypeArgs;
     }
 
-    public function getMenuClass(): string
+    public function getMenu(): MenuInterface
     {
-        return PluginMenu::class;
-    }
-
-    protected function getMenu(): AbstractMenu
-    {
-        $menuClass = $this->getMenuClass();
-        /** @var AbstractMenu */
-        return $this->instanceManager->getInstance($menuClass);
+        return $this->pluginMenu;
     }
 
     /**
