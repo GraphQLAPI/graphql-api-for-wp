@@ -20,13 +20,14 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
   - `Root.user`
 - Filter elements via the new `filter` field argument
 - Pagination and sorting fields are accessed via `pagination` and `sort` field args
-- Filter custom post fields (`Root.posts`, `User.posts`, etc) via new arguments:
+- Filter custom post fields (`Root.posts`, `User.posts`, etc) via new inputs:
   - `tagIDs: [ID]`
   - `tagSlugs: [String]`
   - `categoryIDs: [ID]`
   - `authorIDs: [ID]`
   - `authorSlug: String`
   - `excludeAuthorIDs: [ID]`
+  - `hasPassword: Bool`
 - Exclude results via field arg `excludeIDs`
 - Added fields to retrieve the logged-in user's custom posts:
   - `Root.myCustomPost: CustomPostUnion`
@@ -35,9 +36,9 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Query properties for custom post fields:
   - `modified: DateTime`
   - `modifiedAsString: String`
-  - `isSticky: Bool!`
 - Query properties for posts:
   - `Post.postFormat: String!`
+  - `isSticky: Bool!`
 - Fetch a page's parent and children, and the menu order:
   `Page.parent: Page`
   `Page.children: [Page]!`
@@ -169,7 +170,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Renamed interface type `Elemental` to `Node`
 - All `date` fields (such as `Post.date`, `Media.date` and `Comment.date`) and `modified` fields are now of type `DateTime` (before they had type `String`)
 - Must update the inputs for mutations
-- Converged all the "admin" fields with the non-admin versions: instead of having fields `posts` and `unrestrainedPosts`, now there is only field `posts`, and its `filter` argument can also receive input `status` when `Schema Expose Admin Data` is enabled
+- Merged the "admin" fields with the non-admin versions: instead of having fields `posts` and `unrestrainedPosts`, now there is only field `posts`, and its `filter` argument can also receive input `status` when `Schema Expose Admin Data` is enabled
 - `User.email` is treated as "admin" field
 - The Access Control and Cache Control configuration lists will be broken: all fields for all non-root types broken will appear under "(Undefined entries)". These lists must be recreated
 - Settings for several modules must be set again
