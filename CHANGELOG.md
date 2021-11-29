@@ -39,6 +39,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
   - Custom post type and status
   - Comment type and status
   - "Order by" property, for all entities
+  - Menu locations
 - Added fields to retrieve the logged-in user's custom posts:
   - `Root.myCustomPost: CustomPostUnion`
   - `Root.myCustomPosts: [CustomPostUnion]!`
@@ -84,7 +85,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
   - `parentIDs: [ID!]`
   - `excludeParentIDs: [ID]`
   - `excludeIDs: [ID!]`
-  - `searchfor: String`
+  - `search: String`
   - `types: [String!]`
 - Comment mutations: support creating comments by non logged-in users
 - Filter users by email (considered as "admin" data)
