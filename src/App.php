@@ -14,12 +14,12 @@ use PoP\Root\AppInterface as RootAppInterface;
 use PoP\Root\AppLoaderInterface;
 use PoP\Root\Component\ComponentInterface;
 use PoP\Root\Container\ContainerBuilderFactory;
+use PoP\Root\Container\ContainerInterface;
 use PoP\Root\Container\SystemContainerBuilderFactory;
 use PoP\Root\StateManagers\AppStateManagerInterface;
 use PoP\Root\StateManagers\ComponentManagerInterface;
 use PoP\Root\StateManagers\HookManagerInterface;
 use PoP\Root\Stores\MutationResolutionStore;
-use Symfony\Component\DependencyInjection\Container;
 
 /**
  * Decorator wrapping the single class App hosting all the top-level instances,
@@ -149,7 +149,7 @@ class App implements AppInterface, RootAppInterface
     /**
      * Shortcut function.
      */
-    final public static function getContainer(): Container
+    final public static function getContainer(): ContainerInterface
     {
         return RootApp::getContainer();
     }
@@ -157,7 +157,7 @@ class App implements AppInterface, RootAppInterface
     /**
      * Shortcut function.
      */
-    final public static function getSystemContainer(): Container
+    final public static function getSystemContainer(): ContainerInterface
     {
         return RootApp::getSystemContainer();
     }
