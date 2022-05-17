@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace GraphQLAPI\GraphQLAPI\PluginSkeleton;
 
-use PoP\Root\Component\AbstractComponent;
+use PoP\Root\Module\AbstractModule;
 
-abstract class AbstractPluginComponent extends AbstractComponent implements PluginComponentInterface
+abstract class AbstractPluginModule extends AbstractModule implements PluginModuleInterface
 {
     private ?string $pluginFolder = null;
 
@@ -51,11 +51,11 @@ abstract class AbstractPluginComponent extends AbstractComponent implements Plug
      * It uses Convention over Configuration: if the requested files exist,
      * load them.
      *
-     * @param string[] $skipSchemaComponentClasses
+     * @param string[] $skipSchemaModuleClasses
      */
     protected function initializeContainerServices(
         bool $skipSchema,
-        array $skipSchemaComponentClasses,
+        array $skipSchemaModuleClasses,
     ): void {
         $pluginFolder = $this->getPluginFolder();
         if ($pluginFolder === null) {

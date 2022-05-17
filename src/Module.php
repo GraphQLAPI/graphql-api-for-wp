@@ -10,56 +10,51 @@ use GraphQLAPI\GraphQLAPI\Facades\Registries\SystemModuleRegistryFacade;
 use GraphQLAPI\GraphQLAPI\Facades\UserSettingsManagerFacade;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\ClientFunctionalityModuleResolver;
 use GraphQLAPI\GraphQLAPI\ModuleResolvers\PerformanceFunctionalityModuleResolver;
-use GraphQLAPI\GraphQLAPI\PluginSkeleton\AbstractPluginComponent;
+use GraphQLAPI\GraphQLAPI\PluginSkeleton\AbstractPluginModule;
 use GraphQLAPI\GraphQLAPI\Services\Helpers\EndpointHelpers;
 use PoP\Root\Facades\Instances\SystemInstanceManagerFacade;
 
-/**
- * Initialize component
- */
-class Component extends AbstractPluginComponent
+class Module extends AbstractPluginModule
 {
     /**
-     * Classes from PoP components that must be initialized before this component
-     *
      * @return string[]
      */
-    public function getDependedComponentClasses(): array
+    public function getDependedModuleClasses(): array
     {
         return [
-            \GraphQLAPI\ExternalDependencyWrappers\Component::class,
-            \GraphQLAPI\MarkdownConvertor\Component::class,
-            \GraphQLAPI\PluginUtils\Component::class,
-            \GraphQLByPoP\GraphQLClientsForWP\Component::class,
-            \GraphQLByPoP\GraphQLEndpointForWP\Component::class,
-            \GraphQLByPoP\GraphQLServer\Component::class,
-            \PoP\GuzzleHelpers\Component::class,
-            \PoPCMSSchema\CommentMutationsWP\Component::class,
-            \PoPCMSSchema\CustomPostMediaMutationsWP\Component::class,
-            \PoPCMSSchema\CustomPostMediaWP\Component::class,
-            \PoPCMSSchema\CustomPostMutationsWP\Component::class,
-            \PoPCMSSchema\GenericCustomPosts\Component::class,
-            \PoPCMSSchema\PostCategoriesWP\Component::class,
-            \PoPCMSSchema\PostCategoryMutationsWP\Component::class,
-            \PoPCMSSchema\PostMediaMutations\Component::class,
-            \PoPCMSSchema\PostTagMutationsWP\Component::class,
-            \PoPCMSSchema\PostTagsWP\Component::class,
-            \PoPCMSSchema\SettingsWP\Component::class,
-            \PoPCMSSchema\TaxonomyQueryWP\Component::class,
-            \PoPCMSSchema\UserAvatarsWP\Component::class,
-            \PoPCMSSchema\UserRolesAccessControl\Component::class,
-            \PoPCMSSchema\UserRolesWP\Component::class,
-            \PoPCMSSchema\UserStateMutationsWP\Component::class,
-            \PoPCMSSchema\UserStateWP\Component::class,
-            \PoPWPSchema\CommentMeta\Component::class,
-            \PoPWPSchema\Comments\Component::class,
-            \PoPWPSchema\CustomPostMeta\Component::class,
-            \PoPWPSchema\Media\Component::class,
-            \PoPWPSchema\Menus\Component::class,
-            \PoPWPSchema\Pages\Component::class,
-            \PoPWPSchema\Posts\Component::class,
-            \PoPWPSchema\TaxonomyMeta\Component::class,
-            \PoPWPSchema\UserMeta\Component::class,
+            \GraphQLAPI\ExternalDependencyWrappers\Module::class,
+            \GraphQLAPI\MarkdownConvertor\Module::class,
+            \GraphQLAPI\PluginUtils\Module::class,
+            \GraphQLByPoP\GraphQLClientsForWP\Module::class,
+            \GraphQLByPoP\GraphQLEndpointForWP\Module::class,
+            \GraphQLByPoP\GraphQLServer\Module::class,
+            \PoP\GuzzleHelpers\Module::class,
+            \PoPCMSSchema\CommentMutationsWP\Module::class,
+            \PoPCMSSchema\CustomPostMediaMutationsWP\Module::class,
+            \PoPCMSSchema\CustomPostMediaWP\Module::class,
+            \PoPCMSSchema\CustomPostMutationsWP\Module::class,
+            \PoPCMSSchema\GenericCustomPosts\Module::class,
+            \PoPCMSSchema\PostCategoriesWP\Module::class,
+            \PoPCMSSchema\PostCategoryMutationsWP\Module::class,
+            \PoPCMSSchema\PostMediaMutations\Module::class,
+            \PoPCMSSchema\PostTagMutationsWP\Module::class,
+            \PoPCMSSchema\PostTagsWP\Module::class,
+            \PoPCMSSchema\SettingsWP\Module::class,
+            \PoPCMSSchema\TaxonomyQueryWP\Module::class,
+            \PoPCMSSchema\UserAvatarsWP\Module::class,
+            \PoPCMSSchema\UserRolesAccessControl\Module::class,
+            \PoPCMSSchema\UserRolesWP\Module::class,
+            \PoPCMSSchema\UserStateMutationsWP\Module::class,
+            \PoPCMSSchema\UserStateWP\Module::class,
+            \PoPWPSchema\CommentMeta\Module::class,
+            \PoPWPSchema\Comments\Module::class,
+            \PoPWPSchema\CustomPostMeta\Module::class,
+            \PoPWPSchema\Media\Module::class,
+            \PoPWPSchema\Menus\Module::class,
+            \PoPWPSchema\Pages\Module::class,
+            \PoPWPSchema\Posts\Module::class,
+            \PoPWPSchema\TaxonomyMeta\Module::class,
+            \PoPWPSchema\UserMeta\Module::class,
         ];
     }
 
@@ -91,15 +86,15 @@ class Component extends AbstractPluginComponent
     /**
      * Initialize services
      *
-     * @param string[] $skipSchemaComponentClasses
+     * @param string[] $skipSchemaModuleClasses
      */
     protected function initializeContainerServices(
         bool $skipSchema,
-        array $skipSchemaComponentClasses,
+        array $skipSchemaModuleClasses,
     ): void {
         parent::initializeContainerServices(
             $skipSchema,
-            $skipSchemaComponentClasses
+            $skipSchemaModuleClasses
         );
         // Override DI services
         $this->initServices(dirname(__DIR__), '/Overrides');
