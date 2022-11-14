@@ -653,7 +653,7 @@ Support for custom [scalar types](https://graphql.org/learn/schema/#scalar-types
 
 Custom scalars allow you to better represent your data, whether for getting an input via a field argument, or printing a customized output in the response.
 
-(The documentation on creating custom scalars will be ready only for v1.0... until then, check the [source code for an example implementation](https://github.com/leoloso/PoP/blob/a882ddf1300ee915b96683fbdf56f09be2ea0447/layers/Schema/packages/schema-commons/src/TypeResolvers/ScalarType/EmailScalarTypeResolver.php)).
+(Here is the [source code for an example implementation](https://github.com/leoloso/PoP/blob/a882ddf1300ee915b96683fbdf56f09be2ea0447/layers/Schema/packages/schema-commons/src/TypeResolvers/ScalarType/EmailScalarTypeResolver.php).)
 
 ### Implementation of standard custom scalar types
 
@@ -676,7 +676,7 @@ To support these, the new `Numeric` scalar has been introduced. This type acts a
 
 ### Support for the new "Specified By URL" meta property
 
-The custom scalars can expose the [`specifiedBy` property](https://spec.graphql.org/draft/#sec-Scalars.Custom-Scalars) (recently added to the GraphQL spec), providing an URL which defines the behavior of the scalar.
+The custom scalars can expose the [`specifiedBy` property](https://spec.graphql.org/draft/#sec-Scalars.Custom-Scalars), providing an URL which defines the behavior of the scalar.
 
 We can query the value via the `specifiedByURL` field, via introspection:
 
@@ -699,7 +699,7 @@ Enums are a special kind of scalar that is restricted to a particular set of all
 - Validate that any arguments of this type are one of the allowed values
 - Communicate through the type system that a field will always be one of a finite set of values
 
-(The documentation on creating custom enums will be ready only for v1.0... until then, check the [source code for an example implementation](https://github.com/leoloso/PoP/blob/c320cb1a4e5db48c5045cb37b66506b4a4a9a695/layers/Schema/packages/comments/src/TypeResolvers/EnumType/CommentStatusEnumTypeResolver.php)).
+(Here is the [source code for an example implementation](https://github.com/leoloso/PoP/blob/c320cb1a4e5db48c5045cb37b66506b4a4a9a695/layers/Schema/packages/comments/src/TypeResolvers/EnumType/CommentStatusEnumTypeResolver.php).)
 
 ### Implementation of several enum types
 
@@ -723,7 +723,7 @@ In addition, the GraphQL server now also supports [input types](https://graphql.
 
 Input objects allow you to pass complex objects as inputs to fields, which is particularly useful for mutations.
 
-(The documentation on creating input objects will be ready only for v1.0... until then, check the [source code for an example implementation](https://github.com/leoloso/PoP/blob/accfd9954aa6b26b9d38c39580764b1a38e0f539/layers/Schema/packages/posts/src/TypeResolvers/InputObjectType/RootPostsFilterInputObjectTypeResolver.php)).
+(Here is the [source code for an example implementation](https://github.com/leoloso/PoP/blob/accfd9954aa6b26b9d38c39580764b1a38e0f539/layers/Schema/packages/posts/src/TypeResolvers/InputObjectType/RootPostsFilterInputObjectTypeResolver.php).)
 
 ### Implementation of several input object types
 
@@ -735,15 +735,54 @@ For query fields, organize input objects under:
 - `sort`
 - `pagination`
 
+For instance:
+
+```graphql
+query {
+  posts(
+    filter:{
+      search: "Hello"
+    }
+    sort: {
+      by: TITLE
+      order: DESC
+    }
+    pagination: {
+      limit: 3,
+      offset: 3
+    }
+  ) {
+    id
+    title
+    content
+  }
+}
+```
+
 For mutation fields, organize input objects under:
 
 - `input`
 
+For instance:
+
+```graphql
+mutation {
+  createPost(input: {
+    title: "Adding some new post",
+    content: "passing the data via an input object"
+  }) {
+    id
+    title
+    content
+  }
+}
+```
+
 ## Oneof Input Objects
 
-This feature is not in the GraphQL spec yet, but it's expected to be added soon: [graphql/graphql-spec#825](https://github.com/graphql/graphql-spec/pull/825). Since it is extremely valuable, it has already been implemented for the GraphQL API for WordPress.
+This feature is not in the GraphQL spec yet, but it's expected to be eventually added: [graphql/graphql-spec#825](https://github.com/graphql/graphql-spec/pull/825). Since it is extremely valuable, it has already been implemented for the GraphQL API for WordPress.
 
-The "oneof" input object is a particular type of input object, where exactly one of the input fields must be provided as input (or otherwise it returns a validation error). This behavior introduces polymorphism for inputs.
+The "oneof" input object is a particular type of input object, where exactly one of the input fields must be provided as input, or otherwise it returns a validation error. This behavior introduces polymorphism for inputs.
 
 For instance, the field `Root.post` now receives a field argument `by`, which is a oneof input object allowing is to retrieve the post via different properties, such as by `id`:
 
@@ -795,7 +834,7 @@ As mentioned earlier on, all fields to fetch a single entity now receive argumen
 
 GraphQL operations (i.e. `query` and `mutation` operations) can now also receive directives.
 
-In the example below, directives `@skip` and `@include` can be declared in the operation, to have the query or mutation be processed or not based on some state (this example can't be run with `v0.9`; it will work in the future, once **Multiple Query Execution**, **Dynamic Variables** and **Function Fields** features are released):
+In the example below, directives `@skip` and `@include` can be declared in the operation, to have the query or mutation be processed or not based on some state:
 
 ```graphql
 query CheckIfPostExistsAndExportAsDynamicVariable
@@ -821,6 +860,8 @@ mutation UpdatePostIfItAlreadyExists @include(if: $postExists)
   # Do something...
 }
 ```
+
+_(This query example is demonstrative, but you can't run it yet: it depends on several features -**Multiple Query Execution**, **Dynamic Variables** and **Function Fields**- which are not available in the current version of the plugin.)_
 
 ## Restrict Field Directives to Specific Types
 
@@ -1577,11 +1618,11 @@ Since `content` fields are now of type `HTML`, to obtain it as a `String` the qu
 
 Mutation fields now use input objects instead of field arguments, hence they must be updated.
 
-For instance, mutation `createPost` now receives data via an input object under field argument `filter`:
+For instance, mutation `createPost` now receives data via an input object under field argument `input`:
 
 ```graphql
 mutation {
-  createPost(input:{
+  createPost(input: {
     title: "Saronga donga",
     content: "cento per cento italiano"
     status: publish,
