@@ -477,7 +477,7 @@ class SchemaTypeModuleResolver extends AbstractModuleResolver
                 self::OPTION_TREAT_CUSTOMPOST_STATUS_AS_SENSITIVE_DATA => true,
             ],
             self::SCHEMA_GENERIC_CUSTOMPOSTS => [
-                ModuleSettingOptions::CUSTOMPOST_TYPES => ['post'],
+                ModuleSettingOptions::CUSTOMPOST_TYPES => ['post', 'page'],
             ],
             self::SCHEMA_POSTS => [
                 ModuleSettingOptions::LIST_DEFAULT_LIMIT => 10,
@@ -823,14 +823,18 @@ class SchemaTypeModuleResolver extends AbstractModuleResolver
                     // not "publish", and the API filters by "publish" entries
                     [
                         'attachment',
-                        'revision',
-                        'nav_menu_item',
                         'custom_css',
                         'customize_changeset',
+                        'nav_menu_item',
                         'oembed_cache',
+                        'revision',
                         'user_request',
-                        'wp_block',
                         'wp_area',
+                        'wp_block',
+                        'wp_global_styles',
+                        'wp_navigation',
+                        'wp_template_part',
+                        'wp_template',
                     ]
                 )
             );
