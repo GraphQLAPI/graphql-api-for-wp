@@ -328,10 +328,9 @@ And a new `rawContent` of type `String` was introduced:
 
 Since adding support for custom enum types (see later on), wherever possible (in fields, field/directive arguments and input types) enums are now used. This includes:
 
-- Custom post type and status
+- Custom post status
 - Comment type and status
 - "Order by" property, for all entities
-- Menu locations
 
 ### Custom posts
 
@@ -1043,7 +1042,7 @@ We can query the value via the `specifiedByURL` field, via introspection:
 ```graphql
 {
   __schema {
-    emailScalarType: type(name: "Email") {
+    types {
       specifiedByURL
     }
   }
@@ -1372,7 +1371,7 @@ type User {
 }
 ```
 
-The `self` field allows to append extra levels to the query without leaving the queried object. Running this query:
+Running this query:
 
 ```graphql
 {
@@ -1581,7 +1580,7 @@ To configure the single endpoint, go to tab "Schema Configuration" on the Settin
 
 ![Settings for the Schema Configuration for the Single Endpoint](../../images/settings-schema-configuration-for-single-endpoint.png)
 
-## Display `"causes"` for errors in response (#893)
+## Display `"causes"` for errors in response
 
 As has been [requested for the GraphQL spec on #893](https://github.com/graphql/graphql-spec/issues/893), when resolving a field fails due to multiple underlying reasons, it makes sense to show them all together under the subentry `"causes"` in the GraphQL response.
 
@@ -1822,6 +1821,9 @@ type _NamedTypeExtensions {
 
   # Enum-like "possible values" for EnumString type resolvers, `null` otherwise
   possibleValues: [String!]
+
+  # OneOf Input Objects are a special variant of Input Objects where the type system asserts that exactly one of the fields must be set and non-null, all others being omitted.
+  isOneOf: Boolean!
 }
 
 extend type __Type {
