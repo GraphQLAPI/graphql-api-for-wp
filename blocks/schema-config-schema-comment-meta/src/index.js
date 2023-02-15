@@ -17,26 +17,26 @@ import { __ } from '@wordpress/i18n';
  */
 import EditBlock from './edit';
 
-const defaultBehavior = window.graphqlApiSchemaConfigSchemaCustompostMeta ? window.graphqlApiSchemaConfigSchemaCustompostMeta.defaultBehavior : [];
+const defaultBehavior = window.graphqlApiSchemaConfigSchemaCommentMeta ? window.graphqlApiSchemaConfigSchemaCommentMeta.defaultBehavior : [];
 
 /**
  * Every block starts by registering a new block type definition.
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'graphql-api/schema-config-schema-custompost-meta', {
+registerBlockType( 'graphql-api/schema-config-schema-comment-meta', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __( 'Custom Post Meta for the Schema Configuration', 'graphql-api' ),
+	title: __( 'Comment Meta for the Schema Configuration', 'graphql-api' ),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
 	 * It will be shown in the Block Tab in the Settings Sidebar.
 	 */
 	description: __(
-		'Configure custom post meta options in the Schema Configuration',
+		'Configure comment meta options in the Schema Configuration',
 		'graphql-api'
 	),
 
