@@ -49,7 +49,8 @@
         "pop-wp-schema/posts": "^0.11",
         "pop-wp-schema/taxonomymeta": "^0.11",
         "pop-wp-schema/usermeta": "^0.11",
-        "pop-wp-schema/users": "^0.11"
+        "pop-wp-schema/users": "^0.11",
+        "psr/http-message": "1.0.1"
     },
     "require-dev": {
         "johnpbloch/wordpress": ">=5.5",
