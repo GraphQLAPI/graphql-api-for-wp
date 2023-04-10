@@ -51,7 +51,7 @@ class EndpointHelpers
      * used on the WordPress editor to power this plugin's blocks
      * (for the different CPTs: SchemaConfig, ACLs, CCLs, etc), under:
      *
-     *   /wp-admin/edit.php?page=graphql_api&action=execute_query&endpointGroup=pluginInternalWPEditor
+     *   /wp-admin/edit.php?page=graphql_api&action=execute_query&endpoint_group=pluginInternalWPEditor
      */
     public function isRequestingAdminPluginInternalWPEditorGraphQLEndpoint(): bool
     {
@@ -83,8 +83,24 @@ class EndpointHelpers
     }
 
     /**
-     * Indicate if we are requesting in the wp-admin:
-     * GraphiQL and Voyager clients + ACL/CCL configurations
+     * Indicate if we are requesting the default admin endpoint,
+     * i.e. without the "endpoint_group" or "persisted_query_id" params
+     */
+    public function isRequestingDefaultAdminGraphQLEndpoint(): bool
+    {
+        if (!$this->isRequestingAdminGraphQLEndpoint()
+            || $this->isRequestingAdminPersistedQueryGraphQLEndpoint()
+        ) {
+            return false;
+        }
+        /** @var string */
+        $endpointGroup = App::query(RequestParams::ENDPOINT_GROUP, '');
+        return $endpointGroup === '';
+    }
+
+    /**
+     * Indicate if we are requesting any admin endpoint
+     * except persisted queries.
      */
     public function isRequestingNonPersistedQueryAdminGraphQLEndpoint(): bool
     {
